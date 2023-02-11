@@ -9,5 +9,9 @@ O processo estuturado a partir deste trabalho permite entedimento e avaliação 
 
 **Avaliação Quadrienal:** Visa replicar e detalhar a última avaliação completa do Programa realizada pela CAPES.
 
-**Avaliação Bienal:** Visa promover a reavaliação de meio termo do corpo docente do programa, a fim de acompanhar atendimento, manutenção e melhoria dos indicadores baseados nos parâmetros exigidos pela CAPES, em específico parâmetros da Área de Medicina II da CAPES, além de permitir, a readequação da composição do grupo sempre que necessário. São considerados os docentes permanentes (DP) e docentes colaboradores (DC), com base nos mesmos parâmetros esperados de impacto (medido por pontuação ponderada relativa ao estrato Qualis Periódicos da área Medicina II das revistas utilizadas nas publicações do período).
+**Avaliação Bienal:** Visa promover a reavaliação de meio termo do corpo docente do programa, para acompanhar o atendimento, manuter e melhorar o desempenho medido pelos indicadores.
+
+Os indicadores que balizam a avaliação são construídos com base nos parâmetros exigidos pela CAPES, em específico para área de avaliação Medicina II, o que permite readequar rumos sempre que necessário para aprimorar o desempenho do programa. 
+
+São considerados os docentes permanentes (DP) e docentes colaboradores (DC), com base nos mesmos parâmetros esperados de impacto (medido por pontuação ponderada relativa ao estrato Qualis Periódicos da área Medicina II das revistas utilizadas nas publicações do período).
 
