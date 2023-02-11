@@ -1,5 +1,5 @@
 # Processos de avaliação da pós-graduação
-## Avaliar Publicação Docente/Discente na Pós-graduação
+## PPGCS - Avaliar Publicação Docente/Discente na Pós-graduação
 
 Este trabalho visa medir a produtividade e o impacto das publicações científico-acadêmicas do PPGCS, através de um processo de avaliação regular do perfil do corpo docente do Programa de Pós-graduação em Ciências da Saúde – Instituto René Rachou – Fiocruz Minas.
 
