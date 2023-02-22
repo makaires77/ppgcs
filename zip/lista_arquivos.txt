@@ -1,0 +1,4 @@
+Arquivos zipados a serem atualizados periodicamente:
+Para Análise dod 53 docentes do PPGCS:
+644.zip
+642.zip
