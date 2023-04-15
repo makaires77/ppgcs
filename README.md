@@ -15,3 +15,18 @@ Os indicadores que balizam a avaliação são construídos com base nos parâmet
 
 São considerados os docentes permanentes (DP) e docentes colaboradores (DC), com base nos mesmos parâmetros esperados de impacto (medido por pontuação ponderada relativa ao estrato Qualis Periódicos da área Medicina II das revistas utilizadas nas publicações do período).
 
+
+Estrutura de pastas, em arquitetura hexagonal e orientação a funções:
+
+app contém a lçógica do aplicativo:
+  routes.py especifica as roas HTTP
+  controllers coném as funções que recebem as requisições HTTP  e encaminham para os casos de uso correspondentes
+  usecases coném os casos de uso que definem a lógica do negócio para cada entidade
+domain  contém as definições de entidades, exceções e outros objetos puros
+infraestructure tem a lógica de acesso a dados
+  repositories encapsulam as operações com banco de dados
+  adapters se comunicam com outras APIs
+  
+o arquivo config.py contém configurações do serviço
+O arquivo run.py inicia o serviço Flask
+
