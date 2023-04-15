@@ -18,15 +18,23 @@ São considerados os docentes permanentes (DP) e docentes colaboradores (DC), co
 
 Estrutura de pastas, em arquitetura hexagonal e orientação a funções:
 
-app contém a lçógica do aplicativo:
-  routes.py especifica as roas HTTP
-  controllers coném as funções que recebem as requisições HTTP  e encaminham para os casos de uso correspondentes
-  usecases coném os casos de uso que definem a lógica do negócio para cada entidade
-domain  contém as definições de entidades, exceções e outros objetos puros
-infraestructure tem a lógica de acesso a dados
-  repositories encapsulam as operações com banco de dados
-  adapters se comunicam com outras APIs
+*app* contém a lçógica do aplicativo:
   
-o arquivo config.py contém configurações do serviço
+  *routes.py* especifica as roas HTTP
+  
+  *controllers* coném as funções que recebem as requisições HTTP  e encaminham para os casos de uso correspondentes
+  
+  *usecases* coném os casos de uso que definem a lógica do negócio para cada entidade
+
+*domain*  contém as definições de entidades, exceções e outros objetos puros
+
+*infraestructure* tem a lógica de acesso a dados
+
+  *repositories* encapsulam as operações com banco de dados
+  
+  *adapters* se comunicam com outras APIs
+  
+O arquivo config.py contém configurações do serviço
+
 O arquivo run.py inicia o serviço Flask
 
