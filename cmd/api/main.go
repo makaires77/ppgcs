@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"ppgcs/domain/publication"
-	"ppgcs/infra/repository"
+	"ppgcs/domain/pkg/publication"
+	"ppgcs/infra/pkg/domain/publication/repository"
 	"ppgcs/interface/api"
 
 	"github.com/gorilla/mux"
