@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+
+	<!-- Global stylesheets -->
+	<link href="../../../assets/fonts/inter/inter.css" rel="stylesheet" type="text/css">
+	<link href="../../../assets/icons/phosphor/styles.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/ltr/all.min.css" id="stylesheet" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	<script src="../../../assets/demo/demo_configurator.js"></script>
+	<script src="../../../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script src="assets/js/app.js"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body>
+
+	<!-- Page content -->
+	<div class="page-content">
+
+		<!-- Main sidebar -->
+		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-lg">
+
+			<!-- Sidebar header -->
+			<div class="sidebar-section bg-black bg-opacity-10 border-bottom border-bottom-white border-opacity-10">
+				<div class="sidebar-logo d-flex justify-content-center align-items-center">
+					<a href="index.html" class="d-inline-flex align-items-center py-2">
+						<img src="../../../assets/images/logo_icon.svg" class="sidebar-logo-icon" alt="">
+						<img src="../../../assets/images/logo_text_light.svg" class="sidebar-resize-hide ms-3" height="14" alt="">
+					</a>
+
+					<div class="sidebar-resize-hide ms-auto">
+						<button type="button" class="btn btn-flat-white btn-icon btn-sm rounded-pill border-transparent sidebar-control sidebar-main-resize d-none d-lg-inline-flex">
+							<i class="ph-arrows-left-right"></i>
+						</button>
+
+						<button type="button" class="btn btn-flat-white btn-icon btn-sm rounded-pill border-transparent sidebar-mobile-main-toggle d-lg-none">
+							<i class="ph-x"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- /sidebar header -->
+
+
+			<!-- Sidebar content -->
+			<div class="sidebar-content">
+
+				<!-- Main navigation -->
+				<div class="sidebar-section">
+					<ul class="nav nav-sidebar" data-nav-type="accordion">
+
+						<!-- Main -->
+						<li class="nav-item-header">
+							<div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Main</div>
+							<i class="ph-dots-three sidebar-resize-show"></i>
+						</li>
+						<li class="nav-item">
+							<a href="../full/index.html" class="nav-link">
+								<i class="ph-house"></i>
+								<span>Dashboard</span>
+							</a>
+						</li>
+
+						<!-- Layout -->
+						<li class="nav-item-header">
+							<div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Layout</div>
+							<i class="ph-dots-three sidebar-resize-show"></i>
+						</li>
+						<li class="nav-item nav-item-submenu nav-item-expanded nav-item-open">
+							<a href="#" class="nav-link">
+								<i class="ph-layout"></i>
+								<span>Page layouts</span>
+							</a>
+
+							<ul class="nav-group-sub collapse show">
+								<li class="nav-item"><a href="layout_static.html" class="nav-link">Static layout</a></li>
+								<li class="nav-item"><a href="layout_no_header.html" class="nav-link">No header</a></li>
+								<li class="nav-item"><a href="layout_no_footer.html" class="nav-link">No footer</a></li>
+								<li class="nav-item-divider"></li>
+								<li class="nav-item"><a href="layout_fixed_header.html" class="nav-link">Fixed header</a></li>
+								<li class="nav-item"><a href="layout_fixed_footer.html" class="nav-link active">Fixed footer</a></li>
+								<li class="nav-item-divider"></li>
+								<li class="nav-item"><a href="layout_2_sidebars_1_side.html" class="nav-link">2 sidebars on 1 side</a></li>
+								<li class="nav-item"><a href="layout_2_sidebars_2_sides.html" class="nav-link">2 sidebars on 2 sides</a></li>
+								<li class="nav-item"><a href="layout_3_sidebars.html" class="nav-link">3 sidebars</a></li>
+								<li class="nav-item-divider"></li>
+								<li class="nav-item"><a href="layout_boxed_page.html" class="nav-link">Boxed page</a></li>
+								<li class="nav-item"><a href="layout_boxed_content.html" class="nav-link">Boxed content</a></li>
+							</ul>
+						</li>
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="ph-arrow-elbow-down-right"></i> <span>Menu levels</span></a>
+							<ul class="nav-group-sub collapse">
+								<li class="nav-item"><a href="#" class="nav-link">Second level</a></li>
+								<li class="nav-item nav-item-submenu">
+									<a href="#" class="nav-link">Second level with child</a>
+									<ul class="nav-group-sub collapse">
+										<li class="nav-item"><a href="#" class="nav-link">Third level</a></li>
+										<li class="nav-item nav-item-submenu">
+											<a href="#" class="nav-link">Third level with child</a>
+											<ul class="nav-group-sub collapse">
+												<li class="nav-item"><a href="#" class="nav-link">Fourth level</a></li>
+												<li class="nav-item"><a href="#" class="nav-link">Fourth level</a></li>
+											</ul>
+										</li>
+										<li class="nav-item"><a href="#" class="nav-link">Third level</a></li>
+									</ul>
+								</li>
+								<li class="nav-item"><a href="#" class="nav-link">Second level</a></li>
+							</ul>
+						</li>
+						<!-- /layout -->
+
+					</ul>
+				</div>
+				<!-- /main navigation -->
+
+			</div>
+			<!-- /sidebar content -->
+
+		</div>
+		<!-- /main sidebar -->
+
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			<!-- Main navbar -->
+			<div class="navbar navbar-expand-lg navbar-static shadow">
+				<div class="container-fluid">
+					<div class="d-flex d-lg-none">
+						<button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded">
+							<i class="ph-list"></i>
+						</button>
+						<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-mobile" aria-expanded="false">
+							<i class="ph-squares-four"></i>
+						</button>
+					</div>
+
+					<div class="navbar-collapse order-2 order-lg-1 collapse" id="navbar-mobile" style="">
+						<ul class="navbar-nav mt-2 mt-lg-0">
+							<li class="nav-item">
+								<a href="#" class="navbar-nav-link rounded">Link</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a href="#" class="navbar-nav-link rounded dropdown-toggle" data-bs-toggle="dropdown">Dropdown</a>
+								<div class="dropdown-menu">
+									<a href="#" class="dropdown-item">Action</a>
+									<a href="#" class="dropdown-item">Another action</a>
+									<a href="#" class="dropdown-item">Something else here</a>
+									<a href="#" class="dropdown-item">One more line</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<ul class="nav gap-sm-2 order-1 order-lg-2 ms-auto">
+						<li class="nav-item">
+							<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
+								<i class="ph-bell"></i>
+								<span class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">2</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
+								<i class="ph-chats"></i>
+							</a>
+						</li>
+						<li class="nav-item nav-item-dropdown-lg dropdown">
+							<a href="#" class="navbar-nav-link align-items-center rounded p-1" data-bs-toggle="dropdown" aria-expanded="false">
+								<div class="status-indicator-container">
+									<img src="../../../assets/images/demo/users/face11.jpg" class="w-32px h-32px rounded" alt="">
+									<span class="status-indicator bg-success"></span>
+								</div>
+								<span class="d-none d-lg-inline-block mx-lg-2">Victoria</span>
+							</a>
+
+							<div class="dropdown-menu dropdown-menu-end">
+								<a href="#" class="dropdown-item">Action</a>
+								<a href="#" class="dropdown-item">Another action</a>
+								<a href="#" class="dropdown-item">Something else here</a>
+								<a href="#" class="dropdown-item">One more line</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /main navbar -->
+
+
+			<!-- Inner content -->
+			<div class="content-inner">
+
+				<!-- Page header -->
+				<div class="page-header">
+					<div class="page-header-content d-lg-flex">
+						<div class="d-flex">
+							<h4 class="page-title mb-0">
+								Seed - <span class="fw-normal">Fixed Footer</span>
+							</h4>
+
+							<a href="#page_header" class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto" data-bs-toggle="collapse">
+								<i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
+							</a>
+						</div>
+
+						<div class="collapse d-lg-block my-lg-auto ms-lg-auto" id="page_header">
+							<div class="hstack gap-3 mb-3 mb-lg-0">
+								<button type="button" class="btn btn-primary">
+									<i class="ph-gear me-2"></i>
+									Button
+								</button>
+
+								<div class="dropdown">
+									<button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
+										Dropdown
+									</button>
+
+									<div class="dropdown-menu dropdown-menu-end">
+										<button type="button" class="dropdown-item">Menu item 1</button>
+										<button type="button" class="dropdown-item">Menu item 2</button>
+										<button type="button" class="dropdown-item">Menu item 3</button>
+										<div class="dropdown-divider"></div>
+										<button type="button" class="dropdown-item">Menu item 4</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /page header -->
+
+
+				<!-- Content area -->
+				<div class="content pt-0">
+
+					<!-- Basic card -->
+					<div class="card">
+						<div class="card-header">
+							<h5 class="mb-0">Basic card</h5>
+						</div>
+
+						<div class="card-body">
+							<h6>Start your development with no hassle!</h6>
+							<p class="mb-3">Common problem of templates is that all code is deeply integrated into the core. This limits your freedom in decreasing amount of code, i.e. it becomes pretty difficult to remove unnecessary code from the project. Limitless allows you to remove unnecessary and extra code easily just by disabling styling of certain components in <code>_config.scss</code>. Styling of all 3rd party components are stored in separate SCSS files that begin with <code>$enable-[component]</code> condition, which checks if this component is enabled in SCSS configuration and either includes or excludes it from bundled CSS file. Use only components you actually need!</p>
+
+							<h6>What is this?</h6>
+							<p class="mb-3">Starter kit is a set of pages, useful for developers to start development process from scratch. Each layout includes base components only: layout, page kits, color system which is still optional, bootstrap files and bootstrap overrides. No extra CSS/JS files and markup. CSS files are compiled without any plugins or components. Starter kit is moved to a separate folder for better accessibility.</p>
+
+							<h6>How does it work?</h6>
+							<p>You open one of the starter pages, add necessary plugins, enable components in <code>_config.scss</code> file, compile new CSS. That's it. It's also recommended to open one of main pages with functionality you need and copy all paths/JS code from there to your new page, if you don't need to change file structure.</p>
+						</div>
+					</div>
+					<!-- /basic card -->
+
+
+					<!-- Basic table -->
+					<div class="card">
+						<div class="card-header">
+							<h5 class="mb-0">Basic table</h5>
+						</div>
+
+						<div class="card-body">
+							Seed project includes the most basic components that can help you in development process - basic grid example, card, table and form layouts with standard components. Nothing extra. Easily turn on and off styles of different components to keep your CSS as clean as possible. Bootstrap components are always enabled.
+						</div>
+
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>Username</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Eugene</td>
+										<td>Kopyov</td>
+										<td>@Kopyov</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>Victoria</td>
+										<td>Baker</td>
+										<td>@Vicky</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>James</td>
+										<td>Alexander</td>
+										<td>@Alex</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>Franklin</td>
+										<td>Morrison</td>
+										<td>@Frank</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- /basic table -->
+
+
+					<!-- Form layouts -->
+					<div class="row">
+						<div class="col-lg-6">
+
+							<!-- Horizontal form -->
+							<div class="card">
+								<div class="card-header d-flex align-items-center">
+									<h5 class="mb-0">Horizontal form</h5>
+									<div class="hstack gap-2 ms-auto">
+										<a class="text-body" data-card-action="collapse">
+											<i class="ph-caret-down"></i>
+										</a>
+										<a class="text-body" data-card-action="reload">
+											<i class="ph-arrows-clockwise"></i>
+										</a>
+										<a class="text-body" data-card-action="remove">
+											<i class="ph-x"></i>
+										</a>
+									</div>
+			                	</div>
+
+			                	<div class="collapse show">
+									<div class="card-body">
+										<form action="#">
+											<div class="row mb-3">
+												<label class="col-lg-3 col-form-label">Text input</label>
+												<div class="col-lg-9">
+													<input type="text" class="form-control" placeholder="Text input">
+												</div>
+											</div>
+
+											<div class="row mb-3">
+												<label class="col-lg-3 col-form-label">Password</label>
+												<div class="col-lg-9">
+													<input type="password" class="form-control" placeholder="Password input">
+												</div>
+											</div>
+
+					                        <div class="row mb-3">
+					                        	<label class="col-lg-3 col-form-label">Select</label>
+					                        	<div class="col-lg-9">
+						                            <select name="select" class="form-select">
+						                                <option value="opt1">Basic select</option>
+						                                <option value="opt2">Option 2</option>
+						                                <option value="opt3">Option 3</option>
+						                                <option value="opt4">Option 4</option>
+						                                <option value="opt5">Option 5</option>
+						                                <option value="opt6">Option 6</option>
+						                                <option value="opt7">Option 7</option>
+						                                <option value="opt8">Option 8</option>
+						                            </select>
+					                            </div>
+					                        </div>
+
+											<div class="row mb-3">
+												<label class="col-lg-3 col-form-label">Textarea</label>
+												<div class="col-lg-9">
+													<textarea rows="5" cols="5" class="form-control" placeholder="Default textarea"></textarea>
+												</div>
+											</div>
+
+											<div class="text-end">
+												<button type="submit" class="btn btn-primary">Submit form <i class="ph-paper-plane-tilt ms-2"></i></button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- /horizotal form -->
+
+						</div>
+
+						<div class="col-lg-6">
+
+							<!-- Vertical form -->
+							<div class="card">
+								<div class="card-header d-flex align-items-center">
+									<h5 class="mb-0">Vertical form</h5>
+									<div class="hstack gap-2 ms-auto">
+										<a class="text-body" data-card-action="collapse">
+											<i class="ph-caret-down"></i>
+										</a>
+										<a class="text-body" data-card-action="reload">
+											<i class="ph-arrows-clockwise"></i>
+										</a>
+										<a class="text-body" data-card-action="remove">
+											<i class="ph-x"></i>
+										</a>
+									</div>
+			                	</div>
+
+			                	<div class="collapse show">
+									<div class="card-body">
+										<form action="#">
+											<div class="mb-3">
+												<label class="form-label">Text input</label>
+												<input type="text" class="form-control" placeholder="Text input">
+											</div>
+
+					                        <div class="mb-3">
+					                        	<label class="form-label">Select</label>
+					                            <select name="select" class="form-select">
+					                                <option value="opt1">Basic select</option>
+					                                <option value="opt2">Option 2</option>
+					                                <option value="opt3">Option 3</option>
+					                                <option value="opt4">Option 4</option>
+					                                <option value="opt5">Option 5</option>
+					                                <option value="opt6">Option 6</option>
+					                                <option value="opt7">Option 7</option>
+					                                <option value="opt8">Option 8</option>
+					                            </select>
+					                        </div>
+
+											<div class="mb-3">
+												<label class="form-label">Textarea</label>
+												<textarea rows="4" cols="4" class="form-control" placeholder="Default textarea"></textarea>
+											</div>
+
+											<div class="text-end">
+												<button type="submit" class="btn btn-primary">Submit form <i class="ph-paper-plane-tilt ms-2"></i></button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- /vertical form -->
+
+						</div>
+					</div>
+					<!-- /form layouts -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /inner content -->
+
+
+			<!-- Footer -->
+			<div class="navbar navbar-sm border-top">
+				<div class="container-fluid">
+					<span>&copy; 2022 <a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328">Limitless Web App Kit</a></span>
+
+					<ul class="nav">
+						<li class="nav-item">
+							<a href="https://kopyov.ticksy.com/" class="navbar-nav-link navbar-nav-link-icon rounded" target="_blank">
+								<div class="d-flex align-items-center mx-md-1">
+									<i class="ph-lifebuoy"></i>
+									<span class="d-none d-md-inline-block ms-2">Support</span>
+								</div>
+							</a>
+						</li>
+						<li class="nav-item ms-md-1">
+							<a href="https://demo.interface.club/limitless/demo/Documentation/index.html" class="navbar-nav-link navbar-nav-link-icon rounded" target="_blank">
+								<div class="d-flex align-items-center mx-md-1">
+									<i class="ph-file-text"></i>
+									<span class="d-none d-md-inline-block ms-2">Docs</span>
+								</div>
+							</a>
+						</li>
+						<li class="nav-item ms-md-1">
+							<a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov" class="navbar-nav-link navbar-nav-link-icon text-primary bg-primary bg-opacity-10 fw-semibold rounded" target="_blank">
+								<div class="d-flex align-items-center mx-md-1">
+									<i class="ph-shopping-cart"></i>
+									<span class="d-none d-md-inline-block ms-2">Purchase</span>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /footer -->
+
+		</div>
+		<!-- /main content -->
+
+	</div>
+	<!-- /page content -->
+
+
+	<!-- Demo config -->
+	<div class="offcanvas offcanvas-end" tabindex="-1" id="demo_config">
+		<div class="position-absolute top-50 end-100 visible">
+			<button type="button" class="btn btn-primary btn-icon translate-middle-y rounded-end-0" data-bs-toggle="offcanvas" data-bs-target="#demo_config">
+				<i class="ph-gear"></i>
+			</button>
+		</div>
+
+		<div class="offcanvas-header border-bottom py-0">
+			<h5 class="offcanvas-title py-3">Demo configuration</h5>
+			<button type="button" class="btn btn-light btn-sm btn-icon border-transparent rounded-pill" data-bs-dismiss="offcanvas">
+				<i class="ph-x"></i>
+			</button>
+		</div>
+
+		<div class="offcanvas-body">
+			<div class="fw-semibold mb-2">Color mode</div>
+			<div class="list-group mb-3">
+				<label class="list-group-item list-group-item-action form-check border-width-1 rounded mb-2">
+					<div class="d-flex flex-fill my-1">
+						<div class="form-check-label d-flex me-2">
+							<i class="ph-sun ph-lg me-3"></i>
+							<div>
+								<span class="fw-bold">Light theme</span>
+								<div class="fs-sm text-muted">Set light theme or reset to default</div>
+							</div>
+						</div>
+						<input type="radio" class="form-check-input cursor-pointer ms-auto" name="main-theme" value="light" checked>
+					</div>
+				</label>
+
+				<label class="list-group-item list-group-item-action form-check border-width-1 rounded mb-2">
+					<div class="d-flex flex-fill my-1">
+						<div class="form-check-label d-flex me-2">
+							<i class="ph-moon ph-lg me-3"></i>
+							<div>
+								<span class="fw-bold">Dark theme</span>
+								<div class="fs-sm text-muted">Switch to dark theme</div>
+							</div>
+						</div>
+						<input type="radio" class="form-check-input cursor-pointer ms-auto" name="main-theme" value="dark">
+					</div>
+				</label>
+
+				<label class="list-group-item list-group-item-action form-check border-width-1 rounded mb-0">
+					<div class="d-flex flex-fill my-1">
+						<div class="form-check-label d-flex me-2">
+							<i class="ph-translate ph-lg me-3"></i>
+							<div>
+								<span class="fw-bold">Auto theme</span>
+								<div class="fs-sm text-muted">Set theme based on system mode</div>
+							</div>
+						</div>
+						<input type="radio" class="form-check-input cursor-pointer ms-auto" name="main-theme" value="auto">
+					</div>
+				</label>
+			</div>
+
+			<div class="fw-semibold mb-2">Direction</div>
+			<div class="list-group mb-3">
+				<label class="list-group-item list-group-item-action form-check border-width-1 rounded mb-0">
+					<div class="d-flex flex-fill my-1">
+						<div class="form-check-label d-flex me-2">
+							<i class="ph-translate ph-lg me-3"></i>
+							<div>
+								<span class="fw-bold">RTL direction</span>
+								<div class="text-muted">Toggle between LTR and RTL</div>
+							</div>
+						</div>
+						<input type="checkbox" name="layout-direction" value="rtl" class="form-check-input cursor-pointer m-0 ms-auto">
+					</div>
+				</label>
+			</div>
+
+			<div class="fw-semibold mb-2">Layouts</div>
+			<div class="row">
+				<div class="col-12">
+					<a href="../../layout_1/full/index.html" class="d-block mb-3">
+						<img src="https://demo.interface.club/limitless/assets/images/layouts/layout_1.png" class="img-fluid img-thumbnail" alt="">
+					</a>				</div>
+				<div class="col-12">
+					<a href="index.html" class="d-block mb-3">
+						<img src="https://demo.interface.club/limitless/assets/images/layouts/layout_2.png" class="img-fluid img-thumbnail bg-primary bg-opacity-20 border-primary" alt="">
+					</a>
+				</div>
+				<div class="col-12">
+					<a href="../../layout_3/full/index.html" class="d-block mb-3">
+						<img src="https://demo.interface.club/limitless/assets/images/layouts/layout_3.png" class="img-fluid img-thumbnail" alt="">
+					</a>
+				</div>
+				<div class="col-12">
+					<a href="../../layout_4/full/index.html" class="d-block mb-3">
+						<img src="https://demo.interface.club/limitless/assets/images/layouts/layout_4.png" class="img-fluid img-thumbnail" alt="">
+					</a>
+				</div>
+				<div class="col-12">
+					<a href="../../layout_5/full/index.html" class="d-block mb-3">
+						<img src="https://demo.interface.club/limitless/assets/images/layouts/layout_5.png" class="img-fluid img-thumbnail" alt="">
+					</a>
+				</div>
+				<div class="col-12">
+					<a href="../../layout_6/full/index.html" class="d-block">
+						<img src="https://demo.interface.club/limitless/assets/images/layouts/layout_6.png" class="img-fluid img-thumbnail" alt="">
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="border-top text-center py-2 px-3">
+			<a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov" class="btn btn-yellow fw-semibold w-100 my-1" target="_blank">
+				<i class="ph-shopping-cart me-2"></i>
+				Purchase Limitless
+			</a>
+		</div>
+	</div>
+	<!-- /demo config -->
+
+</body>
+</html>
