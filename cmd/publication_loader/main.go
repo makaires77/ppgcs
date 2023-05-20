@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	json "github.com/makaires77/ppgcs/pkg/infrastructure/json_publication"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/json_publication"
 )
 
 func main() {
@@ -13,13 +13,13 @@ func main() {
 	jsonFilePath2 := "_data/in_json/642.files/644.publication.json"
 
 	// Carregue as entidades dos arquivos JSON
-	periodicos1, err := json.LoadEntitiesFromJSON(jsonFilePath1)
+	periodicos1, err := json_publication.LoadEntitiesFromJSON(jsonFilePath1)
 	if err != nil {
 		fmt.Printf("Erro ao carregar as entidades do arquivo %s: %v\n", jsonFilePath1, err)
 		os.Exit(1)
 	}
 
-	periodicos2, err := json.LoadEntitiesFromJSON(jsonFilePath2)
+	periodicos2, err := json_publication.LoadEntitiesFromJSON(jsonFilePath2)
 	if err != nil {
 		fmt.Printf("Erro ao carregar as entidades do arquivo %s: %v\n", jsonFilePath2, err)
 		os.Exit(1)
