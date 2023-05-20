@@ -1,28 +1,33 @@
 package main
 
 import (
-	"cmd/api"
-	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/makaires77/ppgcs/internal/publication"
+	"github.com/makaires77/ppgcs/pkg/domain/publication/repository"
+	"github.com/makaires77/ppgcs/pkg/interfaces/http/handlers"
+	"github.com/makaires77/ppgcs/pkg/usecase/load_publication"
 )
 
 func main() {
-	repo := repository.NewPublicationRepository()
-	service := publication.NewService(repo)
-	handler := api.NewHandler(service)
+	// Configuração do repositório de publicação
+	publicationRepo := repository.NewPublicationRepository()
 
-	r := mux.NewRouter()
-	r.HandleFunc("/publications", handler.GetPublications).Methods("GET")
-	r.HandleFunc("/publications/{id}", handler.GetPublication).Methods("GET")
+	// Configuração do interactor de publicação
+	publicationInteractor := load_publication.NewPublicationInteractor(publicationRepo)
 
-	http.Handle("/", r)
+	// Configuração do handler de publicação
+	publicationHandler := handlers.NewPublicationHandler(publicationInteractor)
 
-	fmt.Println("Server running on port 8000")
-	err := http.ListenAndServe(":8000", nil)
+	// Configuração do roteador
+	router := mux.NewRouter()
+	router.HandleFunc("/publications", publicationHandler.GetAllPublications).Methods("GET")
+
+	// Inicialização do servidor HTTP
+	log.Println("Servidor iniciado na porta 8080")
+	err := http.ListenAndServe(":8080", router)
 	if err != nil {
-		fmt.Printf("Failed to serve: %v\n", err)
+		log.Fatalf("Falha ao iniciar o servidor HTTP: %v", err)
 	}
 }

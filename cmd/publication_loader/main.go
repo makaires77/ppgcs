@@ -1,65 +1,50 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"log"
 	"os"
+
+	"github.com/makaires77/ppgcs/pkg/infrastructure/dgraph"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/json"
+	"github.com/makaires77/ppgcs/pkg/interfaces/http/handlers"
+	"github.com/makaires77/ppgcs/pkg/usecase/load_publication"
 )
 
-type Publication struct {
-	Natureza            string
-	Titulo              string
-	Idioma              string
-	Periodico           string
-	Ano                 string
-	Volume              string
-	ISSN                string
-	EstratoQualis       string
-	PaisDePublicacao    string
-	Paginas             string
-	DOI                 string
-	Autores             []string
-	AutoresEndogeno     []string
-	AutoresEndogenoNome []map[string]string
-	Tags                []interface{}
-	Hash                string
-}
-
-type Periodico map[string]map[string][]Publication
-
-func LoadEntitiesFromJSON(path string) (Periodico, error) {
-	data, err := ioutil.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-
-	var periodicos Periodico
-	err = json.Unmarshal(data, &periodicos)
-	if err != nil {
-		return nil, err
-	}
-
-	return periodicos, nil
-}
-
 func main() {
-	periodicos, err := LoadEntitiesFromJSON("_data/in_json/642.files/642.publication.json")
+	// Load JSON data
+	publicationData, err := json.LoadPublicationData("_data/in_json/642.files/642.publication.json")
 	if err != nil {
-		fmt.Printf("Error: %v\n", err)
-		os.Exit(1)
+		log.Fatal(err)
 	}
 
-	// Print loaded entities to check if everything is fine
-	for periodico, anos := range periodicos {
-		fmt.Printf("Periodico: %s\n", periodico)
-		for ano, publicacoes := range anos {
-			fmt.Printf("  Ano: %s\n", ano)
-			for _, publicacao := range publicacoes {
-				fmt.Printf("    Titulo: %s\n", publicacao.Titulo)
-				fmt.Printf("    Autores: %v\n", publicacao.Autores)
-				// Print other properties as needed...
-			}
-		}
+	// Create Dgraph client
+	client, err := dgraph.NewDgraphClient()
+	if err != nil {
+		log.Fatal(err)
 	}
+	defer client.Close()
+
+	// Create repository
+	repo := dgraph.NewPublicationRepository(client)
+
+	// Create use case interactor
+	interactor := load_publication.NewInteractor(repo)
+
+	// Load publications
+	err = interactor.LoadPublications(publicationData)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Start API server
+	handler := handlers.NewPublicationHandler(interactor)
+	addr := ":8080"
+	fmt.Printf("Starting API server at %s\n", addr)
+	err = handler.StartServer(addr)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	os.Exit(0)
 }

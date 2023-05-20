@@ -2,43 +2,64 @@ package dgraph
 
 import (
 	"context"
-	"log"
+	"fmt"
 
 	"github.com/dgraph-io/dgo/v200"
 	"github.com/dgraph-io/dgo/v200/protos/api"
 	"google.golang.org/grpc"
 )
 
-type DgraphClient struct {
-	dg *dgo.Dgraph
+type DGraphClient struct {
+	client *dgo.Dgraph
 }
 
-func NewDgraphClient() (*DgraphClient, error) {
-	dialOpts := []grpc.DialOption{
-		grpc.WithInsecure(),
-	}
-
-	conn, err := grpc.Dial("localhost:9080", dialOpts...)
+func NewDGraphClient(address string) (*DGraphClient, error) {
+	conn, err := grpc.Dial(address, grpc.WithInsecure())
 	if err != nil {
-		log.Fatalf("Failed to connect to Dgraph: %v", err)
+		return nil, fmt.Errorf("failed to connect to DGraph: %v", err)
 	}
 
-	dg := dgo.NewDgraphClient(api.NewDgraphClient(conn))
+	client := dgo.NewDgraphClient(api.NewDgraphClient(conn))
+	dgraphClient := &DGraphClient{client: client}
 
-	return &DgraphClient{
-		dg: dg,
-	}, nil
+	return dgraphClient, nil
 }
 
-func (c *DgraphClient) Close() {
-	// Close the connection to Dgraph
-	c.dg.Close()
+func (c *DGraphClient) NewTransaction() *dgo.Txn {
+	return c.client.NewTxn()
 }
 
-func (c *DgraphClient) NewTransaction() *dgo.Txn {
-	return c.dg.NewTxn()
+func (c *DGraphClient) ExecuteQuery(ctx context.Context, query string) (*api.Response, error) {
+	txn := c.NewTransaction()
+	defer txn.Discard(ctx)
+
+	resp, err := txn.Query(ctx, query)
+	if err != nil {
+		return nil, fmt.Errorf("failed to execute query: %v", err)
+	}
+
+	return resp, nil
 }
 
-func (c *DgraphClient) Commit(ctx context.Context, txn *dgo.Txn) error {
-	return txn.Commit(ctx)
+func (c *DGraphClient) ExecuteMutation(ctx context.Context, mu *api.Mutation) (*api.Response, error) {
+	txn := c.NewTransaction()
+	defer txn.Discard(ctx)
+
+	resp, err := txn.Mutate(ctx, mu)
+	if err != nil {
+		return nil, fmt.Errorf("failed to execute mutation: %v", err)
+	}
+
+	return resp, nil
+}
+
+func (c *DGraphClient) AlterSchema(ctx context.Context, schema string) error {
+	operation := &api.Operation{Schema: schema}
+
+	err := c.client.Alter(ctx, operation)
+	if err != nil {
+		return fmt.Errorf("failed to alter schema: %v", err)
+	}
+
+	return nil
 }

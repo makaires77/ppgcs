@@ -3,10 +3,11 @@ module github.com/makaires77/ppgcs
 go 1.20
 
 require (
-	github.com/dgraph-io/dgo/v200 v200.0.0-20210401091508-95bfd74de60e
 	github.com/gorilla/mux v1.8.0
 	google.golang.org/grpc v1.55.0
 )
+
+require github.com/dgraph-io/dgo/v200 v200.0.0-20210401091508-95bfd74de60e
 
 require (
 	github.com/gogo/protobuf v1.3.2 // indirect
