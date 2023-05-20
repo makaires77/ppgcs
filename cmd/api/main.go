@@ -1,14 +1,12 @@
 package main
 
 import (
+	"cmd/api"
 	"fmt"
 	"net/http"
 
-	"ppgcs/domain/pkg/publication"
-	"ppgcs/infra/pkg/domain/publication/repository"
-	"ppgcs/interface/api"
-
 	"github.com/gorilla/mux"
+	"github.com/makaires77/ppgcs/internal/publication"
 )
 
 func main() {
