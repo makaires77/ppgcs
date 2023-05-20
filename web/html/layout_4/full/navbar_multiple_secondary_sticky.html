@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+
+	<!-- Global stylesheets -->
+	<link href="../../../assets/fonts/inter/inter.css" rel="stylesheet" type="text/css">
+	<link href="../../../assets/icons/phosphor/styles.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/ltr/all.min.css" id="stylesheet" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	<script src="../../../assets/demo/demo_configurator.js"></script>
+	<script src="../../../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script src="../../../assets/js/vendor/ui/prism.min.js"></script>
+
+	<script src="assets/js/app.js"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body>
+
+	<!-- Main navbar -->
+	<div class="navbar navbar-dark navbar-expand-lg navbar-static">
+		<div class="container-fluid">
+			<div class="navbar-brand flex-1 flex-lg-0">
+				<a href="index.html" class="d-inline-flex align-items-center">
+					<img src="../../../assets/images/logo_icon.svg" alt="">
+					<img src="../../../assets/images/logo_text_light.svg" class="d-none d-sm-inline-block h-16px ms-3" alt="">
+				</a>
+			</div>
+
+			<ul class="nav flex-row">
+				<li class="nav-item d-lg-none">
+					<a href="#navbar_search" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="collapse">
+						<i class="ph-magnifying-glass"></i>
+					</a>
+				</li>
+
+				<li class="nav-item nav-item-dropdown-lg dropdown">
+					<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="dropdown">
+						<i class="ph-squares-four"></i>
+					</a>
+
+					<div class="dropdown-menu dropdown-menu-scrollable-sm wmin-lg-600 p-0">
+						<div class="d-flex align-items-center border-bottom p-3">
+							<h6 class="mb-0">Browse apps</h6>
+							<a href="#" class="ms-auto">
+								View all
+								<i class="ph-arrow-circle-right ms-1"></i>
+							</a>
+						</div>
+
+						<div class="row row-cols-1 row-cols-sm-2 g-0">
+							<div class="col">
+								<button type="button" class="dropdown-item text-wrap h-100 align-items-start border-end-sm border-bottom p-3">
+									<div>
+										<img src="../../../assets/images/demo/logos/1.svg" class="h-40px mb-2" alt="">
+										<div class="fw-semibold my-1">Customer data platform</div>
+										<div class="text-muted">Unify customer data from multiple sources</div>
+									</div>
+								</button>
+							</div>
+
+							<div class="col">
+								<button type="button" class="dropdown-item text-wrap h-100 align-items-start border-bottom p-3">
+									<div>
+										<img src="../../../assets/images/demo/logos/2.svg" class="h-40px mb-2" alt="">
+										<div class="fw-semibold my-1">Data catalog</div>
+										<div class="text-muted">Discover, inventory, and organize data assets</div>
+									</div>
+								</button>
+							</div>
+
+							<div class="col">
+								<button type="button" class="dropdown-item text-wrap h-100 align-items-start border-end-sm border-bottom border-bottom-sm-0 rounded-bottom-start p-3">
+									<div>
+										<img src="../../../assets/images/demo/logos/3.svg" class="h-40px mb-2" alt="">
+										<div class="fw-semibold my-1">Data governance</div>
+										<div class="text-muted">The collaboration hub and data marketplace</div>
+									</div>
+								</button>
+							</div>
+
+							<div class="col">
+								<button type="button" class="dropdown-item text-wrap h-100 align-items-start rounded-bottom-end p-3">
+									<div>
+										<img src="../../../assets/images/demo/logos/4.svg" class="h-40px mb-2" alt="">
+										<div class="fw-semibold my-1">Data privacy</div>
+										<div class="text-muted">Automated provisioning of non-production datasets</div>
+									</div>
+								</button>
+							</div>
+						</div>
+					</div>
+				</li>
+
+				<li class="nav-item nav-item-dropdown-lg dropdown ms-lg-2">
+					<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+						<i class="ph-chats"></i>
+						<span class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">8</span>
+					</a>
+
+					<div class="dropdown-menu wmin-lg-400 p-0">
+						<div class="d-flex align-items-center p-3">
+							<h6 class="mb-0">Messages</h6>
+							<div class="ms-auto">
+								<a href="#" class="text-body">
+									<i class="ph-plus-circle"></i>
+								</a>
+								<a href="#search_messages" class="collapsed text-body ms-2" data-bs-toggle="collapse">
+									<i class="ph-magnifying-glass"></i>
+								</a>
+							</div>
+						</div>
+
+						<div class="collapse" id="search_messages">
+							<div class="px-3 mb-2">
+								<div class="form-control-feedback form-control-feedback-start">
+									<input type="text" class="form-control" placeholder="Search messages">
+									<div class="form-control-feedback-icon">
+										<i class="ph-magnifying-glass"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="dropdown-menu-scrollable pb-2">
+							<a href="#" class="dropdown-item align-items-start text-wrap py-2">
+								<div class="status-indicator-container me-3">
+									<img src="../../../assets/images/demo/users/face10.jpg" class="w-40px h-40px rounded-pill" alt="">
+									<span class="status-indicator bg-warning"></span>
+								</div>
+
+								<div class="flex-1">
+									<span class="fw-semibold">James Alexander</span>
+									<span class="text-muted float-end fs-sm">04:58</span>
+									<div class="text-muted">who knows, maybe that would be the best thing for me...</div>
+								</div>
+							</a>
+
+							<a href="#" class="dropdown-item align-items-start text-wrap py-2">
+								<div class="status-indicator-container me-3">
+									<img src="../../../assets/images/demo/users/face3.jpg" class="w-40px h-40px rounded-pill" alt="">
+									<span class="status-indicator bg-success"></span>
+								</div>
+
+								<div class="flex-1">
+									<span class="fw-semibold">Margo Baker</span>
+									<span class="text-muted float-end fs-sm">12:16</span>
+									<div class="text-muted">That was something he was unable to do because...</div>
+								</div>
+							</a>
+
+							<a href="#" class="dropdown-item align-items-start text-wrap py-2">
+								<div class="status-indicator-container me-3">
+									<img src="../../../assets/images/demo/users/face24.jpg" class="w-40px h-40px rounded-pill" alt="">
+									<span class="status-indicator bg-success"></span>
+								</div>
+								<div class="flex-1">
+									<span class="fw-semibold">Jeremy Victorino</span>
+									<span class="text-muted float-end fs-sm">22:48</span>
+									<div class="text-muted">But that would be extremely strained and suspicious...</div>
+								</div>
+							</a>
+
+							<a href="#" class="dropdown-item align-items-start text-wrap py-2">
+								<div class="status-indicator-container me-3">
+									<img src="../../../assets/images/demo/users/face4.jpg" class="w-40px h-40px rounded-pill" alt="">
+									<span class="status-indicator bg-grey"></span>
+								</div>
+								<div class="flex-1">
+									<span class="fw-semibold">Beatrix Diaz</span>
+									<span class="text-muted float-end fs-sm">Tue</span>
+									<div class="text-muted">What a strenuous career it is that I've chosen...</div>
+								</div>
+							</a>
+
+							<a href="#" class="dropdown-item align-items-start text-wrap py-2">
+								<div class="status-indicator-container me-3">
+									<img src="../../../assets/images/demo/users/face25.jpg" class="w-40px h-40px rounded-pill" alt="">
+									<span class="status-indicator bg-danger"></span>
+								</div>
+								<div class="flex-1">
+									<span class="fw-semibold">Richard Vango</span>
+									<span class="text-muted float-end fs-sm">Mon</span>
+									<div class="text-muted">Other travelling salesmen live a life of luxury...</div>
+								</div>
+							</a>
+						</div>
+
+						<div class="d-flex border-top py-2 px-3">
+							<a href="#" class="text-body">
+								<i class="ph-checks me-1"></i>
+								Dismiss all
+							</a>
+							<a href="#" class="text-body ms-auto">
+								View all
+								<i class="ph-arrow-circle-right ms-1"></i>
+							</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+
+			<div class="navbar-collapse justify-content-center flex-lg-1 order-2 order-lg-1 collapse" id="navbar_search">
+				<div class="navbar-search flex-fill position-relative mt-2 mt-lg-0 mx-lg-3">
+					<div class="form-control-feedback form-control-feedback-start flex-grow-1" data-color-theme="dark">
+						<input type="text" class="form-control bg-transparent rounded-pill" placeholder="Search" data-bs-toggle="dropdown">
+						<div class="form-control-feedback-icon">
+							<i class="ph-magnifying-glass"></i>
+						</div>
+						<div class="dropdown-menu w-100" data-color-theme="light">
+							<button type="button" class="dropdown-item">
+								<div class="text-center w-32px me-3">
+									<i class="ph-magnifying-glass"></i>
+								</div>
+								<span>Search <span class="fw-bold">"in"</span> everywhere</span>
+							</button>
+
+							<div class="dropdown-divider"></div>
+
+							<div class="dropdown-menu-scrollable-lg">
+								<div class="dropdown-header">
+									Contacts
+									<a href="#" class="float-end">
+										See all
+										<i class="ph-arrow-circle-right ms-1"></i>
+									</a>
+								</div>
+
+								<div class="dropdown-item cursor-pointer">
+									<div class="me-3">
+										<img src="../../../assets/images/demo/users/face3.jpg" class="w-32px h-32px rounded-pill" alt="">
+									</div>
+
+									<div class="d-flex flex-column flex-grow-1">
+										<div class="fw-semibold">Christ<mark>in</mark>e Johnson</div>
+										<span class="fs-sm text-muted">c.johnson@awesomecorp.com</span>
+									</div>
+
+									<div class="d-inline-flex">
+										<a href="#" class="text-body ms-2">
+											<i class="ph-user-circle"></i>
+										</a>
+									</div>
+								</div>
+
+								<div class="dropdown-item cursor-pointer">
+									<div class="me-3">
+										<img src="../../../assets/images/demo/users/face24.jpg" class="w-32px h-32px rounded-pill" alt="">
+									</div>
+
+									<div class="d-flex flex-column flex-grow-1">
+										<div class="fw-semibold">Cl<mark>in</mark>ton Sparks</div>
+										<span class="fs-sm text-muted">c.sparks@awesomecorp.com</span>
+									</div>
+
+									<div class="d-inline-flex">
+										<a href="#" class="text-body ms-2">
+											<i class="ph-user-circle"></i>
+										</a>
+									</div>
+								</div>
+
+								<div class="dropdown-divider"></div>
+
+								<div class="dropdown-header">
+									Clients
+									<a href="#" class="float-end">
+										See all
+										<i class="ph-arrow-circle-right ms-1"></i>
+									</a>
+								</div>
+
+								<div class="dropdown-item cursor-pointer">
+									<div class="me-3">
+										<img src="../../../assets/images/brands/adobe.svg" class="w-32px h-32px rounded-pill" alt="">
+									</div>
+
+									<div class="d-flex flex-column flex-grow-1">
+										<div class="fw-semibold">Adobe <mark>In</mark>c.</div>
+										<span class="fs-sm text-muted">Enterprise license</span>
+									</div>
+
+									<div class="d-inline-flex">
+										<a href="#" class="text-body ms-2">
+											<i class="ph-briefcase"></i>
+										</a>
+									</div>
+								</div>
+
+								<div class="dropdown-item cursor-pointer">
+									<div class="me-3">
+										<img src="../../../assets/images/brands/holiday-inn.svg" class="w-32px h-32px rounded-pill" alt="">
+									</div>
+
+									<div class="d-flex flex-column flex-grow-1">
+										<div class="fw-semibold">Holiday-<mark>In</mark>n</div>
+										<span class="fs-sm text-muted">On-premise license</span>
+									</div>
+
+									<div class="d-inline-flex">
+										<a href="#" class="text-body ms-2">
+											<i class="ph-briefcase"></i>
+										</a>
+									</div>
+								</div>
+
+								<div class="dropdown-item cursor-pointer">
+									<div class="me-3">
+										<img src="../../../assets/images/brands/ing.svg" class="w-32px h-32px rounded-pill" alt="">
+									</div>
+
+									<div class="d-flex flex-column flex-grow-1">
+										<div class="fw-semibold"><mark>IN</mark>G Group</div>
+										<span class="fs-sm text-muted">Perpetual license</span>
+									</div>
+
+									<div class="d-inline-flex">
+										<a href="#" class="text-body ms-2">
+											<i class="ph-briefcase"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div>
+						<a href="#" class="navbar-nav-link align-items-center justify-content-center w-40px h-32px rounded-pill position-absolute end-0 top-50 translate-middle-y p-0 me-1" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+							<i class="ph-faders-horizontal"></i>
+						</a>
+
+						<div class="dropdown-menu w-100 p-3">
+							<div class="d-flex align-items-center mb-3">
+								<h6 class="mb-0">Search options</h6>
+								<a href="#" class="text-body rounded-pill ms-auto">
+									<i class="ph-clock-counter-clockwise"></i>
+								</a>
+							</div>
+
+							<div class="mb-3">
+								<label class="d-block form-label">Category</label>
+								<label class="form-check form-check-inline">
+									<input type="checkbox" class="form-check-input" checked>
+									<span class="form-check-label">Invoices</span>
+								</label>
+								<label class="form-check form-check-inline">
+									<input type="checkbox" class="form-check-input">
+									<span class="form-check-label">Files</span>
+								</label>
+								<label class="form-check form-check-inline">
+									<input type="checkbox" class="form-check-input">
+									<span class="form-check-label">Users</span>
+								</label>
+							</div>
+
+							<div class="mb-3">
+								<label class="form-label">Addition</label>
+								<div class="input-group">
+									<select class="form-select w-auto flex-grow-0">
+										<option value="1" selected>has</option>
+										<option value="2">has not</option>
+									</select>
+									<input type="text" class="form-control" placeholder="Enter the word(s)">
+								</div>
+							</div>
+
+							<div class="mb-3">
+								<label class="form-label">Status</label>
+								<div class="input-group">
+									<select class="form-select w-auto flex-grow-0">
+										<option value="1" selected>is</option>
+										<option value="2">is not</option>
+									</select>
+									<select class="form-select">
+										<option value="1" selected>Active</option>
+										<option value="2">Inactive</option>
+										<option value="3">New</option>
+										<option value="4">Expired</option>
+										<option value="5">Pending</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="d-flex">
+								<button type="button" class="btn btn-light">Reset</button>
+
+								<div class="ms-auto">
+									<button type="button" class="btn btn-light">Cancel</button>
+									<button type="button" class="btn btn-primary ms-2">Apply</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<ul class="nav flex-row justify-content-end order-1 order-lg-2">
+				<li class="nav-item ms-lg-2">
+					<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="offcanvas" data-bs-target="#notifications">
+						<i class="ph-bell"></i>
+						<span class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">2</span>
+					</a>
+				</li>
+
+				<li class="nav-item nav-item-dropdown-lg dropdown ms-lg-2">
+					<a href="#" class="navbar-nav-link align-items-center rounded-pill p-1" data-bs-toggle="dropdown">
+						<div class="status-indicator-container">
+							<img src="../../../assets/images/demo/users/face11.jpg" class="w-32px h-32px rounded-pill" alt="">
+							<span class="status-indicator bg-success"></span>
+						</div>
+						<span class="d-none d-lg-inline-block mx-lg-2">Victoria</span>
+					</a>
+
+					<div class="dropdown-menu dropdown-menu-end">
+						<a href="#" class="dropdown-item">
+							<i class="ph-user-circle me-2"></i>
+							My profile
+						</a>
+						<a href="#" class="dropdown-item">
+							<i class="ph-currency-circle-dollar me-2"></i>
+							My subscription
+						</a>
+						<a href="#" class="dropdown-item">
+							<i class="ph-shopping-cart me-2"></i>
+							My orders
+						</a>
+						<a href="#" class="dropdown-item">
+							<i class="ph-envelope-open me-2"></i>
+							My inbox
+							<span class="badge bg-primary rounded-pill ms-auto">26</span>
+						</a>
+						<div class="dropdown-divider"></div>
+						<a href="#" class="dropdown-item">
+							<i class="ph-gear me-2"></i>
+							Account settings
+						</a>
+						<a href="#" class="dropdown-item">
+							<i class="ph-sign-out me-2"></i>
+							Logout
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /main navbar -->
+
+
+	<!-- Navigation -->
+	<div class="navbar navbar-sm sticky-top shadow">
+		<div class="container-fluid">
+			<div class="flex-fill overflow-auto overflow-lg-visible scrollbar-hidden">
+				<ul class="nav gap-1 flex-nowrap flex-lg-wrap">
+					<li class="nav-item">
+						<a href="index.html" class="navbar-nav-link rounded">
+							<i class="ph-house me-2"></i>
+							Home
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="navbar-nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
+							<i class="ph-layout me-2"></i>
+							Page
+						</a>
+
+						<div class="dropdown-menu start-0 end-0 p-3 mx-md-3">
+							<div class="row">
+								<div class="col-md-4 mb-3 mb-md-0">
+									<div class="fw-bold border-bottom pb-2 mb-2">Navbars</div>
+									<div class="mb-3 mb-md-0">
+										<a href="layout_navbar_fixed.html" class="dropdown-item rounded">Fixed navbar</a>
+										<a href="layout_navbar_hideable.html" class="dropdown-item rounded">Hideable navbar</a>
+										<a href="layout_navbar_sticky.html" class="dropdown-item rounded">Sticky navbar</a>
+										<a href="layout_fixed_footer.html" class="dropdown-item rounded">Fixed footer</a>
+									</div>
+								</div>
+								<div class="col-md-4 mb-3 mb-md-0">
+									<div class="fw-bold border-bottom pb-2 mb-2">Sidebars</div>
+									<div class="mb-3 mb-md-0">
+										<a href="layout_2_sidebars_1_side.html" class="dropdown-item rounded">2 sidebars on 1 side</a>
+										<a href="layout_2_sidebars_2_sides.html" class="dropdown-item rounded">2 sidebars on 2 sides</a>
+										<a href="layout_3_sidebars.html" class="dropdown-item rounded">3 sidebars</a>
+									</div>
+								</div>
+								<div class="col-md-4 mb-3 mb-md-0">
+									<div class="fw-bold border-bottom pb-2 mb-2">Sections</div>
+									<div class="mb-3 mb-md-0">
+										<a href="layout_no_header.html" class="dropdown-item rounded">No header</a>
+										<a href="layout_no_footer.html" class="dropdown-item rounded">No footer</a>
+										<a href="layout_boxed_page.html" class="dropdown-item rounded">Boxed page</a>
+										<a href="layout_boxed_content.html" class="dropdown-item rounded">Boxed content</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="navbar-nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
+							<i class="ph-columns me-2"></i>
+							Sidebars
+						</a>
+
+						<div class="dropdown-menu start-0 end-0 p-3 mx-md-3">
+							<div class="row">
+								<div class="col-md-3 mb-3 mb-md-0">
+									<div class="fw-bold border-bottom pb-2 mb-2">Main</div>
+									<div class="mb-3 mb-md-0">
+										<a href="sidebar_default_resizable.html" class="dropdown-item rounded">Resizable</a>
+										<a href="sidebar_default_resized.html" class="dropdown-item rounded">Resized</a>
+										<a href="sidebar_default_hideable.html" class="dropdown-item rounded">Hideable</a>
+										<a href="sidebar_default_hidden.html" class="dropdown-item rounded">Hidden</a>
+										<a href="sidebar_default_stretched.html" class="dropdown-item rounded">Stretched</a>
+										<a href="sidebar_default_color_dark.html" class="dropdown-item rounded">Dark color</a>
+									</div>
+								</div>
+								<div class="col-md-3 mb-3 mb-md-0">
+									<div class="fw-bold border-bottom pb-2 mb-2">Secondary</div>
+									<div class="mb-3 mb-md-0">
+										<a href="sidebar_secondary_hideable.html" class="dropdown-item rounded">Hideable</a>
+										<a href="sidebar_secondary_hidden.html" class="dropdown-item rounded">Hidden</a>
+										<a href="sidebar_secondary_stretched.html" class="dropdown-item rounded">Stretched</a>
+										<a href="sidebar_secondary_color_dark.html" class="dropdown-item rounded">Dark color</a>
+									</div>
+								</div>
+								<div class="col-md-3 mb-3 mb-md-0">
+									<div class="fw-bold border-bottom pb-2 mb-2">Right</div>
+									<div class="mb-3 mb-md-0">
+										<a href="sidebar_right_hideable.html" class="dropdown-item rounded">Hideable</a>
+										<a href="sidebar_right_hidden.html" class="dropdown-item rounded">Hidden</a>
+										<a href="sidebar_right_stretched.html" class="dropdown-item rounded">Stretched</a>
+										<a href="sidebar_right_color_dark.html" class="dropdown-item rounded">Dark color</a>
+									</div>
+								</div>
+								<div class="col-md-3 mb-3 mb-md-0">
+									<div class="fw-bold border-bottom pb-2 mb-2">Other</div>
+									<div class="mb-3 mb-md-0">
+										<a href="sidebar_components.html" class="dropdown-item rounded">Sidebar components</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="navbar-nav-link dropdown-toggle rounded active" data-bs-toggle="dropdown">
+							<i class="ph-rows me-2"></i>
+							Navbars
+						</a>
+
+						<div class="dropdown-menu start-0 end-0 p-3 mx-md-3">
+							<div class="row">
+								<div class="col-md-3 mb-3 mb-md-0">
+									<div class="fw-bold border-bottom pb-2 mb-2">Single</div>
+									<div class="mb-3 mb-md-0">
+										<a href="navbar_single_top_static.html" class="dropdown-item rounded">Top static</a>
+										<a href="navbar_single_top_fixed.html" class="dropdown-item rounded">Top fixed</a>
+										<a href="navbar_single_bottom_static.html" class="dropdown-item rounded">Bottom static</a>
+										<a href="navbar_single_bottom_fixed.html" class="dropdown-item rounded">Bottom fixed</a>
+									</div>
+								</div>
+								<div class="col-md-3 mb-3 mb-md-0">
+									<div class="fw-bold border-bottom pb-2 mb-2">Multiple</div>
+									<div class="mb-3 mb-md-0">
+										<a href="navbar_multiple_top_static.html" class="dropdown-item rounded">Top static</a>
+										<a href="navbar_multiple_top_fixed.html" class="dropdown-item rounded">Top fixed</a>
+										<a href="navbar_multiple_bottom_static.html" class="dropdown-item rounded">Bottom static</a>
+										<a href="navbar_multiple_bottom_fixed.html" class="dropdown-item rounded">Bottom fixed</a>
+										<a href="navbar_multiple_top_bottom_fixed.html" class="dropdown-item rounded">Top and bottom fixed</a>
+										<a href="navbar_multiple_secondary_sticky.html" class="dropdown-item rounded active">Secondary sticky</a>
+									</div>
+								</div>
+								<div class="col-md-3 mb-3 mb-md-0">
+									<div class="fw-bold border-bottom pb-2 mb-2">Content</div>
+									<div class="mb-3 mb-md-0">
+										<a href="navbar_component_single.html" class="dropdown-item rounded">Single</a>
+										<a href="navbar_component_multiple.html" class="dropdown-item rounded">Multiple</a>
+									</div>
+								</div>
+								<div class="col-md-3 mb-3 mb-md-0">
+									<div class="fw-bold border-bottom pb-2 mb-2">Other</div>
+									<div class="mb-3 mb-md-0">
+										<a href="navbar_colors.html" class="dropdown-item rounded">Color options</a>
+										<a href="navbar_sizes.html" class="dropdown-item rounded">Sizing options</a>
+										<a href="navbar_components.html" class="dropdown-item rounded">Navbar components</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="navbar-nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
+							<i class="ph-list me-2"></i>
+							Navigation
+						</a>
+
+						<div class="dropdown-menu start-0 end-0 p-3 mx-md-3">
+							<div class="row">
+								<div class="col-md-6 mb-3 mb-md-0">
+									<div class="fw-bold border-bottom pb-2 mb-2">Vertical</div>
+									<div class="mb-3 mb-md-0">
+										<a href="navigation_vertical_styles.html" class="dropdown-item rounded">Navigation styles</a>
+										<a href="navigation_vertical_collapsible.html" class="dropdown-item rounded">Collapsible menu</a>
+										<a href="navigation_vertical_accordion.html" class="dropdown-item rounded">Accordion menu</a>
+										<a href="navigation_vertical_bordered.html" class="dropdown-item rounded">Bordered navigation</a>
+										<a href="navigation_vertical_right_icons.html" class="dropdown-item rounded">Right icons</a>
+										<a href="navigation_vertical_badges.html" class="dropdown-item rounded">Badges</a>
+										<a href="navigation_vertical_disabled.html" class="dropdown-item rounded">Disabled items</a>
+									</div>
+								</div>
+								<div class="col-md-6 mb-3 mb-md-0">
+									<div class="fw-bold border-bottom pb-2 mb-2">Horizontal</div>
+									<div class="mb-3 mb-md-0">
+										<a href="navigation_horizontal_styles.html" class="dropdown-item rounded">Navigation styles</a>
+										<a href="navigation_horizontal_elements.html" class="dropdown-item rounded">Navigation elements</a>
+										<a href="navigation_horizontal_tabs.html" class="dropdown-item rounded">Tabbed navigation</a>
+										<a href="navigation_horizontal_disabled.html" class="dropdown-item rounded">Disabled items</a>
+										<a href="navigation_horizontal_mega.html" class="dropdown-item rounded">Mega menu</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item nav-item-dropdown-lg dropdown">
+						<a href="#" class="navbar-nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
+							<i class="ph-note-blank me-2"></i>
+							Starter kit
+						</a>
+
+						<div class="dropdown-menu">
+							<div class="dropdown-header">Basic layouts</div>
+							<div class="dropdown-submenu dropdown-submenu-start">
+								<a href="#" class="dropdown-item dropdown-toggle">
+									<i class="ph-columns me-2"></i>
+									Sidebars
+								</a>
+								<div class="dropdown-menu">
+									<a href="../seed/layout_2_sidebars_1_side.html" class="dropdown-item rounded">2 sidebars on 1 side</a>
+									<a href="../seed/layout_2_sidebars_2_sides.html" class="dropdown-item rounded">2 sidebars on 2 sides</a>
+									<a href="../seed/layout_3_sidebars.html" class="dropdown-item rounded">3 sidebars</a>
+								</div>
+							</div>
+							<div class="dropdown-submenu dropdown-submenu-start">
+								<a href="#" class="dropdown-item dropdown-toggle">
+									<i class="ph-rows me-2"></i>
+									Navbars
+								</a>
+								<div class="dropdown-menu">
+									<a href="../seed/layout_navbar_fixed.html" class="dropdown-item rounded">Fixed navbar</a>
+									<a href="../seed/layout_navbar_hideable.html" class="dropdown-item rounded">Hideable navbar</a>
+									<a href="../seed/layout_navbar_sticky.html" class="dropdown-item rounded">Sticky navbar</a>
+									<a href="../seed/layout_fixed_footer.html" class="dropdown-item rounded">Fixed footer</a>
+								</div>
+							</div>
+							<div class="dropdown-submenu dropdown-submenu-start">
+								<a href="#" class="dropdown-item dropdown-toggle">
+									<i class="ph-squares-four me-2"></i>
+									Boxed
+								</a>
+								<div class="dropdown-menu">
+									<a href="../seed/layout_boxed_page.html" class="dropdown-item rounded">Boxed page</a>
+									<a href="../seed/layout_boxed_content.html" class="dropdown-item rounded">Boxed content</a>
+								</div>
+							</div>
+							<div class="dropdown-header">Others</div>
+							<a href="../seed/layout_no_header.html" class="dropdown-item rounded">No header</a>
+							<a href="../seed/layout_no_footer.html" class="dropdown-item rounded">No footer</a>
+						</div>
+					</li>
+
+					<li class="nav-item nav-item-dropdown-lg dropdown ms-lg-auto">
+						<a href="#" class="navbar-nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
+							<i class="ph-arrows-clockwise me-2"></i>
+							Switch
+						</a>
+
+						<div class="dropdown-menu dropdown-menu-end">
+							<div class="dropdown-submenu dropdown-submenu-start">
+								<a href="#" class="dropdown-item dropdown-toggle">
+									<i class="ph-layout me-2"></i>
+									Layouts
+								</a>
+								<div class="dropdown-menu">
+									<a href="../../layout_1/full/index.html" class="dropdown-item">Default layout</a>
+									<a href="../../layout_2/full/index.html" class="dropdown-item">Layout 2</a>
+									<a href="../../layout_3/full/index.html" class="dropdown-item">Layout 3</a>
+									<a href="index.html" class="dropdown-item active">Layout 4</a>
+									<a href="../../layout_5/full/index.html" class="dropdown-item">Layout 5</a>
+									<a href="../../layout_6/full/index.html" class="dropdown-item">Layout 6</a>
+									<a href="../../layout_7/full/index.html" class="dropdown-item disabled">
+										Layout 7
+										<span class="opacity-75 fs-sm ms-auto">Coming soon</span>
+									</a>
+								</div>
+							</div>
+							<div class="dropdown-submenu dropdown-submenu-start">
+								<a href="#" class="dropdown-item dropdown-toggle">
+									<i class="ph-swatches me-2"></i>
+									Themes
+								</a>
+								<div class="dropdown-menu">
+									<a href="index.html" class="dropdown-item active">Default</a>
+									<a href="../../../LTR/material/full/index.html" class="dropdown-item disabled">
+										Material
+										<span class="opacity-75 fs-sm ms-auto">Coming soon</span>
+									</a>
+									<a href="../../../LTR/clean/full/index.html" class="dropdown-item disabled">
+										Clean
+										<span class="opacity-75 fs-sm ms-auto">Coming soon</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- /navigation -->
+
+
+	<!-- Page header -->
+	<div class="page-header">
+		<div class="page-header-content d-lg-flex">
+			<div class="d-flex">
+				<h4 class="page-title mb-0">
+					Multiple Navbars - <span class="fw-normal">Secondary Sticky</span>
+				</h4>
+
+				<a href="#page_header" class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto" data-bs-toggle="collapse">
+					<i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
+				</a>
+			</div>
+
+			<div class="collapse d-lg-block my-lg-auto ms-lg-auto" id="page_header">
+				<div class="d-sm-flex align-items-center mb-3 mb-lg-0 ms-lg-3">
+					<div class="dropdown w-100 w-sm-auto">
+						<a href="#" class="d-flex align-items-center text-body lh-1 dropdown-toggle py-sm-2" data-bs-toggle="dropdown" data-bs-display="static">
+							<img src="../../../assets/images/brands/tesla.svg" class="w-32px h-32px me-2" alt="">
+							<div class="me-auto me-lg-1">
+								<div class="fs-sm text-muted mb-1">Customer</div>
+								<div class="fw-semibold">Tesla Motors Inc</div>
+							</div>
+						</a>
+
+						<div class="dropdown-menu dropdown-menu-lg-end w-100 w-lg-auto wmin-300 wmin-sm-350 pt-0">
+							<div class="d-flex align-items-center p-3">
+								<h6 class="fw-semibold mb-0">Customers</h6>
+								<a href="#" class="ms-auto">
+									View all
+									<i class="ph-arrow-circle-right ms-1"></i>
+								</a>
+							</div>
+							<a href="#" class="dropdown-item active py-2">
+								<img src="../../../assets/images/brands/tesla.svg" class="w-32px h-32px me-2" alt="">
+								<div>
+									<div class="fw-semibold">Tesla Motors Inc</div>
+									<div class="fs-sm text-muted">42 users</div>
+								</div>
+							</a>
+							<a href="#" class="dropdown-item py-2">
+								<img src="../../../assets/images/brands/debijenkorf.svg" class="w-32px h-32px me-2" alt="">
+								<div>
+									<div class="fw-semibold">De Bijenkorf</div>
+									<div class="fs-sm text-muted">49 users</div>
+								</div>
+							</a>
+							<a href="#" class="dropdown-item py-2">
+								<img src="../../../assets/images/brands/klm.svg" class="w-32px h-32px me-2" alt="">
+								<div>
+									<div class="fw-semibold">Royal Dutch Airlines</div>
+									<div class="fs-sm text-muted">18 users</div>
+								</div>
+							</a>
+							<a href="#" class="dropdown-item py-2">
+								<img src="../../../assets/images/brands/shell.svg" class="w-32px h-32px me-2" alt="">
+								<div>
+									<div class="fw-semibold">Royal Dutch Shell</div>
+									<div class="fs-sm text-muted">54 users</div>
+								</div>
+							</a>
+							<a href="#" class="dropdown-item py-2">
+								<img src="../../../assets/images/brands/bp.svg" class="w-32px h-32px me-2" alt="">
+								<div>
+									<div class="fw-semibold">BP plc</div>
+									<div class="fs-sm text-muted">23 users</div>
+								</div>
+							</a>
+						</div>
+					</div>
+
+					<div class="vr d-none d-sm-block flex-shrink-0 my-2 mx-3"></div>
+
+					<div class="d-inline-flex mt-3 mt-sm-0">
+						<a href="#" class="status-indicator-container ms-1">
+							<img src="../../../assets/images/demo/users/face24.jpg" class="w-32px h-32px rounded-pill" alt="">
+							<span class="status-indicator bg-warning"></span>
+						</a>
+						<a href="#" class="status-indicator-container ms-1">
+							<img src="../../../assets/images/demo/users/face1.jpg" class="w-32px h-32px rounded-pill" alt="">
+							<span class="status-indicator bg-success"></span>
+						</a>
+						<a href="#" class="status-indicator-container ms-1">
+							<img src="../../../assets/images/demo/users/face3.jpg" class="w-32px h-32px rounded-pill" alt="">
+							<span class="status-indicator bg-danger"></span>
+						</a>
+						<a href="#" class="btn btn-outline-primary btn-icon w-32px h-32px rounded-pill ms-3">
+							<i class="ph-plus"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /page header -->
+
+
+	<!-- Page content -->
+	<div class="page-content pt-0">
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			<!-- Content area -->
+			<div class="content">
+
+				<!-- Info alert -->
+				<div class="alert alert-success alert-dismissible">
+					<div class="alert-heading fw-semibold">Multiple main navbars</div>
+					Secondary navbar can be sticked to the top or bottom when scroll position reaches the component, so that it doesn't scroll away with the content, but always stays on top. Just add <code>.sticky-top</code> class to <code>.navbar</code> container and CSS will do the rest. No JS required.
+					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+			    </div>
+			    <!-- /info alert -->
+
+
+				<!-- Navbar component -->
+				<div class="card">
+					<div class="card-header">
+						<h5 class="mb-0">Navbar component</h5>
+					</div>
+
+					<div class="card-body">
+						<p class="mb-3">Navbar is a navigation component, usually displayed on top of the page and includes brand logo, navigation, notifications, user menu, language switcher and other components. By default, navbar has <code>top fixed</code> position and is a direct child of <code>&lt;body></code> container. Navbar toggler appears next to the brand logo on small screens and can be easily adjusted with <code>display</code> utility classes. You can also control responsive collapsing breakpoint directly in the markup. Navbar component is responsive by default and requires <code>.navbar</code> and <code>.navbar-expand{-sm|-md|-lg|-xl}</code> classes. Main navigation bar also has static position, but due to the nature of the general layout, it's moved outside all scrolable containers so that it always appears to be sticked to the top.</p>
+
+						<div class="mb-4">
+							<h6>Static navbars</h6>
+							<p class="mb-3">By default, top and bottom navbars in content area have <code>static</code> position and scroll away along with content. This use case doesn't require any additional classes for <code>.navbar</code> and <code>&lt;body></code> containers, this means navbar appearance depends on its placement: in the template top static navbar is the first direct child of <code>.content-inner</code> or <code>.content</code> containers.</p>
+
+							<div class="rounded overflow-auto border p-1" style="max-height: 275px;">
+								<div class="navbar navbar-dark navbar-expand-xl rounded-top">
+									<div class="container-fluid">
+										<div class="navbar-brand">
+											<a href="index.html" class="d-inline-flex align-items-center">
+												<img src="../../../assets/images/logo_icon.svg" alt="">
+												<h4 class="d-none d-sm-inline-block text-white lh-1 mb-0 ms-3">Limitless</h4>
+											</a>
+										</div>
+
+										<div class="d-xl-none ms-2">
+											<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-demo1-mobile">
+												<i class="ph-squares-four"></i>
+											</button>
+										</div>
+
+										<div class="navbar-collapse collapse order-2 order-xl-1" id="navbar-demo1-mobile">
+											<ul class="navbar-nav mt-2 mt-xl-0">
+												<li class="nav-item">
+													<a href="#" class="navbar-nav-link rounded">Link</a>
+												</li>
+												<li class="nav-item dropdown">
+													<a href="#" class="navbar-nav-link rounded dropdown-toggle" data-bs-toggle="dropdown">Dropdown</a>
+													<div class="dropdown-menu">
+														<a href="#" class="dropdown-item">Action</a>
+														<a href="#" class="dropdown-item">Another action</a>
+														<a href="#" class="dropdown-item">Something else here</a>
+														<a href="#" class="dropdown-item">One more line</a>
+													</div>
+												</li>
+											</ul>
+										</div>
+
+										<ul class="navbar-nav flex-row order-1 order-xl-2 ms-auto">
+											<li class="nav-item">
+												<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
+													<i class="ph-bell"></i>
+													<span class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">2</span>
+												</a>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded ms-xl-2">
+													<i class="ph-chats"></i>
+												</a>
+											</li>
+											<li class="nav-item nav-item-dropdown-xl dropdown ms-xl-2">
+												<a href="#" class="navbar-nav-link align-items-center rounded p-1" data-bs-toggle="dropdown">
+													<div class="status-indicator-container">
+														<img src="../../../assets/images/demo/users/face11.jpg" class="w-32px h-32px rounded" alt="">
+														<span class="status-indicator bg-success"></span>
+													</div>
+													<span class="d-none d-xl-inline-block mx-xl-2">Victoria</span>
+												</a>
+
+												<div class="dropdown-menu dropdown-menu-end">
+													<a href="#" class="dropdown-item">Action</a>
+													<a href="#" class="dropdown-item">Another action</a>
+													<a href="#" class="dropdown-item">Something else here</a>
+													<a href="#" class="dropdown-item">One more line</a>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="navbar border border-top-0 rounded-bottom">
+									<div class="container-fluid flex-column flex-sm-row align-items-start align-items-sm-center">
+										<span class="navbar-text">
+											<i class="ph-user-circle me-1"></i>
+											Signed in as <a href="#">Victoria Baker</a>
+										</span>
+
+										<div class="d-flex align-items-center w-100 w-sm-auto ms-xl-auto">
+											<div class="my-2 my-xl-0">
+												<label class="form-check form-switch ps-sm-0 mb-0">
+													<input type="checkbox" class="form-check-input float-sm-end ms-sm-2" checked>
+													<span class="form-check-label">Remember me</span>
+												</label>
+											</div>
+
+											<ul class="nav align-items-center ms-auto ms-sm-2">
+												<li class="nav-item nav-item-dropdown-sm dropdown">
+													<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded dropdown-toggle" data-bs-toggle="dropdown">
+														<i class="ph-gear"></i>
+														<span class="d-none d-md-inline-block ms-2">Settings</span>
+													</a>
+
+													<div class="dropdown-menu dropdown-menu-end">
+														<a href="#" class="dropdown-item">Action</a>
+														<a href="#" class="dropdown-item">Another action</a>
+														<a href="#" class="dropdown-item">Something else here</a>
+														<a href="#" class="dropdown-item">One more line</a>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+
+								<div class="px-3 pt-2">
+									<div class="row">
+										<div class="col-12">
+											<div class="bg-secondary bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-4">
+											<div class="bg-danger bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-8">
+											<div class="bg-teal bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-8">
+											<div class="bg-primary bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-4">
+											<div class="bg-indigo bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-3">
+											<div class="bg-purple bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-6">
+											<div class="bg-pink bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-3">
+											<div class="bg-success bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-6">
+											<div class="bg-success bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-6">
+											<div class="bg-primary bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-4">
+											<div class="bg-info bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-8">
+											<div class="bg-warning bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-8">
+											<div class="bg-indigo bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-4">
+											<div class="bg-primary bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-7">
+											<div class="bg-secondary bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-3">
+											<div class="bg-warning bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-2">
+											<div class="bg-success bg-opacity-10 p-2 mb-2"></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="navbar navbar-dark rounded-top">
+									<div class="container-fluid">
+										<ul class="nav align-items-center">
+											<li class="nav-item">
+												<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-git-branch"></i>
+														<span class="d-none d-md-inline-block ms-2">Branches</span>
+													</div>
+												</a>
+											</li>
+											<li class="nav-item ms-1">
+												<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-git-merge"></i>
+														<span class="d-none d-md-inline-block ms-2">Merges</span>
+														<span class="badge bg-yellow text-black rounded-pill ms-1 ms-md-2">5</span>
+													</div>
+												</a>
+											</li>
+											<li class="nav-item ms-1">
+												<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-git-pull-request"></i>
+														<span class="d-none d-md-inline-block ms-2">Pull Requests</span>
+													</div>
+												</a>
+											</li>
+										</ul>
+
+										<ul class="nav align-items-center">
+											<li class="nav-item">
+												<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-git-fork"></i>
+														<span class="d-none d-md-inline-block ms-2">Repositories</span>
+														<span class="badge bg-yellow text-black rounded-pill ms-1 ms-md-2">28</span>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="navbar border border-top-0 rounded-bottom">
+									<div class="container-fluid flex-column flex-sm-row">
+										<span class="my-2">&copy; 2022 <a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328">Limitless Web App Kit</a></span>
+
+										<ul class="nav">
+											<li class="nav-item">
+												<a href="https://kopyov.ticksy.com/" class="navbar-nav-link navbar-nav-link-icon rounded" target="_blank">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-lifebuoy"></i>
+														<span class="d-none d-md-inline-block ms-2">Support</span>
+													</div>
+												</a>
+											</li>
+											<li class="nav-item ms-md-1">
+												<a href="https://demo.interface.club/limitless/demo/Documentation/index.html" class="navbar-nav-link navbar-nav-link-icon rounded" target="_blank">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-file-text"></i>
+														<span class="d-none d-md-inline-block ms-2">Docs</span>
+													</div>
+												</a>
+											</li>
+											<li class="nav-item ms-md-1">
+												<a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov" class="navbar-nav-link navbar-nav-link-icon text-primary bg-primary bg-opacity-10 fw-semibold rounded" target="_blank">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-shopping-cart"></i>
+														<span class="d-none d-md-inline-block ms-2">Purchase</span>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="mb-4">
+							<h6>Fixed navbars</h6>
+							<p class="mb-3">Fixed navbars depend on location in containers. All navbars placed inside <code>.content-inner</code> container scroll away with the content. Once they are moved outside <code>.content-inner</code> container and placed before or after it, navbar becomes "fixed". It will push the content section up or down and will be always displayed within the viewport despite the scrolling position. None of these options requires any additional class names either in containers or navbar itself. Table below lists all available body and navbar classes.</p>
+
+							<div class="rounded-top border-top border-start border-end p-1">
+								<div class="navbar navbar-dark navbar-expand-xl rounded-top">
+									<div class="container-fluid">
+										<div class="navbar-brand">
+											<a href="index.html" class="d-inline-flex align-items-center">
+												<img src="../../../assets/images/logo_icon.svg" alt="">
+												<h4 class="d-none d-sm-inline-block text-white lh-1 mb-0 ms-3">Limitless</h4>
+											</a>
+										</div>
+
+										<div class="d-xl-none ms-2">
+											<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-demo2-mobile">
+												<i class="ph-squares-four"></i>
+											</button>
+										</div>
+
+										<div class="navbar-collapse collapse order-2 order-xl-1" id="navbar-demo2-mobile">
+											<ul class="navbar-nav mt-2 mt-xl-0">
+												<li class="nav-item">
+													<a href="#" class="navbar-nav-link rounded">Link</a>
+												</li>
+												<li class="nav-item dropdown">
+													<a href="#" class="navbar-nav-link rounded dropdown-toggle" data-bs-toggle="dropdown">Dropdown</a>
+													<div class="dropdown-menu">
+														<a href="#" class="dropdown-item">Action</a>
+														<a href="#" class="dropdown-item">Another action</a>
+														<a href="#" class="dropdown-item">Something else here</a>
+														<a href="#" class="dropdown-item">One more line</a>
+													</div>
+												</li>
+											</ul>
+										</div>
+
+										<ul class="navbar-nav flex-row order-1 order-xl-2 ms-auto">
+											<li class="nav-item">
+												<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
+													<i class="ph-bell"></i>
+													<span class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">2</span>
+												</a>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded ms-xl-2">
+													<i class="ph-chats"></i>
+												</a>
+											</li>
+											<li class="nav-item nav-item-dropdown-xl dropdown ms-xl-2">
+												<a href="#" class="navbar-nav-link align-items-center rounded p-1" data-bs-toggle="dropdown">
+													<div class="status-indicator-container">
+														<img src="../../../assets/images/demo/users/face11.jpg" class="w-32px h-32px rounded" alt="">
+														<span class="status-indicator bg-success"></span>
+													</div>
+													<span class="d-none d-xl-inline-block mx-xl-2">Victoria</span>
+												</a>
+
+												<div class="dropdown-menu dropdown-menu-end">
+													<a href="#" class="dropdown-item">Action</a>
+													<a href="#" class="dropdown-item">Another action</a>
+													<a href="#" class="dropdown-item">Something else here</a>
+													<a href="#" class="dropdown-item">One more line</a>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="navbar border border-top-0 rounded-bottom">
+									<div class="container-fluid flex-column flex-sm-row align-items-start align-items-sm-center">
+										<span class="navbar-text">
+											<i class="ph-user-circle me-1"></i>
+											Signed in as <a href="#">Victoria Baker</a>
+										</span>
+
+										<div class="d-flex align-items-center w-100 w-sm-auto ms-xl-auto">
+											<div class="my-2 my-xl-0">
+												<label class="form-check form-switch ps-sm-0 mb-0">
+													<input type="checkbox" class="form-check-input float-sm-end ms-sm-2" checked>
+													<span class="form-check-label">Remember me</span>
+												</label>
+											</div>
+
+											<ul class="nav align-items-center ms-auto ms-sm-2">
+												<li class="nav-item nav-item-dropdown-sm dropdown">
+													<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded dropdown-toggle" data-bs-toggle="dropdown">
+														<i class="ph-gear"></i>
+														<span class="d-none d-md-inline-block ms-2">Settings</span>
+													</a>
+
+													<div class="dropdown-menu dropdown-menu-end">
+														<a href="#" class="dropdown-item">Action</a>
+														<a href="#" class="dropdown-item">Another action</a>
+														<a href="#" class="dropdown-item">Something else here</a>
+														<a href="#" class="dropdown-item">One more line</a>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="overflow-auto border-start border-end p-1" style="max-height: 230px;">
+								<div class="px-3 pt-2">
+									<div class="row">
+										<div class="col-12">
+											<div class="bg-secondary bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-4">
+											<div class="bg-danger bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-8">
+											<div class="bg-teal bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-8">
+											<div class="bg-primary bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-4">
+											<div class="bg-indigo bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-3">
+											<div class="bg-purple bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-6">
+											<div class="bg-pink bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-3">
+											<div class="bg-success bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-6">
+											<div class="bg-success bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-6">
+											<div class="bg-primary bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-4">
+											<div class="bg-info bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-8">
+											<div class="bg-warning bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-8">
+											<div class="bg-indigo bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-4">
+											<div class="bg-primary bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-7">
+											<div class="bg-secondary bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-3">
+											<div class="bg-warning bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-2">
+											<div class="bg-success bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-8">
+											<div class="bg-primary bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-4">
+											<div class="bg-indigo bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-3">
+											<div class="bg-purple bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-12">
+											<div class="bg-secondary bg-opacity-10 p-1 mb-2"></div>
+										</div>
+										<div class="col-4">
+											<div class="bg-danger bg-opacity-10 p-2 mb-2"></div>
+										</div>
+										<div class="col-8">
+											<div class="bg-teal bg-opacity-10 p-2 mb-2"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="rounded-bottom border-bottom border-start border-end p-1">
+								<div class="navbar navbar-dark rounded-top">
+									<div class="container-fluid">
+										<ul class="nav align-items-center">
+											<li class="nav-item">
+												<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-git-branch"></i>
+														<span class="d-none d-md-inline-block ms-2">Branches</span>
+													</div>
+												</a>
+											</li>
+											<li class="nav-item ms-1">
+												<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-git-merge"></i>
+														<span class="d-none d-md-inline-block ms-2">Merges</span>
+														<span class="badge bg-yellow text-black rounded-pill ms-1 ms-md-2">5</span>
+													</div>
+												</a>
+											</li>
+											<li class="nav-item ms-1">
+												<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-git-pull-request"></i>
+														<span class="d-none d-md-inline-block ms-2">Pull Requests</span>
+													</div>
+												</a>
+											</li>
+										</ul>
+
+										<ul class="nav align-items-center">
+											<li class="nav-item">
+												<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-git-fork"></i>
+														<span class="d-none d-md-inline-block ms-2">Repositories</span>
+														<span class="badge bg-yellow text-black rounded-pill ms-1 ms-md-2">28</span>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="navbar border border-top-0 rounded-bottom">
+									<div class="container-fluid flex-column flex-sm-row">
+										<span class="my-2">&copy; 2022 <a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328">Limitless Web App Kit</a></span>
+
+										<ul class="nav">
+											<li class="nav-item">
+												<a href="https://kopyov.ticksy.com/" class="navbar-nav-link navbar-nav-link-icon rounded" target="_blank">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-lifebuoy"></i>
+														<span class="d-none d-md-inline-block ms-2">Support</span>
+													</div>
+												</a>
+											</li>
+											<li class="nav-item ms-md-1">
+												<a href="https://demo.interface.club/limitless/demo/Documentation/index.html" class="navbar-nav-link navbar-nav-link-icon rounded" target="_blank">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-file-text"></i>
+														<span class="d-none d-md-inline-block ms-2">Docs</span>
+													</div>
+												</a>
+											</li>
+											<li class="nav-item ms-md-1">
+												<a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov" class="navbar-nav-link navbar-nav-link-icon text-primary bg-primary bg-opacity-10 fw-semibold rounded" target="_blank">
+													<div class="d-flex align-items-center mx-md-1">
+														<i class="ph-shopping-cart"></i>
+														<span class="d-none d-md-inline-block ms-2">Purchase</span>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<h6>Navbar markup</h6>
+						<p class="mb-3">Navbar markup consists of a set of containers with mandatory and optional classes: <code>.navbar</code> is a wrapper, this class is required for all types of navbars; <code>.navbar-[color]</code> - sets main background color theme and adjusts content color; <code>.navbar-expand-[breakpoint]</code> - responsible for collapsing navbar content behind the button on small screens. See the table below for a full list of classes.</p>
+
+						<div class="mb-3">
+							<p class="fw-semibold">Default navbar markup:</p>
+							<pre class="language-markup">
+								<code>
+									&lt;!-- Document body -->
+									&lt;body>
+
+										&lt;!-- Main navbar -->
+										&lt;div class="navbar navbar-dark navbar-static navbar-expand-lg">
+											&lt;div class="container-fluid">
+
+												&lt;!-- Mobile togglers -->
+												&lt;div class="d-flex d-lg-none me-2">
+													...
+												&lt;/div>
+												&lt;!-- /mobile togglers -->
+
+
+												&lt;!-- Navbar brand -->
+												&lt;div class="d-inline-flex flex-1 flex-lg-0">
+													&lt;a href="index.html" class="navbar-brand d-inline-flex align-items-center">
+														...
+													&lt;/a>
+												&lt;/div>
+												&lt;!-- /navbar brand -->
+
+
+												&lt;!-- Left content -->
+												&lt;div class="flex-row">
+													...
+												&lt;/div>
+												&lt;!-- /left content -->
+
+
+												&lt;!-- Collapsible navbar content (center) -->
+												&lt;div class="navbar-collapse justify-content-center flex-lg-1 order-2 order-lg-1 collapse" id="navbar-mobile">
+													...
+												&lt;/div>
+												&lt;!-- /collapsible navbar content (center) -->
+
+
+												&lt;!-- Right content -->
+												&lt;div class="flex-row justify-content-end order-1 order-lg-2">
+													...
+												&lt;/div>
+												&lt;!-- /right content -->
+
+											&lt;/div>
+										&lt;/div>
+										&lt;!-- /main navbar -->
+
+
+										&lt;!-- Page content -->
+										&lt;div class="page-content">
+											...
+										&lt;/div>
+										&lt;!-- /page content -->
+
+									&lt;/body>
+									&lt;!-- /document body -->
+								</code>
+							</pre>
+						</div>
+
+						<div class="mb-3">
+							<p class="fw-semibold">Content navbar markup:</p>
+							<pre class="language-markup">
+								<code>
+									&lt;!-- Content navbar -->
+									&lt;div class="navbar navbar-dark navbar-expand-xl">
+										&lt;div class="container-fluid">
+
+											&lt;!-- Mobile toggler -->
+											&lt;div class="text-center d-xl-none w-100">
+												...
+											&lt;/div>
+											&lt;!-- /mobile toggler -->
+
+
+											&lt;!-- Content collapsed on mobile -->
+											&lt;div class="navbar-collapse collapse" id="navbar-demo3-mobile">
+												...
+											&lt;/div>
+											&lt;!-- /content collapsed on mobile -->
+
+										&lt;/div>
+									&lt;/div>
+									&lt;!-- /content navbar -->
+								</code>
+							</pre>
+						</div>
+					</div>
+				</div>
+				<!-- /navbar component -->
+
+
+				<!-- Navbar classes -->
+				<div class="card">
+					<div class="card-header">
+						<h5 class="mb-0">Navbar classes</h5>
+					</div>
+
+					<div class="card-body">
+						Navbar is a complex, but very flexible component. It supports different types of content, responsive utilities manage content appearance and spacing on various screen sizes, supports multiple sizing and color options etc. And everything can be changed on-the-fly directly in HTML markup. If you can't find an option you need, you can always extend default SCSS code. Table below demonstrates all available classes that can be used within the navbar:
+					</div>
+
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th style="width: 20%;">Class</th>
+									<th style="width: 20%;">Type</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>.navbar</code></td>
+									<td><span class="text-muted">Required</span></td>
+									<td>Default navbar class, must be used with any navbar type and color. Responsible for basic navbar and navbar components styling as a parent container.</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-dark</code></td>
+									<td><span class="text-muted">Required</span></td>
+									<td>This class is used for <code>dark</code> background colors - default dark color is set in <code>$navbar-dark-bg</code> variable, feel free to adjust the color according to your needs.</td>
+								</tr>
+								<tr>
+									<td><code>.navbar.bg-*</code></td>
+									<td><span class="text-muted">Optional</span></td>
+									<td>Combination of these classes allows you to set custom <strong>light</strong> color to the default <code>light</code> navbar.</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-dark.bg-*</code></td>
+									<td><span class="text-muted">Optional</span></td>
+									<td>Combination of these classes allows you to set custom <strong>dark</strong> color to the <code>dark</code> navbar. Note - <code>.navbar-dark</code> is required, it's responsible for correct content styling.</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-expand-[breakpoint]</code></td>
+									<td><span class="text-muted">Optional</span></td>
+									<td>For navbars that never collapse, add the <code>.navbar-expand</code> class on the navbar. For navbars that always collapse, don’t add any <code>.navbar-expand</code> class. Otherwise use this class to change when navbar content collapses behind a button.</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-brand</code></td>
+									<td><span class="text-muted">Required</span></td>
+									<td>Class for logo container. It can be applied to most elements, but an anchor works best as some elements might require utility classes or custom styles</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-toggler</code></td>
+									<td><span class="text-muted">Required</span></td>
+									<td>This class needs to be added to the navbar toggle button that toggles navbar content on small screens. Always used with visibility utility classes.</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-collapse</code></td>
+									<td><span class="text-muted">Required</span></td>
+									<td>Groups and hides navbar contents by a parent breakpoint. Requires an ID for targeting collapsible container when sidebar content is collapsed.</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-nav</code></td>
+									<td><span class="text-muted">Required</span></td>
+									<td>Responsive navigation container class that adds default styling for navbar navigation.</td>
+								</tr>
+								<tr>
+									<td><code>.nav-item</code></td>
+									<td><span class="text-muted">Required</span></td>
+									<td>Wrapper class for immediate parents of all navigation links. Responsible for correct styling of nav items</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-nav-link</code></td>
+									<td><span class="text-muted">Required</span></td>
+									<td>Custom class for links within <code>.nav</code> list, it sets proper styling for links in light and dark navbars.</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-nav-link-icon</code></td>
+									<td><span class="text-muted">Optional</span></td>
+									<td>For navigation items that contain icon only. This class adjusts left and right paddings to make sure that proportions are preserved.</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-text</code></td>
+									<td><span class="text-muted">Required</span></td>
+									<td>This class adjusts vertical alignment and horizontal spacing for strings of text</td>
+								</tr>
+								<tr>
+									<td><code>.sticky-top</code></td>
+									<td><span class="text-muted">Optional</span></td>
+									<td>Adds <code>position: sticky;</code> to the navbar - it's treated as relatively positioned until its containing block crosses a specified threshold, at which point it is treated as fixed. Support is limited.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- /navbar classes -->
+
+
+				<!-- Body classes -->
+				<div class="card">
+					<div class="card-header">
+						<h5 class="mb-0">Body classes</h5>
+					</div>
+
+					<div class="card-body">
+						If you want to place navbar in non-static positions, you can choose from fixed to the top, fixed to the bottom, or stickied to the top (scrolls with the page until it reaches the top, then stays there). Fixed navbars use <code>position: fixed</code>, meaning they’re pulled from the normal flow of the DOM and require custom classes added to the <code>&lt;body&gt;</code> container to prevent overlap with other elements. The following table demonstrates the list of classes for <code>&lt;body&gt;</code> container if navbar has non-static position:
+					</div>
+
+					<div class="table-responsive">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th style="width: 20%;">Class</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>.navbar-top</code></td>
+									<td>This class adds <code>top</code> padding to the <code>&lt;body&gt;</code> container. Works only with default navbar height. If another height is specified, apply another class (see the line below).</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-bottom</code></td>
+									<td>This class adds <code>bottom</code> padding to the <code>&lt;body&gt;</code> container. Works only with default navbar height. If another height is specified, apply another class (see the line below).</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-top-[size]</code></td>
+									<td>Controls <code>top</code> spacing of <code>&lt;body&gt;</code> container, if navbar has optional height. Available sizes: small (<code>*-sm</code>) and large (<code>*-lg</code>). Default navbar requires <code>.navbar-top</code> class only.</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-bottom-[size]</code></td>
+									<td>Controls <code>bottom</code> spacing of <code>&lt;body&gt;</code> container, if navbar has optional height. Available sizes: small (<code>*-sm</code>) and large (<code>*-lg</code>). Default navbar requires <code>.navbar-bottom</code> class only.</td>
+								</tr>
+								<tr>
+									<td><code>.navbar-[size]-[size]-top</code></td>
+									<td>Use these classes if the layout has multiple <code>top</code> navbars, where first <code>[size]</code> is the size of the first navbar, second <code>[size]</code> - height of the second navbar. In this particular use case, <code>[size]</code> can be: <code>lg</code> if large height, <code>md</code> is default height <code>sm</code> is small height.  
+								</td></tr>
+								<tr>
+									<td><code>.navbar-[size]-[size]-bottom</code></td>
+									<td>Use these classes if the layout has multiple <code>bottom</code> navbars, where first <code>[size]</code> is the size of the first navbar, second <code>[size]</code> - height of the second navbar. In this particular use case, <code>[size]</code> can be: <code>lg</code> if large height, <code>md</code> is default height <code>sm</code> is small height.  
+								</td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- /body classes -->
+
+			</div>
+			<!-- /content area -->
+
+		</div>
+		<!-- /main content -->
+
+	</div>
+	<!-- /page content -->
+
+
+	<!-- Footer -->
+	<div class="navbar navbar-sm navbar-footer border-top">
+		<div class="container-fluid">
+			<span>&copy; 2022 <a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328">Limitless Web App Kit</a></span>
+
+			<ul class="nav">
+				<li class="nav-item">
+					<a href="https://kopyov.ticksy.com/" class="navbar-nav-link navbar-nav-link-icon rounded" target="_blank">
+						<div class="d-flex align-items-center mx-md-1">
+							<i class="ph-lifebuoy"></i>
+							<span class="d-none d-md-inline-block ms-2">Support</span>
+						</div>
+					</a>
+				</li>
+				<li class="nav-item ms-md-1">
+					<a href="https://demo.interface.club/limitless/demo/Documentation/index.html" class="navbar-nav-link navbar-nav-link-icon rounded" target="_blank">
+						<div class="d-flex align-items-center mx-md-1">
+							<i class="ph-file-text"></i>
+							<span class="d-none d-md-inline-block ms-2">Docs</span>
+						</div>
+					</a>
+				</li>
+				<li class="nav-item ms-md-1">
+					<a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov" class="navbar-nav-link navbar-nav-link-icon text-primary bg-primary bg-opacity-10 fw-semibold rounded" target="_blank">
+						<div class="d-flex align-items-center mx-md-1">
+							<i class="ph-shopping-cart"></i>
+							<span class="d-none d-md-inline-block ms-2">Purchase</span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /footer -->
+
+
+	<!-- Notifications -->
+	<div class="offcanvas offcanvas-end" tabindex="-1" id="notifications">
+		<div class="offcanvas-header py-0">
+			<h5 class="offcanvas-title py-3">Activity</h5>
+			<button type="button" class="btn btn-light btn-sm btn-icon border-transparent rounded-pill" data-bs-dismiss="offcanvas">
+				<i class="ph-x"></i>
+			</button>
+		</div>
+
+		<div class="offcanvas-body p-0">
+			<div class="bg-light fw-medium py-2 px-3">New notifications</div>
+			<div class="p-3">
+				<div class="d-flex align-items-start mb-3">
+					<a href="#" class="status-indicator-container me-3">
+						<img src="../../../assets/images/demo/users/face1.jpg" class="w-40px h-40px rounded-pill" alt="">
+						<span class="status-indicator bg-success"></span>
+					</a>
+					<div class="flex-fill">
+						<a href="#" class="fw-semibold">James</a> has completed the task <a href="#">Submit documents</a> from <a href="#">Onboarding</a> list
+
+						<div class="bg-light rounded p-2 my-2">
+							<label class="form-check ms-1">
+								<input type="checkbox" class="form-check-input" checked disabled>
+								<del class="form-check-label">Submit personal documents</del>
+							</label>
+						</div>
+
+						<div class="fs-sm text-muted mt-1">2 hours ago</div>
+					</div>
+				</div>
+
+				<div class="d-flex align-items-start mb-3">
+					<a href="#" class="status-indicator-container me-3">
+						<img src="../../../assets/images/demo/users/face3.jpg" class="w-40px h-40px rounded-pill" alt="">
+						<span class="status-indicator bg-warning"></span>
+					</a>
+					<div class="flex-fill">
+						<a href="#" class="fw-semibold">Margo</a> has added 4 users to <span class="fw-semibold">Customer enablement</span> channel
+
+						<div class="d-flex my-2">
+							<a href="#" class="status-indicator-container me-1">
+								<img src="../../../assets/images/demo/users/face10.jpg" class="w-32px h-32px rounded-pill" alt="">
+								<span class="status-indicator bg-danger"></span>
+							</a>
+							<a href="#" class="status-indicator-container me-1">
+								<img src="../../../assets/images/demo/users/face11.jpg" class="w-32px h-32px rounded-pill" alt="">
+								<span class="status-indicator bg-success"></span>
+							</a>
+							<a href="#" class="status-indicator-container me-1">
+								<img src="../../../assets/images/demo/users/face12.jpg" class="w-32px h-32px rounded-pill" alt="">
+								<span class="status-indicator bg-success"></span>
+							</a>
+							<a href="#" class="status-indicator-container me-1">
+								<img src="../../../assets/images/demo/users/face13.jpg" class="w-32px h-32px rounded-pill" alt="">
+								<span class="status-indicator bg-success"></span>
+							</a>
+							<button type="button" class="btn btn-light btn-icon d-inline-flex align-items-center justify-content-center w-32px h-32px rounded-pill p-0">
+								<i class="ph-plus ph-sm"></i>
+							</button>
+						</div>
+
+						<div class="fs-sm text-muted mt-1">3 hours ago</div>
+					</div>
+				</div>
+
+				<div class="d-flex align-items-start">
+					<div class="me-3">
+						<div class="bg-warning bg-opacity-10 text-warning rounded-pill">
+							<i class="ph-warning p-2"></i>
+						</div>
+					</div>
+					<div class="flex-1">
+						Subscription <a href="#">#466573</a> from 10.12.2021 has been cancelled. Refund case <a href="#">#4492</a> created
+						<div class="fs-sm text-muted mt-1">4 hours ago</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="bg-light fw-medium py-2 px-3">Older notifications</div>
+			<div class="p-3">
+				<div class="d-flex align-items-start mb-3">
+					<a href="#" class="status-indicator-container me-3">
+						<img src="../../../assets/images/demo/users/face25.jpg" class="w-40px h-40px rounded-pill" alt="">
+						<span class="status-indicator bg-success"></span>
+					</a>
+					<div class="flex-fill">
+						<a href="#" class="fw-semibold">Nick</a> requested your feedback and approval in support request <a href="#">#458</a>
+
+						<div class="my-2">
+							<a href="#" class="btn btn-success btn-sm me-1">
+								<i class="ph-checks ph-sm me-1"></i>
+								Approve
+							</a>
+							<a href="#" class="btn btn-light btn-sm">
+								Review
+							</a>
+						</div>
+
+						<div class="fs-sm text-muted mt-1">3 days ago</div>
+					</div>
+				</div>
+
+				<div class="d-flex align-items-start mb-3">
+					<a href="#" class="status-indicator-container me-3">
+						<img src="../../../assets/images/demo/users/face24.jpg" class="w-40px h-40px rounded-pill" alt="">
+						<span class="status-indicator bg-grey"></span>
+					</a>
+					<div class="flex-fill">
+						<a href="#" class="fw-semibold">Mike</a> added 1 new file(s) to <a href="#">Product management</a> project
+
+						<div class="bg-light rounded p-2 my-2">
+							<div class="d-flex align-items-center">
+								<div class="me-2">
+									<img src="../../../assets/images/icons/pdf.svg" width="34" height="34" alt="">
+								</div>
+								<div class="flex-fill">
+									new_contract.pdf
+									<div class="fs-sm text-muted">112KB</div>
+								</div>
+								<div class="ms-2">
+									<button type="button" class="btn btn-flat-dark text-body btn-icon btn-sm border-transparent rounded-pill">
+										<i class="ph-arrow-down"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="fs-sm text-muted mt-1">1 day ago</div>
+					</div>
+				</div>
+
+				<div class="d-flex align-items-start mb-3">
+					<div class="me-3">
+						<div class="bg-success bg-opacity-10 text-success rounded-pill">
+							<i class="ph-calendar-plus p-2"></i>
+						</div>
+					</div>
+					<div class="flex-fill">
+						All hands meeting will take place coming Thursday at 13:45.
+
+						<div class="my-2">
+							<a href="#" class="btn btn-primary btn-sm">
+								<i class="ph-calendar-plus ph-sm me-1"></i>
+								Add to calendar
+							</a>
+						</div>
+
+						<div class="fs-sm text-muted mt-1">2 days ago</div>
+					</div>
+				</div>
+
+				<div class="d-flex align-items-start mb-3">
+					<a href="#" class="status-indicator-container me-3">
+						<img src="../../../assets/images/demo/users/face4.jpg" class="w-40px h-40px rounded-pill" alt="">
+						<span class="status-indicator bg-danger"></span>
+					</a>
+					<div class="flex-fill">
+						<a href="#" class="fw-semibold">Christine</a> commented on your community <a href="#">post</a> from 10.12.2021
+
+						<div class="fs-sm text-muted mt-1">2 days ago</div>
+					</div>
+				</div>
+
+				<div class="d-flex align-items-start mb-3">
+					<div class="me-3">
+						<div class="bg-primary bg-opacity-10 text-primary rounded-pill">
+							<i class="ph-users-four p-2"></i>
+						</div>
+					</div>
+					<div class="flex-fill">
+						<span class="fw-semibold">HR department</span> requested you to complete internal survey by Friday
+
+						<div class="fs-sm text-muted mt-1">3 days ago</div>
+					</div>
+				</div>
+
+				<div class="text-center">
+					<div class="spinner-border" role="status">
+						<span class="visually-hidden">Loading...</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /notifications -->
+
+
+	<!-- Demo config -->
+	<div class="offcanvas offcanvas-end" tabindex="-1" id="demo_config">
+		<div class="position-absolute top-50 end-100 visible">
+			<button type="button" class="btn btn-primary btn-icon translate-middle-y rounded-end-0" data-bs-toggle="offcanvas" data-bs-target="#demo_config">
+				<i class="ph-gear"></i>
+			</button>
+		</div>
+
+		<div class="offcanvas-header border-bottom py-0">
+			<h5 class="offcanvas-title py-3">Demo configuration</h5>
+			<button type="button" class="btn btn-light btn-sm btn-icon border-transparent rounded-pill" data-bs-dismiss="offcanvas">
+				<i class="ph-x"></i>
+			</button>
+		</div>
+
+		<div class="offcanvas-body">
+			<div class="fw-semibold mb-2">Color mode</div>
+			<div class="list-group mb-3">
+				<label class="list-group-item list-group-item-action form-check border-width-1 rounded mb-2">
+					<div class="d-flex flex-fill my-1">
+						<div class="form-check-label d-flex me-2">
+							<i class="ph-sun ph-lg me-3"></i>
+							<div>
+								<span class="fw-bold">Light theme</span>
+								<div class="fs-sm text-muted">Set light theme or reset to default</div>
+							</div>
+						</div>
+						<input type="radio" class="form-check-input cursor-pointer ms-auto" name="main-theme" value="light" checked>
+					</div>
+				</label>
+
+				<label class="list-group-item list-group-item-action form-check border-width-1 rounded mb-2">
+					<div class="d-flex flex-fill my-1">
+						<div class="form-check-label d-flex me-2">
+							<i class="ph-moon ph-lg me-3"></i>
+							<div>
+								<span class="fw-bold">Dark theme</span>
+								<div class="fs-sm text-muted">Switch to dark theme</div>
+							</div>
+						</div>
+						<input type="radio" class="form-check-input cursor-pointer ms-auto" name="main-theme" value="dark">
+					</div>
+				</label>
+
+				<label class="list-group-item list-group-item-action form-check border-width-1 rounded mb-0">
+					<div class="d-flex flex-fill my-1">
+						<div class="form-check-label d-flex me-2">
+							<i class="ph-translate ph-lg me-3"></i>
+							<div>
+								<span class="fw-bold">Auto theme</span>
+								<div class="fs-sm text-muted">Set theme based on system mode</div>
+							</div>
+						</div>
+						<input type="radio" class="form-check-input cursor-pointer ms-auto" name="main-theme" value="auto">
+					</div>
+				</label>
+			</div>
+
+			<div class="fw-semibold mb-2">Direction</div>
+			<div class="list-group mb-3">
+				<label class="list-group-item list-group-item-action form-check border-width-1 rounded mb-0">
+					<div class="d-flex flex-fill my-1">
+						<div class="form-check-label d-flex me-2">
+							<i class="ph-translate ph-lg me-3"></i>
+							<div>
+								<span class="fw-bold">RTL direction</span>
+								<div class="text-muted">Toggle between LTR and RTL</div>
+							</div>
+						</div>
+						<input type="checkbox" name="layout-direction" value="rtl" class="form-check-input cursor-pointer m-0 ms-auto">
+					</div>
+				</label>
+			</div>
+
+			<div class="fw-semibold mb-2">Layouts</div>
+			<div class="row">
+				<div class="col-12">
+					<a href="../../layout_1/full/index.html" class="d-block mb-3">
+						<img src="https://demo.interface.club/limitless/assets/images/layouts/layout_1.png" class="img-fluid img-thumbnail" alt="">
+					</a>				</div>
+				<div class="col-12">
+					<a href="../../layout_2/full/index.html" class="d-block mb-3">
+						<img src="https://demo.interface.club/limitless/assets/images/layouts/layout_2.png" class="img-fluid img-thumbnail" alt="">
+					</a>
+				</div>
+				<div class="col-12">
+					<a href="../../layout_3/full/index.html" class="d-block mb-3">
+						<img src="https://demo.interface.club/limitless/assets/images/layouts/layout_3.png" class="img-fluid img-thumbnail" alt="">
+					</a>
+				</div>
+				<div class="col-12">
+					<a href="index.html" class="d-block mb-3">
+						<img src="https://demo.interface.club/limitless/assets/images/layouts/layout_4.png" class="img-fluid img-thumbnail bg-primary bg-opacity-20 border-primary" alt="">
+					</a>
+				</div>
+				<div class="col-12">
+					<a href="../../layout_5/full/index.html" class="d-block mb-3">
+						<img src="https://demo.interface.club/limitless/assets/images/layouts/layout_5.png" class="img-fluid img-thumbnail" alt="">
+					</a>
+				</div>
+				<div class="col-12">
+					<a href="../../layout_6/full/index.html" class="d-block">
+						<img src="https://demo.interface.club/limitless/assets/images/layouts/layout_6.png" class="img-fluid img-thumbnail" alt="">
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="border-top text-center py-2 px-3">
+			<a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov" class="btn btn-yellow fw-semibold w-100 my-1" target="_blank">
+				<i class="ph-shopping-cart me-2"></i>
+				Purchase Limitless
+			</a>
+		</div>
+	</div>
+	<!-- /demo config -->
+
+</body>
+</html>
