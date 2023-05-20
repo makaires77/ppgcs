@@ -1,43 +1,73 @@
 ppgcs
+├── .vscode
+│   └── settings.json
+├── README.md
+├── _data
+│   ├── in_csv
+│   │   └── lista_docentes.csv
+│   ├── in_json
+│   │   ├── 642.files
+│   │   │   ├── 642.advise.json
+│   │   │   ├── 642.graph.json
+│   │   │   ├── 642.list.json
+│   │   │   ├── 642.profile.json
+│   │   │   ├── 642.publication.json
+│   │   │   ├── 642patents.json
+│   │   │   ├── 642researchers_by_area.json
+│   │   │   └── 642vosviewer.json
+│   │   └── 644.files
+│   │       ├── 644.advise.json
+│   │       ├── 644.graph.json
+│   │       ├── 644.list.json
+│   │       ├── 644.profile.json
+│   │       ├── 644.publication.json
+│   │       ├── 644patents.json
+│   │       ├── 644researchers_by_area.json
+│   │       └── 644vosviewer.json
+│   ├── in_zip
+│   │   ├── 642.files.zip
+│   │   ├── 644.files.zip
+│   │   └── lista_arquivos.txt
+│   └── out_csv
+│       ├── all_advise.csv
+│       ├── all_patents.csv
+│       ├── all_publications.csv
+│       ├── conf-ppgcs-colabdisce_permanentes_2017-2020.csv
+│       ├── conf-ppgcs-pontuacao_permanentes_2017-2020.csv
+│       ├── conf-ppgcs-resultados_permanentes_2017-2020.csv
+│       ├── lista_todosdocentes.csv
+│       ├── tab_indicadores.csv
+│       └── tab_veiculos.csv
+├── cmd
+│   ├── api
+│   │   └── main.go
+│   └── publication_loader
+│       └── main.go
+├── go.mod
+├── go.sum
 ├── img
 │   └── Logo_CasteloReneRachou_340-340.png
-├── README.md
-├── template
-│   └── roadmap3c_background.html
-└── _data
-    ├── in_csv
-    │   └── lista_docentes.csv
-    ├── in_json
-    │   ├── 642.files
-    │   │   ├── 642.advise.json
-    │   │   ├── 642.graph.json
-    │   │   ├── 642.list.json
-    │   │   ├── 642.profile.json
-    │   │   ├── 642.publication.json
-    │   │   ├── 642patents.json
-    │   │   ├── 642researchers_by_area.json
-    │   │   └── 642vosviewer.json
-    │   └── 644.files
-    │       ├── 644.advise.json
-    │       ├── 644.graph.json
-    │       ├── 644.list.json
-    │       ├── 644.profile.json
-    │       ├── 644.publication.json
-    │       ├── 644patents.json
-    │       ├── 644researchers_by_area.json
-    │       └── 644vosviewer.json
-    ├── in_zip
-    │   ├── 642.files.zip
-    │   ├── 644.files.zip
-    │   └── lista_arquivos.txt
-    ├── out_csv
-    │   ├── all_advise.csv
-    │   ├── all_patents.csv
-    │   ├── all_publications.csv
-    │   ├── conf-ppgcs-colabdisce_permanentes_2017-2020.csv
-    │   ├── conf-ppgcs-pontuacao_permanentes_2017-2020.csv
-    │   ├── conf-ppgcs-resultados_permanentes_2017-2020.csv
-    │   ├── lista_todosdocentes.csv
-    │   ├── tab_indicadores.csv
-    │   └── tab_veiculos.csv
-    └── out_json
+├── internal
+│   └── publication
+│       └── publication.go
+├── pkg
+│   ├── domain
+│   │   └── publication
+│   │       ├── entities.go
+│   │       ├── repository.go
+│   │       └── usecases.go
+│   ├── infrastructure
+│   │   ├── dgraph
+│   │   │   ├── connect.go
+│   │   │   ├── read.go
+│   │   │   └── write.go
+│   │   └── json_publication
+│   │       └── read_publication.go
+│   ├── interfaces
+│   │   └── http
+│   │       └── handlers
+│   │           └── publication_handler.go
+│   └── usecase
+│       └── load_publication
+│           └── interactor.go
+└── ppgcs_arvore.txt
