@@ -10,6 +10,7 @@ require (
 require github.com/dgraph-io/dgo/v200 v200.0.0-20210401091508-95bfd74de60e
 
 require (
+	github.com/dgraph-io/dgo/v210 v210.0.0-20230328113526-b66f8ae53a2d
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/pkg/errors v0.8.1 // indirect
