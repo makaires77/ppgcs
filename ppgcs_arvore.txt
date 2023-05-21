@@ -80,7 +80,8 @@ ppgcs
 │   │   ├── mongo
 │   │   │   └── write_lattes.go
 │   │   ├── neo4j
-│   │   │   └── write_lattes.go
+│   │   │   ├── write_lattes.go
+│   │   │   └── write_lattes.md
 │   │   └── scrap_lattes
 │   │       └── scrap_lattes.go
 │   ├── interfaces
@@ -96,6 +97,9 @@ ppgcs
 │           └── interactor.go
 ├── ppgcs_arvore.txt
 ├── web
+│   ├── assets
+│   │   ├── css
+│   │   ├── demo
 │   │   ├── publication_d3lines.html
 │   │   └── roadmap3c_background.html
 │   └── index.html

@@ -3,10 +3,12 @@ package scrap_lattes
 import (
 	"fmt"
 	"time"
+
+	"github.com/pkg/errors"
 )
 
 type ScrapLattes struct {
-	// Campos e dependências necessárias para o ScrapLattes
+	// Adicione aqui os campos necessários para a conexão com bancos de dados, como clientes MongoDB, Neo4j, etc.
 }
 
 type Pesquisador struct {
@@ -178,20 +180,27 @@ type PremioTitulo struct {
 }
 
 func NewScrapLattes() *ScrapLattes {
-	return &ScrapLattes{
-		// Inicialize os campos e dependências necessárias
-	}
+	// Inicialize e retorne uma instância de ScrapLattes
+	return &ScrapLattes{}
 }
 
-func (s *ScrapLattes) PesquisarPesquisador(IDLattes string) (*Pesquisador, error) {
-	// Lógica para pesquisar um pesquisador pelo IDLattes em algum repositório
+func (s *ScrapLattes) ObterPesquisador(IDLattes string) (*Pesquisador, error) {
+	// Lógica para obter um pesquisador pelo IDLattes
 
-	// Exemplo de retorno de um pesquisador
-	pesquisador := &Pesquisador{
-		Nome:          "Fulano de Tal",
-		Titulo:        "Doutor",
-		LinkCurriculo: "http://exemplo.com/fulano",
-		// Preencha os demais campos com os dados do pesquisador pesquisado
+	// Verifique se o IDLattes é válido
+	if IDLattes == "" {
+		return nil, errors.New("IDLattes inválido")
+	}
+
+	// Consulte o banco de dados para obter o pesquisador com o IDLattes especificado
+	pesquisador, err := s.ObterPesquisadorPorIDLattes(IDLattes)
+	if err != nil {
+		return nil, errors.Wrap(err, "falha ao obter pesquisador do banco de dados")
+	}
+
+	// Retorne o pesquisador encontrado ou um erro, se aplicável
+	if pesquisador == nil {
+		return nil, errors.New("pesquisador não encontrado")
 	}
 
 	return pesquisador, nil
@@ -200,16 +209,25 @@ func (s *ScrapLattes) PesquisarPesquisador(IDLattes string) (*Pesquisador, error
 func (s *ScrapLattes) SalvarPesquisador(pesquisador *Pesquisador) error {
 	// Lógica para salvar um pesquisador em algum repositório
 
+	// Verifique se o pesquisador é nulo
+	if pesquisador == nil {
+		return errors.New("pesquisador inválido")
+	}
+
 	// Verifique se o pesquisador possui todas as informações obrigatórias
 	if pesquisador.Nome == "" {
-		return fmt.Errorf("o nome do pesquisador é obrigatório")
+		return errors.New("o nome do pesquisador é obrigatório")
 	}
 
 	if pesquisador.Titulo == "" {
-		return fmt.Errorf("o título do pesquisador é obrigatório")
+		return errors.New("o título do pesquisador é obrigatório")
 	}
 
-	// Salve o pesquisador no repositório
+	// Salve o pesquisador no banco de dados
+	err := s.SalvarPesquisadorNoBancoDeDados(pesquisador)
+	if err != nil {
+		return errors.Wrap(err, "falha ao salvar pesquisador no banco de dados")
+	}
 
 	// Exemplo de impressão de mensagem de sucesso
 	fmt.Println("Pesquisador salvo com sucesso!")
@@ -220,14 +238,26 @@ func (s *ScrapLattes) SalvarPesquisador(pesquisador *Pesquisador) error {
 func (s *ScrapLattes) AtualizarPesquisador(pesquisador *Pesquisador) error {
 	// Lógica para atualizar um pesquisador em algum repositório
 
-	// Verifique se o pesquisador possui um IDLattes válido
-	if pesquisador.IDLattes == "" {
-		return fmt.Errorf("o IDLattes do pesquisador é inválido")
+	// Verifique se o pesquisador é nulo
+	if pesquisador == nil {
+		return errors.New("pesquisador inválido")
 	}
 
-	// Verifique se o pesquisador existe no repositório antes de atualizá-lo
+	// Verifique se o pesquisador existe no repositório
+	existe, err := s.PesquisadorExiste(pesquisador.IDLattes)
+	if err != nil {
+		return errors.Wrap(err, "falha ao verificar a existência do pesquisador")
+	}
 
-	// Atualize o pesquisador no repositório
+	if !existe {
+		return errors.New("pesquisador não encontrado")
+	}
+
+	// Atualize os campos do pesquisador no repositório
+	err = s.AtualizarPesquisadorNoRepositorio(pesquisador)
+	if err != nil {
+		return errors.Wrap(err, "falha ao atualizar pesquisador no repositório")
+	}
 
 	// Exemplo de impressão de mensagem de sucesso
 	fmt.Println("Pesquisador atualizado com sucesso!")
@@ -235,25 +265,176 @@ func (s *ScrapLattes) AtualizarPesquisador(pesquisador *Pesquisador) error {
 	return nil
 }
 
-func (s *ScrapLattes) ExcluirPesquisador(IDLattes string) error {
-	// Lógica para excluir um pesquisador do repositório pelo IDLattes
+func (s *ScrapLattes) PesquisadorExiste(IDLattes string) (bool, error) {
+	// Lógica para verificar se um pesquisador existe no repositório
 
 	// Verifique se o IDLattes é válido
+	if IDLattes == "" {
+		return false, errors.New("IDLattes inválido")
+	}
 
-	// Verifique se o pesquisador existe no repositório antes de excluí-lo
+	// Verifique no banco de dados se o pesquisador com o IDLattes especificado existe
+	existe, err := s.VerificarExistenciaPesquisadorNoBancoDeDados(IDLattes)
+	if err != nil {
+		return false, errors.Wrap(err, "falha ao verificar existência do pesquisador no banco de dados")
+	}
 
-	// Exclua o pesquisador do repositório
+	return existe, nil
+}
+
+func (s *ScrapLattes) ObterPublicacoes(pesquisador *Pesquisador) ([]Publicacao, error) {
+	// Lógica para obter as publicações de um pesquisador
+
+	// Verifique se o pesquisador é nulo
+	if pesquisador == nil {
+		return nil, errors.New("pesquisador inválido")
+	}
+
+	// Obtenha as publicações do pesquisador
+	publicacoes, err := s.ObterPublicacoesDoPesquisador(pesquisador)
+	if err != nil {
+		return nil, errors.Wrap(err, "falha ao obter publicações do pesquisador")
+	}
+
+	return publicacoes, nil
+}
+
+func (s *ScrapLattes) ImportarDadosCSV(filePath string) error {
+	// Lógica para importar dados de um arquivo CSV
+
+	// Verifique se o arquivo existe
+	if filePath == "" {
+		return errors.New("caminho do arquivo inválido")
+	}
+
+	// Leia o conteúdo do arquivo
+	dadosCSV, err := LerArquivoCSV(filePath)
+	if err != nil {
+		return errors.Wrap(err, "falha ao ler arquivo CSV")
+	}
+
+	// Faça o processamento necessário dos dados
+
+	// Salve os dados importados no banco de dados
+	err = s.SalvarDadosImportadosNoBancoDeDados(dadosCSV)
+	if err != nil {
+		return errors.Wrap(err, "falha ao salvar dados importados no banco de dados")
+	}
 
 	// Exemplo de impressão de mensagem de sucesso
-	fmt.Println("Pesquisador excluído com sucesso!")
+	fmt.Println("Dados importados com sucesso!")
 
 	return nil
 }
 
-func (s *ScrapLattes) ListarPesquisadores() ([]*Pesquisador, error) {
-	// Lógica para listar todos os pesquisadores do repositório
+func (s *ScrapLattes) ExportarDadosCSV(filePath string) error {
+	// Lógica para exportar dados para um arquivo CSV
 
-	// Retorne a lista de pesquisadores encontrados
+	// Verifique se há dados para exportar
 
-	return nil, nil
+	// Obtenha os dados a serem exportados do banco de dados
+	dadosExportados, err := s.ObterDadosExportadosDoBancoDeDados()
+	if err != nil {
+		return errors.Wrap(err, "falha ao obter dados exportados do banco de dados")
+	}
+
+	// Faça o processamento necessário dos dados
+
+	// Escreva os dados no arquivo
+	err = EscreverDadosNoArquivoCSV(filePath, dadosExportados)
+	if err != nil {
+		return errors.Wrap(err, "falha ao escrever dados no arquivo CSV")
+	}
+
+	// Exemplo de impressão de mensagem de sucesso
+	fmt.Println("Dados exportados com sucesso!")
+
+	return nil
+}
+
+func LerArquivoCSV(filePath string) ([]string, error) {
+	// Lógica para ler um arquivo CSV e retornar os dados
+
+	// Implemente a lógica real para ler o arquivo CSV e extrair os dados
+	// Aqui está um exemplo simples que retorna dados fictícios:
+	dados := []string{"linha 1", "linha 2", "linha 3"}
+
+	return dados, nil
+}
+
+func (s *ScrapLattes) ObterPesquisadorPorIDLattes(IDLattes string) (*Pesquisador, error) {
+	// Lógica para obter um pesquisador do banco de dados pelo IDLattes
+
+	// Implemente a lógica real para obter o pesquisador pelo IDLattes
+	// Aqui está um exemplo simples que retorna um pesquisador fictício:
+	pesquisador := &Pesquisador{
+		Nome:     "Fulano de Tal",
+		Titulo:   "Doutor",
+		IDLattes: IDLattes,
+		Formacao: []string{"Bacharelado", "Mestrado", "Doutorado"},
+		Publicacoes: []Publicacao{
+			{Titulo: "Publicação 1", Ano: "2022"},
+			{Titulo: "Publicação 2", Ano: "2023"},
+		},
+	}
+
+	return pesquisador, nil
+}
+
+func (s *ScrapLattes) SalvarPesquisadorNoBancoDeDados(pesquisador *Pesquisador) error {
+	// Lógica para salvar um pesquisador no banco de dados
+
+	// Implemente a lógica real para salvar o pesquisador no banco de dados
+
+	return nil
+}
+
+func (s *ScrapLattes) AtualizarPesquisadorNoRepositorio(pesquisador *Pesquisador) error {
+	// Lógica para atualizar um pesquisador no repositório
+
+	// Implemente a lógica real para atualizar o pesquisador no repositório
+
+	return nil
+}
+
+func (s *ScrapLattes) VerificarExistenciaPesquisadorNoBancoDeDados(IDLattes string) (bool, error) {
+	// Lógica para verificar se um pesquisador existe no banco de dados
+
+	// Implemente a lógica real para verificar a existência do pesquisador no banco de dados
+
+	return true, nil
+}
+
+func (s *ScrapLattes) ObterPublicacoesDoPesquisador(pesquisador *Pesquisador) ([]Publicacao, error) {
+	// Lógica para obter as publicações de um pesquisador
+
+	// Implemente a lógica real para obter as publicações do pesquisador
+
+	return pesquisador.Publicacoes, nil
+}
+
+func (s *ScrapLattes) SalvarDadosImportadosNoBancoDeDados(dados []string) error {
+	// Lógica para salvar os dados importados no banco de dados
+
+	// Implemente a lógica real para salvar os dados importados no banco de dados
+
+	return nil
+}
+
+func EscreverDadosNoArquivoCSV(filePath string, dados []string) error {
+	// Lógica para escrever dados em um arquivo CSV
+
+	// Implemente a lógica real para escrever os dados no arquivo CSV
+
+	return nil
+}
+
+func (s *ScrapLattes) ObterDadosExportadosDoBancoDeDados() ([]string, error) {
+	// Lógica para obter os dados exportados do banco de dados
+
+	// Implemente a lógica real para obter os dados exportados do banco de dados
+	// Aqui está um exemplo simples que retorna dados fictícios:
+	dados := []string{"linha 1", "linha 2", "linha 3"}
+
+	return dados, nil
 }
