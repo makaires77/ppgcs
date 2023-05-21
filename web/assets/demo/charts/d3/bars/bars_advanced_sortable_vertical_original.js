@@ -90,11 +90,6 @@ var D3BarSortableVertical = function() {
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-            // Load data a partir do banco DGraph
-/*             d3.dgraph.query("your-query", function(error, data) {
-                // Código para processar os dados retornados pelo DGraph
-            });
- */
             // Load data
             // ------------------------------
 
