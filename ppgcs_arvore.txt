@@ -41,7 +41,9 @@ ppgcs
 ├── cmd
 │   ├── api
 │   │   └── main.go
-│   └── publication_loader
+│   ├── publication_loader
+│   │   └── main.go
+│   └── csv_maker
 │       └── main.go
 ├── go.mod
 ├── go.sum

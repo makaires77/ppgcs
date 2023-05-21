@@ -1,105 +1,63 @@
 package main
 
 import (
-	"context"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
-	"path/filepath"
-
-	"github.com/dgraph-io/dgo/v210"
-	"github.com/dgraph-io/dgo/v210/protos/api"
-	"google.golang.org/grpc"
+	"log"
+	"os"
 )
 
 func main() {
-	// Conexão com o Dgraph
-	conn, err := grpc.Dial("localhost:9080", grpc.WithInsecure())
-	if err != nil {
-		fmt.Printf("Erro ao conectar com o Dgraph: %v\n", err)
-		return
-	}
-	defer conn.Close()
+	// list of files
+	files := []string{
+		"_data/in_json/642.files/642.publication.json",
+		"_data/in_json/644.files/644.publication.json",
+		"_data/in_json/642.files/642.advise.json",
+		"_data/in_json/644.files/644.advise.json",
+		/* 		"_data/in_json/642.files/642patents.json",
+		   		"_data/in_json/644.files/644patents.json", */
 
-	dc := api.NewDgraphClient(conn)
-	dg := dgo.NewDgraphClient(dc)
-
-	// Diretório de entrada dos arquivos JSON
-	jsonDir := "_data/in_json"
-
-	// Ler e persistir entidades de todos os arquivos JSON no diretório
-	err = readAndPersistEntitiesFromJSONDir(dg, jsonDir)
-	if err != nil {
-		fmt.Printf("Erro ao ler e persistir entidades: %v\n", err)
-		return
+		// adicione todos os arquivos que deseja unir
 	}
 
-	fmt.Println("Entidades carregadas e salvas com sucesso!")
-}
-
-func readAndPersistEntitiesFromJSONDir(dg *dgo.Dgraph, jsonDir string) error {
-	files, err := ioutil.ReadDir(jsonDir)
-	if err != nil {
-		return fmt.Errorf("Erro ao ler o diretório JSON: %v", err)
-	}
+	mergedData := make([]map[string]interface{}, 0)
 
 	for _, file := range files {
-		if file.IsDir() {
+		jsonFile, err := os.Open(file)
+		if err != nil {
+			log.Fatalf("Failed to open file %s: %v", file, err)
+		}
+		defer jsonFile.Close()
+
+		byteValue, _ := ioutil.ReadAll(jsonFile)
+
+		// Let's try to unmarshal the content to a single map first
+		var singleObject map[string]interface{}
+		singleErr := json.Unmarshal(byteValue, &singleObject)
+		if singleErr == nil {
+			// The content was a single JSON object, add it to mergedData and move on to the next file
+			mergedData = append(mergedData, singleObject)
 			continue
 		}
 
-		filePath := filepath.Join(jsonDir, file.Name())
-		err := readAndPersistEntitiesFromJSONFile(dg, filePath)
-		if err != nil {
-			fmt.Printf("Erro ao ler e persistir entidades do arquivo %s: %v\n", file.Name(), err)
+		// The content was not a single object, let's assume it was an array of objects
+		var multipleObjects []map[string]interface{}
+		multipleErr := json.Unmarshal(byteValue, &multipleObjects)
+		if multipleErr != nil {
+			log.Fatalf("Failed to unmarshal file %s: %v", file, multipleErr)
+		}
+
+		mergedData = append(mergedData, multipleObjects...)
+	}
+
+	// If you want to print merged data
+	for _, data := range mergedData {
+		for key, value := range data {
+			log.Printf("Key: %s, Value: %v\n", key, value)
 		}
 	}
 
-	return nil
-}
-
-func readAndPersistEntitiesFromJSONFile(dg *dgo.Dgraph, filePath string) error {
-	file, err := ioutil.ReadFile(filePath)
-	if err != nil {
-		return fmt.Errorf("Erro ao ler o arquivo JSON: %v", err)
-	}
-
-	// Decodificar o JSON
-	var entities []map[string]interface{}
-	err = json.Unmarshal(file, &entities)
-	if err != nil {
-		return fmt.Errorf("Erro ao decodificar o JSON: %v", err)
-	}
-
-	// Carregar e persistir as entidades
-	if err := loadAndSaveEntities(dg, entities); err != nil {
-		return fmt.Errorf("Falha ao carregar e salvar as entidades: %v", err)
-	}
-
-	return nil
-}
-
-func loadAndSaveEntities(dg *dgo.Dgraph, entities []map[string]interface{}) error {
-	txn := dg.NewTxn()
-	defer txn.Discard(context.Background())
-
-	for _, entity := range entities {
-		// Salvar a entidade no Dgraph
-		jsonBytes, err := json.Marshal(entity)
-		if err != nil {
-			return fmt.Errorf("Erro ao converter a entidade para JSON: %v", err)
-		}
-
-		mutation := &api.Mutation{
-			CommitNow: true,
-			SetJson:   jsonBytes,
-		}
-
-		_, err = txn.Mutate(context.Background(), mutation)
-		if err != nil {
-			return fmt.Errorf("Erro ao salvar a entidade: %v", err)
-		}
-	}
-
-	return nil
+	// If you want to write merged data to a new JSON file
+	file, _ := json.MarshalIndent(mergedData, "", " ")
+	_ = ioutil.WriteFile("_data/out_json/merged.json", file, 0644)
 }
