@@ -1,9 +1,9 @@
-package application
+package main
 
 import (
 	"fmt"
 
-	"github.com/marcos/ppgcs/pkg/domain/researcher"
+	"github.com/makaires77/ppgcs/pkg/domain/researcher"
 )
 
 type ResearcherService struct {
