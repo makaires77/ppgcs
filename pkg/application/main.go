@@ -7,8 +7,12 @@ import (
 	"log"
 	"os"
 
+	"github.com/chromedp/cdproto/network"
+	"github.com/chromedp/cdproto/page"
+	"github.com/chromedp/chromedp"
 	"github.com/makaires77/ppgcs/pkg/application"
 	"github.com/makaires77/ppgcs/pkg/domain/researcher"
+
 	dgraphRepo "github.com/makaires77/ppgcs/pkg/infrastructure/dgraph"
 	mongoRepo "github.com/makaires77/ppgcs/pkg/infrastructure/mongo"
 	neo4jRepo "github.com/makaires77/ppgcs/pkg/infrastructure/neo4j"
@@ -69,8 +73,49 @@ func main() {
 	}
 }
 
+type ResearcherData struct {
+	Nome        string
+	Titulacao   string
+	Instituicao string
+	Area        string
+	// Adicione mais campos conforme necessário
+}
+
 // Função para realizar o scrap
-func realizarBusca(nome string) (map[string]interface{}, error) {
-	//TODO: Implementar a lógica de raspagem aqui
-	// Use o pacote chromedp para automatizar a interação com o site
+func realizarBusca(nome string) (*ResearcherData, error) {
+	ctx, cancel := chromedp.NewContext(context.Background(), chromedp.WithLogf(log.Printf))
+	defer cancel()
+
+	err := chromedp.Run(ctx,
+		network.Enable(),
+		page.Enable(),
+		chromedp.Navigate(urlBusca),
+		chromedp.WaitVisible(cssCheckbox),
+		chromedp.Click(cssCheckbox),
+		chromedp.WaitVisible(cssInput),
+		chromedp.SendKeys(cssInput, nome),
+		chromedp.Click(cssBotao),
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	// Agora, vamos extrair as informações do pesquisador da página de resultados
+	var nome, titulacao, instituicao, area string
+	err = chromedp.Run(ctx,
+		chromedp.Text(cssResultado, &nome),
+		// Faça o mesmo para os outros campos (titulacao, instituicao, area) de acordo com os seletores CSS correspondentes
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	data := &ResearcherData{
+		Nome:        nome,
+		Titulacao:   titulacao,
+		Instituicao: instituicao,
+		Area:        area,
+	}
+
+	return data, nil
 }
