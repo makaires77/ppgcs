@@ -117,9 +117,9 @@ type Publicacao struct {
 	Resumo  string     `json:"resumo"`
 	Data    *time.Time `json:"data"`
 	Revista string     `json:"revista"`
-	Ano     string
-	Autores []string
-	DOI     string
+	Ano     string     `json:"ano"`
+	Autores []string   `json:"autores"`
+	DOI     string     `json:"doi"`
 }
 
 type Formacao struct {

@@ -1,0 +1,74 @@
+Detalhe mais o conteúdo real da implementação da função:
+func (d *DadosDocente) Processar() {
+	// Aqui seria a lógica para processar cada linha do CSV, por exemplo, realizar a raspagem dos dados do Lattes
+	// Suponha que a função "rasparDadosLattes(d.Lattes)" faça a raspagem
+	//rasparDadosLattes(d.Lattes)
+	fmt.Println("Nome:", d.Nome)
+	fmt.Println("Lattes:", d.Lattes)
+	// ... exiba outras informações conforme necessário
+	fmt.Println("---")
+}
+
+Considerando que a lógica e o contexto geral para processar cada linha do CSV e realizar a raspagem dos dados do Lattes, os passos detalhados devem ser os descritos a seguir.
+1. Buscar nome
+1.1. acessar a página de busca de currículos em http://buscatextual.cnpq.br/buscatextual/busca.do
+1.2. localizar o checkbox que tem o css selector #buscarDemais e ativar sua marcação
+1.3. localizar o campo input que tem o css selector #textoBusca e nele passar a linha atual do CSV de entrada
+1.4. localizar o botão que tem o css selector #botaoBuscaFiltros e clicar
+1.5. disparar a requisição de busca ao servidor do CNPq, incluindo validação para erro na requisição que tenta novamente até 3 tentativas em caso de falhas
+1.5.a se após as tentativas ainda assim não conseguir resposta, criar uma fila de currículos a serem buscados posteriormente e passar pro nome seguinte do arquivo CSV de entrada
+1.5.b se a requisição for respondida com sucesso, disparar espera automática para carregar a página de resultados de busca
+1.6. Ao final do Wait automático do passo anterior avaliar a quantidade de tags <li> que contém em seus elementos filhos os dados dos pesquisadores resultados da busca, popular uma variável com a quantidade de resultados encontrados, plotar na interface a mensagem com a quantidade de resultados encontrados e o tempo transcorrido desde a disparada do passo 1.1.
+
+2. Clicar no link da página de resultados, conforme escolha do nome mais adequado
+2.1a. Clicar no primeiro link da página de resultados caso a variável com a quantidade de resultados encontrados
+2.1b. Caso a variável com a quantidade de resultados encontrados seja maior que 1, então deverá apresentar na interface a lista de nomes encontrados com seu respectivo resumo extraído de cada tag <li>
+2.2. A partir do clique do usuário na interface, escolhendo qual currículo deve ser o escolhido, ou caso haja apenas uma tag <li> na página de resultados clicar no primeiro link
+2.3. Disparar uma espera automática até a carga completa de um pop-up, que é aberto em javascript, trazer os dados de resumo do currículo escolhido
+2.4. Localizar no pop-up o botão cujo css selector é #idbtnabrircurriculo
+2.5. Clicar no botão cujo css selector é #idbtnabrircurriculo e disparar uma espera automática até que seja aberta uma nova janela, que é a janela do currículo lattes onde será realizada a extração de dados
+
+3. Analisar a página na nova janela aberta com o currículo lattes, detectar quais seções do currículo ela apresenta, e extrair iterativamente cada elemento filho de cada uma dessas seções com as demais funções específicas por seção.
+
+4. A primeira seção que todo currículo contém é trazida no elemento body > div.page.min-width > div.content-wrapper > div > div > div > div.infpessoa
+4.1. disparar uma função auxiliar para avaliar se já existe um registro no banco de dados com o nome de pesquisador, caso não haja prosseguir com a extração, caso haja avaliar a data de atualização do currículo
+4.2. no caso da data de atualização do currículo detectada na página do currículo lattes sendo extraídas ser maior que a data que já consta no banco de dados para aquele pesquisador realizar a nova extração dos elementos que mudaram com relação ao que já existe no banco de dados, usando para isso GraphQL, para complementar a extração com os dados diferentes, mantendo aqueles que já se tem e exapandindo no banco de dados com os elementos novos, atualizando aqueles que mudaram.
+4.3. caso ainda não haja o nome encontrado no banco de dados proceder com a extração iterativa de cada seção, e em cada seção, extrair sucessivamente seus elementos filhos até que o elemento não possua mais filhos
+4.4. armazenar em paralelo tanto no MongoDB como no Dgraph e no Neo4j mantendo entidades como seções e as arestas como os relacionamentos de elementos pais e filhos da estrutura extraída do currículo
+
+5. Criar análise de período definido
+5.1. Solicitar a definição da equipe a ser analisada ao usuário, ou escolhendo um arquivo CSV da pasta _data, ou então solicitando o upload de uma nova lista, ou entrando diretamente com uma lista de nomes
+5.2. Solicitar a definição do período da análise ao usuário informando ano inicial e ano final da análise através da interface de usuário
+5.3. Disparar uma querie de busca no banco de dados para avaliar a data de atualização de cada currículo
+5.4. Mostrar a atualização de cada nome, e solicitar que o usuário defina se quer atualizar ou gerar relatório com as informações atuais
+
+6. Disparar as funções de atualização
+5.2. Disparar a função de busca de currículos encontrar o campo de 
+
+7. Disparar os relatórios em tela
+7.1. Retornar na interface de usuário os dados resumo à medida que eles vão sendo extraídos usando javascript e biblioteca D3.js, gerar os seguintes widgets na página de interface com o usuário
+7.2. Gráfico de Colunas com o nome de cada pesquisdor encontrado na horizontal e a quantidade de artigos completos na vertical, ordenando automaticamente pelo ano de publicação
+7.3. Gráfico de Colunas empilhadas com o nome de cada pesquisdor encontrado na horizontal e na vertical a soma empilhada das quantidades: quantidade de orientações de doutorado completos, quantidade de orientações de mestrado completas, e soma da quantidade de orientações de outros tipos, ordenando automaticamente pelo ano da titulação
+7.4. Gráfico de Colunas empilhadas com o nome de cada pesquisdor encontrado na horizontal e na vertical a soma empilhada das quantidades: soma ponderada de pontos por nível de estrato qualis, de acordo com a tabela de pontuação por artigo completo publicado.
+7.5. Gráfico de barras horizontais variando cada barra de 0 a 100%, com o percentual de artigos completos que pertencem aos níveis A1 ou A2 ou A3, do estrato de classificação do Qualis frente ao total de artigos completos publicados no período
+
+
+
+
+Neste caso específico a base de dados é de dados abertos ao público e sem restrições para a raspagem de dados, vamos agora implementar adequadamente de acordo com as suas necessidades descritas as funções realizarBusca, escolherResultado, abrirCurriculo, analisarCurriculo, extrairDados e armazenarDados que compõem a a função Processar que realiza o fluxo de trabalho em um nível alto. Considere que a função realizarBusca usa um pacote Go para web scraping para automatizar a interação com o site. A função armazenarDados usa um pacote de acesso a banco de dados para armazenar os dados extraídos usando nossa estrutura de pastas atual e a separação nas quatro camadas principais:
+
+Interface do usuário ou Apresentação: Esta camada se preocupa com a interação do usuário. Neste caso, a interação do usuário não está muito explícita.
+
+Aplicação: Esta camada serve como um canal entre a camada de Interface do usuário e a camada de Domínio. Pode-se introduzir um serviço de aplicação aqui que orquestra as chamadas para a camada de domínio.
+
+Domínio: Esta camada contém as informações sobre o domínio do problema, as regras de negócio e os objetos de negócio. Neste caso, "Pesquisador", "Publicacao" seriam objetos de domínio.
+
+Infraestrutura: Esta camada fornece os recursos técnicos para as outras camadas. Aqui estão as operações de banco de dados e a raspagem de dados do Lattes.
+
+E lembre de considerar os eventos como parte integrante do sistema, com uso de EDD, organizando o código seria organizado em torno de produção, detecção e reação a eventos do estado do domínio. 
+Como o evento de um novo pesquisador sendo salvo no banco de dados, que dispara um evento que aciona outras partes do código (ou até mesmo outros sistemas) que estão interessados nesse evento.
+Separaremos a lógica de conexão do MongoDB em um pacote de infraestrutura separado e utilizar a injeção de dependência para usar esses serviços.
+Definimos interfaces claras para os repositórios (ex: PesquisadorRepository) na camada de domínio e implementar essas interfaces na camada de infraestrutura.
+Utilizaremos a injeção de dependência para fornecer a implementação concreta do repositório à camada de aplicação.
+Introduzimos um sistema de manipulação de eventos para lidar com os eventos produzidos pelo sistema. Por exemplo, quando um novo pesquisador é adicionado, um evento poderia ser emitido, o que poderia acionar outras partes do código.
+E implementaremos um sistema de fila poderia ser útil para lidar com o processamento em segundo plano, com a raspagem de dados do Lattes em uma tarefa em segundo plano. Usando entre outras a biblioteca "github.com/gocraft/work" e o gerenciamento de filas com o RabbitMQ para processar diferentes pedidos de análise de diferentes usuários em paralelo.

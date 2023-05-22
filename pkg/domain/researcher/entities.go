@@ -1,54 +1,12 @@
-package publication
+package researcher
 
 import (
-	"encoding/json"
-	"io/ioutil"
-	"os"
 	"time"
+
+	"github.com/makaires77/ppgcs/pkg/domain/publication"
 )
 
-type Publication struct {
-	Natureza            string            `json:"natureza"`
-	Titulo              string            `json:"titulo"`
-	Idioma              string            `json:"idioma"`
-	Periodico           string            `json:"periodico"`
-	Ano                 string            `json:"ano"`
-	Volume              string            `json:"volume"`
-	ISSN                string            `json:"issn"`
-	EstratoQualis       string            `json:"estrato_qualis"`
-	PaisDePublicacao    string            `json:"pais_de_publicacao"`
-	Paginas             string            `json:"paginas"`
-	DOI                 string            `json:"doi"`
-	Autores             []string          `json:"autores"`
-	AutoresEndogeno     []string          `json:"autores-endogeno"`
-	AutoresEndogenoNome map[string]string `json:"autores-endogeno-nome"`
-	Tags                []string          `json:"tags"`
-	Hash                string            `json:"Hash"`
-}
-
-func LoadEntitiesFromJSON(jsonFilePath string) ([]Publication, error) {
-	// Ler o arquivo JSON
-	jsonFile, err := os.Open(jsonFilePath)
-	if err != nil {
-		return nil, err
-	}
-	defer jsonFile.Close()
-
-	// Decodificar o JSON
-	byteValue, err := ioutil.ReadAll(jsonFile)
-	if err != nil {
-		return nil, err
-	}
-
-	var entities []Publication
-	if err := json.Unmarshal(byteValue, &entities); err != nil {
-		return nil, err
-	}
-
-	return entities, nil
-}
-
-type Pesquisador struct {
+type Researcher struct {
 	Nome                       string
 	Titulo                     string
 	LinkCurriculo              string
@@ -64,18 +22,18 @@ type Pesquisador struct {
 	FormacoesComplementares    []FormacaoComplementar
 	AtuacoesProfissionais      []AtuacaoProfissional
 	LinhasPesquisa             []LinhaPesquisa
-	ProjetosPesquisa           []ProjetoPesquisa       `json:"projetos_pesquisa"`
-	Publicacoes                []Publicacao            `json:"publicacoes"`
-	FormacaoAcademica          []Formacao              `json:"formacao_academica"`
-	CursosExtraCurriculares    []Curso                 `json:"cursos_extra_curriculares"`
-	ExperienciaProfissional    []Experiencia           `json:"experiencia_profissional"`
-	Patentes                   []Patente               `json:"patentes"`
-	MembroCorpoEditorial       []MembroCorpoEditorial  `json:"membro_corpo_editorial"`
-	RevisorPeriodico           []RevisorPeriodico      `json:"revisor_periodico"`
-	RevisorProjetoFomento      []RevisorProjetoFomento `json:"revisor_projeto_fomento"`
-	PremiosTitulos             []PremioTitulo          `json:"premios_titulos"`
+	ProjetosPesquisa           []ProjetoPesquisa         `json:"projetos_pesquisa"`
+	Publicacoes                []publication.Publication `json:"publicacoes"`
+	CursosExtraCurriculares    []Curso                   `json:"cursos_extra_curriculares"`
+	ExperienciaProfissional    []Experiencia             `json:"experiencia_profissional"`
+	Patentes                   []Patente                 `json:"patentes"`
+	MembroCorpoEditorial       []MembroCorpoEditorial    `json:"membro_corpo_editorial"`
+	RevisorPeriodico           []RevisorPeriodico        `json:"revisor_periodico"`
+	RevisorProjetoFomento      []RevisorProjetoFomento   `json:"revisor_projeto_fomento"`
+	PremiosTitulos             []PremioTitulo            `json:"premios_titulos"`
 }
 
+// Estruturas restantes (FormacaoAcademica, FormacaoPosDoc, etc.)...
 type FormacaoAcademica struct {
 	Periodo        string
 	Nivel          string

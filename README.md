@@ -15,8 +15,8 @@ Os indicadores que balizam a avaliação são construídos com base nos parâmet
 
 São considerados os docentes permanentes (DP) e docentes colaboradores (DC), com base nos mesmos parâmetros esperados de impacto (medido por pontuação ponderada relativa ao estrato Qualis Periódicos da área Medicina II das revistas utilizadas nas publicações do período).
 
-
-Estrutura de pastas, em arquitetura hexagonal e orientação a funções:
+# Exemplo considerando Aquitetura Hexagonl de Portes e Adapters (Não utilizada neste projeto específico):
+Uma estrutura de pastas, em arquitetura hexagonal e orientação a funções, pode de forma genérica conter a seguinte estrutura:
 
 *app* contém a lçógica do aplicativo:
   
@@ -38,3 +38,121 @@ O arquivo config.py contém configurações do serviço
 
 O arquivo run.py inicia o serviço Flask
 
+# Exemplo de Estrutura considerando DDD/EDD:
+Este projeto em particular segue uma estrutura com base em DDD (Domain-Driven Design) e EDD (Event-Driven Design) implementada em Go no backend e com Javascript para frontend. A estrutura de diretórios para a fase de desenvolvimento é descrita aqui:
+
+1. **Camada de Domínio (Domain Layer)**: Esta é a camada onde a lógica de negócios principal é colocada e é normalmente o coração de um sistema DDD. No seu projeto, essa camada é refletida principalmente na pasta `pkg/domain`. Aqui, você tem `entities.go` que contém as entidades do domínio (ou seja, os objetos principais que o sistema manipula), `repository.go` que contém as interfaces para a persistência de dados, e `usecases.go` que contém a lógica de negócios principal.
+
+2. **Camada de Aplicação (Application Layer)**: Esta camada coordena as operações de alto nível, envolvendo várias entidades do domínio. No seu projeto, essa camada é refletida na pasta `pkg/usecase` e `cmd`.
+
+3. **Camada de Infraestrutura (Infrastructure Layer)**: Esta camada contém detalhes específicos de implementação, como a forma como os dados são persistidos, a forma como os serviços externos são acessados, etc. No seu projeto, essa camada é refletida principalmente na pasta `pkg/infrastructure`.
+
+4. **Camada de Interface (Interface Layer)**: Esta camada é responsável pela interação com o mundo exterior. Pode ser uma interface do usuário, uma API, ou um consumidor de fila de mensagens. No seu projeto, essa camada é refletida principalmente na pasta `pkg/interfaces`.
+
+5. **Camada de Apresentação (Presentation Layer)**: Esta camada envolve a renderização de dados para o usuário, lidando com a entrada do usuário, etc. No seu projeto, essa camada é refletida na pasta `web`.
+
+6. **Camada de Eventos (Event Layer)**: Considerando que você está usando EDD para o gerenciamento de filas, essa camada cuidará do processamento de eventos em tempo real, onde os eventos são produzidos e consumidos. No seu projeto, a camada de eventos é refletida na pasta `pkg/interfaces/rabbitmq`.
+
+Obs.: Dependendo dos detalhes específicos do seu projeto, o mapeamento exato pode variar, mas se variar muito dificultará a manutenabilidade e compreensão do código.
+
+## Detalhamento de cada arquivo na estrutura de pastas
+A estrutura do projeto de desenvolvimento está assim organizada para adicionar lógica de negócios com base em uma visão geral desenvolvida na fase de Arquitetura da Solução:
+
+### Na camada de domínio:
+Lógica de negócios nas camadas de domínio: No diretório pkg/domain, há os subdiretorios: publication e scrap_lattes. Ambos contêm entities.go, repository.go e usecases.go. Esses são locais para adicionar a lógica de negócios.
+
+Em entities.go, definimos as entidades do domínio de negócios, como a publicação e detalhes específicos do "scrap_lattes". Você adicionaremos métodos a essas entidades que executam os cálculos ou manipulações de dados.
+
+Em usecases.go, definimos os casos de uso do domínio. Cada caso de uso deve encapsular uma operação de negócios específica.
+
+Validação de Dados: A validação de dados ocorre em vários lugares dependendo da necessidade de fluxo de dados do aplicativo. Em regra, dicionamos a lógica de validação no nível do controlador (antes de passar os dados para o serviço) ou diretamente nos métodos de serviço.
+
+Manipulações de Dados: A manipulação de dados geralmente acontece nos serviços do aplicativo, que são chamados pelo controlador. Os serviços geralmente executam a lógica de negócios principal e interagem com o banco de dados ou outras camadas de persistência.
+
+### Na camada de infraestrutura:
+Lógica de negócios nas camadas de infraestrutura: O diretório pkg/infrastructure contém vários serviços de infraestrutura, como dgraph, json_publication, mongo, neo4j e scrap_lattes. Se alguma lógica de negócios for específica para a interação com essas tecnologias, ela pode ser colocada aqui.
+
+Lógica de negócios nas camadas de interface: Em pkg/interfaces, você tem uma interface HTTP e um serviço RabbitMQ. A lógica de negócios relacionada à formatação de mensagens, validação de solicitações ou respostas, e manipulação de erros será colocada aqui.
+
+# Definição par ao projeto atual:
+No DDD, o foco é sobre o domínio e a lógica de negócios. A ideia é ter uma arquitetura rica e expressiva que se alinha ao domínio do problema. No caso do gerenciamento de pesquisas de um Programa de Pesquisa baseado na produção acadêmica e científica, o domínio seria o "ScrapLattes".
+
+Primeiro, vamos dividir o código em quatro camadas principais, de acordo com o nível de interação com o usuário:
+
+1. **Interface do usuário ou Camada de Apresentação**: Esta camada se preocupa com a interação do usuário. Neste caso, a interação do usuário não está muito explícita.
+
+2. **Aplicação**: Esta camada serve como um canal entre a camada de Interface do usuário e a camada de Domínio. Pode-se introduzir um serviço de aplicação aqui que orquestra as chamadas para a camada de domínio.
+
+3. **Domínio**: Esta camada contém as informações sobre o domínio do problema, as regras de negócio e os objetos de negócio. Neste caso, "Pesquisador", "Publicacao" seriam objetos de domínio.
+
+4. **Infraestrutura**: Esta camada fornece os recursos técnicos para as outras camadas. Aqui estão as operações de banco de dados e a raspagem de dados do Lattes.
+
+Segundo, vamos considerar os eventos como parte integrante do sistema. No caso de EDD, o código seria organizado em torno de produção, detecção e reação a eventos do estado do domínio. Um exemplo seria o evento de um novo pesquisador sendo salvo no banco de dados. Isso poderia disparar um evento que aciona outras partes do código (ou até mesmo outros sistemas) que estão interessados nesse evento.
+
+Aqui estão algumas sugestões para refatorar o código:
+
+Separar a lógica de conexão dos bancos de dados Dgraph,Neo4j,MongoDB em um pacote de infraestrutura separado e utilizar a injeção de dependência para usar esses serviços.
+
+Definir interfaces claras para os repositórios (ex: PesquisadorRepository) na camada de domínio e implementar essas interfaces na camada de infraestrutura.
+
+Utilizar a injeção de dependência para fornecer a implementação concreta do repositório à camada de aplicação.
+
+Introduzir um sistema de manipulação de eventos para lidar com os eventos produzidos pelo sistema. Por exemplo, quando um novo pesquisador é adicionado, um evento poderia ser emitido, o que poderia acionar outras partes do código.
+
+Um sistema de fila lida com o processamento em segundo plano, a raspagem de dados do Lattes pode ser uma operação demorada e é feita em uma tarefa em segundo plano, usando a biblioteca "github.com/gocraft/work" dentre outras.
+
+# Detalhes da execução em Go
+## Importação de estruturas
+Ao importar um pacote em Go, o caminho do import é geralmente relativo ao $GOPATH/src ou ao diretório raiz do módulo, caso você esteja usando Go modules (recomendado e comum para projetos novos a partir de 2021). Os caminhos absolutos geralmente não são usados em projetos Go, a menos que esteja se referindo a um pacote padrão ou externo. Em outras palavras, independente do diretório raiz do seu projeto deveriamos importar o pacote publication assim:
+```go
+import (
+	"pkg/domain/publication"
+)
+```
+
+Então no código que vai usar essa estrutura, podemos usar a estrutura `Publication` assim:
+```go
+var pub publication.Publication
+
+pub.Titulo = "Exemplo de Título"
+pub.Ano = "2023"
+// etc.
+```
+
+Na prática, é mais comum usar uma estrutura de diretórios relativa à raiz do projeto, em vez de uma estrutura de diretórios absoluta.
+Importações absolutas só vão funcionar se o seu código estiver sendo executado no mesmo ambiente que a estrutura de diretórios que você forneceu. 
+
+Durante o desenvolvimento, pode-se acabar declarando duas vezes a mesma estrutura, por exemplo, considere que `Publicacao` está declarada uma vez dentro do pacote `publication` e outra vez dentro da estrutura `Pesquisador`. Para fazer referência à mesma estrutura, vamos removê-la da estrutura `Pesquisador` e usar a estrutura `Publication` já definida da seguinte forma:
+
+```go
+Publicacoes []publication.Publication `json:"publicacoes"`
+```
+
+## Receiver de Função:
+Uma estrutura comum será utilizada para manipular as funções em Go. Dada pela forma `(s *ScrapLattes)`, por exemplo, em Go é o que chamamos de receiver, ou receptor em português. Esse é um conceito muito importante na linguagem Go que se assemelha, mas não é exatamente igual, ao conceito de "this" ou "self" em outras linguagens de programação orientadas a objetos como Java ou Python, respectivamente. Aqui, `(s *ScrapLattes)` significa que a função está sendo definida no contexto de uma instância de `ScrapLattes`. A função que está sendo definida pode, então, acessar os campos e métodos dessa instância usando a variável `s`.
+
+Por exemplo, se você tivesse um campo `nome` em `ScrapLattes`, você poderia acessá-lo dentro da função como `s.nome`.
+
+Em Go, os receptores podem ser de dois tipos: valor e ponteiro. Neste caso, `*ScrapLattes` é um receptor do tipo ponteiro. Isso significa que qualquer alteração feita à instância `s` dentro da função será refletida na instância original. Em contraste, se você usasse `ScrapLattes` (sem o asterisco), quaisquer alterações feitas em `s` não seriam refletidas na instância original, pois `s` seria apenas uma cópia.
+
+Os receptores permitem que você defina comportamentos que são específicos a tipos específicos (como classes em linguagens orientadas a objetos), e são a principal maneira de fazer programação orientada a objetos em Go.
+
+# Orientação a Serviços
+Gerenciaremos as requisições às funções da aplicação através da orquestração de serviços, como por exemplo, o serviço ServicoProcessamento que encapsula a lógica de processamento de um DadosDocente (informações de cada linha do arquivo CSV). Essa função usa um PesquisadorRepository para salvar os dados e um EventBus para publicar eventos. Também trata de erros e retorna imediatamente se algum passo falhar.
+
+As funções realizarBusca, escolherResultado, abrirCurriculo, analisarCurriculo e extrairDados, envolvem chamadas a pacotes externos ou código de infraestrutura que será muito específico para cada ambiente de produção. Deve-se implementar essas funções de acordo com a necessidade de cada ambiente de produção.
+
+É necessário implementar a interface de usuário e a infraestrutura para manipulação de eventos e armazenamento de dados configuradas bem como a implementação do PesquisadorRepository e do EventBus irão tratar de suas próprias conexões de banco de dados e comunicação entre processos.
+
+Um serviço é responsável por cada chamada da função Processar. Isso torna o serviço "stateless", o que é uma boa prática para garantir que cada chamada seja independente e que o estado não seja compartilhado entre chamadas. Isso simplifica a interação e impõem restrições ao usuário que só poderá fazer uma análise de cada vez, isso pode ser realizado com o uso de sessão de usuário. Caso haja alguma necessidade onde o estado precisa ser compartilhado entre chamadas (como uma sessão de usuário), pode ser preciso reconsiderar esse design.
+
+## Mantendo a consistência com a arquitetura proposta
+Precisamos manter a organização da estrutura de diretórios do seu projeto coerente com a Arquitetura de Solução. No geral sobre onde essas interfaces e funções poderiam residir em na arquitetura de software da seguinte forma:
+
+PesquisadorRepository é uma interface de domínio, por isso deve estar no pacote de domínio do seu projeto. Por exemplo, se o seu projeto tiver um diretório domain, essa interface poderia estar em um arquivo chamado pesquisador_repository.go.
+
+Evento é uma estrutura geral que poderia ser usada em todo o sistema para publicar eventos, então você poderia colocá-la em um pacote chamado eventos ou similar. Dependendo do tamanho e complexidade do seu sistema, este pacote poderia estar no nível superior do projeto, ou dentro do pacote domain se for principalmente usado para eventos de domínio.
+
+EventBus é uma interface que abstrai a infraestrutura de publicação de eventos, por isso deve estar no pacote de domínio do seu projeto. Assim como PesquisadorRepository, essa interface poderia estar em um arquivo chamado event_bus.go.
+
+ServicoProcessamento é um serviço de aplicação que orquestra a lógica de negócio, portanto, deve estar no pacote de aplicação do seu projeto. Você pode criar um novo arquivo chamado servico_processamento.go no pacote application ou similar.

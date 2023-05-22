@@ -2,64 +2,92 @@ package main
 
 import (
 	"fmt"
+	"html/template"
+	"io"
 	"log"
 	"net/http"
 	"os"
 
 	"github.com/gorilla/mux"
-	"github.com/makaires77/ppgcs/pkg/domain/publication"
-	"github.com/makaires77/ppgcs/pkg/interfaces/http/handlers"
-	"github.com/makaires77/ppgcs/pkg/usecase/load_publication"
+	"github.com/makaires77/ppgcs/pkg/domain/scrap_lattes"
 )
 
 func main() {
-	// Crie uma instância do repositório do Publication
-	publicationRepository := publication.NewInMemoryPublicationRepository()
-
-	// Crie uma instância do interactor do Publication
-	publicationInteractor := load_publication.NewPublicationInteractor(publicationRepository)
-
-	// Crie uma instância do handler do Publication
-	publicationHandler := handlers.NewPublicationHandler(publicationInteractor)
-
 	// Crie um roteador usando o Gorilla Mux
 	router := mux.NewRouter()
 
-	// Configure as rotas do Publication
-	router.HandleFunc("/publications", publicationHandler.GetPublications).Methods("GET")
+	// Configure a rota para renderizar a página inicial
+	router.HandleFunc("/", homeHandler).Methods("GET")
 
-	// Verifique se o arquivo lista_nomesdocentes.csv existe
-	_, err := os.Stat("_data/in_csv/lista_nomesdocentes.csv")
-	if err == nil {
-		// Arquivo existe, execute o script de upload
-		err = UploadCSV(*publicationInteractor, "_data/in_csv/lista_nomesdocentes.csv")
-		if err != nil {
-			log.Fatalf("Erro ao executar o script de upload: %v", err)
-		}
-	} else if os.IsNotExist(err) {
-		fmt.Println("Arquivo lista_nomesdocentes.csv não encontrado. Certifique-se de fazer o upload antes de executar a API.")
-	} else {
-		log.Fatalf("Erro ao verificar a existência do arquivo lista_nomesdocentes.csv: %v", err)
-	}
+	// Configure a rota para lidar com o upload do arquivo CSV
+	router.HandleFunc("/upload", uploadHandler).Methods("POST")
 
 	// Inicie o servidor HTTP
-	fmt.Println("API do PPGCS em execução na porta 8080...")
+	fmt.Println("Aplicação web do PPGCS em execução na porta 8080...")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
-// UploadCSV é responsável por fazer o upload do arquivo CSV de pesquisa
-func UploadCSV(interactor load_publication.PublicationInteractor, filePath string) error {
-	// Implemente aqui a lógica de upload do arquivo CSV e chamadas para as funções necessárias do interactor
-	// Certifique-se de manipular erros adequadamente e retornar um erro se ocorrer algum problema durante o upload
-
-	// Exemplo básico de upload
-	file, err := os.Open(filePath)
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+	// Carregue o template HTML
+	tmpl, err := template.ParseFiles("templates/index.html")
 	if err != nil {
-		return fmt.Errorf("Erro ao abrir o arquivo CSV: %w", err)
+		http.Error(w, "Erro ao carregar o template", http.StatusInternalServerError)
+		return
+	}
+
+	// Renderize o template
+	err = tmpl.Execute(w, nil)
+	if err != nil {
+		http.Error(w, "Erro ao renderizar o template", http.StatusInternalServerError)
+		return
+	}
+}
+
+func uploadHandler(w http.ResponseWriter, r *http.Request) {
+	// Obtenha o arquivo enviado pelo usuário
+	file, handler, err := r.FormFile("file")
+	if err != nil {
+		http.Error(w, "Erro ao obter o arquivo", http.StatusBadRequest)
+		return
 	}
 	defer file.Close()
 
-	// Aqui você pode usar um pacote CSV para ler os dados do arquivo e passá-los para o interactor
+	// Verifique se o arquivo é um arquivo CSV
+	if handler.Header.Get("Content-Type") != "text/csv" {
+		http.Error(w, "Arquivo inválido. Por favor, selecione um arquivo CSV.", http.StatusBadRequest)
+		return
+	}
 
-	return nil
+	// Crie um diretório temporário para armazenar o arquivo
+	tempDir := "temp"
+	err = os.MkdirAll(tempDir, 0755)
+	if err != nil {
+		http.Error(w, "Erro ao criar o diretório temporário", http.StatusInternalServerError)
+		return
+	}
+
+	// Salve o arquivo no diretório temporário
+	filePath := tempDir + "/" + handler.Filename
+	out, err := os.Create(filePath)
+	if err != nil {
+		http.Error(w, "Erro ao salvar o arquivo", http.StatusInternalServerError)
+		return
+	}
+	defer out.Close()
+
+	_, err = io.Copy(out, file)
+	if err != nil {
+		http.Error(w, "Erro ao salvar o arquivo", http.StatusInternalServerError)
+		return
+	}
+
+	// Execute o scraping dos dados a partir do arquivo CSV
+	err = scrap_lattes.ScrapeData(filePath)
+	if err != nil {
+		http.Error(w, "Erro ao executar o scraping dos dados", http.StatusInternalServerError)
+		return
+	}
+
+	// Exiba uma mensagem de sucesso
+	fmt.Fprintln(w, "Scraping dos dados concluído com sucesso!")
 }
