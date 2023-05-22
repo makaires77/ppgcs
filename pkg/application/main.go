@@ -10,7 +10,7 @@ import (
 	"github.com/makaires77/ppgcs/pkg/application"
 	"github.com/makaires77/ppgcs/pkg/domain/researcher"
 	dgraphRepo "github.com/makaires77/ppgcs/pkg/infrastructure/dgraph"
-	mongoRepo "github.com/makaires77/ppgcs/pkg/infrastructure/mongodb"
+	mongoRepo "github.com/makaires77/ppgcs/pkg/infrastructure/mongo"
 	neo4jRepo "github.com/makaires77/ppgcs/pkg/infrastructure/neo4j"
 )
 
