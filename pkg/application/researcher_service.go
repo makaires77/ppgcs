@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/makaires77/ppgcs/pkg/domain/researcher"
 )
 
@@ -27,18 +25,17 @@ Cada uma aceita um Researcher e retorna um error. Essas funções devem ser impl
 func (s *ResearcherService) Save(r *researcher.Researcher) error {
 	err := s.mongoRepo.Save(r)
 	if err != nil {
-		// você pode decidir se quer continuar salvando nos outros repositórios mesmo se um falhar
-		return fmt.Errorf("error saving researcher to MongoDB: %v", err)
+		return err
 	}
 
 	err = s.dgraphRepo.Save(r)
 	if err != nil {
-		return fmt.Errorf("error saving researcher to Dgraph: %v", err)
+		return err
 	}
 
 	err = s.neo4jRepo.Save(r)
 	if err != nil {
-		return fmt.Errorf("error saving researcher to Neo4j: %v", err)
+		return err
 	}
 
 	return nil
