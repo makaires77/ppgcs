@@ -156,3 +156,61 @@ Evento é uma estrutura geral que poderia ser usada em todo o sistema para publi
 EventBus é uma interface que abstrai a infraestrutura de publicação de eventos, por isso deve estar no pacote de domínio do seu projeto. Assim como PesquisadorRepository, essa interface poderia estar em um arquivo chamado event_bus.go.
 
 ServicoProcessamento é um serviço de aplicação que orquestra a lógica de negócio, portanto, deve estar no pacote de aplicação do seu projeto. Você pode criar um novo arquivo chamado servico_processamento.go no pacote application ou similar.
+
+
+# Frontend simplificado
+Para integrar a interface de usuário criada pelo `main.js` e o `main.go` na pasta raiz do projeto, você pode seguir as seguintes etapas:
+
+1. Mova os arquivos HTML e CSS necessários para a pasta `static/html` no diretório raiz do seu projeto.
+
+2. Crie um novo arquivo chamado `main.go` na pasta raiz do projeto, onde você implementará o servidor HTTP em Go.
+
+3. No arquivo `main.go`, importe os pacotes necessários:
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+)
+```
+
+4. Adicione um manipulador de rota para servir os arquivos estáticos, como HTML, CSS e JavaScript:
+
+```go
+func main() {
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
+	http.HandleFunc("/", indexHandler)
+
+	fmt.Println("Servidor rodando em http://localhost:8080")
+	log.Fatal(http.ListenAndServe(":8080", nil))
+}
+```
+
+Neste exemplo, o servidor será iniciado na porta 8080. Certifique-se de escolher uma porta que não esteja em uso.
+
+5. Implemente o manipulador de rota para a página inicial (`/`), onde você retornará o arquivo HTML principal:
+
+```go
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "static/html/index.html")
+}
+```
+
+6. No arquivo `index.html`, adicione o seguinte código no cabeçalho para carregar o arquivo JavaScript `main.js`:
+
+```html
+<script src="static/js/main.js"></script>
+```
+
+Certifique-se de ajustar o caminho do arquivo `main.js` de acordo com a estrutura de pastas atual.
+
+7. Execute o servidor Go executando o comando `go run main.go` no diretório raiz do projeto.
+
+Após seguir essas etapas, você poderá acessar a interface de usuário em um navegador da web usando o endereço `http://localhost:8080` (ou a porta que você especificou). O arquivo HTML principal será servido pelo Go e o código JavaScript do `main.js` será carregado e executado na página.
+
+Certifique-se de que o servidor Go esteja sendo executado enquanto você acessa a página para que as requisições HTTP funcionem corretamente.

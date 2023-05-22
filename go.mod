@@ -25,6 +25,7 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/kennygrant/sanitize v1.2.4 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
+	github.com/knq/sysutil v0.0.0-20191005231841-15668db23d08 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe // indirect
 	github.com/neo4j/neo4j-go-driver/v5 v5.8.1 // indirect
@@ -42,10 +43,13 @@ require (
 require (
 	github.com/chromedp/cdproto v0.0.0-20230517232016-8abedd933e7a
 	github.com/chromedp/chromedp v0.9.1
+	github.com/dgraph-io/dgo v1.0.0
 	github.com/dgraph-io/dgo/v210 v210.0.0-20230328113526-b66f8ae53a2d
 	github.com/gocolly/colly v1.2.0
+	github.com/goconnectx/cdproto v0.0.0-20200919114505-887ee6f70322
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/neo4j/neo4j-go-driver v1.8.3
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/streadway/amqp v1.0.0
 	go.mongodb.org/mongo-driver v1.11.6

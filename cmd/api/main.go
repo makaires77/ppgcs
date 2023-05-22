@@ -9,7 +9,6 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
-	"github.com/makaires77/ppgcs/pkg/domain/scrap_lattes"
 )
 
 func main() {
@@ -82,12 +81,12 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Execute o scraping dos dados a partir do arquivo CSV
-	err = scrap_lattes.ScrapeData(filePath)
-	if err != nil {
-		http.Error(w, "Erro ao executar o scraping dos dados", http.StatusInternalServerError)
-		return
-	}
+	/* 	err = scrap_lattes.ScrapeData(filePath)
+	   	if err != nil {
+	   		http.Error(w, "Erro ao executar o scraping dos dados", http.StatusInternalServerError)
+	   		return
+	   	}
 
-	// Exiba uma mensagem de sucesso
-	fmt.Fprintln(w, "Scraping dos dados concluído com sucesso!")
+	   	// Exiba uma mensagem de sucesso
+	   	fmt.Fprintln(w, "Scraping dos dados concluído com sucesso!") */
 }

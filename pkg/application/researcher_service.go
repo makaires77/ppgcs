@@ -1,4 +1,4 @@
-package main
+package application
 
 import (
 	"github.com/makaires77/ppgcs/pkg/domain/researcher"
@@ -19,21 +19,22 @@ func NewResearcherService(mongoRepo, dgraphRepo, neo4jRepo researcher.Researcher
 }
 
 /*
-Para implementar a função Save, precisamos supor que cada repositório (mongoRepo, dgraphRepo e neo4jRepo) tem sua própria função Save.
-Cada uma aceita um Researcher e retorna um error. Essas funções devem ser implementadas de acordo com as regras de persistência de cada banco de dados.
+A função Save recebe os dados de um pesquisador e os salva nos repositórios correspondentes.
+Cada repositório deve implementar sua própria função Save, que aceita um ponteiro para Researcher e retorna um erro.
+Essas funções devem ser implementadas de acordo com as regras de persistência de cada banco de dados.
 */
-func (s *ResearcherService) Save(r *researcher.Researcher) error {
-	err := s.mongoRepo.Save(r)
+func (s *ResearcherService) Save(researcher *researcher.Researcher) error {
+	err := s.mongoRepo.Save(researcher)
 	if err != nil {
 		return err
 	}
 
-	err = s.dgraphRepo.Save(r)
+	err = s.dgraphRepo.Save(researcher)
 	if err != nil {
 		return err
 	}
 
-	err = s.neo4jRepo.Save(r)
+	err = s.neo4jRepo.Save(researcher)
 	if err != nil {
 		return err
 	}
