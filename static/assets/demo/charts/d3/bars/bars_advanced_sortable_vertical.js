@@ -115,7 +115,7 @@ var D3BarSortableVertical = function() {
                 // Vertical
                 y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
 
-
+                
                 //
                 // Append chart elements
                 //
