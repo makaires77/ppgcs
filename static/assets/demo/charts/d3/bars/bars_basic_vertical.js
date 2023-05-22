@@ -93,7 +93,7 @@ var D3BarVertical = function() {
             // Load data
             // ------------------------------
 
-            d3.tsv("../assets/demo/data/d3/bars/bars_basic.tsv", function(error, data) {
+            d3.tsv("../static/assets/demo/data/d3/bars/bars_basic.tsv", function(error, data) {
 
                 // Pull out values
                 data.forEach(function(d) {

@@ -97,7 +97,7 @@ var D3BarStacked = function() {
             // Load data
             // ------------------------------
 
-            d3.csv("../assets/demo/data/d3/bars/bars_stacked.csv", function(error, data) {
+            d3.csv("../static/assets/demo/data/d3/bars/bars_stacked.csv", function(error, data) {
 
                 // Filter values by key
                 color.domain(d3.keys(data[0]).filter(function(key) { return key !== "State"; }));

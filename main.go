@@ -55,7 +55,7 @@ func fetchExistingLists() {
 // Função para lidar com a rota principal
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	// Carregar o template HTML
-	tmpl, err := template.ParseFiles("static/html/index.html")
+	tmpl, err := template.ParseFiles("static/index.html")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -104,7 +104,7 @@ func submitHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-var templates = template.Must(template.ParseFiles("static/html/index.html"))
+var templates = template.Must(template.ParseFiles("static/index.html"))
 
 func main() {
 	// Buscar as listas existentes
