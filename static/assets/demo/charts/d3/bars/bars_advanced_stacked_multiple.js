@@ -205,7 +205,7 @@ var D3BarStackedMultiple = function() {
                     .attr("y", 12)
                     .attr("dy", ".71em")
                     .style("text-anchor", "end")
-                    .text("Browser");
+                    .text("Qualis");
 
 
                 // Setup layout change
