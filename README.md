@@ -74,7 +74,7 @@ Lógica de negócios nas camadas de infraestrutura: O diretório pkg/infrastruct
 
 Lógica de negócios nas camadas de interface: Em pkg/interfaces, você tem uma interface HTTP e um serviço RabbitMQ. A lógica de negócios relacionada à formatação de mensagens, validação de solicitações ou respostas, e manipulação de erros será colocada aqui.
 
-# Definição par ao projeto atual:
+# Definição para o projeto atual:
 No DDD, o foco é sobre o domínio e a lógica de negócios. A ideia é ter uma arquitetura rica e expressiva que se alinha ao domínio do problema. No caso do gerenciamento de pesquisas de um Programa de Pesquisa baseado na produção acadêmica e científica, o domínio seria o "ScrapLattes".
 
 Primeiro, vamos dividir o código em quatro camadas principais, de acordo com o nível de interação com o usuário:
