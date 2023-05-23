@@ -20,6 +20,16 @@ app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'dashboard.html'));
 });
 
+// Rota para a página /dashboard_docentes
+app.get('/dashboard_docentes', (req, res) => {
+  res.sendFile(path.join(__dirname, 'static', 'dashboard_docentes.html'));
+});
+
+// Rota para a página /dashboard_discentes
+app.get('/dashboard_docentes', (req, res) => {
+  res.sendFile(path.join(__dirname, 'static', 'dashboard_discentes.html'));
+});
+
 // Inicia o servidor
 app.listen(port, () => {
   console.log(`Servidor está executando em http://localhost:${port}`);
