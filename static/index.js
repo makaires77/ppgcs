@@ -37,7 +37,7 @@ function addFileNameToList(fileName) {
 }
 
 // Evento de envio do formulário para buscar os arquivos CSV
-document.getElementById('team-form').addEventListener('submit', function (event) {
+document.getElementById('team-form').addEventListener('submit', function(event) {
   event.preventDefault();
   const teamSelect = document.getElementById('team-select');
   const selectedTeam = teamSelect.value;
@@ -45,7 +45,7 @@ document.getElementById('team-form').addEventListener('submit', function (event)
 });
 
 // Evento de envio do formulário para adicionar um nome de arquivo à lista
-document.getElementById('generate-list-form').addEventListener('submit', function (event) {
+document.getElementById('generate-list-form').addEventListener('submit', function(event) {
   event.preventDefault();
   const fileNameInput = document.getElementById('file-name');
   const fileName = fileNameInput.value;
@@ -54,7 +54,7 @@ document.getElementById('generate-list-form').addEventListener('submit', functio
 });
 
 // Evento de clique do botão para salvar a lista de nomes de arquivo
-document.getElementById('save-list-btn').addEventListener('click', function () {
+document.getElementById('save-list-btn').addEventListener('click', function() {
   const fileList = document.getElementById('file-list');
   const fileNames = [...fileList.children].map(item => item.textContent);
   const fileContent = fileNames.join('\n');
