@@ -9,7 +9,7 @@ func (d *DadosDocente) Processar() {
 	fmt.Println("---")
 }
 
-Considerando que a lógica e o contexto geral para processar cada linha do CSV e realizar a raspagem dos dados do Lattes, os passos detalhados devem ser os descritos a seguir.
+A lógica para processar cada linha do CSV e realizar a raspagem dos dados do Lattes segue os passos descritos a seguir.
 1. Buscar nome
 1.1. acessar a página de busca de currículos em http://buscatextual.cnpq.br/buscatextual/busca.do
 1.2. localizar o checkbox que tem o css selector #buscarDemais e ativar sua marcação
@@ -52,7 +52,7 @@ Considerando que a lógica e o contexto geral para processar cada linha do CSV e
 7.4. Gráfico de Colunas empilhadas com o nome de cada pesquisdor encontrado na horizontal e na vertical a soma empilhada das quantidades: soma ponderada de pontos por nível de estrato qualis, de acordo com a tabela de pontuação por artigo completo publicado.
 7.5. Gráfico de barras horizontais variando cada barra de 0 a 100%, com o percentual de artigos completos que pertencem aos níveis A1 ou A2 ou A3, do estrato de classificação do Qualis frente ao total de artigos completos publicados no período
 
-
+8. Imprimir Relatórios em PDF
 
 
 Neste caso específico a base de dados é de dados abertos ao público e sem restrições para a raspagem de dados, vamos agora implementar adequadamente de acordo com as suas necessidades descritas as funções realizarBusca, escolherResultado, abrirCurriculo, analisarCurriculo, extrairDados e armazenarDados que compõem a a função Processar que realiza o fluxo de trabalho em um nível alto. Considere que a função realizarBusca usa um pacote Go para web scraping para automatizar a interação com o site. A função armazenarDados usa um pacote de acesso a banco de dados para armazenar os dados extraídos usando nossa estrutura de pastas atual e a separação nas quatro camadas principais:
@@ -71,4 +71,4 @@ Separaremos a lógica de conexão do MongoDB em um pacote de infraestrutura sepa
 Definimos interfaces claras para os repositórios (ex: PesquisadorRepository) na camada de domínio e implementar essas interfaces na camada de infraestrutura.
 Utilizaremos a injeção de dependência para fornecer a implementação concreta do repositório à camada de aplicação.
 Introduzimos um sistema de manipulação de eventos para lidar com os eventos produzidos pelo sistema. Por exemplo, quando um novo pesquisador é adicionado, um evento poderia ser emitido, o que poderia acionar outras partes do código.
-E implementaremos um sistema de fila poderia ser útil para lidar com o processamento em segundo plano, com a raspagem de dados do Lattes em uma tarefa em segundo plano. Usando entre outras a biblioteca "github.com/gocraft/work" e o gerenciamento de filas com o RabbitMQ para processar diferentes pedidos de análise de diferentes usuários em paralelo.
+E implementaremos um sistema de fila poderia ser útil para lidar com o processamento em segundo plano, com a raspagem de dados do Lattes em uma tarefa em segundo plano. Usando entre outras a biblioteca "github.com/gocraft/work" e o gerenciamento de filas com o RabbitMQ para processar diferentes pedidos de análise de diferentes usuários em paralelo.			
