@@ -1,0 +1,11 @@
+{
+  "name": "ppgcs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/makaires77/ppgcs.git",
+  "author": "makaires77 <marcos@bahlis.com.br>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
