@@ -214,3 +214,13 @@ Certifique-se de ajustar o caminho do arquivo `main.js` de acordo com a estrutur
 Após seguir essas etapas, você poderá acessar a interface de usuário em um navegador da web usando o endereço `http://localhost:8080` (ou a porta que você especificou). O arquivo HTML principal será servido pelo Go e o código JavaScript do `main.js` será carregado e executado na página.
 
 Certifique-se de que o servidor Go esteja sendo executado enquanto você acessa a página para que as requisições HTTP funcionem corretamente.
+
+## Frontend simples com Node.js e Express
+1. Instalar o node.js com yarn
+```bash
+yarn add express
+```
+2. Criar o server.js
+Contém todas as rotas para as páginas estáticas
+
+3. Criar pasta static, com o index.html e index.js
