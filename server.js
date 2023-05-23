@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 // Rota para a página /dashboard
-app.get('/dashboard', (req, res) => {
+app.get('/dashboard_programa', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'dashboard_programa.html'));
 });
 
@@ -26,7 +26,7 @@ app.get('/dashboard_docentes', (req, res) => {
 });
 
 // Rota para a página /dashboard_discentes
-app.get('/dashboard_docentes', (req, res) => {
+app.get('/dashboard_discentes', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'dashboard_discentes.html'));
 });
 
