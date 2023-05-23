@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'index.html'));
 });
 
-// Rota para a página /dashboard
+// Rota para a página /dashboard_programa
 app.get('/dashboard_programa', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'dashboard_programa.html'));
 });
