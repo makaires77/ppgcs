@@ -1,14 +1,12 @@
 // Função para buscar os nomes dos arquivos da pasta do GitHub
 function fetchCSVFiles(team) {
   const url = `https://api.github.com/repos/makaires77/ppgcs/contents/_data/in_csv/${team}`;
-
   fetch(url)
     .then(response => response.json())
     .then(data => {
       const fileNames = data
         .filter(item => item.type === 'file' && item.name.endsWith('.csv'))
         .map(item => item.name);
-
       displayFileNames(fileNames);
     })
     .catch(error => console.error('Erro ao buscar arquivos CSV:', error));

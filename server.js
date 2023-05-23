@@ -13,9 +13,9 @@ app.get('/', (req, res) => {
 });
 
 // Configuração para servir os arquivos CSS
-/* app.use('/assets', express.static(path.join(__dirname, 'static', 'assets'))); */
+app.use('/assets', express.static(path.join(__dirname, 'static', 'assets')));
 /* app.use(express.static(path.join(__dirname, 'static'))); */
-app.use(express.static('static'));
+/* app.use(express.static('static')); */
 
 // Inicia o servidor
 app.listen(port, () => {
