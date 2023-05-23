@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
+	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,14 +22,14 @@
 	<script src="/assets/js/vendor/visualization/d3/d3.min.js"></script>
 	<script src="/assets/js/vendor/visualization/d3/d3_tooltip.js"></script>
 	<script src="/assets/js/app.js"></script>
-	<script src="/assets/demo/charts/d3/bars/bars_advanced_simple_interaction.js"></script>
-	<script src="/assets/demo/charts/d3/bars/bars_advanced_sortable_horizontal.js"></script>
-	<script src="/assets/demo/charts/d3/bars/bars_advanced_sortable_vertical.js"></script>
-	<script src="/assets/demo/charts/d3/bars/bars_advanced_stacked_multiple.js"></script>
-	<script src="/assets/demo/charts/d3/bars/bars_advanced_histogram.js"></script>
-	<script src="/assets/demo/charts/d3/bars/bars_advanced_hierarchical.js"></script>
+	<script src="/js/bars_advanced_simple_interaction.js"></script>
+	<script src="/assets/d3/bars/bars_advanced_sortable_horizontal.js"></script>
+	<script src="/assets/d3/bars/bars_advanced_sortable_vertical.js"></script>
+	<script src="/assets/d3/bars/bars_advanced_stacked_multiple.js"></script>
+	<script src="/assets/d3/bars/bars_advanced_histogram.js"></script>
+	<script src="/assets/d3/bars/bars_advanced_hierarchical.js"></script>
 	<!-- /theme JS files -->
-</head>
+	</head>
 
 	<!-- Main navbar -->
 	<div class="navbar navbar-dark navbar-expand-lg navbar-static border-bottom border-bottom-white border-opacity-10">
@@ -101,54 +101,18 @@
 
     <body>
         <div class="container">
-          <div class="row">
-            <div class="col">
-              <h2>Selecione a equipe para análise</h2>
-              <form id="team-form">
-                <div class="mb-3">
-                  <label for="team-select" class="form-label">Equipe:</label>
-                  <select class="form-select" id="team-select" required>
-                    <option disabled selected value="">Selecione uma equipe</option>
-                  </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Buscar Arquivos</button>
-              </form>
-            </div>
-          </div>
-          <div class="row mt-4">
-            <div class="col">
-              <h3>Arquivos CSV disponíveis:</h3>
-              <table class="table" id="file-table">
-                <thead>
-                  <tr>
-                    <th>Nome do Arquivo</th>
-                  </tr>
-                </thead>
-                <tbody id="table-body">
-                  <!-- Os nomes dos arquivos serão adicionados aqui dinamicamente -->
-
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="row mt-4">
-            <div class="col">
-              <h3>Gerar Nova Equipe de Pesquisa:</h3>
-              <form id="generate-list-form">
-                <div class="mb-3">
-                  <label for="file-name" class="form-label">Nome do Arquivo:</label>
-                  <input type="text" class="form-control" id="file-name" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Adicionar à Lista</button>
-              </form>
-              <h4>Lista de Nomes de Arquivo:</h4>
-              <ul id="file-list">
-                <!-- A lista de nomes de arquivo será exibida aqui dinamicamente -->
-              </ul>
-              <button id="save-list-btn" class="btn btn-primary">Salvar Lista</button>
-            </div>
-          </div>
-        </div>
-		<script src="index.js"></script>  
-      </body>
-      </html>
+		<form id="team-form">
+			<div class="mb-3">
+				<label for="team-select" class="form-label">Carregar dados do Programa de Pesquisa:</label>
+				<select class="form-select" id="team-select" required>
+				<option disabled selected value="">Selecione uma equipe</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary">Buscar Arquivos</button>
+		</form>
+		</div>
+		<!-- Restante do código -->
+		</div>
+			  
+    </body>
+</html>
