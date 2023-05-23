@@ -15,6 +15,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'index.html'));
 });
 
+// Rota para a página /dashboard_discentes
+app.get('/historico_2017_2020', (req, res) => {
+  res.sendFile(path.join(__dirname, 'static', 'historico_2017_2020.html'));
+});
+
 // Rota para a página /dashboard_programa
 app.get('/dashboard_programa', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'dashboard_programa.html'));
