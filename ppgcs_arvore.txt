@@ -42,12 +42,15 @@ ppgcs
 │       └── merged.json
 ├── cmd
 │   ├── api
-│   │   └── main.go
+│   │   ├── main.go
+│   │   └── main.md
 │   ├── csv_maker
 │   │   ├── main.go
 │   │   └── main_slices.md
 │   └── publication_loader
 │       └── main.go
+├── config
+│   └── credentials.json
 ├── go.mod
 ├── go.sum
 ├── img
@@ -56,16 +59,32 @@ ppgcs
 │   ├── Logo_CasteloReneRachou_340-340.svg
 │   └── logo_text_light.svg
 ├── internal
+│   ├── FioLeish.txt
+│   ├── ProcedimentoAnálisePesquisas.txt
+│   ├── json_pesquisador
+│   │   └── pesquisador.go
 │   ├── pesquisador
 │   │   └── pesquisador.go
 │   └── publication
 │       └── publication.go
+├── main.go
+├── main.js
+├── package.json
 ├── pkg
+│   ├── application
+│   │   ├── README.md
+│   │   ├── main.txt
+│   │   └── researcher_service.go
 │   ├── domain
+│   │   ├── pesquisador
+│   │   │   └── entities.go
 │   │   ├── publication
 │   │   │   ├── entities.go
 │   │   │   ├── repository.go
 │   │   │   └── usecases.go
+│   │   ├── researcher
+│   │   │   ├── entities.go
+│   │   │   └── repository.go
 │   │   └── scrap_lattes
 │   │       ├── entities.go
 │   │       ├── repository.go
@@ -83,24 +102,158 @@ ppgcs
 │   │   │   ├── write_lattes.go
 │   │   │   └── write_lattes.md
 │   │   └── scrap_lattes
-│   │       └── scrap_lattes.go
+│   │       ├── scrap_lattes.go
+│   │       ├── scrap_lattes_v0.txt
+│   │       ├── scrap_lattes_v1.txt
+│   │       └── scrap_lattes_v2.txt
 │   ├── interfaces
 │   │   ├── http
 │   │   │   └── handlers
 │   │   │       └── publication_handler.go
 │   │   └── rabbitmq
 │   │       └── enqueue_lattes.go
+│   ├── repository
+│   │   └── researcher_repository.go
 │   └── usecase
 │       ├── load_lattes
 │       │   └── interactor.go
 │       └── load_publication
 │           └── interactor.go
 ├── ppgcs_arvore.txt
-├── web
+├── server.js
+├── static
+│   ├── analise.html
 │   ├── assets
-│   │   ├── css
-│   │   ├── demo
+│   ├── html
+│   │   ├── index.html
+│   │   ├── layout_4
+│   │   │   ├── full
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── css
+│   │   │   │   │   │   ├── ltr
+│   │   │   │   │   │   │   ├── all.min.css
+│   │   │   │   │   │   │   ├── bootstrap.css
+│   │   │   │   │   │   │   ├── bootstrap.min.css
+│   │   │   │   │   │   │   ├── bootstrap_limitless.css
+│   │   │   │   │   │   │   ├── bootstrap_limitless.min.css
+│   │   │   │   │   │   │   ├── components.css
+│   │   │   │   │   │   │   ├── components.min.css
+│   │   │   │   │   │   │   ├── layout.css
+│   │   │   │   │   │   │   └── layout.min.css
+│   │   │   │   │   │   └── rtl
+│   │   │   │   │   │       ├── all.min.css
+│   │   │   │   │   │       ├── bootstrap.css
+│   │   │   │   │   │       ├── bootstrap.min.css
+│   │   │   │   │   │       ├── bootstrap_limitless.css
+│   │   │   │   │   │       ├── bootstrap_limitless.min.css
+│   │   │   │   │   │       ├── components.css
+│   │   │   │   │   │       ├── components.min.css
+│   │   │   │   │   │       ├── layout.css
+│   │   │   │   │   │       └── layout.min.css
+│   │   │   │   │   └── js
+│   │   │   │   │       ├── app.js
+│   │   │   │   │       └── custom.js
+│   │   │   │   ├── index.html
+│   │   │   │   ├── layout_2_sidebars_1_side.html
+│   │   │   │   ├── layout_2_sidebars_2_sides.html
+│   │   │   │   ├── layout_3_sidebars.html
+│   │   │   │   ├── layout_boxed_content.html
+│   │   │   │   ├── layout_boxed_page.html
+│   │   │   │   ├── layout_fixed_footer.html
+│   │   │   │   ├── layout_navbar_fixed.html
+│   │   │   │   ├── layout_navbar_hideable.html
+│   │   │   │   ├── layout_navbar_sticky.html
+│   │   │   │   ├── layout_no_footer.html
+│   │   │   │   ├── layout_no_header.html
+│   │   │   │   ├── navbar_colors.html
+│   │   │   │   ├── navbar_component_multiple.html
+│   │   │   │   ├── navbar_component_single.html
+│   │   │   │   ├── navbar_components.html
+│   │   │   │   ├── navbar_multiple_bottom_fixed.html
+│   │   │   │   ├── navbar_multiple_bottom_static.html
+│   │   │   │   ├── navbar_multiple_secondary_sticky.html
+│   │   │   │   ├── navbar_multiple_top_bottom_fixed.html
+│   │   │   │   ├── navbar_multiple_top_fixed.html
+│   │   │   │   ├── navbar_multiple_top_static.html
+│   │   │   │   ├── navbar_single_bottom_fixed.html
+│   │   │   │   ├── navbar_single_bottom_static.html
+│   │   │   │   ├── navbar_single_top_fixed.html
+│   │   │   │   ├── navbar_single_top_static.html
+│   │   │   │   ├── navbar_sizes.html
+│   │   │   │   ├── navigation_horizontal_disabled.html
+│   │   │   │   ├── navigation_horizontal_elements.html
+│   │   │   │   ├── navigation_horizontal_mega.html
+│   │   │   │   ├── navigation_horizontal_styles.html
+│   │   │   │   ├── navigation_horizontal_tabs.html
+│   │   │   │   ├── navigation_vertical_accordion.html
+│   │   │   │   ├── navigation_vertical_badges.html
+│   │   │   │   ├── navigation_vertical_bordered.html
+│   │   │   │   ├── navigation_vertical_collapsible.html
+│   │   │   │   ├── navigation_vertical_disabled.html
+│   │   │   │   ├── navigation_vertical_right_icons.html
+│   │   │   │   ├── navigation_vertical_styles.html
+│   │   │   │   ├── sidebar_components.html
+│   │   │   │   ├── sidebar_default_color_dark.html
+│   │   │   │   ├── sidebar_default_hidden.html
+│   │   │   │   ├── sidebar_default_hideable.html
+│   │   │   │   ├── sidebar_default_resizable.html
+│   │   │   │   ├── sidebar_default_resized.html
+│   │   │   │   ├── sidebar_default_stretched.html
+│   │   │   │   ├── sidebar_right_color_dark.html
+│   │   │   │   ├── sidebar_right_hidden.html
+│   │   │   │   ├── sidebar_right_hideable.html
+│   │   │   │   ├── sidebar_right_stretched.html
+│   │   │   │   ├── sidebar_secondary_color_dark.html
+│   │   │   │   ├── sidebar_secondary_hidden.html
+│   │   │   │   ├── sidebar_secondary_hideable.html
+│   │   │   │   └── sidebar_secondary_stretched.html
+│   │   │   └── seed
+│   │   │       ├── assets
+│   │   │       │   ├── css
+│   │   │       │   │   ├── ltr
+│   │   │       │   │   │   ├── all.min.css
+│   │   │       │   │   │   ├── bootstrap.css
+│   │   │       │   │   │   ├── bootstrap.min.css
+│   │   │       │   │   │   ├── bootstrap_limitless.css
+│   │   │       │   │   │   ├── bootstrap_limitless.min.css
+│   │   │       │   │   │   ├── components.css
+│   │   │       │   │   │   ├── components.min.css
+│   │   │       │   │   │   ├── layout.css
+│   │   │       │   │   │   └── layout.min.css
+│   │   │       │   │   └── rtl
+│   │   │       │   │       ├── all.min.css
+│   │   │       │   │       ├── bootstrap.css
+│   │   │       │   │       ├── bootstrap.min.css
+│   │   │       │   │       ├── bootstrap_limitless.css
+│   │   │       │   │       ├── bootstrap_limitless.min.css
+│   │   │       │   │       ├── components.css
+│   │   │       │   │       ├── components.min.css
+│   │   │       │   │       ├── layout.css
+│   │   │       │   │       └── layout.min.css
+│   │   │       │   └── js
+│   │   │       │       ├── app.js
+│   │   │       │       └── custom.js
+│   │   │       ├── layout_2_sidebars_1_side.html
+│   │   │       ├── layout_2_sidebars_2_sides.html
+│   │   │       ├── layout_3_sidebars.html
+│   │   │       ├── layout_boxed_content.html
+│   │   │       ├── layout_boxed_page.html
+│   │   │       ├── layout_fixed_footer.html
+│   │   │       ├── layout_navbar_fixed.html
+│   │   │       ├── layout_navbar_hideable.html
+│   │   │       ├── layout_navbar_sticky.html
+│   │   │       ├── layout_no_footer.html
+│   │   │       └── layout_no_header.html
 │   │   ├── publication_d3lines.html
 │   │   └── roadmap3c_background.html
-│   └── index.html
-└── yarn-error.log
+│   ├── index.html
+│   ├── index.js
+│   └── templates
+│       └── index.html
+├── web
+│   └── assets
+│       └── demo
+│           └── data
+│               └── d3
+├── yarn-error.log
+└── yarn.lock
