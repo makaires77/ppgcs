@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 
 // Rota para a página /dashboard
 app.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, 'static', 'dashboard.html'));
+  res.sendFile(path.join(__dirname, 'static', 'dashboard_programa.html'));
 });
 
 // Rota para a página /dashboard_docentes
