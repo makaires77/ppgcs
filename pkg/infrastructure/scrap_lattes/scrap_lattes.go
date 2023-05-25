@@ -8,10 +8,18 @@ import (
 	"io"
 	"os"
 	"sync"
+
+	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4j"
 )
 
 type ScrapLattes struct {
-	// Adicione aqui os campos necessários para a conexão com bancos de dados, como clientes MongoDB, Neo4j, etc.
+	neo4jClient *neo4j.Client
+}
+
+func NewScrapLattes(neo4jClient *neo4j.Client) *ScrapLattes {
+	return &ScrapLattes{
+		neo4jClient: neo4jClient,
+	}
 }
 
 // Funcionalidades:

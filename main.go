@@ -6,10 +6,14 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"path/filepath"
 	"strings"
 	"sync"
+
+	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4j"
+	"github.com/makaires77/ppgcs/pkg/interfaces/rabbitmq"
 )
 
 // Estrutura de dados para representar um pesquisador
@@ -39,6 +43,15 @@ func validateFile(fileName string, file io.Reader) error {
 }
 
 func main() {
+
+	neo4jClient, err := neo4j.NewClient()
+	if err != nil {
+		log.Fatalf("Failed to create neo4j client: %v", err)
+	}
+
+	consumer := rabbitmq.NewConsumer(neo4jClient)
+	consumer.Start()
+
 	http.HandleFunc("/start-scraping", func(w http.ResponseWriter, r *http.Request) {
 		file, header, err := r.FormFile("file")
 		if err != nil {
