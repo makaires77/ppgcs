@@ -121,7 +121,7 @@ var D3BarStackedMultiple = function() {
             // Load data
             // ------------------------------
 
-            d3.tsv("../static/assets/demo/data/d3/bars/bars_stacked_multiple.tsv", function(error, data) {
+            d3.tsv("data/bars_stacked_multiple.tsv", function(error, data) {
 
                 // Pull out values
                 data.forEach(function(d) {
