@@ -1,124 +1,114 @@
 package main
 
 import (
+	"encoding/csv"
 	"encoding/json"
+	"errors"
 	"fmt"
-	"html/template"
-	"io/ioutil"
-	"log"
+	"io"
 	"net/http"
+	"path/filepath"
 	"strings"
+	"sync"
 )
 
-// Estrutura de dados para representar uma lista de pesquisadores
-type ResearcherList struct {
-	Name           string
-	ResearcherName string
-	Program        string
-	Institution    string
+// Estrutura de dados para representar um pesquisador
+type Researcher struct {
+	Name string
 }
 
-// Dados das listas existentes na pasta /home/marcos/ppgcs/_data/in_csv
-var existingLists = []string{}
-
-func fetchExistingLists() {
-	// Buscar os arquivos da pasta in_csv no GitHub
-	resp, err := http.Get("https://api.github.com/repos/makaires77/ppgcs/contents/_data/in_csv")
-	if err != nil {
-		log.Fatal("Erro ao buscar arquivos:", err)
-	}
-	defer resp.Body.Close()
-
-	// Ler a resposta da requisição
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		log.Fatal("Erro ao ler resposta:", err)
-	}
-
-	// Converter a resposta para uma lista de nomes de arquivo
-	var files []struct {
-		Name string `json:"name"`
-	}
-	err = json.Unmarshal(body, &files)
-	if err != nil {
-		log.Fatal("Erro ao decodificar resposta:", err)
-	}
-
-	// Preencher a lista de nomes de arquivo
-	for _, file := range files {
-		if strings.HasSuffix(file.Name, ".csv") {
-			existingLists = append(existingLists, file.Name)
-		}
-	}
+// Função stub para representar a chamada ao serviço de scrapping
+func scrapeResearcherInfo(name string) (string, error) {
+	// Adicione a lógica do serviço de scrapping aqui
+	// Por enquanto, apenas retorna um valor fictício
+	return "Informações do pesquisador: " + name, nil
 }
 
-// Função para lidar com a rota principal
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-	// Carregar o template HTML
-	tmpl, err := template.ParseFiles("static/index.html")
-	if err != nil {
-		log.Fatal(err)
+func validateFile(fileName string, file io.Reader) error {
+	// Verifica se o arquivo é vazio
+	if file == nil {
+		return errors.New("the file is empty")
 	}
 
-	// Renderizar o template HTML com os dados das listas existentes
-	err = tmpl.Execute(w, existingLists)
-	if err != nil {
-		log.Fatal(err)
+	// Verifica se o arquivo é CSV
+	if ext := filepath.Ext(fileName); !strings.EqualFold(ext, ".csv") {
+		return errors.New("only .csv files are allowed")
 	}
+
+	return nil
 }
-
-// Função para lidar com o envio do formulário
-func submitHandler(w http.ResponseWriter, r *http.Request) {
-	// Obter os valores do formulário
-	period := r.FormValue("period")
-	selectedList := r.FormValue("list")
-
-	// Verificar se uma lista existente foi selecionada
-	if selectedList != "" {
-		// Realizar o scrap de dados com base na lista selecionada e no período definido
-		// Implemente aqui a lógica de scrap
-
-		// Exemplo de resposta
-		message := fmt.Sprintf("Scrap de dados realizado para a lista %s no período %s", selectedList, period)
-		w.Write([]byte(message))
-	} else {
-		// Obter os valores do formulário para criar uma nova lista
-		researcherName := r.FormValue("researcher_name")
-		program := r.FormValue("program")
-		institution := r.FormValue("institution")
-
-		// Criar uma nova lista com base nos valores fornecidos
-		newList := ResearcherList{
-			Name:           "Nova Lista",
-			ResearcherName: researcherName,
-			Program:        program,
-			Institution:    institution,
-		}
-
-		// Realizar o scrap de dados com base na nova lista e no período definido
-		// Implemente aqui a lógica de scrap
-
-		// Exemplo de resposta
-		message := fmt.Sprintf("Nova lista criada: %+v. Scrap de dados realizado no período %s", newList, period)
-		w.Write([]byte(message))
-	}
-}
-
-var templates = template.Must(template.ParseFiles("static/index.html"))
 
 func main() {
-	// Buscar as listas existentes
-	fetchExistingLists()
+	http.HandleFunc("/start-scraping", func(w http.ResponseWriter, r *http.Request) {
+		file, header, err := r.FormFile("file")
+		if err != nil {
+			http.Error(w, "Error retrieving file", http.StatusInternalServerError)
+			return
+		}
+		defer file.Close()
 
-	// Configurar roteamento de URLs
-	http.HandleFunc("/", homeHandler)
-	http.HandleFunc("/submit", submitHandler)
+		// Valida o arquivo
+		if err := validateFile(header.Filename, file); err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
 
-	// Configurar diretório estático para arquivos CSS e JS do Bootstrap
-	fs := http.FileServer(http.Dir("static"))
-	http.Handle("/static/", http.StripPrefix("/static/", fs))
+		// Crie um novo leitor CSV
+		csvReader := csv.NewReader(file)
 
-	// Iniciar o servidor na porta 8080
-	log.Println("Servidor rodando em http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+		// Canal para enviar nomes de pesquisadores para as goroutines
+		names := make(chan string)
+
+		// WaitGroup para sincronizar as goroutines
+		var wg sync.WaitGroup
+
+		// Crie 4 goroutines que processam os nomes de pesquisadores
+		for i := 0; i < 4; i++ {
+			wg.Add(1)
+			go func() {
+				defer wg.Done()
+				for name := range names {
+					// Chama o serviço de scrapping
+					info, err := scrapeResearcherInfo(name)
+					if err != nil {
+						fmt.Printf("Erro ao processar o nome '%s': %s\n", name, err)
+						continue
+					}
+					fmt.Printf("Nome processado com sucesso: %s, Informações: %s\n", name, info)
+				}
+			}()
+		}
+
+		// Envia os nomes de pesquisadores para o canal
+		for {
+			record, err := csvReader.Read()
+			if err == io.EOF {
+				break
+			}
+			if err != nil {
+				http.Error(w, "Error reading CSV file", http.StatusInternalServerError)
+				return
+			}
+
+			// Verifica se cada linha do CSV tem um campo
+			if len(record) != 1 {
+				http.Error(w, "Each line in the CSV file must contain exactly one field", http.StatusBadRequest)
+				return
+			}
+
+			names <- record[0]
+		}
+
+		// Fecha o canal para sinalizar que não há mais nomes a serem processados
+		close(names)
+
+		// Aguarda todas as goroutines terminarem
+		wg.Wait()
+
+		json.NewEncoder(w).Encode(map[string]string{
+			"message": "O processo de scraping foi iniciado",
+		})
+	})
+
+	http.ListenAndServe(":8080", nil)
 }

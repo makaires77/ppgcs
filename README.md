@@ -224,3 +224,166 @@ yarn add express
 Contém todas as rotas para as páginas estáticas
 
 3. Criar pasta static, com o index.html e index.js
+
+
+## Messageria
+yarn add amqplib
+yarn add neo4j
+
+Para instalar o RabbitMQ a partir do Terminal Integrado do VSCode usando o Yarn, siga as etapas abaixo:
+
+1. Certifique-se de ter o Yarn instalado em seu ambiente. Se você ainda não o tiver instalado, consulte a documentação oficial do Yarn para obter instruções sobre como instalá-lo: [Yarn Installation](https://yarnpkg.com/getting-started/install).
+
+2. Abra o Terminal Integrado no VSCode.
+
+3. Navegue até a raiz do seu projeto ou para o diretório onde deseja instalar o RabbitMQ.
+
+4. Execute o seguinte comando para instalar o RabbitMQ usando o Yarn:
+
+   ```bash
+   yarn add amqplib
+   ```
+
+   Este comando irá baixar e instalar a biblioteca `amqplib`, que é uma biblioteca popular do Node.js para trabalhar com o RabbitMQ.
+
+Após a conclusão bem-sucedida da instalação, você poderá importar e usar a biblioteca `amqplib` em seu código para se conectar e interagir com o RabbitMQ.
+
+Certifique-se de ajustar o código conforme necessário para sua configuração específica do RabbitMQ. Além disso, verifique se você tem o RabbitMQ instalado e configurado corretamente em seu ambiente antes de usar a biblioteca `amqplib`.
+
+## Atualização do Node
+Para atualizar o Node.js para a versão mais recente usando o Yarn no Terminal Integrado do VSCode, você pode seguir as etapas abaixo:
+
+1. Verifique a versão atual do Node.js instalada em seu ambiente. No Terminal Integrado, execute o seguinte comando:
+
+   ```bash
+   node --version
+   ```
+
+   Isso mostrará a versão atual do Node.js instalada.
+
+2. No Terminal Integrado, execute o seguinte comando para atualizar o Yarn para a versão mais estável:
+
+   ```bash
+   yarn set version latest
+   ```
+
+   Isso garantirá que você tenha a versão mais estável do Yarn instalada.
+
+3. Em seguida, você precisará atualizar o Node.js usando o Yarn. No Terminal Integrado, execute o seguinte comando:
+
+   ```bash
+   yarn dlx n stable
+   ```
+
+   Isso usará o utilitário `n` do Yarn para baixar e instalar a versão mais estável do Node.js.
+
+4. Após a conclusão bem-sucedida, verifique se o Node.js foi atualizado. No Terminal Integrado, execute novamente o comando:
+
+   ```bash
+   node --version
+   ```
+
+   Ele deve exibir a versão mais recente do Node.js que você instalou.
+
+Lembre-se de que a atualização do Node.js pode levar algum tempo, pois envolve a instalação de uma nova versão. Certifique-se de estar conectado à Internet durante o processo de atualização.
+
+Após atualizar o Node.js, você pode continuar usando o Yarn normalmente para instalar suas dependências do projeto.
+
+
+## instalar o n
+Pode-se usar o `npx` em vez do `yarn dlx`. O `npx` permite executar pacotes executáveis diretamente sem a necessidade de instalação global.
+
+No Terminal Integrado do VSCode, execute o seguinte comando:
+
+```bash
+npx n latest
+```
+
+Isso irá baixar e instalar a versão mais recente do Node.js usando o pacote `n`.
+
+Após a instalação ser concluída, você pode verificar se o Node.js foi atualizado corretamente executando o seguinte comando:
+
+```bash
+node --version
+```
+
+
+## Persistência no MongoDB
+1. Execute o seguinte comando para instalar o pacote oficial do MongoDB para Node.js usando o Yarn:
+
+   ```bash
+   yarn add mongodb
+   ```
+
+   Este comando irá baixar e instalar o pacote `mongodb`, que é uma biblioteca do Node.js para interagir com o MongoDB.
+
+Após a conclusão bem-sucedida da instalação, você poderá importar e usar a biblioteca `mongodb` em seu código para se conectar e interagir com o banco de dados MongoDB.
+
+Lembre-se de configurar corretamente a conexão com o MongoDB em seu código, fornecendo as informações de host, porta, nome do banco de dados e credenciais (se aplicável) adequadas para se conectar ao banco de dados.
+
+Certifique-se de ajustar o código conforme necessário para sua configuração específica do MongoDB. Além disso, verifique se você tem o MongoDB instalado e em execução em seu ambiente antes de usar a biblioteca `mongodb`.
+
+## Persistência no Neo4j
+Para instalar o Neo4j mais atualizado a partir do Terminal Integrado do VSCode usando o Yarn, siga as etapas abaixo:
+
+1. Execute o seguinte comando para instalar o pacote oficial do Neo4j usando o Yarn:
+
+   ```bash
+   yarn add neo4j
+   ```
+
+   Este comando irá baixar e instalar o pacote `neo4j`, que é uma biblioteca do Node.js para interagir com o Neo4j.
+
+Após a conclusão bem-sucedida da instalação, você poderá importar e usar a biblioteca `neo4j` em seu código para se conectar e interagir com o banco de dados Neo4j.
+
+Lembre-se de configurar corretamente a conexão com o Neo4j em seu código, fornecendo as informações de host, porta, usuário e senha adequadas para se conectar ao banco de dados.
+
+Certifique-se de ajustar o código conforme necessário para sua configuração específica do Neo4j. Além disso, verifique se você tem o Neo4j instalado e em execução em seu ambiente antes de usar a biblioteca `neo4j`.
+
+
+## Verificação das dependências
+Para verificar se todas as versões e dependências do projeto estão corretamente instaladas, você pode seguir as etapas abaixo:
+
+1. Certifique-se de estar no diretório raiz do projeto no Terminal Integrado do VSCode.
+
+2. Execute o comando a seguir para listar todas as dependências instaladas:
+
+   ```bash
+   yarn list --depth=0
+   ```
+
+   Esse comando exibirá todas as dependências do projeto junto com suas versões instaladas. Verifique se todas as dependências necessárias estão presentes e se suas versões estão corretas.
+
+3. Verifique se todas as dependências estão atualizadas executando o seguinte comando:
+
+   ```bash
+   yarn outdated
+   ```
+
+   Esse comando exibirá uma lista das dependências que têm versões mais recentes disponíveis. Verifique se há alguma dependência desatualizada e considere atualizá-las, se necessário.
+
+4. Verifique a versão do Node.js instalada executando o seguinte comando:
+
+   ```bash
+   node --version
+   ```
+
+   Verifique se a versão exibida corresponde à versão desejada do Node.js para o projeto.
+
+5. Verifique a versão do MongoDB instalada executando o seguinte comando:
+
+   ```bash
+   mongod --version
+   ```
+
+   Verifique se a versão exibida corresponde à versão desejada do MongoDB para o projeto.
+
+6. Verifique a versão do RabbitMQ instalada executando o seguinte comando:
+
+   ```bash
+   rabbitmqctl status
+   ```
+
+   Verifique se as informações exibidas correspondem à instalação correta e à versão desejada do RabbitMQ.
+
+Essas etapas permitirão que você verifique se todas as versões e dependências do projeto estão corretamente instaladas. Se alguma dependência estiver faltando ou desatualizada, você pode atualizá-la ou instalá-la usando o Yarn.

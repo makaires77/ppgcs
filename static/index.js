@@ -1,59 +1,73 @@
-document.addEventListener('DOMContentLoaded', function () {
-  // Elementos do formulário
-  const teamFormElement = document.getElementById('team-form');
-  const teamSelectElement = document.getElementById('team-select');
+const app = express();
+app.use(express.json());
 
-  // Função para carregar a lista de equipes
-  function loadTeamList() {
-    fetch('/static/equipes/')
-      .then((response) => response.json())
-      .then((data) => {
-        teamSelectElement.innerHTML = ''; // Limpar a lista de equipes
-
-        // Criar uma opção para cada equipe
-        data.folders.forEach((folder) => {
-          const option = document.createElement('option');
-          option.value = folder;
-          option.textContent = folder;
-          teamSelectElement.appendChild(option);
-        });
-      })
-      .catch((error) => {
-        console.error('Erro ao carregar a lista de equipes:', error);
-      });
+// Middleware para autenticação
+app.use((req, res, next) => {
+  const token = req.headers.authorization;
+  if (token !== 'TOKEN_SECRETO') {
+    res.status(401).send({ message: 'Unauthorized' });
+  } else {
+    next();
   }
-
-  // Função para carregar a lista de arquivos da equipe selecionada
-  function loadFileList(equipe) {
-    fetch(`/static/equipes/${equipe}`)
-      .then((response) => response.json())
-      .then((data) => {
-        const fileListElement = document.getElementById('table-body');
-        fileListElement.innerHTML = ''; // Limpar a lista de arquivos
-
-        // Criar uma linha para cada arquivo
-        data.files.forEach((file) => {
-          const row = document.createElement('tr');
-          const cell = document.createElement('td');
-          cell.textContent = file;
-          row.appendChild(cell);
-          fileListElement.appendChild(row);
-        });
-      })
-      .catch((error) => {
-        console.error('Erro ao carregar a lista de arquivos:', error);
-      });
-  }
-
-  // Adicionar evento de escuta no formulário
-  teamFormElement.addEventListener('submit', function (event) {
-    event.preventDefault(); // Evitar o envio do formulário
-    const equipe = teamSelectElement.value;
-    if (equipe) {
-      loadFileList(equipe);
-    }
-  });
-
-  // Carregar a lista de equipes ao carregar a página
-  loadTeamList();
 });
+
+app.post('/create-team', (req, res) => {
+  const { teamName, researchersFile } = req.body;
+
+  const researchers = [];
+  fs.createReadStream(researchersFile)
+    .pipe(csv())
+    .on('data', (data) => researchers.push(data))
+    .on('end', () => {
+      amqp.connect('amqp://localhost', (err, conn) => {
+        if (err) {
+          console.error(`Erro ao conectar ao RabbitMQ: ${err}`);
+          res.status(500).send({ message: 'Internal Server Error' });
+        } else {
+          conn.createChannel((err, ch) => {
+            if (err) {
+              console.error(`Erro ao criar canal do RabbitMQ: ${err}`);
+              res.status(500).send({ message: 'Internal Server Error' });
+            } else {
+              ch.assertQueue('researchers_queue');
+              researchers.forEach((researcher) => {
+                ch.sendToQueue('researchers_queue', Buffer.from(JSON.stringify(researcher)));
+              });
+            }
+          });
+
+          const driver = neo4j.driver('bolt://localhost', neo4j.auth.basic('neo4j', 'password'));
+          const session = driver.session();
+
+          const writeTxResultPromise = session.writeTransaction(async (txc) => {
+            const result = await txc.run(
+              'CREATE (n:Team { name: $name }) RETURN n', { name: teamName }
+            );
+            return result.records;
+          });
+
+          writeTxResultPromise
+            .then(() => {
+              session.close();
+              driver.close();
+              const microservice = spawn('node', ['microservice.js']);
+              microservice.on('error', (err) => {
+                console.error(`Erro ao executar microservice: ${err}`);
+                res.status(500).send({ message: 'Internal Server Error' });
+              });
+              res.send({ message: 'Sucesso!' });
+            })
+            .catch((err) => {
+              console.error(`Erro ao executar consulta no Neo4j: ${err}`);
+              res.status(500).send({ message: 'Internal Server Error' });
+            });
+        }
+      });
+    })
+    .on('error', (err) => {
+      console.error(`Erro ao ler o arquivo: ${err}`);
+      res.status(500).send({ message: 'Internal Server Error' });
+    });
+});
+
+app.listen(3000, () => console.log('Listening on port 3000'));

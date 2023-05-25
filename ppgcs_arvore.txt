@@ -4,33 +4,11 @@ ppgcs
 ├── README.md
 ├── _data
 │   ├── in_csv
-│   │   ├── lista_dadosdocentes.csv
 │   │   ├── lista_indicadores.csv
 │   │   ├── lista_nomesdocentes.csv
 │   │   └── lista_veiculos.csv
 │   ├── in_json
-│   │   ├── 642.files
-│   │   │   ├── 642.advise.json
-│   │   │   ├── 642.graph.json
-│   │   │   ├── 642.list.json
-│   │   │   ├── 642.profile.json
-│   │   │   ├── 642.publication.json
-│   │   │   ├── 642patents.json
-│   │   │   ├── 642researchers_by_area.json
-│   │   │   └── 642vosviewer.json
-│   │   └── 644.files
-│   │       ├── 644.advise.json
-│   │       ├── 644.graph.json
-│   │       ├── 644.list.json
-│   │       ├── 644.profile.json
-│   │       ├── 644.publication.json
-│   │       ├── 644patents.json
-│   │       ├── 644researchers_by_area.json
-│   │       └── 644vosviewer.json
 │   ├── in_zip
-│   │   ├── 642.files.zip
-│   │   ├── 644.files.zip
-│   │   └── lista_arquivos.txt
 │   ├── out_csv
 │   │   ├── all_advise.csv
 │   │   ├── all_patents.csv
@@ -122,138 +100,69 @@ ppgcs
 ├── ppgcs_arvore.txt
 ├── server.js
 ├── static
-│   ├── analise.html
 │   ├── assets
-│   ├── html
-│   │   ├── index.html
-│   │   ├── layout_4
-│   │   │   ├── full
-│   │   │   │   ├── assets
-│   │   │   │   │   ├── css
-│   │   │   │   │   │   ├── ltr
-│   │   │   │   │   │   │   ├── all.min.css
-│   │   │   │   │   │   │   ├── bootstrap.css
-│   │   │   │   │   │   │   ├── bootstrap.min.css
-│   │   │   │   │   │   │   ├── bootstrap_limitless.css
-│   │   │   │   │   │   │   ├── bootstrap_limitless.min.css
-│   │   │   │   │   │   │   ├── components.css
-│   │   │   │   │   │   │   ├── components.min.css
-│   │   │   │   │   │   │   ├── layout.css
-│   │   │   │   │   │   │   └── layout.min.css
-│   │   │   │   │   │   └── rtl
-│   │   │   │   │   │       ├── all.min.css
-│   │   │   │   │   │       ├── bootstrap.css
-│   │   │   │   │   │       ├── bootstrap.min.css
-│   │   │   │   │   │       ├── bootstrap_limitless.css
-│   │   │   │   │   │       ├── bootstrap_limitless.min.css
-│   │   │   │   │   │       ├── components.css
-│   │   │   │   │   │       ├── components.min.css
-│   │   │   │   │   │       ├── layout.css
-│   │   │   │   │   │       └── layout.min.css
-│   │   │   │   │   └── js
-│   │   │   │   │       ├── app.js
-│   │   │   │   │       └── custom.js
-│   │   │   │   ├── index.html
-│   │   │   │   ├── layout_2_sidebars_1_side.html
-│   │   │   │   ├── layout_2_sidebars_2_sides.html
-│   │   │   │   ├── layout_3_sidebars.html
-│   │   │   │   ├── layout_boxed_content.html
-│   │   │   │   ├── layout_boxed_page.html
-│   │   │   │   ├── layout_fixed_footer.html
-│   │   │   │   ├── layout_navbar_fixed.html
-│   │   │   │   ├── layout_navbar_hideable.html
-│   │   │   │   ├── layout_navbar_sticky.html
-│   │   │   │   ├── layout_no_footer.html
-│   │   │   │   ├── layout_no_header.html
-│   │   │   │   ├── navbar_colors.html
-│   │   │   │   ├── navbar_component_multiple.html
-│   │   │   │   ├── navbar_component_single.html
-│   │   │   │   ├── navbar_components.html
-│   │   │   │   ├── navbar_multiple_bottom_fixed.html
-│   │   │   │   ├── navbar_multiple_bottom_static.html
-│   │   │   │   ├── navbar_multiple_secondary_sticky.html
-│   │   │   │   ├── navbar_multiple_top_bottom_fixed.html
-│   │   │   │   ├── navbar_multiple_top_fixed.html
-│   │   │   │   ├── navbar_multiple_top_static.html
-│   │   │   │   ├── navbar_single_bottom_fixed.html
-│   │   │   │   ├── navbar_single_bottom_static.html
-│   │   │   │   ├── navbar_single_top_fixed.html
-│   │   │   │   ├── navbar_single_top_static.html
-│   │   │   │   ├── navbar_sizes.html
-│   │   │   │   ├── navigation_horizontal_disabled.html
-│   │   │   │   ├── navigation_horizontal_elements.html
-│   │   │   │   ├── navigation_horizontal_mega.html
-│   │   │   │   ├── navigation_horizontal_styles.html
-│   │   │   │   ├── navigation_horizontal_tabs.html
-│   │   │   │   ├── navigation_vertical_accordion.html
-│   │   │   │   ├── navigation_vertical_badges.html
-│   │   │   │   ├── navigation_vertical_bordered.html
-│   │   │   │   ├── navigation_vertical_collapsible.html
-│   │   │   │   ├── navigation_vertical_disabled.html
-│   │   │   │   ├── navigation_vertical_right_icons.html
-│   │   │   │   ├── navigation_vertical_styles.html
-│   │   │   │   ├── sidebar_components.html
-│   │   │   │   ├── sidebar_default_color_dark.html
-│   │   │   │   ├── sidebar_default_hidden.html
-│   │   │   │   ├── sidebar_default_hideable.html
-│   │   │   │   ├── sidebar_default_resizable.html
-│   │   │   │   ├── sidebar_default_resized.html
-│   │   │   │   ├── sidebar_default_stretched.html
-│   │   │   │   ├── sidebar_right_color_dark.html
-│   │   │   │   ├── sidebar_right_hidden.html
-│   │   │   │   ├── sidebar_right_hideable.html
-│   │   │   │   ├── sidebar_right_stretched.html
-│   │   │   │   ├── sidebar_secondary_color_dark.html
-│   │   │   │   ├── sidebar_secondary_hidden.html
-│   │   │   │   ├── sidebar_secondary_hideable.html
-│   │   │   │   └── sidebar_secondary_stretched.html
-│   │   │   └── seed
-│   │   │       ├── assets
-│   │   │       │   ├── css
-│   │   │       │   │   ├── ltr
-│   │   │       │   │   │   ├── all.min.css
-│   │   │       │   │   │   ├── bootstrap.css
-│   │   │       │   │   │   ├── bootstrap.min.css
-│   │   │       │   │   │   ├── bootstrap_limitless.css
-│   │   │       │   │   │   ├── bootstrap_limitless.min.css
-│   │   │       │   │   │   ├── components.css
-│   │   │       │   │   │   ├── components.min.css
-│   │   │       │   │   │   ├── layout.css
-│   │   │       │   │   │   └── layout.min.css
-│   │   │       │   │   └── rtl
-│   │   │       │   │       ├── all.min.css
-│   │   │       │   │       ├── bootstrap.css
-│   │   │       │   │       ├── bootstrap.min.css
-│   │   │       │   │       ├── bootstrap_limitless.css
-│   │   │       │   │       ├── bootstrap_limitless.min.css
-│   │   │       │   │       ├── components.css
-│   │   │       │   │       ├── components.min.css
-│   │   │       │   │       ├── layout.css
-│   │   │       │   │       └── layout.min.css
-│   │   │       │   └── js
-│   │   │       │       ├── app.js
-│   │   │       │       └── custom.js
-│   │   │       ├── layout_2_sidebars_1_side.html
-│   │   │       ├── layout_2_sidebars_2_sides.html
-│   │   │       ├── layout_3_sidebars.html
-│   │   │       ├── layout_boxed_content.html
-│   │   │       ├── layout_boxed_page.html
-│   │   │       ├── layout_fixed_footer.html
-│   │   │       ├── layout_navbar_fixed.html
-│   │   │       ├── layout_navbar_hideable.html
-│   │   │       ├── layout_navbar_sticky.html
-│   │   │       ├── layout_no_footer.html
-│   │   │       └── layout_no_header.html
-│   │   ├── publication_d3lines.html
-│   │   └── roadmap3c_background.html
+│   │   ├── css
+│   │   │   ├── ltr
+│   │   │   │   ├── all.min.css
+│   │   │   │   ├── bootstrap.css
+│   │   │   │   ├── bootstrap.min.css
+│   │   │   │   ├── bootstrap_limitless.css
+│   │   │   │   ├── bootstrap_limitless.min.css
+│   │   │   │   ├── components.css
+│   │   │   │   ├── components.min.css
+│   │   │   │   ├── layout.css
+│   │   │   │   └── layout.min.css
+│   │   │   └── rtl
+│   │   │       ├── all.min.css
+│   │   │       ├── bootstrap.css
+│   │   │       ├── bootstrap.min.css
+│   │   │       ├── bootstrap_limitless.css
+│   │   │       ├── bootstrap_limitless.min.css
+│   │   │       ├── components.css
+│   │   │       ├── components.min.css
+│   │   │       ├── layout.css
+│   │   │       └── layout.min.css
+│   │   ├── fonts
+│   │   ├── icons
+│   │   ├── images
+│   │   ├── js
+│   │   └── scss
+│   ├── d3
+│   ├── dashboard_discentes.html
+│   ├── dashboard_docentes.html
+│   ├── dashboard_programa.html
+│   ├── data
+│   │   ├── bars_basic.ods
+│   │   ├── bars_basic.tsv
+│   │   ├── bars_basic.tsv.csv
+│   │   ├── bars_basic_pesquisadores.tsv
+│   │   ├── bars_grouped.csv
+│   │   ├── bars_hierarchical.json
+│   │   ├── bars_horizontal.csv
+│   │   ├── bars_stacked.csv
+│   │   ├── bars_stacked_multiple.tsv
+│   │   ├── bars_tooltip.tsv
+│   │   ├── lines_basic.tsv
+│   │   ├── lines_bivariate.tsv
+│   │   ├── lines_difference.tsv
+│   │   ├── lines_gradient.tsv
+│   │   ├── lines_multi_series.tsv
+│   │   ├── lines_small_multiples.csv
+│   │   ├── lines_stacked.tsv
+│   │   ├── lines_stacked_nest.csv
+│   │   └── lines_transitions.tsv
+│   ├── equipe_docentes.html
+│   ├── equipes
+│   │   └── ppgcs
+│   │       ├── docentes_dadosprograma.csv
+│   │       ├── docentes_nomes.csv
+│   │       └── indicadores_quadrienio_17-20.csv
+│   ├── favicon.ico
+│   ├── historico_2017_2020.html
 │   ├── index.html
 │   ├── index.js
 │   └── templates
-│       └── index.html
-├── web
-│   └── assets
-│       └── demo
-│           └── data
-│               └── d3
+│       ├── publication_d3lines.html
+│       └── roadmap3c_background.html
 ├── yarn-error.log
 └── yarn.lock

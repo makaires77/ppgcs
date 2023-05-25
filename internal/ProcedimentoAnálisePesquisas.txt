@@ -1,3 +1,192 @@
+Prompt00: Contexto da aplicação e casos de uso
+Considerando a adequação da nossa estrutura de pastas atual para implementar tudo isso, que atualmente é a seguinte: ppgcs
+├── .vscode
+│   └── settings.json
+├── README.md
+├── _data
+│   ├── in_csv
+│   │   ├── lista_indicadores.csv
+│   │   ├── lista_nomesdocentes.csv
+│   │   └── lista_veiculos.csv
+│   ├── in_json
+│   ├── in_zip
+│   ├── out_csv
+│   └── out_json
+├── cmd
+│   ├── api
+│   │   ├── main.go
+│   │   └── main.md
+│   ├── csv_maker
+│   │   ├── main.go
+│   │   └── main_slices.md
+│   └── publication_loader
+│       └── main.go
+├── config
+│   └── credentials.json
+├── go.mod
+├── go.sum
+├── img
+├── internal
+│   ├── FioLeish.txt
+│   ├── ProcedimentoAnálisePesquisas.txt
+│   ├── json_pesquisador
+│   │   └── pesquisador.go
+│   ├── pesquisador
+│   │   └── pesquisador.go
+│   └── publication
+│       └── publication.go
+├── main.go
+├── main.js
+├── package.json
+├── pkg
+│   ├── application
+│   │   ├── README.md
+│   │   ├── main.txt
+│   │   └── researcher_service.go
+│   ├── domain
+│   │   ├── pesquisador
+│   │   │   └── entities.go
+│   │   ├── publication
+│   │   │   ├── entities.go
+│   │   │   ├── repository.go
+│   │   │   └── usecases.go
+│   │   ├── researcher
+│   │   │   ├── entities.go
+│   │   │   └── repository.go
+│   │   └── scrap_lattes
+│   │       ├── entities.go
+│   │       ├── repository.go
+│   │       └── usecases.go
+│   ├── infrastructure
+│   │   ├── dgraph
+│   │   │   ├── connect.go
+│   │   │   ├── read.go
+│   │   │   └── write.go
+│   │   ├── json_publication
+│   │   │   └── read_publication.go
+│   │   ├── mongo
+│   │   │   └── write_lattes.go
+│   │   ├── neo4j
+│   │   │   ├── write_lattes.go
+│   │   │   └── write_lattes.md
+│   │   └── scrap_lattes
+│   │       ├── scrap_lattes.go
+│   │       ├── scrap_lattes_v0.txt
+│   │       ├── scrap_lattes_v1.txt
+│   │       └── scrap_lattes_v2.txt
+│   ├── interfaces
+│   │   ├── http
+│   │   │   └── handlers
+│   │   │       └── publication_handler.go
+│   │   └── rabbitmq
+│   │       └── enqueue_lattes.go
+│   ├── repository
+│   │   └── researcher_repository.go
+│   └── usecase
+│       ├── load_lattes
+│       │   └── interactor.go
+│       └── load_publication
+│           └── interactor.go
+├── ppgcs_arvore.txt
+├── server.js
+├── static
+│   ├── assets
+│   │   ├── css
+│   │   │   ├── ltr
+│   │   │   │   ├── all.min.css
+│   │   │   │   ├── bootstrap.css
+│   │   │   │   ├── bootstrap.min.css
+│   │   │   │   ├── bootstrap_limitless.css
+│   │   │   │   ├── bootstrap_limitless.min.css
+│   │   │   │   ├── components.css
+│   │   │   │   ├── components.min.css
+│   │   │   │   ├── layout.css
+│   │   │   │   └── layout.min.css
+│   │   │   └── rtl
+│   │   │       ├── all.min.css
+│   │   │       ├── bootstrap.css
+│   │   │       ├── bootstrap.min.css
+│   │   │       ├── bootstrap_limitless.css
+│   │   │       ├── bootstrap_limitless.min.css
+│   │   │       ├── components.css
+│   │   │       ├── components.min.css
+│   │   │       ├── layout.css
+│   │   │       └── layout.min.css
+│   │   ├── fonts
+│   │   ├── icons
+│   │   ├── images
+│   │   ├── js
+│   │   └── scss
+│   ├── d3
+│   ├── dashboard_discentes.html
+│   ├── dashboard_docentes.html
+│   ├── dashboard_programa.html
+│   ├── data
+│   │   ├── bars_basic.ods
+│   │   ├── bars_basic.tsv
+│   │   ├── bars_basic.tsv.csv
+│   │   ├── bars_basic_pesquisadores.tsv
+│   │   ├── bars_grouped.csv
+│   │   ├── bars_hierarchical.json
+│   │   ├── bars_horizontal.csv
+│   │   ├── bars_stacked.csv
+│   │   ├── bars_stacked_multiple.tsv
+│   │   ├── bars_tooltip.tsv
+│   │   ├── lines_basic.tsv
+│   │   ├── lines_bivariate.tsv
+│   │   ├── lines_difference.tsv
+│   │   ├── lines_gradient.tsv
+│   │   ├── lines_multi_series.tsv
+│   │   ├── lines_small_multiples.csv
+│   │   ├── lines_stacked.tsv
+│   │   ├── lines_stacked_nest.csv
+│   │   └── lines_transitions.tsv
+│   ├── equipe_docentes.html
+│   ├── equipes
+│   │   └── ppgcs
+│   │       ├── docentes_dadosprograma.csv
+│   │       ├── docentes_nomes.csv
+│   │       └── indicadores_quadrienio_17-20.csv
+│   ├── favicon.ico
+│   ├── historico_2017_2020.html
+│   ├── index.html
+│   ├── index.js
+│   ├── server.js
+│   └── templates
+│       ├── publication_d3lines.html
+│       └── roadmap3c_background.html
+├── yarn-error.log
+└── yarn.lock
+
+
+PROCEDIMENTO INICIAL:
+Para instalar todas as dependências necessárias a partir do Terminal Integrado do VSCode, você pode seguir os seguintes passos:
+
+1. Abra o Terminal Integrado no VSCode clicando em "View" (Visualizar) no menu superior e selecionando "Terminal" ou usando o atalho de teclado `Ctrl + ` `.
+
+2. Certifique-se de que o diretório atual no Terminal seja o diretório raiz do seu projeto (`ppgcs`).
+
+3. Execute o seguinte comando para instalar as dependências do backend em Go:
+   ```
+   go mod download
+   ```
+
+4. Em seguida, execute o seguinte comando para instalar as dependências do frontend em JavaScript usando o Yarn:
+   ```
+   yarn install
+   ```
+
+Após executar esses comandos, todas as dependências necessárias para o backend em Go e o frontend em JavaScript serão instaladas no seu ambiente de desenvolvimento.
+
+Certifique-se de ter o Go e o Yarn instalados no seu sistema antes de executar esses comandos. Caso ainda não tenha instalado essas ferramentas, você pode seguir as documentações oficiais para fazer a instalação correta:
+
+- Instalação do Go: https://golang.org/doc/install
+- Instalação do Yarn: https://yarnpkg.com/getting-started/install
+
+Depois de instalar as dependências, você estará pronto para executar e desenvolver o seu projeto.
+
+
+SCRAP:
 Detalhe mais o conteúdo real da implementação da função:
 func (d *DadosDocente) Processar() {
 	// Aqui seria a lógica para processar cada linha do CSV, por exemplo, realizar a raspagem dos dados do Lattes
@@ -72,3 +261,4 @@ Definimos interfaces claras para os repositórios (ex: PesquisadorRepository) na
 Utilizaremos a injeção de dependência para fornecer a implementação concreta do repositório à camada de aplicação.
 Introduzimos um sistema de manipulação de eventos para lidar com os eventos produzidos pelo sistema. Por exemplo, quando um novo pesquisador é adicionado, um evento poderia ser emitido, o que poderia acionar outras partes do código.
 E implementaremos um sistema de fila poderia ser útil para lidar com o processamento em segundo plano, com a raspagem de dados do Lattes em uma tarefa em segundo plano. Usando entre outras a biblioteca "github.com/gocraft/work" e o gerenciamento de filas com o RabbitMQ para processar diferentes pedidos de análise de diferentes usuários em paralelo.			
+
