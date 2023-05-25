@@ -227,8 +227,9 @@ Contém todas as rotas para as páginas estáticas
 
 
 ## Messageria
+https://blog.tericcabrel.com/async-communication-nodejs-rabbitmq/
 yarn add amqplib
-yarn add neo4j
+yarn add -D @types/amqplib
 
 Para instalar o RabbitMQ a partir do Terminal Integrado do VSCode usando o Yarn, siga as etapas abaixo:
 
@@ -307,7 +308,6 @@ Após a instalação ser concluída, você pode verificar se o Node.js foi atual
 node --version
 ```
 
-
 ## Persistência no MongoDB
 1. Execute o seguinte comando para instalar o pacote oficial do MongoDB para Node.js usando o Yarn:
 
@@ -330,60 +330,11 @@ Para instalar o Neo4j mais atualizado a partir do Terminal Integrado do VSCode u
 
    ```bash
    yarn add neo4j
+   yarn add neo4j-driver
    ```
 
-   Este comando irá baixar e instalar o pacote `neo4j`, que é uma biblioteca do Node.js para interagir com o Neo4j.
+   Este comando irá baixar e instalar o pacote `neo4j-driver`, que é uma biblioteca do Node.js para interagir com o Neo4j.
 
-Após a conclusão bem-sucedida da instalação, você poderá importar e usar a biblioteca `neo4j` em seu código para se conectar e interagir com o banco de dados Neo4j.
+Após a conclusão bem-sucedida da instalação, você poderá importar e usar a biblioteca `neo4j-driver` em seu código para se conectar e interagir com o banco de dados Neo4j.
 
-Lembre-se de configurar corretamente a conexão com o Neo4j em seu código, fornecendo as informações de host, porta, usuário e senha adequadas para se conectar ao banco de dados.
-
-Certifique-se de ajustar o código conforme necessário para sua configuração específica do Neo4j. Além disso, verifique se você tem o Neo4j instalado e em execução em seu ambiente antes de usar a biblioteca `neo4j`.
-
-
-## Verificação das dependências
-Para verificar se todas as versões e dependências do projeto estão corretamente instaladas, você pode seguir as etapas abaixo:
-
-1. Certifique-se de estar no diretório raiz do projeto no Terminal Integrado do VSCode.
-
-2. Execute o comando a seguir para listar todas as dependências instaladas:
-
-   ```bash
-   yarn list --depth=0
-   ```
-
-   Esse comando exibirá todas as dependências do projeto junto com suas versões instaladas. Verifique se todas as dependências necessárias estão presentes e se suas versões estão corretas.
-
-3. Verifique se todas as dependências estão atualizadas executando o seguinte comando:
-
-   ```bash
-   yarn outdated
-   ```
-
-   Esse comando exibirá uma lista das dependências que têm versões mais recentes disponíveis. Verifique se há alguma dependência desatualizada e considere atualizá-las, se necessário.
-
-4. Verifique a versão do Node.js instalada executando o seguinte comando:
-
-   ```bash
-   node --version
-   ```
-
-   Verifique se a versão exibida corresponde à versão desejada do Node.js para o projeto.
-
-5. Verifique a versão do MongoDB instalada executando o seguinte comando:
-
-   ```bash
-   mongod --version
-   ```
-
-   Verifique se a versão exibida corresponde à versão desejada do MongoDB para o projeto.
-
-6. Verifique a versão do RabbitMQ instalada executando o seguinte comando:
-
-   ```bash
-   rabbitmqctl status
-   ```
-
-   Verifique se as informações exibidas correspondem à instalação correta e à versão desejada do RabbitMQ.
-
-Essas etapas permitirão que você verifique se todas as versões e dependências do projeto estão corretamente instaladas. Se alguma dependência estiver faltando ou desatualizada, você pode atualizá-la ou instalá-la usando o Yarn.
+Lembre-se de configurar corretamente a conexão com o Neo4j em seu código, fornecendo as informações de host, porta, usuário e senha adequadas para se conectar ao banco de dados. Verifique se você tem o Neo4j instalado e em execução em seu ambiente antes de usar a biblioteca `neo4j-driver`.
