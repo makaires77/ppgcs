@@ -12,51 +12,71 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/makaires77/ppgcs/pkg/fuzzysearch"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/scrap_lattes"
+	"github.com/streadway/amqp"
+
+	"github.com/hbollon/go-edlib"
 	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4j"
 	"github.com/makaires77/ppgcs/pkg/interfaces/rabbitmq"
+	"github.com/makaires77/ppgcs/pkg/usecase/fuzzysearch"
 )
 
-// idLattes, nome, tipo, titulo_do_capitulo, idioma, titulo_do_livro, ano, doi, pais_de_publicacao, isbn, nome_da_editora, numero_da_edicao_revisao, organizadores, paginas, autores,autores-endogeno, autores-endogeno-nome, tags, Hash,tipo_producao, natureza, titulo, nome_do_evento,ano_do_trabalho,pais_do_evento,cidade_do_evento,classificacao,periodico,volume,issn,estrato_qualis,editora,numero_de_paginas,numero_de_volumes
-
-func fuzz() {
-	fuzzyService := fuzzysearch.NewFuzzySearchService()
-
-	// Load data from CSV files
-	discentes, _ := fuzzyService.LoadCSVData("_data/powerbi/lista_docentes_colaboradores.csv", 2)
-	docente, _ := fuzzyService.LoadCSVData("_data/powerbi/publicacoes.csv", 1)
-	autores, _ := fuzzyService.LoadCSVData("_data/powerbi/publicacoes.csv", 14)
-
-	// Conduct fuzzy search for each docente
-	for _, discente := range discentes {
-		res, err := fuzzyService.FuzzySearchSetThreshold(discente, autores, 3)
-		if err != nil {
-			fmt.Println(err)
-		} else {
-			fmt.Printf("Result for '%s' with '0.82' threshold: %s\n", discente, strings.Join(res, " "))
-		}
-	}
-}
-
-// Estrutura de dados para representar um pesquisador
 type Researcher struct {
 	Name string
 }
 
-// Função stub para representar a chamada ao serviço de scrapping
+// A chamada para a função FuzzySearchSetThreshold está passando uma lista com apenas um item ([]string{autoresArtigo}) porque o algoritmo de pesquisa fuzzy precisa comparar um string (discente) com uma lista de strings (autoresArtigo). Se autoresArtigo já for uma lista de strings, então você pode simplesmente passá-la diretamente: FuzzySearchSetThreshold(discente, autoresArtigo, 3, 0.7, edlib.Levenshtein).
+
+func fuzz() {
+	fuzzyService := fuzzysearch.NewFuzzySearchService()
+
+	// Lista de campos de publication.csv:
+	// idLattes, nome, tipo, titulo_do_capitulo, idioma, titulo_do_livro, ano, doi, pais_de_publicacao, isbn, nome_da_editora, numero_da_edicao_revisao, organizadores, paginas, autores,autores-endogeno, autores-endogeno-nome, tags, Hash,tipo_producao, natureza, titulo, nome_do_evento,ano_do_trabalho,pais_do_evento,cidade_do_evento,classificacao, periodico, volume, issn,estrato_qualis, editora, numero_de_paginas, numero_de_volumes
+
+	// Load data from CSV files
+	discentesData, _ := fuzzyService.LoadCSVData("_data/powerbi/lista_docentes_colaboradores.csv", 1)
+	docentesData, _ := fuzzyService.LoadCSVData("_data/powerbi/publicacoes.csv", 1)
+	autoresData, _ := fuzzyService.LoadCSVData("_data/powerbi/publicacoes.csv", 14)
+
+	discentes := discentesData
+	docentes := docentesData
+	autores := autoresData
+
+	// Create a map to track articles by docente
+	docenteArtigos := make(map[string]int)
+	for _, docente := range docentes {
+		docenteArtigos[docente] += 1
+	}
+
+	// Conduct fuzzy search for each docente
+	docentePercentage := make(map[string]float64)
+	for _, discente := range discentes {
+		for i, autoresArtigo := range autores {
+			res, err := fuzzyService.FuzzySearchSetThreshold(discente, strings.Split(autoresArtigo, ";"), 3, 0.7, edlib.Levenshtein)
+			if err != nil {
+				fmt.Println(err)
+			} else if len(res) > 0 {
+				docentePercentage[docentes[i]] += 1
+			}
+		}
+	}
+
+	// Calculate percentage of articles with similarity for each docente
+	for docente, count := range docentePercentage {
+		docentePercentage[docente] = (count / float64(docenteArtigos[docente])) * 100
+		fmt.Printf("Percentual de artigos com co-autoria de discentes para o docente '%s': %.2f%%\n", docente, docentePercentage[docente])
+	}
+}
+
 func scrapeResearcherInfo(name string) (string, error) {
-	// Adicione a lógica do serviço de scrapping aqui
-	// Por enquanto, apenas retorna um valor fictício
 	return "Informações do pesquisador: " + name, nil
 }
 
 func validateFile(fileName string, file io.Reader) error {
-	// Verifica se o arquivo é vazio
 	if file == nil {
 		return errors.New("the file is empty")
 	}
 
-	// Verifica se o arquivo é CSV
 	if ext := filepath.Ext(fileName); !strings.EqualFold(ext, ".csv") {
 		return errors.New("only .csv files are allowed")
 	}
@@ -65,13 +85,24 @@ func validateFile(fileName string, file io.Reader) error {
 }
 
 func main() {
-
+	// Crie o cliente Neo4J
 	neo4jClient, err := neo4j.NewClient()
 	if err != nil {
 		log.Fatalf("Failed to create neo4j client: %v", err)
 	}
 
-	consumer := rabbitmq.NewConsumer(neo4jClient)
+	// Crie uma conexão AMQP
+	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
+	if err != nil {
+		log.Fatalf("Failed to connect to RabbitMQ: %v", err)
+	}
+
+	// Crie uma instância de ScrapLattes
+	scrapLattes := scrap_lattes.NewScrapLattes(neo4jClient)
+
+	// Crie o consumidor RabbitMQ
+	consumer := rabbitmq.NewConsumer(conn, "yourQueueName", scrapLattes)
+
 	consumer.Start()
 
 	http.HandleFunc("/start-scraping", func(w http.ResponseWriter, r *http.Request) {

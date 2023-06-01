@@ -3,8 +3,8 @@ package fuzzysearch
 import (
 	"encoding/csv"
 	"fmt"
-	"log"
 	"os"
+	"strings"
 
 	"github.com/hbollon/go-edlib"
 )
@@ -15,19 +15,11 @@ func NewFuzzySearchService() *FuzzySearchService {
 	return &FuzzySearchService{}
 }
 
-func (s *FuzzySearchService) FuzzySearchSetThreshold(input string, strList []string, maxDistance int) ([]string, error) {
-	var similarityThreshold float32 = 0.82
-	res, err := edlib.FuzzySearchSetThreshold(input, strList, maxDistance, similarityThreshold, edlib.Levenshtein)
-	if err != nil {
-		return nil, fmt.Errorf("error executing fuzzy search: %v", err)
-	}
-	return res, nil
-}
-
-func (s *FuzzySearchService) LoadCSVData(filePath string, colIndex int) ([]string, error) {
+// LoadCSVData loads data from a CSV file, splits authors by ';' or ',' if applicable and returns it as a slice of strings.
+func (s *FuzzySearchService) LoadCSVData(filePath string, columnIndex int) ([]string, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
-		log.Fatalf("cannot open file: %v", err)
+		return nil, fmt.Errorf("cannot open file: %v", err)
 	}
 	defer file.Close()
 
@@ -37,16 +29,39 @@ func (s *FuzzySearchService) LoadCSVData(filePath string, colIndex int) ([]strin
 
 	lines, err := reader.ReadAll()
 	if err != nil {
-		log.Fatalf("cannot read file: %v", err)
+		return nil, fmt.Errorf("cannot read file: %v", err)
 	}
 
-	strList := []string{}
-	for _, line := range lines {
-		if line[colIndex] != "" {
-			//strList = append(strList, strings.Split(line[colIndex], ";"))
-			strList = append(strList, line[colIndex])
-
+	if len(lines) == 0 {
+		reader.Comma = ','
+		lines, err = reader.ReadAll()
+		if err != nil {
+			return nil, fmt.Errorf("cannot read file: %v", err)
 		}
 	}
-	return strList, nil
+
+	data := make([]string, 0, len(lines))
+	for _, line := range lines {
+		if len(line) > columnIndex {
+			if strings.Contains(line[columnIndex], ";") {
+				authors := strings.Split(line[columnIndex], ";")
+				data = append(data, authors...)
+			} else if strings.Contains(line[columnIndex], ",") {
+				authors := strings.Split(line[columnIndex], ",")
+				data = append(data, authors...)
+			} else {
+				data = append(data, line[columnIndex])
+			}
+		}
+	}
+	return data, nil
+}
+
+// FuzzySearchSetThreshold is a wrapper around the `edlib.FuzzySearchSetThreshold` function.
+func (s *FuzzySearchService) FuzzySearchSetThreshold(str string, strList []string, resultQuantity int, minSimilarity float32, algorithm edlib.Algorithm) ([]string, error) {
+	res, err := edlib.FuzzySearchSetThreshold(str, strList, resultQuantity, minSimilarity, algorithm)
+	if err != nil {
+		return nil, fmt.Errorf("fuzzy search failed: %v", err)
+	}
+	return res, nil
 }
