@@ -12,11 +12,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/makaires77/ppgcs/pkg/infrastructure/scrap_lattes"
+	"github.com/hbollon/go-edlib"
 	"github.com/streadway/amqp"
 
-	"github.com/hbollon/go-edlib"
 	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4j"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/scrap_lattes"
 	"github.com/makaires77/ppgcs/pkg/interfaces/rabbitmq"
 	"github.com/makaires77/ppgcs/pkg/usecase/fuzzysearch"
 )
@@ -86,7 +86,7 @@ func validateFile(fileName string, file io.Reader) error {
 
 func main() {
 	// Crie o cliente Neo4J
-	neo4jClient, err := neo4j.NewClient()
+	neo4jClient, err := neo4j.NewClient("neo4j://localhost:7687", "username", "password")
 	if err != nil {
 		log.Fatalf("Failed to create neo4j client: %v", err)
 	}
