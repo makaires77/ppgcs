@@ -1,22 +1,21 @@
 package neo4j
 
 import (
+	"context"
 	"fmt"
 	"log"
 
-	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
-
 	"github.com/makaires77/ppgcs/pkg/domain/scrap_lattes"
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
 type Neo4jWriteLattes struct {
-	// Aqui você pode adicionar quaisquer dependências necessárias para escrever no Neo4j
-	driver neo4j.Driver
+	driver neo4j.DriverWithContext
 }
 
 // NewNeo4jWriter cria uma nova instância de Neo4jWriter.
 func NewNeo4jWriteLattes(uri, username, password string) (*Neo4jWriteLattes, error) {
-	driver, err := neo4j.NewDriver(uri, neo4j.BasicAuth(username, password, ""))
+	driver, err := neo4j.NewDriverWithContext(uri, neo4j.BasicAuth(username, password, ""))
 	if err != nil {
 		return nil, err
 	}
@@ -28,22 +27,18 @@ func NewNeo4jWriteLattes(uri, username, password string) (*Neo4jWriteLattes, err
 
 func (w *Neo4jWriteLattes) WritePesquisador(pesquisador *scrap_lattes.Pesquisador) error {
 	// Aqui se implementa a lógica para escrever os dados do pesquisador no Neo4j
-	session := w.driver.NewSession(neo4j.SessionConfig{AccessMode: neo4j.AccessModeWrite})
-	defer session.Close()
+	ctx := context.Background()
 
-	result, err := session.WriteTransaction(func(tx neo4j.Transaction) (interface{}, error) {
-		_, err := tx.Run("CREATE (p:Pesquisador {id: $id, nome: $nome})",
-			map[string]interface{}{
-				"id":   pesquisador.IDLattes,
-				"nome": pesquisador.Nome,
-			})
-		if err != nil {
-			return nil, err
-		}
+	session := w.driver.NewSession(ctx, neo4j.SessionConfig{AccessMode: neo4j.AccessModeWrite})
+	defer session.Close(ctx)
 
-		return nil, nil
-	})
+	cypherQuery := "CREATE (p:Pesquisador {id: $id, nome: $nome})"
+	parameters := map[string]interface{}{
+		"id":   pesquisador.IDLattes,
+		"nome": pesquisador.Nome,
+	}
 
+	result, err := session.Run(ctx, cypherQuery, parameters)
 	if err != nil {
 		log.Printf("Erro ao escrever os dados do pesquisador no Neo4j: %s\n", err)
 		return err
@@ -61,7 +56,7 @@ func (n *Neo4jWriteLattes) WritePublicacao(publicacao *scrap_lattes.Publicacao) 
 	// Exemplo de escrita no Neo4j
 	// Caso ocorra algum erro durante a escrita, você pode retornar um erro
 	if publicacao == nil {
-		return fmt.Errorf("Publicação inválida")
+		return fmt.Errorf("publicação inválida")
 	}
 
 	// Simulação de escrita bem-sucedida
@@ -76,7 +71,7 @@ func (n *Neo4jWriteLattes) WritePesquisadorPublicacao(pesquisador *scrap_lattes.
 	// Exemplo de escrita no Neo4j
 	// Caso ocorra algum erro durante a escrita, você pode retornar um erro
 	if pesquisador == nil || publicacao == nil {
-		return fmt.Errorf("Pesquisador ou publicação inválidos")
+		return fmt.Errorf("pesquisador ou publicação inválidos")
 	}
 
 	// Simulação de escrita bem-sucedida
@@ -91,7 +86,7 @@ func (n *Neo4jWriteLattes) WriteProjetoPesquisa(projeto *scrap_lattes.ProjetoPes
 	// Exemplo de escrita no Neo4j
 	// Caso ocorra algum erro durante a escrita, você pode retornar um erro
 	if projeto == nil {
-		return fmt.Errorf("Projeto de pesquisa inválido")
+		return fmt.Errorf("projeto de pesquisa inválido")
 	}
 
 	// Simulação de escrita bem-sucedida
@@ -106,7 +101,7 @@ func (n *Neo4jWriteLattes) WritePesquisadorProjetoPesquisa(pesquisador *scrap_la
 	// Exemplo de escrita no Neo4j
 	// Caso ocorra algum erro durante a escrita, você pode retornar um erro
 	if pesquisador == nil || projeto == nil {
-		return fmt.Errorf("Pesquisador ou projeto de pesquisa inválidos")
+		return fmt.Errorf("pesquisador ou projeto de pesquisa inválidos")
 	}
 
 	// Simulação de escrita bem-sucedida
@@ -121,7 +116,7 @@ func (n *Neo4jWriteLattes) WritePatente(patente *scrap_lattes.Patente) error {
 	// Exemplo de escrita no Neo4j
 	// Caso ocorra algum erro durante a escrita, você pode retornar um erro
 	if patente == nil {
-		return fmt.Errorf("Patente inválida")
+		return fmt.Errorf("patente inválida")
 	}
 
 	// Simulação de escrita bem-sucedida
@@ -136,7 +131,7 @@ func (n *Neo4jWriteLattes) WritePesquisadorPatente(pesquisador *scrap_lattes.Pes
 	// Exemplo de escrita no Neo4j
 	// Caso ocorra algum erro durante a escrita, você pode retornar um erro
 	if pesquisador == nil || patente == nil {
-		return fmt.Errorf("Pesquisador ou patente inválidos")
+		return fmt.Errorf("pesquisador ou patente inválidos")
 	}
 
 	// Simulação de escrita bem-sucedida
@@ -151,7 +146,7 @@ func (n *Neo4jWriteLattes) WritePremioTitulo(premio *scrap_lattes.PremioTitulo) 
 	// Exemplo de escrita no Neo4j
 	// Caso ocorra algum erro durante a escrita, você pode retornar um erro
 	if premio == nil {
-		return fmt.Errorf("Prêmio/título inválido")
+		return fmt.Errorf("prêmio/título inválido")
 	}
 
 	// Simulação de escrita bem-sucedida
@@ -166,7 +161,7 @@ func (n *Neo4jWriteLattes) WritePesquisadorPremioTitulo(pesquisador *scrap_latte
 	// Exemplo de escrita no Neo4j
 	// Caso ocorra algum erro durante a escrita, você pode retornar um erro
 	if pesquisador == nil || premio == nil {
-		return fmt.Errorf("Pesquisador ou prêmio/título inválidos")
+		return fmt.Errorf("pesquisador ou prêmio/título inválidos")
 	}
 
 	// Simulação de escrita bem-sucedida
@@ -177,7 +172,7 @@ func (n *Neo4jWriteLattes) WritePesquisadorPremioTitulo(pesquisador *scrap_latte
 
 // Close fecha a conexão com o Neo4j.
 func (w *Neo4jWriteLattes) Close() {
-	err := w.driver.Close()
+	err := w.driver.Close(context.Background())
 	if err != nil {
 		log.Printf("Erro ao fechar a conexão com o Neo4j: %s\n", err)
 	}
