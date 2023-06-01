@@ -1,0 +1,139 @@
+package neo4j
+
+import (
+	"context"
+	"errors"
+	"log"
+	"time"
+
+	"github.com/makaires77/ppgcs/pkg/domain/publication"
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
+)
+
+type Client struct {
+	driver neo4j.DriverWithContext
+}
+
+func NewClient() (*Client, error) {
+	driver, err := neo4j.NewDriverWithContext("neo4j://localhost:7687", neo4j.BasicAuth("username", "password", ""))
+	if err != nil {
+		return nil, err
+	}
+
+	return &Client{driver: driver}, nil
+}
+
+// Insira aqui as funções para interagir com o banco de dados Neo4j
+func (c *Client) SavePublication(data *publication.Publication) error {
+	// Defina um contexto
+	ctx := context.Background()
+
+	// Inicie uma nova sessão com o contexto e configuração de sessão
+    session := c.driver.NewSession(ctx, neo4j.SessionConfig{})
+    if session == nil {
+        return errors.New("unable to establish a new session")
+    }
+    defer session.Close(ctx)
+    
+	// Start a new transaction
+    tx, err := session.BeginTransaction(ctx)
+    if err != nil {
+        return err
+    }
+
+	if data == nil {
+		return errors.New("data is null")
+	}
+	if data.Titulo == "" {
+		return errors.New("titulo is required")
+	}
+	if data.Hash == "" {
+		return errors.New("hash is required")
+	}
+
+	cypher := `
+		MERGE (p:Publication {hash: $hash})
+		ON CREATE SET
+			p.natureza = $natureza, 
+			p.titulo = $titulo, 
+			p.idioma = $idioma, 
+			p.periodico = $periodico,
+			p.ano = $ano, 
+			p.volume = $volume,
+			p.issn = $issn,
+			p.estratoQualis = $estratoQualis,
+			p.paisDePublicacao = $paisDePublicacao,
+			p.paginas = $paginas,
+			p.doi = $doi,
+			p.autores = $autores,
+			p.autoresEndogeno = $autoresEndogeno,
+			p.autoresEndogenoNome = $autoresEndogenoNome,
+			p.tags = $tags
+		RETURN p
+	`
+
+	err := session.WriteTransaction(func(tx neo4j.Transaction) error {
+		_, err := tx.Run(cypher, map[string]interface{}{
+			"natureza":            data.Natureza,
+			"titulo":              data.Titulo,
+			"idioma":              data.Idioma,
+			"periodico":           data.Periodico,
+			"ano":                 data.Ano,
+			"volume":              data.Volume,
+			"issn":                data.ISSN,
+			"estratoQualis":       data.EstratoQualis,
+			"paisDePublicacao":    data.PaisDePublicacao,
+			"paginas":             data.Paginas,
+			"doi":                 data.DOI,
+			"autores":             data.Autores,
+			"autoresEndogeno":     data.AutoresEndogeno,
+			"autoresEndogenoNome": data.AutoresEndogenoNome,
+			"tags":                data.Tags,
+			"hash":                data.Hash,
+		})
+		return err
+	})
+
+	if err != nil {
+		// Exibe o erro
+		log.Println(err)
+
+		// Re-tentativa em caso de falha
+		retries := 3
+		for i := 0; i < retries; i++ {
+			time.Sleep(time.Duration(i) * time.Second)
+
+			err := session.WriteTransaction(func(tx neo4j.Transaction) error {
+				_, err := tx.Run(cypher, map[string]interface{}{
+					"natureza":            data.Natureza,
+					"titulo":              data.Titulo,
+					"idioma":              data.Idioma,
+					"periodico":           data.Periodico,
+					"ano":                 data.Ano,
+					"volume":              data.Volume,
+					"issn":                data.ISSN,
+					"estratoQualis":       data.EstratoQualis,
+					"paisDePublicacao":    data.PaisDePublicacao,
+					"paginas":             data.Paginas,
+					"doi":                 data.DOI,
+					"autores":             data.Autores,
+					"autoresEndogeno":     data.AutoresEndogeno,
+					"autoresEndogenoNome": data.AutoresEndogenoNome,
+					"tags":                data.Tags,
+					"hash":                data.Hash,
+				})
+				return err
+			})
+
+			if err == nil {
+				break
+			}
+		}
+	}
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
