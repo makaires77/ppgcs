@@ -49,6 +49,7 @@ require (
 	github.com/goconnectx/cdproto v0.0.0-20200919114505-887ee6f70322
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/hbollon/go-edlib v1.6.0
 	github.com/neo4j/neo4j-go-driver v1.8.3
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/streadway/amqp v1.0.0

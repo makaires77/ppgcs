@@ -12,9 +12,9 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/makaires77/ppgcs/pkg/fuzzysearch"
 	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4j"
 	"github.com/makaires77/ppgcs/pkg/interfaces/rabbitmq"
-	"github.com/makaires77/ppgcs/ppgcs/pkg/fuzzysearch"
 )
 
 // idLattes, nome, tipo, titulo_do_capitulo, idioma, titulo_do_livro, ano, doi, pais_de_publicacao, isbn, nome_da_editora, numero_da_edicao_revisao, organizadores, paginas, autores,autores-endogeno, autores-endogeno-nome, tags, Hash,tipo_producao, natureza, titulo, nome_do_evento,ano_do_trabalho,pais_do_evento,cidade_do_evento,classificacao,periodico,volume,issn,estrato_qualis,editora,numero_de_paginas,numero_de_volumes
