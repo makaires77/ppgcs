@@ -57,6 +57,15 @@ func LoadPublicationsFromCSV(filePath string) ([]publication.Publication, error)
 	return publications, nil
 }
 
+//https://pkg.go.dev/github.com/neo4j/neo4j-go-driver/v5/neo4j#example-DriverWithContext-VerifyAuthenticationDriverLevel
+//NewDriverWithContext é o ponto de entrada para o driver neo4j para criar uma instância de um driver. É a primeira função a ser chamada para estabelecer uma conexão com um banco de dados neo4j. Ele requer um URI Bolt e autenticação como parâmetros e também pode tomar função(ões) de configuração opcional(is) como parâmetros variáveis.
+//Nenhuma conectividade acontece quando NewDriverWithContext é chamado. Chame DriverWithContext.VerifyConnectivity uma vez que o driver seja criado se você quiser verificar antecipadamente se o URI fornecido e credenciais estão corretos.
+//Para se conectar a um banco de dados de instância única, você precisa passar um URI com o esquema 'bolt', 'bolt+s' ou 'bolt+ssc'.
+//Para se conectar a um banco de dados de cluster causal, você precisa passar um URI com o esquema 'neo4j', 'neo4j+s' ou 'neo4j+ssc' e sua parte do host definida para ser um dos membros principais do cluster.
+//Você pode substituir as opções de configuração padrão fornecendo uma(s) função(ões) de configuração
+// driver, err = NewDriverWithContext(uri, BasicAuth(username, password), function (config *Config) {
+//	config.MaxConnectionPoolSize = 10})
+
 func PersistPublications(driver neo4j.DriverWithContext, publications []publication.Publication) error {
 	sessionConfig := neo4j.SessionConfig{
 		AccessMode: neo4j.AccessModeWrite,

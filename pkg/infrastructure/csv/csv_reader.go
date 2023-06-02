@@ -1,35 +1,40 @@
-//Este código define uma interface Reader com um método Read, que lê um arquivo CSV e retorna seus conteúdos como um slice de slices de strings. A função NewReader retorna uma nova instância da interface Reader. O método Read da estrutura reader implementa o método Read da interface Reader. Ele abre o arquivo CSV, lê todas as linhas e retorna o conteúdo. Se houver um erro durante a abertura ou leitura do arquivo, ele é tratado e apropriado.
-
-package csv
+package infrastructure
 
 import (
 	"encoding/csv"
 	"os"
-
-	"github.com/pkg/errors"
+	"strings"
 )
 
-type Reader interface {
-	Read(file string) ([][]string, error)
-}
-
-type reader struct{}
-
-func NewReader() Reader {
-	return &reader{}
-}
-
-func (*reader) Read(file string) ([][]string, error) {
-	f, err := os.Open(file)
+func readCSVFile(filePath string) ([]map[string]string, error) {
+	// Open the file
+	csvfile, err := os.Open(filePath)
 	if err != nil {
-		return nil, errors.Wrap(err, "unable to open csv file")
+		return nil, err
 	}
-	defer f.Close()
+	defer csvfile.Close()
 
-	lines, err := csv.NewReader(f).ReadAll()
+	// Parse the file
+	r := csv.NewReader(csvfile)
+
+	// Read in all records
+	records, err := r.ReadAll()
 	if err != nil {
-		return nil, errors.Wrap(err, "unable to parse csv file")
+		return nil, err
 	}
 
-	return lines, nil
+	// Prepare container
+	var entries = []map[string]string{}
+
+	// Iterate through records
+	for _, record := range records {
+		entry := map[string]string{}
+		for i, value := range record {
+			// Use the first row as the map key
+			entry[strings.ToLower(records[0][i])] = value
+		}
+		entries = append(entries, entry)
+	}
+
+	return entries, nil
 }
