@@ -1,1 +1,273 @@
 Seja assertivo escrevendo no papel de um arquiteto de soluções Senior implementando desenvolvimento REAL e para PRODUÇÃO, sempre envolvendo validação e tratamento de erros, usando Clean Architecture no contexto de aplicação totalmente modularizada que deve gerar relatórios para um Programa de Pesquisa, com base em resultados de análises geradas no backend em Go, e com Javastcipt e Express no frontend, messageria com RabbitMQ, persistência nas bases de dados MongoDB e Neo4j em paralelo; Há um microsserviço de scrap escrito em go, e disparado no main.go da pasta raiz. A página principal fica na pasta static/index.html, onde o usuário inicia o processo de scraping informando uma lista de nomes de pesquisadores através do upload de uma lista de nomes de docentes, que será salva na pasta static\equipes e deverá ser processada em paralelo com goroutines consumindo a fila de nomes de pesquisador, e considerando que vamos realizar a implementação real desta aplicação partindo da seguinte estrutura de pastas e arquivos já existente conforme a seguir. Considere que uma funcionalidade central para essa aplicação é avaliar a similaridade de string para avaliar entre nomes de autores se há nomes de discentes em cada artigo que cada docente escreve. 
+
+A estrutura de pastas deve contamplar além das pastas mais óbvias a seguinte estrutura de pastas e arquivos: 
+ppgcs
+├── .vscode
+│   └── settings.json
+├── _data
+│   ├── in_csv
+│   │   ├── lista_dadosdocentes.csv
+│   │   ├── lista_indicadores.csv
+│   │   ├── lista_nomesdocentes.csv
+│   │   └── lista_veiculos.csv
+│   ├── in_json
+│   │   ├── 642.files
+│   │   │   ├── 642.advise.json
+│   │   │   ├── 642.graph.json
+│   │   │   ├── 642.list.json
+│   │   │   ├── 642.profile.json
+│   │   │   ├── 642.publication.json
+│   │   │   ├── 642patents.json
+│   │   │   ├── 642researchers_by_area.json
+│   │   │   └── 642vosviewer.json
+│   │   └── 644.files
+│   │       ├── 644.advise.json
+│   │       ├── 644.graph.json
+│   │       ├── 644.list.json
+│   │       ├── 644.profile.json
+│   │       ├── 644.publication.json
+│   │       ├── 644patents.json
+│   │       ├── 644researchers_by_area.json
+│   │       └── 644vosviewer.json
+│   ├── in_zip
+│   │   ├── 642.files.zip
+│   │   ├── 644.files.zip
+│   │   └── lista_arquivos.txt
+│   ├── out_csv
+│   │   ├── all_advise.csv
+│   │   ├── all_patents.csv
+│   │   ├── all_publications.csv
+│   │   ├── conf-ppgcs-colabdisce_permanentes_2017-2020.csv
+│   │   ├── conf-ppgcs-pontuacao_permanentes_2017-2020.csv
+│   │   └── conf-ppgcs-resultados_permanentes_2017-2020.csv
+│   └── out_json
+│       └── merged.json
+├── equipes
+├── equipe_docentes.html
+├── favicon.ico
+├── historico.html
+├── index.html
+├── index.js
+└── templates
+    ├── publication_d3lines.html
+    └── roadmap3c_background.html
+
+Analise em detalhes o código fonte passado na primeira pergunta e diga o que lhe falta para ser totalmente operacional. Considerando que nossas entidades estão assim definidas no caminho pkg\domain\publication\entities.go: 
+
+package publication
+
+import (
+	"encoding/json"
+	"io/ioutil"
+	"os"
+	"time"
+)
+
+type Publication struct {
+	Natureza            string            `json:"natureza"`
+	Titulo              string            `json:"titulo"`
+	Idioma              string            `json:"idioma"`
+	Periodico           string            `json:"periodico"`
+	Ano                 string            `json:"ano"`
+	Volume              string            `json:"volume"`
+	ISSN                string            `json:"issn"`
+	EstratoQualis       string            `json:"estrato_qualis"`
+	PaisDePublicacao    string            `json:"pais_de_publicacao"`
+	Paginas             string            `json:"paginas"`
+	DOI                 string            `json:"doi"`
+	Autores             []string          `json:"autores"`
+	AutoresEndogeno     []string          `json:"autores-endogeno"`
+	AutoresEndogenoNome map[string]string `json:"autores-endogeno-nome"`
+	Tags                []string          `json:"tags"`
+	Hash                string            `json:"Hash"`
+}
+
+func LoadEntitiesFromJSON(jsonFilePath string) ([]Publication, error) {
+	// Ler o arquivo JSON
+	jsonFile, err := os.Open(jsonFilePath)
+	if err != nil {
+		return nil, err
+	}
+	defer jsonFile.Close()
+
+	// Decodificar o JSON
+	byteValue, err := ioutil.ReadAll(jsonFile)
+	if err != nil {
+		return nil, err
+	}
+
+	var entities []Publication
+	if err := json.Unmarshal(byteValue, &entities); err != nil {
+		return nil, err
+	}
+
+	return entities, nil
+}
+
+type Pesquisador struct {
+	Nome                       string
+	Titulo                     string
+	LinkCurriculo              string
+	IDLattes                   string
+	DataUltimaAtualizacao      string
+	Resumo                     string
+	NomeCitacoesBibliograficas string
+	IDLattesLink               string
+	OrcidID                    string
+	Formacao                   []string
+	Formacoes                  []FormacaoAcademica
+	PosDoutorado               []FormacaoPosDoc
+	FormacoesComplementares    []FormacaoComplementar
+	AtuacoesProfissionais      []AtuacaoProfissional
+	LinhasPesquisa             []LinhaPesquisa
+	ProjetosPesquisa           []ProjetoPesquisa       `json:"projetos_pesquisa"`
+	Publicacoes                []Publicacao            `json:"publicacoes"`
+	FormacaoAcademica          []Formacao              `json:"formacao_academica"`
+	CursosExtraCurriculares    []Curso                 `json:"cursos_extra_curriculares"`
+	ExperienciaProfissional    []Experiencia           `json:"experiencia_profissional"`
+	Patentes                   []Patente               `json:"patentes"`
+	MembroCorpoEditorial       []MembroCorpoEditorial  `json:"membro_corpo_editorial"`
+	RevisorPeriodico           []RevisorPeriodico      `json:"revisor_periodico"`
+	RevisorProjetoFomento      []RevisorProjetoFomento `json:"revisor_projeto_fomento"`
+	PremiosTitulos             []PremioTitulo          `json:"premios_titulos"`
+}
+
+type FormacaoAcademica struct {
+	Periodo        string
+	Nivel          string
+	TituloTrabalho string
+	Instituicao    string
+	Orientador     string
+	Bolsista       string
+	AreaEstudo     string
+	PalavrasChave  []string
+}
+
+type FormacaoPosDoc struct {
+	Periodo        string
+	Nivel          string
+	TituloTrabalho string
+	Instituicao    string
+	Orientador     string
+	Bolsista       string
+	AreaEstudo     string
+	PalavrasChave  []string
+}
+
+type FormacaoComplementar struct {
+	Periodo      string
+	TituloCurso  string
+	CargaHoraria string
+	Instituicao  string
+}
+
+type AtuacaoProfissional struct {
+	Instituicao          string
+	VinculoInstitucional []VinculoInstitucional
+	Atividades           []Atividade
+}
+
+type VinculoInstitucional struct {
+	Periodo      string
+	Descricao    string
+	CargaHoraria int
+}
+
+type Atividade struct {
+	Periodo        string
+	Descricao      string
+	Disciplinas    []string
+	LinhasPesquisa []string
+}
+
+type LinhaPesquisa struct {
+	Nome             string
+	Objetivo         string
+	GrandeArea       []string
+	Area             []string
+	SubArea          []string
+	SetoresAtividade []string
+	PalavrasChave    []string
+}
+
+type Endereco struct {
+	Rua    string `json:"rua"`
+	Bairro string `json:"bairro"`
+	Cidade string `json:"cidade"`
+	Estado string `json:"estado"`
+	Pais   string `json:"pais"`
+	CEP    string `json:"cep"`
+}
+
+type RedeSocial struct {
+	Nome string `json:"nome"`
+	URL  string `json:"url"`
+}
+
+type ProjetoPesquisa struct {
+	Titulo        string     `json:"titulo"`
+	Descricao     string     `json:"descricao"`
+	DataInicio    *time.Time `json:"data_inicio"`
+	DataTermino   *time.Time `json:"data_termino"`
+	Financiamento string     `json:"financiamento"`
+}
+
+type Publicacao struct {
+	Titulo  string     `json:"titulo"`
+	Resumo  string     `json:"resumo"`
+	Data    *time.Time `json:"data"`
+	Revista string     `json:"revista"`
+	Ano     string     `json:"ano"`
+	Autores []string   `json:"autores"`
+	DOI     string     `json:"doi"`
+}
+
+type Formacao struct {
+	Titulo       string `json:"titulo"`
+	Instituicao  string `json:"instituicao"`
+	AnoConclusao string `json:"ano_conclusao"`
+}
+
+type Curso struct {
+	Nome          string     `json:"nome"`
+	Instituicao   string     `json:"instituicao"`
+	DataConclusao *time.Time `json:"data_conclusao"`
+}
+
+type Experiencia struct {
+	Posicao string     `json:"posicao"`
+	Empresa string     `json:"empresa"`
+	Inicio  *time.Time `json:"inicio"`
+	Termino *time.Time `json:"termino"`
+}
+
+type Patente struct {
+	Titulo string `json:"titulo"`
+	Resumo string `json:"resumo"`
+	Ano    int    `json:"ano"`
+}
+
+type MembroCorpoEditorial struct {
+	Periodo   Periodo `json:"periodo"`
+	Periodico string  `json:"periodico"`
+}
+
+type Periodo struct {
+	Inicio  *time.Time `json:"inicio"`
+	Termino *time.Time `json:"termino"`
+}
+
+type RevisorPeriodico struct {
+	Periodo   Periodo `json:"periodo"`
+	Periodico string  `json:"periodico"`
+}
+
+type RevisorProjetoFomento struct {
+	Periodo        Periodo `json:"periodo"`
+	AgenciaFomento string  `json:"agencia_fomento"`
+}
+
+type PremioTitulo struct {
+	Ano       int    `json:"ano"`
+	Descricao string `json:"descricao"`
+}
