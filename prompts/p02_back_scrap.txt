@@ -1,4 +1,7 @@
-No módulo de scrap do backend o scrap_lattes.go é o arquivo principal para o processo de scraping deve ser capaz de acessar a internet, coletar dados de uma fonte externa (geralmente um site ou API) e processá-los para um formato útil. Este módulo se baseia em bibliotecas Go para realizar solicitações HTTP e parsear HTML ou JSON, com gerenciamento de filas com o RabbitMQ.
+Módulo de scrap_lattes
+Estamos ajustando e corrigindo erros de uma solução em Go, que realiza o Scrap de dados de pesquisadores a partir da Plataforma Lattes do CNPq, a função central para a funcionalidade de scrap é esta: package scrap_lattes em /home/marcos/ppgcs/pkg/infrastructure/scrap_lattes/scrap_lattes.go
+
+No módulo de scrap no backend o scrap_lattes.go é o arquivo principal para o processo de scraping deve ser capaz de acessar a internet, coletar dados de uma fonte externa (geralmente um site ou API) e processá-los para um formato útil. Este módulo se baseia em bibliotecas Go para realizar solicitações HTTP e parsear HTML ou JSON, com gerenciamento de filas com o RabbitMQ.
 
 A lógica para processar cada linha do CSV e realizar a raspagem dos dados do Lattes segue os passos descritos a seguir.
 1. Buscar nome
@@ -45,3 +48,405 @@ A lógica para processar cada linha do CSV e realizar a raspagem dos dados do La
 
 8. Imprimir Relatórios em PDF
 Neste caso específico a base de dados é de dados abertos ao público e sem restrições para a raspagem de dados, vamos agora implementar adequadamente de acordo com as suas necessidades descritas as funções realizarBusca, escolherResultado, abrirCurriculo, analisarCurriculo, extrairDados e armazenarDados que compõem a a função Processar que realiza o fluxo de trabalho em um nível alto.
+
+Escreva o código REAL para implementar esse módulo de scrap segiundo as melhores práticas do Clean Architecture, não use exemplos ou dados fictícios, mas sim implementação REAL para produção, com validaçoes e tratamento de erros, usando códigos para apontar para os arquivos da estrutura de pastas atual. 
+
+O módulo scrap_lattes.go recebe como entrada o arquivo /home/marcos/ppgcs/_data/in_csv/lista_dadosdocentes.csv para realizar o processamento paralelizado de requisição, descoberta, captura, persistência e exibição de dados persistidos em interface de usuário ainda a ser construída. Complemente e corrija os erros do scrap_lattes.go dado a seguir:
+import (
+	"context"
+	"encoding/csv"
+	"fmt"
+	"io"
+	"os"
+	"time"
+
+	"github.com/pkg/errors"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+)
+
+type ScrapLattes struct {
+	// Adicione aqui os campos necessários para a conexão com bancos de dados, como clientes MongoDB, Neo4j, etc.
+}
+type Pesquisador struct {
+...
+}
+
+func NewScrapLattes() *ScrapLattes {
+	// Inicialize e retorne uma instância de ScrapLattes
+	return &ScrapLattes{}
+}
+
+func (s *ScrapLattes) ScrapeData(filePath string) error {
+	// Abra o arquivo CSV
+	file, err := os.Open(filePath)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	// Crie um leitor CSV para ler o conteúdo do arquivo
+	reader := csv.NewReader(file)
+
+	// Faça o processamento dos dados do CSV
+	for {
+		record, err := reader.Read()
+		if err != nil {
+			// Verifique se chegou ao final do arquivo
+			if err == io.EOF {
+				break
+			}
+			return err
+		}
+
+		// Extraia as informações desejadas do registro (linha) do CSV
+		// e realize as operações necessárias
+
+		// Exemplo: exibir as informações extraídas
+		fmt.Println("Nome:", record[0])
+		fmt.Println("Título:", record[1])
+		// ... exiba outras informações conforme necessário
+		fmt.Println("---")
+	}
+
+	return nil
+}
+
+func ObterPesquisador(IDLattes string) (*Pesquisador, error) {
+	// Configurar a conexão com o banco de dados MongoDB
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
+	if err != nil {
+		return nil, fmt.Errorf("falha ao criar cliente MongoDB: %v", err)
+	}
+
+	// Conectar ao servidor MongoDB
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	err = client.Connect(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("falha ao conectar ao servidor MongoDB: %v", err)
+	}
+
+	// Desconectar do servidor MongoDB no final
+	defer func() {
+		if err := client.Disconnect(ctx); err != nil {
+			fmt.Printf("falha ao desconectar do servidor MongoDB: %v\n", err)
+		}
+	}()
+
+	// Acessar o banco de dados e a coleção
+	db := client.Database("nome_do_banco_de_dados")
+	collection := db.Collection("nome_da_colecao")
+
+	// Consultar o pesquisador pelo IDLattes
+	filter := bson.D{{Key: "IDLattes", Value: IDLattes}}
+	var pesquisador Pesquisador
+
+	err = collection.FindOne(ctx, filter).Decode(&pesquisador)
+	if err != nil {
+		if err == mongo.ErrNoDocuments {
+			return nil, fmt.Errorf("pesquisador não encontrado")
+		}
+		return nil, fmt.Errorf("falha ao consultar pesquisador: %v", err)
+	}
+
+	return &pesquisador, nil
+}
+
+func (s *ScrapLattes) SalvarPesquisador(pesquisador *Pesquisador) error {
+	// Configurar a conexão com o banco de dados MongoDB
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
+	if err != nil {
+		return fmt.Errorf("falha ao criar cliente MongoDB: %v", err)
+	}
+
+	// Conectar ao servidor MongoDB
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	err = client.Connect(ctx)
+	if err != nil {
+		return fmt.Errorf("falha ao conectar ao servidor MongoDB: %v", err)
+	}
+
+	// Desconectar do servidor MongoDB no final
+	defer func() {
+		if err := client.Disconnect(ctx); err != nil {
+			fmt.Printf("falha ao desconectar do servidor MongoDB: %v\n", err)
+		}
+	}()
+
+	// Acessar o banco de dados e a coleção
+	db := client.Database("nome_do_banco_de_dados")
+	collection := db.Collection("nome_da_colecao")
+
+	// Inserir o pesquisador na coleção
+	_, err = collection.InsertOne(ctx, pesquisador)
+	if err != nil {
+		return fmt.Errorf("falha ao salvar pesquisador no banco de dados: %v", err)
+	}
+
+	return nil
+}
+
+func (s *ScrapLattes) AtualizarPesquisador(pesquisador *Pesquisador) error {
+	// Lógica para atualizar um pesquisador em algum repositório
+	// Verifique se o pesquisador é nulo
+	if pesquisador == nil {
+		return errors.New("pesquisador inválido")
+	}
+
+	// Verifique se o pesquisador existe no repositório
+	existe, err := PesquisadorExiste(pesquisador.IDLattes)
+	if err != nil {
+		return fmt.Errorf("falha ao verificar a existência do pesquisador: %v", err)
+	}
+
+	if !existe {
+		return errors.New("pesquisador não encontrado")
+	}
+
+	// Atualize os campos relevantes do pesquisador no repositório
+	err = AtualizarPesquisadorNoRepositorio(pesquisador)
+	if err != nil {
+		return fmt.Errorf("falha ao atualizar pesquisador no repositório: %v", err)
+	}
+
+	// Exemplo de mensagem de sucesso
+	fmt.Println("Pesquisador atualizado com sucesso!")
+
+	return nil
+}
+
+func PesquisadorExiste(IDLattes string) (bool, error) {
+	// Implemente a lógica real para verificar se um pesquisador existe no repositório
+
+	// Exemplo de implementação fictícia que retorna sempre true
+	return true, nil
+}
+
+func AtualizarPesquisadorNoRepositorio(pesquisador *Pesquisador) error {
+	// Implemente a lógica real para atualizar os campos relevantes do pesquisador no repositório
+
+	// Exemplo de implementação fictícia que não realiza nenhuma operação
+	return nil
+}
+
+func (s *ScrapLattes) PesquisadorExiste(IDLattes string) (bool, error) {
+	// Lógica para verificar se um pesquisador existe no repositório
+	// Cria uma conexão com o servidor do MongoDB
+	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI("mongodb://localhost:27017"))
+	if err != nil {
+		return false, fmt.Errorf("falha ao conectar ao MongoDB: %v", err)
+	}
+	defer client.Disconnect(context.Background())
+
+	// Obtem uma referência para a coleção que contém os pesquisadores
+	collection := client.Database("nomedobanco").Collection("nomedacolecao")
+
+	// Cria um filtro para buscar o pesquisador com base no IDLattes
+	filter := bson.M{"IDLattes": IDLattes}
+
+	// Executa a consulta para verificar se o pesquisador existe
+	count, err := collection.CountDocuments(context.Background(), filter)
+	if err != nil {
+		return false, fmt.Errorf("falha ao verificar a existência do pesquisador no MongoDB: %v", err)
+	}
+
+	// Verifique se o pesquisador existe com base no resultado da contagem
+	existe := count > 0
+
+	return existe, nil
+}
+
+func (s *ScrapLattes) ObterPublicacoes(pesquisador *Pesquisador) ([]Publicacao, error) {
+	// Lógica para obter as publicações de um pesquisador
+	// Cria uma conexão com o servidor do MongoDB
+	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI("mongodb://localhost:27017"))
+	if err != nil {
+		return nil, fmt.Errorf("falha ao conectar ao MongoDB: %v", err)
+	}
+	defer client.Disconnect(context.Background())
+
+	// Obtem uma referência para a coleção que contém as publicações
+	collection := client.Database("nomedobanco").Collection("nomedacolecao")
+
+	// Cria um filtro para buscar as publicações do pesquisador
+	filter := bson.M{"IDLattes": pesquisador.IDLattes}
+
+	// Executa a consulta para obter as publicações do pesquisador
+	cursor, err := collection.Find(context.Background(), filter)
+	if err != nil {
+		return nil, fmt.Errorf("falha ao obter as publicações do pesquisador no MongoDB: %v", err)
+	}
+	defer cursor.Close(context.Background())
+
+	// Cria uma slice para armazenar as publicações encontradas
+	publicacoes := []Publicacao{}
+
+	// Itera sobre o cursor e decodifique os documentos em estruturas de Publicacao
+	for cursor.Next(context.Background()) {
+		var publicacao Publicacao
+		if err := cursor.Decode(&publicacao); err != nil {
+			return nil, fmt.Errorf("falha ao decodificar publicação do MongoDB: %v", err)
+		}
+		publicacoes = append(publicacoes, publicacao)
+	}
+
+	if err := cursor.Err(); err != nil {
+		return nil, fmt.Errorf("erro ao iterar sobre o cursor de publicações: %v", err)
+	}
+
+	return publicacoes, nil
+}
+
+func (s *ScrapLattes) ImportarDadosCSV(filePath string) error {
+	// Lógica para importar dados de um arquivo CSV
+	// Abre o arquivo CSV
+	file, err := os.Open(filePath)
+	if err != nil {
+		return fmt.Errorf("falha ao abrir o arquivo CSV: %v", err)
+	}
+	defer file.Close()
+
+	// Cria um leitor CSV para ler o conteúdo do arquivo
+	reader := csv.NewReader(file)
+
+	// Faz o processamento dos dados do CSV
+	for {
+		record, err := reader.Read()
+		if err != nil {
+			// Verifica se chegou ao final do arquivo
+			if err.Error() == "EOF" {
+				break
+			}
+			return fmt.Errorf("falha ao ler o registro do arquivo CSV: %v", err)
+		}
+
+		// Realiza as operações necessárias com os dados do registro
+		// Por exemplo, você pode salvar os dados em uma estrutura de dados ou executar outras ações
+
+		// Exemplo: exibir as informações extraídas
+		fmt.Println("Nome:", record[0])
+		fmt.Println("Título:", record[1])
+		// ... exiba outras informações conforme necessário
+		fmt.Println("---")
+	}
+
+	return nil
+}
+
+func (s *ScrapLattes) ExportarDadosCSV(filePath string) error {
+	// Lógica para exportar dados para um arquivo CSV
+	// Obtenha os dados a serem exportados
+	dadosExportados, err := ObterDadosExportadosDoBancoDeDados()
+	if err != nil {
+		return fmt.Errorf("falha ao obter os dados exportados do banco de dados: %v", err)
+	}
+
+	// Crie o arquivo CSV para escrita
+	file, err := os.Create(filePath)
+	if err != nil {
+		return fmt.Errorf("falha ao criar o arquivo CSV: %v", err)
+	}
+	defer file.Close()
+
+	// Crie um escritor CSV
+	writer := csv.NewWriter(file)
+
+	// Escreva os dados no arquivo
+	for _, linha := range dadosExportados {
+		err := writer.Write(linha)
+		if err != nil {
+			return fmt.Errorf("falha ao escrever no arquivo CSV: %v", err)
+		}
+	}
+
+	// Certifique-se de chamar o método Flush para gravar os dados no arquivo
+	writer.Flush()
+
+	if err := writer.Error(); err != nil {
+		return fmt.Errorf("falha ao gravar os dados no arquivo CSV: %v", err)
+	}
+
+	return nil
+}
+
+func LerArquivoCSV(filePath string) ([]string, error) {
+	// Lógica para ler um arquivo CSV e retornar os dados
+
+	// Implemente a lógica real para ler o arquivo CSV e extrair os dados
+	// Aqui está um exemplo simples que retorna dados fictícios:
+	dados := []string{"linha 1", "linha 2", "linha 3"}
+
+	return dados, nil
+}
+
+func (s *ScrapLattes) ObterPesquisadorPorIDLattes(IDLattes string) (*Pesquisador, error) {
+	// Lógica para obter um pesquisador do banco de dados pelo IDLattes
+
+	// Implemente a lógica real para obter o pesquisador pelo IDLattes
+	// Aqui está um exemplo simples que retorna um pesquisador fictício:
+	pesquisador := &Pesquisador{
+		Nome:     "Fulano de Tal",
+		Titulo:   "Doutor",
+		IDLattes: IDLattes,
+		Formacao: []string{"Bacharelado", "Mestrado", "Doutorado"},
+		Publicacoes: []Publicacao{
+			{Titulo: "Publicação 1", Ano: "2022"},
+			{Titulo: "Publicação 2", Ano: "2023"},
+		},
+	}
+
+	return pesquisador, nil
+}
+
+func (s *ScrapLattes) SalvarPesquisadorNoBancoDeDados(pesquisador *Pesquisador) error {
+	// Lógica para salvar um pesquisador no banco de dados
+
+	// Implemente a lógica real para salvar o pesquisador no banco de dados
+
+	return nil
+}
+
+func (s *ScrapLattes) AtualizarPesquisadorNoRepositorio(pesquisador *Pesquisador) error {
+	// Lógica para atualizar um pesquisador no repositório
+
+	// Implemente a lógica real para atualizar o pesquisador no repositório
+
+	return nil
+}
+
+func (s *ScrapLattes) VerificarExistenciaPesquisadorNoBancoDeDados(IDLattes string) (bool, error) {
+	// Lógica para verificar se um pesquisador existe no banco de dados
+
+	// Implemente a lógica real para verificar a existência do pesquisador no banco de dados
+
+	return true, nil
+}
+
+func (s *ScrapLattes) ObterPublicacoesDoPesquisador(pesquisador *Pesquisador) ([]Publicacao, error) {
+	// Lógica para obter as publicações de um pesquisador
+
+	// Implemente a lógica real para obter as publicações do pesquisador
+
+	return pesquisador.Publicacoes, nil
+}
+
+func (s *ScrapLattes) SalvarDadosImportadosNoBancoDeDados(dados []string) error {
+	// Lógica para salvar os dados importados no banco de dados
+
+	// Implemente a lógica real para salvar os dados importados no banco de dados
+
+	return nil
+}
+
+func EscreverDadosNoArquivoCSV(filePath string, dados []string) error {
+	// Lógica para escrever dados em um arquivo CSV
+
+	// Implemente a lógica real para escrever os dados no arquivo CSV
+
+	return nil
+}
