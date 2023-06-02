@@ -1,0 +1,8 @@
+csv
+├── classificações_publicadas_todas_as_areas_avaliacao1672761192111.xlsx
+├── lista_docentes_colaboradores.csv
+├── lista_docentes_permanentes.csv
+├── lista_orientadores-discentes.csv
+├── orientacoes.csv
+├── patentes.csv
+└── publicacoes.csv
