@@ -1,0 +1,9 @@
+CREATE (`Produtos Serviços`)-[:Satisfaz]->(Pessoa {Nome: "string", id_lattes: "int(16)"})-[:Inventa]->(Patente:`Nome de Inventor`)-[:Cita]->(Artigo:Objetivo:`Método`:Resultado)<-[:Gera]-(`Projeto Pesquisa`)<-[:Cria]-(Pessoa)-[:[*]Variações]->(`Nome de Autor`)<-[:[1]Primeiro Autor]-(Artigo)-[:[*1]Último autor]->(`Nome de Autor`)<-[:[*]Coautor]-(Artigo)<-[:Gera]-(`Projeto Desenv.`)-[:Suporta]->(`Linha de Pesquisa`),
+(Artigo)-[:_RELATED]->(Artigo)-[:Suporta]->()-[:Suporta]->(`Competência`),
+(`Projeto Desenv.`)<-[:Cria]-(Pessoa)-[:Registra]->(),
+(`Projeto Pesquisa`)-[:Suporta]->(`Linha de Pesquisa`)<-[:Estabelece]-(`Organização`)<-[:Demanda]-()<-[:Gera]-()<-[:Tem]-(Pessoa)-[:Conduz]->()-[:Recebe]->(Pessoa)-[:Organiza]->()<-[:Participa]-(Pessoa)-[:Tem]->()-[:Desenvolve]->(`Competência`),
+(`Competência`)-[:Suporta]->()-[:Regulamentada]->()-[:Determina]->()-[:Delimita]->(`Processo de Negócio` {`Método`: "", `Técnica`: "", Procedimento: ""})<-[:Implementa]-(`Organização`),
+(`Processo de Negócio`)-[:Cria]->(`Produtos Serviços`),
+()<-[:_RELATED]-(Pessoa)-[:_RELATED]->(),
+(Patente)-[:Cita]->(Patente),
+()
