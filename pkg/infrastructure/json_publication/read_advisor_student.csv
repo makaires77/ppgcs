@@ -1,4 +1,4 @@
-package json_publication
+package infrastructure
 
 import (
 	"encoding/csv"
@@ -6,21 +6,15 @@ import (
 	"io"
 	"os"
 
-	"github.com/makaires77/ppgcs/pkg/domain/publication"
+	"github.com/makaires77/ppgcs/pkg/domain"
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
-// ErroPersonalizado é uma struct que implementa a interface de erro
-type ErroPersonalizado struct {
-	Erro error
-	Msg  string
-}
-
-func (e *ErroPersonalizado) Error() string {
+func (e *domain.ErroPersonalizado) Error() string {
 	return fmt.Sprintf("%v : %v", e.Erro, e.Msg)
 }
 
-func LoadPublicationsFromCSV(filePath string) ([]publication.Publication, error) {
+func LoadAdvisorStudentsFromCSV(filePath string) ([]domain.AdvisorStudent, error) {
 	csvFile, err := os.Open(filePath)
 	if err != nil {
 		return nil, &ErroPersonalizado{
@@ -34,9 +28,9 @@ func LoadPublicationsFromCSV(filePath string) ([]publication.Publication, error)
 	reader.Comma = ';'
 	reader.LazyQuotes = true
 
-	var publications []publication.Publication
+	var advisorStudents []domain.AdvisorStudent
 	for {
-		_, err := reader.Read()
+		row, err := reader.Read()
 		if err == io.EOF {
 			break
 		} else if err != nil {
@@ -46,18 +40,18 @@ func LoadPublicationsFromCSV(filePath string) ([]publication.Publication, error)
 			}
 		}
 
-		// Para fins de exemplo, vamos assumir que cada linha do CSV corresponde a uma publicação
-		// E os valores das colunas correspondem aos atributos de uma publicação
-		publications = append(publications, publication.Publication{
-			// atribua os valores da linha para os atributos do struct Publication aqui
+		// Para fins de exemplo, vamos assumir que cada linha do CSV corresponde a um orientador-aluno
+		// E os valores das colunas correspondem aos atributos de um orientador-aluno
+		advisorStudents = append(advisorStudents, domain.AdvisorStudent{
+			// atribua os valores da linha para os atributos do struct AdvisorStudent aqui
 			// ...
 		})
 	}
 
-	return publications, nil
+	return advisorStudents, nil
 }
 
-func PersistPublications(driver neo4j.DriverWithContext, publications []publication.Publication) error {
+func PersistAdvisorStudents(driver neo4j.DriverWithContext, advisorStudents []domain.AdvisorStudent) error {
 	sessionConfig := neo4j.SessionConfig{
 		AccessMode: neo4j.AccessModeWrite,
 	}
@@ -80,28 +74,25 @@ func PersistPublications(driver neo4j.DriverWithContext, publications []publicat
 		}
 	}
 
-	// Insere as publicações na base de dados
-	for _, publication := range publications {
-		_, err = tx.Run(
-			`CREATE (p:Publication $publication)`,
-			map[string]interface{}{
-				"publication": publication,
-			},
+	// Insere as relações orientador-aluno na base de dados
+	for _, advisorStudent := range advisorStudents {
+		_, err := tx.Run(
+			// cypher query para criar a relação entre o orientador e o aluno
+			// ...
+			nil,
 		)
 
 		if err != nil {
-			// Faz um rollback na transação se houver um erro
-			tx.Rollback()
+			_ = tx.Rollback() // ignorar o erro do rollback
 			return &ErroPersonalizado{
 				Erro: err,
-				Msg:  "Erro ao inserir uma publicação na base de dados",
+				Msg:  "Erro ao fazer commit da transação",
 			}
 		}
 	}
 
-	// Commit da transação
-	err = tx.Commit()
-	if err != nil {
+	// Faz o commit da transação
+	if err := tx.Commit(); err != nil {
 		return &ErroPersonalizado{
 			Erro: err,
 			Msg:  "Erro ao fazer commit da transação",

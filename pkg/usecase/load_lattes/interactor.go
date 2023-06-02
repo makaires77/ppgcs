@@ -8,7 +8,7 @@ import (
 	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4j"
 )
 
-// Interactor é o interactor responsável por carregar os dados do Lattes.
+// Interactor é o responsável por carregar os dados do Lattes.
 type Interactor struct {
 	mongoWriter *mongo.MongoWriter
 	neo4jWriter *neo4j.Neo4jWriteLattes

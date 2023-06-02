@@ -13,10 +13,10 @@ import (
 )
 
 type ScrapLattes struct {
-	neo4jClient *neo4j.Client
+	neo4jClient *neo4j.Neo4jClient
 }
 
-func NewScrapLattes(neo4jClient *neo4j.Client) *ScrapLattes {
+func NewScrapLattes(neo4jClient *neo4j.Neo4jClient) *ScrapLattes {
 	return &ScrapLattes{
 		neo4jClient: neo4jClient,
 	}

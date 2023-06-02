@@ -7,6 +7,11 @@ import (
 	"time"
 )
 
+type ErroPersonalizado struct {
+	Erro error
+	Msg  string
+}
+
 type Publication struct {
 	Natureza            string            `json:"natureza"`
 	Titulo              string            `json:"titulo"`

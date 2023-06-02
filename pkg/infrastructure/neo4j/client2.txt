@@ -1,0 +1,168 @@
+package neo4j
+
+import (
+	"context"
+	"errors"
+
+	"github.com/makaires77/ppgcs/pkg/domain/publication"
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
+)
+
+type Client struct {
+	driver neo4j.DriverWithContext
+}
+
+func NewClient(uri, username, password string) (*Client, error) {
+	driver, err := neo4j.NewDriver(uri, neo4j.BasicAuth(username, password, ""), func(config *neo4j.Config) {
+		config.MaxConnectionPoolSize = 10
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return &Client{driver: driver}, nil
+}
+
+func (c *Client) SavePublication(ctx context.Context, data *publication.Publication) error {
+	if data == nil {
+		return errors.New("data is null")
+	}
+	if data.Titulo == "" {
+		return errors.New("titulo is required")
+	}
+	if data.Hash == "" {
+		return errors.New("hash is required")
+	}
+
+	cypher := `
+		MERGE (p:Publication {hash: $hash})
+		ON CREATE SET
+			p.natureza = $natureza, 
+			p.titulo = $titulo, 
+			p.idioma = $idioma, 
+			p.periodico = $periodico,
+			p.ano = $ano, 
+			p.volume = $volume,
+			p.issn = $issn,
+			p.estratoQualis = $estratoQualis,
+			p.paisDePublicacao = $paisDePublicacao,
+			p.paginas = $paginas,
+			p.doi = $doi,
+			p.autores = $autores,
+			p.autoresEndogeno = $autoresEndogeno,
+			p.autoresEndogenoNome = $autoresEndogenoNome,
+			p.tags = $tags
+		RETURN p
+	`
+	session, err := c.driver.NewSession(ctx, neo4j.SessionConfig{
+		AccessMode: neo4j.AccessModeWrite,
+	})
+	if err != nil {
+		return err
+	}
+	defer session.Close(ctx)
+
+	tx, err := session.BeginTransaction(ctx)
+	if err != nil {
+		return err
+	}
+
+	result, err := tx.Run(ctx, cypher, map[string]interface{}{
+		"natureza":            data.Natureza,
+		"titulo":              data.Titulo,
+		"idioma":              data.Idioma,
+		"periodico":           data.Periodico,
+		"ano":                 data.Ano,
+		"volume":              data.Volume,
+		"issn":                data.ISSN,
+		"estratoQualis":       data.EstratoQualis,
+		"paisDePublicacao":    data.PaisDePublicacao,
+		"paginas":             data.Paginas,
+		"doi":                 data.DOI,
+		"autores":             data.Autores,
+		"autoresEndogeno":     data.AutoresEndogeno,
+		"autoresEndogenoNome": data.AutoresEndogenoNome,
+		"tags":                data.Tags,
+		"hash":                data.Hash,
+	})
+	if err != nil {
+		_ = tx.Rollback(ctx)
+		return err
+	} else {
+		err = tx.Commit(ctx)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (c *Client) Close() error {
+	return c.driver.Close(context.Background())
+}
+
+func (c *Client) FindPublicationByHash(ctx context.Context, hash string) (*publication.Publication, error) {
+	cypher := `
+		MATCH (p:Publication {hash: $hash})
+		RETURN p
+	`
+	session, err := c.driver.NewSession(ctx, neo4j.SessionConfig{
+		AccessMode: neo4j.AccessModeRead,
+	})
+	if err != nil {
+		return nil, err
+	}
+	defer session.Close(ctx)
+
+	result, err := session.ReadTransaction(func(tx neo4j.Transaction) (interface{}, error) {
+		return tx.Run(ctx, cypher, map[string]interface{}{"hash": hash})
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	record, err := result.Single()
+	if err != nil {
+		return nil, err
+	}
+
+	p := record.GetByIndex(0).(publication.Publication)
+
+	return &p, nil
+}
+
+func (c *Client) FindPublicationsByTitle(ctx context.Context, title string) ([]*publication.Publication, error) {
+	cypher := `
+		MATCH (p:Publication {titulo: $title})
+		RETURN p
+	`
+	session, err := c.driver.NewSession(ctx, neo4j.SessionConfig{
+		AccessMode: neo4j.AccessModeRead,
+	})
+	if err != nil {
+		return nil, err
+	}
+	defer session.Close(ctx)
+
+	result, err := session.ReadTransaction(func(tx neo4j.Transaction) (interface{}, error) {
+		return tx.Run(ctx, cypher, map[string]interface{}{"title": title})
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	records, err := result.Collect()
+	if err != nil {
+		return nil, err
+	}
+
+	publications := make([]*publication.Publication, len(records))
+
+	for i, record := range records {
+		p := record.GetByIndex(0).(publication.Publication)
+		publications[i] = &p
+	}
+
+	return publications, nil
+}

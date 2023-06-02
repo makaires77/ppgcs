@@ -86,7 +86,7 @@ func validateFile(fileName string, file io.Reader) error {
 
 func main() {
 	// Crie o cliente Neo4J
-	neo4jClient, err := neo4j.NewClient("neo4j://localhost:7687", "username", "password")
+	neo4jClient, err := neo4j.Neo4jClient("neo4j://localhost:7687", "username", "password")
 	if err != nil {
 		log.Fatalf("Failed to create neo4j client: %v", err)
 	}
