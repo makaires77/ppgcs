@@ -30,7 +30,7 @@ func (c *Neo4jClient) Close() error {
 }
 
 func (c *Neo4jClient) SavePublication(ctx context.Context, p publication.Publication) error {
-	session := c.driver.NewSession(neo4j.SessionConfig{})
+	session := c.driver.NewSession(ctx, neo4j.SessionConfig{})
 	if session == nil {
 		return fmt.Errorf("neo4j: unable to establish a new session")
 	}
