@@ -12,10 +12,11 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
+
 	"github.com/hbollon/go-edlib"
 	"github.com/streadway/amqp"
 
-	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4j"
 	"github.com/makaires77/ppgcs/pkg/infrastructure/scrap_lattes"
 	"github.com/makaires77/ppgcs/pkg/interfaces/rabbitmq"
 	"github.com/makaires77/ppgcs/pkg/usecase/fuzzysearch"
