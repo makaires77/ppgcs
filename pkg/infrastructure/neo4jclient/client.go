@@ -2,7 +2,6 @@ package neo4jclient
 
 import (
 	"context"
-	"errors"
 	"fmt"
 
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
@@ -24,22 +23,20 @@ func NewNeo4jClient(uri, username, password string) (*Neo4jClient, error) {
 }
 
 func (c *Neo4jClient) Close() error {
-	return c.driver.Close(context.Background())
+	if c.driver != nil {
+		return c.driver.Close(context.Background())
+	}
+	return nil
 }
 
 func (c *Neo4jClient) SavePublication(ctx context.Context, p publication.Publication) error {
-	sessionConfig := neo4j.SessionConfig{
-		AccessMode: neo4j.AccessModeWrite,
-		Bookmarks:  []string{},
-	}
-
-	session := c.driver.NewSession(ctx, neo4j.SessionConfig{})
-	if session != nil {
-		return errors.New("unable to establish a new session")
+	session := c.driver.NewSession(neo4j.SessionConfig{})
+	if session == nil {
+		return fmt.Errorf("neo4j: unable to establish a new session")
 	}
 	defer session.Close(context.Background())
 
-	err := session.WriteTransaction(func(tx neo4j.Transaction) (interface{}, error) {
+	_, err := session.WriteTransaction(ctx, func(tx neo4j.Transaction) (interface{}, error) {
 		result, err := tx.Run(
 			`CREATE (p:Publication {Natureza: $natureza, Titulo: $titulo, Idioma: $idioma, Periodico: $periodico, Ano: $ano, Volume: $volume, ISSN: $issn, EstratoQualis: $estrato_qualis, PaisDePublicacao: $pais_de_publicacao, Paginas: $paginas, DOI: $doi, Autores: $autores, AutoresEndogeno: $autores_endogeno, AutoresEndogenoNome: $autores_endogeno_nome, Tags: $tags, Hash: $hash})`,
 			map[string]interface{}{
