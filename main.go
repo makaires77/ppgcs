@@ -13,9 +13,13 @@ import (
 	"sync"
 
 	"github.com/hbollon/go-edlib"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/mongo"
 	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4jclient"
-	"github.com/makaires77/ppgcs/pkg/infrastructure/rabbitmq"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/scrap_lattes"
+	"github.com/makaires77/ppgcs/pkg/interfaces/rabbitmq"
 	"github.com/makaires77/ppgcs/pkg/usecase/fuzzysearch"
+	"github.com/makaires77/ppgcs/pkg/usecase/load_lattes"
+	"github.com/streadway/amqp"
 )
 
 type Researcher struct {
@@ -76,45 +80,71 @@ func scrapeResearcherInfo(name string) (string, error) {
 
 func validateFile(fileName string, file io.Reader) error {
 	if file == nil {
-		return errors.New("the file is empty")
+		return errors.New("o arquivo está vazio")
 	}
 
 	if ext := filepath.Ext(fileName); !strings.EqualFold(ext, ".csv") {
-		return errors.New("only .csv files are allowed")
+		return errors.New("apenas arquivos .csv são permitidos")
 	}
 
 	return nil
 }
 
 func main() {
+	// Defina as informações de conexão com o Neo4j
+	uri := "bolt://localhost:7687"
+	username := "neo4j"
+	password := "password"
+
 	// Create a Neo4j connection
-	neo4jClient, err := neo4jclient.NewNeo4jClient("neo4j://localhost:7687", "username", "password")
+	neo4jClient, err := neo4jclient.NewNeo4jClient(uri, username, password)
 	if err != nil {
-		log.Fatalf("Failed to create Neo4j client: %v", err)
+		log.Fatalf("Falha ao criar conexão com o Neo4j: %v", err)
+	}
+
+	// Create a MongoDB connection
+	mongoWriter, err := mongo.NewMongoWriter("mongodb://localhost:27017", "username", "password")
+	if err != nil {
+		log.Fatalf("Falha ao criar conexão com o MongoDB: %v", err)
 	}
 
 	// Create a ScrapLattes instance
-	scrapLattes := NewScrapLattes(neo4jClient)
+	scrapLattes := scrap_lattes.NewScrapLattes(neo4jClient)
 
 	// Create a RabbitMQ connection
-	conn, err := rabbitmq.Dial("amqp://guest:guest@localhost:5672/")
+	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
 	if err != nil {
-		log.Fatalf("Failed to create RabbitMQ connection: %v", err)
+		log.Fatalf("Falha ao criar conexão com o RabbitMQ: %v", err)
 	}
 
 	// Create a RabbitMQ consumer
-	consumer, err := rabbitmq.NewConsumer(conn, "yourQueueName", scrapLattes)
+	consumer := rabbitmq.NewConsumer(conn, "yourQueueName", scrapLattes)
 	if err != nil {
-		log.Fatalf("Failed to create RabbitMQ consumer: %v", err)
+		log.Fatalf("Falha ao criar consumidor RabbitMQ: %v", err)
 	}
 
 	// Start the RabbitMQ consumer
 	go consumer.Start()
 
+	// Create a Neo4jWriteLattes instance
+	neo4jWriteLattes, err := neo4jclient.NewNeo4jWriteLattes(uri, username, password)
+	if err != nil {
+		log.Fatalf("Falha ao criar instância do Neo4jWriteLattes: %v", err)
+	}
+
+	// Create a load_lattes.Interactor instance
+	interactor := load_lattes.NewInteractor(mongoWriter, neo4jWriteLattes)
+
+	// Create a RabbitMQ enqueuer
+	enqueuer, err := rabbitmq.NewEnqueueLattes(interactor, conn, "yourQueueName")
+	if err != nil {
+		log.Fatalf("Falha ao criar enfileirador RabbitMQ: %v", err)
+	}
+
 	http.HandleFunc("/start-scraping", func(w http.ResponseWriter, r *http.Request) {
 		file, header, err := r.FormFile("file")
 		if err != nil {
-			http.Error(w, "Error retrieving file", http.StatusInternalServerError)
+			http.Error(w, "Erro ao obter o arquivo", http.StatusInternalServerError)
 			return
 		}
 		defer file.Close()
@@ -158,13 +188,13 @@ func main() {
 				break
 			}
 			if err != nil {
-				http.Error(w, "Error reading CSV file", http.StatusInternalServerError)
+				http.Error(w, "Erro ao ler o arquivo CSV", http.StatusInternalServerError)
 				return
 			}
 
 			// Check if each line in the CSV has one field
 			if len(record) != 1 {
-				http.Error(w, "Each line in the CSV file must contain exactly one field", http.StatusBadRequest)
+				http.Error(w, "Cada linha do arquivo CSV deve conter exatamente um campo", http.StatusBadRequest)
 				return
 			}
 
@@ -179,6 +209,24 @@ func main() {
 
 		json.NewEncoder(w).Encode(map[string]string{
 			"message": "O processo de scraping foi iniciado",
+		})
+	})
+
+	http.HandleFunc("/enqueue-pesquisador", func(w http.ResponseWriter, r *http.Request) {
+		pesquisadorID := r.FormValue("pesquisadorID")
+		if pesquisadorID == "" {
+			http.Error(w, "Parâmetro pesquisadorID ausente", http.StatusBadRequest)
+			return
+		}
+
+		err := enqueuer.EnqueuePesquisador(pesquisadorID)
+		if err != nil {
+			http.Error(w, fmt.Sprintf("Falha ao enfileirar o pesquisadorID %s: %s", pesquisadorID, err), http.StatusInternalServerError)
+			return
+		}
+
+		json.NewEncoder(w).Encode(map[string]string{
+			"message": fmt.Sprintf("PesquisadorID %s enfileirado com sucesso!", pesquisadorID),
 		})
 	})
 

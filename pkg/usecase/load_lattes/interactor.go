@@ -11,11 +11,11 @@ import (
 // Interactor é o responsável por carregar os dados do Lattes.
 type Interactor struct {
 	mongoWriter *mongo.MongoWriter
-	neo4jWriter *neo4jclient.write_lattes
+	neo4jWriter *neo4jclient.Neo4jWriteLattes
 }
 
 // NewInteractor cria uma nova instância de Interactor.
-func NewInteractor(mongoWriter *mongo.MongoWriter, neo4jWriter *neo4j.Neo4jWriteLattes) *Interactor {
+func NewInteractor(mongoWriter *mongo.MongoWriter, neo4jWriter *neo4jclient.Neo4jWriteLattes) *Interactor {
 	return &Interactor{
 		mongoWriter: mongoWriter,
 		neo4jWriter: neo4jWriter,

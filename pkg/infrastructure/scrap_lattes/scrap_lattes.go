@@ -2,8 +2,6 @@ package scrap_lattes
 
 import (
 	"encoding/csv"
-	/* 	"errors"
-	 */
 	"fmt"
 	"io"
 	"os"
