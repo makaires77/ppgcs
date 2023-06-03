@@ -12,13 +12,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
-
 	"github.com/hbollon/go-edlib"
-	"github.com/streadway/amqp"
-
-	"github.com/makaires77/ppgcs/pkg/infrastructure/scrap_lattes"
-	"github.com/makaires77/ppgcs/pkg/interfaces/rabbitmq"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4jclient"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/rabbitmq"
 	"github.com/makaires77/ppgcs/pkg/usecase/fuzzysearch"
 )
 
@@ -26,13 +22,18 @@ type Researcher struct {
 	Name string
 }
 
-// A chamada para a função FuzzySearchSetThreshold está passando uma lista com apenas um item ([]string{autoresArtigo}) porque o algoritmo de pesquisa fuzzy precisa comparar um string (discente) com uma lista de strings (autoresArtigo). Se autoresArtigo já for uma lista de strings, então você pode simplesmente passá-la diretamente: FuzzySearchSetThreshold(discente, autoresArtigo, 3, 0.7, edlib.Levenshtein).
+type ScrapLattes struct {
+	neo4jClient *neo4jclient.Neo4jClient
+}
+
+func NewScrapLattes(neo4jClient *neo4jclient.Neo4jClient) *ScrapLattes {
+	return &ScrapLattes{
+		neo4jClient: neo4jClient,
+	}
+}
 
 func fuzz() {
 	fuzzyService := fuzzysearch.NewFuzzySearchService()
-
-	// Lista de campos de publication.csv:
-	// idLattes, nome, tipo, titulo_do_capitulo, idioma, titulo_do_livro, ano, doi, pais_de_publicacao, isbn, nome_da_editora, numero_da_edicao_revisao, organizadores, paginas, autores,autores-endogeno, autores-endogeno-nome, tags, Hash,tipo_producao, natureza, titulo, nome_do_evento,ano_do_trabalho,pais_do_evento,cidade_do_evento,classificacao, periodico, volume, issn,estrato_qualis, editora, numero_de_paginas, numero_de_volumes
 
 	// Load data from CSV files
 	discentesData, _ := fuzzyService.LoadCSVData("_data/powerbi/lista_docentes_colaboradores.csv", 1)
@@ -86,25 +87,29 @@ func validateFile(fileName string, file io.Reader) error {
 }
 
 func main() {
-	// Crie o cliente Neo4J
-	neo4jClient, err := neo4j.NewClient("neo4j://localhost:7687", "username", "password")
+	// Create a Neo4j connection
+	neo4jClient, err := neo4jclient.NewNeo4jClient("neo4j://localhost:7687", "username", "password")
 	if err != nil {
-		log.Fatalf("Failed to create neo4j client: %v", err)
+		log.Fatalf("Failed to create Neo4j client: %v", err)
 	}
 
-	// Crie uma conexão AMQP
-	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
+	// Create a ScrapLattes instance
+	scrapLattes := NewScrapLattes(neo4jClient)
+
+	// Create a RabbitMQ connection
+	conn, err := rabbitmq.Dial("amqp://guest:guest@localhost:5672/")
 	if err != nil {
-		log.Fatalf("Failed to connect to RabbitMQ: %v", err)
+		log.Fatalf("Failed to create RabbitMQ connection: %v", err)
 	}
 
-	// Crie uma instância de ScrapLattes
-	scrapLattes := scrap_lattes.NewScrapLattes(neo4jClient)
+	// Create a RabbitMQ consumer
+	consumer, err := rabbitmq.NewConsumer(conn, "yourQueueName", scrapLattes)
+	if err != nil {
+		log.Fatalf("Failed to create RabbitMQ consumer: %v", err)
+	}
 
-	// Crie o consumidor RabbitMQ
-	consumer := rabbitmq.NewConsumer(conn, "yourQueueName", scrapLattes)
-
-	consumer.Start()
+	// Start the RabbitMQ consumer
+	go consumer.Start()
 
 	http.HandleFunc("/start-scraping", func(w http.ResponseWriter, r *http.Request) {
 		file, header, err := r.FormFile("file")
@@ -114,28 +119,28 @@ func main() {
 		}
 		defer file.Close()
 
-		// Valida o arquivo
+		// Validate the file
 		if err := validateFile(header.Filename, file); err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
 
-		// Crie um novo leitor CSV
+		// Create a new CSV reader
 		csvReader := csv.NewReader(file)
 
-		// Canal para enviar nomes de pesquisadores para as goroutines
+		// Channel to send researcher names to goroutines
 		names := make(chan string)
 
-		// WaitGroup para sincronizar as goroutines
+		// WaitGroup to synchronize goroutines
 		var wg sync.WaitGroup
 
-		// Crie 4 goroutines que processam os nomes de pesquisadores
+		// Create 4 goroutines that process researcher names
 		for i := 0; i < 4; i++ {
 			wg.Add(1)
 			go func() {
 				defer wg.Done()
 				for name := range names {
-					// Chama o serviço de scrapping
+					// Call the scraping service
 					info, err := scrapeResearcherInfo(name)
 					if err != nil {
 						fmt.Printf("Erro ao processar o nome '%s': %s\n", name, err)
@@ -146,7 +151,7 @@ func main() {
 			}()
 		}
 
-		// Envia os nomes de pesquisadores para o canal
+		// Send researcher names to the channel
 		for {
 			record, err := csvReader.Read()
 			if err == io.EOF {
@@ -157,7 +162,7 @@ func main() {
 				return
 			}
 
-			// Verifica se cada linha do CSV tem um campo
+			// Check if each line in the CSV has one field
 			if len(record) != 1 {
 				http.Error(w, "Each line in the CSV file must contain exactly one field", http.StatusBadRequest)
 				return
@@ -166,10 +171,10 @@ func main() {
 			names <- record[0]
 		}
 
-		// Fecha o canal para sinalizar que não há mais nomes a serem processados
+		// Close the channel to signal that there are no more names to process
 		close(names)
 
-		// Aguarda todas as goroutines terminarem
+		// Wait for all goroutines to finish
 		wg.Wait()
 
 		json.NewEncoder(w).Encode(map[string]string{

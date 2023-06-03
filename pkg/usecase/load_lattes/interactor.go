@@ -5,13 +5,13 @@ import (
 
 	"github.com/makaires77/ppgcs/pkg/domain/scrap_lattes"
 	"github.com/makaires77/ppgcs/pkg/infrastructure/mongo"
-	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4j"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4jclient"
 )
 
 // Interactor é o responsável por carregar os dados do Lattes.
 type Interactor struct {
 	mongoWriter *mongo.MongoWriter
-	neo4jWriter *neo4j.Neo4jWriteLattes
+	neo4jWriter *neo4jclient.write_lattes
 }
 
 // NewInteractor cria uma nova instância de Interactor.
