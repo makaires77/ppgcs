@@ -5,8 +5,14 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"regexp"
 	"strings"
 	"sync"
+	"unicode"
+
+	"golang.org/x/text/runes"
+	"golang.org/x/text/transform"
+	"golang.org/x/text/unicode/norm"
 
 	"github.com/gocarina/gocsv"
 	"github.com/makaires77/ppgcs/pkg/usecase/nomecomparador"
@@ -53,21 +59,75 @@ type Student struct {
 	Name_discente string `csv:"discente"`
 }
 
-// func removeAccents(text string) string {
-// 	return unidecode.Unidecode(text)
-// }
+func normalizeName(name string) (string, error) {
+	name = removePrepositions(name)
+	name = normalizeString(name)
 
-// func clearScreen() {
-// 	if runtime.GOOS == "windows" {
-// 		cmd := exec.Command("cmd", "/c", "cls")
-// 		cmd.Stdout = os.Stdout
-// 		cmd.Run()
-// 	} else {
-// 		cmd := exec.Command("clear")
-// 		cmd.Stdout = os.Stdout
-// 		cmd.Run()
-// 	}
-// }
+	// Verificar se o nome já contém vírgula
+	if strings.Contains(name, ",") {
+		// Se o nome já contém vírgula, realizar apenas a remoção de acentuação e preposições
+		name = convertToInitials(name)
+	} else {
+		// Se o nome não contém vírgula, trazer o sobrenome para o início e adicionar iniciais
+		name = bringLastNameToFront(name)
+		name = convertToInitials(name)
+	}
+
+	return name, nil
+}
+
+func bringLastNameToFront(name string) string {
+	names := strings.Fields(name)
+	if len(names) > 1 {
+		lastName := names[len(names)-1]
+		initials := ""
+		for i, n := range names[:len(names)-1] {
+			if i == 0 {
+				// Manter o primeiro nome completo
+				initials += n + " "
+			} else {
+				// Converter os demais nomes em iniciais
+				initials += string(n[0]) + ". "
+			}
+		}
+		name = lastName + ", " + strings.TrimSpace(initials)
+	}
+	return name
+}
+
+func removePrepositions(name string) string {
+	prepositions := []string{"de", "da", "do", "das", "dos"}
+	for _, prep := range prepositions {
+		name = strings.ReplaceAll(name, " "+prep+" ", " ")
+	}
+	return name
+}
+
+func convertToInitials(name string) string {
+	names := strings.Fields(name)
+	initials := ""
+	for i, n := range names {
+		// Verificar se é um sobrenome
+		if i == 0 || strings.Contains(n, "-") {
+			initials += n + " "
+		} else {
+			initials += string(n[0]) + ". "
+		}
+	}
+	return strings.TrimSpace(initials)
+}
+
+func normalizeString(s string) string {
+	t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
+	name, _, _ := transform.String(t, s)
+	name = removeAccentRunes(name)
+	return name
+}
+
+func removeAccentRunes(s string) string {
+	reg := regexp.MustCompile("[ÀÁÂÃÄÅàáâãäåÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöøÙÚÛÜùúûüÇç]")
+	return reg.ReplaceAllString(s, "")
+}
 
 func main() {
 	// Abrir o arquivo CSV dos autores
@@ -108,16 +168,11 @@ func main() {
 	// Extrair a segunda coluna dos discentes
 	var studentNames []string
 	for _, studentRecord := range studentRecords {
-		studentName := studentRecord[1]
-		fmt.Println(studentName)
-		studentNames = append(studentNames, studentName)
+		log.Println("Nome a normalizar:", studentRecord[1])
+		normalizedStudentName, _ := normalizeName(studentRecord[1])
+		log.Println("Nome a normalizado:", normalizedStudentName)
+		studentNames = append(studentNames, normalizedStudentName)
 	}
-
-	// // Imprimir a lista de nomes dos discentes
-	// fmt.Println("Lista de discentes:")
-	// for _, name := range studentNames {
-	// 	fmt.Println(name)
-	// }
 
 	// Criar um canal para enviar atualizações de progresso
 	progress := make(chan string)
@@ -141,31 +196,29 @@ func main() {
 	// Variáveis para contagem
 	var totalSimilarities int
 	var achado int
-	// var remainingComparisons int
 
 	// Chamar a função CompareNames para cada combinação de autor e discente
 	for _, authorRecord := range authorRecords {
-		achado = 0
-		for _, studentRecord := range studentNames {
+		for _, studentName := range studentNames {
 			authorNames := strings.Split(authorRecord.Autores, ";")
-			docentName := strings.Split(authorRecord.Name, ";")
-			studentName := studentRecord
+			docentName := authorRecord.Name
 
 			for _, authorName := range authorNames {
-				authorName = strings.TrimSpace(authorName)
-				fmt.Printf("Comparando %s com %s\n", studentName, authorName)
+				normalizedName, _ := normalizeName(authorName)
+				authorName = strings.TrimSpace(normalizedName)
+				// fmt.Printf("Comparando discente %-25s com autor %-25s\n", studentName, authorName)
 
 				similarity := nomecomparador.JaccardSimilarity(authorName, studentName)
-				if similarity > 0.85 {
+				if similarity > 0.86 {
 					achado = 1
-					msg := fmt.Sprintf("%03d | Similaridade %.2f entre: %-40s | %-40s | Docente: %-40s", totalSimilarities, similarity, authorName, studentName, docentName)
+					msg := fmt.Sprintf("%03d | %.2f | %-25s | %-25s | Currículo: %-25s", totalSimilarities, similarity, authorName, studentName, docentName)
 					progress <- msg
-					// clearScreen()
 				}
 			}
-			wg.Done()
 		}
 		totalSimilarities = totalSimilarities + achado
+		achado = 0
+		wg.Done()
 	}
 
 	// Calcular as contagens e o percentual de colaboração
@@ -178,7 +231,7 @@ func main() {
 	fmt.Printf("Artigos com similaridades: %d\n", numArticlesWithSimilarities)
 	fmt.Printf("Total de artigos: %d\n", numTotalArticles)
 	fmt.Printf("Total de discentes: %d\n", numTotalDiscentes)
-	fmt.Printf("Percentual de colaboração: %.2f%%\n", collaborationPercentage)
+	fmt.Printf("Percentual de colaboração no programa: %.2f%%\n", collaborationPercentage)
 
 	// Aguardar a conclusão de todas as comparações
 	wg.Wait()
@@ -187,4 +240,46 @@ func main() {
 	close(progress)
 
 	fmt.Println("Leitura dos arquivos CSV concluída com sucesso.")
+
+	// Calcular as contagens e o percentual de colaboração
+	numArticlesWithSimilarities = totalSimilarities
+	numTotalArticles = len(authorRecords)
+	numTotalDiscentes = len(studentRecords)
+	collaborationPercentage = float64(numArticlesWithSimilarities) / float64(numTotalArticles) * 100
+
+	fmt.Printf("\nResumo da comparação:\n")
+	fmt.Printf("Artigos com similaridades: %d\n", numArticlesWithSimilarities)
+	fmt.Printf("Total de artigos: %d\n", numTotalArticles)
+	fmt.Printf("Total de discentes: %d\n", numTotalDiscentes)
+	fmt.Printf("Percentual de colaboração no programa: %.2f%%\n", collaborationPercentage)
+
+	// Totalização do percentual de colaboração de cada docente
+	docenteColaboracao := make(map[string]int)
+	for _, authorRecord := range authorRecords {
+		for _, studentName := range studentNames {
+			authorNames := strings.Split(authorRecord.Autores, ";")
+
+			for _, authorName := range authorNames {
+				normalizedName, _ := normalizeName(authorName)
+				authorName = strings.TrimSpace(normalizedName)
+
+				similarity := nomecomparador.JaccardSimilarity(authorName, studentName)
+				if similarity > 0.86 {
+					msg := fmt.Sprintf("%03d | %.2f | %-25s | %-25s | Currículo: %-25s", totalSimilarities, similarity, authorName, studentName, authorRecord.Name)
+					progress <- msg
+
+					// Incrementar a contagem de colaboração para o docente
+					docenteColaboracao[authorRecord.Name]++
+				}
+			}
+		}
+		wg.Done()
+	}
+
+	// Imprimir a totalização do percentual de colaboração de cada docente
+	fmt.Println("\nTotal de colaboração por docente:")
+	for docentName, colaboracao := range docenteColaboracao {
+		percentual := float64(colaboracao) / float64(numTotalArticles) * 100
+		fmt.Printf("%-25s: %.2f%%\n", docentName, percentual)
+	}
 }
