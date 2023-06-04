@@ -1,5 +1,5 @@
-// csv.go
-package csv
+// csv_files.go
+package csv_files
 
 import (
 	"encoding/csv"
