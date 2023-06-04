@@ -7,10 +7,7 @@ import (
 )
 
 // CompareNames compara cada nome de autor com cada nome de discente
-// authors: slice de slices de strings representando os nomes dos autores
-// students: slice de slices de strings representando os nomes dos discentes
-// CompareNames compara cada nome de autor com cada nome de discente
-func CompareNames(authors [][]string, students [][]string, wg *sync.WaitGroup, progress chan<- string) {
+func CompareNames(authors [][]string, students [][]string, wg *sync.WaitGroup, progress chan<- string, handleError func(err error, record []string) error) {
 	defer wg.Done()
 
 	startTime := time.Now()
@@ -29,6 +26,13 @@ func CompareNames(authors [][]string, students [][]string, wg *sync.WaitGroup, p
 					}
 
 					completedComparisons++
+
+					// Verificar se ocorreu um erro ao converter o nome
+					err := handleError(nil, []string{author, student})
+					if err != nil {
+						handleError(err, []string{author, student})
+						continue
+					}
 
 					// Atualizar o progresso a cada 10% completado
 					if completedComparisons%int(0.1*float64(totalComparisons)) == 0 {
@@ -55,6 +59,7 @@ func JaccardSimilarity(str1, str2 string) float64 {
 }
 
 // Funções auxiliares
+
 // Converte uma string em um conjunto de caracteres
 func stringToSet(str string) map[rune]bool {
 	set := make(map[rune]bool)
