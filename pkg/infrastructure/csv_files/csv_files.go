@@ -28,7 +28,7 @@ func ReadCsvFile(filePath string, columnIndex int) ([]string, error) {
 		if len(record) > columnIndex {
 			data = append(data, record[columnIndex])
 		} else {
-			return nil, errors.New("Column index out of range")
+			return nil, errors.New("column index out of range")
 		}
 	}
 	return data, nil

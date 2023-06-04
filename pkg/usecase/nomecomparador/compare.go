@@ -1,59 +1,46 @@
 package nomecomparador
 
 import (
-	"strings"
-	"unicode"
-
-	"github.com/makaires77/ppgcs/pkg/infrastructure/csv"
+	"fmt"
+	"sync"
+	"time"
 )
 
-func processName(name string, namesChannel chan string, doneChannel chan bool) {
-	name, err := normalizeName(name)
-	if err != nil {
-		// lidar com o erro
-		return
-	}
+// CompareNames compara cada nome de autor com cada nome de discente
+// authors: slice de slices de strings representando os nomes dos autores
+// students: slice de slices de strings representando os nomes dos discentes
+// CompareNames compara cada nome de autor com cada nome de discente
+func CompareNames(authors [][]string, students [][]string, wg *sync.WaitGroup, progress chan<- string) {
+	defer wg.Done()
 
-	names, err := csv.ReadCsvFile("publicacoes.csv", 14)
-	if err != nil {
-		// lidar com o erro
-		return
-	}
+	startTime := time.Now()
 
-	for _, n := range names {
-		jaccard := JaccardSimilarity(name, n)
-		levenshtein := LevenshteinDistance(name, n)
-		soundex := Soundex(name) == Soundex(n)
+	totalComparisons := len(authors) * len(students)
+	completedComparisons := 0
 
-		if jaccard > 0.75 || levenshtein < 3 || soundex {
-			namesChannel <- n
+	for _, authorGroup := range authors {
+		for _, author := range authorGroup {
+			for _, studentGroup := range students {
+				for _, student := range studentGroup {
+					similarity := JaccardSimilarity(author, student)
+					if similarity > 0.7 {
+						msg := fmt.Sprintf("Similar names: %s and %s\n", author, student)
+						progress <- msg
+					}
+
+					completedComparisons++
+
+					// Atualizar o progresso a cada 10% completado
+					if completedComparisons%int(0.1*float64(totalComparisons)) == 0 {
+						progress <- fmt.Sprintf("Progresso: %.0f%% concluído", float64(completedComparisons)/float64(totalComparisons)*100)
+					}
+				}
+			}
 		}
 	}
 
-	doneChannel <- true
-}
-
-func processNames(names []string) []string {
-	namesChannel := make(chan string)
-	doneChannel := make(chan bool)
-
-	for _, name := range names {
-		go processName(name, namesChannel, doneChannel)
-	}
-
-	go func() {
-		for i := 0; i < len(names); i++ {
-			<-doneChannel
-		}
-		close(namesChannel)
-	}()
-
-	var matchedNames []string
-	for name := range namesChannel {
-		matchedNames = append(matchedNames, name)
-	}
-
-	return matchedNames
+	elapsedTime := time.Since(startTime)
+	progress <- fmt.Sprintf("Tempo total de execução: %s", elapsedTime.String())
 }
 
 // JaccardSimilarity calcula a similaridade de Jaccard entre duas strings
@@ -67,73 +54,12 @@ func JaccardSimilarity(str1, str2 string) float64 {
 	return float64(len(intersection)) / float64(len(union))
 }
 
-// LevenshteinDistance calcula a distância de Levenshtein entre duas strings
-func LevenshteinDistance(str1, str2 string) int {
-	len1 := len(str1)
-	len2 := len(str2)
-
-	// Criar uma matriz para armazenar as distâncias
-	matrix := make([][]int, len1+1)
-	for i := range matrix {
-		matrix[i] = make([]int, len2+1)
-	}
-
-	// Inicializar a primeira linha e a primeira coluna da matriz
-	for i := 0; i <= len1; i++ {
-		matrix[i][0] = i
-	}
-	for j := 0; j <= len2; j++ {
-		matrix[0][j] = j
-	}
-
-	// Preencher a matriz com as distâncias
-	for i := 1; i <= len1; i++ {
-		for j := 1; j <= len2; j++ {
-			cost := 1
-			if str1[i-1] == str2[j-1] {
-				cost = 0
-			}
-
-			matrix[i][j] = min(matrix[i-1][j]+1, matrix[i][j-1]+1, matrix[i-1][j-1]+cost)
-		}
-	}
-
-	return matrix[len1][len2]
-}
-
-// Soundex converte uma string em seu código Soundex
-func Soundex(str string) string {
-	if len(str) == 0 {
-		return ""
-	}
-
-	str = strings.ToUpper(str)
-	soundex := string(str[0])
-	prevCode := getCode(str[0])
-
-	for i := 1; i < len(str) && len(soundex) < 4; i++ {
-		code := getCode(str[i])
-		if code != prevCode && code != 0 {
-			soundex += string(code)
-		}
-		prevCode = code
-	}
-
-	// Preencher com zeros se necessário
-	for len(soundex) < 4 {
-		soundex += "0"
-	}
-
-	return soundex
-}
-
 // Funções auxiliares
-
 // Converte uma string em um conjunto de caracteres
 func stringToSet(str string) map[rune]bool {
 	set := make(map[rune]bool)
 	for _, char := range str {
-		if !unicode.IsSpace(char) {
+		if !isSpace(char) {
 			set[char] = true
 		}
 	}
@@ -163,33 +89,7 @@ func union(set1, set2 map[rune]bool) map[rune]bool {
 	return union
 }
 
-// Retorna o código Soundex de um caractere
-func getCode(char byte) byte {
-	switch char {
-	case 'B', 'F', 'P', 'V':
-		return '1'
-	case 'C', 'G', 'J', 'K', 'Q', 'S', 'X', 'Z':
-		return '2'
-	case 'D', 'T':
-		return '3'
-	case 'L':
-		return '4'
-	case 'M', 'N':
-		return '5'
-	case 'R':
-		return '6'
-	default:
-		return 0
-	}
-}
-
-// Retorna o mínimo entre três inteiros
-func min(a, b, c int) int {
-	if a < b && a < c {
-		return a
-	}
-	if b < a && b < c {
-		return b
-	}
-	return c
+// Verifica se o caractere é um espaço
+func isSpace(char rune) bool {
+	return char == ' ' || char == '\t' || char == '\n' || char == '\r'
 }

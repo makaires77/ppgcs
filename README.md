@@ -38,6 +38,87 @@ O arquivo config.py contém configurações do serviço
 
 O arquivo run.py inicia o serviço Flask
 
+# Governança e para colaborar como desenvolvedor
+## Relacionamento hierárquicom entre as partes
+- **Funções**: Funções em Go são declaradas com a palavra-chave `func`, seguida pelo nome da função, a lista de parâmetros entre parênteses, o tipo de retorno e o corpo da função entre chaves. Por exemplo, na nossa função `ReadCsvFile` em `csv_files.go`, declaramos uma função que lê um arquivo CSV e retorna uma lista de strings e um erro.
+
+```go
+func ReadCsvFile(filePath string, columnIndex int) ([]string, error) {...}
+```
+
+- **Métodos**: Métodos em Go são funções que estão associadas a um tipo específico, chamado de receptor do método. Eles permitem definir comportamentos para tipos personalizados. No nosso código, não temos exemplos de métodos, pois nosso código é principalmente orientado a funções e não usa muitos tipos personalizados.
+
+- **Pacotes**: Pacotes em Go são usados para organizar e reutilizar código. Todos os arquivos em um único diretório devem pertencer ao mesmo pacote. Por exemplo, no nosso projeto, temos o pacote `csv_files` que contém a função `ReadCsvFile`.
+
+```go
+package csv_files
+```
+
+- **Módulos**: Módulos em Go são uma coleção de pacotes que são distribuídos juntos. Cada módulo é definido por um arquivo go.mod em sua raiz ou em um de seus diretórios pai. No nosso projeto, temos um módulo principal definido no diretório raiz.
+
+```go
+module ppgcs
+```
+
+- **Bibliotecas**: Bibliotecas em Go são conjuntos de módulos que fornecem funcionalidades que podem ser reutilizadas em diferentes programas. No nosso projeto, usamos várias bibliotecas, como `encoding/csv` para leitura de arquivos CSV, que é importada no início de `csv_files.go`.
+
+```go
+import (
+	"encoding/csv"
+	"errors"
+	"io"
+	"os"
+)
+```
+
+## Padrões de nomenclatura e case
+Em relação ao case, é importante notar que em Go, a visibilidade de identificadores (incluindo nomes de funções, métodos, tipos e pacotes) é determinada pela primeira letra do identificador. Se a primeira letra é maiúscula, o identificador é exportado (visível fora do pacote). Se é minúscula, o identificador é não exportado (visível apenas dentro do pacote). No nosso código, por exemplo, `ReadCsvFile` é exportado porque começa com uma letra maiúscula, enquanto `filePath` e `columnIndex` são não exportados porque começam com letras minúsculas. Portanto, no Go, as convenções de nomenclatura são bem definidas e devem ser seguidas para manter a consistência e a legibilidade do código. 
+
+Aqui estão algumas boas práticas para nomenclatura de funções, módulos e pacotes:
+
+1. **Pacotes**: Nomes de pacotes devem ser em letras minúsculas. Eles devem ser curtos e concisos. Evite usar nomes de pacotes que sejam palavras-chave em Go (como `string` ou `int`). Além disso, evite o uso de under_scores e use nomes simples como `net`, `fmt`, `http` etc.
+
+2. **Funções**: Funções em Go seguem o estilo CamelCase. Se uma função começa com uma letra maiúscula, ela é exportada, o que significa que ela pode ser acessada por outros pacotes. Por exemplo, `Println` em `fmt.Println()`. Se uma função começa com uma letra minúscula, ela é privada ao pacote atual. 
+
+3. **Métodos**: Como as funções, os métodos também seguem o estilo CamelCase, com métodos começando com uma letra maiúscula sendo exportados e métodos começando com uma letra minúscula sendo privados ao pacote atual.
+
+4. **Variáveis e Constantes**: Variáveis e constantes também seguem o estilo CamelCase. Variáveis e constantes começando com uma letra minúscula são privadas ao pacote atual. Variáveis e constantes que começam com uma letra maiúscula são exportadas.
+
+5. **Módulos**: Para módulos, a convenção é usar um nome de domínio reverso, o que geralmente resulta em minúsculas com pontos (por exemplo, `module github.com/meu_usuário/meu_projeto`). 
+
+São apenas diretrizes gerais. É importante notar que essas são convenções, não regras, então há alguma margem para a interpretação pessoal. No entanto, é uma boa prática seguir essas convenções para manter seu código Go limpo e consistente.
+
+Como exemplo, segue uma lista de algumas das funções, métodos e pacotes do projeto:
+
+# Exemplos de Funções, Métodos e Pacotes
+
+## Pacotes
+- **nomecomparador**: Este pacote contém funções para calcular a similaridade entre duas strings.
+- **csv_files**: Este pacote fornece funcionalidades para ler arquivos CSV.
+
+## Funções
+- **JaccardSimilarity(str1, str2 string)**: Calcula a similaridade de Jaccard entre duas strings. 
+  - *Entrada*: Duas strings para comparar.
+  - *Saída*: Um valor float representando a similaridade de Jaccard.
+- **LevenshteinDistance(str1, str2 string)**: Calcula a distância de Levenshtein entre duas strings.
+  - *Entrada*: Duas strings para comparar.
+  - *Saída*: Um valor int representando a distância de Levenshtein.
+- **Soundex(str string)**: Converte uma string em seu código Soundex.
+  - *Entrada*: Uma string para converter.
+  - *Saída*: A string convertida em seu código Soundex.
+- **ReadCsvFile(filePath string, columnIndex int)**: Lê um arquivo CSV e retorna os dados de uma coluna específica.
+  - *Entrada*: O caminho para o arquivo CSV e o índice da coluna.
+  - *Saída*: Uma lista com os dados da coluna especificada e um erro, se ocorrer.
+
+## Métodos
+- **(NomeComparador) CompareNames(name1, name2 string)**: Compara dois nomes usando as funções de similaridade e distância definidas.
+  - *Entrada*: Duas strings representando os nomes para comparar.
+  - *Saída*: Um valor booleano indicando se os nomes são considerados iguais e um erro, se ocorrer.
+
+Este é apenas um exemplo e não abrange todos os pacotes, funções e métodos em seu projeto. Você deve expandi-lo para incluir todos os detalhes relevantes. 
+
+Lembre-se de que a descrição de cada função, método ou pacote deve ser concisa, mas informativa, explicando o que faz, quais parâmetros aceita e o que retorna. Isso tornará mais fácil para outros desenvolvedores (ou para você no futuro) entender como seu código funciona e como usá-lo corretamente.
+
 # Exemplo de Estrutura considerando DDD/EDD:
 Este projeto em particular segue uma estrutura com base em DDD (Domain-Driven Design) e EDD (Event-Driven Design) implementada em Go no backend e com Javascript para frontend. A estrutura de diretórios para a fase de desenvolvimento é descrita aqui:
 
