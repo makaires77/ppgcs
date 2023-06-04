@@ -1,10 +1,8 @@
 package main
 
 import (
-	"bufio"
 	"encoding/csv"
 	"fmt"
-	"io"
 	"log"
 	"os"
 	"strings"
@@ -12,8 +10,6 @@ import (
 
 	"github.com/gocarina/gocsv"
 	"github.com/makaires77/ppgcs/pkg/usecase/nomecomparador"
-	"golang.org/x/text/encoding/charmap"
-	"golang.org/x/text/transform"
 )
 
 type Author struct {
@@ -81,21 +77,12 @@ func main() {
 	}
 	defer fileAuthors.Close()
 
-	// Criar um leitor com conversão de caracteres para Latin-1
-	readerAuthors := bufio.NewReader(transform.NewReader(fileAuthors, charmap.ISO8859_1.NewDecoder()))
 	fmt.Println("Lendo o arquivo CSV dos autores...")
 
-	// Converter o arquivo CSV em uma string
-	authorBytes, err := io.ReadAll(readerAuthors)
-	if err != nil {
-		log.Fatalf("Falha ao ler o arquivo CSV dos autores: %v", err)
-	}
-	authorString := string(authorBytes)
-
-	// Converter a string em uma estrutura de dados
+	// Ler os registros do arquivo CSV dos autores
 	var authorRecords []*Author
-	if err := gocsv.UnmarshalString(authorString, &authorRecords); err != nil {
-		log.Fatalf("Falha ao converter a string CSV para uma estrutura de dados: %v", err)
+	if err := gocsv.UnmarshalFile(fileAuthors, &authorRecords); err != nil {
+		log.Fatalf("Falha ao extrair autores: %v", err)
 	}
 
 	fmt.Printf("Total de registros de autores: %d\n", len(authorRecords))
@@ -166,12 +153,12 @@ func main() {
 
 			for _, authorName := range authorNames {
 				authorName = strings.TrimSpace(authorName)
-				// fmt.Printf("Comparando %s com %s\n", studentName, authorName)
+				fmt.Printf("Comparando %s com %s\n", studentName, authorName)
 
 				similarity := nomecomparador.JaccardSimilarity(authorName, studentName)
 				if similarity > 0.85 {
 					achado = 1
-					msg := fmt.Sprintf("%03d | Similaridade %.2f entre: %-50s | %-50s | Docente: %-50s", totalSimilarities, similarity, authorName, studentName, docentName)
+					msg := fmt.Sprintf("%03d | Similaridade %.2f entre: %-40s | %-40s | Docente: %-40s", totalSimilarities, similarity, authorName, studentName, docentName)
 					progress <- msg
 					// clearScreen()
 				}
@@ -191,7 +178,7 @@ func main() {
 	fmt.Printf("Artigos com similaridades: %d\n", numArticlesWithSimilarities)
 	fmt.Printf("Total de artigos: %d\n", numTotalArticles)
 	fmt.Printf("Total de discentes: %d\n", numTotalDiscentes)
-	fmt.Printf("Percentual de colaboração no programa: %.2f%%\n", collaborationPercentage)
+	fmt.Printf("Percentual de colaboração: %.2f%%\n", collaborationPercentage)
 
 	// Aguardar a conclusão de todas as comparações
 	wg.Wait()
