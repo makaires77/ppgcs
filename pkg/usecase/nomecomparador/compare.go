@@ -3,7 +3,58 @@ package nomecomparador
 import (
 	"strings"
 	"unicode"
+
+	"github.com/makaires77/ppgcs/pkg/infrastructure/csv"
 )
+
+func processName(name string, namesChannel chan string, doneChannel chan bool) {
+	name, err := normalizeName(name)
+	if err != nil {
+		// lidar com o erro
+		return
+	}
+
+	names, err := csv.ReadCsvFile("publicacoes.csv", 14)
+	if err != nil {
+		// lidar com o erro
+		return
+	}
+
+	for _, n := range names {
+		jaccard := JaccardSimilarity(name, n)
+		levenshtein := LevenshteinDistance(name, n)
+		soundex := Soundex(name) == Soundex(n)
+
+		if jaccard > 0.75 || levenshtein < 3 || soundex {
+			namesChannel <- n
+		}
+	}
+
+	doneChannel <- true
+}
+
+func processNames(names []string) []string {
+	namesChannel := make(chan string)
+	doneChannel := make(chan bool)
+
+	for _, name := range names {
+		go processName(name, namesChannel, doneChannel)
+	}
+
+	go func() {
+		for i := 0; i < len(names); i++ {
+			<-doneChannel
+		}
+		close(namesChannel)
+	}()
+
+	var matchedNames []string
+	for name := range namesChannel {
+		matchedNames = append(matchedNames, name)
+	}
+
+	return matchedNames
+}
 
 // JaccardSimilarity calcula a similaridade de Jaccard entre duas strings
 func JaccardSimilarity(str1, str2 string) float64 {

@@ -1,0 +1,604 @@
+ppgcs
+├── .editorconfig
+├── .gitattributes
+├── .gitignore
+├── .vscode
+│   └── settings.json
+├── .yarnrc
+├── .yarnrc.yml
+├── cmd
+│   ├── api
+│   │   ├── main.go
+│   │   └── main.md
+│   ├── csv_maker
+│   │   ├── main.go
+│   │   └── main_slices.md
+│   └── publication_loader
+│       └── main.go
+├── config
+│   └── credentials.json
+├── go.mod
+├── go.sum
+├── img
+│   ├── Logo_CasteloReneRachou_340-100.svg
+│   ├── Logo_CasteloReneRachou_340-340.png
+│   ├── Logo_CasteloReneRachou_340-340.svg
+│   └── logo_text_light.svg
+├── internal
+│   ├── FioLeish.txt
+│   ├── json_pesquisador
+│   │   └── pesquisador.go
+│   ├── pesquisador
+│   │   └── pesquisador.go
+│   ├── ProcedimentoAnálisePesquisas.txt
+│   ├── publication
+│   │   └── publication.go
+│   ├── README.md
+│   └── textos
+│       ├── metamodelo_expandidolattes.txt
+│       ├── p00_estrutura.txt
+│       ├── p01_modularização.txt
+│       ├── p02_back_scrap.txt
+│       ├── p03_front_inddexjs.txt
+│       ├── p04_back_similaridade.txt
+│       ├── p05_front_scrap.txt
+│       ├── tree_entradascsv.txt
+│       ├── tree_ppgcs.txt
+│       └── tree_static.txt
+├── main.go
+├── main.js
+├── package-lock.json
+├── package.json
+├── pkg
+│   ├── application
+│   │   ├── main.txt
+│   │   ├── README.md
+│   │   └── researcher_service.go
+│   ├── domain
+│   │   ├── advisor_student.go
+│   │   ├── erro_personalizado.go
+│   │   ├── pesquisador
+│   │   │   └── entities.go
+│   │   ├── publication
+│   │   │   ├── entities.go
+│   │   │   ├── repository.go
+│   │   │   └── usecases.go
+│   │   ├── researcher
+│   │   │   ├── entities.go
+│   │   │   └── repository.go
+│   │   └── scrap_lattes
+│   │       ├── entities.go
+│   │       ├── repository.go
+│   │       └── usecases.go
+│   ├── infrastructure
+│   │   ├── csv
+│   │   │   └── csv_reader.go
+│   │   ├── csv_publication
+│   │   │   └── read_publication.go
+│   │   ├── dgraph
+│   │   │   ├── connect.go
+│   │   │   ├── read.go
+│   │   │   └── write.go
+│   │   ├── json_publication
+│   │   │   ├── go.md
+│   │   │   ├── read_advisor_student.csv
+│   │   │   └── read_publication.txt
+│   │   ├── mongo
+│   │   │   └── write_lattes.go
+│   │   ├── neo4jclient
+│   │   │   ├── client.go
+│   │   │   ├── write_lattes.go
+│   │   │   └── write_publication.go
+│   │   └── scrap_lattes
+│   │       └── scrap_lattes.go
+│   ├── interfaces
+│   │   ├── http
+│   │   │   └── handlers
+│   │   │       └── publication_handler.go
+│   │   └── rabbitmq
+│   │       ├── consumer.go
+│   │       ├── consume_lattes.go
+│   │       ├── enqueue_lattes.go
+│   │       └── README.md
+│   ├── repository
+│   │   └── researcher_repository.go
+│   └── usecase
+│       ├── fuzzysearch
+│       │   └── fuzzy_search_service.go
+│       ├── load_lattes
+│       │   └── interactor.go
+│       ├── load_publication
+│       │   └── interactor.go
+│       └── nomecomparador
+│           └── compare.go
+├── README.md
+├── server.cjs
+├── server.mjs
+├── static
+│   ├── assets
+│   │   ├── css
+│   │   │   ├── ltr
+│   │   │   │   ├── all.min.css
+│   │   │   │   ├── bootstrap.css
+│   │   │   │   ├── bootstrap.min.css
+│   │   │   │   ├── bootstrap_limitless.css
+│   │   │   │   ├── bootstrap_limitless.min.css
+│   │   │   │   ├── components.css
+│   │   │   │   ├── components.min.css
+│   │   │   │   ├── layout.css
+│   │   │   │   └── layout.min.css
+│   │   │   └── rtl
+│   │   │       ├── all.min.css
+│   │   │       ├── bootstrap.css
+│   │   │       ├── bootstrap.min.css
+│   │   │       ├── bootstrap_limitless.css
+│   │   │       ├── bootstrap_limitless.min.css
+│   │   │       ├── components.css
+│   │   │       ├── components.min.css
+│   │   │       ├── layout.css
+│   │   │       └── layout.min.css
+│   │   ├── demo
+│   │   │   ├── charts
+│   │   │   │   ├── c3
+│   │   │   │   │   ├── c3_advanced.js
+│   │   │   │   │   ├── c3_axis.js
+│   │   │   │   │   ├── c3_bars_pies.js
+│   │   │   │   │   ├── c3_grid.js
+│   │   │   │   │   └── c3_lines_areas.js
+│   │   │   │   ├── d3
+│   │   │   │   │   ├── bars
+│   │   │   │   │   │   ├── bars_advanced_hierarchical.js
+│   │   │   │   │   │   ├── bars_advanced_histogram.js
+│   │   │   │   │   │   ├── bars_advanced_simple_interaction.js
+│   │   │   │   │   │   ├── bars_advanced_sortable_horizontal.js
+│   │   │   │   │   │   ├── bars_advanced_sortable_vertical.js
+│   │   │   │   │   │   ├── bars_advanced_sortable_vertical_original.js
+│   │   │   │   │   │   ├── bars_advanced_stacked_multiple.js
+│   │   │   │   │   │   ├── bars_basic_grouped.js
+│   │   │   │   │   │   ├── bars_basic_horizontal.js
+│   │   │   │   │   │   ├── bars_basic_stacked.js
+│   │   │   │   │   │   ├── bars_basic_stacked_normalized.js
+│   │   │   │   │   │   ├── bars_basic_tooltip.js
+│   │   │   │   │   │   └── bars_basic_vertical.js
+│   │   │   │   │   ├── chords
+│   │   │   │   │   │   ├── chord_arcs.js
+│   │   │   │   │   │   ├── chord_basic.js
+│   │   │   │   │   │   ├── chord_chart.js
+│   │   │   │   │   │   └── chord_tweens.js
+│   │   │   │   │   ├── lines
+│   │   │   │   │   │   ├── lines_advanced_difference.js
+│   │   │   │   │   │   ├── lines_advanced_missing.js
+│   │   │   │   │   │   ├── lines_advanced_small_multiples.js
+│   │   │   │   │   │   ├── lines_advanced_spline_transition.js
+│   │   │   │   │   │   ├── lines_advanced_transitions.js
+│   │   │   │   │   │   ├── lines_advanced_zoom.js
+│   │   │   │   │   │   ├── lines_basic.js
+│   │   │   │   │   │   ├── lines_basic_area.js
+│   │   │   │   │   │   ├── lines_basic_bivariate.js
+│   │   │   │   │   │   ├── lines_basic_gradient.js
+│   │   │   │   │   │   ├── lines_basic_multi_series.js
+│   │   │   │   │   │   ├── lines_basic_stacked.js
+│   │   │   │   │   │   └── lines_basic_stacked_nest.js
+│   │   │   │   │   ├── other
+│   │   │   │   │   │   ├── bubbles.js
+│   │   │   │   │   │   ├── streamgraph.js
+│   │   │   │   │   │   ├── treemap.js
+│   │   │   │   │   │   └── waterfall.js
+│   │   │   │   │   ├── pies
+│   │   │   │   │   │   ├── donut_arc_tween.js
+│   │   │   │   │   │   ├── donut_basic.js
+│   │   │   │   │   │   ├── donut_entry_animation.js
+│   │   │   │   │   │   ├── donut_multiple.js
+│   │   │   │   │   │   ├── donut_multiple_nesting.js
+│   │   │   │   │   │   ├── donut_update.js
+│   │   │   │   │   │   ├── pie_arc_tween.js
+│   │   │   │   │   │   ├── pie_basic.js
+│   │   │   │   │   │   ├── pie_entry_animation.js
+│   │   │   │   │   │   ├── pie_multiple.js
+│   │   │   │   │   │   ├── pie_multiple_nesting.js
+│   │   │   │   │   │   └── pie_update.js
+│   │   │   │   │   ├── sunburst
+│   │   │   │   │   │   ├── sunburst_basic.js
+│   │   │   │   │   │   ├── sunburst_combined.js
+│   │   │   │   │   │   ├── sunburst_distortion.js
+│   │   │   │   │   │   └── sunburst_zoom.js
+│   │   │   │   │   ├── tree
+│   │   │   │   │   │   ├── tree_basic.js
+│   │   │   │   │   │   ├── tree_bracket.js
+│   │   │   │   │   │   ├── tree_collapsible.js
+│   │   │   │   │   │   ├── tree_dendrogram.js
+│   │   │   │   │   │   ├── tree_dendrogram_radial.js
+│   │   │   │   │   │   └── tree_radial.js
+│   │   │   │   │   └── venn
+│   │   │   │   │       ├── venn_basic.js
+│   │   │   │   │       ├── venn_colors.js
+│   │   │   │   │       ├── venn_interactive.js
+│   │   │   │   │       ├── venn_rings.js
+│   │   │   │   │       ├── venn_tooltip.js
+│   │   │   │   │       └── venn_weighted.js
+│   │   │   │   ├── echarts
+│   │   │   │   │   ├── bars
+│   │   │   │   │   │   ├── bars_basic.js
+│   │   │   │   │   │   ├── bars_floating.js
+│   │   │   │   │   │   ├── bars_line.js
+│   │   │   │   │   │   ├── bars_stacked.js
+│   │   │   │   │   │   ├── bars_stacked_clustered.js
+│   │   │   │   │   │   ├── columns_basic.js
+│   │   │   │   │   │   ├── columns_stacked.js
+│   │   │   │   │   │   ├── columns_stacked_clustered.js
+│   │   │   │   │   │   ├── columns_thermometer.js
+│   │   │   │   │   │   ├── columns_timeline.js
+│   │   │   │   │   │   ├── tornado_negative_stack.js
+│   │   │   │   │   │   ├── tornado_staggered.js
+│   │   │   │   │   │   ├── waterfall_change.js
+│   │   │   │   │   │   └── waterfall_compositive.js
+│   │   │   │   │   ├── calendars
+│   │   │   │   │   │   ├── calendar_multiple.js
+│   │   │   │   │   │   └── calendar_single.js
+│   │   │   │   │   ├── candlesticks
+│   │   │   │   │   │   ├── candlestick_basic.js
+│   │   │   │   │   │   ├── candlestick_line.js
+│   │   │   │   │   │   └── candlestick_scatter.js
+│   │   │   │   │   ├── funnels
+│   │   │   │   │   │   ├── funnel_basic.js
+│   │   │   │   │   │   ├── funnel_left.js
+│   │   │   │   │   │   ├── funnel_multiple_overlay.js
+│   │   │   │   │   │   ├── funnel_multiple_separate.js
+│   │   │   │   │   │   ├── funnel_right.js
+│   │   │   │   │   │   └── funnel_sorting.js
+│   │   │   │   │   ├── gauge
+│   │   │   │   │   │   ├── gauge_basic.js
+│   │   │   │   │   │   └── gauge_custom.js
+│   │   │   │   │   ├── lines
+│   │   │   │   │   │   ├── area_basic.js
+│   │   │   │   │   │   ├── area_multiple.js
+│   │   │   │   │   │   ├── area_point_values.js
+│   │   │   │   │   │   ├── area_reversed_axis.js
+│   │   │   │   │   │   ├── area_stacked.js
+│   │   │   │   │   │   ├── area_zoom.js
+│   │   │   │   │   │   ├── lines_basic.js
+│   │   │   │   │   │   ├── lines_inverted_axes.js
+│   │   │   │   │   │   ├── lines_multiple.js
+│   │   │   │   │   │   ├── lines_point_values.js
+│   │   │   │   │   │   ├── lines_stacked.js
+│   │   │   │   │   │   └── lines_zoom.js
+│   │   │   │   │   ├── pies
+│   │   │   │   │   │   ├── pie_basic.js
+│   │   │   │   │   │   ├── pie_donut.js
+│   │   │   │   │   │   ├── pie_infographic.js
+│   │   │   │   │   │   ├── pie_levels.js
+│   │   │   │   │   │   ├── pie_multiple.js
+│   │   │   │   │   │   ├── pie_nested.js
+│   │   │   │   │   │   ├── pie_rose.js
+│   │   │   │   │   │   ├── pie_rose_labels.js
+│   │   │   │   │   │   └── pie_timeline.js
+│   │   │   │   │   ├── radar
+│   │   │   │   │   │   ├── radar_basic.js
+│   │   │   │   │   │   └── radar_filled.js
+│   │   │   │   │   └── scatter
+│   │   │   │   │       ├── scatter_basic.js
+│   │   │   │   │       ├── scatter_category.js
+│   │   │   │   │       ├── scatter_punch.js
+│   │   │   │   │       ├── scatter_roaming.js
+│   │   │   │   │       ├── scatter_scale.js
+│   │   │   │   │       └── scatter_size.js
+│   │   │   │   ├── google
+│   │   │   │   │   ├── bars
+│   │   │   │   │   │   ├── bar.js
+│   │   │   │   │   │   ├── bar_stacked.js
+│   │   │   │   │   │   ├── column.js
+│   │   │   │   │   │   ├── column_stacked.js
+│   │   │   │   │   │   ├── combo.js
+│   │   │   │   │   │   └── histogram.js
+│   │   │   │   │   ├── bubbles
+│   │   │   │   │   │   ├── bubble.js
+│   │   │   │   │   │   └── bubble_gradient.js
+│   │   │   │   │   ├── lines
+│   │   │   │   │   │   ├── area.js
+│   │   │   │   │   │   ├── area_intervals.js
+│   │   │   │   │   │   ├── area_stacked.js
+│   │   │   │   │   │   ├── area_stepped.js
+│   │   │   │   │   │   ├── lines.js
+│   │   │   │   │   │   └── line_intervals.js
+│   │   │   │   │   ├── other
+│   │   │   │   │   │   ├── candlestick.js
+│   │   │   │   │   │   ├── diff.js
+│   │   │   │   │   │   ├── geo.js
+│   │   │   │   │   │   ├── sankey.js
+│   │   │   │   │   │   └── trendline.js
+│   │   │   │   │   ├── pies
+│   │   │   │   │   │   ├── 3d_exploded.js
+│   │   │   │   │   │   ├── donut.js
+│   │   │   │   │   │   ├── donut_exploded.js
+│   │   │   │   │   │   ├── donut_rotate.js
+│   │   │   │   │   │   ├── pie.js
+│   │   │   │   │   │   ├── pie_3d.js
+│   │   │   │   │   │   ├── pie_diff_border.js
+│   │   │   │   │   │   ├── pie_diff_invert.js
+│   │   │   │   │   │   ├── pie_diff_opacity.js
+│   │   │   │   │   │   ├── pie_diff_radius.js
+│   │   │   │   │   │   ├── pie_exploded.js
+│   │   │   │   │   │   └── pie_rotate.js
+│   │   │   │   │   └── scatter
+│   │   │   │   │       ├── scatter.js
+│   │   │   │   │       └── scatter_diff.js
+│   │   │   │   └── pages
+│   │   │   │       ├── dashboard
+│   │   │   │       │   ├── areas.js
+│   │   │   │       │   ├── bars.js
+│   │   │   │       │   ├── bullets.js
+│   │   │   │       │   ├── donuts.js
+│   │   │   │       │   ├── heatmaps.js
+│   │   │   │       │   ├── lines.js
+│   │   │   │       │   ├── pies.js
+│   │   │   │       │   ├── progress.js
+│   │   │   │       │   ├── sparklines.js
+│   │   │   │       │   └── streamgraph.js
+│   │   │   │       ├── dashboard_6
+│   │   │   │       │   ├── area_gradient.js
+│   │   │   │       │   ├── bars_grouped.js
+│   │   │   │       │   ├── line_label_marks.js
+│   │   │   │       │   ├── map_europe_effect.js
+│   │   │   │       │   └── progress_sortable.js
+│   │   │   │       ├── ecommerce
+│   │   │   │       │   └── customers.js
+│   │   │   │       ├── profile
+│   │   │   │       │   ├── available_hours.js
+│   │   │   │       │   └── balance_stats.js
+│   │   │   │       └── timelines
+│   │   │   │           └── daily_statistics.js
+│   │   │   ├── data
+│   │   │   │   ├── d3
+│   │   │   │   │   ├── bars
+│   │   │   │   │   │   ├── bars_basic.ods
+│   │   │   │   │   │   ├── bars_basic.tsv
+│   │   │   │   │   │   ├── bars_basic.tsv.csv
+│   │   │   │   │   │   ├── bars_basic_pesquisadores.tsv
+│   │   │   │   │   │   ├── bars_grouped.csv
+│   │   │   │   │   │   ├── bars_hierarchical.json
+│   │   │   │   │   │   ├── bars_horizontal.csv
+│   │   │   │   │   │   ├── bars_stacked.csv
+│   │   │   │   │   │   ├── bars_stacked_multiple.tsv
+│   │   │   │   │   │   └── bars_tooltip.tsv
+│   │   │   │   │   ├── lines
+│   │   │   │   │   │   ├── lines_basic.tsv
+│   │   │   │   │   │   ├── lines_bivariate.tsv
+│   │   │   │   │   │   ├── lines_difference.tsv
+│   │   │   │   │   │   ├── lines_gradient.tsv
+│   │   │   │   │   │   ├── lines_multi_series.tsv
+│   │   │   │   │   │   ├── lines_small_multiples.csv
+│   │   │   │   │   │   ├── lines_stacked.tsv
+│   │   │   │   │   │   ├── lines_stacked_nest.csv
+│   │   │   │   │   │   └── lines_transitions.tsv
+│   │   │   │   │   ├── other
+│   │   │   │   │   │   ├── bubble.json
+│   │   │   │   │   │   ├── treemap.json
+│   │   │   │   │   │   └── waterfall.csv
+│   │   │   │   │   ├── pies
+│   │   │   │   │   │   ├── donuts_update.tsv
+│   │   │   │   │   │   ├── pies_basic.csv
+│   │   │   │   │   │   ├── pies_nesting.csv
+│   │   │   │   │   │   └── pies_update.tsv
+│   │   │   │   │   ├── sunburst
+│   │   │   │   │   │   └── sunburst_basic.json
+│   │   │   │   │   └── tree
+│   │   │   │   │       ├── tree_bracket.json
+│   │   │   │   │       ├── tree_data_basic.json
+│   │   │   │   │       ├── tree_data_collapsible.json
+│   │   │   │   │       ├── tree_data_dendrogram.json
+│   │   │   │   │       ├── tree_data_dendrogram_radial.json
+│   │   │   │   │       └── tree_data_radial.json
+│   │   │   │   ├── dashboard
+│   │   │   │   │   ├── app_sales.csv
+│   │   │   │   │   ├── app_sales_heatmap.csv
+│   │   │   │   │   ├── bullets.json
+│   │   │   │   │   ├── monthly_sales.json
+│   │   │   │   │   └── traffic_sources.csv
+│   │   │   │   ├── fancytree
+│   │   │   │   │   └── fancytree.json
+│   │   │   │   ├── gridjs
+│   │   │   │   │   └── demo.xml
+│   │   │   │   ├── leaflet
+│   │   │   │   │   ├── cluster.js
+│   │   │   │   │   └── geojson.js
+│   │   │   │   ├── offcanvas
+│   │   │   │   │   └── offcanvas_content.html
+│   │   │   │   ├── tables
+│   │   │   │   │   ├── datatable_2500.json
+│   │   │   │   │   ├── datatable_ajax.json
+│   │   │   │   │   └── datatable_nested.json
+│   │   │   │   ├── tags_input
+│   │   │   │   │   └── car_brands.json
+│   │   │   │   ├── uploader
+│   │   │   │   │   └── plupload.json
+│   │   │   │   └── wizard
+│   │   │   │       ├── additional.html
+│   │   │   │       ├── education.html
+│   │   │   │       ├── experience.html
+│   │   │   │       └── personal_data.html
+│   │   │   ├── demo_configurator.js
+│   │   │   ├── locales
+│   │   │   │   ├── en.json
+│   │   │   │   └── ua.json
+│   │   │   ├── maps
+│   │   │   │   ├── echarts
+│   │   │   │   │   ├── map_europe.js
+│   │   │   │   │   ├── map_europe_effect.js
+│   │   │   │   │   ├── map_europe_move.js
+│   │   │   │   │   ├── map_europe_scale.js
+│   │   │   │   │   ├── map_europe_scale_move.js
+│   │   │   │   │   ├── map_europe_zoom_level.js
+│   │   │   │   │   ├── map_world.js
+│   │   │   │   │   └── map_world_scatter.js
+│   │   │   │   └── leaflet
+│   │   │   │       └── basic.js
+│   │   │   └── pages
+│   │   ├── fonts
+│   │   ├── icons
+│   │   ├── js
+│   │   │   ├── app.js
+│   │   │   ├── bootstrap
+│   │   │   │   └── bootstrap.bundle.min.js
+│   │   │   ├── custom.js
+│   │   │   ├── jquery
+│   │   │   │   └── jquery.min.js
+│   │   │   └── vendor
+│   │   └── scss
+│   ├── d3
+│   │   ├── bars
+│   │   │   ├── bars_advanced_hierarchical.js
+│   │   │   ├── bars_advanced_histogram.js
+│   │   │   ├── bars_advanced_simple_interaction.js
+│   │   │   ├── bars_advanced_sortable_horizontal.js
+│   │   │   ├── bars_advanced_sortable_vertical.js
+│   │   │   ├── bars_advanced_sortable_vertical_original.js
+│   │   │   ├── bars_advanced_stacked_multiple.js
+│   │   │   ├── bars_basic_grouped.js
+│   │   │   ├── bars_basic_horizontal.js
+│   │   │   ├── bars_basic_stacked.js
+│   │   │   ├── bars_basic_stacked_normalized.js
+│   │   │   ├── bars_basic_tooltip.js
+│   │   │   └── bars_basic_vertical.js
+│   │   ├── chords
+│   │   │   ├── chord_arcs.js
+│   │   │   ├── chord_basic.js
+│   │   │   ├── chord_chart.js
+│   │   │   └── chord_tweens.js
+│   │   ├── lines
+│   │   │   ├── lines_advanced_difference.js
+│   │   │   ├── lines_advanced_missing.js
+│   │   │   ├── lines_advanced_small_multiples.js
+│   │   │   ├── lines_advanced_spline_transition.js
+│   │   │   ├── lines_advanced_transitions.js
+│   │   │   ├── lines_advanced_zoom.js
+│   │   │   ├── lines_basic.js
+│   │   │   ├── lines_basic_area.js
+│   │   │   ├── lines_basic_bivariate.js
+│   │   │   ├── lines_basic_gradient.js
+│   │   │   ├── lines_basic_multi_series.js
+│   │   │   ├── lines_basic_stacked.js
+│   │   │   └── lines_basic_stacked_nest.js
+│   │   ├── other
+│   │   │   ├── bubbles.js
+│   │   │   ├── streamgraph.js
+│   │   │   ├── treemap.js
+│   │   │   └── waterfall.js
+│   │   ├── pies
+│   │   │   ├── donut_arc_tween.js
+│   │   │   ├── donut_basic.js
+│   │   │   ├── donut_entry_animation.js
+│   │   │   ├── donut_multiple.js
+│   │   │   ├── donut_multiple_nesting.js
+│   │   │   ├── donut_update.js
+│   │   │   ├── pie_arc_tween.js
+│   │   │   ├── pie_basic.js
+│   │   │   ├── pie_entry_animation.js
+│   │   │   ├── pie_multiple.js
+│   │   │   ├── pie_multiple_nesting.js
+│   │   │   └── pie_update.js
+│   │   ├── sunburst
+│   │   │   ├── sunburst_basic.js
+│   │   │   ├── sunburst_combined.js
+│   │   │   ├── sunburst_distortion.js
+│   │   │   └── sunburst_zoom.js
+│   │   ├── tree
+│   │   │   ├── tree_basic.js
+│   │   │   ├── tree_bracket.js
+│   │   │   ├── tree_collapsible.js
+│   │   │   ├── tree_dendrogram.js
+│   │   │   ├── tree_dendrogram_radial.js
+│   │   │   └── tree_radial.js
+│   │   └── venn
+│   │       ├── venn_basic.js
+│   │       ├── venn_colors.js
+│   │       ├── venn_interactive.js
+│   │       ├── venn_rings.js
+│   │       ├── venn_tooltip.js
+│   │       └── venn_weighted.js
+│   ├── dashboard_discentes.html
+│   ├── dashboard_docentes.html
+│   ├── dashboard_programa.html
+│   ├── data
+│   │   ├── bars_basic.ods
+│   │   ├── bars_basic.tsv
+│   │   ├── bars_basic.tsv.csv
+│   │   ├── bars_basic_pesquisadores.tsv
+│   │   ├── bars_grouped.csv
+│   │   ├── bars_hierarchical.json
+│   │   ├── bars_horizontal.csv
+│   │   ├── bars_stacked.csv
+│   │   ├── bars_stacked_multiple.tsv
+│   │   ├── bars_tooltip.tsv
+│   │   ├── classificações_publicadas_todas_as_areas_avaliacao1672761192111.xlsx
+│   │   ├── lines_basic.tsv
+│   │   ├── lines_bivariate.tsv
+│   │   ├── lines_difference.tsv
+│   │   ├── lines_gradient.tsv
+│   │   ├── lines_multi_series.tsv
+│   │   ├── lines_small_multiples.csv
+│   │   ├── lines_stacked.tsv
+│   │   ├── lines_stacked_nest.csv
+│   │   └── lines_transitions.tsv
+│   ├── equipes
+│   ├── equipe_docentes.html
+│   ├── favicon.ico
+│   ├── historico.html
+│   ├── index.html
+│   ├── index.js
+│   └── templates
+│       ├── publication_d3lines.html
+│       └── roadmap3c_background.html
+├── test
+│   └── createTeamTest.mjs
+├── yarn-error.log
+├── yarn.lock
+└── _data
+    ├── in_csv
+    │   ├── indicadores.csv
+    │   ├── nomesdocentes.csv
+    │   ├── ppgcs
+    │   │   ├── docentes_dadosprograma.csv
+    │   │   ├── docentes_nomes.csv
+    │   │   └── indicadores_quadrienio_17-20.csv
+    │   └── veiculos.csv
+    ├── in_json
+    │   ├── 642.files
+    │   │   ├── 642.advise.json
+    │   │   ├── 642.graph.json
+    │   │   ├── 642.list.json
+    │   │   ├── 642.profile.json
+    │   │   ├── 642.publication.json
+    │   │   ├── 642patents.json
+    │   │   ├── 642researchers_by_area.json
+    │   │   └── 642vosviewer.json
+    │   └── 644.files
+    │       ├── 644.advise.json
+    │       ├── 644.graph.json
+    │       ├── 644.list.json
+    │       ├── 644.profile.json
+    │       ├── 644.publication.json
+    │       ├── 644patents.json
+    │       ├── 644researchers_by_area.json
+    │       └── 644vosviewer.json
+    ├── in_zip
+    │   ├── 642.files.zip
+    │   ├── 644.files.zip
+    │   └── lista_arquivos.txt
+    ├── out_csv
+    │   ├── all_advise.csv
+    │   ├── all_patents.csv
+    │   ├── all_publications.csv
+    │   ├── conf-ppgcs-colabdisce_permanentes_2017-2020.csv
+    │   ├── conf-ppgcs-pontuacao_permanentes_2017-2020.csv
+    │   └── conf-ppgcs-resultados_permanentes_2017-2020.csv
+    ├── out_json
+    │   └── merged.json
+    └── powerbi
+        ├── classificações_publicadas_todas_as_areas_avaliacao1672761192111.xlsx
+        ├── dashboard_ppggs_v4.pbix
+        ├── lista_docentes_colaboradores.csv
+        ├── lista_docentes_permanentes.csv
+        ├── lista_orientadores-discentes.csv
+        ├── orientacoes.csv
+        ├── patentes.csv
+        └── publicacoes.csv
