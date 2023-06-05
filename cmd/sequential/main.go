@@ -128,6 +128,11 @@ func main() {
 	}
 
 	for _, authorRecord := range authorRecords {
+		// Só considerar registros com Tipo_producao igual a "PERIODICO"
+		if authorRecord.Tipo_producao != "PERIODICO" {
+			continue
+		}
+
 		authorNames := strings.Split(authorRecord.Autores, ";")
 		docentName := authorRecord.Name
 		year := authorRecord.Ano
@@ -153,8 +158,8 @@ func main() {
 	fmt.Println("\nContagem de colaboração por docente:")
 	for docentName, collabData := range docenteColaboracao {
 		for year, data := range collabData {
-			data.PercentCollaboration = (float64(data.TotalCollaboration) / float64(data.TotalArticles)) * 100
-			fmt.Printf("Docente: %-20s | Ano: %-4s | Colaboração discente: %.2f%%\n", docentName, year, data.PercentCollaboration)
+			data.PercentCollaboration = (float64(data.TotalCollaboration) / float64(data.TotalArticles))
+			fmt.Printf("Docente: %-40s | Ano: %-4s | Colaboração discente: %.2f%%\n", docentName, year, data.PercentCollaboration)
 		}
 	}
 
