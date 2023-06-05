@@ -1,4 +1,4 @@
-package functional
+package main
 
 import (
 	"encoding/csv"
@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"strings"
-	"sync"
 	"time"
 
 	"github.com/gocarina/gocsv"
@@ -15,7 +14,8 @@ import (
 	"github.com/makaires77/ppgcs/pkg/usecase/nomecomparador"
 )
 
-func sequentialCompareAuthorWithStudentNames(authorNames []string, studentNames []string) (map[string]int, []string) {
+//nolint:unused
+func sequentialCompareAuthorWithStudentNames(authorNames []string, studentNames []string, docentName string) (map[string]int, []string) {
 	docenteColaboracao := make(map[string]int)
 	progress := make([]string, 0)
 
@@ -38,6 +38,24 @@ func sequentialCompareAuthorWithStudentNames(authorNames []string, studentNames 
 	}
 
 	return docenteColaboracao, progress
+}
+
+//nolint:unused
+func compareAuthorRecords(authorRecords []*repository.Publications, studentNames []string) map[string]int {
+	docenteColaboracao := make(map[string]int)
+
+	for _, authorRecord := range authorRecords {
+		authorNames := strings.Split(authorRecord.Autores, ";")
+		docentName := authorRecord.Name
+
+		colaboracao, _ := sequentialCompareAuthorWithStudentNames(authorNames, studentNames, docentName)
+
+		for k, v := range colaboracao {
+			docenteColaboracao[k] += v
+		}
+	}
+
+	return docenteColaboracao
 }
 
 func main() {
@@ -78,74 +96,13 @@ func main() {
 	for _, studentRecord := range studentRecords {
 		log.Println("Nome a normalizar:", studentRecord[1])
 		normalizedStudentName := support.NormalizeName(studentRecord[1])
-		log.Println("Nome normalizado:", normalizedStudentName)
+		log.Println("Nome  normalizado:", normalizedStudentName)
 		studentNames = append(studentNames, normalizedStudentName)
 	}
 
-	progress := make(chan string)
-
 	fmt.Println("Comparando nomes de autores com nomes de discentes...")
 
-	var wg sync.WaitGroup
-
-	for _, authorRecord := range authorRecords {
-		authorNames := strings.Split(authorRecord.Autores, ";")
-		docentName := authorRecord.Name
-
-		wg.Add(1)
-		go func(authorNames []string, docentName string) {
-			defer wg.Done()
-			docenteColaboracao, progress := sequentialCompareAuthorWithStudentNames(authorNames, studentNames)
-			for _, msg := range progress {
-				progress <- msg
-			}
-			support.Mu.Lock()
-			for k, v := range docenteColaboracao {
-				docenteColaboracao[k] += v
-			}
-			support.Mu.Unlock()
-		}(authorNames, docentName)
-	}
-
-	go func() {
-		wg.Wait()
-		close(progress)
-	}()
-
-	for msg := range progress {
-		fmt.Println(msg)
-	}
-
-	numTotalArticles := len(authorRecords)
-	docenteColaboracao := make(map[string]int)
-
-	for docentName := range docenteColaboracao {
-		for _, authorRecord := range authorRecords {
-			if authorRecord.Name == docentName {
-				authorNames := strings.Split(authorRecord.Autores, ";")
-				achado := false
-
-				for _, studentName := range studentNames {
-					for _, authorName := range authorNames {
-						support.NormalizeName(authorName)
-						authorName = strings.TrimSpace(authorName)
-
-						similarity := nomecomparador.JaccardSimilarity(authorName, studentName)
-						if similarity > 0.86 {
-							achado = true
-							break
-						}
-					}
-					if achado {
-						break
-					}
-				}
-				if achado {
-					docenteColaboracao[docentName]++
-				}
-			}
-		}
-	}
+	docenteColaboracao := compareAuthorRecords(authorRecords, studentNames)
 
 	elapsedTime := time.Since(startTime)
 
@@ -155,7 +112,7 @@ func main() {
 	}
 
 	fmt.Printf("\nEstatísticas:\n")
-	fmt.Printf("Total de artigos: %d\n", numTotalArticles)
+	fmt.Printf("Total de artigos: %d\n", len(authorRecords))
 	fmt.Printf("Tempo de execução: %s\n", elapsedTime)
 
 	support.GenerateLog(authorRecords, studentNames, docenteColaboracao, elapsedTime)
