@@ -1,4 +1,4 @@
-package main
+package functional
 
 import (
 	"encoding/csv"
@@ -15,14 +15,9 @@ import (
 	"github.com/makaires77/ppgcs/pkg/usecase/nomecomparador"
 )
 
-func sequentialCompareAuthorWithStudentNames(authorNames []string, studentNames []string, docentName string, progress chan<- string, wg *sync.WaitGroup) {
-	defer wg.Done()
-
-	// Mapa para armazenar a contagem de colaboração por docente
+func sequentialCompareAuthorWithStudentNames(authorNames []string, studentNames []string) (map[string]int, []string) {
 	docenteColaboracao := make(map[string]int)
-
-	// Variável para indicar se houve colaboração para o autor atual
-	achado := false
+	progress := make([]string, 0)
 
 	for _, studentName := range studentNames {
 		for _, authorName := range authorNames {
@@ -31,35 +26,23 @@ func sequentialCompareAuthorWithStudentNames(authorNames []string, studentNames 
 
 			similarity := nomecomparador.JaccardSimilarity(authorName, studentName)
 			if similarity > 0.86 {
-				// msg := fmt.Sprintf("DISCENTE %.2f | %-25s | %-25s | De: %-25s %s", similarity, authorName, studentName, docentName, authorNames)
 				msg := fmt.Sprintf("DISCENTE %.2f | %-25s | %-25s | De: %-25s", similarity, authorName, studentName, docentName)
-				progress <- msg
-
-				// Indicar que houve colaboração para o autor atual
-				achado = true
+				progress = append(progress, msg)
+				docenteColaboracao[docentName]++
 				break
 			} else {
-				// msg := fmt.Sprintf("-------- %.2f | %-25s | %-25s | De: %-25s %s", similarity, authorName, studentName, docentName, authorNames)
 				msg := fmt.Sprintf("-------- %.2f | %-25s | %-25s | De: %-25s", similarity, authorName, studentName, docentName)
-				progress <- msg
+				progress = append(progress, msg)
 			}
 		}
-
-		// Se houve colaboração para o autor atual, incrementar a contagem de colaboração para o docente
-		if achado {
-			support.Mu.Lock()
-			docenteColaboracao[docentName]++
-			support.Mu.Unlock()
-			achado = false
-		}
 	}
+
+	return docenteColaboracao, progress
 }
 
 func main() {
-	// Iniciar contagem de tempo
 	startTime := time.Now()
 
-	// Abrir o arquivo CSV dos autores
 	fileAuthors, err := os.Open("../../_data/powerbi/publicacoes.csv")
 	if err != nil {
 		log.Fatalf("Falha ao abrir o arquivo CSV das publicações: %v", err)
@@ -68,7 +51,6 @@ func main() {
 
 	fmt.Println("Lendo o arquivo CSV dos autores...")
 
-	// Ler os registros do arquivo CSV dos autores
 	var authorRecords []*repository.Publications
 	if err := gocsv.UnmarshalFile(fileAuthors, &authorRecords); err != nil {
 		log.Fatalf("Falha ao extrair autores: %v", err)
@@ -76,14 +58,12 @@ func main() {
 
 	fmt.Printf("Total de registros de autores: %d\n", len(authorRecords))
 
-	// Abrir o arquivo CSV dos discentes
 	fileStudents, err := os.Open("../../_data/powerbi/lista_orientadores-discentes.csv")
 	if err != nil {
 		log.Fatalf("Falha ao abrir o arquivo CSV dos discentes: %v", err)
 	}
 	defer fileStudents.Close()
 
-	// Ler os registros do arquivo CSV dos discentes
 	readerStudents := csv.NewReader(fileStudents)
 	readerStudents.Comma = ';'
 	readerStudents.LazyQuotes = true
@@ -94,51 +74,51 @@ func main() {
 	}
 	fmt.Printf("Total de registros de discentes: %d\n", len(studentRecords))
 
-	// Extrair a segunda coluna dos discentes
 	var studentNames []string
 	for _, studentRecord := range studentRecords {
 		log.Println("Nome a normalizar:", studentRecord[1])
 		normalizedStudentName := support.NormalizeName(studentRecord[1])
-		log.Println("Nome  normalizado:", normalizedStudentName)
+		log.Println("Nome normalizado:", normalizedStudentName)
 		studentNames = append(studentNames, normalizedStudentName)
 	}
 
-	// Criar um canal para enviar atualizações de progresso
 	progress := make(chan string)
 
 	fmt.Println("Comparando nomes de autores com nomes de discentes...")
 
-	// Criar uma WaitGroup para sincronizar as goroutines
 	var wg sync.WaitGroup
 
-	// Iterar sobre cada combinação de autor e discente
 	for _, authorRecord := range authorRecords {
 		authorNames := strings.Split(authorRecord.Autores, ";")
 		docentName := authorRecord.Name
 
-		// Chamar a função sequencialmente
 		wg.Add(1)
-		go sequentialCompareAuthorWithStudentNames(authorNames, studentNames, docentName, progress, &wg)
+		go func(authorNames []string, docentName string) {
+			defer wg.Done()
+			docenteColaboracao, progress := sequentialCompareAuthorWithStudentNames(authorNames, studentNames)
+			for _, msg := range progress {
+				progress <- msg
+			}
+			support.Mu.Lock()
+			for k, v := range docenteColaboracao {
+				docenteColaboracao[k] += v
+			}
+			support.Mu.Unlock()
+		}(authorNames, docentName)
 	}
 
-	// Goroutine para monitorar o canal de progresso e exibir informações
 	go func() {
-		for msg := range progress {
-			fmt.Println(msg)
-		}
-		wg.Done()
+		wg.Wait()
+		close(progress)
 	}()
 
-	// Esperar até que todas as goroutines tenham concluído
-	wg.Wait()
+	for msg := range progress {
+		fmt.Println(msg)
+	}
 
-	// Calcular o total de artigos
 	numTotalArticles := len(authorRecords)
-
-	// Mapa para armazenar a contagem de colaboração por docente
 	docenteColaboracao := make(map[string]int)
 
-	// Calcular o percentual de colaboração de cada docente
 	for docentName := range docenteColaboracao {
 		for _, authorRecord := range authorRecords {
 			if authorRecord.Name == docentName {
@@ -167,27 +147,18 @@ func main() {
 		}
 	}
 
-	// Fechar o canal de progresso
-	close(progress)
-
-	// Tempo total de execução
 	elapsedTime := time.Since(startTime)
 
-	// Exibir o resultado da contagem de colaboração por docente
 	fmt.Println("\nContagem de colaboração por docente:")
 	for docentName, count := range docenteColaboracao {
 		fmt.Printf("Docente: %s | Colaboração: %d\n", docentName, count)
 	}
 
-	// Exibir estatísticas
 	fmt.Printf("\nEstatísticas:\n")
 	fmt.Printf("Total de artigos: %d\n", numTotalArticles)
 	fmt.Printf("Tempo de execução: %s\n", elapsedTime)
 
-	// Gerar o arquivo de log
 	support.GenerateLog(authorRecords, studentNames, docenteColaboracao, elapsedTime)
-
-	// Gerar o arquivo PDF com todos os dados calculados
 	support.GeneratePDF(authorRecords, studentNames, docenteColaboracao, elapsedTime)
 
 	fmt.Println("Programa finalizado.")

@@ -1,9 +1,5 @@
 package main
 
-// import (
-//     "github.com/makaires77/ppgcs/pkg/support"
-// )
-
 import (
 	"encoding/csv"
 	"fmt"
@@ -15,6 +11,7 @@ import (
 
 	"github.com/gocarina/gocsv"
 	"github.com/makaires77/ppgcs/pkg/repository"
+	"github.com/makaires77/ppgcs/pkg/support"
 	"github.com/makaires77/ppgcs/pkg/usecase/nomecomparador"
 	"github.com/signintech/gopdf"
 )
@@ -30,7 +27,7 @@ func parallelCompareAuthorWithStudentNames(authorNames []string, studentNames []
 
 	for _, studentName := range studentNames {
 		for _, authorName := range authorNames {
-			authorName = support.normalizeName(authorName)
+			authorName = support.NormalizeName(authorName)
 			authorName = strings.TrimSpace(authorName)
 
 			similarity := nomecomparador.JaccardSimilarity(authorName, studentName)
@@ -49,9 +46,9 @@ func parallelCompareAuthorWithStudentNames(authorNames []string, studentNames []
 
 		// Se houve colaboração para o autor atual, incrementar a contagem de colaboração para o docente
 		if achado {
-			mu.Lock()
+			support.Mu.Lock()
 			docenteColaboracao[docentName]++
-			mu.Unlock()
+			support.Mu.Unlock()
 			achado = false
 		}
 	}
@@ -100,7 +97,7 @@ func main() {
 	var studentNames []string
 	for _, studentRecord := range studentRecords {
 		log.Println("Nome a normalizar:", studentRecord[1])
-		normalizedStudentName := support.normalizeName(studentRecord[1])
+		normalizedStudentName := support.NormalizeName(studentRecord[1])
 		log.Println("Nome a normalizado:", normalizedStudentName)
 		studentNames = append(studentNames, normalizedStudentName)
 	}
@@ -150,7 +147,7 @@ func main() {
 
 				for _, studentName := range studentNames {
 					for _, authorName := range authorNames {
-						authorName = normalizeName(authorName)
+						authorName = support.NormalizeName(authorName)
 						authorName = strings.TrimSpace(authorName)
 
 						similarity := nomecomparador.JaccardSimilarity(authorName, studentName)

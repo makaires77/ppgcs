@@ -1,37 +1,43 @@
 package support
 
 import (
+	"fmt"
+	"log"
+	"os"
 	"regexp"
 	"strings"
 	"sync"
+	"time"
 	"unicode"
 
+	"github.com/makaires77/ppgcs/pkg/repository"
+	"github.com/signintech/gopdf"
 	"golang.org/x/text/runes"
 	"golang.org/x/text/transform"
 	"golang.org/x/text/unicode/norm"
 )
 
 // Criar um Mutex para proteger a variável totalSimilarities
-var mu sync.Mutex
+var Mu sync.Mutex
 
-func normalizeName(name string) string {
-	name = removePrepositions(name)
-	name = normalizeString(name)
+func NormalizeName(name string) string {
+	name = RemovePrepositions(name)
+	name = NormalizeString(name)
 
 	// Verificar se o nome já contém vírgula
 	if strings.Contains(name, ",") {
 		// Se o nome já contém vírgula, realizar apenas a remoção de acentuação e preposições
-		name = convertToInitials(name)
+		name = ConvertToInitials(name)
 	} else {
 		// Se o nome não contém vírgula, trazer o sobrenome para o início e adicionar iniciais
-		name = bringLastNameToFront(name)
-		name = convertToInitials(name)
+		name = BringLastNameToFront(name)
+		name = ConvertToInitials(name)
 	}
 
 	return name
 }
 
-func bringLastNameToFront(name string) string {
+func BringLastNameToFront(name string) string {
 	names := strings.Fields(name)
 	if len(names) > 1 {
 		lastName := names[len(names)-1]
@@ -50,7 +56,7 @@ func bringLastNameToFront(name string) string {
 	return name
 }
 
-func removePrepositions(name string) string {
+func RemovePrepositions(name string) string {
 	prepositions := []string{"de", "da", "do", "das", "dos"}
 	for _, prep := range prepositions {
 		name = strings.ReplaceAll(name, " "+prep+" ", " ")
@@ -58,7 +64,7 @@ func removePrepositions(name string) string {
 	return name
 }
 
-func convertToInitials(name string) string {
+func ConvertToInitials(name string) string {
 	names := strings.Fields(name)
 	initials := ""
 	for i, n := range names {
@@ -72,15 +78,106 @@ func convertToInitials(name string) string {
 	return strings.TrimSpace(initials)
 }
 
-func normalizeString(s string) string {
+func NormalizeString(s string) string {
 	t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
 	name, _, _ := transform.String(t, s)
-	name = removeAccentRunes(name)
+	name = RemoveAccentRunes(name)
 	name = strings.ToUpper(name)
 	return name
 }
 
-func removeAccentRunes(s string) string {
+func RemoveAccentRunes(s string) string {
 	reg := regexp.MustCompile("[ÀÁÂÃÄÅàáâãäåÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöøÙÚÛÜùúûüÇç]")
 	return reg.ReplaceAllString(s, "")
+}
+
+func GenerateLog(authorRecords []*repository.Publications, studentNames []string, docenteColaboracao map[string]int, elapsedTime time.Duration) {
+	logFile, err := os.Create("log.txt")
+	if err != nil {
+		log.Fatalf("Falha ao criar o arquivo de log: %v", err)
+	}
+	defer logFile.Close()
+
+	logger := log.New(logFile, "", log.LstdFlags)
+
+	// Escrever os dados no arquivo de log
+	logger.Println("Dados calculados:")
+	logger.Printf("Total de artigos: %d\n", len(authorRecords))
+	logger.Printf("Total de discentes: %d\n", len(studentNames))
+	logger.Printf("Tempo de execução: %s\n", elapsedTime)
+
+	logger.Println("\nContagem de colaboração por docente:")
+	for docentName, count := range docenteColaboracao {
+		logger.Printf("Docente: %s | Colaboração: %d\n", docentName, count)
+	}
+}
+
+func GeneratePDF(authorRecords []*repository.Publications, studentNames []string, docenteColaboracao map[string]int, elapsedTime time.Duration) {
+	// Criar um novo PDF
+	pdf := gopdf.GoPdf{}
+	pdf.Start(gopdf.Config{PageSize: *gopdf.PageSizeA4})
+	pdf.AddPage()
+
+	// Definir a fonte e o tamanho do título
+	titleFont := "Arial-Bold"
+	titleSize := 16.0
+
+	// Definir a fonte e o tamanho do cabeçalho
+	headerFont := "Arial-Bold"
+	headerSize := 12.0
+
+	// Definir a fonte e o tamanho do texto normal
+	textFont := "Arial"
+	textSize := 10.0
+
+	// Definir as margens
+	var marginLeft float64
+	var marginTop float64
+
+	marginLeft = 20.0
+	marginTop = 20.0
+
+	// Adicionar o título
+	pdf.SetFont(titleFont, "", titleSize)
+	pdf.Cell(&gopdf.Rect{
+		W: marginLeft,
+		H: marginTop,
+	}, "Relatório de Colaboração de Docentes")
+
+	// Adicionar a informação de tempo de execução
+	pdf.Br(20)
+	pdf.SetFont(headerFont, "", headerSize)
+	pdf.Cell(nil, "Tempo de Execução:")
+	pdf.Br(15)
+	pdf.SetFont(textFont, "", textSize)
+	pdf.Cell(nil, elapsedTime.String())
+
+	// Adicionar a contagem de colaboração por docente
+	pdf.Br(20)
+	pdf.SetFont(headerFont, "", headerSize)
+	pdf.Cell(nil, "Contagem de Colaboração por Docente:")
+	pdf.Br(15)
+	pdf.SetFont(textFont, "", textSize)
+	for docentName, count := range docenteColaboracao {
+		pdf.Cell(nil, fmt.Sprintf("Docente: %s | Colaboração: %d", docentName, count))
+		pdf.Br(10)
+	}
+
+	// Adicionar informações adicionais
+	pdf.Br(20)
+	pdf.SetFont(headerFont, "", headerSize)
+	pdf.Cell(nil, "Informações Adicionais:")
+	pdf.Br(15)
+	pdf.SetFont(textFont, "", textSize)
+	pdf.Cell(nil, fmt.Sprintf("Total de autores: %d", len(authorRecords)))
+	pdf.Br(15)
+	pdf.Cell(nil, fmt.Sprintf("Total de artigos: %d", len(authorRecords)))
+	pdf.Br(10)
+	pdf.Cell(nil, fmt.Sprintf("Total de discentes: %d", len(studentNames)))
+
+	// Salvar o PDF
+	err := pdf.WritePdf("_data/pdf/relatorio.pdf")
+	if err != nil {
+		log.Fatalf("Falha ao salvar o arquivo PDF: %v", err)
+	}
 }
