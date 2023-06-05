@@ -1,5 +1,9 @@
 package main
 
+// import (
+//     "github.com/makaires77/ppgcs/pkg/support"
+// )
+
 import (
 	"encoding/csv"
 	"fmt"
@@ -96,7 +100,7 @@ func main() {
 	var studentNames []string
 	for _, studentRecord := range studentRecords {
 		log.Println("Nome a normalizar:", studentRecord[1])
-		normalizedStudentName := normalizeName(studentRecord[1])
+		normalizedStudentName := support.normalizeName(studentRecord[1])
 		log.Println("Nome a normalizado:", normalizedStudentName)
 		studentNames = append(studentNames, normalizedStudentName)
 	}
