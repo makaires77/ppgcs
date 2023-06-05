@@ -26,7 +26,7 @@ func parallelCompareAuthorWithStudentNames(authorNames []string, studentNames []
 
 	for _, studentName := range studentNames {
 		for _, authorName := range authorNames {
-			authorName = utils.normalizeName(authorName)
+			authorName = support.normalizeName(authorName)
 			authorName = strings.TrimSpace(authorName)
 
 			similarity := nomecomparador.JaccardSimilarity(authorName, studentName)
