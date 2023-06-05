@@ -107,8 +107,10 @@ func GenerateLog(authorRecords []*repository.Publications, studentNames []string
 	logger.Printf("Tempo de execução: %s\n", elapsedTime)
 
 	logger.Println("\nContagem de colaboração por docente:")
-	for docentName, count := range docenteColaboracao {
-		logger.Printf("Docente: %s | Colaboração: %d\n", docentName, count)
+	for docente, ano := range docenteColaboracao {
+		for ano, valor := range ano {
+			fmt.Printf("Docente: %-40s | Ano: %-4s | Valor: %d\n", docente, ano, valor)
+		}
 	}
 }
 

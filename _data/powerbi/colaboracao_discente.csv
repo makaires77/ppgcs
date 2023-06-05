@@ -1,321 +1,198 @@
 nome_docente,ano,total_artigos_periodo,qte_colaboracao_discente,percentual_colaboracao_discente
-Jaquelline Germano de Oliveira,2022,3,2,66.67
-Jaquelline Germano de Oliveira,2018,4,3,75.00
-Jaquelline Germano de Oliveira,2019,2,1,50.00
-Jaquelline Germano de Oliveira,2020,4,3,75.00
-Jeronimo Conceição Ruiz,2020,5,4,80.00
-Jeronimo Conceição Ruiz,2021,4,2,50.00
-Jeronimo Conceição Ruiz,2022,1,0,0.00
-Jeronimo Conceição Ruiz,2017,6,5,83.33
-Jeronimo Conceição Ruiz,2018,3,2,66.67
-Jeronimo Conceição Ruiz,2019,1,0,0.00
-Silvane Maria Fonseca Murta,2018,5,4,80.00
-Silvane Maria Fonseca Murta,2019,7,6,85.71
-Silvane Maria Fonseca Murta,2020,8,7,87.50
-Silvane Maria Fonseca Murta,2021,5,3,60.00
-Silvane Maria Fonseca Murta,2022,8,4,50.00
-Silvane Maria Fonseca Murta,2023,1,0,0.00
-Silvane Maria Fonseca Murta,2017,5,0,0.00
-Ricardo Tostes Gazzinelli,2023,1,0,0.00
-Ricardo Tostes Gazzinelli,2017,7,3,42.86
-Ricardo Tostes Gazzinelli,2018,7,4,57.14
-Ricardo Tostes Gazzinelli,2019,6,4,66.67
-Ricardo Tostes Gazzinelli,2020,9,4,44.44
-Ricardo Tostes Gazzinelli,2021,11,9,81.82
-Ricardo Tostes Gazzinelli,2022,11,6,54.55
-Márcio Sobreira Silva Araújo,2017,3,0,0.00
-Márcio Sobreira Silva Araújo,2018,11,2,18.18
-Márcio Sobreira Silva Araújo,2019,3,1,33.33
-Márcio Sobreira Silva Araújo,2020,3,1,33.33
-Márcio Sobreira Silva Araújo,2021,3,2,66.67
-Márcio Sobreira Silva Araújo,2022,7,6,85.71
-Alexandre de Magalhaes Vieira Machado,2017,5,3,60.00
-Alexandre de Magalhaes Vieira Machado,2018,2,1,50.00
-Alexandre de Magalhaes Vieira Machado,2019,2,0,0.00
-Alexandre de Magalhaes Vieira Machado,2020,1,0,0.00
-Alexandre de Magalhaes Vieira Machado,2021,2,1,50.00
-Alexandre de Magalhaes Vieira Machado,2022,1,0,0.00
-Lileia Gonçalves Diotaiuti,2017,6,5,83.33
-Lileia Gonçalves Diotaiuti,2018,4,3,75.00
-Lileia Gonçalves Diotaiuti,2019,2,1,50.00
-Lileia Gonçalves Diotaiuti,2020,4,2,50.00
-Lileia Gonçalves Diotaiuti,2021,3,2,66.67
-Lileia Gonçalves Diotaiuti,2022,3,0,0.00
-Lileia Gonçalves Diotaiuti,2023,1,0,0.00
-Erika Michalsky Monteiro,2018,2,1,50.00
-Erika Michalsky Monteiro,2019,4,2,50.00
-Erika Michalsky Monteiro,2020,3,2,66.67
-Erika Michalsky Monteiro,2022,1,0,0.00
-Erika Michalsky Monteiro,2017,2,0,0.00
-Caroline Furtado Junqueira,2022,3,0,0.00
-Caroline Furtado Junqueira,2023,2,1,50.00
-Caroline Furtado Junqueira,2017,3,1,33.33
-Caroline Furtado Junqueira,2018,2,1,50.00
-Caroline Furtado Junqueira,2019,1,0,0.00
-Caroline Furtado Junqueira,2020,4,1,25.00
-Caroline Furtado Junqueira,2021,3,0,0.00
-Vanessa Peruhype Magalhães Pascoal,2022,10,9,90.00
-Vanessa Peruhype Magalhães Pascoal,2023,1,0,0.00
-Vanessa Peruhype Magalhães Pascoal,2017,8,5,62.50
-Vanessa Peruhype Magalhães Pascoal,2018,3,1,33.33
-Vanessa Peruhype Magalhães Pascoal,2019,4,3,75.00
-Vanessa Peruhype Magalhães Pascoal,2020,6,5,83.33
-Vanessa Peruhype Magalhães Pascoal,2021,5,3,60.00
-Lis Ribeiro do Valle Antonelli,2022,7,6,85.71
-Lis Ribeiro do Valle Antonelli,2017,4,2,50.00
-Lis Ribeiro do Valle Antonelli,2018,8,6,75.00
-Lis Ribeiro do Valle Antonelli,2019,8,5,62.50
-Lis Ribeiro do Valle Antonelli,2020,6,4,66.67
-Lis Ribeiro do Valle Antonelli,2021,8,6,75.00
-Tânia Maria de Almeida Alves,2019,2,0,0.00
-Tânia Maria de Almeida Alves,2020,5,4,80.00
-Tânia Maria de Almeida Alves,2021,2,1,50.00
-Tânia Maria de Almeida Alves,2022,3,2,66.67
-Tânia Maria de Almeida Alves,2023,1,0,0.00
-Tânia Maria de Almeida Alves,2017,2,0,0.00
-Tânia Maria de Almeida Alves,2018,6,4,66.67
-Rosiane Aparecida da Silva Pereira,2018,2,1,50.00
-Rosiane Aparecida da Silva Pereira,2019,3,2,66.67
-Rosiane Aparecida da Silva Pereira,2022,3,2,66.67
-Rosiane Aparecida da Silva Pereira,2023,1,0,0.00
-Marina de Moraes Mourão,2018,1,0,0.00
-Marina de Moraes Mourão,2019,6,3,50.00
-Marina de Moraes Mourão,2020,5,4,80.00
-Marina de Moraes Mourão,2021,3,0,0.00
-Marina de Moraes Mourão,2022,5,4,80.00
-Marina de Moraes Mourão,2023,1,0,0.00
-Marina de Moraes Mourão,2017,7,3,42.86
-Edelberto Santos Dias,2018,2,1,50.00
-Edelberto Santos Dias,2019,6,3,50.00
-Edelberto Santos Dias,2020,3,2,66.67
-Edelberto Santos Dias,2022,1,0,0.00
-Edelberto Santos Dias,2017,2,0,0.00
-Marcelo Antonio Pascoal Xavier,2022,3,1,33.33
-Marcelo Antonio Pascoal Xavier,2023,2,0,0.00
-Marcelo Antonio Pascoal Xavier,2017,4,3,75.00
-Marcelo Antonio Pascoal Xavier,2018,9,7,77.78
-Marcelo Antonio Pascoal Xavier,2020,8,6,75.00
-Marcelo Antonio Pascoal Xavier,2021,6,2,33.33
-Roney Santos Coimbra,2017,7,5,71.43
-Roney Santos Coimbra,2018,5,1,20.00
-Roney Santos Coimbra,2020,2,0,0.00
-Roney Santos Coimbra,2021,2,1,50.00
-Roney Santos Coimbra,2022,2,1,50.00
-Roney Santos Coimbra,2023,1,0,0.00
-Rita de Cássia Moreira de Souza,2018,2,1,50.00
-Rita de Cássia Moreira de Souza,2019,4,2,50.00
-Rita de Cássia Moreira de Souza,2020,2,0,0.00
-Rita de Cássia Moreira de Souza,2021,7,2,28.57
-Rita de Cássia Moreira de Souza,2022,3,0,0.00
-Rita de Cássia Moreira de Souza,2017,3,2,66.67
-Álvaro Gil Araújo Ferreira,2018,1,0,0.00
-Álvaro Gil Araújo Ferreira,2019,1,0,0.00
-Álvaro Gil Araújo Ferreira,2020,2,1,50.00
-Álvaro Gil Araújo Ferreira,2021,3,2,66.67
-Álvaro Gil Araújo Ferreira,2022,1,0,0.00
-Álvaro Gil Araújo Ferreira,2023,1,0,0.00
-Pedro Augusto Alves,2020,5,3,60.00
-Pedro Augusto Alves,2021,3,2,66.67
-Pedro Augusto Alves,2022,7,6,85.71
-Pedro Augusto Alves,2023,1,0,0.00
-Pedro Augusto Alves,2018,3,2,66.67
-Pedro Augusto Alves,2019,4,3,75.00
-Cristiana Couto Garcia,2017,4,0,0.00
-Cristiana Couto Garcia,2018,3,1,33.33
-Cristiana Couto Garcia,2019,2,0,0.00
-Cristiana Couto Garcia,2020,4,1,25.00
-Cristiana Couto Garcia,2021,3,1,33.33
-Cristiana Couto Garcia,2022,7,6,85.71
-Cristiana Couto Garcia,2023,1,0,0.00
-Marco Antônio da Silva Campos,2021,3,2,66.67
-Marco Antônio da Silva Campos,2022,1,0,0.00
-Marco Antônio da Silva Campos,2023,2,1,50.00
-Marco Antônio da Silva Campos,2017,1,0,0.00
-Marco Antônio da Silva Campos,2018,2,0,0.00
-Marco Antônio da Silva Campos,2020,2,0,0.00
-Taís Nóbrega de Sousa,2019,4,3,75.00
-Taís Nóbrega de Sousa,2020,4,2,50.00
-Taís Nóbrega de Sousa,2021,4,3,75.00
-Taís Nóbrega de Sousa,2022,4,3,75.00
-Taís Nóbrega de Sousa,2017,2,1,50.00
-Taís Nóbrega de Sousa,2018,3,2,66.67
-Olindo Assis Martins Filho,2019,24,17,70.83
-Olindo Assis Martins Filho,2020,26,25,96.15
-Olindo Assis Martins Filho,2021,20,17,85.00
-Olindo Assis Martins Filho,2022,26,25,96.15
-Olindo Assis Martins Filho,2023,5,4,80.00
-Olindo Assis Martins Filho,2017,26,13,50.00
-Olindo Assis Martins Filho,2018,17,11,64.71
-Rodrigo Correa de Oliveira,2017,17,15,88.24
-Rodrigo Correa de Oliveira,2018,5,4,80.00
-Rodrigo Correa de Oliveira,2019,10,9,90.00
-Rodrigo Correa de Oliveira,2020,5,4,80.00
-Rodrigo Correa de Oliveira,2021,5,4,80.00
-Rodrigo Correa de Oliveira,2022,3,2,66.67
-Cristina Toscano Fonseca,2022,3,2,66.67
-Cristina Toscano Fonseca,2023,1,0,0.00
-Cristina Toscano Fonseca,2017,2,0,0.00
-Cristina Toscano Fonseca,2018,3,1,33.33
-Cristina Toscano Fonseca,2019,3,2,66.67
-Cristina Toscano Fonseca,2020,1,0,0.00
-Cristina Toscano Fonseca,2021,3,1,33.33
-Glaucia Fernandes Cota,2019,5,2,40.00
-Glaucia Fernandes Cota,2020,8,5,62.50
-Glaucia Fernandes Cota,2021,11,10,90.91
-Glaucia Fernandes Cota,2022,5,4,80.00
-Glaucia Fernandes Cota,2023,3,2,66.67
-Glaucia Fernandes Cota,2017,9,5,55.56
-Glaucia Fernandes Cota,2018,9,5,55.56
-Luzia Helena Carvalho,2021,5,4,80.00
-Luzia Helena Carvalho,2022,3,2,66.67
-Luzia Helena Carvalho,2017,3,2,66.67
-Luzia Helena Carvalho,2018,4,3,75.00
-Luzia Helena Carvalho,2019,2,1,50.00
-Luzia Helena Carvalho,2020,4,3,75.00
-Celia Maria Ferreira Gontijo,2020,7,6,85.71
-Celia Maria Ferreira Gontijo,2021,4,3,75.00
-Celia Maria Ferreira Gontijo,2022,5,3,60.00
-Celia Maria Ferreira Gontijo,2017,6,5,83.33
-Celia Maria Ferreira Gontijo,2018,8,6,75.00
-Celia Maria Ferreira Gontijo,2019,6,4,66.67
-Ana Lúcia Teles Rabello,2020,5,4,80.00
-Ana Lúcia Teles Rabello,2021,2,0,0.00
-Ana Lúcia Teles Rabello,2022,1,0,0.00
-Ana Lúcia Teles Rabello,2017,9,4,44.44
-Ana Lúcia Teles Rabello,2018,5,3,60.00
-Ana Lúcia Teles Rabello,2019,9,4,44.44
-Roberta Lima Caldeira,2017,5,3,60.00
-Roberta Lima Caldeira,2018,5,2,40.00
-Roberta Lima Caldeira,2019,2,1,50.00
-Roberta Lima Caldeira,2020,4,3,75.00
-Roberta Lima Caldeira,2021,3,1,33.33
-Roberta Lima Caldeira,2022,4,3,75.00
-Roberta Lima Caldeira,2023,2,1,50.00
-Marcelo Gustavo Lorenzo,2018,1,0,0.00
-Marcelo Gustavo Lorenzo,2019,2,0,0.00
-Marcelo Gustavo Lorenzo,2020,6,1,16.67
-Marcelo Gustavo Lorenzo,2021,5,4,80.00
-Marcelo Gustavo Lorenzo,2022,2,0,0.00
-Marcelo Gustavo Lorenzo,2023,1,0,0.00
-Marcelo Gustavo Lorenzo,2017,2,1,50.00
-Rubens Lima do Monte Neto,2023,1,0,0.00
-Rubens Lima do Monte Neto,2017,1,0,0.00
-Rubens Lima do Monte Neto,2018,5,4,80.00
-Rubens Lima do Monte Neto,2019,1,0,0.00
-Rubens Lima do Monte Neto,2020,4,3,75.00
-Rubens Lima do Monte Neto,2021,5,4,80.00
-Rubens Lima do Monte Neto,2022,10,9,90.00
-Luciano Andrade Moreira,2017,7,6,85.71
-Luciano Andrade Moreira,2018,4,3,75.00
-Luciano Andrade Moreira,2019,8,7,87.50
-Luciano Andrade Moreira,2020,6,5,83.33
-Luciano Andrade Moreira,2021,9,8,88.89
-Luciano Andrade Moreira,2022,4,3,75.00
-Luciano Andrade Moreira,2023,1,0,0.00
-Gustavo Fontes Paz,2022,5,4,80.00
-Gustavo Fontes Paz,2023,1,0,0.00
-Gustavo Fontes Paz,2017,6,5,83.33
-Gustavo Fontes Paz,2018,3,1,33.33
-Gustavo Fontes Paz,2019,1,0,0.00
-Gustavo Fontes Paz,2020,4,3,75.00
-Gustavo Fontes Paz,2021,2,1,50.00
-Andréa Teixeira de Carvalho,2022,22,21,95.45
-Andréa Teixeira de Carvalho,2023,4,0,0.00
-Andréa Teixeira de Carvalho,2017,18,9,50.00
-Andréa Teixeira de Carvalho,2018,15,12,80.00
-Andréa Teixeira de Carvalho,2019,18,17,94.44
-Andréa Teixeira de Carvalho,2020,22,19,86.36
-Andréa Teixeira de Carvalho,2021,12,9,75.00
+Carlos Eduardo Calzavara Silva,2017,1,0,0.00
+Carlos Eduardo Calzavara Silva,2018,4,3,75.00
+Carlos Eduardo Calzavara Silva,2019,1,0,0.00
+Carlos Eduardo Calzavara Silva,2020,4,3,75.00
+Carlos Eduardo Calzavara Silva,2021,1,0,0.00
+Carlos Eduardo Calzavara Silva,2022,6,5,83.33
+Carlos Eduardo Calzavara Silva,2023,2,1,50.00
+Carina Margonari de Souza,2018,2,0,0.00
+Carina Margonari de Souza,2019,1,0,0.00
+Carina Margonari de Souza,2020,2,1,50.00
+Carina Margonari de Souza,2021,4,3,75.00
+Carina Margonari de Souza,2022,1,0,0.00
+Carina Margonari de Souza,2023,1,0,0.00
+Carina Margonari de Souza,2017,1,0,0.00
+Edward José de Oliveira,2021,3,2,66.67
+Edward José de Oliveira,2022,5,4,80.00
+Edward José de Oliveira,2023,1,0,0.00
+Edward José de Oliveira,2017,2,1,50.00
+Edward José de Oliveira,2018,2,1,50.00
+Edward José de Oliveira,2019,7,6,85.71
+Edward José de Oliveira,2020,9,8,88.89
+Rodrigo Pedro Pinto Soares,2018,9,8,88.89
 Rodrigo Pedro Pinto Soares,2019,9,6,66.67
 Rodrigo Pedro Pinto Soares,2020,8,2,25.00
 Rodrigo Pedro Pinto Soares,2021,11,8,72.73
 Rodrigo Pedro Pinto Soares,2022,4,3,75.00
 Rodrigo Pedro Pinto Soares,2023,1,0,0.00
 Rodrigo Pedro Pinto Soares,2017,7,4,57.14
-Rodrigo Pedro Pinto Soares,2018,9,8,88.89
-Flora Satiko Kano,2018,3,2,66.67
-Flora Satiko Kano,2019,2,1,50.00
-Flora Satiko Kano,2020,3,2,66.67
-Flora Satiko Kano,2021,3,2,66.67
-Flora Satiko Kano,2022,2,1,50.00
-Flora Satiko Kano,2017,2,1,50.00
-Gabriel da Rocha Fernandes,2018,5,3,60.00
+Jaquelline Germano de Oliveira,2018,4,3,75.00
+Jaquelline Germano de Oliveira,2019,2,1,50.00
+Jaquelline Germano de Oliveira,2020,4,3,75.00
+Jaquelline Germano de Oliveira,2022,3,2,66.67
+Rubens Lima do Monte Neto,2021,5,4,80.00
+Rubens Lima do Monte Neto,2022,10,9,90.00
+Rubens Lima do Monte Neto,2023,1,0,0.00
+Rubens Lima do Monte Neto,2017,1,0,0.00
+Rubens Lima do Monte Neto,2018,5,4,80.00
+Rubens Lima do Monte Neto,2019,1,0,0.00
+Rubens Lima do Monte Neto,2020,4,3,75.00
+Roney Santos Coimbra,2017,7,5,71.43
+Roney Santos Coimbra,2018,5,1,20.00
+Roney Santos Coimbra,2020,2,0,0.00
+Roney Santos Coimbra,2021,2,1,50.00
+Roney Santos Coimbra,2022,2,1,50.00
+Roney Santos Coimbra,2023,1,0,0.00
+Marina de Moraes Mourão,2022,5,4,80.00
+Marina de Moraes Mourão,2023,1,0,0.00
+Marina de Moraes Mourão,2017,7,3,42.86
+Marina de Moraes Mourão,2018,1,0,0.00
+Marina de Moraes Mourão,2019,6,3,50.00
+Marina de Moraes Mourão,2020,5,4,80.00
+Marina de Moraes Mourão,2021,3,0,0.00
+Cristiana Couto Garcia,2018,3,1,33.33
+Cristiana Couto Garcia,2019,2,0,0.00
+Cristiana Couto Garcia,2020,4,1,25.00
+Cristiana Couto Garcia,2021,3,1,33.33
+Cristiana Couto Garcia,2022,7,6,85.71
+Cristiana Couto Garcia,2023,1,0,0.00
+Cristiana Couto Garcia,2017,4,0,0.00
+Erika Michalsky Monteiro,2019,4,2,50.00
+Erika Michalsky Monteiro,2020,3,2,66.67
+Erika Michalsky Monteiro,2022,1,0,0.00
+Erika Michalsky Monteiro,2017,2,0,0.00
+Erika Michalsky Monteiro,2018,2,1,50.00
+Tânia Maria de Almeida Alves,2020,5,4,80.00
+Tânia Maria de Almeida Alves,2021,2,1,50.00
+Tânia Maria de Almeida Alves,2022,3,2,66.67
+Tânia Maria de Almeida Alves,2023,1,0,0.00
+Tânia Maria de Almeida Alves,2017,2,0,0.00
+Tânia Maria de Almeida Alves,2018,6,4,66.67
+Tânia Maria de Almeida Alves,2019,2,0,0.00
+Cristiana Ferreira Alves de Brito,2017,5,4,80.00
+Cristiana Ferreira Alves de Brito,2018,5,4,80.00
+Cristiana Ferreira Alves de Brito,2019,8,7,87.50
+Cristiana Ferreira Alves de Brito,2020,3,2,66.67
+Cristiana Ferreira Alves de Brito,2021,3,2,66.67
+Cristiana Ferreira Alves de Brito,2022,3,2,66.67
+Álvaro Gil Araújo Ferreira,2022,1,0,0.00
+Álvaro Gil Araújo Ferreira,2023,1,0,0.00
+Álvaro Gil Araújo Ferreira,2018,1,0,0.00
+Álvaro Gil Araújo Ferreira,2019,1,0,0.00
+Álvaro Gil Araújo Ferreira,2020,2,1,50.00
+Álvaro Gil Araújo Ferreira,2021,3,2,66.67
+Pedro Augusto Alves,2020,5,3,60.00
+Pedro Augusto Alves,2021,3,2,66.67
+Pedro Augusto Alves,2022,7,6,85.71
+Pedro Augusto Alves,2023,1,0,0.00
+Pedro Augusto Alves,2018,3,2,66.67
+Pedro Augusto Alves,2019,4,3,75.00
+Celia Maria Ferreira Gontijo,2019,6,4,66.67
+Celia Maria Ferreira Gontijo,2020,7,6,85.71
+Celia Maria Ferreira Gontijo,2021,4,3,75.00
+Celia Maria Ferreira Gontijo,2022,5,3,60.00
+Celia Maria Ferreira Gontijo,2017,6,5,83.33
+Celia Maria Ferreira Gontijo,2018,8,6,75.00
+Gustavo Fontes Paz,2018,3,1,33.33
+Gustavo Fontes Paz,2019,1,0,0.00
+Gustavo Fontes Paz,2020,4,3,75.00
+Gustavo Fontes Paz,2021,2,1,50.00
+Gustavo Fontes Paz,2022,5,4,80.00
+Gustavo Fontes Paz,2023,1,0,0.00
+Gustavo Fontes Paz,2017,6,5,83.33
+Ricardo Tostes Gazzinelli,2017,7,3,42.86
+Ricardo Tostes Gazzinelli,2018,7,4,57.14
+Ricardo Tostes Gazzinelli,2019,6,4,66.67
+Ricardo Tostes Gazzinelli,2020,9,4,44.44
+Ricardo Tostes Gazzinelli,2021,11,9,81.82
+Ricardo Tostes Gazzinelli,2022,11,6,54.55
+Ricardo Tostes Gazzinelli,2023,1,0,0.00
+Andréa Teixeira de Carvalho,2019,18,17,94.44
+Andréa Teixeira de Carvalho,2020,22,19,86.36
+Andréa Teixeira de Carvalho,2021,12,9,75.00
+Andréa Teixeira de Carvalho,2022,22,21,95.45
+Andréa Teixeira de Carvalho,2023,4,0,0.00
+Andréa Teixeira de Carvalho,2017,18,9,50.00
+Andréa Teixeira de Carvalho,2018,15,12,80.00
+Ana Lúcia Teles Rabello,2019,9,4,44.44
+Ana Lúcia Teles Rabello,2020,5,4,80.00
+Ana Lúcia Teles Rabello,2021,2,0,0.00
+Ana Lúcia Teles Rabello,2022,1,0,0.00
+Ana Lúcia Teles Rabello,2017,9,4,44.44
+Ana Lúcia Teles Rabello,2018,5,3,60.00
+Cristina Toscano Fonseca,2017,2,0,0.00
+Cristina Toscano Fonseca,2018,3,1,33.33
+Cristina Toscano Fonseca,2019,3,2,66.67
+Cristina Toscano Fonseca,2020,1,0,0.00
+Cristina Toscano Fonseca,2021,3,1,33.33
+Cristina Toscano Fonseca,2022,3,2,66.67
+Cristina Toscano Fonseca,2023,1,0,0.00
+Silvane Maria Fonseca Murta,2017,5,0,0.00
+Silvane Maria Fonseca Murta,2018,5,4,80.00
+Silvane Maria Fonseca Murta,2019,7,6,85.71
+Silvane Maria Fonseca Murta,2020,8,7,87.50
+Silvane Maria Fonseca Murta,2021,5,3,60.00
+Silvane Maria Fonseca Murta,2022,8,4,50.00
+Silvane Maria Fonseca Murta,2023,1,0,0.00
+Marco Antônio da Silva Campos,2022,1,0,0.00
+Marco Antônio da Silva Campos,2023,2,1,50.00
+Marco Antônio da Silva Campos,2017,1,0,0.00
+Marco Antônio da Silva Campos,2018,2,0,0.00
+Marco Antônio da Silva Campos,2020,2,0,0.00
+Marco Antônio da Silva Campos,2021,3,2,66.67
+Marcelo Gustavo Lorenzo,2017,2,1,50.00
+Marcelo Gustavo Lorenzo,2018,1,0,0.00
+Marcelo Gustavo Lorenzo,2019,2,0,0.00
+Marcelo Gustavo Lorenzo,2020,6,1,16.67
+Marcelo Gustavo Lorenzo,2021,5,4,80.00
+Marcelo Gustavo Lorenzo,2022,2,0,0.00
+Marcelo Gustavo Lorenzo,2023,1,0,0.00
+Alexandre de Magalhaes Vieira Machado,2021,2,1,50.00
+Alexandre de Magalhaes Vieira Machado,2022,1,0,0.00
+Alexandre de Magalhaes Vieira Machado,2017,5,3,60.00
+Alexandre de Magalhaes Vieira Machado,2018,2,1,50.00
+Alexandre de Magalhaes Vieira Machado,2019,2,0,0.00
+Alexandre de Magalhaes Vieira Machado,2020,1,0,0.00
 Gabriel da Rocha Fernandes,2019,4,2,50.00
 Gabriel da Rocha Fernandes,2020,7,5,71.43
 Gabriel da Rocha Fernandes,2021,2,0,0.00
 Gabriel da Rocha Fernandes,2022,13,11,84.62
 Gabriel da Rocha Fernandes,2023,5,2,40.00
 Gabriel da Rocha Fernandes,2017,11,8,72.73
-José Dilermando Andrade Filho,2023,1,0,0.00
-José Dilermando Andrade Filho,2017,8,7,87.50
-José Dilermando Andrade Filho,2018,2,0,0.00
-José Dilermando Andrade Filho,2019,5,1,20.00
-José Dilermando Andrade Filho,2020,5,4,80.00
-José Dilermando Andrade Filho,2021,6,5,83.33
-José Dilermando Andrade Filho,2022,8,7,87.50
-Érica Alessandra Rocha Alves,2020,3,2,66.67
-Érica Alessandra Rocha Alves,2021,2,1,50.00
-Érica Alessandra Rocha Alves,2022,1,0,0.00
-Érica Alessandra Rocha Alves,2023,1,0,0.00
-Érica Alessandra Rocha Alves,2017,2,0,0.00
-Érica Alessandra Rocha Alves,2018,3,2,66.67
+Gabriel da Rocha Fernandes,2018,5,3,60.00
+Márcio Sobreira Silva Araújo,2017,3,0,0.00
+Márcio Sobreira Silva Araújo,2018,11,2,18.18
+Márcio Sobreira Silva Araújo,2019,3,1,33.33
+Márcio Sobreira Silva Araújo,2020,3,1,33.33
+Márcio Sobreira Silva Araújo,2021,3,2,66.67
+Márcio Sobreira Silva Araújo,2022,7,6,85.71
+Jeronimo Conceição Ruiz,2017,6,5,83.33
+Jeronimo Conceição Ruiz,2018,3,2,66.67
+Jeronimo Conceição Ruiz,2019,1,0,0.00
+Jeronimo Conceição Ruiz,2020,5,4,80.00
+Jeronimo Conceição Ruiz,2021,4,2,50.00
+Jeronimo Conceição Ruiz,2022,1,0,0.00
+Nagila Francinete Costa Secundino,2023,2,1,50.00
+Nagila Francinete Costa Secundino,2017,4,3,75.00
+Nagila Francinete Costa Secundino,2018,6,5,83.33
 Nagila Francinete Costa Secundino,2019,3,2,66.67
 Nagila Francinete Costa Secundino,2020,6,3,50.00
 Nagila Francinete Costa Secundino,2021,6,4,66.67
 Nagila Francinete Costa Secundino,2022,4,2,50.00
-Nagila Francinete Costa Secundino,2023,2,1,50.00
-Nagila Francinete Costa Secundino,2017,4,3,75.00
-Nagila Francinete Costa Secundino,2018,6,5,83.33
-Alessandra Aparecida Guarneri,2017,4,1,25.00
-Alessandra Aparecida Guarneri,2018,3,2,66.67
-Alessandra Aparecida Guarneri,2019,3,0,0.00
-Alessandra Aparecida Guarneri,2020,5,3,60.00
-Alessandra Aparecida Guarneri,2021,4,1,25.00
-Alessandra Aparecida Guarneri,2022,4,2,50.00
-Alessandra Aparecida Guarneri,2023,1,0,0.00
-Cristiana Ferreira Alves de Brito,2018,5,4,80.00
-Cristiana Ferreira Alves de Brito,2019,8,7,87.50
-Cristiana Ferreira Alves de Brito,2020,3,2,66.67
-Cristiana Ferreira Alves de Brito,2021,3,2,66.67
-Cristiana Ferreira Alves de Brito,2022,3,2,66.67
-Cristiana Ferreira Alves de Brito,2017,5,4,80.00
-Carina Margonari de Souza,2022,1,0,0.00
-Carina Margonari de Souza,2023,1,0,0.00
-Carina Margonari de Souza,2017,1,0,0.00
-Carina Margonari de Souza,2018,2,0,0.00
-Carina Margonari de Souza,2019,1,0,0.00
-Carina Margonari de Souza,2020,2,1,50.00
-Carina Margonari de Souza,2021,4,3,75.00
-Paulo Filemon Paolucci Pimenta,2017,4,3,75.00
-Paulo Filemon Paolucci Pimenta,2018,10,8,80.00
-Paulo Filemon Paolucci Pimenta,2019,6,5,83.33
-Paulo Filemon Paolucci Pimenta,2020,8,4,50.00
-Paulo Filemon Paolucci Pimenta,2021,6,5,83.33
-Paulo Filemon Paolucci Pimenta,2022,6,4,66.67
-Paulo Filemon Paolucci Pimenta,2023,2,1,50.00
-Rafaella Fortini Grenfell e Queiroz,2022,8,7,87.50
-Rafaella Fortini Grenfell e Queiroz,2023,2,1,50.00
-Rafaella Fortini Grenfell e Queiroz,2018,1,0,0.00
-Rafaella Fortini Grenfell e Queiroz,2019,4,2,50.00
-Rafaella Fortini Grenfell e Queiroz,2020,1,0,0.00
-Rafaella Fortini Grenfell e Queiroz,2021,3,2,66.67
-Luiz Carlos Júnior Alcantara,2020,20,9,45.00
-Luiz Carlos Júnior Alcantara,2021,21,20,95.24
-Luiz Carlos Júnior Alcantara,2022,30,29,96.67
+Roberta Lima Caldeira,2018,5,2,40.00
+Roberta Lima Caldeira,2019,2,1,50.00
+Roberta Lima Caldeira,2020,4,3,75.00
+Roberta Lima Caldeira,2021,3,1,33.33
+Roberta Lima Caldeira,2022,4,3,75.00
+Roberta Lima Caldeira,2023,2,1,50.00
+Roberta Lima Caldeira,2017,5,3,60.00
 Luiz Carlos Júnior Alcantara,2017,8,5,62.50
 Luiz Carlos Júnior Alcantara,2018,9,7,77.78
 Luiz Carlos Júnior Alcantara,2019,14,8,57.14
-Soraya Torres Gaze Jangola,2018,2,1,50.00
-Soraya Torres Gaze Jangola,2020,1,0,0.00
-Soraya Torres Gaze Jangola,2021,3,1,33.33
-Soraya Torres Gaze Jangola,2022,2,1,50.00
-Soraya Torres Gaze Jangola,2023,1,0,0.00
-Paloma Helena Fernandes Shimabukuro,2020,4,3,75.00
-Paloma Helena Fernandes Shimabukuro,2021,2,1,50.00
-Paloma Helena Fernandes Shimabukuro,2022,6,1,16.67
-Paloma Helena Fernandes Shimabukuro,2023,2,0,0.00
-Paloma Helena Fernandes Shimabukuro,2017,2,1,50.00
-Paloma Helena Fernandes Shimabukuro,2018,3,0,0.00
+Luiz Carlos Júnior Alcantara,2020,20,9,45.00
+Luiz Carlos Júnior Alcantara,2021,21,20,95.24
+Luiz Carlos Júnior Alcantara,2022,30,29,96.67
 Paulo Marcos Zech Coelho,2020,4,3,75.00
 Paulo Marcos Zech Coelho,2021,2,1,50.00
 Paulo Marcos Zech Coelho,2022,1,0,0.00
@@ -323,23 +200,146 @@ Paulo Marcos Zech Coelho,2023,1,0,0.00
 Paulo Marcos Zech Coelho,2017,7,5,71.43
 Paulo Marcos Zech Coelho,2018,5,3,60.00
 Paulo Marcos Zech Coelho,2019,10,9,90.00
-Daniel Moreira de Avelar,2019,3,2,66.67
-Daniel Moreira de Avelar,2020,2,1,50.00
-Daniel Moreira de Avelar,2021,3,2,66.67
+Rodrigo Correa de Oliveira,2021,5,4,80.00
+Rodrigo Correa de Oliveira,2022,3,2,66.67
+Rodrigo Correa de Oliveira,2017,17,15,88.24
+Rodrigo Correa de Oliveira,2018,5,4,80.00
+Rodrigo Correa de Oliveira,2019,10,9,90.00
+Rodrigo Correa de Oliveira,2020,5,4,80.00
+Vanessa Peruhype Magalhães Pascoal,2017,8,5,62.50
+Vanessa Peruhype Magalhães Pascoal,2018,3,1,33.33
+Vanessa Peruhype Magalhães Pascoal,2019,4,3,75.00
+Vanessa Peruhype Magalhães Pascoal,2020,6,5,83.33
+Vanessa Peruhype Magalhães Pascoal,2021,5,3,60.00
+Vanessa Peruhype Magalhães Pascoal,2022,10,9,90.00
+Vanessa Peruhype Magalhães Pascoal,2023,1,0,0.00
+Soraya Torres Gaze Jangola,2018,2,1,50.00
+Soraya Torres Gaze Jangola,2020,1,0,0.00
+Soraya Torres Gaze Jangola,2021,3,1,33.33
+Soraya Torres Gaze Jangola,2022,2,1,50.00
+Soraya Torres Gaze Jangola,2023,1,0,0.00
+Marcelo Antonio Pascoal Xavier,2023,2,0,0.00
+Marcelo Antonio Pascoal Xavier,2017,4,3,75.00
+Marcelo Antonio Pascoal Xavier,2018,9,7,77.78
+Marcelo Antonio Pascoal Xavier,2020,8,6,75.00
+Marcelo Antonio Pascoal Xavier,2021,6,2,33.33
+Marcelo Antonio Pascoal Xavier,2022,3,1,33.33
+José Dilermando Andrade Filho,2017,8,7,87.50
+José Dilermando Andrade Filho,2018,2,0,0.00
+José Dilermando Andrade Filho,2019,5,1,20.00
+José Dilermando Andrade Filho,2020,5,4,80.00
+José Dilermando Andrade Filho,2021,6,5,83.33
+José Dilermando Andrade Filho,2022,8,7,87.50
+José Dilermando Andrade Filho,2023,1,0,0.00
+Caroline Furtado Junqueira,2020,4,1,25.00
+Caroline Furtado Junqueira,2021,3,0,0.00
+Caroline Furtado Junqueira,2022,3,0,0.00
+Caroline Furtado Junqueira,2023,2,1,50.00
+Caroline Furtado Junqueira,2017,3,1,33.33
+Caroline Furtado Junqueira,2018,2,1,50.00
+Caroline Furtado Junqueira,2019,1,0,0.00
+Paloma Helena Fernandes Shimabukuro,2017,2,1,50.00
+Paloma Helena Fernandes Shimabukuro,2018,3,0,0.00
+Paloma Helena Fernandes Shimabukuro,2020,4,3,75.00
+Paloma Helena Fernandes Shimabukuro,2021,2,1,50.00
+Paloma Helena Fernandes Shimabukuro,2022,6,1,16.67
+Paloma Helena Fernandes Shimabukuro,2023,2,0,0.00
 Daniel Moreira de Avelar,2022,3,2,66.67
 Daniel Moreira de Avelar,2017,1,0,0.00
 Daniel Moreira de Avelar,2018,3,2,66.67
-Edward José de Oliveira,2020,9,8,88.89
-Edward José de Oliveira,2021,3,2,66.67
-Edward José de Oliveira,2022,5,4,80.00
-Edward José de Oliveira,2023,1,0,0.00
-Edward José de Oliveira,2017,2,1,50.00
-Edward José de Oliveira,2018,2,1,50.00
-Edward José de Oliveira,2019,7,6,85.71
-Carlos Eduardo Calzavara Silva,2021,1,0,0.00
-Carlos Eduardo Calzavara Silva,2022,6,5,83.33
-Carlos Eduardo Calzavara Silva,2023,2,1,50.00
-Carlos Eduardo Calzavara Silva,2017,1,0,0.00
-Carlos Eduardo Calzavara Silva,2018,4,3,75.00
-Carlos Eduardo Calzavara Silva,2019,1,0,0.00
-Carlos Eduardo Calzavara Silva,2020,4,3,75.00
+Daniel Moreira de Avelar,2019,3,2,66.67
+Daniel Moreira de Avelar,2020,2,1,50.00
+Daniel Moreira de Avelar,2021,3,2,66.67
+Luzia Helena Carvalho,2017,3,2,66.67
+Luzia Helena Carvalho,2018,4,3,75.00
+Luzia Helena Carvalho,2019,2,1,50.00
+Luzia Helena Carvalho,2020,4,3,75.00
+Luzia Helena Carvalho,2021,5,4,80.00
+Luzia Helena Carvalho,2022,3,2,66.67
+Alessandra Aparecida Guarneri,2021,4,1,25.00
+Alessandra Aparecida Guarneri,2022,4,2,50.00
+Alessandra Aparecida Guarneri,2023,1,0,0.00
+Alessandra Aparecida Guarneri,2017,4,1,25.00
+Alessandra Aparecida Guarneri,2018,3,2,66.67
+Alessandra Aparecida Guarneri,2019,3,0,0.00
+Alessandra Aparecida Guarneri,2020,5,3,60.00
+Rita de Cássia Moreira de Souza,2020,2,0,0.00
+Rita de Cássia Moreira de Souza,2021,7,2,28.57
+Rita de Cássia Moreira de Souza,2022,3,0,0.00
+Rita de Cássia Moreira de Souza,2017,3,2,66.67
+Rita de Cássia Moreira de Souza,2018,2,1,50.00
+Rita de Cássia Moreira de Souza,2019,4,2,50.00
+Edelberto Santos Dias,2017,2,0,0.00
+Edelberto Santos Dias,2018,2,1,50.00
+Edelberto Santos Dias,2019,6,3,50.00
+Edelberto Santos Dias,2020,3,2,66.67
+Edelberto Santos Dias,2022,1,0,0.00
+Olindo Assis Martins Filho,2022,26,25,96.15
+Olindo Assis Martins Filho,2023,5,4,80.00
+Olindo Assis Martins Filho,2017,26,13,50.00
+Olindo Assis Martins Filho,2018,17,11,64.71
+Olindo Assis Martins Filho,2019,24,17,70.83
+Olindo Assis Martins Filho,2020,26,25,96.15
+Olindo Assis Martins Filho,2021,20,17,85.00
+Érica Alessandra Rocha Alves,2020,3,2,66.67
+Érica Alessandra Rocha Alves,2021,2,1,50.00
+Érica Alessandra Rocha Alves,2022,1,0,0.00
+Érica Alessandra Rocha Alves,2023,1,0,0.00
+Érica Alessandra Rocha Alves,2017,2,0,0.00
+Érica Alessandra Rocha Alves,2018,3,2,66.67
+Glaucia Fernandes Cota,2022,5,4,80.00
+Glaucia Fernandes Cota,2023,3,2,66.67
+Glaucia Fernandes Cota,2017,9,5,55.56
+Glaucia Fernandes Cota,2018,9,5,55.56
+Glaucia Fernandes Cota,2019,5,2,40.00
+Glaucia Fernandes Cota,2020,8,5,62.50
+Glaucia Fernandes Cota,2021,11,10,90.91
+Lileia Gonçalves Diotaiuti,2023,1,0,0.00
+Lileia Gonçalves Diotaiuti,2017,6,5,83.33
+Lileia Gonçalves Diotaiuti,2018,4,3,75.00
+Lileia Gonçalves Diotaiuti,2019,2,1,50.00
+Lileia Gonçalves Diotaiuti,2020,4,2,50.00
+Lileia Gonçalves Diotaiuti,2021,3,2,66.67
+Lileia Gonçalves Diotaiuti,2022,3,0,0.00
+Taís Nóbrega de Sousa,2020,4,2,50.00
+Taís Nóbrega de Sousa,2021,4,3,75.00
+Taís Nóbrega de Sousa,2022,4,3,75.00
+Taís Nóbrega de Sousa,2017,2,1,50.00
+Taís Nóbrega de Sousa,2018,3,2,66.67
+Taís Nóbrega de Sousa,2019,4,3,75.00
+Rosiane Aparecida da Silva Pereira,2018,2,1,50.00
+Rosiane Aparecida da Silva Pereira,2019,3,2,66.67
+Rosiane Aparecida da Silva Pereira,2022,3,2,66.67
+Rosiane Aparecida da Silva Pereira,2023,1,0,0.00
+Luciano Andrade Moreira,2021,9,8,88.89
+Luciano Andrade Moreira,2022,4,3,75.00
+Luciano Andrade Moreira,2023,1,0,0.00
+Luciano Andrade Moreira,2017,7,6,85.71
+Luciano Andrade Moreira,2018,4,3,75.00
+Luciano Andrade Moreira,2019,8,7,87.50
+Luciano Andrade Moreira,2020,6,5,83.33
+Flora Satiko Kano,2021,3,2,66.67
+Flora Satiko Kano,2022,2,1,50.00
+Flora Satiko Kano,2017,2,1,50.00
+Flora Satiko Kano,2018,3,2,66.67
+Flora Satiko Kano,2019,2,1,50.00
+Flora Satiko Kano,2020,3,2,66.67
+Paulo Filemon Paolucci Pimenta,2020,8,4,50.00
+Paulo Filemon Paolucci Pimenta,2021,6,5,83.33
+Paulo Filemon Paolucci Pimenta,2022,6,4,66.67
+Paulo Filemon Paolucci Pimenta,2023,2,1,50.00
+Paulo Filemon Paolucci Pimenta,2017,4,3,75.00
+Paulo Filemon Paolucci Pimenta,2018,10,8,80.00
+Paulo Filemon Paolucci Pimenta,2019,6,5,83.33
+Lis Ribeiro do Valle Antonelli,2017,4,2,50.00
+Lis Ribeiro do Valle Antonelli,2018,8,6,75.00
+Lis Ribeiro do Valle Antonelli,2019,8,5,62.50
+Lis Ribeiro do Valle Antonelli,2020,6,4,66.67
+Lis Ribeiro do Valle Antonelli,2021,8,6,75.00
+Lis Ribeiro do Valle Antonelli,2022,7,6,85.71
+Rafaella Fortini Grenfell e Queiroz,2018,1,0,0.00
+Rafaella Fortini Grenfell e Queiroz,2019,4,2,50.00
+Rafaella Fortini Grenfell e Queiroz,2020,1,0,0.00
+Rafaella Fortini Grenfell e Queiroz,2021,3,2,66.67
+Rafaella Fortini Grenfell e Queiroz,2022,8,7,87.50
+Rafaella Fortini Grenfell e Queiroz,2023,2,1,50.00

@@ -100,6 +100,8 @@ func main() {
 
 	docenteColaboracao := make(map[string]map[string]*repository.CollaborationData)
 
+	// fmt.Printf("Lendo arquivos de publicações, aguarde...\n")
+
 	fileAuthors, err := os.Open("../../_data/powerbi/publicacoes.csv")
 	if err != nil {
 		log.Fatalf("Falha ao abrir o arquivo CSV das publicações: %v", err)
@@ -110,6 +112,8 @@ func main() {
 	if err := gocsv.UnmarshalFile(fileAuthors, &authorRecords); err != nil {
 		log.Fatalf("Falha ao extrair autores: %v", err)
 	}
+
+	// fmt.Printf("Lendo arquivos de lista de discentes, aguarde...\n")
 
 	fileStudents, err := os.Open("../../_data/powerbi/lista_orientadores-discentes.csv")
 	if err != nil {
@@ -154,23 +158,36 @@ func main() {
 	}
 
 	numTotalArticles := len(authorRecords)
-	elapsedTime := time.Since(startTime)
-
-	fmt.Printf("\nEstatísticas:\n")
-	fmt.Printf("Total de artigos: %d\n", numTotalArticles)
-	fmt.Printf("Tempo de execução: %s\n", elapsedTime)
 
 	fmt.Println("\nContagem de colaboração por docente:")
 	for docentName, collabData := range docenteColaboracao {
 		for year, data := range collabData {
 			data.CalculatePercentage()
-			fmt.Printf("Docente: %-40s | Ano: %-4s | Colaboração discente: %.2f%%\n", docentName, year, data.PercentCollaboration)
+			fmt.Printf("Docente: %-40s | Ano: %-4s | %-2d/%-2d | Colaboração discente: %.2f%%\n", docentName, year, data.TotalCollaboration, data.TotalArticles, data.PercentCollaboration)
 		}
 	}
 
+	fmt.Printf("\nCriando arquivo CSV com dados processados, aguarde...\n")
 	generateCSV(docenteColaboracao)
 
-	// support.GenerateLog(authorRecords, studentNames, docenteColaboracao, elapsedTime)
+	// // gerando o log de desempenho
+	// docenteColaboracaoMap := make(map[string]map[string]int)
+	// for docentName, collabData := range docenteColaboracao {
+	// 	docenteColaboracaoMap[docentName] = make(map[string]int)
+	// 	for year, data := range collabData {
+	// 		docenteColaboracaoMap[docentName][year] = data.TotalArticles
+	// 	}
+	// }
+
+	// exibição dos resultados e registro do desempenho
+	elapsedTime := time.Since(startTime)
+	fmt.Printf("\nEstatísticas:\n")
+	fmt.Printf("Total de artigos: %d\n", numTotalArticles)
+	fmt.Printf("Tempo de execução: %s\n", elapsedTime)
+
+	// support.GenerateLog(authorRecords, studentNames, docenteColaboracaoMap, elapsedTime)
+
+	// support.GeneratePDF(authorRecords, studentNames, docenteColaboracaoMap, elapsedTime)
 
 	fmt.Println("Programa finalizado.")
 }

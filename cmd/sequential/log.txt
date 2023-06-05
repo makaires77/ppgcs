@@ -1,60 +1,6 @@
-2023/06/05 04:15:52 Dados calculados:
-2023/06/05 04:15:52 Total de artigos: 2025
-2023/06/05 04:15:52 Total de discentes: 235
-2023/06/05 04:15:52 Tempo de execução: 39.397159s
-2023/06/05 04:15:52 
+2023/06/05 10:53:48 Dados calculados:
+2023/06/05 10:53:48 Total de artigos: 2025
+2023/06/05 10:53:48 Total de discentes: 235
+2023/06/05 10:53:48 Tempo de execução: 34.6126555s
+2023/06/05 10:53:48 
 Contagem de colaboração por docente:
-2023/06/05 04:15:52 Docente: Paulo Filemon Paolucci Pimenta | Colaboração: 51
-2023/06/05 04:15:52 Docente: Alessandra Aparecida Guarneri | Colaboração: 31
-2023/06/05 04:15:52 Docente: Taís Nóbrega de Sousa | Colaboração: 35
-2023/06/05 04:15:52 Docente: Flora Satiko Kano | Colaboração: 14
-2023/06/05 04:15:52 Docente: Lileia Gonçalves Diotaiuti | Colaboração: 28
-2023/06/05 04:15:52 Docente: Rosiane Aparecida da Silva Pereira | Colaboração: 23
-2023/06/05 04:15:52 Docente: Cristiana Couto Garcia | Colaboração: 42
-2023/06/05 04:15:52 Docente: Roberta Lima Caldeira | Colaboração: 26
-2023/06/05 04:15:52 Docente: Soraya Torres Gaze Jangola | Colaboração: 8
-2023/06/05 04:15:52 Docente: Roney Santos Coimbra | Colaboração: 18
-2023/06/05 04:15:52 Docente: Daniel Moreira de Avelar | Colaboração: 17
-2023/06/05 04:15:52 Docente: Alexandre de Magalhaes Vieira Machado | Colaboração: 12
-2023/06/05 04:15:52 Docente: Rodrigo Correa de Oliveira | Colaboração: 45
-2023/06/05 04:15:52 Docente: Márcio Sobreira Silva Araújo | Colaboração: 29
-2023/06/05 04:15:52 Docente: Celia Maria Ferreira Gontijo | Colaboração: 34
-2023/06/05 04:15:52 Docente: Rafaella Fortini Grenfell e Queiroz | Colaboração: 20
-2023/06/05 04:15:52 Docente: Pedro Augusto Alves | Colaboração: 36
-2023/06/05 04:15:52 Docente: Gabriel da Rocha Fernandes | Colaboração: 44
-2023/06/05 04:15:52 Docente: Marina de Moraes Mourão | Colaboração: 51
-2023/06/05 04:15:52 Docente: Erika Michalsky Monteiro | Colaboração: 28
-2023/06/05 04:15:52 Docente: Rita de Cássia Moreira de Souza | Colaboração: 11
-2023/06/05 04:15:52 Docente: Rodrigo Pedro Pinto Soares | Colaboração: 58
-2023/06/05 04:15:52 Docente: Caroline Furtado Junqueira | Colaboração: 10
-2023/06/05 04:15:52 Docente: Cristina Toscano Fonseca | Colaboração: 15
-2023/06/05 04:15:52 Docente: Silvane Maria Fonseca Murta | Colaboração: 53
-2023/06/05 04:15:52 Docente: Ricardo Tostes Gazzinelli | Colaboração: 51
-2023/06/05 04:15:52 Docente: Marcelo Gustavo Lorenzo | Colaboração: 10
-2023/06/05 04:15:52 Docente: Luzia Helena Carvalho | Colaboração: 33
-2023/06/05 04:15:52 Docente: Paulo Marcos Zech Coelho | Colaboração: 32
-2023/06/05 04:15:52 Docente: Luiz Carlos Júnior Alcantara | Colaboração: 111
-2023/06/05 04:15:52 Docente: Jaquelline Germano de Oliveira | Colaboração: 19
-2023/06/05 04:15:52 Docente: Edward José de Oliveira | Colaboração: 42
-2023/06/05 04:15:52 Docente: Carlos Eduardo Calzavara Silva | Colaboração: 21
-2023/06/05 04:15:52 Docente: Cristiana Ferreira Alves de Brito | Colaboração: 31
-2023/06/05 04:15:52 Docente: Marcelo Antonio Pascoal Xavier | Colaboração: 33
-2023/06/05 04:15:52 Docente: Paloma Helena Fernandes Shimabukuro | Colaboração: 16
-2023/06/05 04:15:52 Docente: Lis Ribeiro do Valle Antonelli | Colaboração: 40
-2023/06/05 04:15:52 Docente: Jeronimo Conceição Ruiz | Colaboração: 29
-2023/06/05 04:15:52 Docente: Glaucia Fernandes Cota | Colaboração: 53
-2023/06/05 04:15:52 Docente: Gustavo Fontes Paz | Colaboração: 25
-2023/06/05 04:15:52 Docente: Érica Alessandra Rocha Alves | Colaboração: 17
-2023/06/05 04:15:52 Docente: Nagila Francinete Costa Secundino | Colaboração: 33
-2023/06/05 04:15:52 Docente: Álvaro Gil Araújo Ferreira | Colaboração: 8
-2023/06/05 04:15:52 Docente: Tânia Maria de Almeida Alves | Colaboração: 30
-2023/06/05 04:15:52 Docente: Olindo Assis Martins Filho | Colaboração: 146
-2023/06/05 04:15:52 Docente: Edelberto Santos Dias | Colaboração: 15
-2023/06/05 04:15:52 Docente: Marco Antônio da Silva Campos | Colaboração: 21
-2023/06/05 04:15:52 Docente: Andréa Teixeira de Carvalho | Colaboração: 109
-2023/06/05 04:15:52 Docente: Carina Margonari de Souza | Colaboração: 20
-2023/06/05 04:15:52 Docente: Rubens Lima do Monte Neto | Colaboração: 64
-2023/06/05 04:15:52 Docente: Vanessa Peruhype Magalhães Pascoal | Colaboração: 36
-2023/06/05 04:15:52 Docente: Ana Lúcia Teles Rabello | Colaboração: 33
-2023/06/05 04:15:52 Docente: Luciano Andrade Moreira | Colaboração: 39
-2023/06/05 04:15:52 Docente: José Dilermando Andrade Filho | Colaboração: 37
