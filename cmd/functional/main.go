@@ -116,7 +116,7 @@ func main() {
 	fmt.Printf("Tempo de execução: %s\n", elapsedTime)
 
 	support.GenerateLog(authorRecords, studentNames, docenteColaboracao, elapsedTime)
-	support.GeneratePDF(authorRecords, studentNames, docenteColaboracao, elapsedTime)
+	// support.GeneratePDF(authorRecords, studentNames, docenteColaboracao, elapsedTime)
 
 	fmt.Println("Programa finalizado.")
 }

@@ -91,7 +91,7 @@ func RemoveAccentRunes(s string) string {
 	return reg.ReplaceAllString(s, "")
 }
 
-func GenerateLog(authorRecords []*repository.Publications, studentNames []string, docenteColaboracao map[string]int, elapsedTime time.Duration) {
+func GenerateLog(authorRecords []*repository.Publications, studentNames []string, docenteColaboracao map[string]map[string]int, elapsedTime time.Duration) {
 	logFile, err := os.Create("log.txt")
 	if err != nil {
 		log.Fatalf("Falha ao criar o arquivo de log: %v", err)
