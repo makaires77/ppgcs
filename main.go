@@ -2,262 +2,238 @@ package main
 
 import (
 	"encoding/csv"
+	"encoding/json"
+	"errors"
 	"fmt"
+	"io"
 	"log"
-	"os"
-	"regexp"
+	"net/http"
+	"path/filepath"
 	"strings"
 	"sync"
-	"unicode"
 
-	"golang.org/x/text/runes"
-	"golang.org/x/text/transform"
-	"golang.org/x/text/unicode/norm"
-
-	"github.com/gocarina/gocsv"
-	"github.com/makaires77/ppgcs/pkg/usecase/nomecomparador"
+	"github.com/hbollon/go-edlib"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/mongo"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4jclient"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/scrap_lattes"
+	"github.com/makaires77/ppgcs/pkg/interfaces/rabbitmq"
+	"github.com/makaires77/ppgcs/pkg/usecase/fuzzysearch"
+	"github.com/makaires77/ppgcs/pkg/usecase/load_lattes"
+	"github.com/streadway/amqp"
 )
 
-type Author struct {
-	ID                    string `csv:"idLattes"`
-	Name                  string `csv:"nome"`
-	Tipo                  string `csv:"tipo"`
-	Titulo_cap            string `csv:"titulo_do_capitulo"`
-	Idioma                string `csv:"idioma"`
-	Titulo_livro          string `csv:"titulo_do_livro"`
-	Ano                   string `csv:"ano"`
-	Doi                   string `csv:"doi"`
-	Pais                  string `csv:"pais_de_publicacao"`
-	Isbn                  string `csv:"isbn"`
-	Editora_livro         string `csv:"nome_da_editora"`
-	Edição_livro          string `csv:"numero_da_edicao_revisao"`
-	Organizadores         string `csv:"organizadores"`
-	Paginas               string `csv:"paginas"`
-	Autores               string `csv:"autores"`
-	Autores_endogeno      string `csv:"autores-endogeno"`
-	Autores_endogeno_nome string `csv:"autores-endogeno-nome"`
-	Tags                  string `csv:"tags"`
-	Hash                  string `csv:"Hash"`
-	Tipo_producao         string `csv:"tipo_producao"`
-	Natureza              string `csv:"natureza"`
-	Titulo                string `csv:"titulo"`
-	Evento                string `csv:"nome_do_evento"`
-	Ano_trabalho          string `csv:"ano_do_trabalho"`
-	Pais_evento           string `csv:"pais_do_evento"`
-	Cidade_evento         string `csv:"cidade_do_evento"`
-	Classificação         string `csv:"classificacao"`
-	Periodico             string `csv:"periodico"`
-	Volume                string `csv:"volume"`
-	Issn                  string `csv:"issn"`
-	Estrato_qualis        string `csv:"estrato_qualis"`
-	Editora_artigo        string `csv:"editora"`
-	Numero_paginas        string `csv:"numero_de_paginas"`
+type Researcher struct {
+	Name string
 }
 
-type Student struct {
-	Name_docente  string `csv:"orientador"`
-	Name_discente string `csv:"discente"`
+type ScrapLattes struct {
+	neo4jClient *neo4jclient.Neo4jClient
 }
 
-// Criar um Mutex para proteger a variável totalSimilarities
-var mu sync.Mutex
+func NewScrapLattes(neo4jClient *neo4jclient.Neo4jClient) *ScrapLattes {
+	return &ScrapLattes{
+		neo4jClient: neo4jClient,
+	}
+}
 
-func normalizeName(name string) (string, error) {
-	name = removePrepositions(name)
-	name = normalizeString(name)
+func fuzz() {
+	fuzzyService := fuzzysearch.NewFuzzySearchService()
 
-	// Verificar se o nome já contém vírgula
-	if strings.Contains(name, ",") {
-		// Se o nome já contém vírgula, realizar apenas a remoção de acentuação e preposições
-		name = convertToInitials(name)
-	} else {
-		// Se o nome não contém vírgula, trazer o sobrenome para o início e adicionar iniciais
-		name = bringLastNameToFront(name)
-		name = convertToInitials(name)
+	// Load data from CSV files
+	discentesData, _ := fuzzyService.LoadCSVData("_data/powerbi/lista_docentes_colaboradores.csv", 1)
+	docentesData, _ := fuzzyService.LoadCSVData("_data/powerbi/publicacoes.csv", 1)
+	autoresData, _ := fuzzyService.LoadCSVData("_data/powerbi/publicacoes.csv", 14)
+
+	discentes := discentesData
+	docentes := docentesData
+	autores := autoresData
+
+	// Create a map to track articles by docente
+	docenteArtigos := make(map[string]int)
+	for _, docente := range docentes {
+		docenteArtigos[docente] += 1
 	}
 
-	return name, nil
-}
-
-func bringLastNameToFront(name string) string {
-	names := strings.Fields(name)
-	if len(names) > 1 {
-		lastName := names[len(names)-1]
-		initials := ""
-		for i, n := range names[:len(names)-1] {
-			if i == 0 {
-				// Manter o primeiro nome completo
-				initials += n + " "
-			} else {
-				// Converter os demais nomes em iniciais
-				initials += string(n[0]) + ". "
+	// Conduct fuzzy search for each docente
+	docentePercentage := make(map[string]float64)
+	for _, discente := range discentes {
+		for i, autoresArtigo := range autores {
+			res, err := fuzzyService.FuzzySearchSetThreshold(discente, strings.Split(autoresArtigo, ";"), 3, 0.7, edlib.Levenshtein)
+			if err != nil {
+				fmt.Println(err)
+			} else if len(res) > 0 {
+				docentePercentage[docentes[i]] += 1
 			}
 		}
-		name = lastName + ", " + strings.TrimSpace(initials)
 	}
-	return name
-}
 
-func removePrepositions(name string) string {
-	prepositions := []string{"de", "da", "do", "das", "dos"}
-	for _, prep := range prepositions {
-		name = strings.ReplaceAll(name, " "+prep+" ", " ")
+	// Calculate percentage of articles with similarity for each docente
+	for docente, count := range docentePercentage {
+		docentePercentage[docente] = (count / float64(docenteArtigos[docente])) * 100
+		fmt.Printf("Percentual de artigos com co-autoria de discentes para o docente '%s': %.2f%%\n", docente, docentePercentage[docente])
 	}
-	return name
 }
 
-func convertToInitials(name string) string {
-	names := strings.Fields(name)
-	initials := ""
-	for i, n := range names {
-		// Verificar se é um sobrenome
-		if i == 0 || strings.Contains(n, "-") {
-			initials += n + " "
-		} else {
-			initials += string(n[0]) + ". "
-		}
+// ExecuteComparison executa a comparação dos nomes
+func ExecuteFuzzComparison() {
+	fuzz()
+}
+
+func scrapeResearcherInfo(name string) (string, error) {
+	return "Informações do pesquisador: " + name, nil
+}
+
+func validateFile(fileName string, file io.Reader) error {
+	if file == nil {
+		return errors.New("o arquivo está vazio")
 	}
-	return strings.TrimSpace(initials)
-}
 
-func normalizeString(s string) string {
-	t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
-	name, _, _ := transform.String(t, s)
-	name = removeAccentRunes(name)
-	name = strings.ToUpper(name)
-	return name
-}
+	if ext := filepath.Ext(fileName); !strings.EqualFold(ext, ".csv") {
+		return errors.New("apenas arquivos .csv são permitidos")
+	}
 
-func removeAccentRunes(s string) string {
-	reg := regexp.MustCompile("[ÀÁÂÃÄÅàáâãäåÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöøÙÚÛÜùúûüÇç]")
-	return reg.ReplaceAllString(s, "")
+	return nil
 }
 
 func main() {
-	// Abrir o arquivo CSV dos autores
-	fileAuthors, err := os.Open("_data/powerbi/publicacoes.csv")
+	// Defina as informações de conexão com o Neo4j
+	uri := "bolt://localhost:7687"
+	username := "neo4j"
+	password := "password"
+
+	// Create a Neo4j connection
+	neo4jClient, err := neo4jclient.NewNeo4jClient(uri, username, password)
 	if err != nil {
-		log.Fatalf("Falha ao abrir o arquivo CSV das publicações: %v", err)
-	}
-	defer fileAuthors.Close()
-
-	fmt.Println("Lendo o arquivo CSV dos autores...")
-
-	// Ler os registros do arquivo CSV dos autores
-	var authorRecords []*Author
-	if err := gocsv.UnmarshalFile(fileAuthors, &authorRecords); err != nil {
-		log.Fatalf("Falha ao extrair autores: %v", err)
+		log.Fatalf("Falha ao criar conexão com o Neo4j: %v", err)
 	}
 
-	fmt.Printf("Total de registros de autores: %d\n", len(authorRecords))
-
-	// Abrir o arquivo CSV dos discentes
-	fileStudents, err := os.Open("_data/powerbi/lista_orientadores-discentes.csv")
+	// Create a MongoDB connection
+	mongoWriter, err := mongo.NewMongoWriter("mongodb://localhost:27017", "username", "password")
 	if err != nil {
-		log.Fatalf("Falha ao abrir o arquivo CSV dos discentes: %v", err)
+		log.Fatalf("Falha ao criar conexão com o MongoDB: %v", err)
 	}
-	defer fileStudents.Close()
 
-	// Ler os registros do arquivo CSV dos discentes
-	readerStudents := csv.NewReader(fileStudents)
-	readerStudents.Comma = ';'
-	readerStudents.LazyQuotes = true
+	// Create a ScrapLattes instance
+	scrapLattes := scrap_lattes.NewScrapLattes(neo4jClient)
 
-	studentRecords, err := readerStudents.ReadAll()
+	// Create a RabbitMQ connection
+	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
 	if err != nil {
-		log.Fatalf("Falha ao ler o arquivo CSV dos discentes: %v", err)
-	}
-	fmt.Printf("Total de registros de discentes: %d\n", len(studentRecords))
-
-	// Extrair a segunda coluna dos discentes
-	var studentNames []string
-	for _, studentRecord := range studentRecords {
-		log.Println("Nome a normalizar:", studentRecord[1])
-		normalizedStudentName, _ := normalizeName(studentRecord[1])
-		log.Println("Nome a normalizado:", normalizedStudentName)
-		studentNames = append(studentNames, normalizedStudentName)
+		log.Fatalf("Falha ao criar conexão com o RabbitMQ: %v", err)
 	}
 
-	// Criar um canal para enviar atualizações de progresso
-	progress := make(chan string)
+	// Create a RabbitMQ consumer
+	consumer := rabbitmq.NewConsumer(conn, "yourQueueName", scrapLattes)
+	if err != nil {
+		log.Fatalf("Falha ao criar consumidor RabbitMQ: %v", err)
+	}
 
-	// Criar uma WaitGroup para sincronizar as goroutines
-	var wg sync.WaitGroup
+	// Start the RabbitMQ consumer
+	go consumer.Start()
 
-	// Adicionar a quantidade de comparações ao WaitGroup
-	totalComparisons := len(authorRecords) * len(studentRecords)
-	wg.Add(totalComparisons)
+	// Create a Neo4jWriteLattes instance
+	neo4jWriteLattes, err := neo4jclient.NewNeo4jWriteLattes(uri, username, password)
+	if err != nil {
+		log.Fatalf("Falha ao criar instância do Neo4jWriteLattes: %v", err)
+	}
 
-	// Goroutine para monitorar o canal de progresso e exibir informações
-	go func() {
-		for msg := range progress {
-			fmt.Println(msg)
+	// Create a load_lattes.Interactor instance
+	interactor := load_lattes.NewInteractor(mongoWriter, neo4jWriteLattes)
+
+	// Create a RabbitMQ enqueuer
+	enqueuer, err := rabbitmq.NewEnqueueLattes(interactor, conn, "yourQueueName")
+	if err != nil {
+		log.Fatalf("Falha ao criar enfileirador RabbitMQ: %v", err)
+	}
+
+	http.HandleFunc("/start-scraping", func(w http.ResponseWriter, r *http.Request) {
+		file, header, err := r.FormFile("file")
+		if err != nil {
+			http.Error(w, "Erro ao obter o arquivo", http.StatusInternalServerError)
+			return
 		}
-	}()
+		defer file.Close()
 
-	fmt.Println("Comparando nomes de autores com nomes de discentes...")
+		// Validate the file
+		if err := validateFile(header.Filename, file); err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
 
-	// Mapa para armazenar a contagem de colaboração por docente
-	docenteColaboracao := make(map[string]int)
+		// Create a new CSV reader
+		csvReader := csv.NewReader(file)
 
-	// Iterar sobre cada combinação de autor e discente
-	for _, authorRecord := range authorRecords {
-		authorNames := strings.Split(authorRecord.Autores, ";")
-		docentName := authorRecord.Name
+		// Channel to send researcher names to goroutines
+		names := make(chan string)
 
-		// Variável para indicar se houve colaboração para o autor atual
-		achado := false
-		for _, studentName := range studentNames {
-			studentName := studentName
-			for _, authorName := range authorNames {
-				authorName, _ := normalizeName(authorName)
-				authorName = strings.TrimSpace(authorName)
+		// WaitGroup to synchronize goroutines
+		var wg sync.WaitGroup
 
-				similarity := nomecomparador.JaccardSimilarity(authorName, studentName)
-				if similarity > 0.86 {
-					msg := fmt.Sprintf("DISCENTE %.2f | %-25s | %-25s | Currículo: %-25s", similarity, authorName, studentName, docentName)
-					progress <- msg
-
-					// Indicar que houve colaboração para o autor atual
-					achado = true
-					break
-				} else {
-					msg := fmt.Sprintf("-------- %.2f | %-25s | %-25s | Currículo: %-25s", similarity, authorName, studentName, docentName)
-					progress <- msg
+		// Create 4 goroutines that process researcher names
+		for i := 0; i < 4; i++ {
+			wg.Add(1)
+			go func() {
+				defer wg.Done()
+				for name := range names {
+					// Call the scraping service
+					info, err := scrapeResearcherInfo(name)
+					if err != nil {
+						fmt.Printf("Erro ao processar o nome '%s': %s\n", name, err)
+						continue
+					}
+					fmt.Printf("Nome processado com sucesso: %s, Informações: %s\n", name, info)
 				}
+			}()
+		}
+
+		// Send researcher names to the channel
+		for {
+			record, err := csvReader.Read()
+			if err == io.EOF {
+				break
+			}
+			if err != nil {
+				http.Error(w, "Erro ao ler o arquivo CSV", http.StatusInternalServerError)
+				return
 			}
 
-			// Se houve colaboração para o autor atual, incrementar a contagem de colaboração para o docente
-			if achado {
-				mu.Lock()
-				docenteColaboracao[docentName]++
-				mu.Unlock()
-				achado = false
+			// Check if each line in the CSV has one field
+			if len(record) != 1 {
+				http.Error(w, "Cada linha do arquivo CSV deve conter exatamente um campo", http.StatusBadRequest)
+				return
 			}
+
+			names <- record[0]
 		}
-	}
 
-	// Calcular o total de artigos
-	numTotalArticles := len(authorRecords)
+		// Close the channel to signal that there are no more names to process
+		close(names)
 
-	// Calcular o percentual de colaboração de cada docente e exibir
-	fmt.Println("\nTotal de colaboração por docente:")
-	for docentName, colaboracao := range docenteColaboracao {
-		percentual := float64(colaboracao) / float64(numTotalArticles) * 100
-		totalArtigos := colaboracao
-		fmt.Printf("%-50s %-2.1f%% (Total de Artigos: %d)\n", docentName, percentual, totalArtigos)
-	}
+		// Wait for all goroutines to finish
+		wg.Wait()
 
-	// Calcular o índice de colaboração do programa completo
-	numTotalArticlesWithCollaboration := 0
-	for _, count := range docenteColaboracao {
-		if count > 0 {
-			numTotalArticlesWithCollaboration++
+		json.NewEncoder(w).Encode(map[string]string{
+			"message": "O processo de scraping foi iniciado",
+		})
+	})
+
+	http.HandleFunc("/enqueue-pesquisador", func(w http.ResponseWriter, r *http.Request) {
+		pesquisadorID := r.FormValue("pesquisadorID")
+		if pesquisadorID == "" {
+			http.Error(w, "Parâmetro pesquisadorID ausente", http.StatusBadRequest)
+			return
 		}
-	}
-	indiceColaboracao := float64(numTotalArticlesWithCollaboration) / float64(numTotalArticles) * 100
-	fmt.Printf("\nQuantidade total de artigos publicados período: %d", numTotalArticles)
-	fmt.Printf("\nArtigos com alguma colaboração discente achada: %d", numTotalArticlesWithCollaboration)
-	fmt.Printf("\nÍndice de Colaboração do Programa: %.2f%%\n", indiceColaboracao)
 
+		err := enqueuer.EnqueuePesquisador(pesquisadorID)
+		if err != nil {
+			http.Error(w, fmt.Sprintf("Falha ao enfileirar o pesquisadorID %s: %s", pesquisadorID, err), http.StatusInternalServerError)
+			return
+		}
+
+		json.NewEncoder(w).Encode(map[string]string{
+			"message": fmt.Sprintf("PesquisadorID %s enfileirado com sucesso!", pesquisadorID),
+		})
+	})
+
+	http.ListenAndServe(":8080", nil)
 }
