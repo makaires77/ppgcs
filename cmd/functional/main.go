@@ -61,6 +61,8 @@ func compareAuthorRecords(authorRecords []*repository.Publications, studentNames
 func main() {
 	startTime := time.Now()
 
+	docenteColaboracao := make(map[string]map[string]*[]repository.CollaborationData)
+
 	fileAuthors, err := os.Open("../../_data/powerbi/publicacoes.csv")
 	if err != nil {
 		log.Fatalf("Falha ao abrir o arquivo CSV das publicações: %v", err)

@@ -1,5 +1,7 @@
 package repository
 
+import "strconv"
+
 type Publications struct {
 	ID                    string `csv:"idLattes"`
 	Name                  string `csv:"nome"`
@@ -34,4 +36,31 @@ type Publications struct {
 	Estrato_qualis        string `csv:"estrato_qualis"`
 	Editora_artigo        string `csv:"editora"`
 	Numero_paginas        string `csv:"numero_de_paginas"`
+}
+
+type CollaborationData struct {
+	TotalArticles        int
+	TotalCollaboration   int
+	PercentCollaboration float64
+}
+
+// ToStringSlice converte CollaborationData para uma fatia de strings
+func (c *CollaborationData) ToStringSlice() []string {
+	// Aqui vamos usar o pacote strconv para converter números em strings.
+	// Supomos que PercentCollaboration é uma porcentagem que desejamos arredondar para duas casas decimais.
+	totalArticles := strconv.Itoa(c.TotalArticles)
+	totalCollaboration := strconv.Itoa(c.TotalCollaboration)
+	percentCollaboration := strconv.FormatFloat(c.PercentCollaboration, 'f', 2, 64)
+
+	// Retornamos a fatia de strings
+	return []string{totalArticles, totalCollaboration, percentCollaboration}
+}
+
+// Método para calcular percentagem de collaboração.
+func (c *CollaborationData) CalculatePercentage() {
+	if c.TotalArticles > 0 {
+		c.PercentCollaboration = float64(c.TotalCollaboration) / float64(c.TotalArticles) * 100
+	} else {
+		c.PercentCollaboration = 0
+	}
 }
