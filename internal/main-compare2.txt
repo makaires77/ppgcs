@@ -124,7 +124,6 @@ func normalizeString(s string) string {
 	t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
 	name, _, _ := transform.String(t, s)
 	name = removeAccentRunes(name)
-	name = strings.ToUpper(name)
 	return name
 }
 
@@ -215,15 +214,12 @@ func main() {
 
 				similarity := nomecomparador.JaccardSimilarity(authorName, studentName)
 				if similarity > 0.86 {
-					msg := fmt.Sprintf("DISCENTE %.2f | %-25s | %-25s | Currículo: %-25s", similarity, authorName, studentName, docentName)
+					msg := fmt.Sprintf("%.2f | %-25s | %-25s | Currículo: %-25s", similarity, authorName, studentName, docentName)
 					progress <- msg
 
 					// Indicar que houve colaboração para o autor atual
 					achado = true
 					break
-				} else {
-					msg := fmt.Sprintf("-------- %.2f | %-25s | %-25s | Currículo: %-25s", similarity, authorName, studentName, docentName)
-					progress <- msg
 				}
 			}
 
