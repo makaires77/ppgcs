@@ -6,14 +6,7 @@ import (
 	"io"
 	"log"
 	"net/http"
-<<<<<<< HEAD
-
-	"github.com/makaires77/ppgcs/domain/pkg/publication"
-	"github.com/makaires77/ppgcs/infra/pkg/domain/publication/repository"
-	"github.com/makaires77/ppgcs/interface/cmd/api"
-=======
 	"os"
->>>>>>> 1fe78313cac79e2bf397dc90e9312fe80146217d
 
 	"github.com/gorilla/mux"
 )
