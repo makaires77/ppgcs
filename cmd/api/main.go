@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"ppgcs/domain/pkg/publication"
-	"ppgcs/infra/pkg/domain/publication/repository"
-	"ppgcs/interface/api"
+	"github.com/makaires77/ppgcs/domain/pkg/publication"
+	"github.com/makaires77/ppgcs/infra/pkg/domain/publication/repository"
+	"github.com/makaires77/ppgcs/interface/cmd/api"
 
 	"github.com/gorilla/mux"
 )

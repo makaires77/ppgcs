@@ -2,9 +2,14 @@ package dgraph
 
 import (
 	"context"
+	"errors"
 	"log"
 
 	"github.com/dgraph-io/dgo/v200/protos/api"
+)
+
+var (
+	ErrPublicationNotCreated = errors.New("publication not created")
 )
 
 type DgraphWriter struct {
