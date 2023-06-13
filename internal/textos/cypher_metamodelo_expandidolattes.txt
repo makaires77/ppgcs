@@ -1,0 +1,9 @@
+CREATE (`Produtos Serviços` {Custo: "", `Proposta de valor`: "", `Preço`: ""})-[:Satisfaz]->(Pessoa)-[:Inventa]->(Patente:`Nome de Inventor`)-[:Cita]->(Artigo:Objetivo:`Método`:Resultado)<-[:Gera]-(`Projeto Pesquisa`)<-[:Cria]-(Pessoa)-[:[*]Variações]->(`Nome de Autor`)<-[:[1]Primeiro Autor]-(Artigo)-[:[*1]Último autor]->(`Nome de Autor`)<-[:[*]Coautor]-(Artigo)<-[:Gera]-(`Projeto Desenv.`)-[:Suporta]->(`Linha de Pesquisa`),
+(Artigo)-[:_RELATED]->(Artigo)-[:Suporta]->()-[:Suporta]->(`Competência` {Conhecimento: "", Habilidade: "", Atitude: ""}),
+(`Projeto Desenv.`)<-[:Cria]-(Pessoa)-[:Registra]->(),
+(`Projeto Pesquisa`)-[:Suporta]->(`Linha de Pesquisa`)<-[:Estabelece]-(`Organização` {CNPJ: "", `Natureza jurídica`: "", `Nome fantasia`: "", `Missão/Visão/Valores`: ""})<-[:Demanda]-({`Requisitos funcionas`: "", `Requisitos não-funcionais`: "", `Parâmetros de qualidade`: ""})<-[:Gera]-({Dores: "", Vontades: "", Desejos: ""})<-[:Tem]-(Pessoa)-[:Conduz]->()-[:Recebe]->(Pessoa)-[:Organiza]->()<-[:Participa]-(Pessoa)-[:Tem]->()-[:Desenvolve]->(`Competência`),
+(`Competência`)-[:Suporta]->()-[:Regulamentada]->()-[:Determina]->()-[:Delimita]->(`Processo de Negócio` {`Método`: "", `Técnica`: "", Procedimento: ""})<-[:Implementa]-(`Organização`),
+(`Processo de Negócio`)-[:Cria]->(`Produtos Serviços`),
+()<-[:_RELATED]-(Pessoa)-[:_RELATED]->(),
+(Patente)-[:Cita]->(Patente),
+()

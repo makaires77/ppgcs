@@ -1,0 +1,5 @@
+{
+    "go.toolsEnvVars": {
+        "GOPATH": "/home/marcos/go"
+    }
+}

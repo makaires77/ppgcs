@@ -1,0 +1,266 @@
+package main
+
+import (
+	"encoding/csv"
+	"fmt"
+	"io"
+	"os"
+	"regexp"
+	"strings"
+	"sync"
+	"unicode"
+
+	"golang.org/x/text/runes"
+	"golang.org/x/text/transform"
+	"golang.org/x/text/unicode/norm"
+)
+
+type Author struct {
+    Autores string
+    Name    string
+}
+
+type StudentRecord struct {
+    Name_discente string
+}
+
+var totalSimilarities, numTotalArticles, numTotalDiscentes int
+var studentNames []string
+var wg sync.WaitGroup
+var progress = make(chan string)
+var mutex = &sync.Mutex{}
+var docenteColaboracao = make(map[string]int)
+
+
+func normalizeName(name string) (string, error) {
+	name = removePrepositions(name)
+	name = normalizeString(name)
+
+	// Verificar se o nome já contém vírgula
+	if strings.Contains(name, ",") {
+		// Se o nome já contém vírgula, realizar apenas a remoção de acentuação e preposições
+		name = convertToInitials(name)
+	} else {
+		// Se o nome não contém vírgula, trazer o sobrenome para o início e adicionar iniciais
+		name = bringLastNameToFront(name)
+		name = convertToInitials(name)
+	}
+
+	return name, nil
+}
+
+func bringLastNameToFront(name string) string {
+	names := strings.Fields(name)
+	if len(names) > 1 {
+		lastName := names[len(names)-1]
+		initials := ""
+		for i, n := range names[:len(names)-1] {
+			if i == 0 {
+				// Manter o primeiro nome completo
+				initials += n + " "
+			} else {
+				// Converter os demais nomes em iniciais
+				initials += string(n[0]) + ". "
+			}
+		}
+		name = lastName + ", " + strings.TrimSpace(initials)
+	}
+	return name
+}
+
+func removePrepositions(name string) string {
+	prepositions := []string{"de", "da", "do", "das", "dos"}
+	for _, prep := range prepositions {
+		name = strings.ReplaceAll(name, " "+prep+" ", " ")
+	}
+	return name
+}
+
+func convertToInitials(name string) string {
+	names := strings.Fields(name)
+	initials := ""
+	for i, n := range names {
+		// Verificar se é um sobrenome
+		if i == 0 || strings.Contains(n, "-") {
+			initials += n + " "
+		} else {
+			initials += string(n[0]) + ". "
+		}
+	}
+	return strings.TrimSpace(initials)
+}
+
+func normalizeString(s string) string {
+	t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
+	name, _, _ := transform.String(t, s)
+	name = removeAccentRunes(name)
+	return name
+}
+
+func removeAccentRunes(s string) string {
+	reg := regexp.MustCompile("[ÀÁÂÃÄÅàáâãäåÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöøÙÚÛÜùúûüÇç]")
+	return reg.ReplaceAllString(s, "")
+}
+
+type nomecomparador2 struct {}
+
+func (nc *nomecomparador2) JaccardSimilarity(str1, str2 string) float64 {
+    set1 := make(map[rune]struct{})
+    set2 := make(map[rune]struct{})
+    for _, c := range str1 {
+        set1[c] = struct{}{}
+    }
+    for _, c := range str2 {
+        set2[c] = struct{}{}
+    }
+
+    intersection := 0
+    for c := range set1 {
+        if _, ok := set2[c]; ok {
+            intersection++
+        }
+    }
+
+    return float64(intersection) / float64(len(set1) + len(set2) - intersection)
+}
+
+var nomecomparador2 = &nomecomparador2{}
+
+func main() {
+    // Abrir arquivos CSV
+    authorFile, err := os.Open("autores.csv")
+    if err != nil {
+        fmt.Println("Erro ao abrir o arquivo autores.csv")
+        return
+    }
+    defer authorFile.Close()
+
+    studentFile, err := os.Open("discentes.csv")
+    if err != nil {
+        fmt.Println("Erro ao abrir o arquivo discentes.csv")
+        return
+    }
+    defer studentFile.Close()
+
+    // Criar leitores CSV
+    authorReader := csv.NewReader(authorFile)
+    authorReader.Comma = ';'
+    authorReader.LazyQuotes = true
+
+    studentReader := csv.NewReader(studentFile)
+    studentReader.Comma = ';'
+    studentReader.LazyQuotes = true
+
+    var authorRecords []*Author
+    var studentRecords []*StudentRecord
+
+    for {
+        record, err := authorReader.Read()
+        if err == io.EOF {
+            break
+        }
+        if err != nil {
+            fmt.Println("Erro ao ler o arquivo autores.csv")
+            return
+        }
+        authorRecords = append(authorRecords, &Author{
+            Autores: record[0],
+            Name:    record[1],
+        })
+    }
+
+    for {
+        record, err := studentReader.Read()
+        if err == io.EOF {
+            break
+        }
+        if err != nil {
+            fmt.Println("Erro ao ler o arquivo discentes.csv")
+            return
+        }
+        studentRecords = append(studentRecords, &StudentRecord{
+            Name_discente: record[0],
+        })
+    }
+
+    // Extrair os nomes dos estudantes
+    for _, record := range studentRecords {
+        studentNames = append(studentNames, record.Name_discente)
+    }
+
+    // Iniciar uma goroutine para exibir a progressão
+    go func() {
+        for p := range progress {
+            fmt.Println(p)
+        }
+    }()
+
+    // Chamar a função CompareNames para cada combinação de autor e discente
+    for _, authorRecord := range authorRecords {
+        for _, studentName := range studentNames {
+            wg.Add(1)
+            go func(authorRecord *Author, studentName string) {
+                defer wg.Done()
+                authorNames := strings.Split(authorRecord.Autores, ";")
+                var achado int
+
+                for _, authorName := range authorNames {
+                    normalizedName, _ := normalizeName(authorName)
+                    authorName = strings.TrimSpace(normalizedName)
+
+                    similarity := nomecomparador2.JaccardSimilarity(authorName, studentName)
+                    if similarity > 0.86 {
+                        achado = 1
+                        msg := fmt.Sprintf("%03d | %.2f | %-25s | %-25s | Currículo: %-25s", totalSimilarities, similarity, authorName, studentName, authorRecord.Name)
+                        progress <- msg
+
+                        // Incrementar a contagem de colaboração para o docente
+                        mutex.Lock()
+                        docenteColaboracao[authorRecord.Name]++
+                        mutex.Unlock()
+                    }
+                }
+                mutex.Lock()
+                totalSimilarities += achado
+                numTotalArticles++
+                mutex.Unlock()
+            }(authorRecord, studentName)
+        }
+    }
+
+    wg.Wait()
+    close(progress)
+
+    fmt.Printf("\nTotal de Similaridades: %d\n", totalSimilarities)
+    fmt.Printf("Total de Artigos: %d\n", numTotalArticles)
+    fmt.Printf("Total de Discentes: %d\n", len(studentNames))
+
+    // Imprimir a colaboração por docente
+    fmt.Println("\nColaboração por Docente:")
+    for docentName, colaboracao := range docenteColaboracao {
+        docentePercent := (float64(colaboracao) / float64(numTotalArticles)) * 100
+        fmt.Printf("Docente: %s | Colaboração: %d | Percentual: %.2f%%\n", docentName, colaboracao, docentePercent)
+    }
+}
+
+type nomecomparador struct {}
+
+func (nc *nomecomparador) JaccardSimilarity(str1, str2 string) float64 {
+    set1 := make(map[rune]struct{})
+    set2 := make(map[rune]struct{})
+    for _, c := range str1 {
+        set1[c] = struct{}{}
+    }
+    for _, c := range str2 {
+        set2[c] = struct{}{}
+    }
+
+    intersection := 0
+    for c := range set1 {
+        if _, ok := set2[c]; ok {
+            intersection++
+        }
+    }
+
+    return float64(intersection) / float64(len(set1) + len(set2) - intersection)
+}

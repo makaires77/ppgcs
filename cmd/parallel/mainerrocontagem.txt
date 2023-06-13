@@ -1,0 +1,306 @@
+package main
+
+import (
+	"encoding/csv"
+	"fmt"
+	"log"
+	"os"
+	"regexp"
+	"strings"
+	"sync"
+	"unicode"
+
+	"golang.org/x/text/runes"
+	"golang.org/x/text/transform"
+	"golang.org/x/text/unicode/norm"
+
+	"github.com/gocarina/gocsv"
+	"github.com/makaires77/ppgcs/pkg/usecase/nomecomparador"
+)
+
+type Author struct {
+	ID                    string `csv:"idLattes"`
+	Name                  string `csv:"nome"`
+	Tipo                  string `csv:"tipo"`
+	Titulo_cap            string `csv:"titulo_do_capitulo"`
+	Idioma                string `csv:"idioma"`
+	Titulo_livro          string `csv:"titulo_do_livro"`
+	Ano                   string `csv:"ano"`
+	Doi                   string `csv:"doi"`
+	Pais                  string `csv:"pais_de_publicacao"`
+	Isbn                  string `csv:"isbn"`
+	Editora_livro         string `csv:"nome_da_editora"`
+	Edição_livro          string `csv:"numero_da_edicao_revisao"`
+	Organizadores         string `csv:"organizadores"`
+	Paginas               string `csv:"paginas"`
+	Autores               string `csv:"autores"`
+	Autores_endogeno      string `csv:"autores-endogeno"`
+	Autores_endogeno_nome string `csv:"autores-endogeno-nome"`
+	Tags                  string `csv:"tags"`
+	Hash                  string `csv:"Hash"`
+	Tipo_producao         string `csv:"tipo_producao"`
+	Natureza              string `csv:"natureza"`
+	Titulo                string `csv:"titulo"`
+	Evento                string `csv:"nome_do_evento"`
+	Ano_trabalho          string `csv:"ano_do_trabalho"`
+	Pais_evento           string `csv:"pais_do_evento"`
+	Cidade_evento         string `csv:"cidade_do_evento"`
+	Classificação         string `csv:"classificacao"`
+	Periodico             string `csv:"periodico"`
+	Volume                string `csv:"volume"`
+	Issn                  string `csv:"issn"`
+	Estrato_qualis        string `csv:"estrato_qualis"`
+	Editora_artigo        string `csv:"editora"`
+	Numero_paginas        string `csv:"numero_de_paginas"`
+}
+
+type Student struct {
+	Name_docente  string `csv:"orientador"`
+	Name_discente string `csv:"discente"`
+}
+
+// Criar um Mutex para proteger a variável totalSimilarities
+var mu sync.Mutex
+
+func normalizeName(name string) string {
+	name = removePrepositions(name)
+	name = normalizeString(name)
+
+	// Verificar se o nome já contém vírgula
+	if strings.Contains(name, ",") {
+		// Se o nome já contém vírgula, realizar apenas a remoção de acentuação e preposições
+		name = convertToInitials(name)
+	} else {
+		// Se o nome não contém vírgula, trazer o sobrenome para o início e adicionar iniciais
+		name = bringLastNameToFront(name)
+		name = convertToInitials(name)
+	}
+
+	return name
+}
+
+func bringLastNameToFront(name string) string {
+	names := strings.Fields(name)
+	if len(names) > 1 {
+		lastName := names[len(names)-1]
+		initials := ""
+		for i, n := range names[:len(names)-1] {
+			if i == 0 {
+				// Manter o primeiro nome completo
+				initials += n + " "
+			} else {
+				// Converter os demais nomes em iniciais
+				initials += string(n[0]) + ". "
+			}
+		}
+		name = lastName + ", " + strings.TrimSpace(initials)
+	}
+	return name
+}
+
+func removePrepositions(name string) string {
+	prepositions := []string{"de", "da", "do", "das", "dos"}
+	for _, prep := range prepositions {
+		name = strings.ReplaceAll(name, " "+prep+" ", " ")
+	}
+	return name
+}
+
+func convertToInitials(name string) string {
+	names := strings.Fields(name)
+	initials := ""
+	for i, n := range names {
+		// Verificar se é um sobrenome
+		if i == 0 || strings.Contains(n, "-") {
+			initials += n + " "
+		} else {
+			initials += string(n[0]) + ". "
+		}
+	}
+	return strings.TrimSpace(initials)
+}
+
+func normalizeString(s string) string {
+	t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
+	name, _, _ := transform.String(t, s)
+	name = removeAccentRunes(name)
+	name = strings.ToUpper(name)
+	return name
+}
+
+func removeAccentRunes(s string) string {
+	reg := regexp.MustCompile("[ÀÁÂÃÄÅàáâãäåÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöøÙÚÛÜùúûüÇç]")
+	return reg.ReplaceAllString(s, "")
+}
+
+func compareAuthorWithStudentNames(authorNames []string, studentNames []string, docentName string, progress chan<- string, wg *sync.WaitGroup) {
+	defer wg.Done()
+
+	// Mapa para armazenar a contagem de colaboração por docente
+	docenteColaboracao := make(map[string]int)
+
+	// Variável para indicar se houve colaboração para o autor atual
+	achado := false
+
+	for _, studentName := range studentNames {
+		for _, authorName := range authorNames {
+			authorName = normalizeName(authorName)
+			authorName = strings.TrimSpace(authorName)
+
+			similarity := nomecomparador.JaccardSimilarity(authorName, studentName)
+			if similarity > 0.86 {
+				msg := fmt.Sprintf("DISCENTE %.2f | %-25s | %-25s | Currículo: %-25s", similarity, authorName, studentName, docentName)
+				progress <- msg
+
+				// Indicar que houve colaboração para o autor atual
+				achado = true
+				break
+				// } else {
+				// 	msg := fmt.Sprintf("-------- %.2f | %-25s | %-25s | Currículo: %-25s", similarity, authorName, studentName, docentName)
+				// 	progress <- msg
+			}
+		}
+
+		// Se houve colaboração para o autor atual, incrementar a contagem de colaboração para o docente
+		if achado {
+			mu.Lock()
+			docenteColaboracao[docentName]++
+			mu.Unlock()
+			achado = false
+		}
+	}
+}
+
+func main() {
+	// Abrir o arquivo CSV dos autores
+	fileAuthors, err := os.Open("../../_data/powerbi/publicacoes.csv")
+	if err != nil {
+		log.Fatalf("Falha ao abrir o arquivo CSV das publicações: %v", err)
+	}
+	defer fileAuthors.Close()
+
+	fmt.Println("Lendo o arquivo CSV dos autores...")
+
+	// Ler os registros do arquivo CSV dos autores
+	var authorRecords []*Author
+	if err := gocsv.UnmarshalFile(fileAuthors, &authorRecords); err != nil {
+		log.Fatalf("Falha ao extrair autores: %v", err)
+	}
+
+	fmt.Printf("Total de registros de autores: %d\n", len(authorRecords))
+
+	// Abrir o arquivo CSV dos discentes
+	fileStudents, err := os.Open("../../_data/powerbi/lista_orientadores-discentes.csv")
+	if err != nil {
+		log.Fatalf("Falha ao abrir o arquivo CSV dos discentes: %v", err)
+	}
+	defer fileStudents.Close()
+
+	// Ler os registros do arquivo CSV dos discentes
+	readerStudents := csv.NewReader(fileStudents)
+	readerStudents.Comma = ';'
+	readerStudents.LazyQuotes = true
+
+	studentRecords, err := readerStudents.ReadAll()
+	if err != nil {
+		log.Fatalf("Falha ao ler o arquivo CSV dos discentes: %v", err)
+	}
+	fmt.Printf("Total de registros de discentes: %d\n", len(studentRecords))
+
+	// Extrair a segunda coluna dos discentes
+	var studentNames []string
+	for _, studentRecord := range studentRecords {
+		// log.Println("Nome a normalizar:", studentRecord[1])
+		normalizedStudentName := normalizeName(studentRecord[1])
+		// log.Println("Nome a normalizado:", normalizedStudentName)
+		studentNames = append(studentNames, normalizedStudentName)
+	}
+
+	// Criar um canal para enviar atualizações de progresso
+	progress := make(chan string)
+
+	fmt.Println("Comparando nomes de autores com nomes de discentes...")
+
+	// Criar uma WaitGroup para sincronizar as goroutines
+	var wg sync.WaitGroup
+
+	// Iterar sobre cada combinação de autor e discente
+	for _, authorRecord := range authorRecords {
+		authorNames := strings.Split(authorRecord.Autores, ";")
+		docentName := authorRecord.Name
+
+		// Adicionar a quantidade de comparações ao WaitGroup
+		wg.Add(1)
+
+		// Chamar a função em uma goroutine para paralelizar as comparações
+		go compareAuthorWithStudentNames(authorNames, studentNames, docentName, progress, &wg)
+	}
+
+	// Goroutine para monitorar o canal de progresso e exibir informações
+	go func() {
+		for msg := range progress {
+			fmt.Println(msg)
+		}
+	}()
+
+	// Esperar até que todas as goroutines tenham concluído
+	wg.Wait()
+
+	// Calcular o total de artigos
+	numTotalArticles := len(authorRecords)
+
+	// Mapa para armazenar a contagem de colaboração por docente
+	docenteColaboracao := make(map[string]int)
+
+	// Calcular o percentual de colaboração de cada docente
+	for docentName := range docenteColaboracao {
+		for _, authorRecord := range authorRecords {
+			if authorRecord.Name == docentName {
+				authorNames := strings.Split(authorRecord.Autores, ";")
+				achado := false
+
+				for _, studentName := range studentNames {
+					for _, authorName := range authorNames {
+						authorName = normalizeName(authorName)
+						authorName = strings.TrimSpace(authorName)
+
+						similarity := nomecomparador.JaccardSimilarity(authorName, studentName)
+						if similarity > 0.86 {
+							// Indicar que houve colaboração para o autor atual
+							achado = true
+							break
+						}
+					}
+
+					// Se houve colaboração para o autor atual, incrementar a contagem de colaboração para o docente
+					if achado {
+						mu.Lock()
+						docenteColaboracao[docentName]++
+						mu.Unlock()
+						achado = false
+					}
+				}
+			}
+		}
+	}
+
+	// Calcular o percentual de colaboração de cada docente e exibir
+	fmt.Println("\nTotal de colaboração por docente:")
+	for docentName, colaboracao := range docenteColaboracao {
+		percentual := float64(colaboracao) / float64(numTotalArticles) * 100
+		totalArtigos := colaboracao
+		fmt.Printf("%-50s %-2.1f%% (Total de Artigos: %d)\n", docentName, percentual, totalArtigos)
+	}
+
+	// Calcular o índice de colaboração do programa completo
+	numTotalArticlesWithCollaboration := 0
+	for _, count := range docenteColaboracao {
+		if count > 0 {
+			numTotalArticlesWithCollaboration++
+		}
+	}
+	indiceColaboracao := float64(numTotalArticlesWithCollaboration) / float64(numTotalArticles) * 100
+	fmt.Printf("\nQuantidade total de artigos publicados período: %d", numTotalArticles)
+	fmt.Printf("\nArtigos com alguma colaboração discente achada: %d", numTotalArticlesWithCollaboration)
+	fmt.Printf("\nÍndice de Colaboração do Programa: %.2f%%\n", indiceColaboracao)
+}

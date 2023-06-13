@@ -3,26 +3,27 @@ package dgraph
 import (
 	"context"
 	"encoding/json"
-	"log"
+	"fmt"
+
+	"github.com/dgraph-io/dgo/v200"
+
+	"github.com/makaires77/ppgcs/pkg/domain/publication"
 )
 
 type DgraphReader struct {
-	client *DgraphClient
+	client *dgo.Dgraph
 }
 
-func NewDgraphReader(client *DgraphClient) *DgraphReader {
+func NewDgraphReader(client *dgo.Dgraph) *DgraphReader {
 	return &DgraphReader{
 		client: client,
 	}
 }
 
-func (r *DgraphReader) FindByID(ctx context.Context, id string, result interface{}) error {
-	txn := r.client.NewTransaction()
-	defer txn.Discard(ctx)
-
-	query := `query {
-		publication(func: uid(` + id + `)) {
-			uid
+func (r *DgraphReader) GetPublicationsByTitle(ctx context.Context, title string) ([]publication.Publication, error) {
+	query := `
+	{
+		publications(func: eq(title, "%s")) {
 			natureza
 			titulo
 			idioma
@@ -30,37 +31,31 @@ func (r *DgraphReader) FindByID(ctx context.Context, id string, result interface
 			ano
 			volume
 			issn
-			estrato_qualis
-			pais_de_publicacao
+			estratoQualis
+			paisDePublicacao
 			paginas
 			doi
 			autores
-			autores_endogeno
-			autores_endogeno_nome
+			autoresEndogeno
+			autoresEndogenoNome
 			tags
 			hash
 		}
 	}`
 
-	resp, err := txn.QueryWithVars(ctx, query, nil)
+	resp, err := r.client.NewTxn().Query(ctx, fmt.Sprintf(query, title))
 	if err != nil {
-		log.Printf("Failed to execute Dgraph query: %v", err)
-		return err
+		return nil, fmt.Errorf("falha ao executar a consulta: %v", err)
 	}
 
-	type Response struct {
-		Publication []*Publication `json:"publication"`
+	var result struct {
+		Publications []publication.Publication `json:"publications"`
 	}
 
-	var data Response
-	if err := json.Unmarshal(resp.Json, &data); err != nil {
-		log.Printf("Failed to unmarshal Dgraph response: %v", err)
-		return err
+	err = json.Unmarshal(resp.GetJson(), &result)
+	if err != nil {
+		return nil, fmt.Errorf("falha ao converter a resposta: %v", err)
 	}
 
-	if len(data.Publication) > 0 {
-		*result.(*Publication) = *data.Publication[0]
-	}
-
-	return nil
+	return result.Publications, nil
 }

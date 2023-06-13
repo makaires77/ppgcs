@@ -1,0 +1,18 @@
+const express = require('express');
+const path = require('path');
+
+const app = express();
+
+// Serve os arquivos estáticos a partir da pasta build
+app.use(express.static(path.join(__dirname, 'static')));
+
+// O "catchall" handler: para qualquer request que não combina com os anteriores, 
+// enviar de volta o arquivo index.html do React.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/static/index.html'));
+});
+
+const port = process.env.PORT || 5000;
+app.listen(port);
+
+console.log(`Server is listening on port ${port}`);

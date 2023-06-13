@@ -1,0 +1,224 @@
+package main
+
+import (
+	"encoding/csv"
+	"fmt"
+	"log"
+	"os"
+	"strings"
+	"sync"
+	"time"
+
+	"github.com/gocarina/gocsv"
+	"github.com/makaires77/ppgcs/pkg/repository"
+	"github.com/makaires77/ppgcs/pkg/support"
+	"github.com/makaires77/ppgcs/pkg/usecase/nomecomparador"
+)
+
+func parallelCompareAuthorWithStudentNames(authorNames []string, studentNames []string, docentName string, progress chan<- string, discentesEncontrados chan<- string, wg *sync.WaitGroup) {
+	defer wg.Done()
+
+	// Mapa para armazenar a contagem de colaboração por docente
+	docenteColaboracao := make(map[string]int)
+
+	// Variável para indicar se houve colaboração para o autor atual
+	achado := false
+
+	for _, studentName := range studentNames {
+		for _, authorName := range authorNames {
+			authorName = support.NormalizeName(authorName)
+			authorName = strings.TrimSpace(authorName)
+
+			similarity := nomecomparador.JaccardSimilarity(authorName, studentName)
+			if similarity > 0.86 {
+				msg := fmt.Sprintf("DISCENTE %.2f | %-25s | %-25s | De: %-25s", similarity, authorName, studentName, docentName)
+				progress <- msg
+
+				// Indicar que houve colaboração para o autor atual
+				achado = true
+				break
+			}
+		}
+
+		// Se houve colaboração para o autor atual, incrementar a contagem de colaboração para o docente
+		if achado {
+			support.Mu.Lock()
+			docenteColaboracao[docentName]++
+			support.Mu.Unlock()
+
+			// Enviar o discente encontrado para o canal separado
+			discentesEncontrados <- studentName
+
+			achado = false
+		}
+	}
+}
+
+func main() {
+	// Iniciar contagem de tempo
+	startTime := time.Now()
+
+	// Abrir o arquivo CSV dos autores
+	fileAuthors, err := os.Open("../../_data/powerbi/publicacoes.csv")
+	if err != nil {
+		log.Fatalf("Falha ao abrir o arquivo CSV das publicações: %v", err)
+	}
+	defer fileAuthors.Close()
+
+	fmt.Println("Lendo o arquivo CSV dos autores...")
+
+	// Ler os registros do arquivo CSV dos autores
+	var authorRecords []*repository.Publications
+	if err := gocsv.UnmarshalFile(fileAuthors, &authorRecords); err != nil {
+		log.Fatalf("Falha ao extrair autores: %v", err)
+	}
+
+	fmt.Printf("Total de registros de autores: %d\n", len(authorRecords))
+
+	// Abrir o arquivo CSV dos discentes
+	fileStudents, err := os.Open("../../_data/powerbi/lista_orientadores-discentes.csv")
+	if err != nil {
+		log.Fatalf("Falha ao abrir o arquivo CSV dos discentes: %v", err)
+	}
+	defer fileStudents.Close()
+
+	// Ler os registros do arquivo CSV dos discentes
+	readerStudents := csv.NewReader(fileStudents)
+	readerStudents.Comma = ';'
+	readerStudents.LazyQuotes = true
+
+	studentRecords, err := readerStudents.ReadAll()
+	if err != nil {
+		log.Fatalf("Falha ao ler o arquivo CSV dos discentes: %v", err)
+	}
+	fmt.Printf("Total de registros de discentes: %d\n", len(studentRecords))
+
+	// Extrair a segunda coluna dos discentes
+	var studentNames []string
+	for _, studentRecord := range studentRecords {
+		log.Println("Nome a normalizar:", studentRecord[1])
+		normalizedStudentName := support.NormalizeName(studentRecord[1])
+		log.Println("Nome a normalizado:", normalizedStudentName)
+		studentNames = append(studentNames, normalizedStudentName)
+	}
+
+	// Criar um canal para enviar atualizações de progresso
+	progress := make(chan string)
+
+	// Criar um canal para receber os discentes encontrados
+	discentesEncontrados := make(chan string)
+
+	fmt.Println("Comparando nomes de autores com nomes de discentes...")
+
+	// Criar uma WaitGroup para sincronizar as goroutines
+	var wg sync.WaitGroup
+
+	// Iterar sobre cada combinação de autor e discente
+	for _, authorRecord := range authorRecords {
+		authorNames := strings.Split(authorRecord.Autores, ";")
+		docentName := authorRecord.Name
+
+		// Adicionar a quantidade de comparações ao WaitGroup
+		wg.Add(1)
+
+		// Chamar a função em uma goroutine para paralelizar as comparações
+		go parallelCompareAuthorWithStudentNames(authorNames, studentNames, docentName, progress, discentesEncontrados, &wg)
+	}
+
+	// Goroutine para monitorar o canal de progresso e exibir informações
+	go func() {
+		for msg := range progress {
+			fmt.Println(msg)
+		}
+	}()
+
+	// Goroutine para exibir os discentes encontrados
+	go func() {
+		fmt.Println("\nDiscentes encontrados:")
+		for discente := range discentesEncontrados {
+			fmt.Println(discente)
+		}
+	}()
+
+	// Esperar até que todas as goroutines tenham concluído
+	wg.Wait()
+
+	// Fechar os canais
+	close(progress)
+	close(discentesEncontrados)
+
+	// Calcular o total de artigos
+	numTotalArticles := len(authorRecords)
+
+	// Mapa para armazenar a contagem de colaboração por docente
+	docenteColaboracao := make(map[string]int)
+
+	// Calcular o percentual de colaboração de cada docente
+	for docentName := range docenteColaboracao {
+		for _, authorRecord := range authorRecords {
+			if authorRecord.Name == docentName {
+				authorNames := strings.Split(authorRecord.Autores, ";")
+				achado := false
+
+				for _, studentName := range studentNames {
+					for _, authorName := range authorNames {
+						authorName = support.NormalizeName(authorName)
+						authorName = strings.TrimSpace(authorName)
+
+						similarity := nomecomparador.JaccardSimilarity(authorName, studentName)
+						if similarity > 0.86 {
+							achado = true
+							break
+						}
+					}
+					if achado {
+						break
+					}
+				}
+				if achado {
+					docenteColaboracao[docentName]++
+				}
+			}
+		}
+	}
+
+	// Tempo total de execução
+	elapsedTime := time.Since(startTime)
+
+	// Exibir o resultado da contagem de colaboração por docente
+	fmt.Println("\nContagem de colaboração por docente:")
+	for docentName, count := range docenteColaboracao {
+		fmt.Printf("Docente: %s | Colaboração: %d\n", docentName, count)
+	}
+
+	// Exibir estatísticas
+	fmt.Printf("\nEstatísticas:\n")
+	fmt.Printf("Total de artigos: %d\n", numTotalArticles)
+	fmt.Printf("Tempo de execução: %s\n", elapsedTime)
+
+	// Gerar o arquivo de log
+	generateLog(authorRecords, studentNames, docenteColaboracao, elapsedTime)
+
+	fmt.Println("Programa finalizado.")
+}
+
+func generateLog(authorRecords []*repository.Publications, studentNames []string, docenteColaboracao map[string]int, elapsedTime time.Duration) {
+	logFile, err := os.Create("log.txt")
+	if err != nil {
+		log.Fatalf("Falha ao criar o arquivo de log: %v", err)
+	}
+	defer logFile.Close()
+
+	logger := log.New(logFile, "", log.LstdFlags)
+
+	// Escrever os dados no arquivo de log
+	logger.Println("Dados calculados:")
+	logger.Printf("Total de artigos: %d\n", len(authorRecords))
+	logger.Printf("Total de discentes: %d\n", len(studentNames))
+	logger.Printf("Tempo de execução: %s\n", elapsedTime)
+
+	logger.Println("\nContagem de colaboração por docente:")
+	for docentName, count := range docenteColaboracao {
+		logger.Printf("Docente: %s | Colaboração: %d\n", docentName, count)
+	}
+}

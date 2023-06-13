@@ -1,0 +1,36 @@
+Arguments: 
+  /home/marcos/.nvm/versions/node/v12.13.0/bin/node /usr/local/bin/yarn add d3-dgraph
+
+PATH: 
+  /home/marcos/.nvm/versions/node/v12.13.0/bin:/home/marcos/anaconda3/bin:/home/marcos/anaconda3/condabin:/home/marcos/sdk/go1.20.4/bin:/home/marcos/.local/bin:/home/marcos/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/marcos/.dotnet/tools:/usr/local/texlive/2023/bin/x86_64-linux
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  12.13.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/d3-dgraph: Not found
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (events.js:210:5)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (events.js:210:5)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (events.js:299:28)
+      at IncomingMessage.emit (events.js:215:7)
+      at endReadableNT (_stream_readable.js:1183:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

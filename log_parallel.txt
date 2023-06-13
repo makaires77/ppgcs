@@ -1,0 +1,6 @@
+2023/06/04 22:19:07 Dados calculados:
+2023/06/04 22:19:07 Total de artigos: 2025
+2023/06/04 22:19:07 Total de discentes: 235
+2023/06/04 22:19:07 Tempo de execução: 11m46.5012874s
+2023/06/04 22:19:07 
+Contagem de colaboração por docente:

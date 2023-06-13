@@ -1,0 +1,225 @@
+/* package main
+
+import (
+	"context"
+	"encoding/csv"
+	"errors"
+	"io"
+	"log"
+	"os"
+
+	"github.com/chromedp/chromedp"
+	"github.com/goconnectx/cdproto/page"
+)
+
+const (
+	entradaCSV   = "/home/marcos/ppgcs/_data/in_csv/lista_dadosdocentes.csv"
+	urlBusca     = "http://buscatextual.cnpq.br/buscatextual/busca.do"
+	cssCheckbox  = "#buscarDemais"
+	cssInput     = "#textoBusca"
+	cssBotao     = "#botaoBuscaFiltros"
+	cssResultado = "#resultado li"
+)
+
+var ctx context.Context
+
+type ResearcherData struct {
+	Nome        string
+	Titulacao   string
+	Instituicao string
+	Area        string
+	// Adicione mais campos conforme necessário
+}
+
+// Função para realizar o scrap
+func realizarBusca(nome string) ([]*ResearcherData, error) {
+	ctx, cancel := chromedp.NewContext(context.Background(), chromedp.WithLogf(log.Printf))
+	defer cancel()
+
+	err := chromedp.Run(ctx,
+		page.SetDownloadBehavior(page.SetDownloadBehaviorBehaviorAllow).WithDownloadPath("/tmp"),
+		chromedp.Navigate("http://buscatextual.cnpq.br/buscatextual/busca.do"),
+		chromedp.Click("#buscarDemais"),
+		chromedp.SetValue("#textoBusca", nome),
+		chromedp.Click("#botaoBuscaFiltros"),
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	// Esperar pela resposta do servidor CNPq e obter os resultados
+	var resultados []*ResearcherData
+
+	// Iterar sobre os resultados, criar instâncias de ResearcherData e adicioná-las à lista resultados
+	return resultados, nil
+}
+
+func escolherResultado(resultados []*ResearcherData) (*ResearcherData, error) {
+	if len(resultados) == 0 {
+		return nil, errors.New("Nenhum resultado encontrado")
+	}
+
+	// Mostrar a lista de resultados na interface do usuário e permitir ao usuário selecionar um
+
+	// Retorna o resultado selecionado ou o primeiro resultado se houver apenas um
+	return resultados[0], nil
+}
+
+func abrirCurriculo(url string) error {
+	ctx, cancel := chromedp.NewContext(context.Background(), chromedp.WithLogf(log.Printf))
+	defer cancel()
+
+	err := chromedp.Run(ctx,
+		page.SetDownloadBehavior(page.SetDownloadBehaviorBehaviorAllow).WithDownloadPath("/tmp"),
+		chromedp.Navigate(url),
+	)
+	if err != nil {
+		return err
+	}
+
+	// Espera até que a janela do currículo Lattes seja carregada completamente
+
+	return nil
+}
+
+func analisarCurriculo() error {
+	ctx, cancel := chromedp.NewContext(context.Background(), chromedp.WithLogf(log.Printf))
+	defer cancel()
+
+	// Analisar a página do currículo Lattes e extrair as seções e seus elementos filhos
+
+	return nil
+}
+
+func extrairDados() error {
+	ctx, cancel := chromedp.NewContext(context.Background(), chromedp.WithLogf(log.Printf))
+	defer cancel()
+
+	// Extrair os dados de cada seção do currículo
+
+	return nil
+}
+
+func armazenarDados(data *ResearcherData) error {
+	// Armazenar os dados no MongoDB, Dgraph e Neo4j
+
+	return nil
+}
+
+func Processar() error {
+	csvFile, err := os.Open("/home/marcos/ppgcs/_data/in_csv/lista_dadosdocentes.csv")
+	if err != nil {
+		return err
+	}
+	defer csvFile.Close()
+
+	reader := csv.NewReader(csvFile)
+
+	// Iterar sobre as linhas do arquivo CSV
+	for {
+		line, err := reader.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return err
+		}
+
+		nome := line[0]
+
+		// Realizar busca
+		resultados, err := realizarBusca(nome)
+		if err != nil {
+			// Lidar com o erro da busca
+			continue
+		}
+
+		// Permitir ao usuário escolher o resultado
+		resultado, err := escolherResultado(resultados)
+		if err != nil {
+			// Lidar com o erro da escolha do resultado
+			continue
+		}
+
+		// Abrir currículo
+		err = abrirCurriculo(resultado.CurriculoURL)
+		if err != nil {
+			// Lidar com o erro da abertura do currículo
+			continue
+		}
+
+		// Analisar currículo
+		err = analisarCurriculo()
+		if err != nil {
+			// Lidar com o erro da análise do currículo
+			continue
+		}
+
+		// Extrair dados
+		err = extrairDados()
+		if err != nil {
+			// Lidar com o erro da extração de dados
+			continue
+		}
+
+		// Armazenar dados
+		err = armazenarDados(resultado)
+		if err != nil {
+			// Lidar com o erro do armazenamento de dados
+			continue
+		}
+	}
+
+	return nil
+}
+
+func main() {
+	err := Processar()
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+/* // função principal
+func main() {
+	file, err := os.Open(entradaCSV)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	reader := csv.NewReader(file)
+
+	mongoRepository := mongoRepo.NewMongoDBRepository()                                             // Conectar ao MongoDB
+	dgraphRepository := dgraphRepo.NewDgraphRepository()                                            // Conectar ao Dgraph
+	neo4jRepository := neo4jRepo.NewNeo4jRepository()                                               // Conectar ao Neo4j
+	service := application.NewResearcherService(mongoRepository, dgraphRepository, neo4jRepository) // Inicializar o serviço
+
+	for {
+		record, err := reader.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		nome := record[0] // Supondo que o nome é o primeiro campo
+
+		dados, err := realizarBusca(nome)
+		if err != nil {
+			log.Println(err)
+			continue
+		}
+
+		pesquisador := &researcher.Researcher{
+			// preencher campos com base nos dados raspados
+		}
+
+		err = service.Save(pesquisador)
+		if err != nil {
+			log.Println(err)
+			continue
+		}
+	}
+} */
