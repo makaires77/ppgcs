@@ -2,13 +2,9 @@ package dgraph
 
 import (
 	"context"
-<<<<<<< HEAD
-	"errors"
-	"log"
-=======
 	"encoding/json"
+	"errors"
 	"fmt"
->>>>>>> 1fe78313cac79e2bf397dc90e9312fe80146217d
 
 	"github.com/dgraph-io/dgo/v200"
 	"github.com/dgraph-io/dgo/v200/protos/api"

@@ -1,41 +1,14 @@
 package dgraph
 
 import (
-<<<<<<< HEAD
-=======
 	"context"
 	"fmt"
 
->>>>>>> 1fe78313cac79e2bf397dc90e9312fe80146217d
 	"github.com/dgraph-io/dgo/v200"
 	"github.com/dgraph-io/dgo/v200/protos/api"
 	"google.golang.org/grpc"
 )
 
-<<<<<<< HEAD
-type DgraphClient struct {
-	client *dgo.Dgraph
-	conn   *grpc.ClientConn
-}
-
-func NewDgraphClient() (*DgraphClient, error) {
-	conn, err := grpc.Dial("localhost:9080", grpc.WithInsecure())
-	if err != nil {
-		return nil, err
-	}
-
-	client := dgo.NewDgraphClient(api.NewDgraphClient(conn))
-
-	return &DgraphClient{
-		client: client,
-		conn:   conn,
-	}, nil
-}
-
-func (c *DgraphClient) Close() {
-	c.conn.Close()
-}
-=======
 type DGraphClient struct {
 	client *dgo.Dgraph
 }
@@ -90,4 +63,3 @@ func (c *DGraphClient) AlterSchema(ctx context.Context, schema string) error {
 
 	return nil
 }
->>>>>>> 1fe78313cac79e2bf397dc90e9312fe80146217d
