@@ -13,6 +13,7 @@ type ErroPersonalizado struct {
 }
 
 type Publication struct {
+	ID                  string            `json:"id,omitempty"`
 	Natureza            string            `json:"natureza"`
 	Titulo              string            `json:"titulo"`
 	Idioma              string            `json:"idioma"`

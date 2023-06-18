@@ -3,12 +3,17 @@ package dgraph
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 
 	"github.com/dgraph-io/dgo/v200"
 	"github.com/dgraph-io/dgo/v200/protos/api"
 
 	"github.com/makaires77/ppgcs/pkg/domain/publication"
+)
+
+var (
+	ErrPublicationNotCreated = errors.New("publication not created")
 )
 
 type DgraphWriter struct {
