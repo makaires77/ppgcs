@@ -1,5 +1,5 @@
 # Processos de avaliação da pós-graduação
-## PPGCS - Avaliar Publicação Docente/Discente na Pós-graduação
+## Avaliar Publicação Docente/Discente na Pós-graduação
 
 Este trabalho suporta a tomada de decisão da Comissão Gestora do Programa, que a partir da medição contínua das publicações do corpo de pesquisadores, formado pelos docentes (permanentes e colaboradores) e pelo corpo discente, realiza o acompanhamento contínuo das produções, em quantidade e qualidade, orientada pelo impacto das publicações científico-acadêmicas do PPGCS.
 
