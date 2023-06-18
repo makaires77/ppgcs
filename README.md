@@ -38,7 +38,7 @@ O arquivo config.py contém configurações do serviço
 
 O arquivo run.py inicia o serviço Flask
 
-# Para colaborar como desenvolvimento
+# Para colaborar com o desenvolvimento
 ## Relacionamento hierárquicom entre as partes
 - **Funções**: Funções em Go são declaradas com a palavra-chave `func`, seguida pelo nome da função, a lista de parâmetros entre parênteses, o tipo de retorno e o corpo da função entre chaves. Por exemplo, na nossa função `ReadCsvFile` em `csv_files.go`, declaramos uma função que lê um arquivo CSV e retorna uma lista de strings e um erro.
 
