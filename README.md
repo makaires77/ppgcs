@@ -38,7 +38,7 @@ O arquivo config.py contém configurações do serviço
 
 O arquivo run.py inicia o serviço Flask
 
-# Governança e para colaborar como desenvolvedor
+# Para colaborar como desenvolvimento
 ## Relacionamento hierárquicom entre as partes
 - **Funções**: Funções em Go são declaradas com a palavra-chave `func`, seguida pelo nome da função, a lista de parâmetros entre parênteses, o tipo de retorno e o corpo da função entre chaves. Por exemplo, na nossa função `ReadCsvFile` em `csv_files.go`, declaramos uma função que lê um arquivo CSV e retorna uma lista de strings e um erro.
 
@@ -306,13 +306,12 @@ Contém todas as rotas para as páginas estáticas
 
 3. Criar pasta static, com o index.html e index.js
 
-
-## Messageria
+## Notificações com RabbtMQ
 https://blog.tericcabrel.com/async-communication-nodejs-rabbitmq/
 yarn add amqplib
 yarn add -D @types/amqplib
 
-Para instalar o RabbitMQ a partir do Terminal Integrado do VSCode usando o Yarn, siga as etapas abaixo:
+Para os serviços de apenas notfcação, podemos instalar o RabbitMQ a partir do Terminal Integrado do VSCode usando o Yarn, siga as etapas abaixo:
 
 1. Certifique-se de ter o Yarn instalado em seu ambiente. Se você ainda não o tiver instalado, consulte a documentação oficial do Yarn para obter instruções sobre como instalá-lo: [Yarn Installation](https://yarnpkg.com/getting-started/install).
 
@@ -372,7 +371,7 @@ Lembre-se de que a atualização do Node.js pode levar algum tempo, pois envolve
 Após atualizar o Node.js, você pode continuar usando o Yarn normalmente para instalar suas dependências do projeto.
 
 
-## instalar o n
+## instalar o npx
 Pode-se usar o `npx` em vez do `yarn dlx`. O `npx` permite executar pacotes executáveis diretamente sem a necessidade de instalação global.
 
 No Terminal Integrado do VSCode, execute o seguinte comando:
@@ -419,3 +418,6 @@ Para instalar o Neo4j mais atualizado a partir do Terminal Integrado do VSCode u
 Após a conclusão bem-sucedida da instalação, você poderá importar e usar a biblioteca `neo4j-driver` em seu código para se conectar e interagir com o banco de dados Neo4j.
 
 Lembre-se de configurar corretamente a conexão com o Neo4j em seu código, fornecendo as informações de host, porta, usuário e senha adequadas para se conectar ao banco de dados. Verifique se você tem o Neo4j instalado e em execução em seu ambiente antes de usar a biblioteca `neo4j-driver`.
+
+## Messageria com Kafka
+Para serviços completos de messageria, indo além das simples notificações podemos usar cluster Kafka, porém aí o custo será bem mais elevado.
