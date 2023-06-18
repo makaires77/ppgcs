@@ -15,29 +15,6 @@ Os indicadores que balizam a avaliação são construídos com base nos parâmet
 
 São considerados os docentes permanentes (DP) e docentes colaboradores (DC), com base nos mesmos parâmetros esperados de impacto (medido por pontuação ponderada relativa ao estrato Qualis Periódicos da área Medicina II das revistas utilizadas nas publicações do período).
 
-# Exemplo considerando Aquitetura Hexagonl de Portes e Adapters (Não utilizada neste projeto específico):
-Uma estrutura de pastas, em arquitetura hexagonal e orientação a funções, pode de forma genérica conter a seguinte estrutura:
-
-*app* contém a lçógica do aplicativo:
-  
-  *routes.py* especifica as roas HTTP
-  
-  *controllers* coném as funções que recebem as requisições HTTP  e encaminham para os casos de uso correspondentes
-  
-  *usecases* coném os casos de uso que definem a lógica do negócio para cada entidade
-
-*domain*  contém as definições de entidades, exceções e outros objetos puros
-
-*infraestructure* tem a lógica de acesso a dados
-
-  *repositories* encapsulam as operações com banco de dados
-  
-  *adapters* se comunicam com outras APIs
-  
-O arquivo config.py contém configurações do serviço
-
-O arquivo run.py inicia o serviço Flask
-
 # Para colaborar com o desenvolvimento
 ## Relacionamento hierárquicom entre as partes
 - **Funções**: Funções em Go são declaradas com a palavra-chave `func`, seguida pelo nome da função, a lista de parâmetros entre parênteses, o tipo de retorno e o corpo da função entre chaves. Por exemplo, na nossa função `ReadCsvFile` em `csv_files.go`, declaramos uma função que lê um arquivo CSV e retorna uma lista de strings e um erro.
@@ -181,6 +158,29 @@ Utilizar a injeção de dependência para fornecer a implementação concreta do
 Introduzir um sistema de manipulação de eventos para lidar com os eventos produzidos pelo sistema. Por exemplo, quando um novo pesquisador é adicionado, um evento poderia ser emitido, o que poderia acionar outras partes do código.
 
 Um sistema de fila lida com o processamento em segundo plano, a raspagem de dados do Lattes pode ser uma operação demorada e é feita em uma tarefa em segundo plano, usando a biblioteca "github.com/gocraft/work" dentre outras.
+
+# Exemplo considerando Aquitetura Hexagonl de Portes e Adapters (Não utilizada neste projeto específico):
+Uma estrutura de pastas, em arquitetura hexagonal e orientação a funções, pode de forma genérica conter a seguinte estrutura:
+
+*app* contém a lçógica do aplicativo:
+  
+  *routes.py* especifica as roas HTTP
+  
+  *controllers* coném as funções que recebem as requisições HTTP  e encaminham para os casos de uso correspondentes
+  
+  *usecases* coném os casos de uso que definem a lógica do negócio para cada entidade
+
+*domain*  contém as definições de entidades, exceções e outros objetos puros
+
+*infraestructure* tem a lógica de acesso a dados
+
+  *repositories* encapsulam as operações com banco de dados
+  
+  *adapters* se comunicam com outras APIs
+  
+O arquivo config.py contém configurações do serviço
+
+O arquivo run.py inicia o serviço Flask
 
 # Detalhes da execução em Go
 ## Importação de estruturas
