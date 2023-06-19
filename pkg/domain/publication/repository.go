@@ -26,9 +26,9 @@ func (r *InMemoryPublicationRepository) Save(publication *Publication) error {
 	return nil
 }
 
-func (r *InMemoryPublicationRepository) GetByID(id string) (*Publication, error) {
+func (r *InMemoryPublicationRepository) GetByID(ID string) (*Publication, error) {
 	for _, publication := range r.publications {
-		if publication.ID == id {
+		if publication.Hash == ID {
 			return publication, nil
 		}
 	}

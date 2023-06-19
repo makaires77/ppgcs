@@ -1,0 +1,15 @@
+O frotend para o módulo de scrap
+
+No módulo de scrap do backend o scrap_lattes.go é o arquivo principal para o processo de scraping deve ser capaz de acessar a internet, coletar dados de uma fonte externa (geralmente um site ou API) e processá-los para um formato útil. Este módulo se baseia em bibliotecas Go para realizar solicitações HTTP e parsear HTML ou JSON, com gerenciamento de filas com o RabbitMQ.
+
+Para criar a interface de usuário para iniciar o processo de scraping vamos implementar:
+
+Botão de inicialização: Na interface do usuário, você poderia adicionar um botão "Iniciar Scraping". Quando este botão é clicado, ele acionaria uma solicitação HTTP ao servidor.
+
+Endpoint do Servidor: No servidor, você precisaria ter um endpoint disponível (por exemplo, POST /start-scraping) que inicie o processo de scraping quando receber essa solicitação HTTP. Dependendo da estrutura do seu servidor, você pode precisar adicionar uma rota e um controlador para lidar com essa solicitação.
+
+Iniciar o processo de Scraping: No controlador que lida com a solicitação de iniciar o scraping, chama a função que inicia o processo de scraping partindo da ação do usuário que iniciaria por informar a sigla do programa de pós-graduação a analisar, variável essa que será usada para renomear o arquivo CSV que ele enviará logo a seguir, após informar a sigla do programa, o usuário deverá escolher um arquivo CSV local contendo a lista de nomes de docentes do programa, incluindo a validação de erro contra arquivo vazio e as boas práticas de testagem se a extensão é CSV, XLS ou XLSX, Caso selecionado arquivo com sucesso será enviado ao servidor e salvo na pasta static\equipes, neste momento antes do envio o arquivo será renomeado para o formato <SIGLA>_docentes.csv inclua no input do tipo "file", que permite ao usuário selecionar um arquivo a partir da interface de usuário que disparar o JavaScript para enviar esse arquivo ao servidor quando o usuário clicar no botão "SalvarEquipe"..
+
+A partir da seleção do arquivo com nomes de docentes, será montada a lista no RabbitMQ com cada nome de docente o qual dos dados do curriculo serão obtidos por scrapping. 
+
+Feedback para o usuário: Uma vez que o processo de scraping foi iniciado, você deve fornecer algum feedback para o usuário, como uma mensagem informando que o processo de scraping começou.

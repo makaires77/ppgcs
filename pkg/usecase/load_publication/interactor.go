@@ -1,50 +1,26 @@
 package load_publication
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
+
+	"github.com/makaires77/ppgcs/pkg/domain/publication"
 )
 
-type Publication struct {
-	Natureza            string            `json:"natureza"`
-	Titulo              string            `json:"titulo"`
-	Idioma              string            `json:"idioma"`
-	Periodico           string            `json:"periodico"`
-	Ano                 string            `json:"ano"`
-	Volume              string            `json:"volume"`
-	ISSN                string            `json:"issn"`
-	EstratoQualis       string            `json:"estrato_qualis"`
-	PaisDePublicacao    string            `json:"pais_de_publicacao"`
-	Paginas             string            `json:"paginas"`
-	DOI                 string            `json:"doi"`
-	Autores             []string          `json:"autores"`
-	AutoresEndogeno     []string          `json:"autores_endogeno"`
-	AutoresEndogenoNome map[string]string `json:"autores_endogeno_nome"`
-	Tags                []string          `json:"tags"`
-	Hash                string            `json:"hash"`
-}
-
 type PublicationInteractor struct {
-	PublicationDataPath string
+	repository publication.PublicationRepository
 }
 
-func NewPublicationInteractor(publicationDataPath string) *PublicationInteractor {
+func NewPublicationInteractor(repository publication.PublicationRepository) *PublicationInteractor {
 	return &PublicationInteractor{
-		PublicationDataPath: publicationDataPath,
+		repository: repository,
 	}
 }
 
-func (i *PublicationInteractor) LoadPublications() ([]Publication, error) {
-	data, err := ioutil.ReadFile(i.PublicationDataPath)
+func (i *PublicationInteractor) LoadPublications() ([]*publication.Publication, error) {
+	// Chame o método GetAll do repositório para obter todas as publicações
+	publications, err := i.repository.GetAll()
 	if err != nil {
-		return nil, fmt.Errorf("failed to read publication data file: %w", err)
-	}
-
-	var publications []Publication
-	err = json.Unmarshal(data, &publications)
-	if err != nil {
-		return nil, fmt.Errorf("failed to unmarshal publication data: %w", err)
+		return nil, fmt.Errorf("failed to load publications: %v", err)
 	}
 
 	return publications, nil

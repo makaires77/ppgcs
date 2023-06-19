@@ -1,0 +1,103 @@
+package infrastructure
+
+import (
+	"encoding/csv"
+	"fmt"
+	"io"
+	"os"
+
+	"github.com/makaires77/ppgcs/pkg/domain"
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
+)
+
+func (e *domain.ErroPersonalizado) Error() string {
+	return fmt.Sprintf("%v : %v", e.Erro, e.Msg)
+}
+
+func LoadAdvisorStudentsFromCSV(filePath string) ([]domain.AdvisorStudent, error) {
+	csvFile, err := os.Open(filePath)
+	if err != nil {
+		return nil, &ErroPersonalizado{
+			Erro: err,
+			Msg:  fmt.Sprintf("Erro ao abrir o arquivo CSV: %s", filePath),
+		}
+	}
+	defer csvFile.Close()
+
+	reader := csv.NewReader(csvFile)
+	reader.Comma = ';'
+	reader.LazyQuotes = true
+
+	var advisorStudents []domain.AdvisorStudent
+	for {
+		row, err := reader.Read()
+		if err == io.EOF {
+			break
+		} else if err != nil {
+			return nil, &ErroPersonalizado{
+				Erro: err,
+				Msg:  fmt.Sprintf("Erro ao ler o arquivo CSV: %s", filePath),
+			}
+		}
+
+		// Para fins de exemplo, vamos assumir que cada linha do CSV corresponde a um orientador-aluno
+		// E os valores das colunas correspondem aos atributos de um orientador-aluno
+		advisorStudents = append(advisorStudents, domain.AdvisorStudent{
+			// atribua os valores da linha para os atributos do struct AdvisorStudent aqui
+			// ...
+		})
+	}
+
+	return advisorStudents, nil
+}
+
+func PersistAdvisorStudents(driver neo4j.DriverWithContext, advisorStudents []domain.AdvisorStudent) error {
+	sessionConfig := neo4j.SessionConfig{
+		AccessMode: neo4j.AccessModeWrite,
+	}
+
+	session, err := driver.NewSession(sessionConfig)
+	if err != nil {
+		return &ErroPersonalizado{
+			Erro: err,
+			Msg:  "Erro ao criar nova sessão com o driver Neo4j",
+		}
+	}
+	defer session.Close()
+
+	// Início de uma transação
+	tx, err := session.BeginTransaction()
+	if err != nil {
+		return &ErroPersonalizado{
+			Erro: err,
+			Msg:  "Erro ao iniciar uma transação",
+		}
+	}
+
+	// Insere as relações orientador-aluno na base de dados
+	for _, advisorStudent := range advisorStudents {
+		_, err := tx.Run(
+			// cypher query para criar a relação entre o orientador e o aluno
+			// ...
+			nil,
+		)
+
+		if err != nil {
+			_ = tx.Rollback() // ignorar o erro do rollback
+			return &ErroPersonalizado{
+				Erro: err,
+				Msg:  "Erro ao fazer commit da transação",
+			}
+		}
+	}
+
+	// Faz o commit da transação
+	if err := tx.Commit(); err != nil {
+		return &ErroPersonalizado{
+			Erro: err,
+			Msg:  "Erro ao fazer commit da transação",
+		}
+	}
+
+	return nil
+}

@@ -1,0 +1,62 @@
+Estou em VScode e preciso criar um módulo em Go, usando de multiprocessamento e paralelização em GPU para achar nomes de docentes dentro de uma lista de autores de artigos, porém os nomes podem vir em diferentes formatos então será preciso aplicar uma análise fuzzy para combinar formas e inferir quais nomes de discente estão na lista de autores de cada artigo. 
+
+Arquitetura em camadas superpostas (Clean Architecture)
+Considere que temos uma função realizarBusca no módulo Go para web scraping para automatizar a interação com o site de origem dos dados de interesse. 
+
+Módularização:
+O módulo de análise de similaridade deve conter funções de leitura de dados em CSV e em XLSX, considerando que nos dados de entrada temos cada artigo como uma linha no arquivo CSV: _data\powerbi\publicacoes.csv que contém os seguintes rótulos na primeira linha: idLattes, nome, tipo, titulo_do_capitulo, idioma, titulo_do_livro, ano, doi, pais_de_publicacao, isbn, nome_da_editora, numero_da_edicao_revisao, organizadores, paginas, autores, autores-endogeno, autores-endogeno-nome, tags, Hash, tipo_producao, natureza, titulo, nome_do_evento, ano_do_trabalho, pais_do_evento, cidade_do_evento, classificacao, periodico, volume, issn, estrato_qualis, editora, numero_de_paginas, numero_de_volumes; onde o nome do docente é a coluna de índice 1 e a lista de autores é a coluna de índice 14, então a informação que queremos gerar é o percentual de colaboração entre discentes e docentes do programa de pós-graduação em ciências da saúde, contata pelo número total de artigos onde é encontrada pelo menos uma similaridade acima do treshold 0.8 para os pares de strings formados por cada nome de autor e cada nome de discente; a lista de orientadores e a lista de discentes é lida a partir das duas colunas contidas no arquivo _data\powerbi\lista_orientadores-discentes.csv que não contém rótulos de colunas mas que é formado pelo nome completo do orientador e nome completo do discente. 
+
+Considere que o arquivo CSV a ser lido deve apresentar a seguinte estrutura interna: // Estrutura de dados para representar uma lista de pesquisadores
+type ResearcherList struct {
+	Name           string
+	ResearcherName string
+	Program        string
+	Institution    string
+}
+
+o módulo de análise de similaridade deve conter uma função de preprocessamento considerando que na lista de discentes temos nomes completo de discente, e antes de compararmos devemos passar todas letras para minúsculas, retirar toda acentuação gráfica, retirar todos as partes de string a seguir: " de ", " da ", " do ", " e ", " dos " antes de gerar a fila de pares a serem comparados que será controlada pelo RabbitMQ.
+
+o módulo de análise de similaridade deve ter uma função de estimativa de duração que deve contar a quantidade de nomes de docentes e contar a quantidade de nomes de autor para avaliar o tempo de duração da análise completa mensurando o tempo total de duração de cada análise a partir do cálculo de análise combinatória que menure todas as comparações que devem ser analisadas para calcular a similaridade entre cada par de string discente/autor, calculando o somatório total da quantidade de autores em cada lista de autores de cada artigo combinada com o total de lista de nomes de discentes.
+
+O módulo de análise de similaridade deve ter como função principal realizar a comparação combinatória fuzzy entre cada nome de discente pré-processado e cada nome de autor da lista de autores de cada artigo de cada docente usando a seguinte função: 
+
+o módulo de messageria deve gerar uma fila no RabbitMQ a ser consumida em paralelo pelo módulo de análise de similaridade em Go. 
+
+Estes módulos programados em Go fará parte de uma aplicação maior de gerenciamento de dados e visualização para o Programa de Pós-Graduação em Ciências da Saúde - PPGCS.
+
+Persistência de Dados:
+Uma vez que os dados tiverem sido lidos pelas funções de leitura de dados devem ser persistidos em um modelo lógico de grafos, que será armazenado em Neo4j. As entidades a serem tratadas nessa aplicação devem ser persistidas em Neo4j e são: Pessoa, Artigo, Patente, Evento, Livro, Papel_Docente, Papel_Discente, Papel_Autor, Papel_Orientador;
+As relações direcionadas são: Tem_Orientador, Tem_vínculo, Tem_nomecompleto, Tem_variantes;
+As relações não direcionadas são: Publicou, Depositou, Escreveu, Organizou, Participou;
+
+Estrutura de pastas e arquivos:
+a estrutura de pastas e arquivos deve ser organizada com base em Clean Architecture. As propostas de estruturação de funcionalidades dentro dos módulos e funções de código devem ser organizada pelas melhores práticas de Clean Architecture. Nossa estrutura de pastas atual e a separação nas quatro camadas principais: Domínio, Aplicação, Infraestrutura e Apresentação
+
+Domínio: Esta camada contém as informações sobre o domínio do problema, as regras de negócio e os objetos de negócio. Neste caso, "Pesquisador", "Publicacao" seriam objetos de domínio.
+
+Aplicação: Esta camada serve como um canal entre a camada de Interface do usuário e a camada de Domínio. Pode-se introduzir um serviço de aplicação aqui que orquestra as chamadas para a camada de domínio.
+
+Infraestrutura: Esta camada fornece os recursos técnicos para as outras camadas. Aqui estão as operações de banco de dados e a raspagem de dados do Lattes.
+
+Apresentação: Esta camada se preocupa com a interação do usuário.
+
+Orientação a Eventos:
+Os eventos são a parte integrante do sistema que fornecem e controlam a dinâmica da execução dos vários trabalhos realizados pelos usuários para agregar valor e atender suas necessidades. Com uso de EDD, organizamos o código em torno de produção, detecção e reação a eventos do estado do domínio. Como o evento de um novo pesquisador sendo salvo no banco de dados, que dispara um evento que aciona outras partes do código (ou até mesmo outros sistemas) que estão interessados nesse evento.
+
+Separamos a lógica de conexão do MongoDB em um pacote de infraestrutura separado e utilizamos a injeção de dependência para usar esses serviços.
+
+Definimos interfaces claras para os repositórios (ex: PesquisadorRepository) na camada de domínio e implementar essas interfaces na camada de infraestrutura.
+
+Utilizamos a injeção de dependência para fornecer a implementação concreta do repositório à camada de aplicação.
+
+Introduzimos um sistema de manipulação de eventos para lidar com os eventos produzidos pelo sistema. Por exemplo, quando um novo pesquisador é adicionado, um evento poderia ser emitido, o que poderia acionar outras partes do código.
+
+Gerenciamento de filas e messageria:
+E implementaremos um sistema de fila para lidar com o processamento em segundo plano, com a raspagem de dados do Lattes em uma tarefa em segundo plano. Usamos a biblioteca "github.com/gocraft/work" e o gerenciamento de filas com o RabbitMQ para processar diferentes pedidos de análise de diferentes usuários em paralelo.
+
+Frontend:
+A aplicação deve ter um módulo de dashboard que usa bibliotec D3.js para gerar gráficos e visualizações a partir dos dados analisados. 
+
+A aplicação tem uma interface de usuário simples com uma página static\index.html por onde o usuário deve fazer upload dos arquivos CSV, XLS ou XLSX, e deve poder acompanhar em tempo real a análise de similaridade, contendo previsão de término medida pelo tempo médio do quantitativo já analisado vezes o quantitativo restante para concluir a análise combinatória completa entre todos os nomes de autores e todos nomes de discentes.
+
+Monte a estrutura de pastas na forma de um script em bash para gerar o boilerplate para essa aplicação.
