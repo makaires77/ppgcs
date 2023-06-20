@@ -1,0 +1,133 @@
+AtingiramMetaColaboracaoDiscente = 
+CALCULATE(
+    COUNTROWS(
+        FILTER(
+            SUMMARIZE(
+                'colaboracao_discente',
+                'colaboracao_discente'[nome_docente],
+                "SomaPontosImpacto", 
+                SUMX(
+                    FILTER(
+                        'colaboracao_discente', 
+                        VALUE('colaboracao_discente'[ano]) >= VALUE(MIN('tab_avalCapes'[ano])) && 
+                        VALUE('colaboracao_discente'[ano]) <= VALUE(MAX('tab_avalCapes'[ano]))
+                    ),
+                    'colaboracao_discente'[PontosColaboracao]
+                )
+            ),
+            [SomaPontosImpacto] >= [Meta Pontuação com Discente]
+        )
+    ),
+    'tab_avalCapes'[quadrienal] = SELECTEDVALUE('tab_avalCapes'[quadrienal])
+)
+
+NaoAtingiramMetaColaboracao = 
+CALCULATE(
+    COUNTROWS(
+        FILTER(
+            SUMMARIZE(
+                'colaboracao_discente',
+                'colaboracao_discente'[nome_docente],
+                "SomaPontosCoaboracao", 
+                SUMX(
+                    FILTER(
+                        'colaboracao_discente', 
+                        RELATED(tab_avalCapes[quadrienal]) = SELECTEDVALUE('tab_avalCapes'[quadrienal])
+                    ),
+                    'colaboracao_discente'[PontosColaboracao]
+                )
+            ),
+            [SomaPontosCoaboracao] < [Meta Pontuação com Discente]
+        )
+    ),
+    'tab_avalCapes'[quadrienal] = SELECTEDVALUE('tab_avalCapes'[quadrienal])
+)
+
+____________________________________________________________________________
+
+AtingiramMetaPercentualColaboracaoDiscente = 
+CALCULATE(
+    COUNTROWS(
+        FILTER(
+            SUMMARIZE(
+                'colaboracao_discente',
+                'colaboracao_discente'[nome_docente],
+                "MédiaColaboraçãoDiscente", 
+                AVERAGEX(
+                    FILTER(
+                        'colaboracao_discente', 
+                        VALUE('colaboracao_discente'[ano]) >= VALUE(MIN('tab_avalCapes'[ano])) && 
+                        VALUE('colaboracao_discente'[ano]) <= VALUE(MAX('tab_avalCapes'[ano]))
+                    ),
+                    'colaboracao_discente'[percentual_colaboracao_discente]
+                )
+            ),
+            [MédiaColaboraçãoDiscente] >= [Meta Percentual Artigos com Discente]
+        )
+    ),
+    'tab_avalCapes'[quadrienal] = SELECTEDVALUE('tab_avalCapes'[quadrienal])
+)
+
+AtingiramMetaPontos = 
+CALCULATE(
+    COUNTROWS(
+        FILTER(
+            SUMMARIZE(
+                'colaboracao_discente',
+                'colaboracao_discente'[nome_docente],
+                "SomaPontosCoaboracao", 
+                SUMX(
+                    FILTER(
+                        'colaboracao_discente', 
+                        CONTAINSSTRING(SELECTEDVALUE('tab_avalCapes'[quadrienal]), FORMAT('colaboracao_discente'[ano], "General Number"))
+                    ),
+                    'colaboracao_discente'[PontosImpactoAno]
+                )
+            ),
+            [SomaPontosCoaboracao] >= [Meta Pontuação com Discente]
+        )
+    ),
+    'tab_avalCapes'[quadrienal] = SELECTEDVALUE('tab_avalCapes'[quadrienal])
+)
+
+NaoAtingiramMetaPercentualColaboracao = 
+CALCULATE(
+    COUNTROWS(
+        FILTER(
+            SUMMARIZE(
+                'colaboracao_discente',
+                'colaboracao_discente'[nome_docente],
+                "MediaPercentualColaboracao", 
+                AVERAGEX(
+                    FILTER(
+                        'colaboracao_discente', 
+                        RELATED(tab_avalCapes[quadrienal]) = SELECTEDVALUE('tab_avalCapes'[quadrienal])
+                    ),
+                    'colaboracao_discente'[percentual_colaboracao_discente]
+                )
+            ),
+            [MediaPercentualColaboracao] < [Meta Percentual Artigos com Discente]
+        )
+    ),
+    'tab_avalCapes'[quadrienal] = SELECTEDVALUE('tab_avalCapes'[quadrienal])
+)
+
+_____________________________________________________________________________
+
+AtingiramMetaQuadrienal = 
+SUMX(
+    VALUES('colaboracao_discente'[nome_docente]),
+    VAR SomaPontosImpacto = CALCULATE(SUM('colaboracao_discente'[PontosImpactoAno]))
+    VAR MetaPontuacao = 'colaboracao_discente'[Meta Pontuação Docente no Quadriênio]
+    RETURN
+        IF(SomaPontosImpacto >= MetaPontuacao, 1, 0)
+)
+
+NaoAtingiramMetaQuadrienal = 
+SUMX(
+    VALUES('colaboracao_discente'[nome_docente]),
+    VAR SomaPontosImpacto = CALCULATE(SUM('colaboracao_discente'[PontosImpactoAno]))
+    VAR MetaPontuacao = 'colaboracao_discente'[Meta Pontuação Docente no Quadriênio]
+    RETURN
+        IF(SomaPontosImpacto < MetaPontuacao, 1, 0)
+)
