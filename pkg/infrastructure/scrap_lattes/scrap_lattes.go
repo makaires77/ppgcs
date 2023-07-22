@@ -1,3 +1,4 @@
+// pkg\infrastructure\scrap_lattes\scrap_lattes.go
 package scrap_lattes
 
 import (
