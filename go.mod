@@ -11,22 +11,28 @@ require (
 )
 
 require (
+	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.4.1 // indirect
+	github.com/phpdave11/gofpdi v1.0.14-0.20211212211723-1f10f9844311 // indirect
 	github.com/pkg/errors v0.8.1 // indirect
-	golang.org/x/net v0.0.0-20220722155237-a158d28d115b // indirect
-	golang.org/x/sys v0.0.0-20220722155257-8c9f86f7a55f // indirect
+	golang.org/x/net v0.7.0 // indirect
+	golang.org/x/sys v0.5.0 // indirect
 	google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013 // indirect
 	google.golang.org/grpc v1.27.0 // indirect
 	google.golang.org/protobuf v1.25.0 // indirect
 )
 
 require (
+	github.com/PuerkitoBio/goquery v1.8.1
 	github.com/dgraph-io/dgo v1.0.0
 	github.com/dgraph-io/dgo/v200 v200.0.0-20210401091508-95bfd74de60e
 	github.com/golang/snappy v0.0.1 // indirect
+	github.com/hbollon/go-edlib v1.6.0
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe // indirect
+	github.com/signintech/gopdf v0.18.0
+	github.com/streadway/amqp v1.1.0
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.1.2 // indirect
 	github.com/xdg-go/stringprep v1.0.4 // indirect
