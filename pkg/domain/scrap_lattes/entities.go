@@ -4,6 +4,35 @@ import (
 	"time"
 )
 
+type Reserarcher struct {
+	Nome                       string
+	Titulo                     string
+	LinkCurriculo              string
+	IDLattes                   string
+	DataUltimaAtualizacao      string
+	Resumo                     string
+	NomeCitacoesBibliograficas string
+	IDLattesLink               string
+	OrcidID                    string
+	Formacao                   []string
+	Formacoes                  []FormacaoAcademica
+	PosDoutorado               []FormacaoPosDoc
+	FormacoesComplementares    []FormacaoComplementar
+	AtuacoesProfissionais      []AtuacaoProfissional
+	LinhasPesquisa             []LinhaPesquisa
+	ProjetosPesquisa           []ProjetoPesquisa       `json:"projetos_pesquisa"`
+	Publicacoes                []Publicacao            `json:"publicacoes"`
+	FormacaoAcademica          []Formacao              `json:"formacao_academica"`
+	CursosExtraCurriculares    []Curso                 `json:"cursos_extra_curriculares"`
+	ExperienciaProfissional    []Experiencia           `json:"experiencia_profissional"`
+	Patentes                   []Patente               `json:"patentes"`
+	MembroCorpoEditorial       []MembroCorpoEditorial  `json:"membro_corpo_editorial"`
+	RevisorPeriodico           []RevisorPeriodico      `json:"revisor_periodico"`
+	RevisorProjetoFomento      []RevisorProjetoFomento `json:"revisor_projeto_fomento"`
+	PremiosTitulos             []PremioTitulo          `json:"premios_titulos"`
+	/* ProducoesCientificas       []ProducoesCientificas  `json:"producoes_cientificas"` */
+}
+
 type Pesquisador struct {
 	Nome                       string
 	Titulo                     string

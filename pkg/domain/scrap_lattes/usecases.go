@@ -8,6 +8,8 @@ import (
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+
+	"github.com/makaires77/ppgcs/pkg/infrastructure/scrap_lattes"
 )
 
 // Scraper define a interface para o objeto de scraping.
@@ -106,7 +108,7 @@ func main() {
 	}
 	defer repository.Close(ctx)
 
-	scraper := NewScraper() // Implemente isso para criar uma nova instância do objeto de scraping
+	scraper := scrap_lattes.NewScrapLattes() // Implemente isso para criar uma nova instância do objeto de scraping
 
 	usecase := NewScrapLattesUseCase(scraper, repository)
 

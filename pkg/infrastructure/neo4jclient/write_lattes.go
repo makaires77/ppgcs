@@ -179,7 +179,7 @@ func (n *Neo4jWriteLattes) WriteFormacaoComplementar(formacao *scrap_lattes.Form
 	}
 
 	// Simulate successful writing
-	fmt.Printf("Complementary training data %s written in Neo4j\n", formacao.Descricao)
+	fmt.Printf("Complementary training data %s written in Neo4j\n", formacao.TituloCurso)
 
 	return nil
 }
@@ -192,7 +192,7 @@ func (n *Neo4jWriteLattes) WritePesquisadorFormacaoComplementar(pesquisador *scr
 	}
 
 	// Simulate successful writing
-	fmt.Printf("Relationship between researcher %s and complementary training %s written in Neo4j\n", pesquisador.Nome, formacao.Descricao)
+	fmt.Printf("Relationship between researcher %s and complementary training %s written in Neo4j\n", pesquisador.Nome, formacao.TituloCurso)
 
 	return nil
 }

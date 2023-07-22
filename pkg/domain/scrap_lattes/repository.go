@@ -23,6 +23,7 @@ func extrairFormacaoComplementar(doc *goquery.Document) []string {
 // extrairPublicacoes extrai as publicações do pesquisador do HTML.
 func extrairPublicacoes(doc *goquery.Document) ([]Publicacao, error) {
 	var publicacoes []Publicacao
+	var err error
 
 	doc.Find("#content .artigo-completo").Each(func(i int, s *goquery.Selection) {
 		titulo := s.Find(".informacao-artigo[data-tipo-ordenacao='titulo']").Text()
@@ -36,7 +37,8 @@ func extrairPublicacoes(doc *goquery.Document) ([]Publicacao, error) {
 
 		doi, exists := s.Find("a.icone-producao.icone-doi").Attr("href")
 		if !exists {
-			return nil, fmt.Errorf("DOI não encontrado")
+			err = fmt.Errorf("DOI não encontrado")
+			return
 		}
 
 		publicacao := Publicacao{
@@ -48,6 +50,10 @@ func extrairPublicacoes(doc *goquery.Document) ([]Publicacao, error) {
 
 		publicacoes = append(publicacoes, publicacao)
 	})
+
+	if err != nil {
+		return nil, err
+	}
 
 	return publicacoes, nil
 }
