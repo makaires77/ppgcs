@@ -1,3 +1,4 @@
+// cmd\api\handlers\production.go
 package handlers
 
 import (
@@ -8,12 +9,13 @@ import (
 	"github.com/makaires77/ppgcs/pkg/application"
 )
 
-func GetProduction(service *application.ProductionService) http.HandlerFunc {
+// GetProductionHandler retorna um http.HandlerFunc que obtém os detalhes de uma produção pelo seu ID.
+func GetProductionHandler(service application.ProductionService) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		params := mux.Vars(r)
 		id := params["id"]
 
-		production, err := service.GetProduction(id)
+		production, err := service.GetProductionByID(id)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
