@@ -10,7 +10,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
-	"github.com/makaires77/ppgcs/pkg/api/handlers"
+	"github.com/makaires77/ppgcs/cmd/api/handlers"
 	"github.com/makaires77/ppgcs/pkg/application"
 	"github.com/makaires77/ppgcs/pkg/infrastructure/mongo"
 	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4jclient"
@@ -43,15 +43,16 @@ func main() {
 		log.Fatalf("Falha ao criar conexão com o MongoDB: %v", err)
 	}
 
-	neo4jclient, err := neo4jclient.NewNeo4jWriter(neo4j_uri, neo4j_user, neo4j_pass)
+	ctx := context.Background()
+
+	neo4jClient, err := neo4jclient.NewNeo4jClient(ctx, neo4j_uri, neo4j_user, neo4j_pass)
 
 	if err != nil {
 		log.Fatalf("Falha ao criar conexão com o Neo4j: %v", err)
 	}
 
-	researcherRepo := repository.NewMongoDBRepository(mongoWriter.Client())
-
-	productionRepo := repository.NewNeo4jRepository(neo4jclient)
+	researcherRepo := repository.NewMongoDBRepository(mongoWriter)
+	productionRepo := repository.NewNeo4jRepository(neo4jClient)
 
 	// ResearcherService
 	researcherService := application.NewResearcherService(researcherRepo)

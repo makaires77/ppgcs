@@ -17,5 +17,31 @@ func NewNeo4jRepository(driver neo4j.Driver) *Neo4JRepository {
 }
 
 func (r *Neo4JRepository) Save(researcher *researcher.Researcher) error {
-	// Implement your Neo4j save logic here
+	session, err := r.driver.Session(neo4j.AccessModeWrite)
+	if err != nil {
+		return err
+	}
+	defer session.Close()
+
+	_, err = session.WriteTransaction(func(transaction neo4j.Transaction) (interface{}, error) {
+		result, err := transaction.Run(
+			"CREATE (a:Researcher {name: $name, id: $id}) RETURN a",
+			map[string]interface{}{
+				"name": researcher.Name,
+				"id":   researcher.Id,
+			},
+		)
+		if err != nil {
+			return nil, err
+		}
+
+		_, err = result.Single()
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, nil
+	})
+
+	return err
 }
