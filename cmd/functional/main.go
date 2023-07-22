@@ -104,7 +104,7 @@ func main() {
 
 	fmt.Println("Comparando nomes de autores com nomes de discentes...")
 
-	docenteColaboracao := compareAuthorRecords(authorRecords, studentNames)
+	docenteColaboracao = compareAuthorRecords(authorRecords, studentNames)
 
 	elapsedTime := time.Since(startTime)
 

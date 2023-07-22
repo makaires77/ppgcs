@@ -19,11 +19,15 @@ import (
 	"google.golang.org/grpc"
 )
 
-type ResearcherRepository struct {
-	mongoClient  *mongo.Client
-	dgraphClient *dgo.Dgraph
-	neo4jDriver  neo4j.Driver
+type ResearcherRepository interface {
+	Save(researcher *researcher.Researcher) error
 }
+
+// type ResearcherRepository struct {
+// 	mongoClient  *mongo.Client
+// 	dgraphClient *dgo.Dgraph
+// 	neo4jDriver  neo4j.Driver
+// }
 
 type DatabaseCredentials struct {
 	Mongo  DatabaseCredentialsInfo `json:"mongo"`
