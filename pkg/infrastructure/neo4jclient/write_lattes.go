@@ -1,3 +1,4 @@
+// pkg\infrastructure\neo4jclient\write_lattes.go
 package neo4jclient
 
 import (
@@ -166,6 +167,32 @@ func (n *Neo4jWriteLattes) WritePesquisadorPremioTitulo(pesquisador *scrap_latte
 
 	// Simulação de escrita bem-sucedida
 	fmt.Printf("Relação entre pesquisador %s e prêmio/título %s escrita no Neo4j\n", pesquisador.Nome, premio.Descricao)
+
+	return nil
+}
+
+func (n *Neo4jWriteLattes) WriteFormacaoComplementar(formacao *scrap_lattes.FormacaoComplementar) error {
+	// Implement the logic to write the complementary training data in Neo4j
+
+	if formacao == nil {
+		return fmt.Errorf("invalid complementary training")
+	}
+
+	// Simulate successful writing
+	fmt.Printf("Complementary training data %s written in Neo4j\n", formacao.Descricao)
+
+	return nil
+}
+
+func (n *Neo4jWriteLattes) WritePesquisadorFormacaoComplementar(pesquisador *scrap_lattes.Pesquisador, formacao *scrap_lattes.FormacaoComplementar) error {
+	// Implement the logic to write the relationship between the researcher and the complementary training in Neo4j
+
+	if pesquisador == nil || formacao == nil {
+		return fmt.Errorf("invalid researcher or complementary training")
+	}
+
+	// Simulate successful writing
+	fmt.Printf("Relationship between researcher %s and complementary training %s written in Neo4j\n", pesquisador.Nome, formacao.Descricao)
 
 	return nil
 }

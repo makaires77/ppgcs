@@ -1,3 +1,4 @@
+// pkg\domain\scrap_lattes\repository.go
 package scrap_lattes
 
 import (
@@ -7,8 +8,8 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-// ExtrairFormacaoComplementar extrai a formação complementar do pesquisador do HTML.
-func ExtrairFormacaoComplementar(doc *goquery.Document) []string {
+// extrairFormacaoComplementar extrai a formação complementar do pesquisador do HTML.
+func extrairFormacaoComplementar(doc *goquery.Document) []string {
 	var formacoes []string
 
 	doc.Find("#content .formacao-academica-complementar").Each(func(i int, s *goquery.Selection) {
@@ -19,8 +20,8 @@ func ExtrairFormacaoComplementar(doc *goquery.Document) []string {
 	return formacoes
 }
 
-// ExtrairPublicacoes extrai as publicações do pesquisador do HTML.
-func ExtrairPublicacoes(doc *goquery.Document) []Publicacao {
+// extrairPublicacoes extrai as publicações do pesquisador do HTML.
+func extrairPublicacoes(doc *goquery.Document) ([]Publicacao, error) {
 	var publicacoes []Publicacao
 
 	doc.Find("#content .artigo-completo").Each(func(i int, s *goquery.Selection) {
@@ -33,7 +34,10 @@ func ExtrairPublicacoes(doc *goquery.Document) []Publicacao {
 			autores = append(autores, autor)
 		})
 
-		doi, _ := s.Find("a.icone-producao.icone-doi").Attr("href")
+		doi, exists := s.Find("a.icone-producao.icone-doi").Attr("href")
+		if !exists {
+			return nil, fmt.Errorf("DOI não encontrado")
+		}
 
 		publicacao := Publicacao{
 			Titulo:  titulo,
@@ -45,18 +49,21 @@ func ExtrairPublicacoes(doc *goquery.Document) []Publicacao {
 		publicacoes = append(publicacoes, publicacao)
 	})
 
-	return publicacoes
+	return publicacoes, nil
 }
 
-// ExtrairDadosPesquisador extrai os dados do pesquisador do HTML.
-func ExtrairDadosPesquisador(doc *goquery.Document) (*Pesquisador, error) {
+// extrairDadosPesquisador extrai os dados do pesquisador do HTML.
+func extrairDadosPesquisador(doc *goquery.Document) (*Pesquisador, error) {
 	nome := doc.Find("#nome .nome-completo").Text()
 	if nome == "" {
 		return nil, fmt.Errorf("nome do pesquisador não encontrado")
 	}
 
-	formacaoComplementar := ExtrairFormacaoComplementar(doc)
-	publicacoes := ExtrairPublicacoes(doc)
+	formacaoComplementar := extrairFormacaoComplementar(doc)
+	publicacoes, err := extrairPublicacoes(doc)
+	if err != nil {
+		return nil, err
+	}
 
 	pesquisador := &Pesquisador{
 		Nome:        nome,
@@ -75,7 +82,7 @@ func ScrapPesquisador(url string) (*Pesquisador, error) {
 		return nil, err
 	}
 
-	pesquisador, err := ExtrairDadosPesquisador(doc)
+	pesquisador, err := extrairDadosPesquisador(doc)
 	if err != nil {
 		log.Printf("Erro ao extrair os dados do pesquisador: %s\n", err)
 		return nil, err
@@ -83,32 +90,3 @@ func ScrapPesquisador(url string) (*Pesquisador, error) {
 
 	return pesquisador, nil
 }
-
-// Exemplo de uso
-/* func main() {
-	url := "http://exemplo.com/pesquisador"
-
-	pesquisador, err := ScrapPesquisador(url)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println("Nome do pesquisador:", pesquisador.Nome)
-	fmt.Println("Formação complementar:")
-	for _, formacao := range pesquisador.Formacao {
-		fmt.Println(formacao)
-	}
-
-	fmt.Println("Publicações:")
-	for _, publicacao := range pesquisador.Publicacoes {
-		fmt.Println("Título:", publicacao.Titulo)
-		fmt.Println("Ano:", publicacao.Ano)
-		fmt.Println("Autores:")
-		for _, autor := range publicacao.Autores {
-			fmt.Println(autor)
-		}
-		fmt.Println("DOI:", publicacao.DOI)
-		fmt.Println("---")
-	}
-}
-*/

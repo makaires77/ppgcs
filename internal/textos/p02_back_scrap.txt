@@ -1,5 +1,5 @@
 Módulo de scrap_lattes
-Estamos ajustando e corrigindo erros de uma solução em Go, que realiza o Scrap de dados de pesquisadores a partir da Plataforma Lattes do CNPq, a função central para a funcionalidade de scrap é esta: package scrap_lattes em /home/marcos/ppgcs/pkg/infrastructure/scrap_lattes/scrap_lattes.go
+Estamos ajustando e corrigindo erros de uma solução em Go, que realiza o Scrap de dados de pesquisadores a partir da Plataforma Lattes do CNPq, a função central para a funcionalidade de scrap é esta: package scrap_lattes em ppgcs/pkg/infrastructure/scrap_lattes/scrap_lattes.go
 
 No módulo de scrap no backend o scrap_lattes.go é o arquivo principal para o processo de scraping deve ser capaz de acessar a internet, coletar dados de uma fonte externa (geralmente um site ou API) e processá-los para um formato útil. Este módulo se baseia em bibliotecas Go para realizar solicitações HTTP e parsear HTML ou JSON, com gerenciamento de filas com o RabbitMQ.
 
@@ -51,7 +51,9 @@ Neste caso específico a base de dados é de dados abertos ao público e sem res
 
 Escreva o código REAL para implementar esse módulo de scrap segiundo as melhores práticas de Arquitetura Ports and Adapters, não use exemplos ou dados fictícios, mas sim implementação REAL para produção, com validaçoes e tratamento de erros, usando códigos para apontar para os arquivos da estrutura de pastas atual. 
 
-O módulo scrap_lattes.go recebe como entrada o arquivo /home/marcos/ppgcs/_data/in_csv/lista_dadosdocentes.csv para realizar o processamento paralelizado de requisição, descoberta, captura, persistência e exibição de dados persistidos em interface de usuário ainda a ser construída. Complemente e corrija os erros do scrap_lattes.go dado a seguir:
+O módulo scrap_lattes.go recebe como entrada o arquivo ppgcs/_data/in_csv/lista_dadosdocentes.csv para realizar o processamento paralelizado de requisição, descoberta, captura, persistência e exibição de dados persistidos em interface de usuário ainda a ser construída. 
+
+Complemente e corrija os erros do scrap_lattes.go dado a seguir:
 import (
 	"context"
 	"encoding/csv"
