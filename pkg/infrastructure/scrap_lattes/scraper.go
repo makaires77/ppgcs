@@ -7,18 +7,12 @@ import (
 	"io"
 	"os"
 	"sync"
-
-	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4jclient"
 )
 
-type ScrapLattes struct {
-	neo4jClient *neo4jclient.Neo4jClient
-}
+type ScrapLattes struct{}
 
-func NewScrapLattes(neo4jClient *neo4jclient.Neo4jClient) *ScrapLattes {
-	return &ScrapLattes{
-		neo4jClient: neo4jClient,
-	}
+func NewScrapLattes() *ScrapLattes {
+	return &ScrapLattes{}
 }
 
 // Funcionalidades:

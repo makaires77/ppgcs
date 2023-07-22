@@ -3,17 +3,17 @@ package scrap_lattes
 import (
 	"testing"
 
-	"github.com/makaires77/ppgcs/pkg/infrastructure/scrap_lattes/scraper"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/scrap_lattes"
 )
 
-func TestScrap(t *testing.T) {
-	scraper, err := scraper.NewScrapLattes("http://buscatextual.cnpq.br/buscatextual/busca.do")
-	if err != nil {
-		t.Fatalf("Failed to create scraper: %v", err)
-	}
+func TestProcessarRegistro(t *testing.T) {
+	scraper := scrap_lattes.NewScrapLattes()
 
-	err = scraper.Scrap()
+	// Substitua esses valores de acordo com o que você espera do seu CSV.
+	testRecord := []string{"Nome Teste", "Lattes Teste"}
+
+	err := scraper.ProcessarRegistro(testRecord)
 	if err != nil {
-		t.Fatalf("Failed to scrap: %v", err)
+		t.Errorf("ProcessarRegistro failed with error: %v", err)
 	}
 }

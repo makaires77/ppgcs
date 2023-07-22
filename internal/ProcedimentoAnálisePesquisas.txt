@@ -198,7 +198,7 @@ func (d *DadosDocente) Processar() {
 	fmt.Println("---")
 }
 
-A lógica para processar cada linha do CSV e realizar a raspagem dos dados do Lattes segue os passos descritos a seguir.
+A lógica completa para o módulo processar cada linha do CSV e realizar a raspagem dos dados do Lattes segue os passos descritos a seguir.
 1. Buscar nome
 1.1. acessar a página de busca de currículos em http://buscatextual.cnpq.br/buscatextual/busca.do
 1.2. localizar o checkbox que tem o css selector #buscarDemais e ativar sua marcação
@@ -245,7 +245,9 @@ A lógica para processar cada linha do CSV e realizar a raspagem dos dados do La
 
 No nosso caso de uso específico todas as bases de dados utilizadas para scrapping são de dados abertos ao público e sem restrições para a raspagem de dados.
 
-Implementar adequadamente de acordo com as suas necessidades descritas as funções realizarBusca, escolherResultado, abrirCurriculo, analisarCurriculo, extrairDados e armazenarDados que compõem a a função Processar que realiza o fluxo de trabalho em um nível alto. Considere que a função realizarBusca usa um pacote Go para web scraping para automatizar a interação com o site. A função armazenarDados usa um pacote de acesso a banco de dados para armazenar os dados extraídos usando nossa estrutura de pastas atual e a separação nas quatro camadas principais:
+Implemente adequadamente de acordo com descrito as funções realizarBusca, escolherResultado, abrirCurriculo, analisarCurriculo, extrairDados e armazenarDados que compõem a a função Processar que realiza o fluxo de trabalho em um nível alto. Considere que a função realizarBusca usa um pacote Go para web scraping para automatizar a interação com o site. 
+
+A função armazenarDados usa um pacote de acesso a banco de dados para armazenar os dados extraídos usando nossa estrutura de pastas atual e a separação nas quatro camadas principais:
 
 Interface do usuário ou Apresentação: Esta camada se preocupa com a interação do usuário. Neste caso, a interação do usuário não está muito explícita.
 
