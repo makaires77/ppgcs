@@ -13,16 +13,14 @@ import (
 	"github.com/makaires77/ppgcs/cmd/api/handlers"
 	"github.com/makaires77/ppgcs/pkg/application"
 	"github.com/makaires77/ppgcs/pkg/infrastructure/mongo"
-	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4jclient"
 	"github.com/makaires77/ppgcs/pkg/repository"
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
 var server *http.Server
 
 func main() {
-
 	err := godotenv.Load(".env")
-
 	if err != nil {
 		log.Fatalf("Erro ao carregar .env file")
 	}
@@ -38,26 +36,27 @@ func main() {
 	)
 
 	mongoWriter, err := mongo.NewMongoWriter(uri, database, collection)
-
 	if err != nil {
 		log.Fatalf("Falha ao criar conexão com o MongoDB: %v", err)
 	}
 
 	ctx := context.Background()
 
-	neo4jClient, err := neo4jclient.NewNeo4jClient(ctx, neo4j_uri, neo4j_user, neo4j_pass)
-
+	neo4jDriver, err := neo4j.NewDriver(neo4j_uri, neo4j.BasicAuth(neo4j_user, neo4j_pass, ""), func(config *neo4j.Config) {
+		// Defina as configurações adicionais aqui, se necessário.
+	})
 	if err != nil {
 		log.Fatalf("Falha ao criar conexão com o Neo4j: %v", err)
 	}
+	defer neo4jDriver.Close()
+
+	neo4jSession := neo4jDriver.NewSession(neo4j.SessionConfig{})
+	defer neo4jSession.Close()
 
 	researcherRepo := repository.NewMongoDBRepository(mongoWriter)
-	productionRepo := repository.NewNeo4jRepository(neo4jClient)
+	productionRepo := repository.NewNeo4jRepository(neo4jDriver)
 
-	// ResearcherService
 	researcherService := application.NewResearcherService(researcherRepo)
-
-	// ProductionService
 	productionService := application.NewProductionService(productionRepo)
 
 	r := mux.NewRouter()

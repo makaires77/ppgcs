@@ -33,6 +33,13 @@ type Pesquisador struct {
 	/* ProducoesCientificas       []ProducoesCientificas  `json:"producoes_cientificas"` */
 }
 
+// Producao é uma interface que define os métodos comuns a todas as produções.
+type Producao interface {
+	GetTitulo() string
+	GetData() time.Time
+	// Outros métodos comuns a todas as produções...
+}
+
 type FormacaoAcademica struct {
 	Periodo        string
 	Nivel          string

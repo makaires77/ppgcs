@@ -1,9 +1,9 @@
-// pkg/repository/neo4j_repository.go
+// Em pkg/repository/neo4j_repository.go
 package repository
 
 import (
 	"github.com/makaires77/ppgcs/pkg/domain/researcher"
-	"github.com/neo4j/neo4j-go-driver/neo4j"
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
 type Neo4JRepository struct {
@@ -17,18 +17,17 @@ func NewNeo4jRepository(driver neo4j.Driver) *Neo4JRepository {
 }
 
 func (r *Neo4JRepository) Save(researcher *researcher.Researcher) error {
-	session, err := r.driver.Session(neo4j.AccessModeWrite)
-	if err != nil {
-		return err
-	}
+	session := r.driver.NewSession(neo4j.SessionConfig{
+		AccessMode: neo4j.AccessModeWrite,
+	})
 	defer session.Close()
 
-	_, err = session.WriteTransaction(func(transaction neo4j.Transaction) (interface{}, error) {
+	_, err := session.WriteTransaction(func(transaction neo4j.Transaction) (interface{}, error) {
 		result, err := transaction.Run(
 			"CREATE (a:Researcher {name: $name, id: $id}) RETURN a",
 			map[string]interface{}{
-				"name": researcher.Name,
-				"id":   researcher.Id,
+				"name": researcher.Nome,
+				"id":   researcher.IDLattes,
 			},
 		)
 		if err != nil {
