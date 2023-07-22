@@ -16,6 +16,11 @@ Os indicadores que balizam a avaliação são construídos com base nos parâmet
 São considerados os docentes permanentes (DP) e docentes colaboradores (DC), com base nos mesmos parâmetros esperados de impacto (medido por pontuação ponderada relativa ao estrato Qualis Periódicos da área Medicina II das revistas utilizadas nas publicações do período).
 
 # Para colaborar com o desenvolvimento
+## Iniciando o servidor localmente para testes:
+'''
+node server.mjs
+'''
+
 ## Relacionamento hierárquicom entre as partes
 - **Funções**: Funções em Go são declaradas com a palavra-chave `func`, seguida pelo nome da função, a lista de parâmetros entre parênteses, o tipo de retorno e o corpo da função entre chaves. Por exemplo, na nossa função `ReadCsvFile` em `csv_files.go`, declaramos uma função que lê um arquivo CSV e retorna uma lista de strings e um erro.
 

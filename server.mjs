@@ -1,11 +1,10 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
 
 const app = express();
 app.use(cors());
 const port = 3000;
-
-import path from 'path';
 
 app.use(express.static(path.join(path.resolve(), 'static')));
 
@@ -14,5 +13,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Servidor iniciado em http://localhost:${port}`);
 });

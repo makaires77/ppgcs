@@ -1,21 +1,20 @@
 import express from 'express';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const port = 3000;
 
-// Define o diretório de arquivos estáticos
-app.use(express.static(path.join(__dirname, 'static')));
+// Serve os arquivos estáticos a partir do diretório pai de __dirname (assumindo que o diretório pai é a raiz do projeto)
+app.use(express.static(path.join(__dirname, '../static')));
 
 // Rota principal
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// Rota para criação de equipe
-app.post('/create-team', (req, res) => {
-  // Implemente o código para criação da equipe
-  // ...
+  res.sendFile(path.join(__dirname, '../static/index.html'));
 });
 
 // Inicia o servidor
