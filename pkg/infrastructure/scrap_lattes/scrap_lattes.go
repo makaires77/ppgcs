@@ -22,7 +22,6 @@ func NewScrapLattes(neo4jClient *neo4jclient.Neo4jClient) *ScrapLattes {
 }
 
 // Funcionalidades:
-
 func (s *ScrapLattes) ProcessarArquivo(filePath string) error {
 	// Abrir o arquivo CSV
 	file, err := os.Open(filePath)

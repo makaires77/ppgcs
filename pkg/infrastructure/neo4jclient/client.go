@@ -1,3 +1,4 @@
+// pkg\infrastructure\neo4jclient\client.go
 package neo4jclient
 
 import (
@@ -9,11 +10,11 @@ import (
 )
 
 type Neo4jClient struct {
-	driver neo4j.Driver
+	driver neo4j.DriverWithContext
 }
 
 func NewNeo4jClient(ctx context.Context, uri, username, password string) (*Neo4jClient, error) {
-	driver, err := neo4j.NewDriver(uri, neo4j.BasicAuth(username, password, ""))
+	driver, err := neo4j.NewDriverWithContext(uri, neo4j.BasicAuth(username, password, ""))
 	if err != nil {
 		return nil, fmt.Errorf("neo4j: could not create driver: %w", err)
 	}
@@ -21,19 +22,19 @@ func NewNeo4jClient(ctx context.Context, uri, username, password string) (*Neo4j
 	return &Neo4jClient{driver: driver}, nil
 }
 
-func (c *Neo4jClient) Close() error {
+func (c *Neo4jClient) Close(ctx context.Context) error {
 	if c.driver != nil {
-		return c.driver.Close()
+		return c.driver.Close(ctx)
 	}
 	return nil
 }
 
 func (c *Neo4jClient) SavePublication(ctx context.Context, p publication.Publication) error {
-	session := c.driver.NewSession(neo4j.SessionConfig{})
-	defer session.Close()
+	session := c.driver.NewSession(ctx, neo4j.SessionConfig{})
+	defer session.Close(ctx)
 
-	_, err := session.WriteTransaction(func(tx neo4j.Transaction) (interface{}, error) {
-		result, err := tx.Run(
+	_, err := session.ExecuteWrite(ctx, func(tx neo4j.ManagedTransaction) (interface{}, error) {
+		result, err := tx.Run(ctx,
 			`CREATE (p:Publication {Natureza: $natureza, Titulo: $titulo, Idioma: $idioma, Periodico: $periodico, Ano: $ano, Volume: $volume, ISSN: $issn, EstratoQualis: $estrato_qualis, PaisDePublicacao: $pais_de_publicacao, Paginas: $paginas, DOI: $doi, Autores: $autores, AutoresEndogeno: $autores_endogeno, AutoresEndogenoNome: $autores_endogeno_nome, Tags: $tags, Hash: $hash})`,
 			map[string]interface{}{
 				"natureza":              p.Natureza,
