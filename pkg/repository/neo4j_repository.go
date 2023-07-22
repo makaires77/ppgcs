@@ -2,7 +2,6 @@
 package repository
 
 import (
-	"github.com/makaires77/ppgcs/pkg/domain/researcher"
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
@@ -10,13 +9,10 @@ type Neo4JRepository struct {
 	driver neo4j.Driver
 }
 
-func NewNeo4jRepository(driver neo4j.Driver) *Neo4JRepository {
-	return &Neo4JRepository{
-		driver: driver,
-	}
-}
+// ... Código existente ...
 
-func (r *Neo4JRepository) Save(researcher *researcher.Researcher) error {
+// DeleteByID exclui uma publicação pelo seu ID.
+func (r *Neo4JRepository) DeleteByID(id string) error {
 	session := r.driver.NewSession(neo4j.SessionConfig{
 		AccessMode: neo4j.AccessModeWrite,
 	})
@@ -24,17 +20,16 @@ func (r *Neo4JRepository) Save(researcher *researcher.Researcher) error {
 
 	_, err := session.WriteTransaction(func(transaction neo4j.Transaction) (interface{}, error) {
 		result, err := transaction.Run(
-			"CREATE (a:Researcher {name: $name, id: $id}) RETURN a",
+			"MATCH (a:Publication) WHERE a.id = $id DELETE a",
 			map[string]interface{}{
-				"name": researcher.Nome,
-				"id":   researcher.IDLattes,
+				"id": id,
 			},
 		)
 		if err != nil {
 			return nil, err
 		}
 
-		_, err = result.Single()
+		_, err = result.Consume()
 		if err != nil {
 			return nil, err
 		}

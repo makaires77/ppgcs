@@ -54,15 +54,15 @@ func main() {
 	defer neo4jSession.Close()
 
 	researcherRepo := repository.NewMongoDBRepository(mongoWriter)
-	productionRepo := repository.NewNeo4jRepository(neo4jDriver)
+	// productionRepo := repository.NewNeo4jRepository(neo4jDriver)
 
 	researcherService := application.NewResearcherService(researcherRepo)
-	productionService := application.NewProductionService(productionRepo)
+	// productionService := application.NewProductionService(productionRepo)
 
 	r := mux.NewRouter()
 
 	r.HandleFunc("/api/researcher/{id}", handlers.GetResearcher(researcherService)).Methods("GET")
-	r.HandleFunc("/api/production/{id}", handlers.GetProduction(productionService)).Methods("GET")
+	// r.HandleFunc("/api/production/{id}", handlers.GetProduction(productionService)).Methods("GET")
 
 	server = &http.Server{
 		Addr:         serverAddress,

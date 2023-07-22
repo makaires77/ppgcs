@@ -22,6 +22,7 @@ require (
 )
 
 require (
+	github.com/dgraph-io/dgo v1.0.0
 	github.com/dgraph-io/dgo/v200 v200.0.0-20210401091508-95bfd74de60e
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
