@@ -1,21 +1,58 @@
-[ppgcs
+ppgcs
 ├── .editorconfig
 ├── .gitattributes
 ├── .gitignore
 ├── .vscode
 │   └── settings.json
-├── .yarn
-│   ├── cache
-│   └── vary
+├── .yarnrc
+├── .yarnrc.yml
+├── cmd
+│   ├── api
+│   │   ├── handlers
+│   │   │   ├── production.go
+│   │   │   └── researcher.go
+│   │   ├── main.go
+│   │   └── main.md
+│   ├── csv_maker
+│   │   ├── main.go
+│   │   └── main_slices.md
+│   ├── functional
+│   │   ├── log.txt
+│   │   └── main.go
+│   ├── parallel
+│   │   ├── log.txt
+│   │   ├── main.go
+│   │   ├── mainerro.txt
+│   │   └── mainerrocontagem.txt
+│   ├── publication_loader
+│   │   └── main.go
+│   └── sequential
+│       ├── log.txt
+│       ├── main.go
+│       ├── main_united.txt
+│       └── Readme.md
+├── config
+│   └── credentials.json
+├── go.mod
+├── go.sum
+├── img
+│   ├── Logo_CasteloReneRachou_340-100.svg
+│   ├── Logo_CasteloReneRachou_340-340.png
+│   ├── Logo_CasteloReneRachou_340-340.svg
+│   └── logo_text_light.svg
+├── main.go
+├── main.js
 ├── package-lock.json
 ├── package.json
 ├── pkg
 │   ├── application
 │   │   ├── main.txt
-│   │   ├── README.md
+│   │   ├── production_service.go
 │   │   └── researcher_service.go
 │   ├── domain
 │   │   ├── pesquisador
+│   │   │   └── entities.go
+│   │   ├── production
 │   │   │   └── entities.go
 │   │   ├── publication
 │   │   │   ├── entities.go
@@ -42,6 +79,7 @@
 │   │   │   ├── read_advisor_student.csv
 │   │   │   └── read_publication.txt
 │   │   ├── mongo
+│   │   │   ├── mongo.go
 │   │   │   └── write_lattes.go
 │   │   ├── neo4jclient
 │   │   │   ├── client.go
@@ -60,7 +98,11 @@
 │   │       └── README.md
 │   ├── repository
 │   │   ├── advisor_student.go
+│   │   ├── dgraph_repository.go
 │   │   ├── erro_personalizado.go
+│   │   ├── mongodb_repository.go
+│   │   ├── neo4j_repository.go
+│   │   ├── production_repository.go
 │   │   ├── publication_repository.go
 │   │   ├── researcher_repository.go
 │   │   └── student.go
@@ -77,118 +119,14 @@
 │           ├── compare.go
 │           └── compare.txt
 ├── README.md
-├── server.cjs-ABORDAGEM ANTIGA
 ├── server.mjs
 ├── static
-│   ├── assets
-│   ├── d3
-│   │   ├── bars
-│   │   │   ├── bars_advanced_hierarchical.js
-│   │   │   ├── bars_advanced_histogram.js
-│   │   │   ├── bars_advanced_simple_interaction.js
-│   │   │   ├── bars_advanced_sortable_horizontal.js
-│   │   │   ├── bars_advanced_sortable_vertical.js
-│   │   │   ├── bars_advanced_sortable_vertical_original.js
-│   │   │   ├── bars_advanced_stacked_multiple.js
-│   │   │   ├── bars_basic_grouped.js
-│   │   │   ├── bars_basic_horizontal.js
-│   │   │   ├── bars_basic_stacked.js
-│   │   │   ├── bars_basic_stacked_normalized.js
-│   │   │   ├── bars_basic_tooltip.js
-│   │   │   └── bars_basic_vertical.js
-│   │   ├── chords
-│   │   │   ├── chord_arcs.js
-│   │   │   ├── chord_basic.js
-│   │   │   ├── chord_chart.js
-│   │   │   └── chord_tweens.js
-│   │   ├── lines
-│   │   │   ├── lines_advanced_difference.js
-│   │   │   ├── lines_advanced_missing.js
-│   │   │   ├── lines_advanced_small_multiples.js
-│   │   │   ├── lines_advanced_spline_transition.js
-│   │   │   ├── lines_advanced_transitions.js
-│   │   │   ├── lines_advanced_zoom.js
-│   │   │   ├── lines_basic.js
-│   │   │   ├── lines_basic_area.js
-│   │   │   ├── lines_basic_bivariate.js
-│   │   │   ├── lines_basic_gradient.js
-│   │   │   ├── lines_basic_multi_series.js
-│   │   │   ├── lines_basic_stacked.js
-│   │   │   └── lines_basic_stacked_nest.js
-│   │   ├── other
-│   │   │   ├── bubbles.js
-│   │   │   ├── streamgraph.js
-│   │   │   ├── treemap.js
-│   │   │   └── waterfall.js
-│   │   ├── pies
-│   │   │   ├── donut_arc_tween.js
-│   │   │   ├── donut_basic.js
-│   │   │   ├── donut_entry_animation.js
-│   │   │   ├── donut_multiple.js
-│   │   │   ├── donut_multiple_nesting.js
-│   │   │   ├── donut_update.js
-│   │   │   ├── pie_arc_tween.js
-│   │   │   ├── pie_basic.js
-│   │   │   ├── pie_entry_animation.js
-│   │   │   ├── pie_multiple.js
-│   │   │   ├── pie_multiple_nesting.js
-│   │   │   └── pie_update.js
-│   │   ├── sunburst
-│   │   │   ├── sunburst_basic.js
-│   │   │   ├── sunburst_combined.js
-│   │   │   ├── sunburst_distortion.js
-│   │   │   └── sunburst_zoom.js
-│   │   ├── tree
-│   │   │   ├── tree_basic.js
-│   │   │   ├── tree_bracket.js
-│   │   │   ├── tree_collapsible.js
-│   │   │   ├── tree_dendrogram.js
-│   │   │   ├── tree_dendrogram_radial.js
-│   │   │   └── tree_radial.js
-│   │   └── venn
-│   │       ├── venn_basic.js
-│   │       ├── venn_colors.js
-│   │       ├── venn_interactive.js
-│   │       ├── venn_rings.js
-│   │       ├── venn_tooltip.js
-│   │       └── venn_weighted.js
-│   ├── dashboard_discentes.html
-│   ├── dashboard_docentes.html
-│   ├── dashboard_programa.html
-│   ├── data
-│   │   ├── bars_basic.ods
-│   │   ├── bars_basic.tsv
-│   │   ├── bars_basic.tsv.csv
-│   │   ├── bars_basic_pesquisadores.tsv
-│   │   ├── bars_grouped.csv
-│   │   ├── bars_hierarchical.json
-│   │   ├── bars_horizontal.csv
-│   │   ├── bars_stacked.csv
-│   │   ├── bars_stacked_multiple.tsv
-│   │   ├── bars_tooltip.tsv
-│   │   ├── classificações_publicadas_todas_as_areas_avaliacao1672761192111.xlsx
-│   │   ├── lines_basic.tsv
-│   │   ├── lines_bivariate.tsv
-│   │   ├── lines_difference.tsv
-│   │   ├── lines_gradient.tsv
-│   │   ├── lines_multi_series.tsv
-│   │   ├── lines_small_multiples.csv
-│   │   ├── lines_stacked.tsv
-│   │   ├── lines_stacked_nest.csv
-│   │   └── lines_transitions.tsv
-│   ├── equipes
-│   ├── equipe_docentes.html
-│   ├── favicon.ico
-│   ├── historico.html
-│   ├── index.html
-│   ├── index.js
-│   └── templates
-│       ├── publication_d3lines.html
-│       └── roadmap3c_background.html
 ├── test
 │   └── createTeamTest.mjs
 ├── trash
-├── yarn-error.log
+│   ├── log_parallel.txt
+│   └── server.cjs-ABORDAGEM ANTIGA
+├── Tree.txt
 ├── yarn.lock
 └── _data
     ├── in_csv
@@ -248,4 +186,3 @@
         ├── orientacoes.csv
         ├── patentes.csv
         └── publicacoes.csv
-]
