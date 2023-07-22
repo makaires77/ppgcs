@@ -13,6 +13,7 @@ import (
 	"github.com/makaires77/ppgcs/cmd/api/handlers"
 	"github.com/makaires77/ppgcs/pkg/application"
 	"github.com/makaires77/ppgcs/pkg/infrastructure/mongo"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4jclient"
 	"github.com/makaires77/ppgcs/pkg/repository"
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
@@ -35,7 +36,8 @@ func main() {
 		serverAddress = os.Getenv("SERVER_ADDRESS")
 	)
 
-	mongoWriter, err := mongo.NewMongoWriter(uri, database, collection)
+	// Criar uma nova instância de MongoDriver a partir do mongoWriter
+	mongoDriver, err := mongo.NewMongoDriver(uri, database, collection)
 	if err != nil {
 		log.Fatalf("Falha ao criar conexão com o MongoDB: %v", err)
 	}
@@ -53,8 +55,13 @@ func main() {
 	neo4jSession := neo4jDriver.NewSession(neo4j.SessionConfig{})
 	defer neo4jSession.Close()
 
-	researcherRepo := repository.NewMongoDBRepository(mongoWriter)
-	productionRepo := repository.NewNeo4jRepository(neo4jDriver)
+	researcherRepo := repository.NewMongoDBRepository(mongoDriver)
+
+	neo4jClient, err := neo4jclient.NewNeo4jClient(ctx, neo4j_uri, neo4j_user, neo4j_pass)
+	if err != nil {
+		log.Fatalf("Failed to create Neo4j client: %v", err)
+	}
+	productionRepo := repository.NewNeo4jRepository(neo4jClient)
 
 	researcherService := application.NewResearcherService(researcherRepo)
 	productionService := application.NewProductionService(productionRepo)
@@ -62,7 +69,7 @@ func main() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/api/researcher/{id}", handlers.GetResearcher(researcherService)).Methods("GET")
-	r.HandleFunc("/api/production/{id}", handlers.GetProduction(productionService)).Methods("GET")
+	r.HandleFunc("/api/production/{id}", handlers.GetProductionHandler(productionService)).Methods("GET")
 
 	server = &http.Server{
 		Addr:         serverAddress,

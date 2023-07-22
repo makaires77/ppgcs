@@ -1,41 +1,49 @@
-// Em pkg/repository/neo4j_repository.go
+// pkg\repository\neo4j_repository.go
 package repository
 
 import (
-	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
+	"context"
+	"errors"
+
+	"github.com/makaires77/ppgcs/pkg/domain/publication"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4jclient"
 )
 
-type Neo4JRepository struct {
-	driver neo4j.Driver
+type Neo4jRepository struct {
+	client *neo4jclient.Neo4jClient
 }
 
-// ... Código existente ...
+func NewNeo4jRepository(client *neo4jclient.Neo4jClient) *Neo4jRepository {
+	return &Neo4jRepository{
+		client: client,
+	}
+}
 
-// DeleteByID exclui uma publicação pelo seu ID.
-func (r *Neo4JRepository) DeleteByID(id string) error {
-	session := r.driver.NewSession(neo4j.SessionConfig{
-		AccessMode: neo4j.AccessModeWrite,
-	})
-	defer session.Close()
+func (r *Neo4jRepository) Save(p *publication.Publication) error {
+	ctx := context.Background()
+	return r.client.SavePublication(ctx, *p)
+}
 
-	_, err := session.WriteTransaction(func(transaction neo4j.Transaction) (interface{}, error) {
-		result, err := transaction.Run(
-			"MATCH (a:Publication) WHERE a.id = $id DELETE a",
-			map[string]interface{}{
-				"id": id,
-			},
-		)
-		if err != nil {
-			return nil, err
-		}
+func (r *Neo4jRepository) GetByID(id string) (*publication.Publication, error) {
+	// TODO: Implemente a lógica para buscar a produção pelo ID.
+	// Talvez seja necessário adicionar um novo método em Neo4jClient para isso.
+	return nil, errors.New("not implemented")
+}
 
-		_, err = result.Consume()
-		if err != nil {
-			return nil, err
-		}
+func (r *Neo4jRepository) Update(p *publication.Publication) error {
+	// TODO: Implemente a lógica para atualizar a produção.
+	// Talvez seja necessário adicionar um novo método em Neo4jClient para isso.
+	return errors.New("not implemented")
+}
 
-		return nil, nil
-	})
+func (r *Neo4jRepository) DeleteByID(id string) error {
+	// TODO: Implemente a lógica para deletar a produção pelo ID.
+	// Talvez seja necessário adicionar um novo método em Neo4jClient para isso.
+	return errors.New("not implemented")
+}
 
-	return err
+func (r *Neo4jRepository) ListAll() ([]*publication.Publication, error) {
+	// TODO: Implemente a lógica para listar todas as produções.
+	// Talvez seja necessário adicionar um novo método em Neo4jClient para isso.
+	return nil, errors.New("not implemented")
 }

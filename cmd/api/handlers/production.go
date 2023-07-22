@@ -10,7 +10,7 @@ import (
 )
 
 // GetProductionHandler retorna um http.HandlerFunc que obtém os detalhes de uma produção pelo seu ID.
-func GetProductionHandler(service application.ProductionService) http.HandlerFunc {
+func GetProductionHandler(service *application.ProductionService) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		params := mux.Vars(r)
 		id := params["id"]

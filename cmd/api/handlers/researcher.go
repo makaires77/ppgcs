@@ -1,4 +1,4 @@
-// cmd\api\handlers\researcher.go
+// cmd\api\handlers\reserarcher.go
 package handlers
 
 import (
