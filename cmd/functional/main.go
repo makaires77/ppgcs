@@ -61,8 +61,6 @@ func compareAuthorRecords(authorRecords []*repository.Publications, studentNames
 func main() {
 	startTime := time.Now()
 
-	docenteColaboracao := make(map[string]map[string]*[]repository.CollaborationData)
-
 	fileAuthors, err := os.Open("../../_data/powerbi/publicacoes.csv")
 	if err != nil {
 		log.Fatalf("Falha ao abrir o arquivo CSV das publicações: %v", err)
@@ -98,13 +96,13 @@ func main() {
 	for _, studentRecord := range studentRecords {
 		log.Println("Nome a normalizar:", studentRecord[1])
 		normalizedStudentName := support.NormalizeName(studentRecord[1])
-		log.Println("Nome  normalizado:", normalizedStudentName)
+		log.Println("Nome normalizado:", normalizedStudentName)
 		studentNames = append(studentNames, normalizedStudentName)
 	}
 
 	fmt.Println("Comparando nomes de autores com nomes de discentes...")
 
-	docenteColaboracao = compareAuthorRecords(authorRecords, studentNames)
+	docenteColaboracao := compareAuthorRecords(authorRecords, studentNames)
 
 	elapsedTime := time.Since(startTime)
 
@@ -117,8 +115,16 @@ func main() {
 	fmt.Printf("Total de artigos: %d\n", len(authorRecords))
 	fmt.Printf("Tempo de execução: %s\n", elapsedTime)
 
-	support.GenerateLog(authorRecords, studentNames, docenteColaboracao, elapsedTime)
-	// support.GeneratePDF(authorRecords, studentNames, docenteColaboracao, elapsedTime)
+	// Convert docenteColaboracao to the type expected by support.GenerateLog
+	docenteColaboracaoConverted := make(map[string]map[string]int)
+	for docentName, count := range docenteColaboracao {
+		docenteColaboracaoConverted[docentName] = map[string]int{
+			"Colaboracao": count,
+		}
+	}
+
+	support.GenerateLog(authorRecords, studentNames, docenteColaboracaoConverted, elapsedTime)
+	// support.GeneratePDF(authorRecords, studentNames, docenteColaboracaoConverted, elapsedTime)
 
 	fmt.Println("Programa finalizado.")
 }
