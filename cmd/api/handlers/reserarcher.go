@@ -1,13 +1,14 @@
 package handlers
 
 import (
+	"encoding/json"
 	"net/http"
 
 	"github.com/gorilla/mux"
 	"github.com/makaires77/ppgcs/pkg/application"
 )
 
-func GetResearcher(service application.ResearcherService) http.HandlerFunc {
+func GetResearcher(service *application.ResearcherService) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		params := mux.Vars(r)
 		id := params["id"]
@@ -18,9 +19,17 @@ func GetResearcher(service application.ResearcherService) http.HandlerFunc {
 			return
 		}
 
-		// Aqui você precisa implementar a serialização do objeto "researcher" para JSON
-		// e escrever a resposta JSON no ResponseWriter (w).
-		// Dependendo da estrutura do seu objeto "researcher", você pode precisar
-		// criar uma estrutura de dados separada para a resposta JSON.
+		// Convert the "researcher" object to JSON
+		jsonResponse, err := json.Marshal(researcher)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		// Set the content type to application/json
+		w.Header().Set("Content-Type", "application/json")
+
+		// Write the JSON response to the ResponseWriter
+		w.Write(jsonResponse)
 	}
 }

@@ -2,20 +2,28 @@
 package repository
 
 import (
+	"log"
+
 	"github.com/makaires77/ppgcs/pkg/domain/researcher"
-	"go.mongodb.org/mongo-driver/mongo"
+	"github.com/makaires77/ppgcs/pkg/infrastructure/mongo"
 )
 
 type MongoDBRepository struct {
-	client *mongo.Client
+	writer *mongo.MongoWriter
 }
 
-func NewMongoDBRepository(client *mongo.Client) *MongoDBRepository {
+func NewMongoDBRepository(writer *mongo.MongoWriter) *MongoDBRepository {
 	return &MongoDBRepository{
-		client: client,
+		writer: writer,
 	}
 }
 
 func (r *MongoDBRepository) Save(researcher *researcher.Researcher) error {
-	// Implement your MongoDB save logic here
+	err := r.writer.WritePesquisador(researcher)
+	if err != nil {
+		log.Printf("Error while saving researcher: %s\n", err)
+		return err
+	}
+
+	return nil
 }
