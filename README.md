@@ -164,7 +164,7 @@ Introduzir um sistema de manipulação de eventos para lidar com os eventos prod
 
 Um sistema de fila lida com o processamento em segundo plano, a raspagem de dados do Lattes pode ser uma operação demorada e é feita em uma tarefa em segundo plano, usando a biblioteca "github.com/gocraft/work" dentre outras.
 
-# Exemplo considerando Aquitetura Hexagonl de Portes e Adapters (Não utilizada neste projeto específico):
+# Exemplo considerando Aquitetura Hexagonal de Portes e Adapters (Não utilizada neste projeto específico):
 Uma estrutura de pastas, em arquitetura hexagonal e orientação a funções, pode de forma genérica conter a seguinte estrutura:
 
 *app* contém a lçógica do aplicativo:
