@@ -14,7 +14,7 @@ import (
 	"github.com/makaires77/ppgcs/pkg/application"
 	"github.com/makaires77/ppgcs/pkg/infrastructure/mongo"
 	"github.com/makaires77/ppgcs/pkg/infrastructure/neo4jclient"
-	"github.com/makaires77/ppgcs/pkg/infrastructure/repository"
+	"github.com/makaires77/ppgcs/pkg/repository"
 )
 
 var server *http.Server
@@ -50,10 +50,12 @@ func main() {
 	}
 
 	researcherRepo := repository.NewMongoDBRepository(mongoWriter.Client())
+
 	productionRepo := repository.NewNeo4jRepository(neo4jclient)
 
 	// ResearcherService
 	researcherService := application.NewResearcherService(researcherRepo)
+
 	// ProductionService
 	productionService := application.NewProductionService(productionRepo)
 

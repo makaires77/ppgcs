@@ -10,7 +10,7 @@ type Neo4JRepository struct {
 	driver neo4j.Driver
 }
 
-func NewNeo4JRepository(driver neo4j.Driver) *Neo4JRepository {
+func NewNeo4jRepository(driver neo4j.Driver) *Neo4JRepository {
 	return &Neo4JRepository{
 		driver: driver,
 	}

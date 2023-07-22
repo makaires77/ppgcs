@@ -33,6 +33,7 @@ require (
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.4.1 // indirect
 	github.com/hbollon/go-edlib v1.6.0
+	github.com/joho/godotenv v1.5.1
 	github.com/pkg/errors v0.9.1 // indirect
 	golang.org/x/net v0.7.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
