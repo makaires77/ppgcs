@@ -60,4 +60,4 @@ func (ps *ProductionService) ListProductions() ([]*publication.Publication, erro
 	return productions, nil
 }
 
-// Aqui você pode adicionar outras funções conforme necessário para o serviço de Produção.
+// Adicionar outras funções conforme necessário para o serviço em Produção.
