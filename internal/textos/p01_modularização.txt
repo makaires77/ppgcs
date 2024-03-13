@@ -1,6 +1,10 @@
 Estou em VScode e preciso criar um módulo em Go, usando de multiprocessamento e paralelização em GPU para achar nomes de docentes dentro de uma lista de autores de artigos, porém os nomes podem vir em diferentes formatos então será preciso aplicar uma análise fuzzy para combinar formas e inferir quais nomes de discente estão na lista de autores de cada artigo. 
 
+<<<<<<< HEAD
 Arquitetura em camadas superpostas (Clean Architecture)
+=======
+Arquitetura usando Ports and Adapters
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 Considere que temos uma função realizarBusca no módulo Go para web scraping para automatizar a interação com o site de origem dos dados de interesse. 
 
 Módularização:
@@ -55,7 +59,11 @@ Gerenciamento de filas e messageria:
 E implementaremos um sistema de fila para lidar com o processamento em segundo plano, com a raspagem de dados do Lattes em uma tarefa em segundo plano. Usamos a biblioteca "github.com/gocraft/work" e o gerenciamento de filas com o RabbitMQ para processar diferentes pedidos de análise de diferentes usuários em paralelo.
 
 Frontend:
+<<<<<<< HEAD
 A aplicação deve ter um módulo de dashboard que usa bibliotec D3.js para gerar gráficos e visualizações a partir dos dados analisados. 
+=======
+A aplicação usa Express e deve ter um módulo de dashboard que usa bibliotec D3.js para gerar gráficos e visualizações a partir dos dados analisados. 
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 
 A aplicação tem uma interface de usuário simples com uma página static\index.html por onde o usuário deve fazer upload dos arquivos CSV, XLS ou XLSX, e deve poder acompanhar em tempo real a análise de similaridade, contendo previsão de término medida pelo tempo médio do quantitativo já analisado vezes o quantitativo restante para concluir a análise combinatória completa entre todos os nomes de autores e todos nomes de discentes.
 

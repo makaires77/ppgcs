@@ -198,7 +198,11 @@ func (d *DadosDocente) Processar() {
 	fmt.Println("---")
 }
 
+<<<<<<< HEAD
 A lógica para processar cada linha do CSV e realizar a raspagem dos dados do Lattes segue os passos descritos a seguir.
+=======
+A lógica completa para o módulo processar cada linha do CSV e realizar a raspagem dos dados do Lattes segue os passos descritos a seguir.
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 1. Buscar nome
 1.1. acessar a página de busca de currículos em http://buscatextual.cnpq.br/buscatextual/busca.do
 1.2. localizar o checkbox que tem o css selector #buscarDemais e ativar sua marcação
@@ -232,7 +236,11 @@ A lógica para processar cada linha do CSV e realizar a raspagem dos dados do La
 5.4. Mostrar a atualização de cada nome, e solicitar que o usuário defina se quer atualizar ou gerar relatório com as informações atuais
 
 6. Disparar as funções de atualização
+<<<<<<< HEAD
 5.2. Disparar a função de busca de currículos encontrar o campo de 
+=======
+6.1. Disparar a função de busca de currículos encontrar o campo de 
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 
 7. Disparar os relatórios em tela
 7.1. Retornar na interface de usuário os dados resumo à medida que eles vão sendo extraídos usando javascript e biblioteca D3.js, gerar os seguintes widgets na página de interface com o usuário
@@ -243,8 +251,16 @@ A lógica para processar cada linha do CSV e realizar a raspagem dos dados do La
 
 8. Imprimir Relatórios em PDF
 
+<<<<<<< HEAD
 
 Neste caso específico a base de dados é de dados abertos ao público e sem restrições para a raspagem de dados, vamos agora implementar adequadamente de acordo com as suas necessidades descritas as funções realizarBusca, escolherResultado, abrirCurriculo, analisarCurriculo, extrairDados e armazenarDados que compõem a a função Processar que realiza o fluxo de trabalho em um nível alto. Considere que a função realizarBusca usa um pacote Go para web scraping para automatizar a interação com o site. A função armazenarDados usa um pacote de acesso a banco de dados para armazenar os dados extraídos usando nossa estrutura de pastas atual e a separação nas quatro camadas principais:
+=======
+No nosso caso de uso específico todas as bases de dados utilizadas para scrapping são de dados abertos ao público e sem restrições para a raspagem de dados.
+
+Implemente adequadamente de acordo com descrito as funções realizarBusca, escolherResultado, abrirCurriculo, analisarCurriculo, extrairDados e armazenarDados que compõem a a função Processar que realiza o fluxo de trabalho em um nível alto. Considere que a função realizarBusca usa um pacote Go para web scraping para automatizar a interação com o site. 
+
+A função armazenarDados usa um pacote de acesso a banco de dados para armazenar os dados extraídos usando nossa estrutura de pastas atual e a separação nas quatro camadas principais:
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 
 Interface do usuário ou Apresentação: Esta camada se preocupa com a interação do usuário. Neste caso, a interação do usuário não está muito explícita.
 
@@ -254,6 +270,7 @@ Domínio: Esta camada contém as informações sobre o domínio do problema, as 
 
 Infraestrutura: Esta camada fornece os recursos técnicos para as outras camadas. Aqui estão as operações de banco de dados e a raspagem de dados do Lattes.
 
+<<<<<<< HEAD
 E lembre de considerar os eventos como parte integrante do sistema, com uso de EDD, organizando o código seria organizado em torno de produção, detecção e reação a eventos do estado do domínio. 
 Como o evento de um novo pesquisador sendo salvo no banco de dados, que dispara um evento que aciona outras partes do código (ou até mesmo outros sistemas) que estão interessados nesse evento.
 Separaremos a lógica de conexão do MongoDB em um pacote de infraestrutura separado e utilizar a injeção de dependência para usar esses serviços.
@@ -262,3 +279,15 @@ Utilizaremos a injeção de dependência para fornecer a implementação concret
 Introduzimos um sistema de manipulação de eventos para lidar com os eventos produzidos pelo sistema. Por exemplo, quando um novo pesquisador é adicionado, um evento poderia ser emitido, o que poderia acionar outras partes do código.
 E implementaremos um sistema de fila poderia ser útil para lidar com o processamento em segundo plano, com a raspagem de dados do Lattes em uma tarefa em segundo plano. Usando entre outras a biblioteca "github.com/gocraft/work" e o gerenciamento de filas com o RabbitMQ para processar diferentes pedidos de análise de diferentes usuários em paralelo.			
 
+=======
+Os eventos são partes integrantes do sistema, com uso de EDD, organizando o código em torno de produção, detecção e reação a eventos do estado do domínio. Por exemplo, podemos ter um evento de um novo pesquisador sendo salvo no banco de dados, que dispara um evento que aciona outras partes do código (ou até mesmo outros sistemas) que estão interessados nesse evento.
+
+Separamos a lógica de conexão do MongoDB em um pacote de infraestrutura separado e utilizar a injeção de dependência para usar esses serviços.
+
+Definimos interfaces claras para os repositórios (ex: PesquisadorRepository) na camada de domínio e implementar essas interfaces na camada de infraestrutura.
+Utilizamos a injeção de dependência para fornecer a implementação concreta do repositório à camada de aplicação.
+
+Temos um sistema de manipulação de eventos para lidar com os eventos produzidos pelo sistema. Por exemplo, quando um novo pesquisador é adicionado, um evento poderia ser emitido, o que poderia acionar outras partes do código.
+
+E usamos um sistema de fila para lidar com o processamento em segundo plano, com a raspagem de dados do Lattes em uma tarefa em segundo plano. Usando entre outras a biblioteca "github.com/gocraft/work" e o gerenciamento de filas com o RabbitMQ para processar diferentes pedidos de análise de diferentes usuários em paralelo.
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174

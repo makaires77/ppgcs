@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+// pkg\domain\researcher\entities.go
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 package researcher
 
 import (
@@ -33,6 +37,17 @@ type Researcher struct {
 	PremiosTitulos             []PremioTitulo            `json:"premios_titulos"`
 }
 
+<<<<<<< HEAD
+=======
+// Producao é uma estrutura que representa uma produção do pesquisador.
+type Producao struct {
+	Titulo  string
+	Data    time.Time
+	Autores []string
+	// Outros campos específicos de uma produção...
+}
+
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 // Estruturas restantes (FormacaoAcademica, FormacaoPosDoc, etc.)...
 type FormacaoAcademica struct {
 	Periodo        string

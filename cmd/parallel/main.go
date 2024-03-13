@@ -106,8 +106,15 @@ func main() {
 			if res {
 				totalSimilarities++
 				// Atualizar a contagem de colaboração para o docente
+<<<<<<< HEAD
 				authorName := authorRecord[0]
 				docenteColaboracao[authorName]++
+=======
+				for _, authorRecord := range authorRecords {
+					authorName := authorRecord[1]
+					docenteColaboracao[authorName]++
+				}
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 			}
 		}
 

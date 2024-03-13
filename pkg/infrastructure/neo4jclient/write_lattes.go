@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+// pkg\infrastructure\neo4jclient\write_lattes.go
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 package neo4jclient
 
 import (
@@ -170,6 +174,35 @@ func (n *Neo4jWriteLattes) WritePesquisadorPremioTitulo(pesquisador *scrap_latte
 	return nil
 }
 
+<<<<<<< HEAD
+=======
+func (n *Neo4jWriteLattes) WriteFormacaoComplementar(formacao *scrap_lattes.FormacaoComplementar) error {
+	// Implement the logic to write the complementary training data in Neo4j
+
+	if formacao == nil {
+		return fmt.Errorf("invalid complementary training")
+	}
+
+	// Simulate successful writing
+	fmt.Printf("Complementary training data %s written in Neo4j\n", formacao.TituloCurso)
+
+	return nil
+}
+
+func (n *Neo4jWriteLattes) WritePesquisadorFormacaoComplementar(pesquisador *scrap_lattes.Pesquisador, formacao *scrap_lattes.FormacaoComplementar) error {
+	// Implement the logic to write the relationship between the researcher and the complementary training in Neo4j
+
+	if pesquisador == nil || formacao == nil {
+		return fmt.Errorf("invalid researcher or complementary training")
+	}
+
+	// Simulate successful writing
+	fmt.Printf("Relationship between researcher %s and complementary training %s written in Neo4j\n", pesquisador.Nome, formacao.TituloCurso)
+
+	return nil
+}
+
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 // Close fecha a conexão com o Neo4j.
 func (w *Neo4jWriteLattes) Close() {
 	err := w.driver.Close(context.Background())

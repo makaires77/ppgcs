@@ -1,0 +1,32 @@
+# Dockerfile
+
+# Estágio 1: Compilar a aplicação Go
+FROM golang:1.16 as builder
+
+# Definir a pasta de trabalho dentro do container
+WORKDIR /app
+
+# Copiar go mod e sum files
+COPY go.mod go.sum ./
+
+# Fazer download das dependências de módulos Go
+RUN go mod download
+
+# Copiar o código da fonte para o container
+COPY . .
+
+# Compilar a aplicação
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+
+# Estágio 2: Executar a aplicação Go
+FROM alpine:latest
+
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /root/
+
+# Copiar do estágio de construção
+COPY --from=builder /app/main .
+
+# Executar a aplicação
+CMD ["./main"]

@@ -1,0 +1,188 @@
+ppgcs
+├── .editorconfig
+├── .gitattributes
+├── .gitignore
+├── .vscode
+│   └── settings.json
+├── .yarnrc
+├── .yarnrc.yml
+├── cmd
+│   ├── api
+│   │   ├── handlers
+│   │   │   ├── production.go
+│   │   │   └── researcher.go
+│   │   ├── main.go
+│   │   └── main.md
+│   ├── csv_maker
+│   │   ├── main.go
+│   │   └── main_slices.md
+│   ├── functional
+│   │   ├── log.txt
+│   │   └── main.go
+│   ├── parallel
+│   │   ├── log.txt
+│   │   ├── main.go
+│   │   ├── mainerro.txt
+│   │   └── mainerrocontagem.txt
+│   ├── publication_loader
+│   │   └── main.go
+│   └── sequential
+│       ├── log.txt
+│       ├── main.go
+│       ├── main_united.txt
+│       └── Readme.md
+├── config
+│   └── credentials.json
+├── go.mod
+├── go.sum
+├── img
+│   ├── Logo_CasteloReneRachou_340-100.svg
+│   ├── Logo_CasteloReneRachou_340-340.png
+│   ├── Logo_CasteloReneRachou_340-340.svg
+│   └── logo_text_light.svg
+├── main.go
+├── main.js
+├── package-lock.json
+├── package.json
+├── pkg
+│   ├── application
+│   │   ├── main.txt
+│   │   ├── production_service.go
+│   │   └── researcher_service.go
+│   ├── domain
+│   │   ├── pesquisador
+│   │   │   └── entities.go
+│   │   ├── production
+│   │   │   └── entities.go
+│   │   ├── publication
+│   │   │   ├── entities.go
+│   │   │   ├── repository.go
+│   │   │   └── usecases.go
+│   │   ├── researcher
+│   │   │   ├── entities.go
+│   │   │   └── repository.go
+│   │   └── scrap_lattes
+│   │       ├── entities.go
+│   │       ├── repository.go
+│   │       └── usecases.go
+│   ├── infrastructure
+│   │   ├── csv_files
+│   │   │   └── csv_files.go
+│   │   ├── csv_publication
+│   │   │   └── read_publication.go
+│   │   ├── dgraph
+│   │   │   ├── connect.go
+│   │   │   ├── read.go
+│   │   │   └── write.go
+│   │   ├── json_publication
+│   │   │   ├── go.md
+│   │   │   ├── read_advisor_student.csv
+│   │   │   └── read_publication.txt
+│   │   ├── mongo
+│   │   │   ├── mongo.go
+│   │   │   └── write_lattes.go
+│   │   ├── neo4jclient
+│   │   │   ├── client.go
+│   │   │   ├── write_lattes.go
+│   │   │   └── write_publication.go
+│   │   └── scrap_lattes
+│   │       └── scrap_lattes.go
+│   ├── interfaces
+│   │   ├── http
+│   │   │   └── handlers
+│   │   │       └── publication_handler.go
+│   │   └── rabbitmq
+│   │       ├── consumer.go
+│   │       ├── consume_lattes.go
+│   │       ├── enqueue_lattes.go
+│   │       └── README.md
+│   ├── repository
+│   │   ├── advisor_student.go
+│   │   ├── dgraph_repository.go
+│   │   ├── erro_personalizado.go
+│   │   ├── mongodb_repository.go
+│   │   ├── neo4j_repository.go
+│   │   ├── production_repository.go
+│   │   ├── publication_repository.go
+│   │   ├── researcher_repository.go
+│   │   └── student.go
+│   ├── support
+│   │   └── helpers.go
+│   └── usecase
+│       ├── fuzzysearch
+│       │   └── fuzzy_search_service.go
+│       ├── load_lattes
+│       │   └── interactor.go
+│       ├── load_publication
+│       │   └── interactor.go
+│       └── nomecomparador
+│           ├── compare.go
+│           └── compare.txt
+├── README.md
+├── server.mjs
+├── static
+├── test
+│   └── createTeamTest.mjs
+├── trash
+│   ├── log_parallel.txt
+│   └── server.cjs-ABORDAGEM ANTIGA
+├── Tree.txt
+├── yarn.lock
+└── _data
+    ├── in_csv
+    │   ├── indicadores.csv
+    │   ├── nomesdocentes.csv
+    │   ├── ppgcs
+    │   │   ├── docentes_dadosprograma.csv
+    │   │   ├── docentes_nomes.csv
+    │   │   └── indicadores_quadrienio_17-20.csv
+    │   └── veiculos.csv
+    ├── in_json
+    │   ├── 642.files
+    │   │   ├── 642.advise.json
+    │   │   ├── 642.graph.json
+    │   │   ├── 642.list.json
+    │   │   ├── 642.profile.json
+    │   │   ├── 642.publication.json
+    │   │   ├── 642patents.json
+    │   │   ├── 642researchers_by_area.json
+    │   │   └── 642vosviewer.json
+    │   └── 644.files
+    │       ├── 644.advise.json
+    │       ├── 644.graph.json
+    │       ├── 644.list.json
+    │       ├── 644.profile.json
+    │       ├── 644.publication.json
+    │       ├── 644patents.json
+    │       ├── 644researchers_by_area.json
+    │       └── 644vosviewer.json
+    ├── in_zip
+    │   ├── 642.files.zip
+    │   ├── 644.files.zip
+    │   └── lista_arquivos.txt
+    ├── out_csv
+    │   ├── all_advise.csv
+    │   ├── all_patents.csv
+    │   ├── all_publications.csv
+    │   ├── conf-ppgcs-colabdisce_permanentes_2017-2020.csv
+    │   ├── conf-ppgcs-pontuacao_permanentes_2017-2020.csv
+    │   └── conf-ppgcs-resultados_permanentes_2017-2020.csv
+    ├── out_json
+    │   └── merged.json
+    ├── pdf
+    └── powerbi
+        ├── 2020_Madhumangal-Ghorai_modern-trends-in-fuzzy-graph-theory-1st-ed.odt
+        ├── classificacoes_publicadas_todas_as_areas_avaliacao1672761192111.csv
+        ├── classificações_publicadas_todas_as_areas_avaliacao1672761192111.xlsx
+        ├── colaboracao_discente.csv
+        ├── dashboard_ppggs_v3.pbix
+        ├── dashboard_ppggs_v4.pbix
+        ├── dashboard_ppggs_v5.pbix
+        ├── DAX_ApuraMetas.txt
+        ├── df_dadosartigos.csv
+        ├── lista_docentes_colaboradores.csv
+        ├── lista_docentes_permanentes.csv
+        ├── lista_orientadores-discentes.csv
+        ├── orientacoes.csv
+        ├── patentes.csv
+        └── publicacoes.csv

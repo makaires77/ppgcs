@@ -1,7 +1,12 @@
+<<<<<<< HEAD
+=======
+// pkg/repository/researcher_repository.go
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 package repository
 
 import (
 	"context"
+<<<<<<< HEAD
 	"fmt"
 	"log"
 
@@ -156,6 +161,69 @@ func (r *ResearcherRepository) SaveDgraph(researcher *researcher.Researcher) err
 	startTime := time.Now()
 
 	// Implemente a lógica de persistência no Dgraph
+=======
+	"log"
+	"time"
+
+	"github.com/dgraph-io/dgo"
+	"github.com/makaires77/ppgcs/pkg/domain/researcher"
+	"go.mongodb.org/mongo-driver/mongo"
+)
+
+// ResearcherRepository é uma interface que define os métodos para interagir com os diferentes bancos de dados.
+type ResearcherRepository interface {
+	Save(researcher *researcher.Researcher) error
+}
+
+// MongoDBResearcherRepository é a implementação do repositório para o MongoDB.
+type MongoDBResearcherRepository struct {
+	collection *mongo.Collection
+}
+
+// NewMongoDBResearcherRepository cria uma nova instância de MongoDBResearcherRepository.
+func NewMongoDBResearcherRepository(client *mongo.Client, databaseName, collectionName string) *MongoDBResearcherRepository {
+	database := client.Database(databaseName)
+	collection := database.Collection(collectionName)
+
+	return &MongoDBResearcherRepository{
+		collection: collection,
+	}
+}
+
+// Save salva os dados do pesquisador no MongoDB.
+func (r *MongoDBResearcherRepository) Save(researcher *researcher.Researcher) error {
+	startTime := time.Now()
+
+	_, err := r.collection.InsertOne(context.Background(), researcher)
+	if err != nil {
+		log.Printf("Erro ao escrever os dados do pesquisador no MongoDB: %s\n", err)
+		return err
+	}
+
+	elapsedTime := time.Since(startTime)
+	log.Printf("Tempo de transação no MongoDB: %s", elapsedTime)
+
+	return nil
+}
+
+// DgraphResearcherRepository é a implementação do repositório para o Dgraph.
+type DgraphResearcherRepository struct {
+	dgraphClient *dgo.Dgraph
+}
+
+// NewDgraphResearcherRepository cria uma nova instância de DgraphResearcherRepository.
+func NewDgraphResearcherRepository(dgraphClient *dgo.Dgraph) *DgraphResearcherRepository {
+	return &DgraphResearcherRepository{
+		dgraphClient: dgraphClient,
+	}
+}
+
+// Save salva os dados do pesquisador no Dgraph.
+func (r *DgraphResearcherRepository) Save(researcher *researcher.Researcher) error {
+	startTime := time.Now()
+
+	// Implemente a lógica de persistência no Dgraph aqui.
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 	// Por exemplo:
 	// p := &Person{
 	// 	Uid:       "_:" + researcher.ID,
@@ -171,13 +239,17 @@ func (r *ResearcherRepository) SaveDgraph(researcher *researcher.Researcher) err
 	// 	SetJson: pb,
 	// })
 
+<<<<<<< HEAD
 	// Exemplo de registro de tempo de transação
+=======
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 	elapsedTime := time.Since(startTime)
 	log.Printf("Tempo de transação no Dgraph: %s", elapsedTime)
 
 	return nil
 }
 
+<<<<<<< HEAD
 // Exemplo de função de persistência no Neo4j
 func (r *ResearcherRepository) SaveNeo4j(researcher *researcher.Researcher) error {
 	startTime := time.Now()
@@ -197,3 +269,6 @@ func (r *ResearcherRepository) SaveNeo4j(researcher *researcher.Researcher) erro
 
 	return nil
 }
+=======
+// Neo4jResearcherRepository é a implementação do repositório para o Neo4j
+>>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
