@@ -1,0 +1,4451 @@
+{
+  "2000": [],
+  "2001": [],
+  "2002": [
+    [
+      {
+        "titulo": "POLINUCLEOTÍDEOS CODIFICADORES DE GENES DO CROMOSSOMO DA BACTÉRIA CHROMOBACTERIUM VIOLACEUM, EXPRESSÃO E ATIVIDADE DESSES POLINUCLEOTÍDEOS E SUAS APLICAÇÕES",
+        "ano_desenvolvimento": "2002",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI0207239",
+        "data_pedido_de_deposito": "19122002",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ana Tereza Ribeiro de Vasconcelos",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "19122002",
+        "status_situacao_patente": "SIM",
+        "autores": ["VASCONCELOS, &#09", ". T. R.", "VASCONCELOS, A. T. R.", "OUTROS, Autores", "BRITO, CRISTIANA F.A."],
+        "autores-endogeno": ["0553918889655570"],
+        "autores-endogeno-nome": [
+          {
+            "0553918889655570": "Cristiana Ferreira Alves de Brito"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "PROCESSO PARA PRODUÇÃO DA PROTEINA GP120 RECOMBINANTE DO HIV",
+        "ano_desenvolvimento": "1997",
+        "pais": "Brasil",
+        "home_page": "www.inpi.gov.br",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "DIAGNÓSTICO HIV",
+        "instituicao_financiadora": "UFMG",
+        "categoria": "O DNA contendo o gene que codifica a proteina do envelope gp120 foi obtido&#09;realizando-se a seguintes etapas : amplificacao,fracionamento,purificacao&#09;digestao e clonagem do DNA, apos fez-se a ligacao do DNA ao vetor, transformacao de bacterias competentes, selecao dos clones positivos &#09;producao e purificacao da proteina .",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI0207239-4",
+        "data_pedido_de_deposito": "19122002",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "19122002",
+        "status_situacao_patente": "SIM",
+        "autores": ["FERREIRA, P. C. P.", "KROON, E. G.", "OLIVEIRA, J. G."],
+        "autores-endogeno": ["2427045424896409"],
+        "autores-endogeno-nome": [
+          {
+            "2427045424896409": "Jaquelline Germano de Oliveira"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2003": [
+    [
+      {
+        "titulo": "Isca química para detecção e controle de triatomíneos (Depósito INPI N° 012349)",
+        "ano_desenvolvimento": "2003",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Fornecer uma nova ferramenta para detecção de triatomíneos vetores da doença de Chagas.",
+        "instituicao_financiadora": "TDR/OMS, FIOCRUZ, FAPEMIG, CAPES/SETCIP, CAPES/ANTORCHAS, CONICET",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI03059332",
+        "data_pedido_de_deposito": "02122003",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "02062015",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "02122003",
+        "status_situacao_patente": "SIM",
+        "autores": ["LORENZO, M. G.", "Lorenzo, Marcelo", "Lorenzo, Marcelo Gustavo", "Lorenzo, Marcelo G.", "Lorenzo, Marcelo G", "Marcelo Gustavo Lorenzo", "LORENZO, M.G.", "GUSTAVO LORENZO, MARCELO", "LAZZARI, Claudio R", "DIOTAIUTI, L", "FIGUEIRAS, Alicia Nieves Lorenzo", "VITTA, Ana Cristina Renna de", "MOTA, Theo Rolla de Paula", "ZANI, C. L."],
+        "autores-endogeno": ["2529945687863385"],
+        "autores-endogeno-nome": [
+          {
+            "2529945687863385": "Marcelo Gustavo Lorenzo"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Isca química para detecção e controle de triatomíneos",
+        "ano_desenvolvimento": "2003",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "Fornecer uma nova ferramenta para detecção de triatomíneos vetores da doença de Chagas.",
+        "instituicao_financiadora": "TDR/OMS, FIOCRUZ, FAPEMIG, CAPES/SETCIP, CAPES/ANTORCHAS, CONICET",
+        "categoria": "",
+        "tipo_patente": "OUTRO_OU",
+        "codigo_do_registro_ou_patente": "012349",
+        "data_pedido_de_deposito": "02122003",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "02122003",
+        "status_situacao_patente": "SIM",
+        "autores": ["LORENZO, Marcelo Gustavo", "LAZZARI, Claudio R", "DIOTAIUTI, Lileia", "DIOTAIUTI, LILÉIA", "DIOTAIUTI, LILÉIA GONCALVES", "DIOTAIUT, LILÉIA", "GONÇALVES DIOTAIUTI, LILÉIA", "DIOTAIUTI, LILÉIA GONÇALVES", "DIOTAIUTI, LILEIA GONÇALVES", "FIGUEIRAS, A N Lorenzo", "VITTA, Ana Cristina Renna de", "MOTA, Theo Rolla de Paula"],
+        "autores-endogeno": ["9211345386050612"],
+        "autores-endogeno-nome": [
+          {
+            "9211345386050612": "Lileia Gonçalves Diotaiuti"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2004": [
+    [
+      {
+        "titulo": "Recombinant Negative Strant Virus Containing Bicistronic vRNA Segment with a duplication of its 3´Flanking non Coding Sequence, and Vaccine and Therapeutic Composition Containing the Same",
+        "ano_desenvolvimento": "2004",
+        "pais": "Estados Unidos",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "Terapêutica, vacinal",
+        "instituicao_financiadora": "CNPq/ Institut Pasteur",
+        "categoria": "",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "6723559",
+        "data_pedido_de_deposito": "17042004",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "20042004",
+        "instituicao_deposito_registro": "",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "17042004",
+        "status_situacao_patente": "SIM",
+        "autores": ["MACHADO, A. M. V.", "VIEIRA MACHADO, A.M.", "MACHADO AV", "Machado AV", "Vieira Machado A", "MACHADO, Alexandre V.", "MACHADO, ALEXANDRE DE MAGALHÃES VIEIRA", "MACHADO, ALEXANDRE VIEIRA", "VIEIRA MACHADO, A", "VIEIRA MACHADO A", "VIEIRA MACHADO, ALEXANDRE", "MACHADO, ALEXANDRE M. V.", "MACHADO, ALEXANDRE M", "MACHADO, ALEXANDRE M.", "MACHADO, ALEXANDRE DE M.V.", "ESCRIOU, N.", "NAFFAKH, N.", "WERF, S. V. D."],
+        "autores-endogeno": ["5804297852066640"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2005": [],
+  "2006": [
+    [
+      {
+        "titulo": "Vacina contra Leishmaniose Visceral Canina",
+        "ano_desenvolvimento": "2006",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI06012256",
+        "data_pedido_de_deposito": "17022006",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "ALEXANDRE BARBOSA REIS;Rodrigo Correa de Oliveira;Rodolfo Cordeiro Giunchetti;Universidade Federal de Ouro Preto",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "17022006",
+        "status_situacao_patente": "SIM",
+        "autores": ["REIS, ALEXANDRE B", "REIS, Alexandre Barbosa", "Corrêa-Oliveira, R.", "GIUNCHETTI, R. C."],
+        "autores-endogeno": ["8712666530716107"],
+        "autores-endogeno-nome": [
+          {
+            "8712666530716107": "Rodrigo Correa de Oliveira"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Extratos de Lentinus strigosus, substâncias isoladas dos mesmos e composições farmacológicas contendo os mesmos.",
+        "ano_desenvolvimento": "2006",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI06042236",
+        "data_pedido_de_deposito": "30102006",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "30102006",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Olindo Assis Martins Filho",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "30102006",
+        "status_situacao_patente": "SIM",
+        "autores": ["COTA, B. B.", "MARTINS-FILHO, O. A.", "ZANI, C. L.", "ROSA, L. H.", "SOUZA-FAGUNDES, E. M.", "ROSA, C. A.", "ROMANHA, A. J.", "ASSIS MARTINS-FILHO, OLINDO", "OLIVEIRA, R. C."],
+        "autores-endogeno": ["6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2007": [
+    [
+      {
+        "titulo": "SEQÜÊNCIA GENETICAMENTE MODIFICADA DO ANTÍGENO DBP (PA) DE PLASMODIUM VIVAX, PROTEÍNA RECOMBINANTE DBP E ADENOVÍRUS GENETICAMENTE MODIFICADO QUE EXPRESSA O ANTÍGENO DBP RECOMBINANTE",
+        "ano_desenvolvimento": "2007",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI07058802",
+        "data_pedido_de_deposito": "26102007",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "25052021",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ricardo Tostes Gazzinelli",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "26102007",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI, Ricardo Tostes", "GAZZINELLI R", "ROMERO, O. B.", "FONSECA, M. C.", "BRITO, C. F. A."],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "SEQÜÊNCIA GENETICAMENTE MODIFICADA DO ANTÍGENO CS DE PLASMODIUM VIVAX, PROTEÍNA RECOMBINANTE CS E VÍRUS GENETICAMENTE MODIFICADOS QUE EXPRESSAM O ANTÍGENO CS RECOMBINANTE",
+        "ano_desenvolvimento": "2007",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI07058748",
+        "data_pedido_de_deposito": "26102007",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "29062021",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ricardo Tostes Gazzinelli",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "26102007",
+        "status_situacao_patente": "SIM",
+        "autores": ["GUIMARÃES, F. F.", "GAZZINELLI R", "GAZZINELLI, Ricardo Tostes", "ROMERO, O. B.", "CARRARA, C. L."],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "SEQÜÊNCIAS GENETICAMENTE MODIFICADAS DOS ANTÍGENOS TS E ASP-2 DE TRYPANOSOMA CRUZI, CONSTRUCTOS GENÉTICOS QUE CONTÉM TS OU ASP-2 E ADENOVÍRUS GENETICAMENTE MODIFICADOS QUE CODIFICAM TS OU ASP-2",
+        "ano_desenvolvimento": "2007",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Desenvolvimento de vacina com vírus recombinante contra a Doençca de Chagas",
+        "instituicao_financiadora": "CNPQ; FAPEMIG",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI07055358",
+        "data_pedido_de_deposito": "15062007",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "15062007",
+        "status_situacao_patente": "SIM",
+        "autores": ["MACHADO, ALEXANDRE VIEIRA", "BRUNA-ROMERO, O.", "RODRIGUES, M. M.", "GAZZINELLI, R. T."],
+        "autores-endogeno": ["5804297852066640"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Utilização de vírus influenza recombinantes e vírus vaccinia Ankara modificado (MVA) com genes que codificam para as proteínas de superfície SAG1 e SAG2 do Toxoplasma gondii como vacinas contra Toxoplasmose",
+        "ano_desenvolvimento": "2007",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "CNPq, FAPEMIG",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI07048602",
+        "data_pedido_de_deposito": "21122007",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "21122007",
+        "status_situacao_patente": "SIM",
+        "autores": ["MACHADO, ALEXANDRE VIEIRA", "MENDES, É. A.", "BARBOSA, R. P. A.", "CAETANO, B. C.", "GUIMARÃES, F. F.", "GAZZINELLI, R. T.", "BRUNA-ROMERO, O."],
+        "autores-endogeno": ["5804297852066640"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Uso de antagonistas do receptor fator de ativação plaquetária para o tratamento infecções causadas pelo vírus influenza",
+        "ano_desenvolvimento": "2007",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "Tratamento farmacológico de infecções pelo vírus influenza",
+        "instituicao_financiadora": "",
+        "categoria": "Outra",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI220705505518",
+        "data_pedido_de_deposito": "08112007",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "08112007",
+        "status_situacao_patente": "SIM",
+        "autores": ["TEIXEIRA, M. M.", "GARCIA, C. C.", "MACHADO, A. M. V.", "VIEIRA MACHADO, A.M.", "MACHADO AV", "Machado AV", "Vieira Machado A", "MACHADO, Alexandre V.", "MACHADO, ALEXANDRE DE MAGALHÃES VIEIRA", "MACHADO, ALEXANDRE VIEIRA", "VIEIRA MACHADO, A", "VIEIRA MACHADO A", "VIEIRA MACHADO, ALEXANDRE", "MACHADO, ALEXANDRE M. V.", "MACHADO, ALEXANDRE M", "MACHADO, ALEXANDRE M.", "MACHADO, ALEXANDRE DE M.V.", "RUSSO, R. C.", "GAZZINELLI, R. T."],
+        "autores-endogeno": ["5804297852066640"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2008": [
+    [
+      {
+        "titulo": "Metabólitos leishmanicidas e inibidores da enzima tripanotiona redutase isolados do fungo endofítico Cochliobolus sp. de Piptadenia adiantoides. PI0800947-3. 2008",
+        "ano_desenvolvimento": "2008",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "Detectar protótipos moleculares úteis para o controle de doenças negligenciadas",
+        "instituicao_financiadora": "FIOCRUZ",
+        "categoria": "",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI0800947-3",
+        "data_pedido_de_deposito": "13052008",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "13052008",
+        "status_situacao_patente": "SIM",
+        "autores": ["CAMPOS, F. F.", "ROSA, L. H.", "COTA, B. B.", "CALIGIORNE, R. B.", "RABELLO, A.", "ALVES, T. M. A. ou ALVES, T M D ou ALVES, T.", "ROSA, C. A.", "ZANI, C. L."],
+        "autores-endogeno": ["5633763429024541"],
+        "autores-endogeno-nome": [
+          {
+            "5633763429024541": "Tânia Maria de Almeida Alves"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "VETORES VIRAIS RECOMBINANTES, COMPOSIÇÃO VACINAL PARA LEISHMANIOSE E MÉTODO DE VACINAÇÃO PARA LEISHMANIOSE",
+        "ano_desenvolvimento": "2008",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI08004854",
+        "data_pedido_de_deposito": "17012008",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "25052021",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ricardo Tostes Gazzinelli",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "17012008",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "GUIMARÃES, F. F.", "ROMERO, O. B.", "FERNANDES, A. P. S. M.", "GAZZINELLI, Ricardo Tostes"],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "SEQUÊNCIA GENETICAMENTE MODIFICADA DO ANTÍGENO ASP-2 DE TRYPANOSOMA CRUZI, PROTEÍNA RECOMBINANTE ASP-2 E VÍRUS GENETICAMENTE MODIFICADOS QUE EXPRESSAM O ANTÍGENO ASP-2 RECOMBINANTE",
+        "ano_desenvolvimento": "2008",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Desenvolvimento de vacina com vírus recombinante contra a Doençca de Chagas",
+        "instituicao_financiadora": "CNPQ; FAPEMIG",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI08062854",
+        "data_pedido_de_deposito": "15012008",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "15012008",
+        "status_situacao_patente": "SIM",
+        "autores": ["MACHADO, ALEXANDRE VIEIRA", "GAZZINELLI, R. T."],
+        "autores-endogeno": ["5804297852066640"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Seqüência geneticamente modificada do antígeno ts de trypanosoma cruzi, proteína recombinante ts e vírus geneticamente modificados que expressam o antígeno ts recombinante",
+        "ano_desenvolvimento": "2008",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Desenvolvimento de vacina com vírus recombinante contra a Doençca de Chagas",
+        "instituicao_financiadora": "CNPq, FAPEMIG",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI08019061",
+        "data_pedido_de_deposito": "15012008",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "15012008",
+        "status_situacao_patente": "SIM",
+        "autores": ["MACHADO, ALEXANDRE VIEIRA", "GAZZINELLI, R. T."],
+        "autores-endogeno": ["5804297852066640"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Utilização de vírus influenza recombinantes e vírus vaccinia Ankara modificado (MVA) com genes que codificam para as proteínas de superfície SAG1 e SAG2 do Toxoplasma gondii como vacinas contra Toxoplasmose",
+        "ano_desenvolvimento": "2008",
+        "pais": "Suiça",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Desenvolvimento de vacina com vírus recombinante contra a Doençca de Chagas",
+        "instituicao_financiadora": "CNPQ, FAPEMIG",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "WO2009079731",
+        "data_pedido_de_deposito": "",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "WIPO - World Intellectual Property Organization",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "21122008",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito PCT",
+        "data_situacao_patente": "21122008",
+        "status_situacao_patente": "SIM",
+        "autores": ["MACHADO, ALEXANDRE VIEIRA", "CAETANO, B. C.", "BARBOSA, R. P. A.", "MENDES, É. A.", "GAZZINELLI, R. T.", "GUIMARÃES, F. F.", "BRUNA-ROMERO, O."],
+        "autores-endogeno": ["5804297852066640"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2009": [
+    [
+      {
+        "titulo": "SEQÜÊNCIAS GENETICAMENTE MODIFICADAS DE ANTÍGENOS DE PLASMODIUM VIVAX, COMPOSIÇÕES VACINAIS CONTENDO PROTEÍNAS RECOMBINANTES E VÍRUS RECOMBINANTES QUE EXPRESSAM ESSES ANTÍGENOS E MÉTODO DE VACINAÇÃO DOSE-REFORÇO CONTRA MALÁRIA",
+        "ano_desenvolvimento": "2009",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI0924581",
+        "data_pedido_de_deposito": "05052009",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "2009000130",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ricardo Tostes Gazzinelli;Oscar Bruna-Romero;Cristina Lima Carrara;Leoneide Erica Maduro Bouillet;Marisa Cristina da Fonseca;Cristiana Ferreira Alves de Brito;FLÁVIO DA FONSECA GUIMARÃES;Irene Soares; Bruna De Andrade Pereira;Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "05052009",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI, R. T.", "RODRIGUES, M. M.", "BRUNA-ROMERO, O.", "ROMERO, Oscar Bruna", "Carrara, C. L.", "BOUILLET, L. E. M.", "Fonseca, M. C.", "BRITO, CRISTIANA F.A.", "GUIMARAES, F. F.", "SOARES, I.", "PEREIRA, B. A."],
+        "autores-endogeno": ["0553918889655570"],
+        "autores-endogeno-nome": [
+          {
+            "0553918889655570": "Cristiana Ferreira Alves de Brito"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "MODIFIED TS AND ASP-2 SEQUENCES OF TRYPANOSSOMA CRUZI FOR IMMUNIZATION",
+        "ano_desenvolvimento": "2009",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "2009000012",
+        "data_pedido_de_deposito": "15012009",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "20102009",
+        "instituicao_deposito_registro": "Institut National de la Propriete Industrielle",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Concessão",
+        "data_situacao_patente": "20102009",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "MACHADO, A. M. V.", "DUTRA, MIRIAM S.", "GUIMARAES, F. F.", "POLIDORO, RAFAEL B", "RODRIGUES, Mauricio Martins"],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Seqüência geneticamente modificada do antígeno ts de trypanosoma cruzi, proteína recombinante ts e vírus geneticamente modificados que expressam o antígeno ts recombinante",
+        "ano_desenvolvimento": "2009",
+        "pais": "Suiça",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Desenvolvimento de vacina com vírus recombinante contra a Doençca de Chagas",
+        "instituicao_financiadora": "CNPQ; FAPEMIG",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "WO2009103133",
+        "data_pedido_de_deposito": "",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "WIPO - World Intellectual Property Organization",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "27082009",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito PCT",
+        "data_situacao_patente": "27082009",
+        "status_situacao_patente": "SIM",
+        "autores": ["MACHADO, ALEXANDRE VIEIRA", "GAZZINELLI, R. T."],
+        "autores-endogeno": ["5804297852066640"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2010": [
+    [
+      {
+        "titulo": "Cepa transgênica atenuada de Trypanosoma cruzi como vetor vacinal",
+        "ano_desenvolvimento": "2010",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "Formulação de vacinas",
+        "instituicao_financiadora": "Ludwig Institute for Cancer Research",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR00281005274620",
+        "data_pedido_de_deposito": "02092010",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "02092010",
+        "status_situacao_patente": "SIM",
+        "autores": ["JUNQUEIRA, C", "Gazzinelli, RT", "TEIXEIRA, S. M.", "Galvão Filho, B"],
+        "autores-endogeno": ["9405337414047265"],
+        "autores-endogeno-nome": [
+          {
+            "9405337414047265": "Caroline Furtado Junqueira"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Método e kit para detecção da esquistossomose pela reação em cadeia da polimerase",
+        "ano_desenvolvimento": "2000",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "Diagnóstico da esquistossomose em fezes e soro através de PCR",
+        "instituicao_financiadora": "FIOCRUZ",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI00380",
+        "data_pedido_de_deposito": "04042000",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "01052010",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Concessão",
+        "data_situacao_patente": "01052010",
+        "status_situacao_patente": "SIM",
+        "autores": ["RABELLO, A", "Rabello, Ana", "Ana Rabello", "Rabello, A", "RABELLO, A.", "RABELLO, ANA LUCIA TELES", "DIAS NETO, E.", "PONTES, L. A."],
+        "autores-endogeno": ["7027792126979693"],
+        "autores-endogeno-nome": [
+          {
+            "7027792126979693": "Ana Lúcia Teles Rabello"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "PEPTÍDEOS RECOMBINANTES, MÉTODO E KIT PARA TESTE IMUNODIAGNÓSTICO DE LEISHMANIOSE",
+        "ano_desenvolvimento": "2010",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI10134476",
+        "data_pedido_de_deposito": "29112010",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "27072021",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ricardo Tostes Gazzinelli",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "29112010",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI, Ricardo Tostes", "GAZZINELLI R", "FRANCO, M. M. S. C.", "FERNANDES, A. P. S. M."],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Utilização de vírus influenza recombinantes e vírus vaccinia Ankara modificado (MVA) com genes que codificam para as proteínas de superfície SAG1 e SAG2 do Toxoplasma gondii como vacinas contra Toxoplasmose",
+        "ano_desenvolvimento": "2010",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Desenvolvimento de vacina com vírus recombinante contra a toxoplasmose",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "EP08864038.8",
+        "data_pedido_de_deposito": "01092010",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "08062016",
+        "instituicao_deposito_registro": "German Patent and Trademark Office",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "01092010",
+        "status_situacao_patente": "SIM",
+        "autores": ["MACHADO, ALEXANDRE VIEIRA", "CAETANO, B. C.", "MENDES, É. A.", "GUIMARÃES, F. F.", "GAZZINELLI, RICARDO", "BRUNA-ROMERO, O.", "BARBOSA, R. P. A."],
+        "autores-endogeno": ["5804297852066640", "9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado",
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Utilização de vírus influenza recombinantes e vírus vaccinia Ankara modificado (MVA) com genes que codificam para as proteínas de superfície SAG1 e SAG2 do Toxoplasma gondii como vacinas contra Toxoplasmose",
+        "ano_desenvolvimento": "2010",
+        "pais": "Alemanha",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Desenvolvimento de vacina com vírus recombinante contra a toxoplasmose",
+        "instituicao_financiadora": "CNPQ, FAPEMIG",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "EP2222332",
+        "data_pedido_de_deposito": "01092010",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "08062016",
+        "instituicao_deposito_registro": "EPO",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "01092010",
+        "status_situacao_patente": "SIM",
+        "autores": ["MACHADO, ALEXANDRE VIEIRA", "CAETANO, B. C.", "MENDES, É. A.", "GUIMARÃES, F. F.", "GAZZINELLI, RICARDO", "BARBOSA, R. P. A.", "GAZZINELLI, R. T."],
+        "autores-endogeno": ["5804297852066640", "5804297852066640", "5804297852066640", "9148354106985023", "9148354106985023", "9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado",
+            "5804297852066640.1": "Alexandre de Magalhaes Vieira Machado",
+            "5804297852066640.2": "Alexandre de Magalhaes Vieira Machado",
+            "9148354106985023": "Ricardo Tostes Gazzinelli",
+            "9148354106985023.1": "Ricardo Tostes Gazzinelli",
+            "9148354106985023.2": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Utilização de vírus influenza recombinantes e vírus vaccinia Ankara modificado (MVA) com genes que codificam para as proteínas de superfície SAG1 e SAG2 do Toxoplasma gondii como vacinas contra Toxoplasmose",
+        "ano_desenvolvimento": "2010",
+        "pais": "Estados Unidos",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Desenvolvimento de vacina com vírus recombinante contra a Toxoplasmose",
+        "instituicao_financiadora": "CNPq, FAPEMIG",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "US9.937.251.B2",
+        "data_pedido_de_deposito": "28102010",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "10042018",
+        "instituicao_deposito_registro": "United States Patent and Trademark Office",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "28102010",
+        "status_situacao_patente": "SIM",
+        "autores": ["MACHADO, ALEXANDRE VIEIRA", "CAETANO, B. C.", "ARAUJO, E. M.", "BRUNA-ROMERO, O.", "BARBOSA, R. P. A.", "GAZZINELLI, R. T.", "GUIMARÃES, F. F."],
+        "autores-endogeno": ["5804297852066640", "9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado",
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2011": [
+    [
+      {
+        "titulo": "Recombinat Trypanosoma cruzi cells useful as anti-cancer imune agents",
+        "ano_desenvolvimento": "2011",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PCT/US11/50143",
+        "data_pedido_de_deposito": "01092011",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "United States Patent and Trademark Office",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ludwig Institute for Cancer Research;Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "01092011",
+        "status_situacao_patente": "SIM",
+        "autores": ["Junqueira, C.", "Gazzinelli, R. T.", "TEIXEIRA, S. M. R.", "Galvão Filho, B"],
+        "autores-endogeno": ["9405337414047265"],
+        "autores-endogeno-nome": [
+          {
+            "9405337414047265": "Caroline Furtado Junqueira"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Kit para teste imunodiagnóstico de leishmaniose visceral",
+        "ano_desenvolvimento": "2011",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI11054611",
+        "data_pedido_de_deposito": "09082011",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "10052022",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ricardo Tostes Gazzinelli",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "09082011",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI, Ricardo Tostes", "GAZZINELLI R", "ANDRADE, H. M.", "FRANCO, M. S. C.", "FARIA, A. R."],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Seqüência geneticamente modificada do antígeno ts de trypanosoma cruzi, proteína recombinante ts e vírus geneticamente modificados que expressam o antígeno ts recombinante",
+        "ano_desenvolvimento": "2011",
+        "pais": "México",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Desenvolvimento de vacina com vírus recombinante contra a Doençca de Chagas",
+        "instituicao_financiadora": "CNPQ, FAPEMIG",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "MX2010007732",
+        "data_pedido_de_deposito": "25022011",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "Escritório de Patentes do México",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "25022011",
+        "status_situacao_patente": "SIM",
+        "autores": ["MACHADO, ALEXANDRE VIEIRA", "GAZZINELLI, R. T."],
+        "autores-endogeno": ["5804297852066640"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2012": [
+    [
+      {
+        "titulo": "Processo Biotecnológico Para Avaliação Precoce de Imunogenicidade e Eficácia de Vacinais Contra Leishmaniose Visceral Canina",
+        "ano_desenvolvimento": "2012",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020120047446",
+        "data_pedido_de_deposito": "02032012",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "kelvinson F Viana;REIS, A;Rodrigo Correa de Oliveira;MARTINS-FILHO, OLINDO ASSIS;Universidade Federal de Ouro Preto",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "02032012",
+        "status_situacao_patente": "SIM",
+        "autores": ["GIUNCHETTI, R. C.", "VIANA, K. F.", "VIANA, K. F.", "AGUIAR-SOARES, RODRIGO DIAN DE OLIVEIRA", "Silveira-Lemos, Denise", "REIS, A", "REIS, ALEXANDRE B", "Corrêa-Oliveira, R.", "MARTINS-FILHO, OLINDO ASSIS"],
+        "autores-endogeno": ["8712666530716107"],
+        "autores-endogeno-nome": [
+          {
+            "8712666530716107": "Rodrigo Correa de Oliveira"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "MÉTODO E KIT PARA DIAGNÓSTICO SOROLÓGICO DA LEISHMANIOSE VISCERAL CANINA PELA TÉCNICA DE CITOMETRIA DE FLUXO",
+        "ano_desenvolvimento": "2012",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020120047420",
+        "data_pedido_de_deposito": "02032012",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "02032012",
+        "status_situacao_patente": "SIM",
+        "autores": ["REIS, A. B.", "AGUIAR, R. D. O. A. S.", "LEMOS, S. D.", "FILHO, OLINDO A.M.", "KER, H. G.", "Roatt B. M.", "CARVALHO, A. T."],
+        "autores-endogeno": ["6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Método e Kit para diagnóstico diferencial de doenças infecto-parasitárias utilizando citometria de fluxo",
+        "ano_desenvolvimento": "2012",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020120055678",
+        "data_pedido_de_deposito": "12032012",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "12032012",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "20130000074",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "12032012",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Olindo Assis Martins Filho",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "12032012",
+        "status_situacao_patente": "SIM",
+        "autores": ["CAMPOS, F. M. F.", "MARTINS-FILHO, O.A.", "OLIVEIRA, C. D. L.", "SABINO, E. C.", "LEMOS, E. M.", "NUNES, F. M. C. F.", "CARVALHO, A. T.", "ROCHA, R. D. R.", "ANDRADE, M. C.", "VITELLI-AVELAR, D. M.", "GEIGER, S. M.", "ARAÚJO, M. S. S.", "CARNEIRO-PROIETTI, A. B. F."],
+        "autores-endogeno": ["6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "protótipo de um Kit de diagnóstico sorológico da leishmaniose visceral canina, empregando formas promastigotas fixadas pela técnica de citometria de fluxo",
+        "ano_desenvolvimento": "2012",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI014120000412",
+        "data_pedido_de_deposito": "02032012",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "02032012",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Olindo Assis Martins Filho",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "02032012",
+        "status_situacao_patente": "SIM",
+        "autores": ["REIS, A. B.", "MARTINS-FILHO, O.A.", "KER, H. G.", "LEMOS, S. D.", "GIUNCHETTI, R. C."],
+        "autores-endogeno": ["6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Processo Biotecnológico Para Avaliação Precoce de Imunogenicidade e Eficácia de Vacinais Contra Leishmaniose Visceral Canina",
+        "ano_desenvolvimento": "2012",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI014120000",
+        "data_pedido_de_deposito": "02032012",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "02032012",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Olindo Assis Martins Filho",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "02032012",
+        "status_situacao_patente": "SIM",
+        "autores": ["GIUNCHETTI, R. C.", "MARTINS-FILHO, O.A.", "VIANA, F. K.", "AGUIAR, R. D. O. A. S.", "LEMOS, S. D.", "REIS, A. B.", "OLIVEIRA, R. C."],
+        "autores-endogeno": ["6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "New Delivery Method. VacSim.",
+        "ano_desenvolvimento": "2012",
+        "pais": "Estados Unidos",
+        "home_page": "https://patentscope.wipo.int/search/en/detail.jsf?docId=WO2012145355",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "61/476,431",
+        "data_pedido_de_deposito": "18042012",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "26102012",
+        "instituicao_deposito_registro": "United States Patent and Trademark Office",
+        "numero_deposito_pct": "61476431",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Donald Harn;Rafaella Fortini Grenfell e Queiroz;University of Georgia",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "18042012",
+        "status_situacao_patente": "SIM",
+        "autores": ["McEwen L.", "Harn D.", "Grenfell, R.F.Q."],
+        "autores-endogeno": ["5508945613911003"],
+        "autores-endogeno-nome": [
+          {
+            "5508945613911003": "Rafaella Fortini Grenfell e Queiroz"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "MÉTODO E KIT PARA DIAGNÓSTICO DIFERENCIAL DE DOENÇAS INFECTO-PARASITÁRIAS UTILIZANDO CITOMETRIA DE FLUXO",
+        "ano_desenvolvimento": "2012",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10201200556",
+        "data_pedido_de_deposito": "13032012",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Andréa Teixeira de Carvalho;Mariléia Chaves Andrade;Danielle Marquete Vitelli Avelar",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "13032012",
+        "status_situacao_patente": "SIM",
+        "autores": ["ARAÚJO, MÁRCIO S. S.", "MARTINS-FILHO, O. A.", "TEIXEIRA-CARVALHO, A.", "R. D. R. Rocha", "Mariléia Chaves Andrade", "AVELAR, D. M. V."],
+        "autores-endogeno": ["2634004612117298"],
+        "autores-endogeno-nome": [
+          {
+            "2634004612117298": "Márcio Sobreira Silva Araújo"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Método e Kit para diagnóstico diferencial de doenças infecto-parasitárias utilizando Citometria de Fluxo",
+        "ano_desenvolvimento": "2012",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI1020120055678",
+        "data_pedido_de_deposito": "12032012",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "12032012",
+        "status_situacao_patente": "SIM",
+        "autores": ["Martins-Filho, O.A.", "TEIXEIRA-CARVALHO, ANDRÉA"],
+        "autores-endogeno": ["3798623797837575", "2634004612117298", "6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "3798623797837575": "Andréa Teixeira de Carvalho",
+            "2634004612117298": "Márcio Sobreira Silva Araújo",
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Metodologia in vitro para seleção de substancias com potencial atividade antiparasitaria e imunologica, utilizando a citometria de fluxo",
+        "ano_desenvolvimento": "2012",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10201203244768",
+        "data_pedido_de_deposito": "19122012",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "19122012",
+        "status_situacao_patente": "SIM",
+        "autores": ["Souza-Fagundes, em", "BANDEIRA, C.", "Peruhype-Magalhães, V", "TEIXEIRA-CARVALHO, A.", "MARTINS FILHO, O. A."],
+        "autores-endogeno": ["3798623797837575", "6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "3798623797837575": "Andréa Teixeira de Carvalho",
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "MÉTODO E KIT PARA TESTE IMUNODIAGNÓSTICO DE DOENÇA DE CHAGAS",
+        "ano_desenvolvimento": "2012",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020120279975",
+        "data_pedido_de_deposito": "31102012",
+        "data_de_pedido_de_exame": "21102014",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "31102012",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "FUJIWARA, RICARDO TOSHIO", "BARTHOLOMEU, DC", "MENDES, TIAGO ANTÔNIO DE OLIVEIRA"],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2013": [
+    [
+      {
+        "titulo": "IMUNOBIOLÓGICO PARA CONTROLE DO VETOR DA LEISHMANIOSE E SEU PROCESSO DE OBTENÇÃO",
+        "ano_desenvolvimento": "2013",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020130228052",
+        "data_pedido_de_deposito": "06092013",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Rodolfo Cordeiro Giunchetti;REIS, ALEXANDRE B;William Castro-Borges;Rodrigo Correa de Oliveira;Universidade Federal de Minas Gerais;Universidade Federal de Ouro Preto",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "06092013",
+        "status_situacao_patente": "SIM",
+        "autores": ["GIUNCHETTI, R. C.", "Bartholomeu, Daniella Castanheira", "GONTIJO, NELDER FIGUEIREDO", "MENDONCA, L. Z.", "REIS, ALEXANDRE B", "CASTRO-BORGES, W.", "MARTINS-FILHO, OLINDO ASSIS", "Corrêa-Oliveira, R.", "Corrêa-Oliveira, Rodrigo"],
+        "autores-endogeno": ["8712666530716107"],
+        "autores-endogeno-nome": [
+          {
+            "8712666530716107": "Rodrigo Correa de Oliveira"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Imunobiologico para o Controle do Vetor da Leishmaniose e seu processo de Obtenção.",
+        "ano_desenvolvimento": "2013",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR2020130228052",
+        "data_pedido_de_deposito": "06092013",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "06092013",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Olindo Assis Martins Filho",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "06092013",
+        "status_situacao_patente": "SIM",
+        "autores": ["GIUNCHETTI, R. C.", "MARTINS-FILHO, O.A.", "GONTIJO, N. F.", "OLIVEIRA, R. C.", "MENDONÇA, L. Z.", "BORGES, W. C.", "BARTHOLOMEU, D. C.", "REIS, A. B."],
+        "autores-endogeno": ["6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "UTILIZAÇÃO DE EPÍTOPOS COMO ALVOS VACINAIS CONTRA A ESQUISTOSSOMOSE",
+        "ano_desenvolvimento": "2013",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020130113301",
+        "data_pedido_de_deposito": "08052013",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "08052013",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de São João Del-Rei;Fundação de Amparo à Pesquisa do Estado de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "08052013",
+        "status_situacao_patente": "SIM",
+        "autores": ["Cristina T Fonseca", "LOPES, D. O.", "VIANA, G. H. R.", "SANTOS, L. L.", "COELHO, I. E. V.", "SANTOS, H. L.", "TARANTO, A. G.", "OLIVEIRA, F. M.", "VILLAR, J. A. F. P."],
+        "autores-endogeno": ["7920312439713999"],
+        "autores-endogeno-nome": [
+          {
+            "7920312439713999": "Cristina Toscano Fonseca"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Differential Diagnosis Method And Kit For Infectious And Parasitic Diseases, Using Flow Cytometry",
+        "ano_desenvolvimento": "2013",
+        "pais": "Suiça",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "WO2013/134839",
+        "data_pedido_de_deposito": "19092013",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "WIPO - World Intellectual Property Organization",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "19092013",
+        "status_situacao_patente": "SIM",
+        "autores": ["MARTINS FILHO, O. A.", "SABINO, E. C.", "LEMOS, E. M.", "TEIXEIRA-CARVALHO, A.", "ROCHA, R. D. R.", "ANDRADE, M. C.", "VITELLI-AVELAR, D. M.", "GEIGER, S. M.", "CALDAS, R. G.", "PROIETTI, A. B. F. C.", "OLIVEIRA, C."],
+        "autores-endogeno": ["3798623797837575"],
+        "autores-endogeno-nome": [
+          {
+            "3798623797837575": "Andréa Teixeira de Carvalho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Genossensor eletroquímico para diagnóstico da meningite meningocócica",
+        "ano_desenvolvimento": "2013",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020130313106",
+        "data_pedido_de_deposito": "05122013",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Uberlândia",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "05122013",
+        "status_situacao_patente": "SIM",
+        "autores": ["Brito, A.G.", "Madurro, J. M.", "Balvedi, R. F. A.", "Castro, A. C. H.", "Orellana, S. C.", "COIMBRA, R. S.", "Oliveira, G."],
+        "autores-endogeno": ["3118219944250108"],
+        "autores-endogeno-nome": [
+          {
+            "3118219944250108": "Roney Santos Coimbra"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2014": [
+    [
+      {
+        "titulo": "Differential Diagnosis Method And Kit For Infectious And Parasitic Diseases, Using Flow Cytometry",
+        "ano_desenvolvimento": "2014",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "EP137613717",
+        "data_pedido_de_deposito": "18092014",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "European Patent Office",
+        "numero_deposito_pct": "2013000074",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "18092014",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "18092014",
+        "status_situacao_patente": "SIM",
+        "autores": ["Martins-Filho O A", "SABINO, E. C.", "LEMOS, E. M.", "CARVALHO, A. T.", "ROCHA, R. D. R.", "ANDRADE, M. C.", "VITELLI-AVELAR, D. M.", "GEIGER, S. M.", "LEITE, R. G. C.", "CARNEIRO-PROIETTI, A. B. F.", "OLIVEIRA, C. D. L."],
+        "autores-endogeno": ["6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Differential Diagnosis Method And Kit For Infectious And Parasitic Diseases, Using Flow Cytometry",
+        "ano_desenvolvimento": "2014",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "US14385420",
+        "data_pedido_de_deposito": "15092014",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "United States Patent and Trademark Office",
+        "numero_deposito_pct": "2013000074",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "15092014",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "15092014",
+        "status_situacao_patente": "SIM",
+        "autores": ["Martins-Filho O A", "SABINO, E. C.", "LEMOS, E. M.", "CARVALHO, ANDRÉA TEIXEIRA DE", "ROCHA, R. D. R.", "ANDRADE, M. C.", "VITELLI-AVELAR, D. M.", "GEIGER, S. M.", "LEITE, R. G. C.", "CARNEIRO-PROIETTI, A. B. F.", "OLIVEIRA, C. D. L."],
+        "autores-endogeno": ["6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Metodologia Triplex-IcG1 para diagnóstico diferencial da Doença de Chagas, Leishmaniose Tegumentar e Leishmaniose Visceral",
+        "ano_desenvolvimento": "2014",
+        "pais": "Estados Unidos",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "US/385.420",
+        "data_pedido_de_deposito": "24092014",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "United States Patent and Trademark Office",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "24092014",
+        "status_situacao_patente": "SIM",
+        "autores": ["Martins-Filho O A"],
+        "autores-endogeno": ["6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Atividade Antagonista do extrato do fungo Metschnikowia autralis sobre os receptores PX27 e uso desse extrato no tratamento de doenças relacionadas ao receptor P2X7",
+        "ano_desenvolvimento": "2014",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020140308970",
+        "data_pedido_de_deposito": "10122014",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "10122014",
+        "status_situacao_patente": "SIM",
+        "autores": ["BEZERRA, R. J. S.", "FURBINO, L. E.", "GONCALVES, V. N.", "BRANDAO, L. R.", "ROSA, L. H.", "ALVES, T. M. A. ou ALVES, T M D ou ALVES, T.", "ALVEZ, L. A.", "FRUTUOSO, V. S.", "FERREIRA, N. C. S.", "SOUZA, C. Z.", "CALHEIROS, A. S.", "AZEREDO, J. A.", "FRANCISCO FLM", "ROSA, Carlos A."],
+        "autores-endogeno": ["5633763429024541"],
+        "autores-endogeno-nome": [
+          {
+            "5633763429024541": "Tânia Maria de Almeida Alves"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "TESTE SOROLÓGICO POR CITOMETRIA DE FLUXO PARA DIAGNÓSTICO E MONITORAÇÃO PÓS-TRATAMENTO PARA DOENÇA DE CHAGAS",
+        "ano_desenvolvimento": "2014",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10201400337",
+        "data_pedido_de_deposito": "13022014",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Márcio Sobreira Silva Araújo;Andrea Teixeira de Carvalho; FERNANDA FREIRE CAMPOS NUNES",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "13022014",
+        "status_situacao_patente": "SIM",
+        "autores": ["ARAÚJO, M.S.S.", "ARAÚJO, MARCIO S.S.", "MARTINS-FILHO, O. A.", "Andrea Teixeira de Carvalho", "NUNES, F. F. C."],
+        "autores-endogeno": ["2634004612117298", "6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "2634004612117298": "Márcio Sobreira Silva Araújo",
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Differential Diagnosis Method And Kit For Infectious And Parasitic Diseases, Using Flow Cytometry",
+        "ano_desenvolvimento": "2014",
+        "pais": "Estados Unidos",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "US14/385420",
+        "data_pedido_de_deposito": "15092014",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "07032017",
+        "instituicao_deposito_registro": "United States Patent and Trademark Office",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Martins-Filho, O. A.;Fundação Hemominas;Fundação Pró-Sangue Hemocentro de São Paulo",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "15092014",
+        "status_situacao_patente": "SIM",
+        "autores": ["MARTINS FILHO, O. A.", "Martins-Filho, O. A.", "SABINO, E. C.", "LEMOS, E. M.", "TEIXEIRA-CARVALHO, A.", "ROCHA, R. D. R.", "ANDRADE, M. C.", "VITELLI-AVELAR, D. M.", "GEIGER, S. M.", "CALDAS, R. G.", "CARNEIRO-PROIETTI, A. B. F.", "OLIVEIRA, L."],
+        "autores-endogeno": ["3798623797837575"],
+        "autores-endogeno-nome": [
+          {
+            "3798623797837575": "Andréa Teixeira de Carvalho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Teste Sorológico por citometria de fluxo para diagnóstico e monitoração pós tratamento para doença de chagas",
+        "ano_desenvolvimento": "2014",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020140033742",
+        "data_pedido_de_deposito": "13012014",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "13012014",
+        "status_situacao_patente": "SIM",
+        "autores": ["MARTINS FILHO, O. A.", "Ferro, E.A.V.", "LANA, M.", "REIS, A. B.", "KER, H. G.", "CORTES, D. F.", "BIANCHI, R.", "ALESSIO, G. D.", "TEIXEIRA-CARVALHO, A.", "CAMPOS, FERNANDA M. F.", "SALES JUNIOR, P. A.", "ARAUJO, M. S. S.", "ANTONELLI, LIS R."],
+        "autores-endogeno": ["3798623797837575", "2634004612117298", "6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "3798623797837575": "Andréa Teixeira de Carvalho",
+            "2634004612117298": "Márcio Sobreira Silva Araújo",
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Identificação de antígenos candidatos a uma vacina contra a leishmaniose visceral canina no genoma de Leishmania infantum utilizando a bioinformática como ferramenta.",
+        "ano_desenvolvimento": "2014",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020140038191",
+        "data_pedido_de_deposito": "19022014",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Rory CF de Brito;Alexandre Barbosa Reis;Resende, Daniela M.;Jeronimo Conceição Ruiz;Universidade Federal de Ouro Preto",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "19022014",
+        "status_situacao_patente": "SIM",
+        "autores": ["BRITO, R. C. F.", "BRITO, R. C.", "REIS, ALEXANDRE B", "REIS, A. B.", "Resende, Daniela M.", "RESENDE, D. M.", "RUIZ, J. C."],
+        "autores-endogeno": ["7769547194874833"],
+        "autores-endogeno-nome": [
+          {
+            "7769547194874833": "Jeronimo Conceição Ruiz"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "TESTE SOROLÓGICO POR CITOMETRIA DE FLUXO PARA DIAGNÓSTICO E MONITORAÇÃO PÓS-TRATAMENTO PARA DOENÇA DE CHAGAS.",
+        "ano_desenvolvimento": "2014",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10201400033742",
+        "data_pedido_de_deposito": "13022014",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "14022014",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Ouro Preto",
+        "descricao_situacao_patente": "Concessão",
+        "data_situacao_patente": "14022014",
+        "status_situacao_patente": "SIM",
+        "autores": ["LANA, M.", "FERRO, E. A. V.", "Reis, A.B.", "KER, H. G.", "CORTES, D. F.", "MARTINS FILHO, O. A.", "ALESIO, G. D.", "CARVALHO, A. T.", "NUNES, F. F. C.", "SALES-JUNIOR, P. A.", "ARAUJO, M. S. S.", "Antonelli, L. R. V."],
+        "autores-endogeno": ["4929168581709218"],
+        "autores-endogeno-nome": [
+          {
+            "4929168581709218": "Lis Ribeiro do Valle Antonelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Método preditivo qualitativo para diagnóstico diferencial das meningites pneumocócica, meningocócica e viral, método e kit para diagnóstico diferencial das meningites",
+        "ano_desenvolvimento": "2014",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020140046798",
+        "data_pedido_de_deposito": "27022014",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Fundação Oswaldo Cruz;Fundação de Amparo à Pesquisa do Estado de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "27022014",
+        "status_situacao_patente": "SIM",
+        "autores": ["COIMBRA, R. S.", "SILVA-PEREIRA, ROSIANE A.", "OLIVEIRA, G. C.", "CORDEIRO, A. P."],
+        "autores-endogeno": ["6405912413079760", "3118219944250108"],
+        "autores-endogeno-nome": [
+          {
+            "6405912413079760": "Rosiane Aparecida da Silva Pereira",
+            "3118219944250108": "Roney Santos Coimbra"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2015": [
+    [
+      {
+        "titulo": "MÉTODO E KIT PARA DIAGNÓSTICO DE TRIPANOSSOMÍASE BOVINA E USO",
+        "ano_desenvolvimento": "2015",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10201503249",
+        "data_pedido_de_deposito": "23122015",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais;Universidade de Uberaba",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "23122015",
+        "status_situacao_patente": "SIM",
+        "autores": ["Márcio Sobreira Silva Araújo", "Souza, D. Menezes", "MARTINS-FILHO, O. A.", "BITTAR, J. F. F.", "COSTA-SILVA, M. F.", "BITTAR, E. R.", "MENDES, T. A. O.", "Garcia, G. C"],
+        "autores-endogeno": ["2634004612117298"],
+        "autores-endogeno-nome": [
+          {
+            "2634004612117298": "Márcio Sobreira Silva Araújo"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "PROTEÍNA QUIMÉRICA, COMPOSIÇÃO VACINAL E KIT PARA TESTE IMUNODIAGNÓSTICO DE LEISHMANIOSE VISCERAL",
+        "ano_desenvolvimento": "2013",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1320130012717",
+        "data_pedido_de_deposito": "18012013",
+        "data_de_pedido_de_exame": "15122015",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Pedido do Exame",
+        "data_situacao_patente": "15122015",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "FARIA, A. R.", "Hélida Monteiro de Andrade", "FRANCO, M. M. S. C.", "Leonardo Miranda Damasceno"],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "VACCINE COMPOSITION AND IMMUNIZATION METHOD",
+        "ano_desenvolvimento": "2006",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR2007000248",
+        "data_pedido_de_deposito": "21072006",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "03032015",
+        "instituicao_deposito_registro": "United States Patent and Trademark Office",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Concessão",
+        "data_situacao_patente": "03032015",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "Fernandes, A. P.", "Eduardo Antonio Ferraz Coelho", "ABRANTES, C"],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2016": [
+    [
+      {
+        "titulo": "PEPTÍDEOS, MÉTODO E KIT PARA IMUNODIAGNÓSTICO DE LEISHMANIOSE TEGUMENTAR E USO",
+        "ano_desenvolvimento": "2016",
+        "pais": "Brasil",
+        "home_page": "www.inpi.br",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Diagnóstico laboratorial da leishmaniose tegumentar",
+        "instituicao_financiadora": "Fundação de Amparo à Pesquisa do Estado de Minas Gerais",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10201600509",
+        "data_pedido_de_deposito": "01042016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "870160012171",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais;Fundação de Amparo à Pesquisa do Estado de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "01042016",
+        "status_situacao_patente": "SIM",
+        "autores": ["ANDRADE, H. M.", "LIMA, B. S. S.", "FIALHO JR, L. C.", "FONSECA, S. P.", "OLIVEIRA, E."],
+        "autores-endogeno": ["4533303011981452"],
+        "autores-endogeno-nome": [
+          {
+            "4533303011981452": "Edward José de Oliveira"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Inibidores da Síntese de Ergosterol para o Tratamento de Doenças, Composições Farmacêuticas e Uso",
+        "ano_desenvolvimento": "2016",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Outra",
+        "tipo_patente": "MODELO_DE_UTILIDADE_MU",
+        "codigo_do_registro_ou_patente": "BR10201601661",
+        "data_pedido_de_deposito": "19072016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "10201601661",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ynara M. Idemori;Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "19072016",
+        "status_situacao_patente": "SIM",
+        "autores": ["Demicheli, Cynthia", "Idemori, Ynara M.", "Idmeori, Ynara M.", "Silva, Gilson de F.", "Gomes, Marcela L.", "Frézard, F", "Silva, Vinícius S.", "Sales Junior, Policarpo Ademar", "Monte-Neto, Rubens Lima do"],
+        "autores-endogeno": ["2817016666672297"],
+        "autores-endogeno-nome": [
+          {
+            "2817016666672297": "Rubens Lima do Monte Neto"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "PARTÍCULA VIRAL LIGADA A ANTÍGENO CARBOIDRATO PARA DIAGNÓSTICO DIFERENCIAL DA DOENÇA DE CHAGAS, MÉTODO, KIT, VACINAS E USOS",
+        "ano_desenvolvimento": "2016",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020160254493",
+        "data_pedido_de_deposito": "31102016",
+        "data_de_pedido_de_exame": "29052018",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "31102016",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "MARQUES, A. F."],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Utilização de vírus influenza recombinantes e vírus vaccinia Ankara modificado (MVA) com genes que codificam para as proteínas de superfície SAG1 e SAG2 do Toxoplasma gondii como vacinas contra Toxoplasmose",
+        "ano_desenvolvimento": "2016",
+        "pais": "Alemanha",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Desenvolvimento de vacina com vírus recombinante contra a toxoplasmose",
+        "instituicao_financiadora": "CNPQ, FAPEMIG",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "EP16172862.1",
+        "data_pedido_de_deposito": "03062016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "EPO",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "03062016",
+        "status_situacao_patente": "SIM",
+        "autores": ["MACHADO, ALEXANDRE VIEIRA", "CAETANO, B. C.", "MENDES, É. A.", "GUIMARÃES, F. F.", "BRUNA-ROMERO, O.", "BARBOSA, R. P. A.", "GAZZINELLI, R. T."],
+        "autores-endogeno": ["5804297852066640"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "Alemanha",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "EP3112867(DE)",
+        "data_pedido_de_deposito": "26092016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "03042019",
+        "instituicao_deposito_registro": "German Patent and Trademark Office",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "26092016",
+        "status_situacao_patente": "SIM",
+        "autores": ["Pereira, R.A.S.", "OLIVEIRA, G.", "CORDEIRO, A. P.", "Coimbra, R.S."],
+        "autores-endogeno": ["3118219944250108"],
+        "autores-endogeno-nome": [
+          {
+            "3118219944250108": "Roney Santos Coimbra"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "França",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "EP3112867 (FR)",
+        "data_pedido_de_deposito": "26092016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "03032019",
+        "instituicao_deposito_registro": "Institut National de la Propriete Industrielle",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "26092016",
+        "status_situacao_patente": "SIM",
+        "autores": ["Pereira, R.A.S.", "OLIVEIRA, G.", "CORDEIRO, A. P.", "Coimbra, R.S."],
+        "autores-endogeno": ["3118219944250108"],
+        "autores-endogeno-nome": [
+          {
+            "3118219944250108": "Roney Santos Coimbra"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "Moçambique",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "AP5106",
+        "data_pedido_de_deposito": "26092016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "16042021",
+        "instituicao_deposito_registro": "Organização Regional Africana da Propriedade Intelectual (ARIPO)",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Fundação Oswaldo Cruz",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "26092016",
+        "status_situacao_patente": "SIM",
+        "autores": ["Pereira, R.A.S.", "CORDEIRO, A. P.", "Oliveira, G.", "COIMBRA, RONEY SANTOS"],
+        "autores-endogeno": ["3118219944250108"],
+        "autores-endogeno-nome": [
+          {
+            "3118219944250108": "Roney Santos Coimbra"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "Grã-Bretanha",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "EP3112867 (UK)",
+        "data_pedido_de_deposito": "26092016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "01032019",
+        "instituicao_deposito_registro": "UK Patent Office",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Fundação Oswaldo Cruz",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "26092016",
+        "status_situacao_patente": "SIM",
+        "autores": ["Pereira, R.A.S.", "CORDEIRO, A. P.", "OLIVEIRA, G.", "COIMBRA, RONEY SANTOS"],
+        "autores-endogeno": ["3118219944250108"],
+        "autores-endogeno-nome": [
+          {
+            "3118219944250108": "Roney Santos Coimbra"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "Índia",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "IN201617029165",
+        "data_pedido_de_deposito": "26082016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "Controller-General of Patents, Designs and Trademarks",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Fundação Oswaldo Cruz;Fundação de Amparo à Pesquisa do Estado de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "26082016",
+        "status_situacao_patente": "SIM",
+        "autores": ["COIMBRA, R. S.", "SILVA-PEREIRA, ROSIANE A.", "OLIVEIRA, G. C.", "CORDEIRO, A. P."],
+        "autores-endogeno": ["6405912413079760"],
+        "autores-endogeno-nome": [
+          {
+            "6405912413079760": "Rosiane Aparecida da Silva Pereira"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "Camarões",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "AO1201600335",
+        "data_pedido_de_deposito": "26082016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "OAPI (African Intellectual Property Organization)",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Fundação Oswaldo Cruz;Fundação de Amparo à Pesquisa do Estado de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "26082016",
+        "status_situacao_patente": "SIM",
+        "autores": ["COIMBRA, R. S.", "SILVA-PEREIRA, ROSIANE A.", "OLIVEIRA, G. C.", "CORDEIRO, A. P."],
+        "autores-endogeno": ["6405912413079760", "3118219944250108"],
+        "autores-endogeno-nome": [
+          {
+            "6405912413079760": "Rosiane Aparecida da Silva Pereira",
+            "3118219944250108": "Roney Santos Coimbra"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "África do Sul",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "ZA 3112867",
+        "data_pedido_de_deposito": "08092016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "30052018",
+        "instituicao_deposito_registro": "CIPC (Companies and Intelectual Property Commission)",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Fundação Oswaldo Cruz;Fundação de Amparo à Pesquisa do Estado de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "08092016",
+        "status_situacao_patente": "SIM",
+        "autores": ["COIMBRA, R. S.", "SILVA-PEREIRA, ROSIANE A.", "OLIVEIRA, G. C.", "CORDEIRO, A. P."],
+        "autores-endogeno": ["6405912413079760"],
+        "autores-endogeno-nome": [
+          {
+            "6405912413079760": "Rosiane Aparecida da Silva Pereira"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "Zimbabue",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "AP/P/2016/009462",
+        "data_pedido_de_deposito": "26092016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "ARIPO (African Regional Intellectual Property Organization)",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Fundação Oswaldo Cruz;Fundação de Amparo à Pesquisa do Estado de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "26092016",
+        "status_situacao_patente": "SIM",
+        "autores": ["COIMBRA, R. S.", "SILVA-PEREIRA, ROSIANE A.", "OLIVEIRA, G. C.", "CORDEIRO, A. P."],
+        "autores-endogeno": ["6405912413079760"],
+        "autores-endogeno-nome": [
+          {
+            "6405912413079760": "Rosiane Aparecida da Silva Pereira"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "Estados Unidos",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "US 10.254.296",
+        "data_pedido_de_deposito": "26082016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "09042019",
+        "instituicao_deposito_registro": "United States Patent and Trademark Office",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Fundação Oswaldo Cruz;Fundação de Amparo à Pesquisa do Estado de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "26082016",
+        "status_situacao_patente": "SIM",
+        "autores": ["COIMBRA, R. S.", "SILVA-PEREIRA, ROSIANE A.", "OLIVEIRA, G. C.", "CORDEIRO, A. P."],
+        "autores-endogeno": ["6405912413079760", "3118219944250108"],
+        "autores-endogeno-nome": [
+          {
+            "6405912413079760": "Rosiane Aparecida da Silva Pereira",
+            "3118219944250108": "Roney Santos Coimbra"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "Alemanha",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "EP 3112867 (DE)",
+        "data_pedido_de_deposito": "26092016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "14032019",
+        "instituicao_deposito_registro": "European Patent Office",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Fundação Oswaldo Cruz;Fundação de Amparo à Pesquisa do Estado de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "26092016",
+        "status_situacao_patente": "SIM",
+        "autores": ["COIMBRA, R. S.", "SILVA-PEREIRA, ROSIANE A.", "OLIVEIRA, GUILHERME C.", "CORDEIRO, A. P."],
+        "autores-endogeno": ["6405912413079760"],
+        "autores-endogeno-nome": [
+          {
+            "6405912413079760": "Rosiane Aparecida da Silva Pereira"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2017": [
+    [
+      {
+        "titulo": "DIFFERENTIAL DIAGNOSTIC METHOD AND KIT FOR INFECTIOUS AND PARASITIC DISEASES, USING FLOW CYTOMETRY",
+        "ano_desenvolvimento": "2017",
+        "pais": "Estados Unidos",
+        "home_page": "https://patentimages.storage.googleapis.com/d4/74/58/5d5d5ff6118f60/US20170168050A1.pdf",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "MODELO_DE_UTILIDADE_MU",
+        "codigo_do_registro_ou_patente": "US2017/0168050",
+        "data_pedido_de_deposito": "24012017",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "United States Patent and Trademark Office",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Olindo Assis Martins-Filho;Fundação Oswaldo Cruz",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "24012017",
+        "status_situacao_patente": "SIM",
+        "autores": ["MARTINS-FILHO, O. A.", "MARTINS-FILHO, O. A.", "Andrea Teixeira de Carvalho", "ROCHA, R. D.", "Mariléia Chaves Andrade", "AVELAR, D. V.", "Silva Araujo, M. S."],
+        "autores-endogeno": ["2634004612117298"],
+        "autores-endogeno-nome": [
+          {
+            "2634004612117298": "Márcio Sobreira Silva Araújo"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2018": [
+    [
+      {
+        "titulo": "Método para detectar anticorpos contra Leishmania, kit para detecção de infecção por Leishmania em uma amostra biológica, e uso de lipofosfoglicano de Leishmania.",
+        "ano_desenvolvimento": "2018",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10201806733",
+        "data_pedido_de_deposito": "31082018",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal da Bahia",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "31082018",
+        "status_situacao_patente": "SIM",
+        "autores": ["Soares, R.P.", "PORTELA, R. W. D.", "BARROUIN-MELO, S. M.", "BARRAL, T. A. D.", "PORFIRIO-PASSOS, G."],
+        "autores-endogeno": ["5557656124686682"],
+        "autores-endogeno-nome": [
+          {
+            "5557656124686682": "Rodrigo Pedro Pinto Soares"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "MÉTODO E KIT IMUNODIAGNÓSTICO DA LINFADENITE CASEOSA EM PEQUENOS RUMINANTES UTILIZANDO AS PROTEÍNAS RECOMBINANTES CP40 e PLD COMO ANTÍGENOS",
+        "ano_desenvolvimento": "2018",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "CNPq, FAPEMIG, FAPESB",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10201801167",
+        "data_pedido_de_deposito": "08062018",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais;Universidade Federal da Bahia;Universidade Federal de Pelotas;Universidade Estadual Paulista Júlio de Mesquita Filho",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "08062018",
+        "status_situacao_patente": "SIM",
+        "autores": ["AZEVEDO, V. A. C.", "BORSUK, S.", "ARNI, R. K.", "MARIUTTI, R. B.", "BARRAL, T. A. D.", "NASCIMENTO, R. J. M.", "PORTELA, R. W. D.", "SOARES, RODRIGO P."],
+        "autores-endogeno": ["5557656124686682"],
+        "autores-endogeno-nome": [
+          {
+            "5557656124686682": "Rodrigo Pedro Pinto Soares"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "OLIGONUCLEOTÍDEOS, CONJUNTO DE OLIGONUCLEOTÍDEOS, MÉTODO PARA DETECÇÃO DE PLASMODIUM SIMIUM, KIT PARA DIAGNÓSTICO E DISCRIMINAÇÃO DE INFECÇÃO POR PLASMODIUM SIMIUM, E, SONDA",
+        "ano_desenvolvimento": "2018",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1021080061879",
+        "data_pedido_de_deposito": "27032018",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Fundação Oswaldo Cruz",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "27032018",
+        "status_situacao_patente": "SIM",
+        "autores": ["DE BRITO, CRISTIANA FERREIRA ALVES", "ALVARENGA, D. A. M.", "DANIEL-RIBEIRO, C. T.", "PINA-COSTA, A.", "BRASIL, P.", "Lourenço-de-Oliveira R", "CULLETON, R.", "HIRANO, Z. M. B.", "SOUZA-JUNIOR, J. C."],
+        "autores-endogeno": ["0553918889655570"],
+        "autores-endogeno-nome": [
+          {
+            "0553918889655570": "Cristiana Ferreira Alves de Brito"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Método para detectar anticorpos contra schistosoma, kit para detecção de infecção por schistosoma em uma amostra biológica, e, uso de um antígeno de schistosoma",
+        "ano_desenvolvimento": "2018",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10201801323",
+        "data_pedido_de_deposito": "27062018",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Cristina Toscano Fonseca;Jerônimo Conceição Ruiz;Daniela Rezende",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "27062018",
+        "status_situacao_patente": "SIM",
+        "autores": ["Cristina T Fonseca", "Toscano Fonseca, Cristina", "Carvalho GBF", "Ruiz JC", "REZENDE, D."],
+        "autores-endogeno": ["7920312439713999"],
+        "autores-endogeno-nome": [
+          {
+            "7920312439713999": "Cristina Toscano Fonseca"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Método para detectar anticorpos contra schistosoma, kit para detecção de infecção por schistosoma em uma amostra biológica, e, uso de um antígeno de schistosoma",
+        "ano_desenvolvimento": "2018",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "CNPq, CAPES, Fapemig, Fiocruz",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020180132385",
+        "data_pedido_de_deposito": "27062018",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ruiz, J.C.;Daniela de Melo Resende;Fundação Oswaldo Cruz",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "27062018",
+        "status_situacao_patente": "SIM",
+        "autores": ["FONSECA, C. T.", "CARVALHO, G. B. F.", "Jeronimo Conceição Ruiz", "Ruiz, Jeronimo C", "Resende, DM"],
+        "autores-endogeno": ["7769547194874833"],
+        "autores-endogeno-nome": [
+          {
+            "7769547194874833": "Jeronimo Conceição Ruiz"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "VACINAS COMPOSTAS DE PROTEÍNAS QUIMÉRICAS POLIEPÍTOPOS CONTRA A LEISHMANIOSE VISCERAL HUMANA E/OU CANINA",
+        "ano_desenvolvimento": "2018",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Vacina contra leishmaniose visceral canina",
+        "instituicao_financiadora": "CNPq; CAPES; FAPEMIG",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10201800819",
+        "data_pedido_de_deposito": "",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "221704596100",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "24042018",
+        "nome_do_titular": "",
+        "nome_do_depositante": "REIS, ALEXANDRE B;Jeronimo Conceição Ruiz;Universidade Federal de Ouro Preto",
+        "descricao_situacao_patente": "Depósito PCT",
+        "data_situacao_patente": "24042018",
+        "status_situacao_patente": "SIM",
+        "autores": ["BRITO, R. C. F.", "Resende, DM", "REIS, ALEXANDRE B", "REIS, A. B.", "RUIZ, J. C."],
+        "autores-endogeno": ["7769547194874833"],
+        "autores-endogeno-nome": [
+          {
+            "7769547194874833": "Jeronimo Conceição Ruiz"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "PROCESSO PARA VACINA RECOMBINANTE CONTRA A LEISHMANIOSE VISCERAL CANINA CONTENDO O ANTÍGENO RECOMBINANTE A2 E QUE PERMITE A DISTINÇÃO SOROLÓGICA ENTRE ANIMAIS VACINADOS DE ANIMAIS INFECTADOS",
+        "ano_desenvolvimento": "2018",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI06034900",
+        "data_pedido_de_deposito": "01022018",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "24042018",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Concessão",
+        "data_situacao_patente": "24042018",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "FERNANDES, ANA P.", "ABRANTES CF", "Eduardo Antonio Ferraz Coelho"],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Utilização de vírus influenza recombinantes e vírus vaccinia Ankara modificado (MVA) com genes que codificam para as proteínas de superfície SAG1 e SAG2 do Toxoplasma gondii como vacinas contra Toxoplasmose",
+        "ano_desenvolvimento": "2018",
+        "pais": "Estados Unidos",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Desenvolvimento de vacina com vírus recombinante contra a toxoplasmose",
+        "instituicao_financiadora": "CNPq, FAPEMIG",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "US15/907,672",
+        "data_pedido_de_deposito": "28022018",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "United States Patent and Trademark Office",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "28022018",
+        "status_situacao_patente": "SIM",
+        "autores": ["MACHADO, ALEXANDRE VIEIRA", "CAETANO, B. C.", "ARAUJO, E. M.", "GUIMARÃES, F. F.", "GAZZINELLI, R. T.", "BRUNA-ROMERO, O.", "BARBOSA, R. P. A."],
+        "autores-endogeno": ["5804297852066640"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "PRIMERS PARA DIAGNÓSTICO MOLECULAR DE LEISHMANIOSES, KIT, MÉTODO E USOS",
+        "ano_desenvolvimento": "2018",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10201800344",
+        "data_pedido_de_deposito": "22022018",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "22022018",
+        "status_situacao_patente": "SIM",
+        "autores": ["BARTHOLOMEU, D. C.", "BENTO, G. A.", "CARDOSO, M. S.", "LUIZ, G. F. R.", "FUJIWARA, R. T.", "SANTANNA, M. R. V.", "BUENO, L. L.", "GONTIJO, C.M.F."],
+        "autores-endogeno": ["7004385035447880"],
+        "autores-endogeno-nome": [
+          {
+            "7004385035447880": "Celia Maria Ferreira Gontijo"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "África do Sul",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "ZA3112867",
+        "data_pedido_de_deposito": "08092016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "30052018",
+        "instituicao_deposito_registro": "Companies and Intelectual Property Commission (CIPC)",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Fundação Oswaldo Cruz",
+        "descricao_situacao_patente": "Concessão",
+        "data_situacao_patente": "30052018",
+        "status_situacao_patente": "SIM",
+        "autores": ["Pereira, R.A.S.", "CORDEIRO, A. P.", "OLIVEIRA, G.", "COIMBRA, RONEY SANTOS"],
+        "autores-endogeno": ["3118219944250108"],
+        "autores-endogeno-nome": [
+          {
+            "3118219944250108": "Roney Santos Coimbra"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "KIT E MÉTODO PARA DIAGNÓSTICO MOLECULAR DIFERENCIAL DE TREMATÓDEOS",
+        "ano_desenvolvimento": "2018",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Diagnóstico",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10201800343",
+        "data_pedido_de_deposito": "",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "3158861707217459",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "22022018",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito PCT",
+        "data_situacao_patente": "22022018",
+        "status_situacao_patente": "SIM",
+        "autores": ["Bartholomeu, DC", "Mesquita, S. G.", "Luiz, GFR", "Pinto, HA", "Ricardo Fujiwara", "Bueno, LL", "Cunha, JLR", "CALDEIRA, R. L."],
+        "autores-endogeno": ["1735242943698067"],
+        "autores-endogeno-nome": [
+          {
+            "1735242943698067": "Roberta Lima Caldeira"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2019": [
+    [
+      {
+        "titulo": "Vaccine Immunogens",
+        "ano_desenvolvimento": "2019",
+        "pais": "Inglaterra",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "1200368922",
+        "data_pedido_de_deposito": "10052019",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "UK Patent Office",
+        "numero_deposito_pct": "202005114",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "11052020",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Adrian V Hill;Camila Raquel Rodrigues Barbosa;Paulo Jorge Gonc&#807;alves de Bettencourt;Fundação Oswaldo Cruz;University of Oxford",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "10052019",
+        "status_situacao_patente": "SIM",
+        "autores": ["JUNQUEIRA, C", "HILL, A. V.", "BARBOSA, C. R. R.", "BETTENCOURT, P. J. G. D."],
+        "autores-endogeno": ["9405337414047265"],
+        "autores-endogeno-nome": [
+          {
+            "9405337414047265": "Caroline Furtado Junqueira"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Composições Farmacêuticas Tripanocidas e Uso",
+        "ano_desenvolvimento": "2019",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "MODELO_DE_UTILIDADE_MU",
+        "codigo_do_registro_ou_patente": "BR10201901013",
+        "data_pedido_de_deposito": "17052019",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": ": Renata Barbosa de Oliveira;Silvane Maria Fonseca Murta;Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "17052019",
+        "status_situacao_patente": "SIM",
+        "autores": ["BARBOSA DE OLIVEIRA, RENATA", "Oliveira R. B.", "Silva I. R.", "MURTA, S.M.F.", "Tonholo D. R.", "Tagliati C. A.", "SALES JUNIOR, P. A."],
+        "autores-endogeno": ["8285043752158198"],
+        "autores-endogeno-nome": [
+          {
+            "8285043752158198": "Silvane Maria Fonseca Murta"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "PROCESSO PARA TESTE IMUNOENZIMÁTICO A SER UTILIZADO NA DETECÇÃO DE IMUNOGLOBULINAS G, M OU A ESPECIFICAS PARA PROTEINAS OU GLICOLIPIDEOS PURIFICADAS DA SUPERFICIE DA FORMA TAQUIZOITA DA PARASITA TOXOPLASMA GONDII E NO DIAGNOSTICO DA TOXOPLASMOSE CRÔNICA, AGUDA OU ACULAR",
+        "ano_desenvolvimento": "2019",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI04022297",
+        "data_pedido_de_deposito": "01022019",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "09042019",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "01022019",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "RESENDE JUNIOR, L.", "PORTELA, Ricardo Wagner Dias"],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "SEQÜENCIA GENETICAMENTE MODIFICADA DO ANTÍGENO DBP (AM) DE PLASMODIUM VIVAX, PROTEÍNA RECOMBINANTE DBP E ADENOVÍRUS GENETICAMENTE MODIFICADO QUE EXPRESSA O ANTÍGENO DBP RECOMBINANTE",
+        "ano_desenvolvimento": "2019",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI07047304",
+        "data_pedido_de_deposito": "01022019",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "04062019",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "01022019",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "BRITO, Cristiana F Alves de", "CASTELUBER, M. C. F.", "BRUNA-ROMERO, O."],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "SEQÜÊNCIA GENETICAMENTE MODIFICADA DO ANTÍGENO AMA-1 DE PLASMODIUM VIVAX, PROTEÍNA RECOMBINANTE AMA-1 E ADENOVÍRUS GENETICAMENTE MODIFICADO QUE EXPRESSA O ANTÍGENO AMA-1 RECOMBINANTE",
+        "ano_desenvolvimento": "2019",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI07060033",
+        "data_pedido_de_deposito": "02022019",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "08102019",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "02022019",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "SOARES, I.", "BOUILLET, L. E. M.", "BRUNA-ROMERO, O."],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "SEQÜÊNCIA GENETICAMENTE MODIFICADA DO ANTÍGENO DBP (MT) DE PLASMODIUM VIVAX, PROTEÍNA RECOMBINANTE DBP E ADENOVÍRUS GENETICAMENTE MODIFICADO QUE EXPRESSA O ANTÍGENO DBP RECOMBINANTE",
+        "ano_desenvolvimento": "2019",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI07060041",
+        "data_pedido_de_deposito": "02032019",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "08102019",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ricardo Tostes Gazzinelli",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "02032019",
+        "status_situacao_patente": "SIM",
+        "autores": ["BRITO, Cristiana F Alves de", "GAZZINELLI R", "CASTELUBER, M. C.", "BRUNA-ROMERO, O."],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "USO DE ANTAGONISTAS DO RECEPTOR FATOR DE ATIVAÇÃO PLAQUETÁRIA PARA O TRATAMENTO INFECÇÕES CAUSADAS PELO VÍRUS INFLUENZA",
+        "ano_desenvolvimento": "2019",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI07055862",
+        "data_pedido_de_deposito": "02032019",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "10122019",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "02032019",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "MACHADO, A. M. V.", "GARCIA, CRISTIANA COUTO", "TEIXEIRA, Mauro Martins", "RUSSO . RDC"],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "EP3112867(BE)",
+        "data_pedido_de_deposito": "26092016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "03062019",
+        "instituicao_deposito_registro": "The Belgian Intellectual Property Office (IPObel)",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Concessão",
+        "data_situacao_patente": "03062019",
+        "status_situacao_patente": "SIM",
+        "autores": ["Pereira, R.A.S.", "OLIVEIRA, G.", "CORDEIRO, A. P.", "Coimbra, R.S."],
+        "autores-endogeno": ["3118219944250108"],
+        "autores-endogeno-nome": [
+          {
+            "3118219944250108": "Roney Santos Coimbra"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "Suiça",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "EP3112867(CH)",
+        "data_pedido_de_deposito": "26092016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "15032019",
+        "instituicao_deposito_registro": "Swiss Federal Institute of Intellectual Property",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Concessão",
+        "data_situacao_patente": "15032019",
+        "status_situacao_patente": "SIM",
+        "autores": ["Pereira, R.A.S.", "OLIVEIRA, G.", "CORDEIRO, A. P.", "Coimbra, R.S."],
+        "autores-endogeno": ["3118219944250108"],
+        "autores-endogeno-nome": [
+          {
+            "3118219944250108": "Roney Santos Coimbra"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "PROTEÍNA QUIMÉRICA, SEU MÉTODO PARA PRODUÇÃO E USO, BEM COMO MOLÉCULA DE ÁCIDO NUCLEICO, CASSETE DE EXPRESSÃO, VETOR DE EXPRESSÃO, CÉLULA HOSPEDEIRA, COMPOSIÇÃO PARA DIAGNÓSTICO DE LEISHMANIOSE, KIT DE DIAGNÓSTICO DE LEISHMANIOSE E MÉTODO DE DIAGNÓSTICO DE LEISHMANIOSE IN VITRO",
+        "ano_desenvolvimento": "2019",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020190036397",
+        "data_pedido_de_deposito": "22022019",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "SANTOS, WAGNER J. T.;TAVARES, DIEGO H. C.;Antonio Mauro Rezende;NASCIMENTO, MARÍLIA B.;Fundação Oswaldo Cruz",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "22022019",
+        "status_situacao_patente": "SIM",
+        "autores": ["MELO NETO, O. P.", "SANTOS, WAGNER J. T.", "CASTRO NETO, ARTUR L.", "MAGALHÃES, FRANKLIN B.", "TAVARES, DIEGO H. C.", "DE REZENDE, ANTÔNIO MAURO", "NASCIMENTO, MARÍLIA B."],
+        "autores-endogeno": ["8641629843495094"],
+        "autores-endogeno-nome": [
+          {
+            "8641629843495094": "Antonio Mauro Rezende"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcal, meningococcal and viral meningitis, method and kit for differential diagnosis of meningitis",
+        "ano_desenvolvimento": "2019",
+        "pais": "Estados Unidos",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "US10.788.501",
+        "data_pedido_de_deposito": "20062019",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "29092020",
+        "instituicao_deposito_registro": "United States Patent and Trademark Office",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Fundação de Amparo à Pesquisa do Estado de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "20062019",
+        "status_situacao_patente": "SIM",
+        "autores": ["COIMBRA, R. S.", "SILVA-PEREIRA, ROSIANE A.", "OLIVEIRA, G. C.", "CORDEIRO, A. P."],
+        "autores-endogeno": ["6405912413079760"],
+        "autores-endogeno-nome": [
+          {
+            "6405912413079760": "Rosiane Aparecida da Silva Pereira"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2020": [
+    [
+      {
+        "titulo": "MÉTODO PARA DIAGNÓSTICO OU PROGNÓSTICO DE INFECÇÃO POR HTLV-1 E/OU HTLV-2, E, KIT PARA DIAGNÓSTICO DE INFECÇÃO POR HTLV-1 E/OU HTLV-2 POR CITOMETRIA DE FLUXO",
+        "ano_desenvolvimento": "2020",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020200099116",
+        "data_pedido_de_deposito": "18052020",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "MARTINS-FILHO, OLINDO;Universidade de São Paulo;Fundação Hemominas",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "18052020",
+        "status_situacao_patente": "SIM",
+        "autores": ["MARTINS FILHO, O. A.", "MARTINS-FILHO, OLINDO", "PERUHYPE-MAGALH'ES, VANESSA", "Coelho-dos-Reis JG", "PAIVA, L. P.", "TRINDADE, B. C.", "TEIXEIRA-CARVALHO, A.", "BICALHO, K. C.", "CARNEIRO-PROIETII, A. B.", "SABINO, ESTER CERDEIRA", "ALCANTARA, L. C."],
+        "autores-endogeno": ["9698329171140813", "7428560072021675", "6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "9698329171140813": "Vanessa Peruhype Magalhães Pascoal",
+            "7428560072021675": "Luiz Carlos Júnior Alcantara",
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "CONSTRUÇÃO DE ÁCIDO NUCLEICO, VIRUS INFLUENZA RECOMBINANTE, MÉTODO PARA PREPARAR UM VIRUS INFLUENZA RECOMBINANTE, COMPOSIÇÃO, E, USO",
+        "ano_desenvolvimento": "2020",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "MODELO_DE_UTILIDADE_MU",
+        "codigo_do_registro_ou_patente": "BR1020200102087",
+        "data_pedido_de_deposito": "21052020",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Machado AV; CARVALHO; XAVIER, M.;GONCALVES, A. P. F.; SILVA, S. G.;Márcio Sobreira Silva Araújo;Kimberly Freitas Cardoso",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "21052020",
+        "status_situacao_patente": "SIM",
+        "autores": ["A.V. Machado", "CARVALHO, M. A.", "K. R. A. ", " XAVIER, M.", "Giarola da Silva, S.", "Araújo, M. S. S.", "GONCALVES, A. P. F.", "GONCALVES1, A. P. F.", "SILVA, S. G.", "ARAÚJO, M.S.S.", "CARDOSO, K. F."],
+        "autores-endogeno": ["2634004612117298"],
+        "autores-endogeno-nome": [
+          {
+            "2634004612117298": "Márcio Sobreira Silva Araújo"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "COMPOSIÇÃO FARMACÊUTICA LEISHMANICIDA COMPREENDENDO LETROZOL E USO",
+        "ano_desenvolvimento": "2020",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "Patente de invenção",
+        "instituicao_financiadora": "UFMG; IRR/Fiocruz",
+        "categoria": "Processo",
+        "tipo_patente": "MODELO_DE_UTILIDADE_MU",
+        "codigo_do_registro_ou_patente": "BR1020200053272",
+        "data_pedido_de_deposito": "17032020",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "17032020",
+        "status_situacao_patente": "SIM",
+        "autores": ["FAGUNDES, E. M. S.", "RIBEIRO JM", "PERUHYPE-MAGALHÃES, VANESSA", "Teixeira Andrea", "GIUNCHETTI, R. C.", "Murta, Silvane MF"],
+        "autores-endogeno": ["8285043752158198", "9698329171140813"],
+        "autores-endogeno-nome": [
+          {
+            "8285043752158198": "Silvane Maria Fonseca Murta",
+            "9698329171140813": "Vanessa Peruhype Magalhães Pascoal"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Nanobastões de ouro sintetizados com polifenóis naturais, processo de produção e usos",
+        "ano_desenvolvimento": "2020",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020200243241",
+        "data_pedido_de_deposito": "27112020",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "27112020",
+        "status_situacao_patente": "SIM",
+        "autores": ["Lage, Anna Carolina Pinheiro", "Monte-Neto, Rubens Lima do", "Faraco, André Augusto Gomes", "Ladeira, Luis Orlando", "Santos, Daniel de Assis", "Carmo, Paulo Henrique Fonseca", "Castilho, Rachel O.", "Amorim, Juliana Mendes", "Tunes, Luiza G.", "Moreira, Paulo Otávio"],
+        "autores-endogeno": ["2817016666672297"],
+        "autores-endogeno-nome": [
+          {
+            "2817016666672297": "Rubens Lima do Monte Neto"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Dispositivo e método de ensaios LAMP que promove a amplificação isotérmica de RNA/DNA aplicada a identificação de patógenos",
+        "ano_desenvolvimento": "2020",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020200166620",
+        "data_pedido_de_deposito": "14082020",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Henrique Resende Martins;Denilson Laudares;Angelo Zandona;Bruno Avelar",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "14082020",
+        "status_situacao_patente": "SIM",
+        "autores": ["MONTE NETO, R. L.", "MARTINS, H. R.", "ALVES, P. A.", "NEVES, H. P.", "LAUDARES, D.", "ZANDONA, A.", "AVELAR, B."],
+        "autores-endogeno": ["6935282825820547", "2817016666672297"],
+        "autores-endogeno-nome": [
+          {
+            "6935282825820547": "Pedro Augusto Alves",
+            "2817016666672297": "Rubens Lima do Monte Neto"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "COMPOSIÇÃO VACINAL PARA CONTROLE DE MOSQUITOS ANOPHELES E USO",
+        "ano_desenvolvimento": "2020",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10202001786",
+        "data_pedido_de_deposito": "01092020",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "01092020",
+        "status_situacao_patente": "SIM",
+        "autores": ["GIUNCHETTI, R. C.", "MARIANO, R. M. S.", "DUTRA, W. O.", "PIMENTA, PAULO", "SECUNDINO, N.F.C.", "COSTA, B. A.", "Alessandra da Silva orfanó", "OLIVEIRA, R. C.", "GIUNCHETTI, D. S. L."],
+        "autores-endogeno": ["4592140991723664", "0641258278314799"],
+        "autores-endogeno-nome": [
+          {
+            "4592140991723664": "Paulo Filemon Paolucci Pimenta",
+            "0641258278314799": "Nagila Francinete Costa Secundino"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "FORMULAÇÃO VACINAL ANTITUMORAL BASEADA EM NANOTUBOS DE CARBONO E USO",
+        "ano_desenvolvimento": "2020",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020120335808",
+        "data_pedido_de_deposito": "02012020",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "04022020",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Concessão",
+        "data_situacao_patente": "04022020",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "LADEIRA L O", "FURTADO C A", "FARIA, P. C"],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "CONSTRUÇÃO DE ÁCIDO NUCLEICO, VIRUS INFLUENZA RECOMBINANTE, MÉTODO PARA PREPARAR UM VIRUS INFLUENZA RECOMBINANTE, COMPOSIÇÃO, E, USO",
+        "ano_desenvolvimento": "2020",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10202001020",
+        "data_pedido_de_deposito": "21052020",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Alexandre de Magalhaes Vieira Machado",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "21052020",
+        "status_situacao_patente": "SIM",
+        "autores": ["CARVALHO, :. K. R. A.", "Machado AV", "TAVARES, L. P.", "ALVES, P. A.", "XAVIER, M.", "GONCALVES1, A. P. F.", "SILVA, S. G.", "FAUSTINO, L. P.", "PEREIRA, I. A.", "PAULA, I. E. S.", "ARAUJO, M. S. S."],
+        "autores-endogeno": ["5804297852066640", "6935282825820547", "2430268236881898"],
+        "autores-endogeno-nome": [
+          {
+            "5804297852066640": "Alexandre de Magalhaes Vieira Machado",
+            "6935282825820547": "Pedro Augusto Alves",
+            "2430268236881898": "Marcelo Antonio Pascoal Xavier"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Qualitative predictive method for differential diagnosis of pneumococcic, meningococcic and viral meningitis, differential meningitis diagnostic method and kit",
+        "ano_desenvolvimento": "2016",
+        "pais": "Estados Unidos",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "US10788501",
+        "data_pedido_de_deposito": "26082016",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "09092020",
+        "instituicao_deposito_registro": "United States Patent and Trademark Office",
+        "numero_deposito_pct": "2015000021",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Concessão",
+        "data_situacao_patente": "09092020",
+        "status_situacao_patente": "SIM",
+        "autores": ["Pereira, R.A.S.", "OLIVEIRA, G.", "CORDEIRO, A. P.", "Coimbra, R.S."],
+        "autores-endogeno": ["3118219944250108"],
+        "autores-endogeno-nome": [
+          {
+            "3118219944250108": "Roney Santos Coimbra"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "MÉTODO DE DIAGNÓSTICO EM UMA AMOSTRA BIOLÓGICA, KIT DE DIAGNÓSTICO EM UMA AMOSTRA BIOLÓGICA E OLIGONUCLEOTÍDEO",
+        "ano_desenvolvimento": "2020",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "FAPEMIG",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020200239813",
+        "data_pedido_de_deposito": "24112020",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Fundação Oswaldo Cruz",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "24112020",
+        "status_situacao_patente": "SIM",
+        "autores": ["AVELAR, DANIEL MOREIRA", "SOARES, A. R. C.", "FARIA, V. C. S."],
+        "autores-endogeno": ["3544791535477213"],
+        "autores-endogeno-nome": [
+          {
+            "3544791535477213": "Daniel Moreira de Avelar"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2021": [
+    [
+      {
+        "titulo": "MÉTODO PARA DIAGNÓSTICO OU PROGNÓSTICO DE INFECÇÃO POR HTLV-1 E/OU HTLV-2, E, KIT PARA DIAGNÓSTICO DE INFECÇÃO POR HTLV-1 E/OU HTLV-2 POR CITOMETRIA DE FLUXO",
+        "ano_desenvolvimento": "2021",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR2021050101",
+        "data_pedido_de_deposito": "10032021",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "10032021",
+        "status_situacao_patente": "SIM",
+        "autores": ["FILHO, OLINDO A.M.", "PROIETTI, A. B. C.", "SABINO, E. C.", "CARVALHO, A. T.", "PERUHYPE-MAGALHÃES, V.", "BICALHO, K. A.", "TRINDADE, B. C.", "PAIVA, L. P.", "COELHO-DOS-REIS, JORDANA", "ALCANTARA, L. C. J.", "MARTINS, J. P."],
+        "autores-endogeno": ["6260226537155026"],
+        "autores-endogeno-nome": [
+          {
+            "6260226537155026": "Olindo Assis Martins Filho"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Metodologia in vitro para seleção de substancias com potencial atividade antiparasitaria e imunologica, utilizando a citometria de fluxo",
+        "ano_desenvolvimento": "2012",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Processo",
+        "tipo_patente": "MODELO_DE_UTILIDADE_MU",
+        "codigo_do_registro_ou_patente": "BR1020120324768",
+        "data_pedido_de_deposito": "19122012",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "05012021",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "1020120324768",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Concessão",
+        "data_situacao_patente": "05012021",
+        "status_situacao_patente": "SIM",
+        "autores": ["Fagundes EMS", "PERUHYPE-MAGALHÃES, V.", "TEIXEIRA-CARVALHO, A.", "MARTINS-FILHO, OLINDO A.", "BANDEIRA, C. C.", "GUERRA, A. A."],
+        "autores-endogeno": ["9698329171140813"],
+        "autores-endogeno-nome": [
+          {
+            "9698329171140813": "Vanessa Peruhype Magalhães Pascoal"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "'Nucleic acid construct, recombinant influenza virus, method for preparing a recombinant influenza virus, composition and use'",
+        "ano_desenvolvimento": "2021",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "WO2021232130A1",
+        "data_pedido_de_deposito": "25112021",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "WIPO - World Intellectual Property Organization",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "MACHADO, ALEXANDRE VIEIRA;Sarah Giarola da Silva;ANA PAULA DE FARIA GONÇALVES;Márcio Sobreira Silva Araújo;Kimberly Freitas Cardoso;MARCELO ANTONIO PASCOAL XAVIER",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "25112021",
+        "status_situacao_patente": "SIM",
+        "autores": ["Machado, A. M. V.", "MACHADO, ALEXANDRE VIEIRA", "Giarola da Silva, S.", "GONCALVES, A. P. F.", "ARAÚJO, MÁRCIO SOBREIRA DA SILVA", "ARAUJO, MÁRCIO S S", "CARDOSO, K. F.", "XAVIER, M. A. P."],
+        "autores-endogeno": ["2634004612117298"],
+        "autores-endogeno-nome": [
+          {
+            "2634004612117298": "Márcio Sobreira Silva Araújo"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Coletor de ar para acoplamento em aeronaves na&#771;o tripuladas.",
+        "ano_desenvolvimento": "2021",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "MODELO_DE_UTILIDADE_MU",
+        "codigo_do_registro_ou_patente": "BR2020210238424",
+        "data_pedido_de_deposito": "26112021",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "26112021",
+        "status_situacao_patente": "SIM",
+        "autores": ["Rezende, Antonio M.", "Wallau, Gabriel L.", "Monte Neto, Rubens L.", "Quintão, Matheus C.", "Carvalho, Helotonio", "Albuquerque, Jones O."],
+        "autores-endogeno": ["2817016666672297"],
+        "autores-endogeno-nome": [
+          {
+            "2817016666672297": "Rubens Lima do Monte Neto"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "PLASMÍDEO RECOMBINANTE, VÍRUS INFLUENZA GENETICAMENTE MODIFICADO E USOS",
+        "ano_desenvolvimento": "2021",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020210221666",
+        "data_pedido_de_deposito": "04112021",
+        "data_de_pedido_de_exame": "05112021",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Pedido do Exame",
+        "data_situacao_patente": "05112021",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "Galvão-Filho B", "GONCALVES, A. P. F.", "ALVES, P. A.", "MACHADO, A. M. V.", "PEREIRA, I. A. O. S.", "FAUSTINO, LÍDIA", "ANTONELLI, L. R.", "MESSIAS, S. G. S."],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "CEPA TRANSGÊNICA ATENUADA DE TRYPANOSOMA CRUZI COMO VETOR VACINAL",
+        "ano_desenvolvimento": "2010",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI10059091",
+        "data_pedido_de_deposito": "02092010",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "25052021",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ricardo Tostes Gazzinelli",
+        "descricao_situacao_patente": "Concessão",
+        "data_situacao_patente": "25052021",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI, Ricardo Tostes", "GAZZINELLI R", "GIUSTA, C. J.", "TEIXEIRA, S. M. R.", "GALVAO FILHO, B."],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "PEPTÍDEOS RECOMBINANTES, MÉTODO E KIT PARA TESTE IMUNODIAGNÓSTICO DE LEISHMANIOSE VISCERAL",
+        "ano_desenvolvimento": "2021",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI10050337",
+        "data_pedido_de_deposito": "01022021",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "04052021",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "01022021",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "FERNANDES, ANA P.", "Costa, Míriam M."],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "TRYPANOSOMA CRUZI RECOMBINANTE E COMPOSIÇÃO VACINAL PARA PROFILAXIA DE LEISHMANIOSES",
+        "ano_desenvolvimento": "2021",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020130223760",
+        "data_pedido_de_deposito": "01022021",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "04052021",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ricardo Tostes Gazzinelli",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "01022021",
+        "status_situacao_patente": "SIM",
+        "autores": ["FERNANDES, A. P.", "GAZZINELLI R", "JUNQUEIRA, C.", "Doro, Daniel"],
+        "autores-endogeno": ["9148354106985023", "9405337414047265"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli",
+            "9405337414047265": "Caroline Furtado Junqueira"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2022": [
+    [
+      {
+        "titulo": "PROTEÍNA SINTÉTICA DIRECIONADA A EPÍTOPOS DE CÉLULAS T DA PROTEÍNA H DO VÍRUS DA CINOMOSE CANINA",
+        "ano_desenvolvimento": "2022",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10202201355",
+        "data_pedido_de_deposito": "07072022",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal Rural de Pernambuco",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "07072022",
+        "status_situacao_patente": "SIM",
+        "autores": ["Maia, R, C, C.", "PERNAMBUCO, U. F. R.", "Santos, CP", "CALZAVARA-SILVA, C. E.", "GIL, L. H. V.", "Pinheiro Jr, JW", "Vieira, AM"],
+        "autores-endogeno": ["8454953908544325"],
+        "autores-endogeno-nome": [
+          {
+            "8454953908544325": "Carlos Eduardo Calzavara Silva"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Nucleic acid construct, recombinant influenza virus, method for preparing a recombinant influenza virus, composition and use",
+        "ano_desenvolvimento": "2022",
+        "pais": "Austrália",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "AU2021275160A1",
+        "data_pedido_de_deposito": "29092022",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "IP Australia",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Araujo, M. S. S.;Kimberly Freitas Cardoso;ALEXANDRE DE MAGALHÃES VIEIRA MACHADO;Sarah Giarola da Silva;MARCELO ANTONIO PASCOAL XAVIER",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "29092022",
+        "status_situacao_patente": "SIM",
+        "autores": ["ALVES, P.", "CARDOSO, K. F.", "Araujo, M. S. S.", "Machado, A. M. V.", "Giarola da Silva, S.", "XAVIER, M. A. P.", "Araújo, Márcio SS"],
+        "autores-endogeno": ["2634004612117298"],
+        "autores-endogeno-nome": [
+          {
+            "2634004612117298": "Márcio Sobreira Silva Araújo"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Método de diagnóstico de uma amostra biológica, kit de diagnóstico de uma amostra biológica e oligonucleotídeo",
+        "ano_desenvolvimento": "2022",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020220267650",
+        "data_pedido_de_deposito": "27122022",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "27122022",
+        "status_situacao_patente": "SIM",
+        "autores": ["Monte Neto, Rubens L.", "Oliveira, Ellen Gonçalves", "Coutinho, Vinicius Maracajá", "Hernandez, Jesus Eduardo M.", "Gonçalves, Amanda B.", "Almeida, Leticia Trindade", "Lage, Anna Carolina Pinheiro", "Sousa, Alessandra Mara de", "Gomes, Lívia Siman"],
+        "autores-endogeno": ["2817016666672297"],
+        "autores-endogeno-nome": [
+          {
+            "2817016666672297": "Rubens Lima do Monte Neto"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "Biossensores, métodos para detecção do vírus SARS-CoV-2, kit e uso",
+        "ano_desenvolvimento": "2022",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020220043892",
+        "data_pedido_de_deposito": "10032022",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Anna Carolina Pinheiro Lage;Lívia Siman Gomes;Rubens Lima do Monte Neto;Pedro Augusto Alves;Kennedy B Gonçalves;Rosimeire C Barcelos;Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "10032022",
+        "status_situacao_patente": "SIM",
+        "autores": ["LAGE, A. C. P.", "JUNQUEIRA, C. M.", "GOMES, L. S.", "MONTE NETO, R. L.", "ALVES, P. A.", "GONCALVES, K. B.", "ALMEIDA, L. T.", "BORGES, I. A.", "GONCALVES, A. B.", "BARCELOS, R. C."],
+        "autores-endogeno": ["6935282825820547", "2817016666672297"],
+        "autores-endogeno-nome": [
+          {
+            "6935282825820547": "Pedro Augusto Alves",
+            "2817016666672297": "Rubens Lima do Monte Neto"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "PLASMÍDEO RECOMBINANTE PARA EXPRESSÃO DA PROTEÍNA DE SUPERFÍCIE A DE Streptococcus pneumoniae, VÍRUS INFLUENZA GENETICAMENTE MODIFICADO E USOS",
+        "ano_desenvolvimento": "2022",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10202201516",
+        "data_pedido_de_deposito": "29072022",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Alexandre de Magalhães Vieira Machado;Ricardo T. Gazinelli;Instituto Butantan;Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "29072022",
+        "status_situacao_patente": "SIM",
+        "autores": ["Machado, A.M.V.", "CARDOSO, K. F.", "XAVIER, M. A. P.", "COSTA, E. A.", "MARTINS, N. R. S.", "GAZZINELLI, R. T.", "MIYAJI, E. N.", "GAZINELLI, R. T.", "ARAUJO, M. S. S.", "CARVALHO, K. R. A.", "SANTOS, B. S. A. S.", "MESSIAS, S. G. S.", "KANO FS", "ALVES, P. A.", "GONCALVES, A. P. F."],
+        "autores-endogeno": ["8688961957105096"],
+        "autores-endogeno-nome": [
+          {
+            "8688961957105096": "Flora Satiko Kano"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "COMPOSIÇÃO, COMPOSIÇÃO FARMACÊUTICA, USO DE UMA COMPOSIÇÃO TÓPICA ESTÁVEL COMPREENDENDO UMA NANOEMULSÃO, E DE PELO MENOS UM COMPOSTO ANTILEISHMANIAL, E, MÉTODO PARA O TRATAMENTO DE LEISHMANIOSE CUTÂNEA",
+        "ano_desenvolvimento": "2022",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR10202002282",
+        "data_pedido_de_deposito": "12052022",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "2022094685",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ana Lúcia Teles Rabello;Jorge Carlos Santos;Dinalva Queiroz;Eliane de Morais Teixeira;Evidence Soluções Farmaceuticas Ltda",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "12052022",
+        "status_situacao_patente": "SIM",
+        "autores": ["Rabello, Ana", "Ana Rabello", "COSTA JCS", "SANTOS, J. C.", "QUEIROZ, D.", "TEIXEIRA, Eliane de Morais", "TEIXEIRA, E. M."],
+        "autores-endogeno": ["7027792126979693"],
+        "autores-endogeno-nome": [
+          {
+            "7027792126979693": "Ana Lúcia Teles Rabello"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "RNAs GUIA, PROCESSO, TRYPANOSOMA CRUZI ATENUADO, E USOS",
+        "ano_desenvolvimento": "2022",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020220264988",
+        "data_pedido_de_deposito": "20122022",
+        "data_de_pedido_de_exame": "23122022",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "20122022",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "TEIXEIRA, S. M. R.", "CALDAS, G. A. B.", "SANTOS, N. S. A.", "CASTRO, J. T."],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "PLASMÍDEO RECOMBINANTE PARA EXPRESSÃO DA PROTEÍNA DE SUPERFÍCIE A DE Streptococcus pneumoniae, VÍRUS INFLUENZA GENETICAMENTE MODIFICADO E USOS",
+        "ano_desenvolvimento": "2022",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020220151636",
+        "data_pedido_de_deposito": "29072022",
+        "data_de_pedido_de_exame": "30072022",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Pedido do Exame",
+        "data_situacao_patente": "30072022",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "MESSIAS, S. G. S.", "KANO, FLORA SATIKO", "ALVES, P. A.", "GONCALVES, A. P. F.", "MIYAJI, E. N.", "COSTA, E. A.", "XAVIER, M. A. P.", "MARTINS, N. R. S.", "CARDOSO, K. F.", "MACHADO, A. M. V.", "ARAUJO, M. S. S.", "CARVALHO, K. R. A.", "SANTOS, B. S. A. S."],
+        "autores-endogeno": ["9148354106985023", "6935282825820547", "2634004612117298"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli",
+            "6935282825820547": "Pedro Augusto Alves",
+            "2634004612117298": "Márcio Sobreira Silva Araújo"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "PROCESSO DE PRODUÇÃO DE PROTEÍNA QUIMÉRICA, PROTEÍNA QUIMÉRICA, GENE, COMPOSIÇÃO IMUNOGÊNICA, E USOS",
+        "ano_desenvolvimento": "2022",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020220007330",
+        "data_pedido_de_deposito": "14012022",
+        "data_de_pedido_de_exame": "15012022",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Pedido do Exame",
+        "data_situacao_patente": "15012022",
+        "status_situacao_patente": "SIM",
+        "autores": ["GAZZINELLI R", "TEIXEIRA, S. M. R.", "FERNANDES, ANA P.", "GUIMARÃES, F. F.", "CASTRO, J. T.", "HOJO-SOUZA, NATÁLIA SATCHIKO", "AZEVEDO, PATRICK"],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "GENE MODIFICADO DE Leishmania ssp., PROCESSO PARA OBTENÇÃO DE PROTEÍNA E USO COMO ANTÍGENO EM COMPOSIÇÃO VACINAL OU EM IMUNODIAGNÓSTICO",
+        "ano_desenvolvimento": "2022",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "NAO",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020130223743",
+        "data_pedido_de_deposito": "02022022",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "19042022",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ricardo Tostes Gazzinelli",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "02022022",
+        "status_situacao_patente": "SIM",
+        "autores": ["FERNANDES, A", "GAZZINELLI R", "Leonardo Miranda Damasceno"],
+        "autores-endogeno": ["9148354106985023"],
+        "autores-endogeno-nome": [
+          {
+            "9148354106985023": "Ricardo Tostes Gazzinelli"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "MÉTODO PARA TRIAGEM DE FÁRMACOS OU SUBSTÂNCIAS COM POTENCIAL NEUROPROTETOR, E KIT PARA TRIAGEM DE FÁRMACOS OU SUBSTÂNCIAS",
+        "ano_desenvolvimento": "2022",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "Fiocruz (INOVA); CNPq (INCT Vacinas).",
+        "categoria": "Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020220096856",
+        "data_pedido_de_deposito": "18052022",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "18052022",
+        "status_situacao_patente": "SIM",
+        "autores": ["COIMBRA, R. S.", "OLIVEIRA, M. S.", "CASSIANO, L. M. G.", "FERNANDES, G. R.", "ALVES, P. A.", "MACHADO, A. V.", "SALIM, ANNA CHRISTINA DE MATOS"],
+        "autores-endogeno": ["3118219944250108", "6935282825820547"],
+        "autores-endogeno-nome": [
+          {
+            "3118219944250108": "Roney Santos Coimbra",
+            "6935282825820547": "Pedro Augusto Alves"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2023": [
+    [
+      {
+        "titulo": "KIT PARA IMUNODIAGNÓSTICO DA HANSENÍASE",
+        "ano_desenvolvimento": "2023",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "PI0472023",
+        "data_pedido_de_deposito": "12122023",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Ricardo Toshio Fujiwara",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "12122023",
+        "status_situacao_patente": "SIM",
+        "autores": ["FUJIWARA, R. T.", "PASCOAL-XAVIER, MARCELO A"],
+        "autores-endogeno": ["2430268236881898"],
+        "autores-endogeno-nome": [
+          {
+            "2430268236881898": "Marcelo Antonio Pascoal Xavier"
+          }
+        ],
+        "tags": []
+      }
+    ],
+    [
+      {
+        "titulo": "COMPOSIÇÃO IMUNOGÊNICA PARA PREVENÇÃO DE BRUCELOSE, LINHAGENS ATENUADAS E USO",
+        "ano_desenvolvimento": "2023",
+        "pais": "Brasil",
+        "home_page": "",
+        "flag_relevancia": "NAO",
+        "flag_potencial_inovacao": "SIM",
+        "finalidade": "",
+        "instituicao_financiadora": "",
+        "categoria": "Produto e Processo",
+        "tipo_patente": "PRIVILEGIO_DE_INOVACAO_PI",
+        "codigo_do_registro_ou_patente": "BR1020230221220",
+        "data_pedido_de_deposito": "24102023",
+        "data_de_pedido_de_exame": "",
+        "data_de_concessao": "",
+        "instituicao_deposito_registro": "INPI - Instituto Nacional da Propriedade Industrial",
+        "numero_deposito_pct": "",
+        "formato_data_deposito_pct": "DDMMAAAA",
+        "data_deposito_pct": "",
+        "nome_do_titular": "",
+        "nome_do_depositante": "Universidade Federal de Minas Gerais",
+        "descricao_situacao_patente": "Depósito",
+        "data_situacao_patente": "24102023",
+        "status_situacao_patente": "SIM",
+        "autores": ["COSTA, F. B.", "Lima Santos, R", "PAIXAO, T. A.", "BATISTA, D. F. A.", "MARTINS-FILHO, O. A.", "GUIMARAES, A. S.", "BRANDAO, H. M.", "Araújo, Márcio SS"],
+        "autores-endogeno": ["2634004612117298"],
+        "autores-endogeno-nome": [
+          {
+            "2634004612117298": "Márcio Sobreira Silva Araújo"
+          }
+        ],
+        "tags": []
+      }
+    ]
+  ],
+  "2024": []
+}
