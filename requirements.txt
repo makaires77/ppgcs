@@ -4,6 +4,7 @@ pandas
 plotly
 IPython
 nbformat
+openpyxl
 unidecode
 editdistance
 pyjarowinkler
