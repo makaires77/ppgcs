@@ -1,0 +1,9 @@
+xlrd
+numpy
+pandas
+plotly
+IPython
+nbformat
+unidecode
+editdistance
+pyjarowinkler
