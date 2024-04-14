@@ -1072,7 +1072,7 @@ class LattesScraper:
                 print(f'  {traceback_str}')
                 # traceback.print_exc()            
             if retry_count > 0:
-                print(f"       Erro ao inserir o nome. Tentando novamente...")
+                print(f"       Erro em fill_name() ao inserir o nome. Tentando novamente...")
                 self.return_search_page()
                 self.fill_name(NOME, retry_count - 1)
             else:
@@ -1258,12 +1258,12 @@ class LattesScraper:
                     dict_list.extend(self.scrape_single(name, instituicao, termo1, termo2))
                     break  # Se o a extração for bem-sucedido, saia do loop de retry
                 except TimeoutException as se:
-                    logging.error(f"Tentativa de extrair currículo de {name} falhou: {se}. Tentando novamente...")
+                    logging.error(f"Tentativa de extrair currículo de {name} em scrape_retry() falhou: {se}. Tentando novamente...")
                     time.sleep(1)  # Aguarda um segundo antes de tentar novamente
             else:
-                logging.error(f"Todas as tentativas falharam para {name}.")
+                logging.error(f"Todas as tentativas em em scrape_retry() falharam para {name}.")
         except Exception as e:
-            raise TimeoutException(f"Erro inesperado ao scrappear {name}: {e}")
+            raise TimeoutException(f"Erro inesperado em scrape_retry() para {name}")
         return dict_list
 
     def scrape_single(self, name, instituicao, termo1, termo2):
@@ -1273,42 +1273,58 @@ class LattesScraper:
             elm_vinculo = self.search_profile(name, instituicao, termo1, termo2)
             if elm_vinculo:
                 if self.verbose:
-                    print(f"{name}: vínculo encontrado no currículo, tentando abrir...")
-                self.retry_click_vinculo(elm_vinculo)
+                    print(f"       {name}: vínculo encontrado no currículo, tentando abrir...")
+                self.retry_click_vinculo(elm_vinculo) # Tentativas recorrentes para clicar no abrirCurrículo
                 if self.verbose:
-                    print(f"{name}: mudando para nova janela após clique para abrir currículo...")
+                    print(f"       {name}: mudando para nova janela após clique para abrir currículo...")
                 window_before = self.switch_to_new_window()
-                tooltip_data_list = self.extract_tooltip_data()
                 if self.verbose:
-                    print(f'{name}: {len(tooltip_data_list)} tooltips encontrados')
+                    print(f"       {name}: mudado para nova janela com sucesso após abrir currículo...")                
                 if self.is_stale_file_handler_present():
-                    print(f"{name}: erro 'Stale File Handler' detectado na página. Tentando novamente em 10 segundos...")
                     fib = [0, 1]
-                    for i in range(2, 12):  # tentativas máximas com espera para contornar erro de Stale File Handler
+                    print(f"       {name}: Erro 'Stale File Handler' detectado na página. Tentando novamente em {fib[-1]} segundos...")
+                    for i in range(2, 12):  # Tentativas máximas com espera para contornar erro de Stale File Handler
                         fib.append(fib[i-1] + fib[i-2])
                     for i, wait_time in enumerate(fib):
-                        logging.info(f"Tentativa {i+1} com tempo de espera de {wait_time} segundos...")
+                        logging.info(f"       Tentativa {i+1} com tempo de espera de {wait_time} segundos...")
                         time.sleep(wait_time)
                         try:
-                            self.click_vinculo(elm_vinculo)
+                            self.retry_click_vinculo(elm_vinculo)
                             break  # Se o clique for bem-sucedido, saia do loop de retry
                         except TimeoutException as se:
                             logging.error(f"Tentativa {i+1} falhou: {se}.")
+                tooltip_data_list = self.extract_tooltip_data() # Extraindo dados ocultos nos tooltips
+                if self.verbose:
+                    print(f'       {len(tooltip_data_list):003} tooltips extraídos com sucesso...')
                 page_source = self.driver.page_source
                 if page_source is not None:
-                    parser = HTMLParser(page_source)
-                    data = parser.to_json()
-                    data['JCR2'] = tooltip_data_list
+                    if self.verbose:
+                        print(f'       Encontrada page_source do driver...')
+                    try:
+                        parser = HTMLParser(page_source)
+                        data = parser.to_json()
+                        if self.verbose:
+                            print(f'       HTMLParser rodado com sucesso...')
+                        data['JCR2'] = tooltip_data_list
+                    except Exception as e:
+                        print(f'       Erro ao fazer o parser do HTML:')
+                        print(f'       {e}')
                     print(f'       Extração bem-sucedida')
                     # Adicione o dicionário de dados à lista
                     dict_list.append(data)
+                    if self.verbose:
+                        print('       Tentar voltar a página de busca...')
                     self.switch_back_to_original_window()
+                    if self.verbose:
+                        print('       Disparado switch_back_to_original_window()...')
                     self.close_popup()
                     self.return_search_page()
+                    if self.verbose:
+                        print('       Disparado return_search_page()...')
                 else:
                     print(f"{name}: página de resultado vazia.")
         except Exception as e:
-            raise TimeoutException(f"Erro ao realizar a extração para {name}: {e}")
+            raise TimeoutException(f"       Erro ao realizar a extração para {name}: {e}")
         return dict_list
 
 
@@ -1604,12 +1620,12 @@ class LattesScraper:
 class HTMLParser:
     def __init__(self, html):
         self.soup = BeautifulSoup(html, 'html.parser')
-        self.dados_planilha = pd.read_excel(os.path.join(LattesScraper.find_repo_root(),'data','classificações_publicadas_todas_as_areas_avaliacao1672761192111.xlsx'))
+        self.dados_planilha = pd.read_excel(os.path.join(LattesScraper.find_repo_root(),'_data','in_xls','classificações_publicadas_todas_as_areas_avaliacao1672761192111.xlsx'))
         self.ignore_classes = ["header", "sub_tit_form", "footer", "rodape-cv", "menucent", "menu-header", "menuPrincipal", "to-top-bar", "header-content max-width", "control-bar-wrapper", "megamenu","layout-cell-6"]
         self.ignore_elements = ['script', 'style', 'head']
-        self.verbose = False
         self.visited_structures = defaultdict(int)
         self.estrutura = {}
+        self.verbose = False
 
     def should_ignore(self, node):
         if isinstance(node, bs4.element.Tag):
