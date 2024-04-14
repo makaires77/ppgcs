@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+                  xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+                  id="Definitions_1"
+                  targetNamespace="http://bpmn.org/schema/bpmn">
+
+  <bpmn:process id="compras_publicas" name="Processo de Compras Públicas em Ciência e Tecnologia">
+    <bpmn:startEvent id="startEvent1"/>
+
+    <!-- Identificar Necessidade -->
+    <bpmn:task id="identificarNecessidade" name="Identificar Necessidade"/>
+    <bpmn:sequenceFlow sourceRef="startEvent1" targetRef="identificarNecessidade"/>
+
+    <!-- Realizar Estudo Preliminar -->
+    <bpmn:task id="realizarEstudoPreliminar" name="Realizar Estudo Preliminar"/>
+    <bpmn:sequenceFlow sourceRef="identificarNecessidade" targetRef="realizarEstudoPreliminar"/>
+
+    <!-- Definir Especificações Técnicas -->
+    <bpmn:task id="definirEspecificacoes" name="Definir Especificações Técnicas"/>
+    <bpmn:sequenceFlow sourceRef="realizarEstudoPreliminar" targetRef="definirEspecificacoes"/>
+
+    <!-- Estimar Valor da Aquisição -->
+    <bpmn:task id="estimarValor" name="Estimar Valor da Aquisição"/>
+    <bpmn:sequenceFlow sourceRef="definirEspecificacoes" targetRef="estimarValor"/>
+
+    <!-- Elaborar Termo de Referência ou Projeto Básico -->
+    <bpmn:task id="elaborarTermoReferencia" name="Elaborar Termo de Referência ou Projeto Básico"/>
+    <bpmn:sequenceFlow sourceRef="estimarValor" targetRef="elaborarTermoReferencia"/>
+
+    <!-- Definir Modalidade de Licitação -->
+    <bpmn:exclusiveGateway id="gatewayModalidadeLicitacao" name="Definir Modalidade de Licitação"/>
+    <bpmn:sequenceFlow sourceRef="elaborarTermoReferencia" targetRef="gatewayModalidadeLicitacao"/>
+
+    <!-- Elaborar Edital de Licitação -->
+    <bpmn:task id="elaborarEdital" name="Elaborar Edital de Licitação"/>
+    <bpmn:sequenceFlow sourceRef="gatewayModalidadeLicitacao" targetRef="elaborarEdital"/>
+
+    <!-- Publicar Edital de Licitação -->
+    <bpmn:task id="publicarEdital" name="Publicar Edital de Licitação"/>
+    <bpmn:sequenceFlow sourceRef="elaborarEdital" targetRef="publicarEdital"/>
+
+    <!-- Realizar Sessão de Licitação -->
+    <bpmn:task id="realizarSessaoLicitacao" name="Realizar Sessão de Licitação"/>
+    <bpmn:sequenceFlow sourceRef="publicarEdital" targetRef="realizarSessaoLicitacao"/>
+
+    <!-- Adjudicar e Homologar o Resultado -->
+    <bpmn:task id="adjudicarHomologar" name="Adjudicar e Homologar o Resultado"/>
+    <bpmn:sequenceFlow sourceRef="realizarSessaoLicitacao" targetRef="adjudicarHomologar"/>
+
+    <!-- Assinar Contrato de Fornecimento -->
+    <bpmn:task id="assinarContrato" name="Assinar Contrato de Fornecimento"/>
+    <bpmn:sequenceFlow sourceRef="adjudicarHomologar" targetRef="assinarContrato"/>
+
+    <!-- Executar o Contrato -->
+    <bpmn:task id="executarContrato" name="Executar o Contrato"/>
+    <bpmn:sequenceFlow sourceRef="assinarContrato" targetRef="executarContrato"/>
+
+    <!-- Receber e Aceitar o Objeto -->
+    <bpmn:task id="receberAceitarObjeto" name="Receber e Aceitar o Objeto"/>
+    <bpmn:sequenceFlow sourceRef="executarContrato" targetRef="receberAceitarObjeto"/>
+
+    <!-- Efetuar Pagamento -->
+    <bpmn:task id="efetuarPagamento" name="Efetuar Pagamento"/>
+    <bpmn:sequenceFlow sourceRef="receberAceitarObjeto" targetRef="efetuarPagamento"/>
+
+    <bpmn:endEvent id="endEvent1"/>
+    <bpmn:sequenceFlow sourceRef="efetuarPagamento" targetRef="endEvent1"/>
+  </bpmn:process>
+
+  <!-- ... Diagrama BPMN (BPMNDI) ... -->
+
+</bpmn:definitions>
+

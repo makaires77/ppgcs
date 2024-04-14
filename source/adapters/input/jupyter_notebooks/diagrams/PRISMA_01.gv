@@ -1,0 +1,143 @@
+digraph {
+	rankdir=LR size="120,120"
+	node [shape=rectangle]
+	r5c0 [label="Incluídos para Revisão" fillcolor=lightblue fontcolor=black fontname="Helvetica-Bold" fontsize=18 height=1.5 style=filled width=4]
+	r5c1 [height=0 style=invis width=0]
+	r5c0 -> r5c1 [style=invis]
+	r5c2 [label="Total de estudos incluídos na revisão
+(n=80)
+Total de publicações incluídas extra-bases
++(n=2)" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r5c1 -> r5c2 [style=invis]
+	{
+		rank=same
+	}
+	r4c0 [label="Triagem por
+Conteúdo Completo" fillcolor=lightblue fontcolor=black fontname="Helvetica-Bold" fontsize=18 height=1.5 style=filled width=4]
+	r4c1 [height=0 style=invis width=0]
+	r4c0 -> r4c1 [style=invis]
+	r4c2 [label="Registros avaliadas como elegíveis
+para leitura completa
+(n=120)" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r4c3 [label="Registros excluídos
+com leitura completa
+-(n=40)
+Texto completo inacessivel n= 20
+Cenário diferente n= 15
+Escopo diferente n= 5" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r4c1 -> r4c2 [style=invis]
+	r4c4 [label="Publicações extra-busca avaliadas
+como elegíveis pós leitura completa
++(n=2)" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r4c5 [label="Publicações extra-busca avaliadas
+como não-elegíveis pós leitura completa
+-(n=3)" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r4c3 -> r4c4 [style=invis]
+	{
+		rank=same
+	}
+	r3c0 [label="Triagem por Resumos" fillcolor=lightblue fontcolor=black fontname="Helvetica-Bold" fontsize=18 height=1.5 style=filled width=4]
+	r3c1 [height=0 style=invis width=0]
+	r3c0 -> r3c1 [style=invis]
+	r3c2 [label="Registros avaliados como
+elegíveis para leitura resumos
+(n=150)" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r3c3 [label="Registros excluídos
+com leitura do resumo
+-(n=30)
+Resumo inacessível n= 5
+Período diferente n= 10
+Escopo diferente n= 15" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r3c1 -> r3c2 [style=invis]
+	r3c4 [label="Publicações extra-busca pesquisadas
+mantidas para leitura completa
+(n=5)" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r3c5 [label="Publicações retiradas pós leitura resumos
+-(n=15)" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r3c3 -> r3c4 [style=invis]
+	r3c4 -> r3c5 [constraint=true]
+	{
+		rank=same
+	}
+	r2c0 [label="Triagem por Títulos" fillcolor=lightblue fontcolor=black fontname="Helvetica-Bold" fontsize=18 height=1.5 style=filled width=4]
+	r2c1 [height=0 style=invis width=0]
+	r2c0 -> r2c1 [style=invis]
+	r2c2 [label="Total de Registros para triagem
+(n=170)" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r2c3 [label="Registros excluídos
+com leitura do título
+-(n=20)" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r2c1 -> r2c2 [style=invis]
+	r2c4 [height=0 style=invis width=0]
+	r2c3 -> r2c4 [style=invis]
+	{
+		rank=same
+	}
+	r1c0 [label="Identificação" fillcolor=lightblue fontcolor=black fontname="Helvetica-Bold" fontsize=18 height=1.5 style=filled width=4]
+	r1c1 [label="Estudos incluídos na busca
+de revisão (n = 148)
+Cochrane n= 42
+Elsevier n= 23
+Science Direct n= 78
+BVS n= 5" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r1c2 [label="Total de registros achados
+nas bases de dados
+(n= 148)
+Total de novos achados
++(n=42)
+IEEE n= 22
+ACM n= 20" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r1c3 [label="Removidos antes da triagem
+-(n=20)
+Duplicados n= 15
+Fora do período n= 5" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r1c4 [label="Registros identificados em outras bases:
++(n=20)
+Bancos de teses e dissertações n= 10
+Publicação não-indexada n= 5
+Literatura cinza n= 5" fillcolor=white fontcolor=black fontname=Helvetica fontsize=12 height=1.5 style=filled width=4]
+	r1c0 -> r1c1 [style=invis]
+	{
+		rank=same
+	}
+	r0c1 [label="Achados através de
+buscas por
+palavras-chave" fillcolor=yellow fontcolor=black fontname="Helvetica-Bold" fontsize=16 height=1.5 style=filled width=4]
+	r0c2 [label="Achados através
+de buscas em
+bases de dados" fillcolor=yellow fontcolor=black fontname="Helvetica-Bold" fontsize=16 height=1.5 style=filled width=4]
+	r0c3 [label="Achados através
+de buscas em
+bases de dados e
+removidos após análise" fillcolor=yellow fontcolor=black fontname="Helvetica-Bold" fontsize=16 height=1.5 style=filled width=4]
+	r0c4 [label="Identificação de estudos
+dentro dos critérios
+extra-busca" fillcolor=yellow fontcolor=black fontname="Helvetica-Bold" fontsize=16 height=1.5 style=filled width=4]
+	r0c5 [label="Identificação de estudos
+dentro dos critérios
+extra-busca
+removidos após análise" fillcolor=yellow fontcolor=black fontname="Helvetica-Bold" fontsize=16 height=1.5 style=filled width=4]
+	{
+		rank=same
+	}
+	{
+		rank=same
+		r0c0 [height=0 style=invis width=0]
+	}
+	r0c0 -> r0c1 [style=invis]
+	r0c1 -> r0c2 [style=invis]
+	r0c2 -> r0c3 [style=invis]
+	r0c3 -> r0c4 [style=invis]
+	r0c4 -> r0c5 [style=invis]
+	r1c1 -> r1c2 [constraint=true]
+	r1c2 -> r1c3 [constraint=true]
+	r1c3 -> r1c4 [style=invis]
+	r2c2 -> r2c3 [constraint=true]
+	r2c3 -> r2c4 [style=invis]
+	r3c2 -> r3c3 [constraint=true]
+	r4c2 -> r4c3 [constraint=true]
+	r4c3 -> r4c4 [style=invis]
+	r4c4 -> r4c5 [constraint=true]
+	r5c0 -> r5c1 [style=invis]
+	r5c1 -> r5c2 [style=invis]
+}

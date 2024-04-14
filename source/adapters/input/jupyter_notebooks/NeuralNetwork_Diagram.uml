@@ -1,0 +1,66 @@
+
+@startuml
+
+skinparam package {
+    borderColor black
+    backgroundColor white
+    shadowing 0
+    fontColor black
+    borderThickness 1
+    fontSize 12
+}
+
+skinparam rectangle {
+    borderColor black
+    backgroundColor #EDEDED
+    shadowing 0
+    fontColor black
+    borderThickness 1
+    fontSize 12
+}
+
+package "Feature extraction module" {
+    [Input] -down-> rectangle "Dilated convolution D=2" as DC1
+    DC1 -down-> rectangle "Channel attentional" as CA1
+    DC1 -right-> rectangle "W1" as W1
+    W1 -down-> rectangle "1x1 Conv" as Conv1
+    Conv1 -right-> rectangle "Z1" as Z1
+    CA1 -down-> rectangle "Spatial attentional" as SA1
+
+    rectangle "Dilated convolution D=3" as DC2
+    DC1 -right-> DC2
+    DC2 -down-> rectangle "Channel attentional" as CA2
+    DC2 -right-> rectangle "W2" as W2
+    W2 -down-> rectangle "1x1 Conv" as Conv2
+    Conv2 -right-> rectangle "Z2" as Z2
+    CA2 -down-> rectangle "Spatial attentional" as SA2
+
+    rectangle "Dilated convolution D=4" as DC3
+    DC2 -right-> DC3
+    DC3 -down-> rectangle "Channel attentional" as CA3
+    DC3 -right-> rectangle "W3" as W3
+    W3 -down-> rectangle "1x1 Conv" as Conv3
+    Conv3 -right-> rectangle "Z3" as Z3
+    CA3 -down-> rectangle "Spatial attentional" as SA3
+}
+
+package "Category relationship discrimination module" {
+    [Wear safety helmet] as helmet
+    [Saw the workpiece] as saw
+    [..] as dot
+    [Pick up parts] as pick
+    [Clean up] as clean
+
+    rectangle "Fully Connect Layer" as FCL
+
+    helmet --> FCL
+    saw --> FCL
+    dot --> FCL
+    pick --> FCL
+    clean --> FCL
+
+    FCL -right-> rectangle "Dynamic graph convolution" as DGC
+    FCL -right-> rectangle "Static Graph convolution" as SGC
+}
+
+@enduml

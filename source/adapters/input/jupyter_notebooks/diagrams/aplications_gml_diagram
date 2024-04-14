@@ -1,0 +1,34 @@
+// Graph Machine Learning Diagram
+digraph {
+	graph [rankdir=TB]
+	A [label="Graph Machine Learning" color=orange fontname=bold fontsize=32 style=filled]
+	B [label="Supervised GML" color=lightblue fontsize=28 style=filled]
+	C [label="Unsupervised GML" color=lightgreen fontsize=28 style=filled]
+	D [label="Node Classification
+(Supervised)" color=lightblue fontsize=20 height=1.5 shape=box style=filled width=2]
+	E [label="Graph Classification
+(Supervised)" color=lightblue fontsize=20 height=1.5 shape=box style=filled width=2]
+	F [label="Link Prediction
+(Can be Supervised)" color=lightblue fontsize=20 height=1.5 shape=box style=filled width=2]
+	G [label="Community Detection
+(Unsupervised)" color=lightgreen fontsize=20 height=1.5 shape=box style=filled width=2]
+	H [label="Recommendation Systems
+(Often Unsupervised)" color=lightgreen fontsize=20 height=1.5 shape=box style=filled width=2]
+	A -> B [label="Truth labels available"]
+	A -> C [label="Truth labels unavailable"]
+	B -> D [label="Uses attributes and properties
+of nodes to fit them into
+a pre-determined class"]
+	B -> E [label="Uses attributes and properties
+of complete graph to fit it into
+a pre-determined class"]
+	B -> F [label="Search for missing
+relationships that
+should, or could, exist"]
+	C -> G [label="Search for nodes that
+relate more to each other
+than to other groups"]
+	C -> H [label="Maximizes relevance of
+suggestions based on user-item
+interaction patterns within the graph"]
+}

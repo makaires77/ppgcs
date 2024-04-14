@@ -1,0 +1,12 @@
+# Atualizar pacotes do conda pelo Terminal
+conda activate python38-pytorch
+conda update pip
+conda update -n base -c defaults conda
+
+# Upgrade pip, executar terminal como administrador e rod
+
+!C:\Users\marcos.aires\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\python.exe -m pip install --user --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --upgrade pip
+
+pip install -r requirements.txt --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org
+
+pip install --user -r requirements.txt --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org

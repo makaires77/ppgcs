@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualização do Grafo</title>
+    <style>
+        /* Aqui você pode adicionar estilos para a barra de progresso e sliders */
+        #controls {
+            margin-bottom: 10px;
+        }
+        .slider {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <label>Gravitational Constant: <input type="range" id="gravitationalConstantSlider" class="slider" min="-50" max="0" value="-5"></label>
+        <label>Central Gravity: <input type="range" id="centralGravitySlider" class="slider" min="0" max="0.01" step="0.001" value="0.005"></label>
+        <label>Spring Length: <input type="range" id="springLengthSlider" class="slider" min="50" max="500" value="250"></label>
+        <label>Spring Constant: <input type="range" id="springConstantSlider" class="slider" min="0" max="1" step="0.05" value="0.15"></label>
+        <!-- Outros sliders conforme necessário -->
+    </div>
+    <div id="viz" style="height: 800px; width:100%;"></div>
+    <progress id="progressBar" value="0" max="100" style="width:100%;"></progress>
+    <script type="text/javascript" src="https://cdn.neo4jlabs.com/neovis.js/v1.5.0/neovis.js"></script>
+    <script type="text/javascript">
+        var config = {"container_id": "viz", "server_url": "bolt://localhost:7687", "server_user": "neo4j", "server_password": "password", "initial_cypher": "MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 10000", "physics": {"stabilization": {"enabled": true, "iterations": 5}, "solver": "forceAtlas2Based", "forceAtlas2Based": {"gravitationalConstant": -5, "centralGravity": 0.005, "springLength": 250, "springConstant": 0.15}, "maxVelocity": 250, "minVelocity": 5, "timestep": 60}};
+        var viz;
+
+        function updateGraphPhysics(option, value) {
+            config.physics.forceAtlas2Based[option] = value;
+            viz.setOptions({ physics: config.physics });
+            viz.reload();
+        }
+
+        function draw() {
+            viz = new NeoVis.default(config);
+            viz.registerOnEvent('completed', function() {
+                document.getElementById('progressBar').value = 100; // Ajusta a barra de progresso para completo
+            });
+            viz.render();
+
+            document.getElementById('gravitationalConstantSlider').addEventListener('input', function(e) {
+                updateGraphPhysics('gravitationalConstant', parseFloat(e.target.value));
+            });
+
+            document.getElementById('centralGravitySlider').addEventListener('input', function(e) {
+                updateGraphPhysics('centralGravity', parseFloat(e.target.value));
+            });
+
+            document.getElementById('springLengthSlider').addEventListener('input', function(e) {
+                updateGraphPhysics('springLength', parseFloat(e.target.value));
+            });
+
+            document.getElementById('springConstantSlider').addEventListener('input', function(e) {
+                updateGraphPhysics('springConstant', parseFloat(e.target.value));
+            });
+            // Repita para outros sliders conforme necessário
+        }
+
+        window.onload = draw;
+    </script>
+</body>
+</html>

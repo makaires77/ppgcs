@@ -1,0 +1,506 @@
+[
+    {
+        "labels": "Person",
+        "name": "Vanessa de Arruda Jorge",
+        "InfPes": [
+            "Vanessa de Arruda Jorge",
+            "Endereço para acessar este CV: http://lattes.cnpq.br/0218139692140149",
+            "ID Lattes: 0218139692140149",
+            "Última atualização do currículo em 24/10/2023"
+        ],
+        "Resumo": [
+            "Doutora e mestre em Ciência da Informação pelo convênio IBICT/UFRJ e graduada em Arquivologia pela Universidade Federal do Estado do Rio de Janeiro (UNIRIO). Atualmente é Coordenadora  de Informação e Comunicação da Vice-presidência de Educação, Informação e Comunicação (VPEIC) da Fiocruz, atuando na coordenação do Fórum de Editores Científicos, do Fórum de Ciência Aberta e Fórum de Preservação Digital da Fiocruz e Comitê Gestor do Arca Dados. É coordenadora executiva do Observatório em Ciência, Tecnologia e Inovação em Saúde  e do Portal de Periódicos Fiocruz. Pesquisadora do grupo CindaLab - Ciência Aberta e Inovação Cidadã do IBICT/UFRJ. (Texto informado pelo autor)"
+        ],
+        "Identificação": {
+            "Nome": "Vanessa de Arruda Jorge",
+            "Nome em citações bibliográficas": "JORGE, V. A.;JORGE, VANESSA DE ARRUDA",
+            "Lattes iD": "http%3A//lattes.cnpq.br/0218139692140149",
+            "Orcid iD": "? https%3A//orcid.org/0000-0002-5298-9311"
+        },
+        "Endereço": {
+            "Endereço Profissional": "Fundação Oswaldo Cruz, Presidência da Fiocruz. Av. Brasil 4365Manguinhos21040900 - Rio de Janeiro, RJ - BrasilTelefone: (21) 38655149URL da Homepage: http%3A//www.incqs.fiocruz.br/"
+        },
+        "Formação acadêmica/titulação": {
+            "2014 - 2018": "Doutorado em Ciência da Informação. Instituto Brasileiro de Informação em Ciência e Tecnologia, IBICT, Brasil.  Título: Abertura e compartilhamento de dados para pesquisa nas situações de emergência em saúde pública: o caso do vírus Zika   O Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto (Oasisbr) é uma iniciativa do Instituto Brasileiro de Informação em Ciência e Tecnologia (Ibict) que reúne a produção científica e os dados de pesquisa em acesso aberto, publicados em revistas científicas, repositórios digitais de publicações científicas, repositórios digitais de dados de pesquisa e bibliotecas digitais de teses e dissertações.  , Ano de obtenção: 2018. Orientador: Sarita Albagli.",
+            "2010 - 2012": "Mestrado em Ciência da Informação. Instituto Brasileiro de Informação em Ciência e Tecnologia, IBICT, Brasil.  Título: Gestão da qualidade e trabalho imaterial: uma análise a partir da dinâmica informacional   O Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto (Oasisbr) é uma iniciativa do Instituto Brasileiro de Informação em Ciência e Tecnologia (Ibict) que reúne a produção científica e os dados de pesquisa em acesso aberto, publicados em revistas científicas, repositórios digitais de publicações científicas, repositórios digitais de dados de pesquisa e bibliotecas digitais de teses e dissertações.  , Ano de Obtenção: 2012.Orientador: Sarita Albagli.",
+            "2002 - 2003": "Especialização em Gestão Estratégica e Qualidade.  (Carga Horária: 360h). S B I, UCAM, Brasil.  Título: PMO - Project Management Office. Orientador: Carlos.",
+            "1997 - 2000": "Graduação em arquivologia. Universidade Federal do Estado do Rio de Janeiro, UNIRIO, Brasil.  Título: As Relações da Arquivologia e a Ciência da Informação. Orientador: Flavio Leal."
+        },
+        "Pós-doutorado": {
+            "2020 - 2021": "Pós-Doutorado. Instituto Brasileiro de Informação em Ciência e Tecnologia, IBICT, Brasil.  Bolsista do(a): Coordenação de Aperfeiçoamento de Pessoal de Nível Superior, CAPES, Brasil. Grande área: Ciências Sociais AplicadasGrande Área: Ciências da Saúde / Área: Saúde Coletiva / Subárea: Saúde Pública."
+        },
+        "Formação Complementar": {
+            "2017 - 2017": "Diálogos de pesquisa: ciência aberta, ciência cidadã, ciência comum.  (Carga horária: 24h). Instituto Brasileiro de Informação em Ciência e Tecnologia, IBICT, Brasil.",
+            "2013 - 2015": "Curso de formação de analista de processos.  (Carga horária: 32h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil.",
+            "2014 - 2014": "Rumo a uma cultura de acesso a informação.  (Carga horária: 10h). Controladoria-Geral da União, CGU/PR, Brasil.",
+            "2012 - 2012": "Diretrizes para a aplicação da ABNT NBR 15419:2006.  (Carga horária: 16h). Gaia - Sistemas & Gestão, GAIA, Brasil.",
+            "2011 - 2011": "Gerenciamento Eletrônico - Requisitos Arquivísticos.  (Carga horária: 8h). Instituto de Tecnologia em Imunobiológicos, BIO-MANGUINHOS, Brasil.",
+            "2010 - 2010": "Gerenciamento eletrônico - Requisitos arquivísticos.  (Carga horária: 8h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil.",
+            "2009 - 2009": "Sensibilização e informação em Biossegurança.  (Carga horária: 40h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil.",
+            "2008 - 2008": "Formação de auditores internos.  (Carga horária: 15h). Instituto Nacional de Controle da Qualidade, INCQS, Brasil.",
+            "2006 - 2006": "Indexação.  (Carga horária: 20h). Contempory, CONTEMPORY, Brasil.",
+            "2002 - 2002": "Básico de Administração.  (Carga horária: 80h). Fundação Getúlio Vargas, FGV, Brasil.",
+            "1999 - 1999": "Imagem em movimento.  (Carga horária: 10h). Universidade Federal do Estado do Rio de Janeiro, UNIRIO, Brasil."
+        },
+        "Atuação Profissional": {
+            "Fundação Oswaldo Cruz, FIOCRUZ, Brasil.": [
+                {
+                    "Vínculo institucional": "",
+                    "2021 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Professor titular",
+                    "Outras informações": "Coordenação de Informação e Comunicação da Vice Presidência de Ensino, Informação e Comunicação",
+                    "2019 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Tecnologista em Saúde Pública, Regime: Dedicação exclusiva.",
+                    "2008 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Tecnologista em Saúde Pública, Carga horária: 40, Regime: Dedicação exclusiva.",
+                    "Atividades": "",
+                    "10/2021 - Atual": "Ensino, Disciplina Tranversal, Nível: Pós-Graduação",
+                    "": "Serviço realizadoGestão da Qualidade; Gestão de Documentos; Gestão de Processos.",
+                    "03/2021 - Atual": "Direção e administração, Presidência da Fiocruz.",
+                    "03/2020 - Atual": "Ensino, Mestrado Profissional em Política e Gestão de Ciência, Tecnologia e Inovaçã, Nível: Pós-Graduação",
+                    "08/2019 - Atual": "Serviços técnicos especializados , Presidência da Fiocruz.",
+                    "07/2013 - Atual": "Pesquisa e desenvolvimento, Casa Oswaldo Cruz.",
+                    "06/2008 - 08/2019": "Serviços técnicos especializados , Instituto Nacional de Controle de Qualidade em Saúde.",
+                    "2007 - 2008": "Vínculo: Servidor Público, Enquadramento Funcional: Analista em Ciência e Tecnologia, Regime: Dedicação exclusiva."
+                },
+                {
+                    "Vínculo institucional": "",
+                    "2021 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Professor titular",
+                    "Outras informações": "Coordenação de Informação e Comunicação da Vice Presidência de Ensino, Informação e Comunicação",
+                    "2019 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Tecnologista em Saúde Pública, Regime: Dedicação exclusiva.",
+                    "2008 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Tecnologista em Saúde Pública, Carga horária: 40, Regime: Dedicação exclusiva.",
+                    "Atividades": "",
+                    "10/2021 - Atual": "Ensino, Disciplina Tranversal, Nível: Pós-Graduação",
+                    "": "Serviço realizadoGestão da Qualidade; Gestão de Documentos; Gestão de Processos.",
+                    "03/2021 - Atual": "Direção e administração, Presidência da Fiocruz.",
+                    "03/2020 - Atual": "Ensino, Mestrado Profissional em Política e Gestão de Ciência, Tecnologia e Inovaçã, Nível: Pós-Graduação",
+                    "08/2019 - Atual": "Serviços técnicos especializados , Presidência da Fiocruz.",
+                    "07/2013 - Atual": "Pesquisa e desenvolvimento, Casa Oswaldo Cruz.",
+                    "06/2008 - 08/2019": "Serviços técnicos especializados , Instituto Nacional de Controle de Qualidade em Saúde.",
+                    "2007 - 2008": "Vínculo: Servidor Público, Enquadramento Funcional: Analista em Ciência e Tecnologia, Regime: Dedicação exclusiva."
+                },
+                {
+                    "Vínculo institucional": "",
+                    "2021 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Professor titular",
+                    "Outras informações": "Coordenação de Informação e Comunicação da Vice Presidência de Ensino, Informação e Comunicação",
+                    "2019 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Tecnologista em Saúde Pública, Regime: Dedicação exclusiva.",
+                    "2008 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Tecnologista em Saúde Pública, Carga horária: 40, Regime: Dedicação exclusiva.",
+                    "Atividades": "",
+                    "10/2021 - Atual": "Ensino, Disciplina Tranversal, Nível: Pós-Graduação",
+                    "": "Serviço realizadoGestão da Qualidade; Gestão de Documentos; Gestão de Processos.",
+                    "03/2021 - Atual": "Direção e administração, Presidência da Fiocruz.",
+                    "03/2020 - Atual": "Ensino, Mestrado Profissional em Política e Gestão de Ciência, Tecnologia e Inovaçã, Nível: Pós-Graduação",
+                    "08/2019 - Atual": "Serviços técnicos especializados , Presidência da Fiocruz.",
+                    "07/2013 - Atual": "Pesquisa e desenvolvimento, Casa Oswaldo Cruz.",
+                    "06/2008 - 08/2019": "Serviços técnicos especializados , Instituto Nacional de Controle de Qualidade em Saúde.",
+                    "2007 - 2008": "Vínculo: Servidor Público, Enquadramento Funcional: Analista em Ciência e Tecnologia, Regime: Dedicação exclusiva."
+                },
+                {
+                    "Vínculo institucional": "",
+                    "2021 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Professor titular",
+                    "Outras informações": "Coordenação de Informação e Comunicação da Vice Presidência de Ensino, Informação e Comunicação",
+                    "2019 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Tecnologista em Saúde Pública, Regime: Dedicação exclusiva.",
+                    "2008 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Tecnologista em Saúde Pública, Carga horária: 40, Regime: Dedicação exclusiva.",
+                    "Atividades": "",
+                    "10/2021 - Atual": "Ensino, Disciplina Tranversal, Nível: Pós-Graduação",
+                    "": "Serviço realizadoGestão da Qualidade; Gestão de Documentos; Gestão de Processos.",
+                    "03/2021 - Atual": "Direção e administração, Presidência da Fiocruz.",
+                    "03/2020 - Atual": "Ensino, Mestrado Profissional em Política e Gestão de Ciência, Tecnologia e Inovaçã, Nível: Pós-Graduação",
+                    "08/2019 - Atual": "Serviços técnicos especializados , Presidência da Fiocruz.",
+                    "07/2013 - Atual": "Pesquisa e desenvolvimento, Casa Oswaldo Cruz.",
+                    "06/2008 - 08/2019": "Serviços técnicos especializados , Instituto Nacional de Controle de Qualidade em Saúde.",
+                    "2007 - 2008": "Vínculo: Servidor Público, Enquadramento Funcional: Analista em Ciência e Tecnologia, Regime: Dedicação exclusiva."
+                },
+                {
+                    "Vínculo institucional": "",
+                    "2021 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Professor titular",
+                    "Outras informações": "Coordenação de Informação e Comunicação da Vice Presidência de Ensino, Informação e Comunicação",
+                    "2019 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Tecnologista em Saúde Pública, Regime: Dedicação exclusiva.",
+                    "2008 - Atual": "Vínculo: Servidor Público, Enquadramento Funcional: Tecnologista em Saúde Pública, Carga horária: 40, Regime: Dedicação exclusiva.",
+                    "Atividades": "",
+                    "10/2021 - Atual": "Ensino, Disciplina Tranversal, Nível: Pós-Graduação",
+                    "": "Serviço realizadoGestão da Qualidade; Gestão de Documentos; Gestão de Processos.",
+                    "03/2021 - Atual": "Direção e administração, Presidência da Fiocruz.",
+                    "03/2020 - Atual": "Ensino, Mestrado Profissional em Política e Gestão de Ciência, Tecnologia e Inovaçã, Nível: Pós-Graduação",
+                    "08/2019 - Atual": "Serviços técnicos especializados , Presidência da Fiocruz.",
+                    "07/2013 - Atual": "Pesquisa e desenvolvimento, Casa Oswaldo Cruz.",
+                    "06/2008 - 08/2019": "Serviços técnicos especializados , Instituto Nacional de Controle de Qualidade em Saúde.",
+                    "2007 - 2008": "Vínculo: Servidor Público, Enquadramento Funcional: Analista em Ciência e Tecnologia, Regime: Dedicação exclusiva."
+                }
+            ],
+            "Comissão Nacional de Energia Nuclear, CNEN, Brasil.": [],
+            "Arquivo Nacional, AN, Brasil.": [],
+            "Kromav Engenharia, KROMAV, Brasil.": [],
+            "Companhia Vale do Rio Doce, CVRD, Brasil.": [],
+            "Nortel Networks, NORTEL, Brasil.": [],
+            "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior, CAPES, Brasil.": [],
+            "Instituto Brasileiro de Informação em Ciência e Tecnologia, IBICT, Brasil.": [
+                {
+                    "Vínculo institucional": "",
+                    "2020 - 2021": "Vínculo: Pesquisador, Enquadramento Funcional: Bolsista de Pós-Doutorado, Carga horária: 40",
+                    "Atividades": "",
+                    "08/2020 - Atual": "Pesquisa e desenvolvimento, Instituto Brasileiro de Informação em Ciência e Tecnologia.",
+                    "": "Linhas de pesquisa CindaLab - Ciência Aberta e Inovação CidadãBRIET: Biblioteconomia, Representação, Interoperabilidade, E-science e Tecnologia"
+                }
+            ]
+        },
+        "Linhas de pesquisa": {
+            "1.": "Acervos e memória da ciência e da tecnologia em saúde",
+            "2.": "CindaLab - Ciência Aberta e Inovação Cidadã",
+            "3.": "BRIET: Biblioteconomia, Representação, Interoperabilidade, E-science e Tecnologia"
+        },
+        "Projetos de pesquisa": {
+            "2022 - Atual": "Ciência cidadã em situações de emergências sanitárias: desafios à governança informacional",
+            "": "Descrição: Conduzir estudos e pesquisas para subsidiar a formulação da política de gestão, compartilhamento e abertura de dados para pesquisa da Plataforma Zika.. Situação: Em andamento; Natureza: Pesquisa. Integrantes: Vanessa de Arruda Jorge - Integrante / Paula Xavier dos Santos - Integrante / Bethânia de Araújo Almeida - Integrante / Márcia Luz da Motta - Integrante / Mauricio Barreto - Coordenador / Alexandro Rodrigues Pinto - Integrante.",
+            "2017 - Atual": "Plataforma Zika:_ Eixo de evidências cientificas seguindo os preceitos da Ciência Aberta"
+        },
+        "Revisor de periódico": {
+            "2020 - Atual": "Periódico: RECIIS - Revista Eletrônica de Comunicação, Informação & Inovação em Saúde",
+            "2019 - Atual": "Periódico: LIINC EM REVISTA",
+            "2021 - Atual": "Periódico: Saúde em Debate"
+        },
+        "Áreas de atuação": {
+            "1.": "Grande área: Ciências Sociais Aplicadas / Área: Ciência da Informação.",
+            "2.": "Grande área: Ciências Sociais Aplicadas / Área: Ciência da Informação / Subárea: Arquivologia.",
+            "3.": "Grande área: Ciências da Saúde / Área: Saúde Coletiva / Subárea: Saúde Pública."
+        },
+        "Idiomas": {
+            "Inglês": "Compreende Bem, Fala Razoavelmente, Lê Bem, Escreve Bem.",
+            "Espanhol": "Compreende Bem, Fala Razoavelmente, Lê Bem, Escreve Bem."
+        },
+        "Produções": {
+            "Produção bibliográfica": {
+                "Artigos completos publicados em periódicos": {
+                    "1.": "ALGER, J. ; MONDRAGON, L. ; SANTISTEBAN, M. L. ; VARELA, D. ; RAMOS, M. A. ; SANCHEZ, C. ; BUENO, F. ; BUSTOS, J. ; CANARIO, J. A. ; GARCIA, H. ; ELORRIO, E. G. ;JORGE, V. A.; MAZZONI, A. ; MORELLI, D. ; OSORIO, L. ; RUBENSTEIN, F. ; RUM, M. ; MACHADO, C. V. ; LANG, T. . Conectar excelencia y compartir conocimientos para mayor equidad en la investigación sanitaria: experiencia de The Global Health Network Latinoamérica. Revista Médica Hondureña, v. 91, p. s94-s94, 2023.",
+                    "2.": "SILVA, W. M. C. ; GRANDO, R. L. ; DIAS, T. M. R. ;JORGE, V. A.; SEGUNDO, W. . Criação de indicadores cientométricos: Estudo de caso da integração do Observatório Ciência, Tecnologia & Inovação em Saúde da Fiocruz ao Sistema BrCris/IBICT. Revista Científica Da UEM: Série Letras E Ciências Sociais, v. 4, p. 29-34, 2023.",
+                    "3.": "JORGE, V. A.; SAYAO, L. F. . Apresentação. ACERVO: REVISTA DO ARQUIVO NACIONAL, v. 34, p. 1-2, 2021.",
+                    "4.": "JORGE, V. A.;ALBAGLI, S.. Research data sharing during the Zika virus public health emergency. INFORMATION RESEARCH-AN INTERNATIONAL ELECTRONIC JOURNAL, v. 25, p. 1-15, 2020.",
+                    "5.": "MARTINS, M. F. M. ; SANTOS, H. L. C. ;JORGE, V. A.; OLIVEIRA, J. G. . Inserção da produção científica da Fiocruz nas iniciativas de promoção do acesso aberto a dados de pesquisa em revistas nacionais e internacionais. CIÊNCIA DA INFORMAÇÃO (ONLINE), v. 48, p. 77-86, 2020.",
+                    "6.": "VEIGA, V. ; MACHADO, R. ;JORGE, V. A.; PENEDO, E. . Compartilhamento de dados de pesquisa na Fiocruz: diagnóstico e percepção do pesquisador. CIÊNCIA DA INFORMAÇÃO (ONLINE), v. 48, p. 319-327, 2020.",
+                    "7.": "SANTOS, H. L. C. ;JORGE, V. A.; MACHADO, V. . Análise da tendência das políticas editoriais frente ao compartilhamento de dados pelos pesquisadores do INCQS. CIÊNCIA DA INFORMAÇÃO (ONLINE), v. 48, p. 220-227, 2020.",
+                    "8.": "JORGE, VANESSA DE ARRUDA; ALBAGLI, SARITA ; SOUZA, ALLAN ROCHA DE . Apresentação. LIINC EM REVISTA, v. 16, p. e5535, 2020.",
+                    "9.": "JORGE, V. A.;ALBAGLI, S.. Compartilhamento de dados de pesquisa em saúde: iniciativas do National Institutes of Health (NIH). RECIIS - Revista Eletrônica de Comunicação, Informação & Inovação em Saúde, v. 12, p. 415-428, 2018.",
+                    "10.": "NASCIMENTO, F. J. T. ; LOUREIRO, E. C. ;JORGE, V. A.. Sigilo e Acesso: entendimentos e procedimentos para a adequada disponibilização de informações e dados governamentais abertos. RECIIS - Revista Eletrônica de Comunicação, Informação & Inovação em Saúde, v. 11, p. 1-8, 2017.",
+                    "11.": "JORGE, V. A.;ALBAGLI, S.. Papel da informação na área da qualidade: do fordismo ao capitalismo cognitivo. Transinformacao, v. 27, p. 245-253, 2015.Citações:",
+                    "12.": "COSTA, E. H. S. ;JORGE, V. A.. Políticas institucionais de informação no Brasil: uma análise a partir dos repositórios institucionais. Cadernos BAD, v. 2, p. 129-134, 2014."
+                }
+            },
+            "Produção técnica": {
+                "Produtos tecnológicos": {
+                    "1.": "JORGE, V. A.; QUEIROZ, C. F. ; MARTINS, M. F. M. ; ALVES, A. S. ; DAGUILA, M. C. ; DOMINGUES, R. M. ; AMARAL, P. V. C. ; SANTOS, K. V. P. ; SA, I. P. ; NGOMO, J. G. N. ; NASCIMENTO, F. J. T. ; SOUZA, A. R. ; SANTOS, H. L. C. ; OLIVEIRA, J. G. . Projeto de Implantação do Repositório de Dados de Pesquisa da Fiocruz - ARCA DADOS. 2022."
+                },
+                "Trabalhos técnicos": {
+                    "1.": "JORGE, V. A.; FELICISSIMO, C. ; FERNANDES, C. ; PENEDO, E. ; MARTINS, M. F. M. ; SANTOS, H. L. C. ; SA, I. ; GAGLIANO, K. V. ; SILVA, M. V. P. ; ARAUJO, M. ; DIB, S. ; CARELLI, T. ; COELHO NETO, V. B. ; BELCHIOR, V. ; VEIGA, V. ; SEGUNDO, W. . Relatório final: piloto de repositório de dados de pesquisa (fase 1). 2020.",
+                    "2.": "JORGE, V. A.. Edital Encomendas Estratégicas - Inova Covid-19 - Geração de Conhecimento - Parecer 1. 2020.",
+                    "3.": "JORGE, V. A.. Edital Covid-19 - Resposta rápida - Parecer 1. 2020.",
+                    "4.": "JORGE, V. A.. Edital Covid-19 - Resposta rápida - Parecer 2. 2020.",
+                    "5.": "JORGE, V. A.. Edital Covid-19 - Resposta rápida - Parecer 3. 2020.",
+                    "6.": "JORGE, V. A.. Edital Covid-19 - Resposta rápida - Parecer 4. 2020.",
+                    "7.": "JORGE, V. A.. Edital Covid-19 - Resposta rápida - Parecer 5. 2020.",
+                    "8.": "JORGE, V. A.. Edital Encomendas Estratégicas - Inova Covid-19 - Geração de Conhecimento - Parecer 2. 2020.",
+                    "9.": "JORGE, V. A.. Edital Encomendas Estratégicas - Inova Covid-19 - Geração de Conhecimento - Parecer 3. 2020.",
+                    "10.": "JORGE, V. A.. Edital Encomendas Estratégicas - Inova Covid-19 - Geração de Conhecimento - Parecer 4. 2020.",
+                    "11.": "JORGE, V. A.. Edital Encomendas Estratégicas - Inova Covid-19 - Geração de Conhecimento - Parecer 5. 2020.",
+                    "12.": "JORGE, V. A.. Edital Encomendas Estratégicas - Inova Covid-19 - Geração de Conhecimento - Parecer 6. 2020.",
+                    "13.": "JORGE, V. A.. Edital Encomendas Estratégicas - Inova Covid-19 - Geração de Conhecimento - Parecer 8. 2020.",
+                    "14.": "JORGE, V. A.. Edital Encomendas Estratégicas - Inova Covid-19 - Geração de Conhecimento - Parecer 9. 2020.",
+                    "15.": "JORGE, V. A.. Edital Encomendas Estratégicas - Inova Covid-19 - Geração de Conhecimento - Parecer 10. 2020.",
+                    "16.": "PINHEIRO, M. J. A. ; SILVA, M. V. P. ; FERRARI, R. ; GONCALVES, A. ; DREER, M. ; SOUTO, A. ; ARAUJO, L. D. ; JORGE, V. A. . Programa de Preservação Digital de Acervos da Fiocruz. 2020.",
+                    "17.": "JORGE, V. A.. Edital Encomendas Estratégicas - Inova Covid-19 - Geração de Conhecimento - Parecer 7. 2020."
+                },
+                "Entrevistas, mesas redondas, programas e comentários na mídia": {
+                    "1.": "JORGE, V. A.; ALBAGLI, S. ; ROCHA, L. ; SENA, P. ; BRAGA, T. ; MARTINS, M. F. M. . Indicadores de Avaliação e Apoio à Ciência Cidadã. 2022. (Relatório de pesquisa).",
+                    "2.": "JORGE, V. A.; MARTINS, M. F. M. . Dados Abertos no Contexto da Ciência Aberta: Ferramentas e Recursos. 2020. .",
+                    "3.": "PAGANINE, L. ; AMARO, B. ; ASSIS, T. B. ; FORTALEZA, J. ; BERTIN, P. ; JORGE, V. A. ; SANTOS, P. X. . Princípios e diretrizes orientadoras para políticas institucionais de dados científicos abertos em apoio à Ciência Aberta.2020. (Desenvolvimento de material didático ou instrucional - ProcedimentoOperacionalPadrão).",
+                    "4.": "JORGE, V. A.; CLINIO, A. . Aula 1 - Gestão, compartilhamento e abertura de dados para pesquisa: uma nova cultura no fazer científico.2020. (Desenvolvimento de material didático ou instrucional - Apostila).",
+                    "5.": "CLINIO, A. ; JORGE, V. A. . Aula 2 - Gestão ?ativa? de dados: uma mudança cultural.2020. (Desenvolvimento de material didático ou instrucional - Apostila).",
+                    "6.": "JORGE, V. A.; ALBAGLI, S. . Aula 4 - Acesso Aberto na Fiocruz: relatos de experiência.2019. (Desenvolvimento de material didático ou instrucional - Apostila).",
+                    "7.": "JORGE, V. A.. Síntese das principais iniciativas de Ciência Aberta. 2019. (Relatório de pesquisa).",
+                    "8.": "JORGE, V. A.. Políticas institucionais para compartilhamento de dados de pesquisa: o caso NIH .. 2019. (Relatório de pesquisa).",
+                    "9.": "SANTOS, P. R. E. ; JORGE, V. A. ; NASCIMENTO, F. J. T. ; LOUREIRO, E. C. ; SILVA, E. C. ; PINTO, J. M. C. . Procedimento para classificação e tratamento das informações sigilosas da Fiocruz. 2016.(Protocolo de atividades).",
+                    "10.": "JORGE, V. A.; ROCHA, R. ; FORTI, T. ; MACHADO, V. . Organização, transferência e consulta à documentação arquivística do INCQS.2015. (Desenvolvimento de material didático ou instrucional - Procedimento Operacional Padrão).",
+                    "11.": "JORGE, V. A.; ROCHA, R. ; PEREIRA, A. ; MACHADO, V. . Temporalidade e destinação dos documentos do INCQS.2015. (Desenvolvimento de material didático ou instrucional - Procedimento Operacional Padrão).",
+                    "12.": "JORGE, V. A.; ROCHA, R. ; FORTI, T. ; MACHADO, V. . Controle da sala do arquivo.2015. (Desenvolvimento de material didático ou instrucional - Procedimento de Uso).",
+                    "13.": "JORGE, V. A.; ROCHA, R. ; FORTI, T. ; MACHADO, V. . Organização dos processos administrativos de análises de amostras do INCQS.2015. (Desenvolvimento de material didático ou instrucional - Procedimento Operacional Padrão).",
+                    "14.": "JORGE, V. A.; Balan, L ; MACHADO, V. . Leitora / impressora de microfilmes.2013. (Desenvolvimento de material didático ou instrucional - Procedimento de Uso).",
+                    "15.": "MARIZ, A. C. A. ; MOTTA, D. B. ; SILVA, W. A. ; MATOS, L. F. ; JORGE, V. A. . Anais do III Congresso Nacional de Arquivologia - Arquivologia e suas múltiplas interfaces. 2008. (Editoração/Anais).",
+                    "16.": "JORGE, V. A.. Gerencialmento de documentos e registros QSMS.2007. (Desenvolvimento de material didático ou instrucional - Apostila).",
+                    "17.": "JORGE, V. A.. Sistema da Qualidade e Produtividade. 2006. (Curso de curta duração ministrado/Especialização).",
+                    "18.": "JORGE, V. A.. Sistemas da Qualidade e Produtividade. 2005. (Curso de curta duração ministrado/Especialização).",
+                    "19.": "JORGE, V. A.. Gestão Documental.2005. (Desenvolvimento de material didático ou instrucional - Apostila)."
+                }
+            },
+            "Demais tipos de produção técnica": {}
+        },
+        "JCR": {
+            "0": {
+                "data-issn": "NULL",
+                "impact-factor": "NULL",
+                "jcr-year": "NULL"
+            },
+            "1": {
+                "data-issn": "NULL",
+                "impact-factor": "NULL",
+                "jcr-year": "NULL"
+            },
+            "2": {
+                "data-issn": "NULL",
+                "impact-factor": "NULL",
+                "jcr-year": "NULL"
+            },
+            "3": {
+                "data-issn": "1368-1613",
+                "impact-factor": "0.8",
+                "jcr-year": "JCR 2022",
+                "journal": "Information Research-An International Electronic Journal (1368-1613)"
+            },
+            "4": {
+                "data-issn": "NULL",
+                "impact-factor": "NULL",
+                "jcr-year": "NULL"
+            },
+            "5": {
+                "data-issn": "NULL",
+                "impact-factor": "NULL",
+                "jcr-year": "NULL"
+            },
+            "6": {
+                "data-issn": "NULL",
+                "impact-factor": "NULL",
+                "jcr-year": "NULL"
+            },
+            "7": {
+                "data-issn": "NULL",
+                "impact-factor": "NULL",
+                "jcr-year": "NULL"
+            },
+            "8": {
+                "data-issn": "NULL",
+                "impact-factor": "NULL",
+                "jcr-year": "NULL"
+            },
+            "9": {
+                "data-issn": "NULL",
+                "impact-factor": "NULL",
+                "jcr-year": "NULL"
+            },
+            "10": {
+                "data-issn": "2318-0889",
+                "impact-factor": "0.6",
+                "jcr-year": "JCR 2022",
+                "journal": "Transinformacao (0103-3786)"
+            },
+            "11": {
+                "data-issn": "NULL",
+                "impact-factor": "NULL",
+                "jcr-year": "NULL"
+            }
+        },
+        "Bancas": {
+            "Participação em bancas de trabalhos de conclusão": {
+                "Mestrado": {
+                    "1.": "COHEN, M.; JORGE, V. A.; CHAGNON, R. P.; MALDONADO, J. M. S. V..  Participação em banca de Wander Guimarães da Costa. Gestão Estratégica: Uma proposta para a Casa de Oswaldo Cruz a partir do Balanced Scorecard - BSC. 2022. Dissertação (Mestrado em Mestrado Profissional em Saúde Pública) - Escola Nacional de Saúde Pública Sergio Arouca.",
+                    "2.": "PEREIRA, S. M. S. A.; JORGE, V. A.; ANDRADE, C. L. T..  Participação em banca de Cleber Luiz Dias de Araujo. Campus Inteligente: uma proposta para estruturação da Fundação Oswaldo Cruz. 2021. Dissertação (Mestrado em Mestrado Profissional em Saúde Pública) - Escola Nacional de Saúde Pública Sergio Arouca.",
+                    "3.": "GUIMARAES, A. P. S.; COSTA, L. S.; SOUZA, R. A.; JORGE, V. A.; PRESOT, I. M..  Participação em banca de Alice Paula Di Sabatino Guimarães. Caderno Eletrônico de Laboratório como instrumento de sinergia, inovação e sustentabilidade científica. 2021. Dissertação (Mestrado em Mestrado Profissional em Saúde Pública) - Escola Nacional de Saúde Pública Sergio Arouca.",
+                    "4.": "MENDES, C. E.; COSTA, L. S.; PRESOT, I. M.; JORGE, V. A.; LIMA, S. M. L.; MALDONADO, J. M. S. V..  Participação em banca de Carlos Eduardo Mendes. Cultura de Inovação: Estudo dos fatores que promovem a inovação em instituição de ciência, tecnologia e inovação. 2021. Dissertação (Mestrado em Mestrado Profissional em Saúde Pública) - Escola Nacional de Saúde Pública Sergio Arouca.",
+                    "5.": "CARVALHO, B. B.; MALDONADO, J. M. S. V.; SOUZA, R. A.; JORGE, V. A.; PRESOT, I. M..  Participação em banca de Bruno Bezerra Carvalho. Boas práticas de integridade de dados em registros eletrônicos gerados em sistemas computadorizados de equipamentos analíticos: uma proposta para os laboratórios de pesquisa científica experimental da Fiocruz. 2021. Dissertação (Mestrado em Mestrado Profissional em Saúde Pública) - Escola Nacional de Saúde Pública Sergio Arouca.",
+                    "6.": "JORGE, V. A.; PIMENTA, R. M.; SALES, L. F.; CAVALCANTI, M. T..  Participação em banca de Vanessa Capucho Aparicio da Silva. Dados de pesquisa e fontes históricas: Uma análise conceitual. 2020. Dissertação (Mestrado em Ciência da Informação) - Instituto Brasileiro de Informação em Ciência e Tecnologia."
+                },
+                "Teses de doutorado": {
+                    "1.": "BORGES, L. C.; ROCHA, L. M. G. M.; MORAES, J. N. L.; BERNARDES, M. M. R.; JORGE, V. A..  Participação em banca de Paulina Aparecida Marques Vieira Albuquerque. Comunicação integrada do patrimônio informacional científico da Escola de Enfermagem Alfredo Pinto. 2022. Tese (Doutorado em Museologia e Patrimönio)  - Universidade Federal do Estado do Rio de Janeiro.",
+                    "2.": "JORGE, V. A.; SOUZA, A. R.; SALES, L. F.; PINHEIRO, L. V. R.; ALBAGLI, S..  Participação em banca de Paulo Cezar Vieira Guanaes. Abertura e compartilhamento de dados de pesquisa subjacentes a artigos científicos: questões do direito autoral. 2020. Tese (Doutorado em Ciência da Informação)  - Instituto Brasileiro de Informação em Ciência e Tecnologia."
+                },
+                "Qualificações de Doutorado": {
+                    "1.": "VILLAS BOAS, M. H. S.; BARONI, A. F.; JORGE, V. A..  Participação em banca de Tatiana Forti. Disseminação da importância da implementação de um modelo integrado de gestão de risco ao sistema de gestão da qualidade nos Lacens. 2022. Exame de qualificação (Doutorando em Programa de Pós-graduação em Vigilância Sanitária)  - Instituto Nacional de Controle de Qualidade em Saúde.",
+                    "2.": "VILLAS BOAS, M. H. S.; BARONI, A. F.; JORGE, V. A..  Participação em banca de Tatiana Forti. Disseminação da importância da implementação de um modelo integrado de gestão de risco ao sistema de gestão da qualidade nos Lacens. 2021. Exame de qualificação (Doutorando em Programa de Pós-graduação em Vigilância Sanitária)  - Instituto Nacional de Controle de Qualidade em Saúde.",
+                    "3.": "BORGES, L. C.; ROCHA, L. M. G. M.; MENDONCA, E. C.; BERNARDES, M. M. R.; JORGE, V. A..  Participação em banca de Paulina Aparecida Marques Vieira de Albuquerque. Patrimônio informacional da Unirio: uma proposta de representação da informação baseadas em metadados para comunicação integrada debens culturais da Escola de Enfermagem Alfredo Pinto. 2019. Exame de qualificação (Doutorando em Museologia e Patrimönio)  - Universidade Federal do Estado do Rio de Janeiro."
+                },
+                "Qualificações de Mestrado": {
+                    "1.": "JORGE, V. A.; PEREIRA, S. M. S. A.; ANDRADE, C. L. T..  Participação em banca de Cleber Luiz Dias de Araujo. Campus Inteligente: uma proposta para estruturação da Fundação Oswaldo Cruz. 2020. Exame de qualificação (Mestrando em Mestrado Profissional em Saúde Pública)  - Escola Nacional de Saúde Pública Sergio Arouca.",
+                    "2.": "JORGE, V. A.; FORNAZIN, M.; SOUZA, R. A.; MALDONADO, J. M. S. V..  Participação em banca de Bruno Bezerra Carvalho. Boas práticas de integridade de dados em registros eletrônicos: uma proposta para os laboratórios de pesquisa científica experimental da Fiocruz. 2020. Exame de qualificação (Mestrando em Mestrado Profissional em Saúde Pública)  - Escola Nacional de Saúde Pública Sergio Arouca.",
+                    "3.": "JORGE, V. A.; COHEN, M.; MALDONADO, J. M. S. V.; CHAGNON, R. P..  Participação em banca de Wander Guimarães da Costa. Gestão Estratégica: Uma proposta de nova modelagem para a Casa de Oswaldo Cruz a partir do Balanced Scorecard - BSC. 2020. Exame de qualificação (Mestrando em Mestrado Profissional em Saúde Pública)  - Escola Nacional de Saúde Pública Sergio Arouca.",
+                    "4.": "JORGE, V. A.; ROCHA, C. E. A. L.; SANTOS, G. B.; KOTOWSKI FILHO, N. P..  Participação em banca de Flávia Silva. Impactos da Cultura Orientada a dados na Gestão Institucional da Fiocruz. 2020. Exame de qualificação (Mestrando em Mestrado Profissional em Saúde Pública)  - Escola Nacional de Saúde Pública Sergio Arouca.",
+                    "5.": "GUIMARAES, A. P. S.; COSTA, L. S.; MALDONADO, J. M. S. V.; SOUZA, R. A.; JORGE, V. A..  Participação em banca de Alice Paula Di Sabatino Guimarães. Caderno Eletrônico de Laboratório como instrumento de sinergia, inovação e sustentabilidade científica. 2020. Exame de qualificação (Mestrando em Mestrado Profissional em Saúde Pública)  - Escola Nacional de Saúde Pública Sergio Arouca.",
+                    "6.": "COSTA, L. S.; PRESOT, I. M.; JORGE, V. A..  Participação em banca de Carlos Eduardo Mendes. Cultura de Inovação: Estudo dos fatores que promovem a inovação em instituição de ciência, tecnologia e inovação. 2020. Exame de qualificação (Mestrando em Mestrado Profissional em Saúde Pública)  - Escola Nacional de Saúde Pública Sergio Arouca."
+                },
+                "Monografias de cursos de aperfeiçoamento/especialização": {}
+            },
+            "Participação em bancas de comissões julgadoras": {
+                "Outras participações": {
+                    "1.": "JORGE, V. A.. Comissão científica da 13ª Conferência Luso-Brasileira de Ciência Aberta.2022.Universidade Eduardo Mondlane.",
+                    "2.": "JORGE, V. A.. Comissão científica da 12ª Conferência Luso-Brasileira de Ciência Aberta.2021.Universidade do Minho."
+                }
+            }
+        },
+        "Orientações": {
+            "Orientações e supervisões em andamento": {
+                "Dissertação de mestrado": {
+                    "1.": "LARISSA DA SILVA SOUZA. Ciência cidadã e Infodemiologia: um estudo sobre a pandemia de Covid-19.Início: 2022.Dissertação (Mestrado em Ciência da Informação)  - Instituto Brasileiro de Informação em Ciência e Tecnologia. (Coorientador)."
+                },
+                "Orientações de outra natureza": {
+                    "1.": "Hataânderson Luiz Cabral dos Santos.Análise de periódicos usados por pesquisadores da pós-graduação do INCQS frente à abertura de dados de pesquisa na perspectiva da reprodutibilidade dos processos laboratoriais.2018.Orientação de outra natureza. (Curso Técnico em Biotecnologia)  - Fundação Oswaldo Cruz. Orientador: Vanessa de Arruda Jorge."
+                }
+            },
+            "Orientações e supervisões concluídas": {
+                "Orientações de outra natureza": {
+                    "1.": "Hataânderson Luiz Cabral dos Santos.Análise de periódicos usados por pesquisadores da pós-graduação do INCQS frente à abertura de dados de pesquisa na perspectiva da reprodutibilidade dos processos laboratoriais.2018.Orientação de outra natureza. (Curso Técnico em Biotecnologia)  - Fundação Oswaldo Cruz. Orientador: Vanessa de Arruda Jorge."
+                }
+            }
+        },
+        "JCR2": {
+            "0": {
+                "doi": "http://dx.doi.org/10.5377/rmh.v91isupl.3.16787",
+                "issn": "19957068",
+                "volume": "91",
+                "paginaInicial": "s94",
+                "titulo": "Conectar excelencia y compartir conocimientos para mayor equidad en la investigación sanitaria: experiencia de The Global Health Network Latinoamérica",
+                "sequencial": "1",
+                "nomePeriodico": "Revista Médica Hondureña"
+            },
+            "1": {
+                "issn": "23073918",
+                "volume": "4",
+                "paginaInicial": "29",
+                "titulo": "Criação de indicadores cientométricos: Estudo de caso da integração do Observatório Ciência, Tecnologia ",
+                "sequencial": "2",
+                "nomePeriodico": "Revista Científica Da UEM: Série Letras E Ciências Sociais",
+                "doi": null
+            },
+            "2": {
+                "issn": "22378723",
+                "volume": "34",
+                "paginaInicial": "1",
+                "titulo": "Apresentação",
+                "sequencial": "3",
+                "nomePeriodico": "ACERVO: REVISTA DO ARQUIVO NACIONAL",
+                "doi": null
+            },
+            "3": {
+                "jcr-ano": "Information Research-An International Electronic Journal 1368-1613",
+                "issn": "13681613",
+                "volume": "25",
+                "paginaInicial": "1",
+                "titulo": "Research data sharing during the Zika virus public health emergency",
+                "sequencial": "4",
+                "nomePeriodico": "INFORMATION RESEARCH-AN INTERNATIONAL ELECTRONIC JOURNAL",
+                "doi": null,
+                "impact-factor": "0.8",
+                "original_title": "Information Research-An International Electronic Journal (1368-1613)"
+            },
+            "4": {
+                "issn": "15188353",
+                "volume": "48",
+                "paginaInicial": "77",
+                "titulo": "Inserção da produção científica da Fiocruz nas iniciativas de promoção do acesso aberto a dados de pesquisa em revistas nacionais e internacionais",
+                "sequencial": "5",
+                "nomePeriodico": "CIÊNCIA DA INFORMAÇÃO (ONLINE)",
+                "doi": null
+            },
+            "5": {
+                "issn": "15188353",
+                "volume": "48",
+                "paginaInicial": "319",
+                "titulo": "Compartilhamento de dados de pesquisa na Fiocruz: diagnóstico e percepção do pesquisador",
+                "sequencial": "6",
+                "nomePeriodico": "CIÊNCIA DA INFORMAÇÃO (ONLINE)",
+                "doi": null
+            },
+            "6": {
+                "issn": "15188353",
+                "volume": "48",
+                "paginaInicial": "220",
+                "titulo": "Análise da tendência das políticas editoriais frente ao compartilhamento de dados pelos pesquisadores do INCQS",
+                "sequencial": "7",
+                "nomePeriodico": "CIÊNCIA DA INFORMAÇÃO (ONLINE)",
+                "doi": null
+            },
+            "7": {
+                "doi": "http://dx.doi.org/10.18617/liinc.v16i2.5535",
+                "issn": "18083536",
+                "volume": "16",
+                "paginaInicial": "e5535",
+                "titulo": "Apresentação",
+                "sequencial": "8",
+                "nomePeriodico": "LIINC EM REVISTA"
+            },
+            "8": {
+                "doi": "http://dx.doi.org/10.29397/reciis.v12i4.1499",
+                "issn": "19816278",
+                "volume": "12",
+                "paginaInicial": "415",
+                "titulo": "Compartilhamento de dados de pesquisa em saúde: iniciativas do National Institutes of Health (NIH)",
+                "sequencial": "9",
+                "nomePeriodico": "RECIIS - Revista Eletrônica de Comunicação, Informação "
+            },
+            "9": {
+                "doi": "http://dx.doi.org/10.29397/reciis.v11i0.1378",
+                "issn": "19816278",
+                "volume": "11",
+                "paginaInicial": "1",
+                "titulo": "Sigilo e Acesso: entendimentos e procedimentos para a adequada disponibilização de informações e dados governamentais abertos",
+                "sequencial": "10",
+                "nomePeriodico": "RECIIS - Revista Eletrônica de Comunicação, Informação "
+            },
+            "10": {
+                "jcr-ano": "Transinformacao 0103-3786",
+                "doi": "http://dx.doi.org/10.1590/0103-37862015000300006",
+                "issn": "23180889",
+                "volume": "27",
+                "paginaInicial": "245",
+                "titulo": "Papel da informação na área da qualidade: do fordismo ao capitalismo cognitivo",
+                "sequencial": "11",
+                "nomePeriodico": "Transinformacao",
+                "impact-factor": "0.6",
+                "original_title": "Transinformacao (0103-3786)"
+            },
+            "11": {
+                "issn": "16452895",
+                "volume": "2",
+                "paginaInicial": "129",
+                "titulo": "Políticas institucionais de informação no Brasil: uma análise a partir dos repositórios institucionais",
+                "sequencial": "12",
+                "nomePeriodico": "Cadernos BAD",
+                "doi": null
+            }
+        },
+        "Eventos": {
+            "Participação em eventos, congressos, exposições e feiras": {
+                "1.": "nd Latin American & Brazilian REDCap Conference.?Bibliometric study of national and international scientific production on the use of REDCap as an instrument to facilitate data sharing. 2021. (Outra).",
+                "2.": "Seminário Internacional de Estudos Críticos em Informação, Tecnologia e Organização Social. 2020. (Seminário).",
+                "3.": "10ª Conferência Luso-Brasileira de Ciência Aberta (ConfOA). Análise da tendência das políticas editoriais frente ao compartilhamento de dados pelos pesquisadores do INCQS. 2019. (Congresso).",
+                "4.": "8ª Conferência Luso-Brasileira sobre Acesso Aberto. 2017. (Outra).",
+                "5.": "8ª Conferência Luso-Brasileira sobre Acesso Aberto.Dados científicos compartilhados em saúde: iniciativas do National Institutes of Health (NIH). 2017. (Outra).",
+                "6.": "8ª Conferência Luso-Brasileira sobre Acesso Aberto.Sigilo e Acesso: entendimentos e procedimentos para a adequada disponibilização de informações e dados governamentais abertos. 2017. (Outra).",
+                "7.": "I Encontro Pré-ConfOA.2017. (Encontro).",
+                "8.": "X Fórum Arquivos & Arquivos: \"Gestão Arquivística de Dados Científicos\". 2017. (Outra).",
+                "9.": "4ª Jornada de Gestão por Processos Fiocruz. 2015. (Outra).",
+                "10.": "3ª Jornada de Gestão por Processos - Fiocruz. 2014. (Outra).",
+                "11.": "5a Conferência luso-brasileira acesso aberto.Políticas institucionais de informação no Brasil: uma análise a partir dos repositórios institucionais. 2014. (Outra).",
+                "12.": "III Fórum BVS Fiocruz e o X Encontro da Rede de Biblioteca da Fiocruz: Cenários e tendências das bibliotecas: os desafios do profissional da informação.2014. (Encontro).",
+                "13.": "Seminário sobre a Lei de Acesso à Informação: informações de natureza pessoal e econômica.Lei de Acesso à Informação: informações de natureza pessoal e econômica. 2013. (Seminário).",
+                "14.": "VIII semana técnico administrativa - DIRAD.Avaliação de documentos de arquivo: ferramenta estratégica para gestão. 2013. (Outra).",
+                "15.": "I Jornada de gestão por processos - FIOCRUZ. 2012. (Outra).",
+                "16.": "Oficina de modelagam de processos. 2012. (Oficina).",
+                "17.": "VII semana técnico administrativa - DIRAD.Perspectivas para gestão arquivística de documentos no âmbito da saúde pública: uma visão sobre a preservação de ambientes organizacionais. 2012. (Outra).",
+                "18.": "XIII ENANCIB - Tema: A sociedade em rede para a inovação e o desenvolvimento humano.Gestão da qualidade e informação no pós-fordismo.2012. (Encontro).",
+                "19.": "II Reunião Brasileira de Ensino e Pesquisa em Arquivologia. 2011. (Outra).",
+                "20.": "Revolução 2.0: Da Crise do Capitalismo Global à Constituição do Comum. 2011. (Seminário).",
+                "21.": "III Fórum Arquivístico ARQUIVOS & ARQUIVOS - Documentos e informações em saúde: pesquisa clínica e legislação. 2010. (Outra).",
+                "22.": "XI ENANCIB - Tema: Inovação e inclusão social: questões contemporâneas da informação.2010. (Encontro).",
+                "23.": "Conferência da Seção de Arquivos de Universidades e Instituições de Pesquisa do Conselho Internacional de Arquivos (SUV)  e IV Encontro de Arquivos Científicos. 2009. (Seminário).",
+                "24.": "III Congresso Nacional de Arquivologia. 2008. (Congresso).",
+                "25.": "VII Congreso de Archivologia del Mercosur. 2007. (Congresso).",
+                "26.": "A descrição multinível integrada (DMI) no sistema de informações do Arquivo Nacional. 2006. (Oficina).",
+                "27.": "A norma brasileira de descrição arquivística - NOBRADE. 2006. (Oficina).",
+                "28.": "O modelo de requisitos para sistemas informatizados de gestão arquivística de documentos - e-ARQ. 2006. (Oficina).",
+                "29.": "XIII Congresso Brasileiro de Arquivologia. 2000. (Congresso).",
+                "30.": "II Congresso de Arquivologia do Mercosul. 1997. (Congresso)."
+            },
+            "Organização de eventos, congressos, exposições e feiras": {
+                "1.": "JORGE, V. A.; SEGUNDO, W. ; GRANDO, R. L. ; SENA, P. . II Seminário de Ciências de Dados para a Ciência. 2022. (Outro).",
+                "2.": "JORGE, V. A.; MARTINS, M. F. M. . Semana Internacional de Acesso Aberto - Fiocruz. 2022. (Outro).",
+                "3.": "JORGE, V. A.. II Encontro Nacional de Governo Aberto e Ciência Aberta. 2020. (Congresso).",
+                "4.": "JORGE, V. A.. I Encontro Nacional de Governo Aberto e Ciência Aberta. 2019. (Congresso).",
+                "5.": "JORGE, V. A.; MARTINS, M. F. M. ; CLINIO, A. ; AGUIAR, A. B. . I Encontro Nacional de Governo Aberto e Ciência Aberta. 2019. (Outro).",
+                "6.": "MOTTA, D. B. ; MARIZ, A. C. A. ; JORGE, V. A. ; HOLANDA, A. P. ; MATOS, L. F. ; SILVA, W. A. ; MACHADO, C. F ; MOTTA, R. ; SANTOS, P. K. dos ; SIQUEIRA, M. N ; RIDOLPHI, Wagner ; RODRIGUES, P. . III Congresso Nacional de Arquivologia - Arquivologia e suas múltiplas interfaces. 2008. (Congresso)."
+            }
+        }
+    }
+]

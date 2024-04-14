@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TRM9C-Todas camadas</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/neo4j-driver"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"></script>
+      <style>
+        /* Define o estilo das camadas */
+        .line {
+          width: 98.5%;
+          height: 10%;
+          position: absolute;
+        }
+        .line-1 {
+          background-color: rgba(255, 255, 255, 0);
+          top: 7.5%;
+          left: 20%;
+          font-size: 32px;
+        }
+        .line-2 {
+          background-color: rgba(255, 155, 000, 0.5);
+          top: 10%;
+        }
+        .line-3 {
+          background-color: rgba(255, 255, 000, 0.5);
+          top: 20%;
+        }
+        .line-4 {
+          background-color: rgba(000, 60, 000, 0.5);
+          top: 30%;
+        }
+        .line-5 {
+          background-color: rgba(000, 255, 255, 0.5);
+          top: 40%;
+        }
+        .line-6 {
+          background-color: rgba(190, 170, 60, 0.5);
+          top: 50%;
+        }
+        .line-7 {
+          background-color: rgba(125, 0000, 125, 0.5);
+          top: 60%;
+        }
+        .line-8 {
+          background-color: rgba(000, 255, 000, 0.5);
+          top: 70%;
+        }
+        .line-9 {
+          background-color: rgb(125, 125, 125, 0.5);
+          font-style: rgba(255, 255, 255);
+          top: 80%;
+        }
+        .line-0 {
+          background-color: rgba(000, 000, 000);
+          font-style: rgb(255, 255, 255);
+          top: 90%;
+        }   
+        /* Define o estilo das colunas */
+        .col-1 {
+          left: 2.5%;
+          width: 10%;
+        }
+        .col-2 {
+          left: 12.5%;
+          width: 10%;
+        }
+        .col-3 {
+          left: 22.5%;
+          width: 10%;
+        }
+        .col-4 {
+          left: 32.5%;
+          width: 10%;
+        }
+        .col-5 {
+          left: 42.5%;
+          width: 10%;
+        }
+        .col-6 {
+          left: 52.5%;
+          width: 10%;
+        }
+        .col-7 {
+          left: 62.5%;
+          width: 10%;
+        }
+        .col-8 {
+          left: 72.5%;
+          width: 10%;
+        }
+        .col-9 {
+          left: 82.5%;
+          width: 10%;
+        }
+        /* Define o estilo dos títulos */
+        .title1 {
+          font-size: 18px;
+          font-style:italic;
+          position: absolute;
+          top: 0%;
+          right: 25%;
+        }
+        .title2 {
+          font-size: 16px;
+          font-style: italic;
+          color: rgb(000, 000, 000);
+          position: absolute;
+          top: 0;
+          left: 2%;
+        }
+        .title3 {
+          font-size: 16px;
+          font-style: italic;
+          color: rgb(255, 255, 255);
+          position: absolute;
+          top: 0;
+          left: 2%;
+        }
+        .scatterplot {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 600px;
+            height: 400px;
+            z-index: 1; /* Posiciona o grafo na frente */
+            }
+        /* Container da matriz */
+        .container {
+          position: relative; 
+        } 
+      </style>
+  </head>
+  <body>
+    <h1 class="article-title">Roadmap Tecnológico 09 Camadas - Marcos Aires</h1>
+    <h4 class="article-title">MACROPROCESSO PDI REPRESENTADO POR CAMADAS DE PROCESSOS></h4>
+    <div class="container"> 
+        <div class="line line-1">
+          <div class="title1"> Nível Grupo de Processos (> P001 > P002 > ... P009 >) </div>
+        </div>
+        <div class="line line-2 col-1">
+          <div class="title2"><strong>P009: Avaliar Impactos</strong> (Indicadores, Evidências, Mensuração)</div>
+        </div>
+        <div class="line line-2 col-2">
+          <div class="title2"><strong>P008: Gerar Negócios</strong> (Modelos, Protótipos, Empreendimentos)</div>
+        </div>
+        <div class="line line-2 col-3">
+          <div class="title2"><strong>P007: Desenvolver Tecnologias</strong> (Aplicação, Solução, Produto-Serviço)</div>
+        </div>
+        <div class="line line-2 col-4">
+          <div class="title2"><strong>P006: Estruturar Plataformas</strong> (Ensaios, Equipamentos, Ambientes)</div>
+        </div>
+        <div class="line line-2 col-5">
+          <div class="title2"><strong>P005: Implementar Gerenciamentos</strong> (Projetos, Processos, Programas)</div>
+        </div>
+        <div class="line line-2 col-6">
+          <div class="title2"><strong>P004: Delimitar Escopos</strong> (Papeis, Tempo, Orçamentos)</div>
+        </div>
+        <div class="line line-2 col-7">
+          <div class="title2"><strong>P003: Analisar Competências</strong> (Atitudes, Experiências, Habilidades)</div>
+        </div>
+        <div class="line line-2 col-8">
+          <div class="title2"><strong>P002: Organizar Conhecimentos</strong> (Temas, Tópicos, Disciplinas)</div>
+        </div>
+        <div class="line line-2 col-9">
+          <div class="title2"><strong>P001: Mapear Necessidades</strong> (Dores, Desejos, Desafios)</div>
+        </div>
+        <div class="line line-3 col-1">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-3 col-2">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-3 col-3">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-3 col-4">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-3 col-5">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-3 col-6">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-3 col-7">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-3 col-8">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-3 col-9">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-4 col-1">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-4 col-2">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-4 col-3">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-4 col-4">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-4 col-5">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-4 col-6">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-4 col-7">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-4 col-8">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-4 col-9">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-5 col-1">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-5 col-2">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-5 col-3">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-5 col-4">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-5 col-5">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-5 col-6">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-5 col-7">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-5 col-8">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-5 col-9">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-6 col-1">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-6 col-2">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-6 col-3">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-6 col-4">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-6 col-5">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-6 col-6">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-6 col-7">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-6 col-8">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-6 col-9">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-7 col-1">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-7 col-2">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-7 col-3">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-7 col-4">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-7 col-5">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-7 col-6">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-7 col-7">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-7 col-8">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-7 col-9">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-8 col-1">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-8 col-2">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-8 col-3">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-8 col-4">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-8 col-5">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-8 col-6">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-8 col-7">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-8 col-8">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-8 col-9">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-9 col-1">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-9 col-2">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-9 col-3">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-9 col-4">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-9 col-5">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-9 col-6">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-9 col-7">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-9 col-8">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-9 col-9">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-10 col-1">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-10 col-2">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-10 col-3">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-10 col-4">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-10 col-5">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-10 col-6">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-10 col-7">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-10 col-8">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+        <div class="line line-10 col-9">
+          <div class="title2"><strong>...</strong></div>
+        </div>
+    </div>
+    <div class="scatterplot">
+          <svg width="600" height="400"></svg>
+    </div>
+  </body>
+  </html>

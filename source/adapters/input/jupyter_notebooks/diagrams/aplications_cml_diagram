@@ -1,0 +1,31 @@
+// Machine Learning Diagram
+digraph {
+	graph [rankdir=TB]
+	A [label="Classic Machine Learning" color=yellow fontname=bold fontsize=32 style=filled]
+	B [label="Supervised Learning" color=lightblue fontsize=28 style=filled]
+	C [label="Unsupervised Learning" color=lightgreen fontsize=28 style=filled]
+	D [label="Classification
+Predicts a category" color=lightblue fontsize=20 height=1.5 shape=box style=filled width=1.7]
+	E [label="Regression
+Predicts a number" color=lightblue fontsize=20 height=1.5 shape=box style=filled width=1.7]
+	F [label="Clustering
+Divides by similarity" color=lightgreen fontsize=20 height=1.5 shape=box style=filled width=1.7]
+	G [label="Association
+Identifies sequences
+Finding hidden dependencies" color=lightgreen fontsize=20 height=1.5 shape=box style=filled width=1.7]
+	H [label="Dimensional Reduction
+(generalization)" color=lightgreen fontsize=20 height=1.5 shape=box style=filled width=1.7]
+	I [style=invis]
+	J [style=invis]
+	A -> B [label="Truth labels available"]
+	A -> C [label="Truth labels unavailable"]
+	B -> D [label="Predict a category"]
+	B -> E [label="Predict a number"]
+	C -> F [label="Divide by similarity"]
+	C -> G [label="Identifies sequences"]
+	C -> H [label="Search for hidden dependencies"]
+	C -> J [style=invis]
+	B=B C=C rank=same
+	D=D E=E I=I rank=same
+	F=F G=G H=H J=J rank=same
+}

@@ -1,0 +1,62 @@
+[
+    {
+        "execution_times": {
+            "multithreads_cpu_py": 214.36035418510437,
+            "multithreads_cpu_go": 340.5726718902588
+        },
+        "request_count": 0,
+        "time_spent": {
+            "scraping": 0,
+            "crossref": 0,
+            "data_processing": 0
+        }
+    },
+    {
+        "execution_times": {
+            "multithreads_cpu_py": 214.04954433441162,
+            "multithreads_cpu_go": 340.70208859443665
+        },
+        "request_count": 0,
+        "time_spent": {
+            "scraping": 0,
+            "crossref": 0,
+            "data_processing": 0
+        }
+    },
+    {
+        "execution_times": {
+            "multithreads_cpu_py": 208.38278794288635,
+            "multithreads_cpu_go": 340.6969635486603
+        },
+        "request_count": 0,
+        "time_spent": {
+            "scraping": 0,
+            "crossref": 0,
+            "data_processing": 0
+        }
+    },
+    {
+        "execution_times": {
+            "multithreads_cpu_py": 253.68250584602356,
+            "multithreads_cpu_go": 340.65483140945435
+        },
+        "request_count": 0,
+        "time_spent": {
+            "scraping": 0,
+            "crossref": 0,
+            "data_processing": 0
+        }
+    },
+    {
+        "execution_times": {
+            "multithreads_cpu_py": 204.12584519386292,
+            "multithreads_cpu_go": 362.75027084350586
+        },
+        "request_count": 0,
+        "time_spent": {
+            "scraping": 0,
+            "crossref": 0,
+            "data_processing": 0
+        }
+    }
+]

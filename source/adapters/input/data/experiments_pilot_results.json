@@ -1,0 +1,32 @@
+[
+    {
+        "execution_times": {
+            "singlethread_cpu_py": 1420.1137526035309,
+            "singlethread_gpu_py": 1393.6877541542053,
+            "multithreads_cpu_py": 190.4503846168518,
+            "multithreads_gpu_py": 156.89511394500732,
+            "multithreads_cpu_go": 340.6007499694824
+        },
+        "request_count": 0,
+        "time_spent": {
+            "scraping": 0,
+            "crossref": 0,
+            "data_processing": 0
+        }
+    },
+    {
+        "execution_times": {
+            "singlethread_cpu_py": 1586.5554065704346,
+            "singlethread_gpu_py": 1278.8365302085876,
+            "multithreads_cpu_py": 162.30545806884766,
+            "multithreads_gpu_py": 136.13754606246948,
+            "multithreads_cpu_go": 340.6202390193939
+        },
+        "request_count": 0,
+        "time_spent": {
+            "scraping": 0,
+            "crossref": 0,
+            "data_processing": 0
+        }
+    }
+]

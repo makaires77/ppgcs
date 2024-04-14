@@ -1,0 +1,23 @@
+{
+    "base": {},
+    "rem_citerios": {
+        "Duplicados": 0,
+        "Fora do per\u00edodo": 0
+    },
+    "novas_bases": {},
+    "n_rem_titulo": 0,
+    "leitura_resumos": {
+        "Resumo inacess\u00edvel": 0,
+        "Per\u00edodo diferente": 0,
+        "Escopo diferente": 0
+    },
+    "leitura_completa": {
+        "Texto completo inacessivel": 0,
+        "Cen\u00e1rio diferente": 0,
+        "Escopo diferente": 0
+    },
+    "add_extra_index": {},
+    "n_retiradas": 0,
+    "n_extraelegiveis": 0,
+    "n_extranaoelegiveis": 0
+}

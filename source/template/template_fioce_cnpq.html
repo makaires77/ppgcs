@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Relatório de Oportunidades de Fomento</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+            }
+            .header-title {
+                text-align: center;
+                width: 100%;
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+            h1, h2, h3, h4 {
+                color: #333;
+                cursor: pointer; /* Torna os títulos clicáveis */
+            }
+            .palavra-chave {
+                background-color: rgba(0, 0, 0, 0.75);
+                color: rgb(255, 255, 0); /* Define a cor da fonte*/
+                content: none;
+            }            
+            .financiadora {
+                color: rgb(0, 0, 255);
+                cursor: default; /* Remove o clicável */
+            }
+            .clicavel::before {
+                content: "→"; /* Seta para a direita como indicativo fechado */
+                display: inline-block;
+                margin-right: 8px; /* Espaçamento entre a seta e o texto */
+                transition: transform 0.3s ease; /* Animação suave para rotação */
+            }
+            .clicavel.expandido::before {
+                transform: rotate(90deg); /* Rota a seta em 90 graus quando expandido */
+                font-weight: normal; /* Peso da fonte do marcador */
+            }
+            .conteudo-escondido {
+                display: none;
+            }
+            ol li::before {
+                content: "•"; /* Define o marcador personalizado */
+                color: rgb(255, 155, 0); /* Cor do marcador */
+                font-weight: bold; /* Peso da fonte do marcador */
+                display: inline-block; /* Garante que o marcador seja exibido na linha */
+                width: 1em; /* Espaçamento antes do texto do item */
+                margin-left: -1em; /* Ajusta o posicionamento do marcador */
+            }
+            ul {
+                list-style-type: none;
+            }
+            li {
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <img src="/assets/logo_fioce.png" alt="Logo Fioce" height="100">
+            <div class="header-title"><h2>Coordenação de Pesquisa da Fiocruz Ceará<br>Relatório de Oportunidades de Fomento</h2></div>
+        </header>
+        
+        {% for palavra_chave, grupo_pc in dados.groupby('palavras-chave') %}
+            <h2 class="palavra-chave">{{ palavra_chave }}</h2>
+            <div class="conteudo-mostrado">
+                {% for financiadora, grupo_financiadora in grupo_pc.groupby('financiadora') %}
+                    <h3 class="financiadora">{{ financiadora }}</h3>
+                    <div>
+                        {% for _, row in grupo_financiadora.iterrows() %}
+                            <h4 class="clicavel">{{ row['titulo'] }}</h4>
+                            <div class="conteudo-escondido">
+                                <ul>
+                                    {% for chave, valor in row['detalhes'].items() %}
+                                        <li><strong>{{ chave }}:</strong>
+                                            {% if valor.startswith('http://') %}
+                                                <a href="{{ valor }}">{{ valor }}</a>
+                                            {% else %}
+                                                {{ valor }}
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var titulos = document.querySelectorAll('.clicavel');
+        
+                titulos.forEach(function(titulo) {
+                    titulo.addEventListener('click', function() {
+                        var conteudo = this.nextElementSibling;
+                        if (conteudo.style.display === "none") {
+                            conteudo.style.display = "block";
+                            this.classList.add("expandido"); // Adiciona a classe "expandido"
+                        } else {
+                            conteudo.style.display = "none";
+                            this.classList.remove("expandido"); // Remove a classe "expandido"
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

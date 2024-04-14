@@ -1,0 +1,70 @@
+{
+    "monitoring_data": {
+        "times": [
+            1704759996.1561675,
+            1704759996.1770723,
+            1704759997.1562376,
+            1704759997.1803367,
+            1704759997.2001443,
+            1704759998.1802099,
+            1704759998.2027082,
+            1704759998.221968,
+            1704759999.20289,
+            1704759999.2250407,
+            1704759999.243014,
+            1704760000.2260554
+        ],
+        "cpu_usage": [
+            5.3,
+            2.8,
+            3.6,
+            3.5
+        ],
+        "gpu_usage": [
+            13,
+            36,
+            23,
+            32
+        ],
+        "thread_count": [
+            416,
+            416,
+            416,
+            416
+        ],
+        "experiments": [
+            "Se\u00e7\u00e3o 1/2 - Experimento 5",
+            "Se\u00e7\u00e3o 1/2 - Experimento 5",
+            "Se\u00e7\u00e3o 1/2 - Experimento 5",
+            "Se\u00e7\u00e3o 1/2 - Experimento 6",
+            "Se\u00e7\u00e3o 1/2 - Experimento 6",
+            "Se\u00e7\u00e3o 1/2 - Experimento 6",
+            "Se\u00e7\u00e3o 2/2 - Experimento 5",
+            "Se\u00e7\u00e3o 2/2 - Experimento 5",
+            "Se\u00e7\u00e3o 2/2 - Experimento 5",
+            "Se\u00e7\u00e3o 2/2 - Experimento 6",
+            "Se\u00e7\u00e3o 2/2 - Experimento 6",
+            "Se\u00e7\u00e3o 2/2 - Experimento 6"
+        ]
+    },
+    "experiment_results": [
+        {
+            "Se\u00e7\u00e3o 1/2": [
+                0.20130372047424316,
+                [
+                    null,
+                    0.13874292373657227
+                ]
+            ]
+        },
+        {
+            "Se\u00e7\u00e3o 2/2": [
+                0.18871164321899414,
+                [
+                    null,
+                    0.13402295112609863
+                ]
+            ]
+        }
+    ]
+}
