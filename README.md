@@ -15,9 +15,7 @@ Os indicadores que balizam a avaliação são construídos com base nos parâmet
 
 São considerados os docentes permanentes (DP) e docentes colaboradores (DC), com base nos mesmos parâmetros esperados de impacto (medido por pontuação ponderada relativa ao estrato Qualis Periódicos da área Medicina II das revistas utilizadas nas publicações do período).
 
-<<<<<<< HEAD
 # Exemplo considerando Aquitetura Hexagonl de Portes e Adapters (Não utilizada neste projeto específico):
-=======
 # Para colaborar com o desenvolvimento
 ## Iniciando o servidor localmente para testes:
 '''
@@ -168,7 +166,6 @@ Introduzir um sistema de manipulação de eventos para lidar com os eventos prod
 Um sistema de fila lida com o processamento em segundo plano, a raspagem de dados do Lattes pode ser uma operação demorada e é feita em uma tarefa em segundo plano, usando a biblioteca "github.com/gocraft/work" dentre outras.
 
 # Exemplo considerando Aquitetura Hexagonal de Portes e Adapters (Não utilizada neste projeto específico):
->>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 Uma estrutura de pastas, em arquitetura hexagonal e orientação a funções, pode de forma genérica conter a seguinte estrutura:
 
 *app* contém a lçógica do aplicativo:
@@ -191,7 +188,6 @@ O arquivo config.py contém configurações do serviço
 
 O arquivo run.py inicia o serviço Flask
 
-<<<<<<< HEAD
 # Governança e para colaborar como desenvolvedor
 ## Relacionamento hierárquicom entre as partes
 - **Funções**: Funções em Go são declaradas com a palavra-chave `func`, seguida pelo nome da função, a lista de parâmetros entre parênteses, o tipo de retorno e o corpo da função entre chaves. Por exemplo, na nossa função `ReadCsvFile` em `csv_files.go`, declaramos uma função que lê um arquivo CSV e retorna uma lista de strings e um erro.
@@ -336,8 +332,6 @@ Introduzir um sistema de manipulação de eventos para lidar com os eventos prod
 
 Um sistema de fila lida com o processamento em segundo plano, a raspagem de dados do Lattes pode ser uma operação demorada e é feita em uma tarefa em segundo plano, usando a biblioteca "github.com/gocraft/work" dentre outras.
 
-=======
->>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 # Detalhes da execução em Go
 ## Importação de estruturas
 Ao importar um pacote em Go, o caminho do import é geralmente relativo ao $GOPATH/src ou ao diretório raiz do módulo, caso você esteja usando Go modules (recomendado e comum para projetos novos a partir de 2021). Os caminhos absolutos geralmente não são usados em projetos Go, a menos que esteja se referindo a um pacote padrão ou externo. Em outras palavras, independente do diretório raiz do seu projeto deveriamos importar o pacote publication assim:
@@ -462,21 +456,15 @@ Contém todas as rotas para as páginas estáticas
 
 3. Criar pasta static, com o index.html e index.js
 
-<<<<<<< HEAD
 
 ## Messageria
-=======
 ## Notificações com RabbtMQ
->>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 https://blog.tericcabrel.com/async-communication-nodejs-rabbitmq/
 yarn add amqplib
 yarn add -D @types/amqplib
 
-<<<<<<< HEAD
 Para instalar o RabbitMQ a partir do Terminal Integrado do VSCode usando o Yarn, siga as etapas abaixo:
-=======
 Para os serviços de apenas notfcação, podemos instalar o RabbitMQ a partir do Terminal Integrado do VSCode usando o Yarn, siga as etapas abaixo:
->>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 
 1. Certifique-se de ter o Yarn instalado em seu ambiente. Se você ainda não o tiver instalado, consulte a documentação oficial do Yarn para obter instruções sobre como instalá-lo: [Yarn Installation](https://yarnpkg.com/getting-started/install).
 
@@ -536,11 +524,8 @@ Lembre-se de que a atualização do Node.js pode levar algum tempo, pois envolve
 Após atualizar o Node.js, você pode continuar usando o Yarn normalmente para instalar suas dependências do projeto.
 
 
-<<<<<<< HEAD
 ## instalar o n
-=======
 ## instalar o npx
->>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 Pode-se usar o `npx` em vez do `yarn dlx`. O `npx` permite executar pacotes executáveis diretamente sem a necessidade de instalação global.
 
 No Terminal Integrado do VSCode, execute o seguinte comando:
@@ -586,11 +571,8 @@ Para instalar o Neo4j mais atualizado a partir do Terminal Integrado do VSCode u
 
 Após a conclusão bem-sucedida da instalação, você poderá importar e usar a biblioteca `neo4j-driver` em seu código para se conectar e interagir com o banco de dados Neo4j.
 
-<<<<<<< HEAD
 Lembre-se de configurar corretamente a conexão com o Neo4j em seu código, fornecendo as informações de host, porta, usuário e senha adequadas para se conectar ao banco de dados. Verifique se você tem o Neo4j instalado e em execução em seu ambiente antes de usar a biblioteca `neo4j-driver`.
-=======
 Lembre-se de configurar corretamente a conexão com o Neo4j em seu código, fornecendo as informações de host, porta, usuário e senha adequadas para se conectar ao banco de dados. Verifique se você tem o Neo4j instalado e em execução em seu ambiente antes de usar a biblioteca `neo4j-driver`.
 
 ## Messageria com Kafka
 Para serviços completos de messageria, indo além das simples notificações podemos usar cluster Kafka, porém aí o custo será bem mais elevado.
->>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
