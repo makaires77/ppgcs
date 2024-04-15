@@ -76,7 +76,7 @@ class JSONFileManager:
         json_files.sort()
 
         # Imprimir os arquivos JSON em ordem
-        print('Arquivos disponíveis na pasta data/input:')
+        print('Arquivos disponíveis na pasta para dados de entrada:')
         for file in json_files:
             print(f'  {file}')
 
@@ -918,7 +918,7 @@ class LattesScraper:
             resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
             if self.is_stale_file_handler_present():
                 fib = [0, 1]
-                print(f"       {name}: Erro 'Stale File Handler' detectado na página. Tentando novamente em {fib[-1]} segundos...")
+                print(f"       Erro no servidor CNPq 'Stale File Handler', tentando novamente em {fib[-1]} segundos...")
                 for i in range(2, 12):  # Tentativas máximas com espera para contornar erro de Stale File Handler
                     fib.append(fib[i-1] + fib[i-2])
                 for i, wait_time in enumerate(fib):
@@ -983,7 +983,7 @@ class LattesScraper:
                         EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
                     resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
                     if self.is_stale_file_handler_present():
-                        print("       Erro 'Stale File Handler' detectado na página. Tentando novamente em 10 segundos...")
+                        print(f"       Erro no servidor CNPq 'Stale File Handler', tentando novamente em {fib[-1]} segundos...")
                         time.sleep(1)
                         raise Exception
                     ## iterar em cada resultado
@@ -1046,11 +1046,24 @@ class LattesScraper:
                 raise Exception
         except Exception as e:
             if limite > 0:
-                print("       Elemento não encontrado. Tentando novamente...")
-                self.find_terms(NOME, instituicao, termo1, termo2, delay, limite - 1)
-            else:
-                print("       Tentativas esgotadas. Abortando ação.")
-
+                fib = [0, 1]
+                print(f"       Erro no servidor ao recuperar currículo, tentando novamente em {fib[-1]} segundos...")
+                for i in range(2, 12):  # Tentativas máximas com espera para contornar erro de Stale File Handler
+                    fib.append(fib[i-1] + fib[i-2])
+                for i, wait_time in enumerate(fib):
+                    logging.info(f"       Tentativa {i+1} com tempo de espera de {wait_time} segundos...")
+                    time.sleep(wait_time)
+                    try:
+                        self.find_terms(NOME, instituicao, termo1, termo2, delay, limite - 1)
+                        break  # Se o clique for bem-sucedido, saia do loop de retry
+                    except TimeoutException as se:
+                        logging.error(f"Tentativa {i+1} falhou: {se}.")                
+        # except Exception as e:
+        #     if limite > 0:
+        #         print("       Elemento não encontrado. Tentando novamente...")
+        #         self.find_terms(NOME, instituicao, termo1, termo2, delay, limite - 1)
+        #     else:
+        #         print("       Tentativas esgotadas. Abortando ação.")
         # Verifica antes de retornar para garantir que elm_vinculo foi definido
         if elm_vinculo is None:
             print("       Vínculo não foi definido.")
