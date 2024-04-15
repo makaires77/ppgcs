@@ -58,7 +58,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 class JSONFileManager:
-    # Carregar arquivo 'dict_list_fioce.json' para a variável dict_list
+    # Carregar arquivo 'dict_list.json' para a variável dict_list
     def list_json(self, folder):
         # Criar uma lista para armazenar os nomes dos arquivos JSON
         json_files = []
@@ -917,9 +917,18 @@ class LattesScraper:
                 EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
             resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
             if self.is_stale_file_handler_present():
-                print("       Erro 'Stale File Handler'. Tentando novamente em 10 segundos...")
-                time.sleep(1)
-                raise Exception
+                fib = [0, 1]
+                print(f"       {name}: Erro 'Stale File Handler' detectado na página. Tentando novamente em {fib[-1]} segundos...")
+                for i in range(2, 12):  # Tentativas máximas com espera para contornar erro de Stale File Handler
+                    fib.append(fib[i-1] + fib[i-2])
+                for i, wait_time in enumerate(fib):
+                    logging.info(f"       Tentativa {i+1} com tempo de espera de {wait_time} segundos...")
+                    time.sleep(wait_time)
+                    try:
+                        self.retry_click_vinculo(elm_vinculo)
+                        break  # Se o clique for bem-sucedido, saia do loop de retry
+                    except TimeoutException as se:
+                        logging.error(f"Tentativa {i+1} falhou: {se}.")                
             ## Ler quantidade de resultados apresentados pela busca de nome
             css_qteresultados = ".tit_form > b:nth-child(1)"
             WebDriverWait(self.driver, delay).until(
@@ -979,7 +988,8 @@ class LattesScraper:
                         raise Exception
                     ## iterar em cada resultado
                     for n,i in enumerate(resultados):
-                        linhas = i.text.split('\n\n')
+                        # linhas = i.text.split('\n\n')
+                        linhas = i.text
                         # print(linhas)
                         if 'Stale file handle' in str(linhas):
                             raise Exception
@@ -1043,7 +1053,7 @@ class LattesScraper:
 
         # Verifica antes de retornar para garantir que elm_vinculo foi definido
         if elm_vinculo is None:
-            print("Vínculo não foi definido.")
+            print("       Vínculo não foi definido.")
             return None, NOME, np.NaN, 'Vínculo não encontrado', self.driver
         # Retorna a saída de sucesso
         return elm_vinculo, np.NaN, np.NaN, np.NaN, self.driver
@@ -2426,11 +2436,13 @@ class HTMLParser:
         ano=''
         issn=''
         titulo=''
+        sem_doi=0
         autores=''
         doi_link = ''
         data_issn = ''
         jcr_impact = ''
         primeiro_autor=''
+        ano_publicacao=''
         fator_impacto = ''
         secoes = self.soup.find_all('div', class_='title-wrapper')
         for secao in secoes:
@@ -2779,7 +2791,7 @@ class HTMLParser:
 
 class GetQualis:
     def __init__(self):
-        self.dados_planilha = pd.read_excel(os.path.join(LattesScraper.find_repo_root(),'data','classificações_publicadas_todas_as_areas_avaliacao1672761192111.xlsx'))
+        self.dados_planilha = pd.read_excel(os.path.join(LattesScraper.find_repo_root(),'_data','in_xls','classificações_publicadas_todas_as_areas_avaliacao1672761192111.xlsx'))
 
     def buscar_qualis(self, lista_dados_autor):
         for dados_autor in lista_dados_autor:
