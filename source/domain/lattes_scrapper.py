@@ -469,14 +469,16 @@ class DictToHDF5:
                 graph.create(node)
 
 class LattesScraper:
-    def __init__(self, institution, term1, term2, neo4j_uri, neo4j_user, neo4j_password):
+    def __init__(self, institution, term1, term2, term3, neo4j_uri, neo4j_user, neo4j_password):
         self.verbose = False
         self.configure_logging()
         self.driver = self.connect_driver()
         self.institution = institution
         self.unit = term1
         self.term = term2
+        self.term3 = term3
         self.base_url = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
+        # self.base_url = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
         self.session = requests.Session()
         self.delay = 30
         self.neo4j_uri = neo4j_uri
@@ -559,9 +561,11 @@ class LattesScraper:
         
         # print(driver_path)
         service = Service(driver_path)
-        driver = webdriver.Chrome(service=service)    
-        url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
-        driver.get(url_busca) # acessa a url de busca do CNPQ   
+        driver = webdriver.Chrome(service=service)
+        # url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
+        # driver.get(url_busca) # acessa a url de busca do CNPQ
+        url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
+        driver.get(url_docts) # acessa a url de busca somente de doutores 
         driver.set_window_position(-20, -10)
         driver.set_window_size(170, 1896)
         driver.mouse = webdriver.ActionChains(driver)
@@ -643,8 +647,10 @@ class LattesScraper:
 
     # Usar para retonar para página de buscas por todos os níveis de formação e nacionalidades        
     def return_search_page(self):
-        url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
-        self.driver.get(url_busca) # acessa a url de busca do CNPQ    
+        # url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
+        # self.driver.get(url_busca) # acessa a url de busca do CNPQ
+        url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
+        self.driver.get(url_docts) # acessa a url de busca somente de doutores 
 
     def switch_to_new_window(self):
         # Espera até que uma nova janela seja aberta
@@ -889,7 +895,9 @@ class LattesScraper:
         except requests.exceptions.RequestException as e:
             print(f"Erro ao fazer solicitação HTTP: {e}")
 
-    def find_terms(self, NOME, instituicao, termo1, termo2, delay, limite=5):
+    ## Está com erro na escolha quando há homônimos, tem a ver aparentemente com manipulação da variável count
+    ## Mas só ocorre quando não há paginação nos resultados, quando há escolhe corretamente e mostra corretamente
+    def find_terms(self, NOME, instituicao, termo1, termo2, termo3, delay, limite=5):
         """
         Função para manipular o HTML até abir a página HTML de cada currículo   
         Parâmeteros:
@@ -905,11 +913,11 @@ class LattesScraper:
         """
         ignored_exceptions=(NoSuchElementException,StaleElementReferenceException,)
         # Inicializando variáveis para evitar UnboundLocalError
+        verbose = False
         elm_vinculo = None
         qte_resultados = 0
-        ## Receber a quantidade de opções ao ler elementos de resultados
-        duvidas   = []
         force_break_loop = False
+        duvidas = []
         try:
             # Wait and fetch the number of results
             css_resultados = ".resultado"
@@ -917,18 +925,7 @@ class LattesScraper:
                 EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
             resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
             if self.is_stale_file_handler_present():
-                fib = [0, 1]
-                print(f"       Erro no servidor CNPq 'Stale File Handler', tentando novamente em {fib[-1]} segundos...")
-                for i in range(2, 12):  # Tentativas máximas com espera para contornar erro de Stale File Handler
-                    fib.append(fib[i-1] + fib[i-2])
-                for i, wait_time in enumerate(fib):
-                    logging.info(f"       Tentativa {i+1} com tempo de espera de {wait_time} segundos...")
-                    time.sleep(wait_time)
-                    try:
-                        self.retry_click_vinculo(elm_vinculo)
-                        break  # Se o clique for bem-sucedido, saia do loop de retry
-                    except TimeoutException as se:
-                        logging.error(f"Tentativa {i+1} falhou: {se}.")                
+                raise Exception
             ## Ler quantidade de resultados apresentados pela busca de nome
             css_qteresultados = ".tit_form > b:nth-child(1)"
             WebDriverWait(self.driver, delay).until(
@@ -941,7 +938,6 @@ class LattesScraper:
                 # print(f'{qte_resultados} resultados para {NOME}')
             else:
                 return None, NOME, np.NaN, 'Currículo não encontrado', self.driver
-
             ## Escolher função a partir da quantidade de resultados da lista apresentada na busca
             ## Ao achar clica no elemento elm_vinculo com link do nome para abrir o currículo
             numpaginas = self.paginar(self.driver)
@@ -952,17 +948,15 @@ class LattesScraper:
                     EC.presence_of_element_located((By.CSS_SELECTOR, css_linknome)))            
                 elm_vinculo  = self.driver.find_element(By.CSS_SELECTOR, css_linknome)
                 nome_vinculo = elm_vinculo.text
-
                 # print('Clicar no nome único:', nome_vinculo)
                 try:
                     self.retry(ActionChains(self.driver).click(elm_vinculo).perform(),
-                        wait_ms=20,
+                        wait_ms=200,
                         limit=limite,
                         on_exhaust=(f'  Problema ao clicar no link do nome. {limite} tentativas sem sucesso.'))
                 except:
                     print('  Erro ao clicar no único nome encontrado anteriormente')
                     return None, NOME, np.NaN, None, self.driver
-            
             ## Quantidade de resultados até 10 currículos, acessados sem paginação
             else:
                 print(f'       {qte_resultados:>2} currículos homônimos: {NOME}')
@@ -982,28 +976,35 @@ class LattesScraper:
                     WebDriverWait(self.driver, delay).until(
                         EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
                     resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
+                    if verbose:
+                        print(f'qte_div_result: {len(resultados):02}')
                     if self.is_stale_file_handler_present():
-                        print(f"       Erro no servidor CNPq 'Stale File Handler', tentando novamente em {fib[-1]} segundos...")
-                        time.sleep(1)
                         raise Exception
                     ## iterar em cada resultado
                     for n,i in enumerate(resultados):
-                        # linhas = i.text.split('\n\n')
-                        linhas = i.text
-                        # print(linhas)
+                        linhas = i.text.split('\n\n')
+                        if verbose:
+                            print(f'qte_lin_result: {len(linhas):02}')
                         if 'Stale file handle' in str(linhas):
                             raise Exception
                             # return np.NaN, NOME, np.NaN, 'Stale file handle', self.driver
-                        for m,linha in enumerate(linhas):
+                        for m,linha_multipla in enumerate(linhas):
+                            nome_achado = linhas[m].split('\n')[0]
+                            linha = linha_multipla.replace("\n", " ")
+                            if verbose:
+                                width = 7
+                                print(f'Linha {m+1:02}/{len(linhas):02}: {type(linha)}| {linha.lower()}')
+                                print(f'{instituicao.lower():>10} | {instituicao.lower() in linha.lower()} | {linha.lower()}')
+                                print(f'{termo1.lower():>10} |{str(termo1.lower() in linha.lower()).center(width)}| {linha.lower()}')
+                                print(f'{termo2.lower():>10} |{str(termo2.lower() in linha.lower()).center(width)}| {linha.lower()}')
+                                print(f'{termo3.lower():>10} |{str(termo3.lower() in linha.lower()).center(width)}| {linha.lower()}')
                             # print(f'\nOrdem da linha: {m+1}, de total de linhas {len(linhas)}')
                             # print('Conteúdo da linha:',linha.lower())
-                            # print(linha)
-                            if instituicao.lower() in linha.lower() or termo1.lower() in linha.lower() or termo2.lower() in linha.lower():
-                                # print('Vínculo encontrado!')
+                            if instituicao.lower() in linha.lower() or termo1.lower() in linha.lower() or termo2.lower() in linha.lower() or termo3.lower() in linha.lower():
                                 count=m
-                                while get_jaro_distance(linhas[count].split('\n')[0], str(NOME)) < 0.75:
+                                while get_jaro_distance(nome_achado.lower(), str(NOME).lower()) < 0.85 and count>0:
                                     count-=1
-                                # print('       Identificado vínculo no resultado:', m+1)
+                                    print(f'       Contador decrescente: {count}')
                                 found = m+1
                                 # nome_vinculo = linhas[count].replace('\n','\n       ').strip()
                                 # print(f'       Achado: {nome_vinculo}')
@@ -1013,16 +1014,16 @@ class LattesScraper:
                                     EC.presence_of_element_located((By.CSS_SELECTOR, css_vinculo)))            
                                 elm_vinculo  = self.driver.find_element(By.CSS_SELECTOR, css_vinculo)
                                 nome_vinculo = elm_vinculo.text
-                                # print('Elemento retornado:',nome_vinculo)
+                                ## Tentar repetidamente clicar no elemento encontrado
                                 self.retry(ActionChains(self.driver).click(elm_vinculo).perform(),
-                                    wait_ms=200,
+                                    wait_ms=500,
                                     limit=limite,
                                     on_exhaust=(f'  Problema ao clicar no link do nome. {limite} tentativas sem sucesso.'))
                                 force_break_loop = True
                                 break
                             ## Caso percorra toda lista e não encontre vínculo adiciona à dúvidas quanto ao nome
                             if m==(qte_resultados):
-                                print(f'Nenhuma referência à {instituicao} ou aos termos {termo1} ou {termo2}')
+                                print(f'Nenhuma referência à {instituicao} ou aos termos {termo1} ou {termo2} ou {termo3}')
                                 duvidas.append(NOME)
                                 # clear_output(wait=True)
                                 # driver.quit()
@@ -1037,33 +1038,26 @@ class LattesScraper:
                 if count:
                     nome_vinculo = linhas[count].replace('\n','\n       ').strip()
                     print(f'        Escolhido o homônimo {found}: {nome_vinculo}')
-                else:
-                    print(f'       Não foi possível identificar o vínculo de: {NOME}')
-                    duvidas.append(NOME)
             if self.is_stale_file_handler_present():
                 print("       Erro 'Stale File Handler' detectado na página. Tentando novamente em 10 segundos...")
                 time.sleep(1)
                 raise Exception
         except Exception as e:
-            if limite > 0:
-                fib = [0, 1]
-                print(f"       Erro no servidor ao recuperar currículo, tentando novamente em {fib[-1]} segundos...")
-                for i in range(2, 12):  # Tentativas máximas com espera para contornar erro de Stale File Handler
-                    fib.append(fib[i-1] + fib[i-2])
-                for i, wait_time in enumerate(fib):
-                    logging.info(f"       Tentativa {i+1} com tempo de espera de {wait_time} segundos...")
-                    time.sleep(wait_time)
-                    try:
-                        self.find_terms(NOME, instituicao, termo1, termo2, delay, limite - 1)
-                        break  # Se o clique for bem-sucedido, saia do loop de retry
-                    except TimeoutException as se:
-                        logging.error(f"Tentativa {i+1} falhou: {se}.")                
-        # except Exception as e:
-        #     if limite > 0:
-        #         print("       Elemento não encontrado. Tentando novamente...")
-        #         self.find_terms(NOME, instituicao, termo1, termo2, delay, limite - 1)
-        #     else:
-        #         print("       Tentativas esgotadas. Abortando ação.")
+            traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+            base = 2  # Fator de multiplicação exponencial (pode ser ajustado)
+            max_wait_time = 120  # Tempo máximo de espera em segundos
+            for i in range(1, 12):  # Tentativas máximas com espera exponencial
+                wait_time = min(base ** i, max_wait_time)  # Limita o tempo máximo de espera
+                print(f"  Erro ao recuperar dados do servidor CNPq, tentando novamente em {wait_time} segundos...")
+                time.sleep(wait_time)
+                try:
+                    self.retry_click_vinculo(elm_vinculo)
+                    break  # Se o clique for bem-sucedido, saia do loop de retry
+                except TimeoutException as se:
+                    logging.error(f"Tentativa {i} falhou: {traceback_str}.")
+                    limite+=1
+            if limite <= 0:
+                print("       Tentativas esgotadas. Abortando ação.")
         # Verifica antes de retornar para garantir que elm_vinculo foi definido
         if elm_vinculo is None:
             print("       Vínculo não foi definido.")
@@ -1101,7 +1095,7 @@ class LattesScraper:
             else:
                 print("       Tentativas esgotadas. Abortando ação.")
 
-    def search_profile(self, name, instituicao, termo1, termo2, retry_count=3):
+    def search_profile(self, name, instituicao, termo1, termo2, termo3, retry_count=3):
         '''
         Usa a função find_terms para assegurar escolha do homônimo correto
         '''
@@ -1112,6 +1106,7 @@ class LattesScraper:
                 instituicao,
                 termo1,
                 termo2,
+                termo3,
                 10,  # delay extração tooltips (10 funciona sem erros em dia normal)
                 3
             )
@@ -1273,12 +1268,12 @@ class LattesScraper:
         # WebDriverWait(self.driver, self.delay).until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR, "#artigos-completos img.ajaxJCR")))
         layout_cells = self.driver.find_elements(By.CSS_SELECTOR, '#artigos-completos .layout-cell-11')
 
-    def scrape_retry(self, name, instituicao, termo1, termo2, retry_count):
+    def scrape_retry(self, name, instituicao, termo1, termo2, termo3, retry_count):
         dict_list = []
         try:
             for _ in range(retry_count):
                 try:
-                    dict_list.extend(self.scrape_single(name, instituicao, termo1, termo2))
+                    dict_list.extend(self.scrape_single(name, instituicao, termo1, termo2, termo3))
                     break  # Se o a extração for bem-sucedido, saia do loop de retry
                 except TimeoutException as se:
                     logging.error(f"Tentativa de extrair currículo de {name} em scrape_retry() falhou: {se}. Tentando novamente...")
@@ -1289,11 +1284,11 @@ class LattesScraper:
             raise TimeoutException(f"Erro inesperado em scrape_retry() para {name}")
         return dict_list
 
-    def scrape_single(self, name, instituicao, termo1, termo2):
+    def scrape_single(self, name, instituicao, termo1, termo2, termo3):
         dict_list = []  # Inicialize a lista de dicionários vazia
         try:
             self.fill_name(name)
-            elm_vinculo = self.search_profile(name, instituicao, termo1, termo2)
+            elm_vinculo = self.search_profile(name, instituicao, termo1, termo2, termo3)
             if elm_vinculo:
                 if self.verbose:
                     print(f"       {name}: vínculo encontrado no currículo, tentando abrir...")
@@ -1350,18 +1345,17 @@ class LattesScraper:
             raise TimeoutException(f"       Erro ao realizar a extração para {name}: {e}")
         return dict_list
 
-
-    def scrape(self, name_list, instituicao, termo1, termo2, retry_count=5):
+    def scrape(self, name_list, instituicao, termo1, termo2, termo3, retry_count=5):
         dict_list = []
         for k, name in enumerate(name_list):
             print(f'{k+1:>2}/{len(name_list)}: {name}')
             try:
-                dict_list.extend(self.scrape_retry(name, instituicao, termo1, termo2, retry_count))
+                dict_list.extend(self.scrape_retry(name, instituicao, termo1, termo2, termo3, retry_count))
             except TimeoutException:
                 logging.error(f"Erro de Timeout ao extrair {name}")
                 if retry_count > 0:
                     logging.info(f"Tentando novamente para {name}...")
-                    dict_list.extend(self.scrape([name], instituicao, termo1, termo2, retry_count-1))
+                    dict_list.extend(self.scrape([name], instituicao, termo1, termo2, termo3, retry_count-1))
                 else:
                     logging.error(f"Todas as tentativas falharam para {name}")
             except Exception as e:
@@ -2152,7 +2146,7 @@ class HTMLParser:
             parts = dados_periodico.split('(')
             print(parts)
         else:
-            print(f"Não foi possível extrair dados do periódico de {soup}")
+            print(f"       Não foi possível extrair dados do periódico de {soup}")
         # Recupera o texto do elemento, que deve ser o nome do primeiro autor
         periodico = dados_periodico.text if dados_periodico else None
 
