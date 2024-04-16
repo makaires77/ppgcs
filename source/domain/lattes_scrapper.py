@@ -477,8 +477,6 @@ class LattesScraper:
         self.unit = term1
         self.term = term2
         self.term3 = term3
-        self.base_url = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
-        # self.base_url = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
         self.session = requests.Session()
         self.delay = 30
         self.neo4j_uri = neo4j_uri
@@ -538,7 +536,7 @@ class LattesScraper:
         return LattesScraper.find_repo_root(path.parent, depth-1)
 
     @staticmethod
-    def connect_driver():
+    def connect_driver(only_doctors=False):
         '''
         Conecta ao servidor do CNPq para busca de currículo
         '''
@@ -562,10 +560,15 @@ class LattesScraper:
         # print(driver_path)
         service = Service(driver_path)
         driver = webdriver.Chrome(service=service)
-        # url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
-        # driver.get(url_busca) # acessa a url de busca do CNPQ
-        url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
-        driver.get(url_docts) # acessa a url de busca somente de doutores 
+        only_doctors = True
+        if only_doctors:
+            print('Buscando currículos apenas entre nível de doutorado')
+            url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
+            driver.get(url_docts) # acessa a url de busca somente de doutores 
+        else:
+            print('Buscando currículos com qualquer nível de formação')
+            url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
+            driver.get(url_busca) # acessa a url de busca do CNPQ
         driver.set_window_position(-20, -10)
         driver.set_window_size(170, 1896)
         driver.mouse = webdriver.ActionChains(driver)
@@ -1345,6 +1348,7 @@ class LattesScraper:
             raise TimeoutException(f"       Erro ao realizar a extração para {name}: {e}")
         return dict_list
 
+    # Realizar chamada recursiva para processar cada nome da lista
     def scrape(self, name_list, instituicao, termo1, termo2, termo3, retry_count=5):
         dict_list = []
         for k, name in enumerate(name_list):
@@ -1355,6 +1359,7 @@ class LattesScraper:
                 logging.error(f"Erro de Timeout ao extrair {name}")
                 if retry_count > 0:
                     logging.info(f"Tentando novamente para {name}...")
+                    # Realiza novar tentativa para o mesmo nome passando número de tentativas decrementado de 1
                     dict_list.extend(self.scrape([name], instituicao, termo1, termo2, termo3, retry_count-1))
                 else:
                     logging.error(f"Todas as tentativas falharam para {name}")
@@ -2924,7 +2929,7 @@ class ArticlesCounter:
         pivot_table = df_qualis_autores_anos.pivot_table(index='Autor', columns='Ano', values='Qualis', aggfunc=lambda x: ', '.join(x))
 
         # Selecionar as colunas (anos) que estão dentro do intervalo de anos
-        anos_interesse = [Ano for Ano in pivot_table.columns if ano_inicio <= int(Ano) <= ano_final]
+        anos_interesse = [Ano for Ano in pivot_table.columns if Ano.isdigit() and ano_inicio <= int(Ano) <= ano_final and Ano != '']
 
         # Filtrar a tabela pivot pelos anos de interesse
         pivot_table_filtrada = pivot_table[anos_interesse]
@@ -2964,7 +2969,7 @@ class ArticlesCounter:
         pivot_table = df_qualis_autores_anos.pivot_table(index='Autor', columns='Ano', values='Qualis', aggfunc=lambda x: ', '.join(x))
 
         # Selecionar as colunas (anos) que estão dentro do intervalo de anos
-        anos_interesse = [Ano for Ano in pivot_table.columns if ano_inicio <= int(Ano) <= ano_final]
+        anos_interesse = [Ano for Ano in pivot_table.columns if Ano and ano_inicio <= int(Ano) <= ano_final]
 
         # Filtrar a tabela pivot pelos anos de interesse
         pivot_table_filtrada = pivot_table[anos_interesse]
