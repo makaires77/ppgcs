@@ -2825,6 +2825,91 @@ class GetQualis:
         else:
             return None
 
+class DiscentCollaborationCounter:
+    def __init__(self, dict_list):
+        self.data_list = dict_list
+        self.verbose = False
+
+    def get_coauthors(self, string):
+        """
+        Verifica e retorna a posição de cada padrão buscado individualmente.
+
+        Argumentos:
+            string (str): A string que contém todos dados de cada artigo no formato: 
+            * prim_autor|ano|autores|demaisdados.
+
+        Retorna:
+            lista_coautores:
+            * tupla com a lista de autores individualizados
+
+            padroes: Um dicionário contendo as posições de cada padrão encontrado para separar dados:
+            * 'quatrodigitos': Posição dos quatro dígitos (ou None se não encontrado)
+            * 'pontos_duplos': Posição dos dois pontos (ou None se não encontrado)
+            * 'ponto_esp_pnt': Posição do espaço seguido de ponto seguido de espaço (ou None se não encontrado)
+            * 'ponto_inicial': Posições onde ponto como símbolo de abreviatura de nome (ou None se não encontrado)
+            * 'ponto_virgula': Posições onde ocorrem o símbolo do ponto e vírgula (ou None se não encontrado)
+        """
+
+        padroes = {
+            'quatrodigitos': None,
+            'pontos_duplos': None,
+            'ponto_esp_pnt': None,
+            'ponto_inicial': None,
+            'ponto_virgula': None,
+        }
+
+        # Expressões regulares para cada padrão
+        regex_quatrodigitos = r"\d{4}"
+        regex_pontos_duplos = r"\.\."
+        regex_ponto_esp_pnt = r"\s+\.\s+"
+        regex_ponto_virgula = r"\;"
+        regex_pnto_iniciais = r"\."
+
+        # Encontrar as primeiras ocorrências de cada padrão
+        match_quatrodigitos = re.search(regex_quatrodigitos, string)
+        match_pontos_duplos = re.search(regex_pontos_duplos, string)
+        match_ponto_esp_pnt = re.search(regex_ponto_esp_pnt, string)
+        # Encontrar todas ocorrências de padrões de abreviação/separação 
+        match_ponto_virgula = re.finditer(regex_ponto_virgula, string)
+        match_pnto_iniciais = re.finditer(regex_pnto_iniciais, string)
+
+        # Atualizar o dicionário dos padrões com as posições encontradas
+        if match_quatrodigitos:
+            padroes['quatrodigitos'] = match_quatrodigitos.end()
+        else:
+            padroes['quatrodigitos'] = 0
+        if match_pontos_duplos == None:
+            padroes['pontos_duplos'] = len(string)
+        else:
+            padroes['pontos_duplos'] = match_pontos_duplos.start()
+        if match_ponto_esp_pnt == None:
+            padroes['ponto_esp_pnt'] = len(string)
+        else:
+            padroes['ponto_esp_pnt'] = match_ponto_esp_pnt.start()
+        if match_pnto_iniciais:
+            padroes['ponto_inicial'] = [x.end() for x in match_pnto_iniciais]
+        else:
+            padroes['ponto_inicial'] = []    
+        if match_ponto_virgula:
+            padroes['ponto_virgula'] = [x.end() for x in match_ponto_virgula]
+        else:
+            padroes['ponto_virgula'] = []
+
+        beg = padroes['quatrodigitos']
+        end = min(padroes['pontos_duplos'], padroes['ponto_esp_pnt'])
+        string_coautores = string[beg:end]
+        lista_coautores = [x.strip() for x in string_coautores.split(';')]
+
+        if self.verbose:
+            print(f"quatrodigitos: {padroes['quatrodigitos']:003} | {type(padroes['quatrodigitos'])}")
+            print(f"pontos_duplos: {padroes['pontos_duplos']:003} | {type(padroes['pontos_duplos'])}")
+            print(f"ponto_esp_pnt: {padroes['ponto_esp_pnt']:003} | {type(padroes['ponto_esp_pnt'])}")
+            print(f"ponto_inicial: {padroes['ponto_inicial']} | {type(padroes['ponto_inicial'])}")
+            print(f"ponto_virgula: {padroes['ponto_virgula']} | {type(padroes['ponto_virgula'])}")
+            print(f"       inicio: {beg:003} | final: {end:003}")
+
+        return lista_coautores, padroes
+
 class ArticlesCounter:
     def __init__(self, dict_list):
         self.data_list = dict_list
@@ -2987,4 +3072,4 @@ class ArticlesCounter:
         pivot_table_pontos_sorted = pivot_table_pontos.sort_values(by='Soma de Pontos', ascending=False)
 
         # Mostrar a tabela pivot ordenada pela soma de pontos decrescente
-        return pivot_table_pontos_sorted        
+        return pivot_table_pontos_sorted
