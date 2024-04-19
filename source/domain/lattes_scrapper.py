@@ -1,5 +1,6 @@
 import os
 import time
+import difflib
 import platform
 import requests
 import numpy as np
@@ -2909,6 +2910,68 @@ class DiscentCollaborationCounter:
             print(f"       inicio: {beg:003} | final: {end:003}")
 
         return lista_coautores, padroes
+
+    def discent_direct_counter(self, coauthors_list, discent_list):
+        count=0
+        for name in coauthors_list:
+            if name in discent_list:
+                count+=1
+
+        return qte_discent_collaborations
+
+    def normalize(self, texto):
+        """
+        Remove acentuação gráfica e converte para minúsculas.
+
+        Argumentos:
+            texto (str): String a ser normalizada.
+
+        Retorna:
+            str: String normalizada.
+        """
+
+        # Remover acentuação gráfica
+        texto_sem_acento = unicodedata.normalize('NFKD', texto).encode('ascii', 'ignore').decode('utf-8')
+
+        # Converter para minúsculas
+        texto_minusculo = texto_sem_acento.lower()
+
+        return texto_minusculo
+
+    def is_similar(self, name_discent, name_coauthor):
+        """
+        Calcula a similaridade de Levenshtein entre duas strings normalizadas.
+
+        Argumentos:
+            name_discent (str): Nome do discente.
+            name_coauthor (str): Nome do coautor.
+
+        Retorna:
+            float: Índice de similaridade de Levenshtein (entre 0.0 e 1.0).
+        """
+
+        # Normalizar as strings
+        name_discent_norm = self.normalize(name_discent).lower()
+        name_coauthor_norm = self.normalize(name_coauthor).lower()
+
+        # Cálcular da distância de Levenshtein
+        distancia_levenshtein = difflib.levenshtein(name_discent_norm, name_coauthor_norm)
+
+        # Cálcular índice de similaridade
+        max_length = max(len(name_discent_norm), len(name_coauthor_norm))
+        similarity_index = 1 - (distancia_levenshtein / max_length)
+
+        return similarity_index
+
+    def discent_similar_counter(self, coauthors_list, discent_list):
+        count=0
+        threshold=0.85
+
+        for name in coauthors_list:
+            if self.is_similar(name_discent, name_coauthor) >= threshold:
+                count+=1
+
+        return qte_discent_collaborations
 
 class ArticlesCounter:
     def __init__(self, dict_list):
