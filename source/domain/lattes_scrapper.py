@@ -2831,6 +2831,32 @@ class DiscentCollaborationCounter:
         self.data_list = dict_list
         self.verbose = False
 
+    def get_articles(self, dict_list):
+        # Extrair cada artigo de cada dicionário de currículo
+        colaboracoes = []
+        for dic in dict_list:
+            autor = dic.get('Identificação',{}).get('Nome',{})
+            artigos = dic.get('Produções', {}).get('Artigos completos publicados em periódicos', {})
+            lista_coautores_artigo = []
+            for i in artigos:
+                ano = i.get('ano',{})
+                qualis = i.get('Qualis',{})
+                string_autores = i.get('autores')
+                coautores, padroes = self.get_coauthors(string_autores)
+                regex_quatrodigitos = r"\d{4}?.*$"
+                match_quatrodigitos = re.search(regex_quatrodigitos, coautores[0])
+                if match_quatrodigitos:
+                    nome_prim_autor = re.sub(regex_quatrodigitos, "", coautores[0])
+                    coautores[0] = nome_prim_autor
+                regex_restantedados = r"\.\s+(\w+)+.*$"
+                match_restantedados = re.search(regex_quatrodigitos, coautores[-1])
+                if match_restantedados:
+                    nome_ultimo_autor = re.sub(regex_restantedados, "", coautores[-1])
+                    coautores[-1] = nome_ultimo_autor
+                lista_coautores_artigo.append(coautores)
+                colaboracoes.append({autor: coautores})
+        return colaboracoes
+
     def get_coauthors(self, string):
         """
         Verifica e retorna a posição de cada padrão buscado individualmente.
@@ -2860,23 +2886,31 @@ class DiscentCollaborationCounter:
         }
 
         # Expressões regulares para cada padrão
-        regex_quatrodigitos = r"\d{4}"
+        regex_quatrodigitos = r"\d{4}?.*$"
         regex_pontos_duplos = r"\.\."
         regex_ponto_esp_pnt = r"\s+\.\s+"
         regex_ponto_virgula = r"\;"
         regex_pnto_iniciais = r"\."
+        regex_pntofinal_esp = r"\.\s+(\w+)"
+        regex_restante_strg = r"\.\s+(\w+)+.*$" 
 
         # Encontrar as primeiras ocorrências de cada padrão
+        string = str(string)
         match_quatrodigitos = re.search(regex_quatrodigitos, string)
         match_pontos_duplos = re.search(regex_pontos_duplos, string)
         match_ponto_esp_pnt = re.search(regex_ponto_esp_pnt, string)
+        # match_ponto_fim_esp = re.search(regex_pntofinal_esp, string)
         # Encontrar todas ocorrências de padrões de abreviação/separação 
         match_ponto_virgula = re.finditer(regex_ponto_virgula, string)
         match_pnto_iniciais = re.finditer(regex_pnto_iniciais, string)
+        match_ponto_fim_esp = re.finditer(regex_pntofinal_esp, string)
 
         # Atualizar o dicionário dos padrões com as posições encontradas
         if match_quatrodigitos:
-            padroes['quatrodigitos'] = match_quatrodigitos.end()
+            if isinstance(match_quatrodigitos, str):
+                padroes['quatrodigitos'] = match_quatrodigitos.end()
+            elif isinstance(match_quatrodigitos, list):
+                padroes['quatrodigitos'] = match_quatrodigitos[0].end()
         else:
             padroes['quatrodigitos'] = 0
         if match_pontos_duplos == None:
@@ -2895,18 +2929,26 @@ class DiscentCollaborationCounter:
             padroes['ponto_virgula'] = [x.end() for x in match_ponto_virgula]
         else:
             padroes['ponto_virgula'] = []
+        if match_ponto_fim_esp:
+            padroes['ponto_final'] = [x.end() for x in match_ponto_fim_esp]
+        else:
+            padroes['ponto_final'] = []            
 
         beg = padroes['quatrodigitos']
         end = min(padroes['pontos_duplos'], padroes['ponto_esp_pnt'])
         string_coautores = string[beg:end]
         lista_coautores = [x.strip() for x in string_coautores.split(';')]
-
+  
+        # if 'Citações' in lista_coautores[-1]:
+        #     lista_coautores[-1] = lista_coautores[-1].split('. ')[0]
+            
         if self.verbose:
             print(f"quatrodigitos: {padroes['quatrodigitos']:003} | {type(padroes['quatrodigitos'])}")
             print(f"pontos_duplos: {padroes['pontos_duplos']:003} | {type(padroes['pontos_duplos'])}")
             print(f"ponto_esp_pnt: {padroes['ponto_esp_pnt']:003} | {type(padroes['ponto_esp_pnt'])}")
             print(f"ponto_inicial: {padroes['ponto_inicial']} | {type(padroes['ponto_inicial'])}")
             print(f"ponto_virgula: {padroes['ponto_virgula']} | {type(padroes['ponto_virgula'])}")
+            print(f"pnto_espfinal: {padroes['ponto_final']} | {type(padroes['ponto_final'])}")
             print(f"       inicio: {beg:003} | final: {end:003}")
 
         return lista_coautores, padroes
