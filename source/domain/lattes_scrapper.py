@@ -1,6 +1,5 @@
 import os
 import time
-import difflib
 import platform
 import requests
 import numpy as np
@@ -11,9 +10,11 @@ import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
 import urllib, h5py, logging, traceback, pytz
-import os, re, bs4, time, json, warnings, requests, platform, unicodedata
+import os, re, bs4, time, json, warnings, requests, platform, unicodedata, difflib
 import stat, shutil, psutil, subprocess, csv, string, torch, sqlite3, asyncio, nltk, sys, glob
 
+from Levenshtein import distance
+from Levenshtein import jaro_winkler
 from PIL import Image
 from io import BytesIO
 from pathlib import Path
@@ -2924,7 +2925,7 @@ class DiscentCollaborationCounter:
 
         return lista_coautores, padroes
 
-    def get_articles_coauthorings(self, dict_list):
+    def get_articles_coauthorings(self, dict_list, limite_similaridade_sobrenome=0.88, limite_similaridade_iniciais=0.83):
         """
         Extrair cada artigo de cada dicionário de currículo
 
@@ -2934,12 +2935,15 @@ class DiscentCollaborationCounter:
         Retorna:
             colaboracoes (list): Uma lista de dicionários com chave nome do dono do currículo e valores lista de todos autores
         """
-        
+        lista_normalizada_discentes = self.normalize_discents()
         colaboracoes = []
+        percentuais = {}
         for dic in dict_list:
             autor = dic.get('Identificação',{}).get('Nome',{})
             artigos = dic.get('Produções', {}).get('Artigos completos publicados em periódicos', {})
             lista_coautores_artigo = []
+            colaboracoes_com_discentes = 0
+            colaborou = False
             for i in artigos:
                 ano = i.get('ano',{})
                 qualis = i.get('Qualis',{})
@@ -2958,7 +2962,25 @@ class DiscentCollaborationCounter:
                 coautores = [self.iniciais_nome(x) for x in coautores]
                 lista_coautores_artigo.append(coautores)
                 colaboracoes.append({autor: coautores})
-        return colaboracoes
+
+                for nome_coautor in coautores:
+                    for nome_discente in lista_normalizada_discentes:
+                        similaridade_sobrenome, similaridade_iniciais = self.similar_index(nome_discente, nome_coautor)
+                        if similaridade_sobrenome > limite_similaridade_sobrenome and similaridade_iniciais > limite_similaridade_iniciais:
+                            colaborou = True
+                            # print(f'{autor:40} {nome_discente:20} {nome_coautor:25} | {similaridade_sobrenome:.6f} | {similaridade_iniciais:.6f}')
+                
+                if colaborou == True:
+                    colaboracoes_com_discentes += 1
+
+            if len(artigos) == 0:
+                porcentagem_colab_discentes = 0
+            else:
+                porcentagem_colab_discentes = np.round((colaboracoes_com_discentes / len(artigos)) * 100, 2)
+                # print(f'Participação discente em {colaboracoes_com_discentes} dos {len(artigos)} artigos de {autor}')
+                percentuais[autor] = porcentagem_colab_discentes
+
+        return colaboracoes, percentuais
 
     def discent_direct_counter(self, coauthors_list, discent_list):
         count=0
@@ -2987,7 +3009,7 @@ class DiscentCollaborationCounter:
 
         return texto_minusculo
 
-    def is_similar(self, name_discent, name_coauthor):
+    def similar_index(self, name_discent, name_coauthor):
         """
         Calcula a similaridade de Levenshtein entre duas strings normalizadas.
 
@@ -3004,23 +3026,54 @@ class DiscentCollaborationCounter:
         name_coauthor_norm = self.normalize(name_coauthor).lower()
 
         # Cálcular da distância de Levenshtein
-        distancia_levenshtein = difflib.levenshtein(name_discent_norm, name_coauthor_norm)
+        # distancia_levenshtein = distance(name_discent_norm, name_coauthor_norm)
 
         # Cálcular índice de similaridade
-        max_length = max(len(name_discent_norm), len(name_coauthor_norm))
-        similarity_index = 1 - (distancia_levenshtein / max_length)
+        # max_length = max(len(name_discent_norm), len(name_coauthor_norm))
+        # similarity_index = 1 - (distancia_levenshtein / max_length)
+        try:
+            surname_discent      = name_discent_norm.split(',')[0].strip()
+            surname_coauthor     = name_coauthor_norm.split(',')[0].strip()
+            surname_levenshtein  = distance(surname_discent, surname_coauthor)
+            surname_similarity   = 1 - (surname_levenshtein / (len(surname_discent) + len(surname_coauthor)))
 
-        return similarity_index
+            initials_discent     = name_discent_norm.split(',')[1].strip()
+            initials_coauthor    = name_coauthor_norm.split(',')[1].strip()        
+            initials_levenshtein = distance(initials_discent, initials_coauthor)
+            initials_similarity  = 1 - (initials_levenshtein / (len(initials_discent) + len(initials_coauthor)))
+            
+            return surname_similarity, initials_similarity
+        except:
+            return 0,0
 
-    def discent_similar_counter(self, coauthors_list, discent_list):
-        count=0
-        threshold=0.85
+    def normalize_discents(self, fonte_planilha = 'ppgcs_estudantes_2021-2024.xlsx'):
+        """
+        Calcula o percentual de colaboração entre um pesquisador e seus discentes.
 
-        for name in coauthors_list:
-            if self.is_similar(name_discent, name_coauthor) >= threshold:
-                count+=1
+        Args:
+            pesquisador: O nome do pesquisador.
+            lista_normalizada_discentes: A lista de nomes de discentes normalizados.
+            colabs: A lista de colaborações (dicionários com informações sobre artigos).
+            discent_collab_counter: Objeto que contém métodos para calcular a similaridade entre nomes.
+            limite_similaridade_sobrenome: Limite mínimo para a similaridade do sobrenome ser considerada (padrão: 0.87).
+            limite_similaridade_iniciais: Limite mínimo para a similaridade das iniciais ser considerada (padrão: 0.8).
 
-        return qte_discent_collaborations
+        Returns:
+            Dicionário com as seguintes chaves:
+            - colaboracao_com_discentes: Número de colaborações com discentes.
+            - total_colaboracoes: Número total de colaborações do pesquisador.
+            - porcentagem_colab_discentes: Percentual de colaboração com discentes.
+        """
+
+        dados_discentes = pd.read_excel(os.path.join(LattesScraper.find_repo_root(),'_data','in_xls',fonte_planilha), header=1)
+        lista_discentes = list(dados_discentes['Discente'].unique())
+        print(f'{len(lista_discentes)} discentes no período 2021-2024 informados pelos programa')
+
+        lista_normalizada_discentes=[]
+        for i in lista_discentes:
+            lista_normalizada_discentes.append(self.iniciais_nome(i))
+
+        return lista_normalizada_discentes
 
     ## PADRONIZAÇÃO DE NOMES DE AUTOR E ANÁLISE DE SIMILARIDADES
     def padronizar_nome(self, linha_texto):
