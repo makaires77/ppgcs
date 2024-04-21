@@ -141,11 +141,615 @@ class attribute_to_be_non_empty:
             return False  # Retorne False caso contrário.
 
 class Neo4jPersister:
-    def __init__(self, uri, username, password):
-        self._driver = GraphDatabase.driver(uri, auth=(username, password))
+    def __init__(self, uri, user, password):
+        self._uri = uri
+        self._user = user
+        self._password = password
+        self._driver = GraphDatabase.driver(self._uri, auth=(self._user, self._password))
+        self.configure_logging()
+        self.logger = logger
 
+        # Devem ser persistidos como 
+        self.tipos = [
+            'Identificação',
+            'Idiomas',
+            'Formação',
+            'Atuação Profissional',
+            'Linhas de Pesquisa',
+            'Áreas',
+            'Produções',
+            'ProjetosPesquisa',
+            'ProjetosExtensão',
+            'ProjetosDesenvolvimento',
+            'ProjetosOutros',
+            'Bancas',
+            'Orientações',
+            ]
+
+        self.subtipos= [
+            'Acadêmica',
+            'Pos-Doc',
+            'Complementar',
+            'Artigos completos publicados em periódicos',
+            'Resumos publicados em anais de congressos',
+            'Apresentações de Trabalho',
+            'Outras produções bibliográficas',
+            'Entrevistas, mesas redondas, programas e comentários na mídia',
+            'Concurso público',
+            'Outras participações',
+            'Livros publicados/organizados ou edições',
+            'Capítulos de livros publicados',
+            'Resumos expandidos publicados em anais de congressos',
+            'Resumos publicados em anais de congressos (artigos)',
+            'Trabalhos técnicos',
+            'Demais trabalhos',
+            'Mestrado',
+            'Teses de doutorado',
+            'Qualificações de Doutorado',
+            'Qualificações de Mestrado',
+            'Monografias de cursos de aperfeiçoamento/especialização',
+            'Trabalhos de conclusão de curso de graduação',
+            'Orientações e supervisões concluídas',
+            'Citações',
+            'Trabalhos completos publicados em anais de congressos',
+            'Produtos tecnológicos',
+            'Artigos  aceitos para publicação',
+            'Assessoria e consultoria',
+            'Programas de computador sem registro',
+            'Professor titular',
+            'Avaliação de cursos',
+            'Orientações e supervisões em andamento',
+            'Processos ou técnicas',
+            'Outras produções artísticas/culturais',
+            'Textos em jornais de notícias/revistas',
+            'Redes sociais, websites e blogs',
+            'Artes Visuais'            
+            ]
+
+        self.propriedades = [
+            'Nome',
+            'ID Lattes',
+            'Última atualização',
+            ]
+        
     def close(self):
         self._driver.close()
+
+    def configure_logging(self):
+        logging.basicConfig(filename='logs/neo4j_persister.log', level=logging.INFO, filemode='w', format='%(asctime)s - %(levelname)s - %(message)s')
+        logger = logging.getLogger(__name__)
+
+    def persistir_revistas_da_planilha(self):
+        """
+        Persiste dados de revistas a partir da planilha 'classificações_publicadas_todas_as_areas_avaliacao1672761192111.xlsx' no Neo4j.
+
+        Args:
+            session: Objeto de sessão do Neo4j.
+        """
+        # Leitura da planilha
+        dados_qualis = pd.read_excel(os.path.join(LattesScraper.find_repo_root(),'_data','in_xls','classificações_publicadas_todas_as_areas_avaliacao1672761192111.xlsx'))
+
+        # Extração e persistência de dados de revista
+        with self._driver.session() as session:
+            for index, row in dados_qualis.iterrows():
+                issn = row['ISSN'].replace('-','')
+                nome_revista = row['Título']
+                area_avaliacao = row['Área de Avaliação']
+                estrato = row['Estrato']
+
+                # Verificação de existência da revista
+                revista_node = session.run("""
+                    MATCH (j:Revista {issn: $issn})
+                    RETURN j
+                """, issn=issn).single()
+
+                if not revista_node:
+                    # Criação da revista se não existir
+                    session.run("""
+                        CREATE (j:Revista {issn: $issn, nome_revista: $nome_revista, area_avaliacao: $area_avaliacao, estrato: $estrato})
+                    """, nome_revista=nome_revista, issn=issn, area_avaliacao=area_avaliacao,  estrato=estrato)
+
+    # Testes Ok! 
+    def persist_pessoa_nodes(self, dict_list):
+        query_pessoa = """
+        MERGE (p:Pesquisador {id_lattes: $id_lattes})
+        ON CREATE SET p.nome = $nome, p.ultima_atualizacao = $ultima_atualizacao
+        ON MATCH SET p.nome = $nome, p.ultima_atualizacao = $ultima_atualizacao
+        """
+        try:
+            with self._driver.session() as session:
+                for item in dict_list:
+                    identificacao = item.get('Identificação')
+                    nome = identificacao.get('Nome')
+                    id_lattes = identificacao.get('ID Lattes')
+                    ultima_atualizacao = identificacao.get('Última atualização')
+                    if nome:
+                        session.run(query_pessoa, id_lattes=id_lattes, nome=nome, ultima_atualizacao=ultima_atualizacao)
+        except Exception as e:
+            self.logger.error('Erro ao criar node "Pesquisador": {}'.format(e))
+
+    # Testes Ok!         
+    def persist_pesquisador_grande_area_relationships(self, dict_list):
+        query_rel_pessoa_grande_area = """
+        MATCH (p:Pesquisador {id_lattes: $id_lattes})
+        MATCH (ga:GrandeArea {nome: $grande_area_nome})
+        MERGE (p)-[:ATUA_EM]->(ga)
+        """
+
+        with self._driver.session() as session:
+            for item in dict_list:
+                identificacao = item.get('Identificação')
+                id_lattes = identificacao.get('ID Lattes')
+                areas = item.get('Áreas').values()
+                for area_string in areas:
+                    grande_area_nome, _, _ = self.extract_area_info(area_string)
+                    if grande_area_nome:
+                        session.run(query_rel_pessoa_grande_area, id_lattes=id_lattes, grande_area_nome=grande_area_nome)
+
+    # Testes Ok! 
+    def persist_areas_nodes(self, dict_list):
+        query_grande_area = """
+        MERGE (ga:GrandeArea {nome: $nome})
+        """
+        query_area = """
+        MATCH (ga:GrandeArea {nome: $grande_area_nome})
+        MERGE (a:Area {nome: $nome}) ON CREATE SET a:Area
+        MERGE (ga)-[:CONTEM]->(a)
+        """
+        query_subarea = """
+        MATCH (a:Area {nome: $area_nome})
+        MERGE (sa:Subarea {nome: $nome}) ON CREATE SET sa:Subarea
+        MERGE (a)-[:CONTEM]->(sa)
+        """
+        query_rel_pessoa_grande_area = """
+        MATCH (p:Pesquisador {id_lattes: $id_lattes})
+        MATCH (ga:GrandeArea {nome: $grande_area_nome})
+        MERGE (p)-[:ATUA_EM]->(ga)    
+        """
+
+        with self._driver.session() as session:
+            for item in dict_list:
+                areas = item.get('Áreas').values()
+                for area_string in areas:
+                    grande_area_nome, area_nome, subarea_nome = self.extract_area_info(area_string)
+                    
+                    # Verificar se o nome não está vazio
+                    if grande_area_nome:
+                        session.run(query_grande_area, nome=grande_area_nome)
+                    if area_nome:
+                        session.run(query_area, grande_area_nome=grande_area_nome, nome=area_nome)
+                    if subarea_nome:
+                        session.run(query_subarea, area_nome=area_nome, nome=subarea_nome)
+                    
+                    # Adicionar relacionamento Pesquisador - GrandeÁrea
+                    id_lattes = item['Identificação']['ID Lattes']
+                    if grande_area_nome:
+                        session.run(query_rel_pessoa_grande_area, id_lattes=id_lattes, grande_area_nome=grande_area_nome)
+
+    # Testes Ok! 
+    @staticmethod
+    def extract_area_info(area_string):
+        # Extraindo os nomes de GrandeÁrea, Área e Subárea da string
+        try:
+            grande_area_nome = area_string.split('/')[0].strip().split(': ')[1]
+        except:
+            grande_area_nome = ''
+        try:
+            area_nome = area_string.split('/')[1].strip().split(': ')[1]
+        except:
+            area_nome = ''
+        try:
+            subarea_nome = area_string.split('/')[2].strip().split(': ')[1]
+        except:
+            subarea_nome = ''
+        return grande_area_nome, area_nome, subarea_nome
+
+    ## PRODUÇÕES
+    def persist_producoes_pesquisador(self, dict_list):
+        with self._driver.session() as session:
+            for pesq in dict_list:
+                identificacao = pesq.get('Identificação')
+                id_lattes = identificacao.get('ID Lattes')
+                producoes = pesq.get('Produções')
+
+                if not isinstance(producoes, dict):
+                    print(f"Erro!! Dicionário da seção 'Produções' não encontrado para {id_lattes}")
+                    continue
+
+                for chave_producao, valores_producao in producoes.items():
+                    print(f'{chave_producao} | {valores_producao}')
+                    if chave_producao == 'Artigos completos publicados em periódicos':
+                        # self.persistir_artigos_completos(session, id_lattes, valores_producao)
+                        self.persistir_artigos_revistas(session, id_lattes, valores_producao)
+
+    def _get_or_create_node(self, session, label, properties):
+        properties = [x.rstrip('.') for x in properties]
+        node = session.run("MATCH (n: {label}) WHERE {properties} RETURN n", {"label": label, "properties": properties}).single()
+
+        if not node:
+            node = session.run("CREATE (n: {label} {properties}) RETURN n", {"label": label, "properties": properties}).single()["n"]
+            self._node_created_count += 1
+
+        return node
+
+    def persist_tipo_producao(self, session, id_lattes, tipo_producao):
+        query_create_node = """
+        MERGE (p:Pesquisador {id_lattes: $id_lattes})
+        MERGE (t:TipoProducao {nome: $tipo_producao})
+        MERGE (p)-[:PRODUZ]->(t)
+        """
+        result = session.run(query_create_node, id_lattes=id_lattes, tipo_producao=tipo_producao)
+        summary = result.consume()
+        return summary.counters.nodes_created, summary.counters.nodes_deleted, summary.counters.relationships_created, summary.counters.relationships_deleted
+
+    def persist_subtipo_producao(self, session, id_lattes, tipo_producao, subtipo_producao, dados_producao):
+        def checar_e_serializar(dados):
+            """ Verifica e serializa dicionários recursivamente """
+            if isinstance(dados, dict):
+                for chave, valor in dados.items():
+                    if isinstance(valor, dict):
+                        dados[chave] = json.dumps(valor)
+                    # Checagem adicional para outros tipos inválidos, se necessário
+            return dados
+        # Serialização recursiva do dicionário
+        dados_producao = checar_e_serializar(dados_producao)
+
+        query_create_node = """
+        MERGE (p:Pesquisador {id_lattes: $id_lattes})
+        MERGE (t:TipoProducao {nome: $tipo_producao})
+        MERGE (s:SubtipoProducao {nome: $subtipo_producao})
+        MERGE (p)-[PRODUZ:]->(t)-[:DO_TIPO]->(s)
+        """
+
+        if subtipo_producao in ["ArtigoCompleto", "ResumoCongresso", "ApresentacaoTrabalho", "OutrasProducoesBibliograficas"]:
+            query_create_node += """
+            MERGE (o:Ocorrencia {tipo: $subtipo_producao, dados: $dados})
+            MERGE (s)-[:OCORRENCIA]->(o)
+            """
+
+        result = session.run(query_create_node, id_lattes=id_lattes, tipo_producao=tipo_producao, 
+                            subtipo_producao=subtipo_producao, dados=dados_producao)
+
+        # Obtendo as informações de contadores
+        summary = result.consume()
+
+        return summary.counters.nodes_created, summary.counters.nodes_deleted, summary.counters.relationships_created, summary.counters.relationships_deleted
+
+    def persistir_artigos_completos(self, session, id_lattes, dados):
+        created_nodes = 0
+        updated_nodes = 0
+        created_relations = 0
+        updated_relations = 0
+        
+        for dados_artigo in dados:
+            dados_artigo['dados'] = json.dumps(dados_artigo)  # Conversão para JSON da estrutura completa
+            query_create_node_artigo = """
+                MERGE (p:Pesquisador {id_lattes: $id_lattes})
+                CREATE (a:ArtigoPublicado {
+                    ano: $ano,
+                    fator_impacto_jcr: $fator_impacto_jcr,
+                    ISSN: $ISSN,
+                    titulo: $titulo,
+                    revista: $revista,
+                    autores: $autores,
+                    Qualis: $Qualis,
+                    DOI: $DOI,
+                    dados: $dados_artigo
+                })
+                CREATE (p)-[:PRODUZ]->(a)
+
+                MERGE (j:Revista {nome: $revista, issn: $ISSN})
+                CREATE (a)-[:PUBLICADO_EM]->(j)
+            """
+
+            result_artigo = session.run(query_create_node_artigo, 
+                                id_lattes=id_lattes, 
+                                ano=dados_artigo['ano'],
+                                fator_impacto_jcr=dados_artigo['fator_impacto_jcr'],
+                                ISSN=dados_artigo['ISSN'],
+                                titulo=dados_artigo['titulo'],
+                                revista=dados_artigo['revista'],
+                                autores=dados_artigo['autores'],
+                                Qualis=dados_artigo['Qualis'],
+                                DOI=dados_artigo['DOI'],
+                                dados_artigo=dados_artigo
+                                )
+            summary_artigo = result_artigo.consume()
+            created_nodes += summary_artigo.counters.nodes_created
+            updated_nodes += summary_artigo.counters.nodes_deleted
+            created_relations += summary_artigo.counters.relationships_created
+            updated_relations += summary_artigo.counters.relationships_deleted
+
+        return created_nodes, updated_nodes, created_relations, updated_relations
+
+
+    def persistir_artigos_completos(self, session, id_lattes, dados):
+        created_nodes = 0
+        updated_nodes = 0
+        created_relations = 0
+        updated_relations = 0
+                
+        for dados_artigo in dados:
+            ano = dados_artigo['ano']
+            impact_jcr = dados_artigo['fator_impacto_jcr']
+            issn = dados_artigo['ISSN']
+            titulo = dados_artigo['titulo']
+            revista = dados_artigo['revista']
+            autores = dados_artigo['autores']
+            qualis = dados_artigo['Qualis']
+            doi = dados_artigo['DOI']
+
+            query_create_node_artigo = """
+                MERGE (p:Pesquisador {id_lattes: $id_lattes})
+                CREATE (a:ArtigoPublicado {ano: $ano, impact_jcr: $impact_jcr, issn: $issn, titulo: $titulo, revista: $revista, autores: $autores, qualis: $qualis, doi: $doi})
+                CREATE (p)-[:PRODUZ]->(a)
+                MERGE (j:Revista {nome: $revista, issn: $issn})
+                CREATE (a)-[:PUBLICADO_EM]->(j)
+            """
+            print(query_create_node_artigo)
+            result_artigo = session.run(query_create_node_artigo, 
+                                id_lattes=id_lattes, 
+                                ano=ano,
+                                impact_jcr=impact_jcr,
+                                issn=issn,
+                                titulo=titulo,
+                                revista=revista,
+                                autores=autores,
+                                qualis=qualis,
+                                doi=doi,
+                                )
+            summary_artigo = result_artigo.consume()
+            created_nodes += summary_artigo.counters.nodes_created
+            updated_nodes += summary_artigo.counters.nodes_deleted
+            created_relations += summary_artigo.counters.relationships_created
+            updated_relations += summary_artigo.counters.relationships_deleted
+
+        return created_nodes, updated_nodes, created_relations, updated_relations
+
+    def buscar_revista_por_issn(self, session, issn):
+        query = """
+            MATCH (revista:Revista {issn: $issn})
+            RETURN revista
+        """
+
+        try:
+            result = session.run(query, issn=issn)
+            return result.single()
+        except Neo4jError as e:
+            print(f"Erro Neo4j ao buscar a revista por ISSN: {e}")
+            return None
+        
+    def persistir_artigos_revistas(self, session, id_lattes, dados):
+        """
+        Função para persistir os dados de artigos completos publicados em periódicos.
+
+        Args:
+            session (neo4j.Session): Sessão Neo4j.
+            id_lattes (str): ID do Lattes do pesquisador.
+            dados (dict): Dicionário contendo os dados dos artigos.
+
+        Returns:
+            None
+        """
+
+        for artigo in dados:
+            # Extraindo informações do artigo
+            revista_nome  = ''
+            created_nodes = ''
+            ano = artigo['ano']
+            impact_jcr = artigo['fator_impacto_jcr']
+            issn = artigo['ISSN']
+            titulo = artigo['titulo']
+            revista = artigo['revista']
+            autores = artigo['autores']
+            data_issn = artigo['data_issn']
+            doi = artigo['DOI']
+            qualis = artigo['Qualis']
+
+            query_create_node_artigo = """
+                MERGE (p:Pesquisador {id_lattes: $id_lattes})
+                CREATE (a:ArtigoPublicado {ano: $ano, impact_jcr: $impact_jcr, issn: $issn, titulo: $titulo, revista: $revista, autores: $autores, qualis: $qualis, doi: $doi})
+                CREATE (p)-[:PRODUZ]->(a)
+                MERGE (j:Revista {nome: $revista, issn: $issn})
+                CREATE (a)-[:PUBLICADO_EM]->(j)
+            """
+            
+            # Buscando o nó da revista
+            revista_node = self.buscar_revista_por_issn(session, issn)
+
+            # Criando o nó do artigo
+            with session.begin_transaction() as tx:
+                tx.run(query_create_node_artigo,
+                    id_lattes=id_lattes,
+                    ano=ano,
+                    impact_jcr=impact_jcr,
+                    issn=issn,
+                    titulo=titulo,
+                    revista=revista,
+                    autores=autores,
+                    data_issn=data_issn,
+                    doi=doi,
+                    qualis=qualis
+                    )
+
+                # Criando o relacionamento PUBLICADO_EM
+                if revista_node is not None:
+                    node_revista = revista_node[0][1]
+                    if node_revista is not None:
+                        revista_nome = node_revista['nome_revista']
+                        revista_issn = node_revista['issn']
+                        revista_area_avaliacao = node_revista['area_avaliacao']
+                        revista_estrato = node_revista['estrato']
+
+                    if revista_nome:
+                        tx.run("""
+                            MATCH (a:ArtigoPublicado {doi: $doi}), (j:Revista {nome_revista: $revista_nome, issn: $revista_issn, area_avaliacao: $revista_area_avaliacao, estrato: $revista_estrato})
+                            CREATE (a)-[:PUBLICADO_EM]->(j)
+                        """, doi=doi, revista_nome=revista_nome, revista_issn=revista_issn, revista_area_avaliacao=revista_area_avaliacao, revista_estrato=revista_estrato)
+
+                    else:
+                        print("Erro: O nó da revista não foi encontrado para o ISSN", issn)
+                        # Lógica de tratamento de erro (opcional)
+                else:
+                    print("Erro: O retorno para a revista com ISSN", issn, "é None.")
+
+                tx.commit()
+
+        # Atualização dos contadores
+        with session.begin_transaction() as tx:
+            created_nodes += tx.run("MATCH (n) WHERE n:ArtigoPublicado RETURN count(n)").single()[0]
+            updated_nodes += tx.run("MATCH (n) WHERE n:ArtigoPublicado SET n.updated_at = datetime() RETURN count(n)").single()[0]
+            created_relations += tx.run("MATCH (r) WHERE r:PUBLICADO_EM RETURN count(r)").single()[0]
+
+    def persistir_resumos_congressos(self, session, id_lattes, dados):
+        query_create_node = """
+        MERGE (p:Pesquisador {id_lattes: $id_lattes})
+        MERGE (r:ResumoCongresso {titulo: $titulo, ano: $ano, evento: $evento, autores: $autores, data_issn: $data_issn, doi: $doi})
+        MERGE (p)-[:PRODUZ]->(r)
+        """
+        result = session.run(query_create_node, id_lattes=id_lattes, **dados)
+        # Obtendo as informações de contadores
+        summary = result.consume()
+        created_nodes = summary.counters.nodes_created
+        updated_nodes = summary.counters.nodes_deleted  
+        created_relations = summary.counters.relationships_created
+        updated_relations = summary.counters.relationships_deleted 
+
+        return created_nodes, updated_nodes, created_relations, updated_relations
+
+    def persistir_apresentacoes_trabalho(self, session, id_lattes, dados):
+        query_create_node = """
+        MERGE (p:Pesquisador {id_lattes: $id_lattes})
+        MERGE (a:ApresentacaoTrabalho {
+            titulo: $titulo,
+            ano: $ano,
+            evento: $evento,
+            autores: $autores
+        })
+        MERGE (p)-[:PRODUZ]->(a)
+        """
+        result = session.run(query_create_node, id_lattes=id_lattes, **dados)
+
+        # Obtendo as informações de contadores
+        summary = result.consume()
+        created_nodes = summary.counters.nodes_created
+        updated_nodes = summary.counters.nodes_deleted  
+        created_relations = summary.counters.relationships_created
+        updated_relations = summary.counters.relationships_deleted 
+
+        return created_nodes, updated_nodes, created_relations, updated_relations
+
+    def persistir_outras_producoes_bibliograficas(self, session, id_lattes, dados):
+        query_create_node = """
+        MERGE (p:Pesquisador {id_lattes: $id_lattes})
+        MERGE (o:OutrasProducoesBibliograficas {
+            titulo: $titulo,
+            ano: $ano,
+            autores: $autores,
+            doi: $doi
+        })
+        MERGE (p)-[:PRODUZ]->(o)
+        """
+        result = session.run(query_create_node, id_lattes=id_lattes, **dados)
+
+        # Obtendo as informações de contadores
+        summary = result.consume()
+        created_nodes = summary.counters.nodes_created
+        updated_nodes = summary.counters.nodes_deleted  
+        created_relations = summary.counters.relationships_created
+        updated_relations = summary.counters.relationships_deleted 
+
+        return created_nodes, updated_nodes, created_relations, updated_relations
+
+    def persistir_orientacoes_concluidas(self, session, id_lattes, dados):
+        query_create_node = """
+        MERGE (p:Pesquisador {id_lattes: $id_lattes})
+        MERGE (o:OrientacaoConcluida {
+            tipo: $tipo,
+            titulo: $titulo,
+            ano: $ano,
+            autor: $autor,
+            instituicao: $instituicao
+        })
+        MERGE (p)-[:ORIENTA]->(o)
+        """
+        result = session.run(query_create_node, id_lattes=id_lattes, **dados)
+
+        # Obtendo as informações de contadores
+        summary = result.consume()
+        created_nodes = summary.counters.nodes_created
+        updated_nodes = summary.counters.nodes_deleted  
+        created_relations = summary.counters.relationships_created
+        updated_relations = summary.counters.relationships_deleted 
+
+        return created_nodes, updated_nodes, created_relations, updated_relations
+
+    def persistir_participacoes_bancas(self, session, id_lattes, dados):
+        query_create_node = """
+        MERGE (p:Pesquisador {id_lattes: $id_lattes})
+        MERGE (b:Banca {
+            tipo: $tipo,
+            titulo: $titulo,
+            ano: $ano,
+            instituicao: $instituicao
+        })
+        MERGE (p)-[:PARTICIPA_BANCA]->(b)
+        """
+        result = session.run(query_create_node, id_lattes=id_lattes, **dados)
+
+        # Obtendo as informações de contadores
+        summary = result.consume()
+        created_nodes = summary.counters.nodes_created
+        updated_nodes = summary.counters.nodes_deleted  
+        created_relations = summary.counters.relationships_created
+        updated_relations = summary.counters.relationships_deleted 
+
+        return created_nodes, updated_nodes, created_relations, updated_relations
+
+    def persistir_projetos_pesquisa(self, session, id_lattes, dados):
+        query_create_node = """
+        MERGE (p:Pesquisador {id_lattes: $id_lattes})
+        MERGE (pr:ProjetoPesquisa {
+            titulo: $titulo,
+            ano_inicio: $ano_inicio,
+            ano_fim: $ano_fim,
+            agencia_financiadora: $agencia_financiadora,
+            valor_financiamento: $valor_financiamento
+        })
+        MERGE (p)-[:COORDENA]->(pr)
+        """
+        result = session.run(query_create_node, id_lattes=id_lattes, dados=dados)
+
+        # Obtendo as informações de contadores
+        summary = result.consume()
+        created_nodes = summary.counters.nodes_created
+        updated_nodes = summary.counters.nodes_deleted  
+        created_relations = summary.counters.relationships_created
+        updated_relations = summary.counters.relationships_deleted 
+
+        return created_nodes, updated_nodes, created_relations, updated_relations
+
+    def persistir_premios_distincoes(self, session, id_lattes, dados):
+        query_create_node = """
+        MERGE (p:Pesquisador {id_lattes: $id_lattes})
+        MERGE (pd:PremioDistincao {
+            titulo: $titulo,
+            ano: $ano,
+            instituicao: $instituicao,
+        })
+        MERGE (p)-[:RECEBE]->(pd)
+        """
+        result = session.run(query_create_node, id_lattes=id_lattes, **dados)
+
+        # Obtendo as informações de contadores
+        summary = result.consume()
+        created_nodes = summary.counters.nodes_created
+        updated_nodes = summary.counters.nodes_deleted  
+        created_relations = summary.counters.relationships_created
+        updated_relations = summary.counters.relationships_deleted 
+
+        return created_nodes, updated_nodes, created_relations, updated_relations
+
 
     @staticmethod
     def convert_to_primitives(input_data):
@@ -485,6 +1089,9 @@ class LattesScraper:
         self.neo4j_user = neo4j_user
         self.neo4j_password = neo4j_password
 
+    def configure_logging(self):
+        logging.basicConfig(filename='logs/lattes_scraper.log', level=logging.INFO, filemode='w', format='%(asctime)s - %(levelname)s - %(message)s')
+
     def scrape_and_persist(self, data):
         self._scrape(data)
         self._persist(data)
@@ -519,9 +1126,6 @@ class LattesScraper:
                 graph.create(projeto_node)
                 rel = Relationship(pessoa_node, "PARTICIPA", projeto_node)
                 graph.create(rel)
-
-    def configure_logging(self):
-        logging.basicConfig(filename='logs/lattes_scraper.log', level=logging.INFO, filemode='w', format='%(asctime)s - %(levelname)s - %(message)s')
 
     @staticmethod
     def find_repo_root(path='.', depth=10):
@@ -2179,48 +2783,97 @@ class HTMLParser:
         }
         return results
 
+    ## Não considerava os casos onde lista de autores vem oculta por et al. com javscript
+    # def extract_info(self):
+    #     soup = BeautifulSoup(self.html_element, 'html.parser')
+    #     qualis_info = self.extract_qualis(soup)
+
+    #     # Extrai o primeiro autor
+    #     autores = soup.find_all('span', class_='informacao-artigo', data_tipo_ordenacao='autor')
+    #     primeiro_autor = autores[0].text if autores else None
+    #     # Considera todos os textos após o autor como parte da lista de autores até um elemento estrutural significativo (<a>, <b>, <sup>, etc.)
+    #     autores_texto = self.html_element.split('autor">')[-1].split('</span>')[0] if autores else ''
+
+    #     ano_tag = soup.find('span', {'class': 'informacao-artigo', 'data-tipo-ordenacao': 'ano'})
+    #     ano = int(ano_tag.text) if ano_tag else 'Ano não disponível'
+
+    #     # Extrai o título, periódico, e outras informações diretamente do texto
+    #     texto_completo = soup.get_text(separator=' ', strip=True)
+        
+    #     # Assume que o título vem após os autores e termina antes de uma indicação de periódico ou volume
+    #     titulo_match = re.search(r'; ([^;]+?)\.', texto_completo)
+    #     titulo = titulo_match.group(1) if titulo_match else None
+
+    #     # Periódico e detalhes como volume, página, etc., 
+    #     periodico_match = re.search(r'(\. )([^.]+?),( v\. \d+, p\. \d+, \d+)', texto_completo)
+    #     periodico = periodico_match.group(2) if periodico_match else None
+    #     detalhes_periodico = periodico_match.group(3) if periodico_match else None
+
+    #     # Extrai citações se disponível
+    #     citacoes = soup.find('span', class_='numero-citacao')
+    #     citacoes = int(citacoes.text) if citacoes else 0
+
+    #     # Extrai ISSN
+    #     issn = soup.find('img', class_='ajaxJCR')
+    #     issn = issn['data-issn'] if issn else None
+
+    #     # Qualis/CAPES pode ser extraído se existir um padrão identificável
+    #     qualis_capes = "quadriênio 2017-2020"  # Hardcoded, mas pode ser ajustado futuramente
+
+    #     # Monta o dicionário de resultados
+    #     resultado = {
+    #         "dados_gerais": texto_completo,
+    #         "primeiro_autor": primeiro_autor,
+    #         "ano": ano,
+    #         "autores": autores_texto,
+    #         "titulo": titulo,
+    #         "periodico": f"{periodico}{detalhes_periodico}",
+    #         "data-issn": issn,
+    #         "impacto": qualis_info.get('JCR'),
+    #         "Qualis/CAPES": qualis_capes,
+    #         "qualis": qualis_info.get('Qualis'),
+    #         "citacoes": citacoes,
+    #     }
+
+    #     return resultado, json.dumps(resultado, ensure_ascii=False)
+
     def extract_info(self):
         soup = BeautifulSoup(self.html_element, 'html.parser')
         qualis_info = self.extract_qualis(soup)
 
-        # Extrai os autores
+        # **Author List Extraction**
+        inicial_autores = []
+        for autor in soup.find_all('span', class_='informacao-artigo', data_tipo_ordenacao='autor'):
+            inicial_autores.append(autor.text.strip())
+
+        et_al_link = soup.find('a', class_='tooltip autores-et-al-plus')
+        if et_al_link:
+            et_al_link.click()
+            autores_expandidos = soup.find('span', class_='autores-et-al').text.strip()
+        else:
+            autores_expandidos = ''
+
+        todos_autores = ', '.join(inicial_autores + autores_expandidos.split(','))
+        texto_completo = soup.get_text(separator=' ', strip=True)
         autores = soup.find_all('span', class_='informacao-artigo', data_tipo_ordenacao='autor')
         primeiro_autor = autores[0].text if autores else None
-        # Considera todos os textos após o autor como parte da lista de autores até um elemento estrutural significativo (<a>, <b>, <sup>, etc.)
-        autores_texto = self.html_element.split('autor">')[-1].split('</span>')[0] if autores else ''
-
         ano_tag = soup.find('span', {'class': 'informacao-artigo', 'data-tipo-ordenacao': 'ano'})
         ano = int(ano_tag.text) if ano_tag else 'Ano não disponível'
-
-        # Extrai o título, periódico, e outras informações diretamente do texto
-        texto_completo = soup.get_text(separator=' ', strip=True)
-        
-        # Assume que o título vem após os autores e termina antes de uma indicação de periódico ou volume
         titulo_match = re.search(r'; ([^;]+?)\.', texto_completo)
         titulo = titulo_match.group(1) if titulo_match else None
-
-        # Periódico e detalhes como volume, página, etc., 
         periodico_match = re.search(r'(\. )([^.]+?),( v\. \d+, p\. \d+, \d+)', texto_completo)
         periodico = periodico_match.group(2) if periodico_match else None
         detalhes_periodico = periodico_match.group(3) if periodico_match else None
-
-        # Extrai citações se disponível
         citacoes = soup.find('span', class_='numero-citacao')
         citacoes = int(citacoes.text) if citacoes else 0
-
-        # Extrai ISSN
         issn = soup.find('img', class_='ajaxJCR')
         issn = issn['data-issn'] if issn else None
-
-        # Qualis/CAPES pode ser extraído se existir um padrão identificável
-        qualis_capes = "quadriênio 2017-2020"  # Neste exemplo, hardcoded, mas pode ser ajustado
-
-        # Monta o dicionário de resultados
+        qualis_capes = "quadriênio 2017-2020"
         resultado = {
             "dados_gerais": texto_completo,
             "primeiro_autor": primeiro_autor,
             "ano": ano,
-            "autores": autores_texto,
+            "autores": todos_autores,
             "titulo": titulo,
             "periodico": f"{periodico}{detalhes_periodico}",
             "data-issn": issn,
@@ -2231,7 +2884,7 @@ class HTMLParser:
         }
 
         return resultado, json.dumps(resultado, ensure_ascii=False)
-    
+
     def process_areas(self):
         self.estrutura["Áreas"]={}
         secoes = self.soup.find_all('div', class_='title-wrapper')
@@ -2925,7 +3578,7 @@ class DiscentCollaborationCounter:
 
         return lista_coautores, padroes
 
-    def get_articles_coauthorings(self, dict_list, limite_similaridade_sobrenome=0.88, limite_similaridade_iniciais=0.83):
+    def get_articles_coauthorings(self, dict_list, ano_inicio=2017, ano_final=2024, limite_similaridade_sobrenome=0.88, limite_similaridade_iniciais=0.83):
         """
         Extrair cada artigo de cada dicionário de currículo
 
@@ -2942,11 +3595,13 @@ class DiscentCollaborationCounter:
             autor = dic.get('Identificação',{}).get('Nome',{})
             artigos = dic.get('Produções', {}).get('Artigos completos publicados em periódicos', {})
             lista_coautores_artigo = []
+            total_artigos_periodo = 0            
             colaboracoes_com_discentes = 0
-            colaborou = False
             for i in artigos:
+                colaborou = False
                 ano = i.get('ano',{})
                 qualis = i.get('Qualis',{})
+                doi = i.get('DOI',{})
                 string_autores = i.get('autores')
                 coautores, padroes = self.get_coauthors(string_autores)
                 regex_quatrodigitos = r"\d{4}?.*$"
@@ -2962,23 +3617,34 @@ class DiscentCollaborationCounter:
                 coautores = [self.iniciais_nome(x) for x in coautores]
                 lista_coautores_artigo.append(coautores)
                 colaboracoes.append({autor: coautores})
+                if ano and int(ano) >= ano_inicio:
+                    total_artigos_periodo +=1
+                    for nome_coautor in coautores:
+                        for nome_discente in lista_normalizada_discentes:
+                            similaridade_sobrenome, similaridade_iniciais = self.similar_index(nome_discente, nome_coautor)
+                            if similaridade_sobrenome > limite_similaridade_sobrenome and similaridade_iniciais > limite_similaridade_iniciais:
+                                colaborou = True
+                                # print(f'{autor:40} {nome_discente:20} {nome_coautor:25} | {similaridade_sobrenome:.6f} | {similaridade_iniciais:.6f}')
 
-                for nome_coautor in coautores:
-                    for nome_discente in lista_normalizada_discentes:
-                        similaridade_sobrenome, similaridade_iniciais = self.similar_index(nome_discente, nome_coautor)
-                        if similaridade_sobrenome > limite_similaridade_sobrenome and similaridade_iniciais > limite_similaridade_iniciais:
-                            colaborou = True
-                            # print(f'{autor:40} {nome_discente:20} {nome_coautor:25} | {similaridade_sobrenome:.6f} | {similaridade_iniciais:.6f}')
-                
-                if colaborou == True:
-                    colaboracoes_com_discentes += 1
+                    if colaborou == True:
+                        colaboracoes_com_discentes += 1
+                        print(f'ANO {ano} DOI {doi:51} com colaboração com discente {nome_discente}')
+                    else:
+                        print(f'ANO {ano} DOI {doi:51} sem nenhum nome de discente encontrado entre coautorias')
 
-            if len(artigos) == 0:
-                porcentagem_colab_discentes = 0
-            else:
-                porcentagem_colab_discentes = np.round((colaboracoes_com_discentes / len(artigos)) * 100, 2)
-                # print(f'Participação discente em {colaboracoes_com_discentes} dos {len(artigos)} artigos de {autor}')
-                percentuais[autor] = porcentagem_colab_discentes
+                    if len(artigos) == 0:
+                        porcentagem_colab_discentes = 0
+                    else:
+                        porcentagem_colab_discentes = np.round((colaboracoes_com_discentes / total_artigos_periodo) * 100, 2)
+                        percentuais[autor] = porcentagem_colab_discentes
+                if ano == '':
+                    print(f'Ano não extraído para {i}')
+
+
+            print('-'*120)
+            print(f'Nome de discente detectado em {colaboracoes_com_discentes} dos {total_artigos_periodo} artigos de {autor}, perfazendo {porcentagem_colab_discentes}% de colaborações com discente')
+            print('='*120)
+
 
         return colaboracoes, percentuais
 
@@ -3068,6 +3734,7 @@ class DiscentCollaborationCounter:
         dados_discentes = pd.read_excel(os.path.join(LattesScraper.find_repo_root(),'_data','in_xls',fonte_planilha), header=1)
         lista_discentes = list(dados_discentes['Discente'].unique())
         print(f'{len(lista_discentes)} discentes no período 2021-2024 informados pelos programa')
+        print('='*120)
 
         lista_normalizada_discentes=[]
         for i in lista_discentes:
@@ -3465,187 +4132,6 @@ class DiscentCollaborationCounter:
         
         return nome_completo.strip()
 
-    # Para casos onde as inicias são as mesmas em nomes diferentes só adiciona a primeira inicial
-    # def iniciais_nome(self, linha_texto):
-    #     '''Função para retornar sobrenome+iniciais dos nomes, na forma: SOBRENOME, X Y Z
-    #     Recebe: String com nome
-    #     Retorna: Nome e sua versão padronizada em sobrenome+agnomes em maiúsculas, seguida de vírgula e iniciais dos nomes 
-    #     Autor: Marcos Aires (Mar.2022)
-    #     '''
-    #     sobrenome_iniciais = ''
-    #     # print('               Analisando:',linha_texto)
-    #     string = ''.join(ch for ch in unicodedata.normalize('NFKD', linha_texto) if not unicodedata.combining(ch))
-    #     string = string.replace('(Org)','').replace('(Org.)','').replace('(Org).','').replace('.','').replace('Ãº','ú').replace('Ã¡','á').replace('Ã³','ó').replace('Ã´','ô').replace('a¡U','áu')
-            
-    #     # Expressões regulares para encontrar padrões de divisão de nomes de autores
-    #     sobrenome_inicio   = re.compile(r'^[A-ZÀ-ú-a-z]+,')                 # Sequência de letras maiúsculas no início da string
-    #     sobrenome_composto = re.compile(r'^[A-ZÀ-ú-a-z]+[ ][A-ZÀ-ú-a-z]+,') # Duas sequências de letras no início da string, separadas por espaço, seguidas por vírgula
-    #     # letra_abrevponto   = re.compile(r'^[A-Z][.]')                       # Uma letra maiúscula no início da string, seguida por ponto
-    #     letra_abrevponto   = re.compile(r'[A-Z][.]')                        # Uma letra maiúscula em qualquer lugar da string, seguida por ponto
-    #     letra_abrevespaco  = re.compile(r'^[A-Z][ ]')                       # Uma letra maiúscula no início da string, seguida por espaço
-    #     letra_abrevisolada = re.compile(r'[A-Z]{1}')                        # Uma letra maiúscula isolada em qualquer lugar da string
-    #     letras_dobradas    = re.compile(r'[A-Z]{2}')                        # Duas letras maiúsculas juntas no início da string, seguida por espaço
-    #     letras_dobradasini = re.compile(r'[A-Z]{2}[ ]')                     # Duas letras maiúsculas juntas no início da string, seguida por espaço
-    #     letras_dobradasfim = re.compile(r'[ ][A-Z]{2}')                     # Duas letras maiúsculas juntas no final da string, precedida por espaço
-            
-    #     nomes=[]
-    #     agnomes       = ['NETO','JUNIOR','FILHO','SEGUNDO','TERCEIRO']
-    #     preposicoes   = ['da','de','do','das','dos','DA','DE','DOS','DAS','DOS','De']
-    #     nome_completo = ''
-        
-    #     # Ajustar lista de termos, identificar sobrenomes compostos e ajustar sobrenome com ou sem presença de vírgula
-    #     div_sobrenome      = sobrenome_inicio.findall(string)
-    #     div_sbrcomposto    = sobrenome_composto.findall(string)
-        
-    #     # Caso haja vírgulas na string, tratar sobrenomes e sobrenomes compostos
-    #     if div_sobrenome != [] or div_sbrcomposto != []:
-    #         div   = string.split(', ')
-    #         sobrenome     = div[0].strip().upper()
-    #         try:
-    #             div_espaco    = div[1].split(' ')
-    #         except:
-    #             div_espaco  = ['']
-    #         primeiro      = div_espaco[0].strip('.')
-            
-    #         # Caso primeiro nome sejam somente duas letras maiúsculas juntas, trata-se de duas iniciais
-    #         if len(primeiro)==2:
-    #             primeiro_nome=primeiro[0].strip()
-    #             nomes.append(primeiro[1].strip())
-    #         else:
-    #             primeiro_nome = div_espaco[0].strip().title()
-            
-    #         # Montagem da lista de nomes do meio
-    #         for nome in div_espaco:
-    #             if nome not in nomes and nome.lower()!=primeiro_nome.lower() and nome.lower() not in primeiro_nome.lower() and nome!=sobrenome:   
-    #                 # print(nome, len(nome))
-                    
-    #                 # Avaliar se é abreviatura seguida de ponto e remover o ponto
-    #                 if len(nome)<=2 and nome.lower() not in preposicoes:
-    #                     for inicial in nome:
-    #                         # print(inicial)
-    #                         if inicial not in nomes and inicial not in primeiro_nome:
-    #                             nomes.append(inicial.replace('.','').strip().title())
-    #                 else:
-    #                     if nome not in nomes and nome!=primeiro_nome and nome!=sobrenome and nome!='':
-    #                         if nome.lower() in preposicoes:
-    #                             nomes.append(nome.replace('.','').strip().lower())
-    #                         else:
-    #                             nomes.append(nome.replace('.','').strip().title())
-    #                         # print(nome,'|',primeiro_nome)
-                            
-    #         #caso haja sobrenome composto que não esteja nos agnomes considerar somente primeiro como sobrenome
-    #         if div_sbrcomposto !=[] and sobrenome.split(' ')[1] not in agnomes:
-    #             # print(div_sbrcomposto)
-    #             # print('Sobrenome composto:',sobrenome)
-    #             nomes.append(sobrenome.split(' ')[1].title())
-    #             sobrenome = sobrenome.split(' ')[0].upper()
-    #             # print('Sobrenome:',sobrenome.split(' '))
-    #             for i in nomes:
-    #                 if i.lower() in sobrenome.lower():
-    #                     nomes.remove(i)
-    #             # print('Nomes do meio:',nomes)
-            
-    #         # print('    Sobrenome com vírgula:',sobrenome, len(sobrenome),'letras')
-    #         # print('Primeiro nome com vírgula:',primeiro_nome, len(primeiro_nome),'letras')
-    #         # print('Nomes do meio com vírgula:',nomes, len(nomes),'nomes')
-            
-    #     # Caso não haja vírgulas na string considera sobrenome o último nome da string dividida com espaço vazio
-    #     else:
-    #         try:
-    #             div       = string.split(' ')
-    #             if div[-2] in agnomes:
-    #                 sobrenome = div[-2].upper()+' '+div[-1].strip().upper()
-    #                 for i in nomes[1:-2]:
-    #                     if i not in sobrenome and i not in preposicoes:
-    #                         nomes.append(i.strip().title())
-    #                     if i in preposicoes:
-    #                         nomes.append(i.strip().lower())
-    #             else:
-    #                 sobrenome = div[-1].strip().upper()
-    #                 for i in div[1:-1]:
-    #                     if i not in sobrenome and i not in preposicoes:
-    #                         nomes.append(i.strip().title())
-    #                     if i in preposicoes:
-    #                         nomes.append(i.strip().lower())
-    #         except:
-    #             sobrenome = div[-1].strip().upper()
-    #             for i in div[1:-1]:
-    #                     if i not in sobrenome and i not in preposicoes:
-    #                         nomes.append(i.strip().title())
-    #                     if i in preposicoes:
-    #                         nomes.append(i.strip().lower())
-                
-    #         if sobrenome.lower() != div[0].strip().lower():
-    #             primeiro_nome=div[0].strip().title()
-    #         else:
-    #             primeiro_nome=''
-            
-    #         # print('    Sobrenome sem vírgula:',sobrenome)
-    #         # print('Primeiro nome sem vírgula:',primeiro_nome)
-    #         # print('Nomes do meio sem vírgula:',nomes)
-        
-    #     # Encontrar e tratar como abreviaturas termos com apenas uma ou duas letras iniciais juntas, com ou sem ponto
-    #     for j in nomes:
-    #         # Procura padrões com expressões regulares na string
-    #         div_sobrenome      = sobrenome_inicio.findall(j)
-    #         div_sbrcomposto    = sobrenome_composto.findall(j)
-    #         div_abrevponto     = letra_abrevponto.findall(j)
-    #         div_abrevespaco    = letra_abrevespaco.findall(j)
-    #         div_abrevisolada   = letra_abrevisolada.findall(j)
-    #         div_ltrdobradasini = letras_dobradasini.findall(j)
-    #         div_ltrdobradasfim = letras_dobradasfim.findall(j)
-    #         div_ltrdobradas    = letras_dobradas.findall(j)
-    #         tamanho=len(j)
-    #         # print('\n', div_ltrdobradasini, div_ltrdobradasfim, tamanho, 'em:',j,len(j))
-            
-    #         #caso houver abreviatura com uma letra em maiúscula nos nomes
-    #         if div_abrevponto !=[] or tamanho==1:
-    #             cada_nome = j.replace('.','').strip()
-    #             if cada_nome not in nomes and cada_nome != sobrenome and nome != primeiro_nome:
-    #                 nomes.append(cada_nome)
-
-    #         #caso houver abreviatura com uma letra em maiúscula nos nomes
-    #         if div_abrevespaco !=[] or tamanho==1:
-    #             cada_nome = j.replace('.','').strip()
-    #             if cada_nome not in nomes and cada_nome != sobrenome and nome != primeiro_nome:
-    #                 nomes.append(cada_nome)
-
-    #         #caso houver abreviatura com uma letra em maiúscula isolada nos nomes
-    #         if div_abrevisolada !=[] or tamanho==1:
-    #             cada_nome = j.replace('.','').strip()
-    #             if cada_nome not in nomes and cada_nome != sobrenome and nome != primeiro_nome:
-    #                 nomes.append(cada_nome)
-
-    #         #caso houver duas inicias juntas em maiúsculas
-    #         elif div_ltrdobradasini !=[] or div_ltrdobradasfim !=[] or div_ltrdobradas !=[] :
-    #             for letra in j:
-    #                 if letra not in nomes and letra != sobrenome and letra != primeiro_nome:
-    #                     nomes.append(letra)
-            
-    #         #caso haja agnomes ao sobrenome
-    #         elif sobrenome in agnomes:
-    #             sobrenome = nomes[-1].upper()+' '+sobrenome
-    #             # print(sobrenome.split(' '))
-    #             # print('Sobrenome composto:',sobrenome)
-    #             for i in nomes:
-    #                 if i.lower() in sobrenome.lower():
-    #                     nomes.remove(i)
-    #             # print('Nomes do meio:',nomes)
-                
-    #         else:
-    #             if j not in nomes and j not in sobrenome and j != primeiro_nome:
-    #                 nomes.append(j)
-        
-    #     nomes_meio=' '.join([str[0] for str in nomes]).strip()
-    #     # print('Qte nomes do meio',len(nomes),nomes)
-    #     if sobrenome != '' and primeiro_nome !='':
-    #         sobrenome_iniciais = sobrenome+', '+primeiro_nome[0]+' '+nomes_meio
-    #     elif sobrenome != '':
-    #         sobrenome_iniciais = sobrenome
-
-    #     return sobrenome_iniciais.strip()
-
-
     def iniciais_nome(self, linha_texto):
         '''Função para retornar sobrenome+iniciais dos nomes, na forma: SOBRENOME, X Y Z
         Recebe: String com nome
@@ -3660,14 +4146,14 @@ class DiscentCollaborationCounter:
         # Expressões regulares para encontrar padrões de divisão de nomes de autores
         sobrenome_inicio   = re.compile(r'^[A-ZÀ-ú-a-z]+,')                 # Sequência de letras maiúsculas no início da string
         sobrenome_composto = re.compile(r'^[A-ZÀ-ú-a-z]+[ ][A-ZÀ-ú-a-z]+,') # Duas sequências de letras no início da string, separadas por espaço, seguidas por vírgula
-        letra_abrevponto   = re.compile(r'[A-Z][.]')                        # Uma letra maiúscula em qualquer lugar da string, seguida por ponto
         letra_abrevespaco  = re.compile(r'^[A-Z][ ]')                       # Uma letra maiúscula no início da string, seguida por espaço
+        letra_abrevponto   = re.compile(r'[A-Z][.]')                        # Uma letra maiúscula em qualquer lugar da string, seguida por ponto
         letra_abrevisolada = re.compile(r'[A-Z]{1}')                        # Uma letra maiúscula isolada em qualquer lugar da string
         letras_dobradas    = re.compile(r'[A-Z]{2}')                        # Duas letras maiúsculas juntas no início da string, seguida por espaço
         letras_dobradasini = re.compile(r'[A-Z]{2}[ ]')                     # Duas letras maiúsculas juntas no início da string, seguida por espaço
         letras_dobradasfim = re.compile(r'[ ][A-Z]{2}')                     # Duas letras maiúsculas juntas no final da string, precedida por espaço
             
-        nomes=[]
+        nomes         = []
         agnomes       = ['NETO','JUNIOR','FILHO','SEGUNDO','TERCEIRO']
         preposicoes   = ['da','de','do','das','dos','DA','DE','DOS','DAS','DOS','De']
         nome_completo = ''
@@ -4170,20 +4656,47 @@ class ArticlesCounter:
                                        })
         return dtf_atualizado
 
-    def contar_qualis(self, dict_list):
+    def contar_qualis(self, dict_list, ano_inicio, ano_final):
         lista_pubqualis = []
         for dic in dict_list:
             autor = dic.get('Identificação',{}).get('Nome',{})
             artigos = dic.get('Produções', {}).get('Artigos completos publicados em periódicos', {})
+            current_year = datetime.now().year
             for i in artigos:
-                ano = i.get('ano',{})
+                ano = i.get('ano') 
+                if not ano or pd.isna(ano):
+                    ano = current_year
+                else:
+                    try:
+                        ano = int(ano)
+                    except ValueError:
+                        ano = current_year
+
+                # Garantindo conversão para string
+                ano = str(ano)
+
                 qualis = i.get('Qualis',{})
                 lista_pubqualis.append((ano, autor, qualis))
 
-        # Criar um DataFrame a partir da lista_pubqualis
+        # **Print total count without year filter**
+        total_count = len(lista_pubqualis)
+        print(f'Total de publicações (sem filtro de ano): {total_count}')
+
+        # **Filter dataframe based on year range**
         df_qualis_autores_anos = pd.DataFrame(lista_pubqualis, columns=['Ano','Autor', 'Qualis'])
-        minimo = min(df_qualis_autores_anos['Ano'])
-        maximo = max(df_qualis_autores_anos['Ano'])
+        df_filtered = df_qualis_autores_anos[(df_qualis_autores_anos['Ano'].astype(int) >= ano_inicio) & (df_qualis_autores_anos['Ano'].astype(int) <= ano_final)]
+
+        # **Calculate and print minimum and maximum years (filtered)**
+        try:
+            minimo = np.nanmin(df_filtered['Ano'])
+        except ValueError:
+            minimo = None
+        print(f'Mínimo (filtro ano {ano_inicio}-{ano_final}): {minimo}')
+
+        maximo = np.nanmax(df_filtered['Ano'])
+        print(f'Máximo (filtro ano {ano_inicio}-{ano_final}): {maximo}')
+
+        # Imprimir a contagem de publicações com o intervalo válido
         print(f'Contagem de Publicações por Qualis Periódicos no período {minimo} a {maximo}')
 
         # Contar as ocorrências de cada combinação de Autor e Qualis
