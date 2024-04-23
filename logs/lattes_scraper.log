@@ -1,0 +1,17 @@
+2024-04-22 21:09:17,054 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-04-22 21:10:11,463 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-04-22 21:12:17,443 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-04-22 21:14:18,810 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-04-22 21:15:45,682 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-04-22 21:17:48,264 - INFO - Currículo não encontrado: FRANKLIN PEREIRA ARAUJO
+2024-04-22 21:18:15,577 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-04-22 21:18:47,747 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-04-22 21:22:31,834 - INFO - Currículo não encontrado: ISABELA THAMARA SABINO DUTRA
+2024-04-22 21:24:26,329 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-04-22 21:27:24,050 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-04-22 21:31:02,890 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-04-22 21:32:21,041 - ERROR - Tentativa de extrair currículo de MARINA MALHEIROS ARAUJO SILVESTRINI em scrape_retry() falhou: Message:        Erro ao realizar a extração para MARINA MALHEIROS ARAUJO SILVESTRINI: Message: 
+
+. Tentando novamente...
+2024-04-22 21:45:47,790 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-04-22 21:46:42,300 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined

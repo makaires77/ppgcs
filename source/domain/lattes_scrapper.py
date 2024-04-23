@@ -992,12 +992,12 @@ class LattesScraper:
                                             try:
                                                 css_vinculo = f".resultado > ol:nth-child(1) > li:nth-child({m+1}) > b:nth-child(1) > a:nth-child(1)"
                                                 # print('\nCSS_SELECTOR usado:', css_vinculo)
-                                                WebDriverWait(driver, delay).until(
+                                                WebDriverWait(self.driver, delay).until(
                                                     EC.presence_of_element_located((By.CSS_SELECTOR, css_vinculo)))            
-                                                elm_vinculo  = driver.find_element(By.CSS_SELECTOR, css_vinculo)
+                                                elm_vinculo  = self.driver.find_element(By.CSS_SELECTOR, css_vinculo)
                                                 nome_vinculo = elm_vinculo.text
                                                 # print('Elemento retornado:',nome_vinculo)
-                                                self.retry(ActionChains(driver).click(elm_vinculo).perform(),
+                                                self.retry(ActionChains(self.driver).click(elm_vinculo).perform(),
                                                     wait_ms=100,
                                                     limit=limite,
                                                     on_exhaust=(f'  Problema ao clicar no link do nome. {limite} tentativas sem sucesso.'))            
@@ -1021,7 +1021,7 @@ class LattesScraper:
                                 if force_break_loop:
                                     break
                             try:
-                                prox = driver.find_element(By.PARTIAL_LINK_TEXT, 'próximo')
+                                prox = self.driver.find_element(By.PARTIAL_LINK_TEXT, 'próximo')
                                 prox.click()
                             except:
                                 continue
