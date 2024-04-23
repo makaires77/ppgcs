@@ -127,9 +127,9 @@ class Neo4jPersister:
                     """, nome_revista=nome_revista, issn=issn, area_avaliacao=area_avaliacao,  estrato=estrato)
 
     # Testes Ok! 
-    def persist_pessoa_nodes(self, dict_list):
+    def persist_docent_nodes(self, dict_list):
         query_pessoa = """
-        MERGE (p:Pesquisador {id_lattes: $id_lattes})
+        MERGE (p:Docente {id_lattes: $id_lattes})
         ON CREATE SET p.nome = $nome, p.ultima_atualizacao = $ultima_atualizacao
         ON MATCH SET p.nome = $nome, p.ultima_atualizacao = $ultima_atualizacao
         """
@@ -144,6 +144,24 @@ class Neo4jPersister:
                         session.run(query_pessoa, id_lattes=id_lattes, nome=nome, ultima_atualizacao=ultima_atualizacao)
         except Exception as e:
             self.logger.error('Erro ao criar node "Pesquisador": {}'.format(e))
+
+    def persist_discent_nodes(self, dict_list):
+        query_pessoa = """
+        MERGE (p:Discente {id_lattes: $id_lattes})
+        ON CREATE SET p.nome = $nome, p.ultima_atualizacao = $ultima_atualizacao
+        ON MATCH SET p.nome = $nome, p.ultima_atualizacao = $ultima_atualizacao
+        """
+        try:
+            with self._driver.session() as session:
+                for item in dict_list:
+                    identificacao = item.get('Identificação')
+                    nome = identificacao.get('Nome')
+                    id_lattes = identificacao.get('ID Lattes')
+                    ultima_atualizacao = identificacao.get('Última atualização')
+                    if nome:
+                        session.run(query_pessoa, id_lattes=id_lattes, nome=nome, ultima_atualizacao=ultima_atualizacao)
+        except Exception as e:
+            self.logger.error('Erro ao criar node "Discente": {}'.format(e))
 
     # Testes Ok!         
     def persist_pesquisador_grande_area_relationships(self, dict_list):

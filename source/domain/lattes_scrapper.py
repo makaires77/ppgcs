@@ -1,7 +1,3 @@
-import os
-import time
-import platform
-import requests
 import numpy as np
 import pandas as pd
 import networkx as nx
@@ -9,12 +5,10 @@ import seaborn as sns
 import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
-import urllib, h5py, logging, traceback, pytz
-import os, re, bs4, time, json, warnings, requests, platform, unicodedata, difflib
-import stat, shutil, psutil, subprocess, csv, string, torch, sqlite3, asyncio, nltk, sys, glob
+import os, re, bs4, sys, csv, time, json, h5py, pytz, glob, stat, shutil
+import unicodedata, string, urllib, difflib, sqlite3, asyncio, nltk, psutil 
+import warnings, platform, requests, subprocess, torch, logging, traceback
 
-from Levenshtein import distance
-from Levenshtein import jaro_winkler
 from PIL import Image
 from io import BytesIO
 from pathlib import Path
@@ -23,8 +17,10 @@ from zipfile import ZipFile
 from string import Formatter
 from PyPDF2 import PdfReader
 from neo4j import GraphDatabase
+from Levenshtein import distance
 from nltk.corpus import stopwords
 from sklearn.cluster import KMeans
+from Levenshtein import jaro_winkler
 from urllib3.util.retry import Retry
 from tqdm.notebook import trange, tqdm
 from datetime import datetime, timedelta
@@ -40,6 +36,7 @@ from pyjarowinkler.distance import get_jaro_distance
 from IPython.display import clear_output, display, HTML
 from typing import Tuple, List, Dict, Any, Optional, Union
 from sklearn.feature_extraction.text import TfidfVectorizer
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -354,10 +351,11 @@ class DictToHDF5:
                 graph.create(node)
 
 class LattesScraper:
-    def __init__(self, institution, term1, term2, term3, neo4j_uri, neo4j_user, neo4j_password):
+    def __init__(self, institution, term1, term2, term3, neo4j_uri, neo4j_user, neo4j_password, only_doctors=False):
         self.verbose = False
         self.configure_logging()
-        self.driver = self.connect_driver()
+        self.driver = self.connect_driver(only_doctors)
+        self.only_doctors = only_doctors
         self.institution = institution
         self.unit = term1
         self.term = term2
@@ -421,7 +419,7 @@ class LattesScraper:
         return LattesScraper.find_repo_root(path.parent, depth-1)
 
     @staticmethod
-    def connect_driver(only_doctors=False):
+    def connect_driver(only_doctors):
         '''
         Conecta ao servidor do CNPq para busca de currículo
         '''
@@ -445,7 +443,9 @@ class LattesScraper:
         # print(driver_path)
         service = Service(driver_path)
         driver = webdriver.Chrome(service=service)
-        only_doctors = True
+        driver.set_window_position(-20, -10)
+        driver.set_window_size(170, 1896)
+        # only_doctors = True
         if only_doctors:
             print('Buscando currículos apenas entre nível de doutorado')
             url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
@@ -454,8 +454,28 @@ class LattesScraper:
             print('Buscando currículos com qualquer nível de formação')
             url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
             driver.get(url_busca) # acessa a url de busca do CNPQ
-        driver.set_window_position(-20, -10)
-        driver.set_window_size(170, 1896)
+            # Localize o elemento do checkbox
+            checkbox = driver.find_element(By.ID, "buscarDemais")
+            # try:
+            #     checkbox = WebDriverWait(driver, 10).until(
+            #         EC.element_to_be_clickable((By.CSS_SELECTOR, "div.input-checkbox input[type='checkbox']"))
+            #     )
+
+            #     action_chains = ActionChains(driver)
+            #     action_chains.move_to_element(checkbox).perform()
+
+            #     if not checkbox.is_selected():
+            #         driver.execute_script("arguments[0].click();", checkbox)
+
+            # except Exception as e:
+            #     print(f"Erro ao localizar checkbox: {e}")
+            #     driver.save_screenshot("erro_screenshot.png") 
+            # Verifique se o checkbox está marcado
+            if not checkbox.is_selected():
+                # Se o checkbox não estiver marcado, mova o mouse até ele e clique
+                actions = ActionChains(driver)
+                actions.move_to_element(checkbox).click().perform()
+            # driver.get(url_busca) # acessa a url de busca do CNPQ
         driver.mouse = webdriver.ActionChains(driver)
         return driver
 
@@ -535,10 +555,9 @@ class LattesScraper:
 
     # Usar para retonar para página de buscas por todos os níveis de formação e nacionalidades        
     def return_search_page(self):
-        # url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
-        # self.driver.get(url_busca) # acessa a url de busca do CNPQ
-        url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
-        self.driver.get(url_docts) # acessa a url de busca somente de doutores 
+        flag = str(not self.only_doctors).lower()
+        url_busca = f'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais={flag}&textoBusca='
+        self.driver.get(url_busca) # acessa a url de busca do CNPQ
 
     def switch_to_new_window(self):
         # Espera até que uma nova janela seja aberta
@@ -783,14 +802,14 @@ class LattesScraper:
         except requests.exceptions.RequestException as e:
             print(f"Erro ao fazer solicitação HTTP: {e}")
 
-    ## Está com erro na escolha quando há homônimos, tem a ver aparentemente com manipulação da variável count
-    ## Mas só ocorre quando não há paginação nos resultados, quando há escolhe corretamente e mostra corretamente
+    ## TO-FIX: Não está tratando muito bem o stale file handler, porque está avançando para próximo
+    ## Deveria repetir o mesmo nome até esgotar o número de tentativas, crescendo no tempo exponencial
     def find_terms(self, NOME, instituicao, termo1, termo2, termo3, delay, limite=5):
         """
-        Função para manipular o HTML até abir a página HTML de cada currículo   
+        Função para manipular o HTML até abir a página HTML de cada currículo, considerando homônimos
         Parâmeteros:
             - NOME: É o nome completo de cada pesquisador
-            - Instituição, termo1 e termo2: Strings a buscar no currículo para reduzir duplicidades
+            - Instituição, termo1, termo2 e termo3: Strings a buscar no currículo para escolher homônimo
             - driver (webdriver object): The Selenium webdriver object.
             - limite (int): Número máximo de tentativas em casos de erro.
             - delay (int): tempo em milisegundos a esperar nas operações de espera.
@@ -800,20 +819,20 @@ class LattesScraper:
             None, NOME, np.NaN, e, driver
         """
         ignored_exceptions=(NoSuchElementException,StaleElementReferenceException,)
-        # Inicializando variáveis para evitar UnboundLocalError
-        verbose = False
+        # Inicializar variáveis para evitar UnboundLocalError
+        verbose = True
         elm_vinculo = None
         qte_resultados = 0
         force_break_loop = False
         duvidas = []
         try:
-            # Wait and fetch the number of results
+            # Esperar carregar a lista de resultados na página
             css_resultados = ".resultado"
             WebDriverWait(self.driver, delay, ignored_exceptions=ignored_exceptions).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
             resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
             if self.is_stale_file_handler_present():
-                raise Exception
+                raise StaleException
             ## Ler quantidade de resultados apresentados pela busca de nome
             css_qteresultados = ".tit_form > b:nth-child(1)"
             WebDriverWait(self.driver, delay).until(
@@ -826,11 +845,12 @@ class LattesScraper:
                 # print(f'{qte_resultados} resultados para {NOME}')
             else:
                 return None, NOME, np.NaN, 'Currículo não encontrado', self.driver
-            ## Escolher função a partir da quantidade de resultados da lista apresentada na busca
-            ## Ao achar clica no elemento elm_vinculo com link do nome para abrir o currículo
+            
+            ## Escolher função de extração a partir da quantidade de resultados da lista apresentada na busca
             numpaginas = self.paginar(self.driver)
             if numpaginas == [] and qte_resultados==1:
-                # capturar link para o primeiro nome resultado da busca
+                ## OK!
+                ## Para resultado único, capturar link para o primeiro nome resultado da busca
                 css_linknome = ".resultado > ol:nth-child(1) > li:nth-child(1) > b:nth-child(1) > a:nth-child(1)"
                 WebDriverWait(self.driver, delay).until(
                     EC.presence_of_element_located((By.CSS_SELECTOR, css_linknome)))            
@@ -838,6 +858,7 @@ class LattesScraper:
                 nome_vinculo = elm_vinculo.text
                 # print('Clicar no nome único:', nome_vinculo)
                 try:
+                    ## Ao achar um dos termos clica no elemento elm_vinculo com link do nome para abrir currículo
                     self.retry(ActionChains(self.driver).click(elm_vinculo).perform(),
                         wait_ms=200,
                         limit=limite,
@@ -845,11 +866,13 @@ class LattesScraper:
                 except:
                     print('  Erro ao clicar no único nome encontrado anteriormente')
                     return None, NOME, np.NaN, None, self.driver
-            ## Quantidade de resultados até 10 currículos, acessados sem paginação
-            else:
+
+            else:  ## Para lista de resultados com homônimos, valiar necessidade ou não da paginação
                 print(f'       {qte_resultados:>2} currículos homônimos: {NOME}')
                 numpaginas = self.paginar(self.driver)
                 numpaginas.append('próximo')
+                # if verbose:
+                #     print(numpaginas)
                 iteracoes=0
                 ## iterar em cada página de resultados
                 pagin = qte_resultados//10+1
@@ -859,65 +882,149 @@ class LattesScraper:
                     # print(i,'/',pagin)
                     iteracoes+=1
                     numpaginas = self.paginar(self.driver)
-                    # print(f'       Iteração: {iteracoes}. Páginas sendo lidas: {numpaginas}')
-                    css_resultados = ".resultado"
-                    WebDriverWait(self.driver, delay).until(
-                        EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
-                    resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
-                    if verbose:
-                        print(f'qte_div_result: {len(resultados):02}')
-                    if self.is_stale_file_handler_present():
-                        raise Exception
-                    ## iterar em cada resultado
-                    for n,i in enumerate(resultados):
-                        linhas = i.text.split('\n\n')
+                    
+                    if pagin == 1: ## Não há necessidade de paginar
+                        ## OK!
                         if verbose:
-                            print(f'qte_lin_result: {len(linhas):02}')
-                        if 'Stale file handle' in str(linhas):
-                            raise Exception
-                            # return np.NaN, NOME, np.NaN, 'Stale file handle', self.driver
-                        for m,linha_multipla in enumerate(linhas):
-                            nome_achado = linhas[m].split('\n')[0]
-                            linha = linha_multipla.replace("\n", " ")
-                            if verbose:
-                                width = 7
-                                print(f'Linha {m+1:02}/{len(linhas):02}: {type(linha)}| {linha.lower()}')
-                                print(f'{instituicao.lower():>10} | {instituicao.lower() in linha.lower()} | {linha.lower()}')
-                                print(f'{termo1.lower():>10} |{str(termo1.lower() in linha.lower()).center(width)}| {linha.lower()}')
-                                print(f'{termo2.lower():>10} |{str(termo2.lower() in linha.lower()).center(width)}| {linha.lower()}')
-                                print(f'{termo3.lower():>10} |{str(termo3.lower() in linha.lower()).center(width)}| {linha.lower()}')
-                            # print(f'\nOrdem da linha: {m+1}, de total de linhas {len(linhas)}')
-                            # print('Conteúdo da linha:',linha.lower())
-                            if instituicao.lower() in linha.lower() or termo1.lower() in linha.lower() or termo2.lower() in linha.lower() or termo3.lower() in linha.lower():
-                                count=m
-                                while get_jaro_distance(nome_achado.lower(), str(NOME).lower()) < 0.85 and count>0:
-                                    count-=1
-                                    print(f'       Contador decrescente: {count}')
-                                found = m+1
-                                # nome_vinculo = linhas[count].replace('\n','\n       ').strip()
-                                # print(f'       Achado: {nome_vinculo}')
-                                css_vinculo = f".resultado > ol:nth-child(1) > li:nth-child({m+1}) > b:nth-child(1) > a:nth-child(1)"
-                                # print('\nCSS_SELECTOR usado:', css_vinculo)
-                                WebDriverWait(self.driver, delay).until(
-                                    EC.presence_of_element_located((By.CSS_SELECTOR, css_vinculo)))            
-                                elm_vinculo  = self.driver.find_element(By.CSS_SELECTOR, css_vinculo)
-                                nome_vinculo = elm_vinculo.text
-                                ## Tentar repetidamente clicar no elemento encontrado
-                                self.retry(ActionChains(self.driver).click(elm_vinculo).perform(),
-                                    wait_ms=500,
-                                    limit=limite,
-                                    on_exhaust=(f'  Problema ao clicar no link do nome. {limite} tentativas sem sucesso.'))
-                                force_break_loop = True
-                                break
-                            ## Caso percorra toda lista e não encontre vínculo adiciona à dúvidas quanto ao nome
-                            if m==(qte_resultados):
-                                print(f'Nenhuma referência à {instituicao} ou aos termos {termo1} ou {termo2} ou {termo3}')
-                                duvidas.append(NOME)
-                                # clear_output(wait=True)
-                                # driver.quit()
-                                continue
+                            print(f'       Iteração: {iteracoes}. Páginas sendo lidas: {numpaginas}')
+                        css_resultados = ".resultado"
+                        WebDriverWait(self.driver, delay).until(
+                            EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
+                        resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
+                        # if verbose:
+                        #     print(f'qte_div_result: {len(resultados):02}')
+                        if self.is_stale_file_handler_present():
+                            raise StaleException
+                        ## iterar em cada resultado
+                        for n,i in enumerate(resultados):
+                            linhas = i.text.split('\n\n')
+                            # if verbose:
+                            #     print(f'qte_lin_result: {len(linhas):02}')
+                            if self.is_stale_file_handler_present():
+                                raise StaleException
+                                # return np.NaN, NOME, np.NaN, 'Stale file handle', self.driver
+                            for m,linha_multipla in enumerate(linhas):
+                                nome_achado = linhas[m].split('\n')[0]
+                                linha = linha_multipla.replace("\n", " ")
+                                if verbose:
+                                    width = 7
+                                    print(f'       Currículo {m+1:02}/{len(linhas):02}: {linha.lower()}')
+                                    print(f'       {instituicao.lower():>10} | {instituicao.lower() in linha.lower()} | {linha.lower()}')
+                                    print(f'       {termo1.lower():>10} |{str(termo1.lower() in linha.lower()).center(width)}| {linha.lower()}')
+                                    print(f'       {termo2.lower():>10} |{str(termo2.lower() in linha.lower()).center(width)}| {linha.lower()}')
+                                    print(f'       {termo3.lower():>10} |{str(termo3.lower() in linha.lower()).center(width)}| {linha.lower()}')
+                                # print(f'\nOrdem da linha: {m+1}, de total de linhas {len(linhas)}')
+                                # print('Conteúdo da linha:',linha.lower())
+                                if instituicao.lower() in linha.lower() or termo1.lower() in linha.lower() or termo2.lower() in linha.lower() or termo3.lower() in linha.lower():
+                                    count=m
+                                    while get_jaro_distance(nome_achado.lower(), str(NOME).lower()) < 0.85 and count>0:
+                                        count-=1
+                                        print(f'       Contador decrescente: {count}')
+                                    found = m+1
+                                    # nome_vinculo = linhas[count].replace('\n','\n       ').strip()
+                                    # print(f'       Achado: {nome_vinculo}')
+                                    css_vinculo = f".resultado > ol:nth-child(1) > li:nth-child({m+1}) > b:nth-child(1) > a:nth-child(1)"
+                                    # print('\nCSS_SELECTOR usado:', css_vinculo)
+                                    WebDriverWait(self.driver, delay).until(
+                                        EC.presence_of_element_located((By.CSS_SELECTOR, css_vinculo)))            
+                                    elm_vinculo  = self.driver.find_element(By.CSS_SELECTOR, css_vinculo)
+                                    nome_vinculo = elm_vinculo.text
+                                    ## Tentar repetidamente clicar no elemento encontrado
+                                    self.retry(ActionChains(self.driver).click(elm_vinculo).perform(),
+                                        wait_ms=500,
+                                        limit=limite,
+                                        on_exhaust=(f'  Problema ao clicar no link do nome. {limite} tentativas sem sucesso.'))
+                                    force_break_loop = True
+                                    break
+                                ## Caso percorra toda lista e não encontre vínculo adiciona à dúvidas quanto ao nome
+                                if m==(qte_resultados):
+                                    print(f'Nenhuma referência à {instituicao} ou aos termos {termo1} ou {termo2} ou {termo3}')
+                                    duvidas.append(NOME)
+                                    # clear_output(wait=True)
+                                    # driver.quit()
+                                    continue
                         if force_break_loop:
                             break
+                    elif pagin > 1:
+                        print(f'       {qte_resultados} resultados')
+                        print(f'       {qte_resultados} homônimos de: {NOME} em {pagin} páginas')
+                        numpaginas = self.paginar(self.driver)
+                        numpaginas.append('próximo')
+                        iteracoes=0
+                        ## iterar em cada página de resultados
+                        pagin = qte_resultados//10+1
+                        count = None
+                        found = None
+                        for i in range(pagin+1):
+                            # print(i,'/',pagin)
+                            iteracoes+=1
+                            try:
+                                numpaginas = self.paginar(self.driver)
+                                # print(f'       Iteração: {iteracoes}. Páginas sendo lidas: {numpaginas}')
+                                css_resultados = ".resultado"
+                                WebDriverWait(self.driver, delay).until(
+                                    EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
+                                resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
+                            except:
+                                print('  ERRO ao paginar')
+                                raise StaleException
+                            ## iterar em cada resultado
+                            for n,i in enumerate(resultados):
+                                linhas = i.text.split('\n\n')
+                                # print(linhas)
+                                if self.is_stale_file_handler_present():
+                                    print('  ERRO Stale file handle, ao acessar resultados')
+                                    raise StaleException
+                                for m,linha in enumerate(linhas):
+                                    # print(f'\nOrdem da linha: {m+1}, de total de linhas {len(linhas)}')
+                                    # print('Conteúdo da linha:',linha.lower())
+                                    # print(linha)
+                                    try:
+                                        if instituicao.lower() in linha.lower() or unidade.lower() in linha.lower() or termo.lower() in linha.lower():
+                                            # print('Vínculo encontrado!')
+                                            count=m
+                                            while get_jaro_distance(linhas[count].split('\n')[0], str(NOME)) < 0.82:
+                                                count-=1
+                                            # print('       Identificado vínculo no resultado:', m+1)
+                                            found = m+1
+                                            # nome_vinculo = linhas[count].replace('\n','\n       ').strip()
+                                            # print(f'       Achado: {nome_vinculo}')
+                                            try:
+                                                css_vinculo = f".resultado > ol:nth-child(1) > li:nth-child({m+1}) > b:nth-child(1) > a:nth-child(1)"
+                                                # print('\nCSS_SELECTOR usado:', css_vinculo)
+                                                WebDriverWait(driver, delay).until(
+                                                    EC.presence_of_element_located((By.CSS_SELECTOR, css_vinculo)))            
+                                                elm_vinculo  = driver.find_element(By.CSS_SELECTOR, css_vinculo)
+                                                nome_vinculo = elm_vinculo.text
+                                                # print('Elemento retornado:',nome_vinculo)
+                                                self.retry(ActionChains(driver).click(elm_vinculo).perform(),
+                                                    wait_ms=100,
+                                                    limit=limite,
+                                                    on_exhaust=(f'  Problema ao clicar no link do nome. {limite} tentativas sem sucesso.'))            
+                                            except:
+                                                print('  ERRO ao achar o link do nome com múltiplos resultados')
+                                                raise StaleException
+                                            force_break_loop = True
+                                            break
+                                    except:
+                                        print('  ERRO ao procurar vínculo com currículos achados')    
+                                        # traceback_str = ''.join(traceback.format_tb(e6.__traceback__))
+                                        # print(e6,traceback_str)
+                                        raise StaleException
+                                    ## Caso percorra toda lista e não encontre vínculo adiciona à dúvidas quanto ao nome
+                                    if m==(qte_resultados):
+                                        print(f'Nenhuma referência à {instituicao} ou ao {unidade} ou ao termo {termo}')
+                                        duvidas.append(NOME)
+                                        # clear_output(wait=True)
+                                        # driver.quit()
+                                        continue
+                                if force_break_loop:
+                                    break
+                            try:
+                                prox = driver.find_element(By.PARTIAL_LINK_TEXT, 'próximo')
+                                prox.click()
+                            except:
+                                continue
                     try:
                         prox = self.driver.find_element(By.PARTIAL_LINK_TEXT, 'próximo')
                         prox.click()
@@ -929,19 +1036,23 @@ class LattesScraper:
             if self.is_stale_file_handler_present():
                 print("       Erro 'Stale File Handler' detectado na página. Tentando novamente em 10 segundos...")
                 time.sleep(1)
-                raise Exception
-        except Exception as e:
+                raise StaleException
+
+        except StaleException as e:
             traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+            if verbose:
+                print(traceback_str)
             base = 2  # Fator de multiplicação exponencial (pode ser ajustado)
             max_wait_time = 120  # Tempo máximo de espera em segundos
             for i in range(1, 12):  # Tentativas máximas com espera exponencial
                 wait_time = min(base ** i, max_wait_time)  # Limita o tempo máximo de espera
-                print(f"  Erro ao recuperar dados do servidor CNPq, tentando novamente em {wait_time} segundos...")
+                print(f"       Erro ao recuperar dados do servidor CNPq, tentando novamente em {wait_time} segundos...")
                 time.sleep(wait_time)
                 try:
                     self.retry_click_vinculo(elm_vinculo)
                     break  # Se o clique for bem-sucedido, saia do loop de retry
                 except TimeoutException as se:
+                    traceback_str = ''.join(traceback.format_tb(se.__traceback__))
                     logging.error(f"Tentativa {i} falhou: {traceback_str}.")
                     limite+=1
             if limite <= 0:
@@ -1059,7 +1170,7 @@ class LattesScraper:
             print(f'       {len(tooltip_data_list):>003} artigos extraídos')
 
         except TimeoutException:
-            print("       Servidor CNPq demorou demais a responder durante extração de tooltips o que impede extrair dados das publicações. \n       Tentar novamente mais tarde, caso persistir o erro é preciso manutenção no código de extração")
+            print("       Servidor CNPq demorou demais a responder durante extração de tooltips o que impede extrair dados das publicações.")
         except Exception as e:
             print(f"       Erro inesperado ao extrair tooltips: {e}")
 
@@ -1226,7 +1337,7 @@ class LattesScraper:
                     self.close_popup()
                     self.return_search_page()
                     if self.verbose:
-                        print('       Disparado return_search_page()...')
+                        print('       Disparado retorno para página de busca...')
                 else:
                     print(f"{name}: página de resultado vazia.")
         except Exception as e:
@@ -1255,274 +1366,6 @@ class LattesScraper:
         self.driver.quit()
         return dict_list
 
-    # def retry_click_vinculo_junto(self, elm_vinculo, retry_count=3):
-    #     if elm_vinculo is None:
-    #         logging.info("       Nenhum dos vínculos esperados encontrado no currículo...")
-    #         self.return_search_page()
-    #         return
-    #     try:
-    #         # Aguardar até que o botão esteja presente na página
-    #         botao_abrir_curriculo = self.driver.find_element(By.ID, "idbtnabrircurriculo")
-    #         botao_abrir_curriculo = WebDriverWait(self.driver, 10).until(
-    #             EC.visibility_of_element_located((By.CSS_SELECTOR, '#idbtnabrircurriculo'))
-    #             # EC.visibility_of_element_located((By.XPATH, '//*[@id="idbtnabrircurriculo"]'))
-    #         )
-    #         botao_abrir_curriculo = WebDriverWait(self.driver, 10).until(
-    #             EC.element_to_be_clickable((By.CSS_SELECTOR, '#idbtnabrircurriculo'))
-    #             # EC.element_to_be_clickable((By.XPATH, '//*[@id="idbtnabrircurriculo"]'))
-    #         )
-    #         actions = ActionChains(self.driver)
-    #         actions.move_to_element(botao_abrir_curriculo).perform()
-    #         botao_abrir_curriculo.click()
-    #         # Checar se a página foi carregada
-    #         # WebDriverWait(self.driver, self.delay).until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR, "#artigos-completos img.ajaxJCR")))
-    #         layout_cells = self.driver.find_elements(By.CSS_SELECTOR, '#artigos-completos .layout-cell-11')
-
-    #     except TimeoutException:
-    #         if retry_count > 0:
-    #             print("       Elemento não encontrado. Tentando novamente...")
-    #             self.check_and_click_vinculo(elm_vinculo, retry_count - 1)
-    #         else:
-    #             print("       Tentativas esgotadas. Abortando ação.")
-
-    #     except WebDriverException as e:
-    #         print(f"       Erro ao clicar no botão 'Abrir Currículo'")
-    #         traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-    #         print(f'       {traceback_str}')
-    #         logging.info(f"Erro ao abrir currículo: {elm_vinculo.text}: {e} {traceback_str}")
-    #         self.return_search_page()
-
-    ## Extrai perfeitamente mas com erro nos retry
-    # def scrape(self, name_list, instituicao, termo1, termo2, retry_count=5):
-    #     dict_list = []
-    #     for k, name in enumerate(name_list):
-    #         try:
-    #             print(f'{k+1:>2}/{len(name_list)}: {name}')
-    #             # Preencher o nome
-    #             self.fill_name(name)
-    #             # Realizar a busca
-    #             elm_vinculo = self.search_profile(name, instituicao, termo1, termo2)
-    #             if elm_vinculo:
-    #                 if self.verbose:
-    #                     print(f"       Vínculo encontrado no currículo, tentando abrir...")
-    #                 # self.check_and_click_vinculo(elm_vinculo) # sem recursão para nova tentativa
-    #                 self.retry_click_vinculo(elm_vinculo)
-    #                 if self.verbose:
-    #                     print(f"       Mudando para janela nova após clique para abrir currículo...")
-    #                 # Muda para a nova janela aberta com o currículo
-    #                 window_before = self.switch_to_new_window()
-    #                 tooltip_data_list = self.extract_tooltip_data()
-    #                 if self.verbose:
-    #                     print(f'       {len(tooltip_data_list):>003} tooltips encontrados')
-    #                 # Verifica se há o erro "Stale File Handler" na página
-    #                 if self.is_stale_file_handler_present():
-    #                     print("       Erro 'Stale File Handler' detectado na página. Tentando novamente em 10 segundos...")
-    #                     time.sleep(10)
-    #                     raise TimeoutException
-    #                 # Continua com o processamento normal se o erro não foi detectado
-    #                 page_source = self.driver.page_source
-    #                 if page_source is not None:
-    #                     # Usar classe para fazer a extração a partir do HTML carregado
-    #                     parser = HTMLParser(page_source)
-    #                     data = parser.to_json()
-    #                     data['JCR2'] = tooltip_data_list
-    #                     dict_list.append(data)
-    #                     self.switch_back_to_original_window()
-    #                     self.close_popup()
-    #                     self.return_search_page()
-    #                     print(f'       {len(dict_list):>003}/{len(name_list):>003} currículos extraídos com sucesso')
-    #                 else:
-    #                     print("       Página de resultado vazia.")
-    #         except Exception as e:
-    #             print(f"       Erro ao realizar o scrapping: {e}")
-    #             traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-    #             print(f'       {traceback_str}')
-    #             logging.info(f"Erro ao realizar o scrapping de: {name}: {traceback_str}")
-    #             if retry_count > 0:
-    #                 print("       Tentando novamente...")
-    #                 # Chamada recursiva para uma nova tentativa
-    #                 dict_list.extend(self.scrape([name], instituicao, termo1, termo2, retry_count-1))
-    #             else:
-    #                 print("       Todas as tentativas falharam.")
-    #                 logging.info(f"Todas as tentativas falharam para: {name}")
-    #                 continue
-    #     return dict_list
-
-    #     # Melhor adicionar o Estrato Qualis depois para evitar erros na geração da lista de dicionários
-    #     self.buscar_qualis(dict_list)
-    #     self.driver.quit()
-    #     return dict_list
-
-    ## VERSÕES ANTIGAS COM EXTRAÇÃO POR SEÇÕES INDIVIDUALIZADAS
-
-    # Checar e clicar sem retry
-    # def check_and_click_vinculo(self, elm_vinculo):
-    #     if elm_vinculo is None:
-    #         logging.info("Nenhum dos vínculos esperados encontrado no currículo...")
-    #         self.return_search_page()
-    #         return
-    #     # Clicar no botão para abrir o currículo
-    #     try:
-    #         # Aguardar até que o botão esteja presente na página
-    #         botao_abrir_curriculo = self.driver.find_element(By.ID, "idbtnabrircurriculo")
-    #         botao_abrir_curriculo = WebDriverWait(self.driver, 10).until(
-    #             EC.visibility_of_element_located((By.CSS_SELECTOR, '#idbtnabrircurriculo'))
-    #             # EC.visibility_of_element_located((By.XPATH, '//*[@id="idbtnabrircurriculo"]'))
-    #         )
-    #         actions = ActionChains(self.driver)
-    #         actions.move_to_element(botao_abrir_curriculo).perform()
-    #         botao_abrir_curriculo.click()
-    #         # Checar se a página foi carregada
-
-    #     except WebDriverException as e:
-    #         print(f"       Erro ao clicar no botão 'Abrir Currículo'")
-    #         traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-    #         print(f'       {traceback_str}')
-    #         logging.info(f"Erro ao abrir currículo: {elm_vinculo.text}: {e} {traceback_str}")
-    #         self.return_search_page()
-
-    # def scrape(self, name_list, instituicao, termo1, termo2, json_filename, hdf5_filename):
-    #     dict_list = []
-    #     for k, name in enumerate(name_list):
-    #         try:
-    #             print(f'{k+1:>2}/{len(name_list)}: {name}')
-    #             # Preencher o nome
-    #             self.fill_name(name)
-    #             # Realizar a busca
-    #             elm_vinculo = self.search_profile(name, instituicao, termo1, termo2)
-    #             # current_url = self.driver.current_url
-    #             if elm_vinculo:
-    #                 if self.verbose:
-    #                     print(f"       Vínculo encontrado no currículo, tentando abrir...")
-    #                 try:
-    #                     self.check_and_click_vinculo(elm_vinculo)
-    #                     if self.verbose:
-    #                         print(f"       Mudando para janela nova após clique para abrir currículo...")
-    #                 except Exception as e:
-    #                     print(f"       Erro ao tentar clicar no botão no iframe de abrir currículo...")
-    #                     traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-    #                     print(f'       {traceback_str}')
-    #                     continue
-    #                 # Muda para a nova janela aberta com o currículo
-    #                 window_before = self.switch_to_new_window()
-    #                 try:
-    #                     tooltip_data_list = self.extract_tooltip_data()
-    #                     if self.verbose:
-    #                         print(f'       {len(tooltip_data_list):>003} tooltips encontrados')
-    #                 except Exception as e:
-    #                     print(f"Erro ao extrair tooltips: {e}")
-    #                     # Se ocorrer um erro, tenta extrair os dados novamente
-    #                     tooltip_data_list = self.extract_tooltip_data()
-    #                     if self.verbose:
-    #                         print(f"       Segunda tentativa extrair tooltips: {tooltip_data_list}")
-                    
-    #                 page_source = self.driver.page_source
-    #                 if page_source is not None:
-    #                     try:
-    #                         # Usar classe para fazer a extração a partir do HTML carregado
-    #                         parser = HTMLParser(page_source)
-    #                         data = parser.to_json()
-    #                         data['JCR2'] = tooltip_data_list
-    #                         dict_list.append(data)
-    #                         self.switch_back_to_original_window()
-    #                         self.close_popup()
-    #                         self.return_search_page()
-    #                         print(f'       {len(dict_list):>003}/{len(name_list):>003} currículos extraídos com sucesso')
-    #                     except Exception as e:
-    #                         print("       Erro ao processar com método Parser")
-    #                         print(e)
-
-    #                     ## EM CASO DE EXTRAÇÃO APENAS DE SEÇÕES
-    #                     # soup = BeautifulSoup(page_source, 'html.parser')
-    #                     # if self.verbose:
-    #                     #     if len(soup) > 1:
-    #                     #         des_numero = 's'
-    #                     #     else:
-    #                     #         des_numero = ''
-    #                     #     print(f'       {len(soup):>003} elemento{des_numero} encontrado{des_numero} no objeto soup')
-    #                     # soup.attrs['tooltips'] = tooltip_data_list
-    #                     # data={}
-    #                     # if soup:
-    #                     #    # print(soup.get_text())
-    #                     #    # Extrai informações básicas do currículo
-    #                     #     try:
-    #                     #         if self.extrair_informacoes_infpessoa(soup):
-    #                     #             data["general_data"] = self.extrair_informacoes_infpessoa(soup)
-    #                     #         else:
-    #                     #             print('Dados gerais não encontrados')
-    #                     #     except Exception as e:
-    #                     #         logging.error(f"Erro em get_general_data(soup): {e}")
-    #                     #     try:
-    #                     #         if self.get_abstract(soup):
-    #                     #             data["abstract"] = self.get_abstract(soup).get_text.strip()
-    #                     #     except Exception as e:
-    #                     #         logging.error(f"Erro ao extrair resumo com get_abstract(): {e}")
-    #                     #     try:
-    #                     #         formation_div = self.get_formation(soup)
-    #                     #         if formation_div:
-    #                     #             formation_txt = formation_div.get_text.strip()
-    #                     #             data["get_formation"] = formation_txt
-    #                     #     except Exception as e:
-    #                     #         logging.error(f"Erro em get_formation(soup): {e}")
-    #                     #     try:
-    #                     #         data["get_professional_experience"] = self.get_professional_experience(soup)
-    #                     #     except Exception as e:
-    #                     #         logging.error(f"Erro em get_professional_experience(soup): {e}")
-    #                     #     try:
-    #                     #         data["productions"] = self.get_productions(soup)
-    #                     #     except Exception as e:
-    #                     #         logging.error(f"Erro em get_productions(soup): {e}")
-    #                     #     try:
-    #                     #         data["technical_productions"] = self.get_technical_productions(soup)
-    #                     #     except Exception as e:
-    #                     #         logging.error(f"Erro em get_technical_productions(soup): {e}")
-    #                     #     try:
-    #                     #         data["guidance"] = self.get_guidance(soup)
-    #                     #     except Exception as e:
-    #                     #         logging.error(f"Erro em get_guidance(soup): {e}")
-    #                     #     try:
-    #                     #         data["projects"] = self.get_projects(soup)
-    #                     #     except Exception as e:
-    #                     #         logging.error(f"Erro em get_projects(soup): {e}")
-    #                     #     try:
-    #                     #         data["courses"] = self.get_courses(soup)
-    #                     #     except Exception as e:
-    #                     #         logging.error(f"Erro em get_courses(soup): {e}")
-    #                     #     try:
-    #                     #         data["events"] = self.get_events(soup)
-    #                     #     except Exception as e:
-    #                     #         logging.error(f"Erro em get_events(soup): {e}")
-    #                     #     try:
-    #                     #         data["patents"] = self.get_patents(soup)
-    #                     #     except Exception as e:
-    #                     #         logging.error(f"Erro em get_patents(soup): {e}")
-    #                     #     # Adicionar outras seções que sejam relevantes
-    #                     #     # data["other_section"] = self.other_extraction_function(soup)
-    #                     #     if self.verbose:
-    #                     #         try:
-    #                     #             print(f'       {len(data):>003} elementos extract_data encontrados no objeto soup')
-    #                     #         except Exception as e:
-    #                     #             print(f'       {e}')
-    #                     #     # Chama métodos de conversão de dicionário individual
-    #                     #     # parse_soup_instance.to_json(data, json_filename)
-    #                     #     # parse_soup_instance.to_hdf5(data, hdf5_filename)
-    #                     #     dict_list.append(data)
-    #                     #     print(f'       {len(dict_list):>003} subdicionários adicionados ao objeto data: {dict_list.keys()}')
-    #                     # else:
-    #                     #     print(f"Não foi gerado objeto soup para: {name}")
-    #                     #     logging.error(f"Não foi possível extrair dados do currículo: {name}")
-    #             else:
-    #                 print(f"       Elemento com vínculo encontrado retornado vazio...")
-    #                 logging.info(f"Currículo não encontrado para: {name}")
-    #         except Exception as e:
-    #             print(f"       Erro ao extrair Elemento com vínculo")
-    #             traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-    #             print(f'       Um erro impediu de extrair a produção:')
-    #             print(f'       {traceback_str}')
-    #             logging.info(f"Timeout antes de carregar o currículo: {name}: {traceback_str}")
-
-    #     self.driver.quit()
-    #     return dict_list
   
 class HTMLParser:
     def __init__(self, html):
@@ -1700,9 +1543,9 @@ class HTMLParser:
                     else:
                         continue
             else:
-                print("Container de idiomas não encontrado")
+                print("       Container de idiomas não encontrado")
         else:
-            print("Seção de idiomas não encontrada")
+            print("       Seção de idiomas não encontrada")
 
         self.estrutura["Idiomas"] = idiomas
 
@@ -2387,6 +2230,7 @@ class HTMLParser:
         doi_link = ''
         data_issn = ''
         jcr_impact = ''
+        subsec_name = ''
         primeiro_autor=''
         ano_publicacao=''
         fator_impacto = ''
