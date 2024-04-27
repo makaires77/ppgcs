@@ -1,0 +1,147 @@
+<div class="layout-cell layout-cell-12">
+			        <div class="layout-cell-pad-main">
+			          <div class="layout-cell layout-cell-6">
+			            <div class="layout-cell-pad">
+			              <div class="title-wrapper" id="busca2_simples">
+							 <h1 tabindex="0">Buscar Currículo Lattes (Busca Simples)</h1>
+						  </div>
+	           			  <div class="title-wrapper" id="busca2_avancada" style="display:none">
+							 <h1 tabindex="0">Busca Avançada (por Assunto)</h1>
+						  </div>
+	           			</div>
+	          		 </div>
+	          		 <div class="layout-cell layout-cell-6">
+	          			 <div class="layout-cell-pad">
+              				<div class="control-bar-top" id="tit2_simples">
+				          	  <a class="button" href="javascript:void(0)" onclick="javascript:novaBusca()">
+				             	<span class="mini-ico mini-ico-lupa"></span>Busca Simples
+				              </a>
+				            </div>
+				            <div class="control-bar-top" id="tit2_avancada" style="display:none">
+				          	  <a class="button" href="javascript:void(0)" onclick="javascript:novaBusca()">
+				             	<span class="mini-ico mini-ico-lupa"></span>Busca Avançada
+				              </a>
+				            </div>
+				         </div>
+				      </div>      
+					  <div class="layout-cell layout-cell-12">
+				          <div class="layout-cell-pad">
+				              <div class="tit_form">
+									
+										Resultados de 
+										1 - 10
+										dos
+										<b>98</b>
+										encontrados para: 
+										<b> </b>
+									
+								</div>
+								<div class="paginacao">
+									<script language="JavaScript">
+var intLTotReg = 98;
+var intLRegInicio = 0;
+var intLRegPagina = 10;
+var strLQuery = '&query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&analise=cv';
+var intLPagina = 1 
+var intLPaginaIni = intLPagina; 
+var strLParPag = ''; 
+document.write("");
+if (intLRegInicio > 0) { 
+intLRegInicio = (intLPagina * intLRegPagina) - intLRegPagina; 
+} 
+if (intLPagina > 1) { 
+document.write("... <a data-role='paginacao' href='/buscatextual/busca.do?metodo=forwardPaginaResultados&?numeroPagina=" 
++ (intLPagina - 10) + "&registros=" + (intLRegInicio - intLRegPagina) 
++ ";" + intLRegPagina + strLQuery + "&tipoOrdenacao=null&paginaOrigem=index.do&mostrarScore=false&mostrarBandeira=true&modoIndAdhoc=null'>anterior</a>&nbsp"); 
+strLParPag = "&numeroPagina=" + intLPagina; 
+} 
+document.write("&nbsp;&nbsp;"); 
+while ((intLPaginaIni < intLPagina + 11) && (intLRegInicio < intLTotReg)) { 
+if (0 == intLRegInicio) { 
+document.write("<a data-role='paginacao' href='/buscatextual/busca.do?metodo=forwardPaginaResultados&registros="+ intLRegInicio + ";" + intLRegPagina + strLQuery + strLParPag + "&tipoOrdenacao=null&paginaOrigem=index.do&mostrarScore=false&mostrarBandeira=true&modoIndAdhoc=null'><font color='#ff0000'>" + intLPaginaIni + "</font></a>&nbsp;");
+} else { 
+document.write("<a data-role='paginacao' href='/buscatextual/busca.do?metodo=forwardPaginaResultados&registros="
++ intLRegInicio + ";" + intLRegPagina + strLQuery + strLParPag + "&tipoOrdenacao=null&paginaOrigem=index.do&mostrarScore=false&mostrarBandeira=true&modoIndAdhoc=null'>"
++ intLPaginaIni + "</a>&nbsp;"); 
+} 
+intLRegInicio += intLRegPagina; 
+intLPaginaIni++; 
+} 
+document.write("&nbsp;&nbsp;"); 
+if (intLRegInicio < intLTotReg) { 
+document.write("<a data-role='paginacao' href='/buscatextual/busca.do?metodo=forwardPaginaResultados&?numeroPagina="
++ (intLPagina + 10) + "&registros=" + intLRegInicio 
++ ";" + intLRegPagina + strLQuery + "&tipoOrdenacao=null&paginaOrigem=index.do&mostrarScore=false&mostrarBandeira=true&modoIndAdhoc=null'>pr&oacute;ximo</a> ..."); 
+} 
+document.write("");
+</script>&nbsp;&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=0;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null"><font color="#ff0000">1</font></a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=10;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">2</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=20;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">3</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=30;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">4</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=40;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">5</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=50;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">6</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=60;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">7</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=70;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">8</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=80;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">9</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=90;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">10</a>&nbsp;&nbsp;&nbsp; 
+									
+								</div>
+								<div class="resultado">
+									<ol type="1" start="1">
+										<li><b><a href="javascript:abreDetalhe('K4764934E6','Aline_da_Silva_Soares',208602,)">Aline da Silva Soares</a></b>&nbsp;<img alt="Brasil" title="País de nacionalidade: Brasil" src="data:image/png;base64,.../"><br>Mestrado em Fitotecnia (Produção Vegetal) pela Universidade Federal de Viçosa, Brasil(2005)<br><br></li>
+<li><b><a href="javascript:abreDetalhe('K4326430E7','Aline_Cristina_Soares_Silva',49768725,)">Aline Cristina Soares Silva</a></b>&nbsp;<img alt="Brasil" title="País de nacionalidade: Brasil" src="data:image/png;base64,..."><br>Ensino Médio (2o grau)  pelo Duarte Leopoldo e Silva, Dom, Brasil(2009)<br><br></li>
+<li><b><a href="javascript:abreDetalhe('K4233816U7','Aline_Soares_Silva',8602071,)">Aline Soares Silva</a></b>&nbsp;<img alt="Brasil" title="País de nacionalidade: Brasil" src="data:image/png;base64,..."><br>Especialização em Pós-graduação em Fisioterapia Dermato Funcional pelo Instituto Brasileiro de Therapias e Ensino, Brasil(2005)<br><br></li>
+<li><b><a href="javascript:abreDetalhe('K4340983Y2','Aline_Soares_da_Silva',60894219,)">Aline Soares da Silva</a></b>&nbsp;<img alt="Brasil" title="País de nacionalidade: Brasil" src="data:image/png;base64,..."><br>Ensino Médio (2o grau)  pelo Instituto Estadual de Educação Oswaldo Aranha, Brasil(2008)<br><br></li>
+<li><b><a href="javascript:abreDetalhe('K4275281E6','Aline_Soares_da_Silva',64403098,)">Aline Soares da Silva</a></b>&nbsp;<img alt="Brasil" title="País de nacionalidade: Brasil" src="data:image/png;base64,..."><br><br></li>
+<li><b><a href="javascript:abreDetalhe('K4973772T6','Aline_Soares_da_Silva',68843912,)">Aline Soares da Silva</a></b>&nbsp;<img alt="Brasil" title="País de nacionalidade: Brasil" src="data:image/png;base64,..."><br>Graduação em Ciências Biológicas pelo Instituto Federal do Piauí, Brasil(2011)<br>Bolsista Pesquisador (Iniciação Científica) do Instituto Federal do Piauí , Brasil<br><br></li>
+<li><b><a href="javascript:abreDetalhe('K4868056T4','Aline_Soares_da_Silva',74720413,)">Aline Soares da Silva</a></b>&nbsp;<img alt="Brasil" title="País de nacionalidade: Brasil" src="data:image/png;base64,..."><br>Graduação em Fisioterapia pelo Centro Universitário do Espírito Santo, Brasil(2010)<br><br></li>
+<li><b><a href="javascript:abreDetalhe('K4864715J1','Aline_Soares_Silva',75406386,)">Aline Soares Silva</a></b>&nbsp;<img alt="Brasil" title="País de nacionalidade: Brasil" src="data:image/png;base64,..."><br>Ensino Médio (2o grau)  pelo Colégio Tiradentes, Brasil(2012)<br><br></li>
+<li><b><a href="javascript:abreDetalhe('K8705136J3','Aline_Soares_da_Silva',84951953,)">Aline Soares da Silva</a></b>&nbsp;<img alt="Brasil" title="País de nacionalidade: Brasil" src="data:image/png;base64,..."><br>Ensino Médio (2o grau)  pelo Colegio Estadual de Caruaru Nelson Barbalho, Brasil(2011)<br><br></li>
+<li><b><a href="javascript:abreDetalhe('K8144629U2','Aline_Soares_da_Silva',95409815,)">Aline Soares da Silva</a></b>&nbsp;<img alt="Brasil" title="País de nacionalidade: Brasil" src="data:image/png;base64,..."><br>Ensino Médio (2o grau)  pelo CETI Solange Sinimbu Viana, Brasil(2014)<br><br></li>
+
+									</ol>
+								</div>
+								
+								<div class="paginacao">
+									<script language="JavaScript">
+var intLTotReg = 98;
+var intLRegInicio = 0;
+var intLRegPagina = 10;
+var strLQuery = '&query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&analise=cv';
+var intLPagina = 1 
+var intLPaginaIni = intLPagina; 
+var strLParPag = ''; 
+document.write("");
+if (intLRegInicio > 0) { 
+intLRegInicio = (intLPagina * intLRegPagina) - intLRegPagina; 
+} 
+if (intLPagina > 1) { 
+document.write("... <a data-role='paginacao' href='/buscatextual/busca.do?metodo=forwardPaginaResultados&?numeroPagina=" 
++ (intLPagina - 10) + "&registros=" + (intLRegInicio - intLRegPagina) 
++ ";" + intLRegPagina + strLQuery + "&tipoOrdenacao=null&paginaOrigem=index.do&mostrarScore=false&mostrarBandeira=true&modoIndAdhoc=null'>anterior</a>&nbsp"); 
+strLParPag = "&numeroPagina=" + intLPagina; 
+} 
+document.write("&nbsp;&nbsp;"); 
+while ((intLPaginaIni < intLPagina + 11) && (intLRegInicio < intLTotReg)) { 
+if (0 == intLRegInicio) { 
+document.write("<a data-role='paginacao' href='/buscatextual/busca.do?metodo=forwardPaginaResultados&registros="+ intLRegInicio + ";" + intLRegPagina + strLQuery + strLParPag + "&tipoOrdenacao=null&paginaOrigem=index.do&mostrarScore=false&mostrarBandeira=true&modoIndAdhoc=null'><font color='#ff0000'>" + intLPaginaIni + "</font></a>&nbsp;");
+} else { 
+document.write("<a data-role='paginacao' href='/buscatextual/busca.do?metodo=forwardPaginaResultados&registros="
++ intLRegInicio + ";" + intLRegPagina + strLQuery + strLParPag + "&tipoOrdenacao=null&paginaOrigem=index.do&mostrarScore=false&mostrarBandeira=true&modoIndAdhoc=null'>"
++ intLPaginaIni + "</a>&nbsp;"); 
+} 
+intLRegInicio += intLRegPagina; 
+intLPaginaIni++; 
+} 
+document.write("&nbsp;&nbsp;"); 
+if (intLRegInicio < intLTotReg) { 
+document.write("<a data-role='paginacao' href='/buscatextual/busca.do?metodo=forwardPaginaResultados&?numeroPagina="
++ (intLPagina + 10) + "&registros=" + intLRegInicio 
++ ";" + intLRegPagina + strLQuery + "&tipoOrdenacao=null&paginaOrigem=index.do&mostrarScore=false&mostrarBandeira=true&modoIndAdhoc=null'>pr&oacute;ximo</a> ..."); 
+} 
+document.write("");
+</script>&nbsp;&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=0;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null"><font color="#ff0000">1</font></a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=10;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">2</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=20;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">3</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=30;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">4</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=40;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">5</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=50;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">6</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=60;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">7</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=70;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">8</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=80;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">9</a>&nbsp;<a data-role="paginacao" href="/buscatextual/busca.do?metodo=forwardPaginaResultados&amp;registros=90;10&amp;query=%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ae%29+or+%28%2Bidx_nme_pessoa%3A%28aline%29+%2Bidx_nme_pessoa%3A%28silva%29+%2Bidx_nme_pessoa%3A%28soares%29++%2Bidx_nacionalidade%3Ab%29&amp;analise=cv&amp;tipoOrdenacao=null&amp;paginaOrigem=index.do&amp;mostrarScore=false&amp;mostrarBandeira=true&amp;modoIndAdhoc=null">10</a>&nbsp;&nbsp;&nbsp; 
+												
+									
+								</div>
+	            				<div class="control-bar-wrapper">
+	            					<a class="button" id="botaoBuscaFiltros" href="javascript:void(0)" onclick="javascript:novaBusca()">
+										<span class="mini-ico mini-ico-lupa"></span>Nova consulta
+									</a>
+	            				</div>
+	            				<br class="clear">
+							</div>
+					 	</div>
+					 </div>
+				  </div>
