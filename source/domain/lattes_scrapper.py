@@ -845,7 +845,8 @@ class LattesScraper:
                 if self.verbose:
                     print(f'       Currículo {m+1:02}/{len(linhas):02}: {linha}')
                 for termo in termos_busca:
-                    print(f'       {termo:>25} | {termo in linha} | {linha}')
+                    replaces = [('\xa0',' ')]
+                    print(f"       {termo:>25} | {termo in linha} | {[linha.replace(repl[0],repl[1]) for repl in replaces]}")
                     if self.verbose:
                         print(f'       Resultado: {m+1}, de total de linhas {len(linhas)}')
                         print(f'        Conteúdo: {linha}')
@@ -1013,6 +1014,79 @@ class LattesScraper:
         # TODO: Implementar lógica para selecionar o resultado mais relevante
         return results[0]
 
+    def extract_results_page(driver, url):
+        """ Extrai os resultados de uma determinada página de resultados. """
+
+        driver.get(url)
+
+        # Encontra a div de resultados
+        soup = BeautifulSoup(driver.page_source, 'lxml')
+        resultados_div = soup.find('div', class_='resultado')
+
+        resultados = []
+        for li in resultados_div.find_all('li'):
+            titulo = li.text.strip()
+            link = li.find('a')['href']
+
+            if any(char.isdigit() for char in titulo):  # Verifica números
+                resultados.append({
+                    'titulo': titulo,
+                    'link': link 
+                })   
+        return resultados
+
+    def extrair_dados_pagina(driver):
+        # Encontrar os elementos que contêm os dados (ex: resultado da pesquisa)
+        elementos_dados = driver.find_elements(By.CSS_SELECTOR, ".resultado li")
+
+        # Extrair os dados de cada elemento
+        dados_pagina = []
+        for elemento in elementos_dados:
+            # Extrair informações relevantes de cada elemento (nome, nacionalidade, etc.)
+            nome = elemento.find_element(By.CSS_SELECTOR, "a").text
+            dados = elemento.find_element(By.CSS_SELECTOR, "li").text
+
+            # Armazenar os dados extraídos em um dicionário
+            dados_pagina.append({
+                "nome": nome,
+                "dados": dados,
+            })
+
+        return dados_pagina
+
+    def tentar_paginar(self, driver, elemento):
+        """Tenta diferentes estratégias de paginação e trata os possíveis erros.
+
+        Args:
+            driver: O WebDriver do Selenium.
+            elemento: O elemento HTML a ser clicado para paginação.
+        """
+
+        href_elemento = elemento.get_attribute("href")  # Obtém o href antes das tentativas
+
+        estrategias = [
+            # Estratégia 1: Clique direto no href (considerando comportamento ideal)
+            lambda: ActionChains(driver).move_to_element(elemento).click().perform(),
+            # Estratégia 2: CTRL + Clique
+            lambda: ActionChains(driver).key_down(Keys.CONTROL).click(elemento).perform(),            
+            # Estratégia 3: Simular navegação com driver.get()
+            # lambda: driver.get(href_elemento)
+            # Estratégia 4: Clique direto no href (considerando comportamento ideal)
+            # lambda: elemento.click(),
+        ]
+        count=0
+        for estrategia in estrategias:
+            count+=1
+            try:
+                estrategia()
+                print(f"        Paginação bem-sucedida usando a estratégia: {count}")
+                return  # Termina a função se uma estratégia funcionar
+            except Exception as e:
+                print(f"        Erro ao paginar com a estratégia {count}: {e}")
+
+        # Se todas as estratégias falharam:
+        print(f"        Falha ao paginar com todas as estratégias para o link: {href_elemento}")
+
     ## TO-FIX: Não está tratando muito bem o stale file handler, porque está avançando para próximo
     def find_terms(self, NOME, instituicao, termo1, termo2, termo3, delay, limite=5):
         """
@@ -1031,6 +1105,7 @@ class LattesScraper:
         ignored_exceptions=(NoSuchElementException,StaleElementReferenceException,)
         # Inicializar variáveis para evitar UnboundLocalError
         duvidas = []
+        count = 0
         qte_res = 0
         verbose = True
         elm_vinculo = None
@@ -1042,6 +1117,8 @@ class LattesScraper:
             WebDriverWait(self.driver, self.delay, ignored_exceptions=ignored_exceptions).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
             resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
+            if resultados:
+                count+=len(resultados*10)
             if self.is_stale_file_handler_present():
                 raise StaleException
             # Ler quantidade de resultados apresentados pela busca de nome
@@ -1051,7 +1128,6 @@ class LattesScraper:
             soup = BeautifulSoup(self.driver.page_source, 'html.parser')
             div_element = soup.find('div', {'class': 'tit_form'})
             match = re.search(r'<b>(\d+)</b>', str(div_element))
-            
             if match:
                 qte_res = int(match.group(1))
                 # print(f'{qte_res} resultados para {NOME}')
@@ -1104,130 +1180,64 @@ class LattesScraper:
                     intLTotReg = int(re.findall(r"intLTotReg = (\d+)", javascript_code)[0])
                     intLRegPagina = int(re.findall(r"intLRegPagina = (\d+)", javascript_code)[0])
                     strLQuery = re.findall(r"strLQuery = (.*)", javascript_code)
+                    parametros_paginacao = {
+                        'registros': intLRegPagina,
+                        'intLTotReg': intLTotReg,
+                        'strLQuery': strLQuery
+                    }
                     if self.verbose:
-                        print(f'       {strLQuery}')
+                        print(f'       Extraído do Javascript')
+                        print(f'            total_registros: {intLTotReg}')
+                        print(f'       registros_por_pagina: {intLRegPagina}')
+                        print(f'                  strLQuery: {strLQuery}')
+                        print(f'       parametros_paginacao: {parametros_paginacao}')
                     # Localizar a primeira lista de paginação
-                    paginacao_div = soup.find("div", class_="paginacao")
-                    paginacao_links = paginacao_div.find_all("a", data_role="paginacao")
-                    paginacao_numeros = [link.text for link in paginacao_links]
-                    numeros_paginacao = []
-                    elementos_paginacao = []
-                    all_paginacao = self.driver.find_elements(By.CSS_SELECTOR, "[data-role='paginacao']")
+                    elementos_paginacao = self.driver.find_elements(By.CSS_SELECTOR, ".paginacao a[data-role='paginacao']")
+                    elemento = elementos_paginacao[0]
+                    href_elemento = elemento.get_attribute('href')
                     if self.verbose:
-                        print(f'       {[x.text for x in all_paginacao]}')
-                    for i in all_paginacao:
-                        if i.text not in numeros_paginacao:
-                            numeros_paginacao.append(i.text)
-                            elementos_paginacao.append(i)
-                    if self.verbose:
-                        print(f'       {[x.text for x in elementos_paginacao]}')
-                    # Filtrar por conteúdo e número/texto da página
-                    count=0
-                    count_pages=0
-                    for elemento in elementos_paginacao:
-                        count_pages+=1
-                        if self.verbose:
-                            print(f'           elemento: {type(elemento)}')
-                            print(f'                txt: {elemento.text}')
-                            print(f"               href: {elemento.get_attribute('href')}")
-                        ## ERRO AQUI, PRECISA DISPARAR JAVASCRIPT PARA CARREGAR OS RESULTADOS DE CADA PÁGINA DA PAGINAÇÃO
-                        # try:
-                        #     css_elemento = self.driver.find_element_by_link_text(elemento.text)
-                        #     print(f"       Página a ser carregada: {css_elemento.text}")
-                        # except Exception as e:
-                        #     print(f'       Não encontrado link {elemento.text} na página')
-                        #     css_elemento = self.driver.find_element_by_partial_link_text(elemento.text)
-                        #     print(f"       Página a ser carregada: {css_elemento.text}")
-                        # # clicar no elemento encontrado para carregar próxima página na paginação
-                        # actions = ActionChains(self.driver)
-                        # actions.move_to_element(css_elemento).perform()
-                        # elemento.click()
-                        # print(f'       Carregar página {count_pages:02}/{len(numpaginas):02} de resultados')
-                        # time.sleep(1)
-
-                        ## Tentativa de paginar acessando página com novo request FALHOU!
-                        # try:
-                        #     pagina_inicial = 0
-                        #     soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-                        #     # Obter variáveis do JavaScript
-                        #     script_tag = soup.find('script', language='JavaScript')
-                        #     javascript_code = script_tag.text
-                        #     intLTotReg = int(re.findall(r"intLTotReg = (\d+)", javascript_code)[0])
-                        #     intLRegPagina = int(re.findall(r"intLRegPagina = (\d+)", javascript_code)[0])
-                            
-                        #     url_base_paginacao = soup.find('div', class_='paginacao').find('a')['href']
-                        #     dados_coletados = []
-                        #     if self.verbose:
-                        #         print(f'       Extraído do Javascript')
-                        #         print(f'            total_registros: {intLTotReg}')
-                        #         print(f'       registros_por_pagina: {intLRegPagina}')
-                        #         print(f'       url: {url_base_paginacao}')
-                        #     parametros_paginacao = {
-                        #         'registros': intLRegPagina,
-                        #         'query': url_base_paginacao,
-                        #     }
-                        #     if self.verbose:
-                        #         print(f'       {parametros_paginacao}')
-                        #     try:
-                        #         dados_resultados = self.extrair_resultados_paginados(url_base_paginacao, pagina_inicial, intLRegPagina)
-                        #         print(len(dados_resultados))
-                        #     except Exception as e:
-                        #         print(f'       Erro com: {e}')
-                        #         traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-                        #         print(f'       Na linha: {traceback_str}')
-
-                        # except Exception as e:
-                        #     print(f"       {'-'*120}")
-                        #     print(f'       Erro ao paginar: {e}')
-                        #     traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-                        #     print(f'       Ocorrido em: {traceback_str}')
-                        #     print(f"       {'-'*120}")
-
-                        try:                           
-                            # Carregar os resultados da nova página a verificar
-                            soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-                            # WebDriverWait(soup, self.delay).until(
-                            #     EC.presence_of_element_located((By.CSS_SELECTOR, ".tit_form > b:nth-child(1)"))
-                            # )                            
-                            text_results = [x.text.replace('\xa0',' ') for x in soup.findChildren('li')]
-                            if self.verbose:
-                                print(f'       Elem text: {len(text_results)} | {text_results}')
-                            resultados = soup.findChildren('li')
-                        except Exception as e:
-                            print(f'       Erro com: {e}')
-                            traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-                            print(f'       Na linha: {traceback_str}')                            
-                        if self.verbose:
-                            print(f'       Elementos: {type(resultados)} | {resultados}')
-                        if resultados:
-                            for resultado in resultados:
-                                count+=1
-                                print(f'       Verificando homônimo {count}/{len(resultados)}')
-                                try:
-                                    # procurar nos resultados termos de busca
-                                    elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
-                                    if elm_vinculo:
-                                        break
-                                except Exception as e:
-                                    print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
-                                    print(f'       ERRO: {e}')
-                                    traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-                                    print(f'       Ocorrido em: {traceback_str}')
-                                    print(f"       {'-'*120}")
-                                    return None
-                        else:
-                            print('       Não foi possível obter resultados para a busca')
-                    else:
-                        print(f'       Elemento de paginação para a página {elemento.text} não encontrado!')
+                        print(f'           elemento: {type(elemento)}')
+                        print(f'           elem_txt: {elemento.text}')
+                        print(f"               href: {href_elemento}")
+                    try:
+                        # Acessar a nova página a partir do texto contido no elemento
+                        soup = BeautifulSoup(self.driver.page_source, 'html.parser')
+                        elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+                        count_pages=0
+                        while not elm_vinculo and count_pages<=(intLTotReg//intLRegPagina):
+                            count_pages+=1
+                            elemento = elementos_paginacao[count_pages]
+                            print(f"       Página a ser carregada: {elemento.text}")
+                            try:
+                                # elemento.click()
+                                # self.driver.get(href_elemento)
+                                ActionChains(self.driver).move_to_element(elemento).click().perform()
+                                # ActionChains(self.driver).key_down(Keys.CONTROL).click(elemento).perform()
+                                ## TO-FIX como carregar os dados da nova página dinamicamente
+                                resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
+                                if resultados:
+                                    count+=len(resultados*10)
+                                elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+                            except Exception as e:
+                                erro_regex = r"(?:\w+): (.*)"
+                                desc = re.findall(erro_regex, str(e))[0] if re.findall(erro_regex, str(e)) else None
+                                if desc:
+                                    print(f'       Erro com: {desc}')
+                                else:
+                                    print(f'       Erro com: {e}')
+                    except Exception as e:
+                        print(f'       Erro ao paginar {elemento.text}')
+                        # print(f'       Erro com: {e}')
+                        traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+                        print(f'       Na linha: {traceback_str}')
                 except Exception as e:
-                    print(f'       Erro na paginação dos elementos após 10 resultados homônimos')
-                    # print(f'       Erro com: {e}')
+                    print(f'       Erro na paginação dos elementos de resultados homônimos')
+                    erro_regex = r"(?:\w+): (.*)"
+                    print(f'       Erro com: {re.findall(erro_regex, str(e))[0]}')
                     # traceback_str = ''.join(traceback.format_tb(e.__traceback__))
                     # print(f'       Na linha: {traceback_str}')
-
                 if self.is_stale_file_handler_present():
                     raise StaleException
-        
         except StaleException as e:
             traceback_str = ''.join(traceback.format_tb(e.__traceback__))
             if self.verbose:
@@ -1394,6 +1404,54 @@ class LattesScraper:
         return dados_resultados
 
     ###### Experiências com tratamento de homônimos
+                            # css_elemento = self.driver.find_element(By.CSS_SELECTOR, elemento.text)
+                            # css_elemento = self.driver.find_element(By.XPATH, f"//a[contains(text(), {elemento.text})]")
+                            
+                            ## TO-FIX: PRECISA DISPARAR JAVASCRIPT PARA CARREGAR OS RESULTADOS DE CADA PÁGINA DA PAGINAÇÃO
+                            # clicar no elemento encontrado para carregar próxima página na paginação
+                            
+                            # WebDriverWait(soup, self.delay).until(
+                            #     EC.presence_of_element_located((By.CSS_SELECTOR, ".tit_form"))
+                            # )                            
+                            # Carregar os resultados da nova página a verificar presença de termos_busca
+                            
+                            # resultados = soup.findChildren('li')
+                            # count+=len(resultados)
+                            # print(f'       Carregada página {count_pages:02}/{len(numpaginas):02} de resultados')
+                            # text_results = [x.text.replace('\xa0',' ') for x in resultados]
+                            # if self.verbose:
+                            #     print(f'       Elem text: {len(text_results)} | {text_results}')
+                            
+                            # # iterar em cada resultado
+                            # for n,i in enumerate(resultados):
+                            #     try:
+                            #         # Ler dados prévios dos currículos e buscar termos
+                            #         elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+                            #     except Exception as e:
+                            #         print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
+                            #         print(f'       ERRO: {e}')
+                            #         return None                            
+
+                        # Ler dados prévios dos currículos e buscar termos
+                        # resultados = soup.findChildren('li')
+                        # if self.verbose:
+                        #     print(f'       {len(resultados):2} Resultados: {type(resultados)} | {resultados}')
+                        # if resultados:
+                        #     try:
+                        #         # procurar nos resultados termos de busca
+                        #         elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+                        #         if elm_vinculo:
+                        #             break
+                        #     except Exception as e:
+                        #         print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
+                        #         print(f'       ERRO: {e}')
+                        #         traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+                        #         print(f'       Ocorrido em: {traceback_str}')
+                        #         print(f"       {'-'*120}")
+                        #         return None
+                        # else:
+                        #     print('       Não foi possível obter resultados para a busca')
+
     # def handle_pagination_and_collect_profiles(self):
     #     def extrair_dados_cv():
     #         resultados = self.driver.find_elements(By.CSS_SELECTOR, "div.resultado")
