@@ -1,0 +1,15 @@
+2024-04-29 08:13:20,280 - ERROR - Tentativa de extrair currículo de Ricardo Tostes Gazzinelli em scrape_retry() falhou: Message:        Erro ao realizar a extração para Ricardo Tostes Gazzinelli: Message: 
+
+. Tentando novamente...
+2024-04-29 08:36:52,196 - INFO - Currículo não encontrado: ALINE SILVA SOARES
+2024-04-29 08:39:39,563 - INFO - Currículo não encontrado: ANDRE LUIZ DE MENEZES
+2024-04-29 08:43:57,663 - ERROR - Erro inesperado ao buscar: cannot access local variable 'intLTotReg' where it is not associated with a value
+2024-04-29 08:45:20,471 - INFO - Currículo não encontrado: GABRIELA DE OLIVEIRA
+2024-04-29 08:49:22,944 - INFO - Currículo não encontrado: ISABELA THAMARA SABINO DUTRA
+2024-04-29 08:58:22,256 - ERROR - Tentativa de extrair currículo de LETICIA SOPHIA SILVA em scrape_retry() falhou: Message:        Erro ao realizar a extração para LETICIA SOPHIA SILVA: Message: 
+
+. Tentando novamente...
+2024-04-29 08:59:42,336 - ERROR - Tentativa de extrair currículo de LETICIA SOPHIA SILVA em scrape_retry() falhou: Message:        Erro ao realizar a extração para LETICIA SOPHIA SILVA: Message: 
+
+. Tentando novamente...
+2024-04-29 09:03:43,237 - INFO - Currículo não encontrado: MARIANA ALVES LIMA
