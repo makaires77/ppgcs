@@ -1,17 +1,9 @@
-2024-04-29 10:19:20,799 - ERROR - Tentativa de extrair currículo de Flora Satiko Kano em scrape_retry() falhou: Message:        Erro ao realizar a extração para Flora Satiko Kano: Message: 
+2024-04-29 17:44:33,881 - ERROR - Tentativa de extrair currículo de Paloma Helena Fernandes Shimabukuro em scrape_retry() falhou: Message:        Erro ao realizar a extração para Paloma Helena Fernandes Shimabukuro: Message: 
 
 . Tentando novamente...
-2024-04-29 10:50:35,969 - ERROR - Tentativa de extrair currículo de Antonio Mauro Rezende em scrape_retry() falhou: Message:        Erro ao realizar a extração para Antonio Mauro Rezende: Message: 
-
-. Tentando novamente...
-2024-04-29 10:56:36,301 - INFO - Currículo não encontrado: ALINE SILVA SOARES
-2024-04-29 10:59:29,178 - INFO - Currículo não encontrado: ANDRE LUIZ DE MENEZES
-2024-04-29 11:04:05,510 - ERROR - Erro inesperado ao buscar: cannot access local variable 'intLTotReg' where it is not associated with a value
-2024-04-29 11:05:28,709 - INFO - Currículo não encontrado: GABRIELA DE OLIVEIRA
-2024-04-29 11:06:01,511 - ERROR - Tentativa de extrair currículo de GABRIELA MAIRA PEREIRA DE ASSIS em scrape_retry() falhou: Message:        Erro ao realizar a extração para GABRIELA MAIRA PEREIRA DE ASSIS: Message: 
-
-. Tentando novamente...
-2024-04-29 11:09:13,616 - ERROR - Tentativa de extrair currículo de IANCA EVELIN SILVA DE PAULA em scrape_retry() falhou: Message:        Erro ao realizar a extração para IANCA EVELIN SILVA DE PAULA: Message: 
-
-. Tentando novamente...
-2024-04-29 11:11:04,512 - INFO - Currículo não encontrado: ISABELA THAMARA SABINO DUTRA
+2024-04-29 18:42:35,595 - INFO - Currículo não encontrado: ALINE SILVA SOARES
+2024-04-29 18:45:17,578 - INFO - Currículo não encontrado: ANDRE LUIZ DE MENEZES
+2024-04-29 18:49:11,508 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-04-29 18:50:31,136 - INFO - Currículo não encontrado: GABRIELA DE OLIVEIRA
+2024-04-29 18:53:36,937 - INFO - Currículo não encontrado: ISABELA THAMARA SABINO DUTRA
+2024-04-29 19:01:57,053 - INFO - Currículo não encontrado: MARIANA ALVES LIMA
