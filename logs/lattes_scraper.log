@@ -1,9 +1,3 @@
-2024-04-29 17:44:33,881 - ERROR - Tentativa de extrair curr√≠culo de Paloma Helena Fernandes Shimabukuro em scrape_retry() falhou: Message:        Erro ao realizar a extra√ß√£o para Paloma Helena Fernandes Shimabukuro: Message: 
+2024-04-30 14:03:54,178 - ERROR - Tentativa de extrair currÌculo de LilÈia GonÁalves Diotaiuti em scrape_retry() falhou: Message:        Erro ao realizar a extraÁ„o para LilÈia GonÁalves Diotaiuti: Message: 
 
 . Tentando novamente...
-2024-04-29 18:42:35,595 - INFO - Curr√≠culo n√£o encontrado: ALINE SILVA SOARES
-2024-04-29 18:45:17,578 - INFO - Curr√≠culo n√£o encontrado: ANDRE LUIZ DE MENEZES
-2024-04-29 18:49:11,508 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
-2024-04-29 18:50:31,136 - INFO - Curr√≠culo n√£o encontrado: GABRIELA DE OLIVEIRA
-2024-04-29 18:53:36,937 - INFO - Curr√≠culo n√£o encontrado: ISABELA THAMARA SABINO DUTRA
-2024-04-29 19:01:57,053 - INFO - Curr√≠culo n√£o encontrado: MARIANA ALVES LIMA

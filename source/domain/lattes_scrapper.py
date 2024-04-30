@@ -5,9 +5,9 @@ import seaborn as sns
 import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
-import os, re, bs4, sys, csv, time, json, h5py, pytz, glob, stat, shutil
-import unicodedata, string, urllib, difflib, sqlite3, asyncio, nltk, psutil 
-import warnings, platform, requests, subprocess, torch, logging, traceback
+import os, re, bs4, sys, csv, time, json, h5py, pytz, glob, stat
+import codecs, unicodedata, string, sqlite3, asyncio, nltk, shutil, psutil 
+import warnings, platform, requests, urllib, difflib, subprocess, torch, logging, traceback
 
 from PIL import Image
 from io import BytesIO
@@ -1975,39 +1975,46 @@ class LattesScraper:
             lista_dados_autor (list): Lista de dicionários com os dados dos autores.
             nome_arquivo (str): Nome do arquivo JSON a ser atualizado.
         """
-
         try:
-            with open(nome_arquivo, 'r+') as arquivo:
-                # Carregue os dados do arquivo
-                dados = json.load(arquivo)
+            # with open(nome_arquivo, 'r+') as arquivo:
+            #     # Carregue os dados do arquivo
+            #     dados = json.load(arquivo)
+            with codecs.open(nome_arquivo, 'r', encoding='utf-8') as arquivo:
+                 # Carregue os dados do arquivo
+                 dados = json.load(arquivo)
 
-                # Percorra os dados de cada autor
-                for m,dados_autor in enumerate(lista_dados_autor):
-                    for categoria, artigos in dados_autor['Produções'].items():
-                        if categoria == 'Artigos completos publicados em periódicos':
-                            for n,artigo in enumerate(artigos):
-                                print(f'{n+1:3}/{len(artigos):3} artigos do autor {m+1:3}/{len(lista_dados_autor):3}')
-                                clear_output(wait=True)
-                                # Recupere o ISSN do artigo
-                                issn_artigo = artigo['ISSN'].replace('-','')
+            # Percorra os dados de cada autor
+            for m,dados_autor in enumerate(lista_dados_autor):
+                for categoria, artigos in dados_autor['Produções'].items():
+                    if categoria == 'Artigos completos publicados em periódicos':
+                        for n,artigo in enumerate(artigos):
+                            print(f'{n+1:3}/{len(artigos):3} artigos do autor {m+1:3}/{len(lista_dados_autor):3}')
+                            clear_output(wait=True)
+                            # Recupere o ISSN do artigo
+                            issn_artigo = artigo['ISSN'].replace('-','')
 
-                                # Busque o Qualis do artigo
-                                qualis = self.encontrar_qualis_por_issn(issn_artigo)
+                            # Busque o Qualis do artigo
+                            qualis = self.encontrar_qualis_por_issn(issn_artigo)
 
-                                # Atualize o campo 'Qualis' do artigo
-                                if qualis:
-                                    artigo['Qualis'] = qualis
-                                else:
-                                    artigo['Qualis'] = 'Não encontrado'
+                            # Atualize o campo 'Qualis' do artigo
+                            if qualis:
+                                artigo['Qualis'] = qualis
+                            else:
+                                artigo['Qualis'] = 'Não encontrado'
 
-                # Reposicione o cursor no início do arquivo
-                arquivo.seek(0)
+            # Reposicione o cursor no início do arquivo
+            arquivo.seek(0)
 
-                # Reescreva os dados formatados no arquivo
+            # Reescreva os dados formatados no arquivo
+            # json.dump(dados, arquivo, indent=4)
+            with codecs.open(nome_arquivo, 'w', encoding='utf-8') as arquivo:
                 json.dump(dados, arquivo, indent=4)
             return dados
+        
         except Exception as e:
             print(f"Erro ao atualizar o arquivo: {e}")
+            traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+            print(f"{traceback_str}")
     
     def encontrar_qualis_por_issn(self, issn):
         qualis = self.dados_planilha[self.dados_planilha['ISSN'].str.replace('-','') == issn]['Estrato'].tolist()
@@ -3429,38 +3436,45 @@ class GetQualis:
             lista_dados_autor (list): Lista de dicionários com os dados dos autores.
             nome_arquivo (str): Nome do arquivo JSON a ser atualizado.
         """
-
         try:
-            with open(nome_arquivo, 'r+') as arquivo:
-                # Carregue os dados do arquivo
-                dados = json.load(arquivo)
+            # with open(nome_arquivo, 'r+') as arquivo:
+            #     # Carregue os dados do arquivo
+            #     dados = json.load(arquivo)
+            with codecs.open(nome_arquivo, 'r', encoding='utf-8') as arquivo:
+                 # Carregue os dados do arquivo
+                 dados = json.load(arquivo)
 
-                # Percorra os dados de cada autor
-                for dados_autor in lista_dados_autor:
-                    for categoria, artigos in dados_autor['Produções'].items():
-                        if categoria == 'Artigos completos publicados em periódicos':
-                            for artigo in artigos:
-                                # Recupere o ISSN do artigo
-                                issn_artigo = artigo['ISSN'].replace('-','')
+            # Percorra os dados de cada autor
+            for m,dados_autor in enumerate(lista_dados_autor):
+                for categoria, artigos in dados_autor['Produções'].items():
+                    if categoria == 'Artigos completos publicados em periódicos':
+                        for n,artigo in enumerate(artigos):
+                            print(f'{n+1:3}/{len(artigos):3} artigos do autor {m+1:3}/{len(lista_dados_autor):3}')
+                            clear_output(wait=True)
+                            # Recupere o ISSN do artigo
+                            issn_artigo = artigo['ISSN'].replace('-','')
 
-                                # Busque o Qualis do artigo
-                                qualis = self.encontrar_qualis_por_issn(issn_artigo)
+                            # Busque o Qualis do artigo
+                            qualis = self.encontrar_qualis_por_issn(issn_artigo)
 
-                                # Atualize o campo 'Qualis' do artigo
-                                if qualis:
-                                    artigo['Qualis'] = qualis
-                                else:
-                                    artigo['Qualis'] = 'Não encontrado'
+                            # Atualize o campo 'Qualis' do artigo
+                            if qualis:
+                                artigo['Qualis'] = qualis
+                            else:
+                                artigo['Qualis'] = 'Não encontrado'
 
+            # Reescreva os dados formatados no arquivo
+            # json.dump(dados, arquivo, indent=4)
+            with codecs.open(nome_arquivo, 'w', encoding='utf-8') as arquivo:
                 # Reposicione o cursor no início do arquivo
                 arquivo.seek(0)
-
-                # Reescreva os dados formatados no arquivo
                 json.dump(dados, arquivo, indent=4)
             return dados
+        
         except Exception as e:
             print(f"Erro ao atualizar o arquivo: {e}")
-
+            traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+            print(f"{traceback_str}")
 
     def encontrar_qualis_por_issn(self, issn):
         qualis = self.dados_planilha[self.dados_planilha['ISSN'].str.replace('-','') == issn]['Estrato'].tolist()
@@ -3468,6 +3482,51 @@ class GetQualis:
             return qualis[0]
         else:
             return None
+
+    # def buscar_qualis_e_atualizar_arquivo(self, lista_dados_autor, nome_arquivo):
+    #     """
+    #     Busca o Qualis de cada artigo completo publicado em periódicos e atualiza o arquivo original com os dados encontrados.
+
+    #     Args:
+    #         lista_dados_autor (list): Lista de dicionários com os dados dos autores.
+    #         nome_arquivo (str): Nome do arquivo JSON a ser atualizado.
+    #     """
+    #     try:
+    #         # Carregue os dados do arquivo
+    #         with codecs.open(nome_arquivo, 'r', encoding='utf-8') as arquivo:
+    #             dados = json.load(arquivo)
+
+    #         # Percorra os dados de cada autor
+    #         for m, dados_autor in enumerate(lista_dados_autor):
+    #             for categoria, artigos in dados_autor['Produções'].items():
+    #                 if categoria == 'Artigos completos publicados em periódicos':
+    #                     for n, artigo in enumerate(artigos):
+    #                         print(f'{n+1:3}/{len(artigos):3} artigos do autor {m+1:3}/{len(lista_dados_autor):3}')
+    #                         clear_output(wait=True)
+
+    #                         # Recupere o ISSN do artigo
+    #                         issn_artigo = artigo['ISSN'].replace('-','')
+
+    #                         # Busque o Qualis do artigo
+    #                         qualis = self.encontrar_qualis_por_issn(issn_artigo)
+
+    #                         # Atualize o campo 'Qualis' do artigo
+    #                         if qualis:
+    #                             artigo['Qualis'] = qualis
+    #                         else:
+    #                             artigo['Qualis'] = 'Não encontrado'
+
+    #         # Reposicione o cursor no início do arquivo e grave os dados formatados
+    #         with codecs.open(nome_arquivo, 'w', encoding='utf-8') as arquivo:
+    #             arquivo.seek(0)
+    #             json.dump(dados, arquivo, indent=4)
+
+    #     except Exception as e:
+    #         print(f"Erro ao atualizar o arquivo: {e}")
+
+    #     return dados
+
+
 
 class DiscentCollaborationCounter:
     def __init__(self, dict_list):
