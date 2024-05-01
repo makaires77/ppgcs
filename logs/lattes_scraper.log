@@ -1,0 +1,9 @@
+2024-05-01 17:19:13,691 - ERROR - Tentativa de extrair currículo de Carina Margonari de Souza em scrape_retry() falhou: Message:        Erro ao realizar a extração para Carina Margonari de Souza: Message: 
+
+. Tentando novamente...
+2024-05-01 17:56:26,382 - INFO - Currículo não encontrado: ALINE SILVA SOARES
+2024-05-01 17:59:13,360 - INFO - Currículo não encontrado: ANDRE LUIZ DE MENEZES
+2024-05-01 18:03:31,962 - ERROR - Erro inesperado ao buscar: cannot access local variable 'intLTotReg' where it is not associated with a value
+2024-05-01 18:04:55,364 - INFO - Currículo não encontrado: GABRIELA DE OLIVEIRA
+2024-05-01 18:08:12,555 - INFO - Currículo não encontrado: ISABELA THAMARA SABINO DUTRA
+2024-05-01 18:16:50,680 - INFO - Currículo não encontrado: MARIANA ALVES LIMA
