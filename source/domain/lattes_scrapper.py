@@ -2222,8 +2222,18 @@ class LattesScraper:
                 traceback_str = ''.join(traceback.format_tb(e.__traceback__))
                 logging.error(traceback_str)
         self.driver.quit()
+        try:
+            filepath = os.path.join(LattesScraper.find_repo_root(),'_data','in_csv','dict_list_temp.json')
+            print(f'Arquivo salvo em {filepath}')
+        except:
+            print('Não foi possível salvar extração em arquivo')
+        self.save_to_json(dict_list, filepath)
+
         return dict_list
 
+    def save_to_json(self, data, file_path):
+        with open(file_path, 'w', encoding='utf-8') as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
   
 class HTMLParser:
     def __init__(self, html):
@@ -3067,7 +3077,7 @@ class HTMLParser:
                             
     def add_qualis(self):
         file_name = 'classificações_publicadas_todas_as_areas_avaliacao1672761192111.xls'
-        planilha_excel = os.path.join(self.find_repo_root(), 'data', file_name)        
+        planilha_excel = os.path.join(self.find_repo_root(), '_data', file_name)        
         planilha = pd.read_excel(planilha_excel)
         for artigo in self.json_data['Produções']['Artigos completos publicados em periódicos']:
             try:
@@ -3482,6 +3492,9 @@ class GetQualis:
                 # Reposicione o cursor no início do arquivo
                 arquivo.seek(0)
                 json.dump(dados, arquivo, indent=4)
+            print('Exemplo:')
+            print([x.get('Produções') for x in dados][0])
+            
             return dados
         
         except Exception as e:

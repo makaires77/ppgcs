@@ -1,0 +1,1585 @@
+[
+    {
+        "Identifica\u00e7\u00e3o": {
+            "Nome": "Gabriel da Rocha Fernandes",
+            "ID Lattes": "8989178759075946",
+            "\u00daltima atualiza\u00e7\u00e3o": "19/04/2024"
+        },
+        "Idiomas": [
+            {
+                "Idioma": "Ingl\u00eas",
+                "Profici\u00eancia": "Compreende Bem, Fala Bem, L\u00ea Bem, Escreve Bem."
+            },
+            {
+                "Idioma": "Espanhol",
+                "Profici\u00eancia": "Compreende Razoavelmente, Fala Pouco, L\u00ea Razoavelmente, Escreve Pouco."
+            },
+            {
+                "Idioma": "Alem\u00e3o",
+                "Profici\u00eancia": "Compreende Razoavelmente, Fala Pouco, L\u00ea Razoavelmente, Escreve Razoavelmente."
+            }
+        ],
+        "Forma\u00e7\u00e3o": {
+            "Acad\u00eamica": [
+                {
+                    "Ano": "2007 - 2011",
+                    "Descri\u00e7\u00e3o": "Doutorado em Bioinform\u00e1tica. Universidade Federal de Minas Gerais, UFMG, Brasil. com per\u00edodo sandu\u00edche em European Molecular Biology Laboratory (Orientador: Peer Bork). T\u00edtulo: Integra\u00e7\u00e3o de bases de dados de genes hom\u00f3logos e aplica\u00e7\u00f5es em an\u00e1lises de sequ\u00eancias, Ano de obten\u00e7\u00e3o: 2011. Orientador: Jos\u00e9 Miguel Ortega. Coorientador: Peer Bork. Bolsista do(a): Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior, CAPES, Brasil. Palavras-chave: anota\u00e7\u00e3o; database. Grande \u00e1rea: Ci\u00eancias Biol\u00f3gicas"
+                },
+                {
+                    "Ano": "2002 - 2006",
+                    "Descri\u00e7\u00e3o": "Gradua\u00e7\u00e3o em Ci\u00eancias Biol\u00f3gicas. Universidade Federal de Minas Gerais, UFMG, Brasil. T\u00edtulo: KEGG Orthology: avalia\u00e7\u00e3o como fonte para anota\u00e7\u00e3o automatizada de ESTs. Orientador: Jos\u00e9 Miguel Ortega. Bolsista do(a): Funda\u00e7\u00e3o de Amparo \u00e0 Pesquisa do Estado de Minas Gerais, FAPEMIG, Brasil."
+                }
+            ],
+            "Pos-Doc": [],
+            "Complementar": [
+                {
+                    "Ano": "2010 - 2010",
+                    "Descri\u00e7\u00e3o": "An\u00e1lise metagen\u00f4mica.  (Carga hor\u00e1ria: 80h). Laborat\u00f3rio Nacional de Computa\u00e7\u00e3o Cient\u00edfica, LNCC, Brasil."
+                }
+            ]
+        },
+        "Atua\u00e7\u00e3o Profissional": [
+            {
+                "Institui\u00e7\u00e3o": "Instituto Ren\u00e9 Rachou - Fiocruz Minas, IRR, Brasil.",
+                "Ano": "2015 - Atual",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "V\u00ednculo: Servidor P\u00fablico, Enquadramento Funcional: Pesquisador em Sa\u00fade P\u00fablica, Carga hor\u00e1ria: 40"
+            },
+            {
+                "Institui\u00e7\u00e3o": "Universidade Federal de Minas Gerais, UFMG, Brasil.",
+                "Ano": "2007 - 2011",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "V\u00ednculo: Estudante de Doutorado, Enquadramento Funcional: Pesquisador, Regime: Dedica\u00e7\u00e3o exclusiva. Desenvolvimento de bancos de dados biol\u00f3gicos, com aplica\u00e7\u00f5es em an\u00e1lises de sequ\u00eancias."
+            },
+            {
+                "Institui\u00e7\u00e3o": "Universidade Federal de Minas Gerais, UFMG, Brasil.",
+                "Ano": "2006 - 2007",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "V\u00ednculo: Estudante Inicia\u00e7\u00e3o Cient\u00edfica, Enquadramento Funcional: Pesquisador"
+            },
+            {
+                "Institui\u00e7\u00e3o": "Universidade Federal de Minas Gerais, UFMG, Brasil.",
+                "Ano": "2002 - 2003",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "V\u00ednculo: Estagi\u00e1rio, Enquadramento Funcional: Pesquisador, Carga hor\u00e1ria: 20"
+            },
+            {
+                "Institui\u00e7\u00e3o": "Universidade Federal de Minas Gerais, UFMG, Brasil.",
+                "Ano": "01/2006 - 02/2007",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "Est\u00e1gios , Instituto de Ci\u00eancias Biol\u00f3gicas, Departamento de Bioqu\u00edmica e Imunologia. Est\u00e1gio realizado Pesquisas na \u00e1rea de Bioinform\u00e1tica e participa\u00e7\u00f5es em projetos. Est\u00e1gios , Instituto de Ci\u00eancias Biol\u00f3gicas, Departamento de Bioqu\u00edmica e Imunologia. Est\u00e1gio realizado Projeto \"Identifica\u00e7\u00e3o e caracteriza\u00e7\u00e3o de ant\u00edgenos comuns \u00e0s linhagens de c\u00e9lulas MCF-7 e MDAMB-231 de c\u00e2ncer de mama\"."
+            },
+            {
+                "Institui\u00e7\u00e3o": "European Molecular Biology Laboratory, EMBL, Alemanha.",
+                "Ano": "2009 - 2010",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "V\u00ednculo: Bolsista, Enquadramento Funcional: Estudante de doutorado, Regime: Dedica\u00e7\u00e3o exclusiva. Trabalho em an\u00e1lises de sequ\u00eancias metagen\u00f4micas. Com projetos do cons\u00f3cio MetaHIT, Washington University Saint Louis e Projeto Garuda em System Biology"
+            },
+            {
+                "Institui\u00e7\u00e3o": "Funda\u00e7\u00e3o Hemominas, HEMOMINAS, Brasil.",
+                "Ano": "2004 - 2005",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "V\u00ednculo: Estagi\u00e1rio, Enquadramento Funcional: Pesquisador, Carga hor\u00e1ria: 20 Est\u00e1gios , Funda\u00e7\u00e3o Hemominas. Est\u00e1gio realizado Projeto \"Caracteriza\u00e7\u00e3o molecular das muta\u00e7\u00f5es que levam \u00e0 hemofilia A grave em pacientes de Minas Gerais\"."
+            },
+            {
+                "Institui\u00e7\u00e3o": "Universidade Cat\u00f3lica de Bras\u00edlia, UCB/DF, Brasil.",
+                "Ano": "2011 - 2014",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "V\u00ednculo: Celetista, Enquadramento Funcional: Professor/Pesquisador, Carga hor\u00e1ria: 40, Regime: Dedica\u00e7\u00e3o exclusiva. Trabalhos em diversos projetos na \u00e1rea de gen\u00f4mica e metagen\u00f4mica.\nProfessor de disciplinas de gradua\u00e7\u00e3o e p\u00f3s-gradua\u00e7\u00e3o."
+            },
+            {
+                "Institui\u00e7\u00e3o": "Universidade Cat\u00f3lica de Bras\u00edlia, UCB/DF, Brasil.",
+                "Ano": "02/2013 - 12/2014",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "Ensino, Ci\u00eancias Biol\u00f3gicas, N\u00edvel: Gradua\u00e7\u00e3o Disciplinas ministradas Bioinform\u00e1tica I"
+            },
+            {
+                "Institui\u00e7\u00e3o": "Universidade Cat\u00f3lica de Bras\u00edlia, UCB/DF, Brasil.",
+                "Ano": "04/2011 - 12/2014",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "Pesquisa e desenvolvimento, Pr\u00f3-Reitoria de P\u00f3s-Gradua\u00e7\u00e3o e Pesquisa, P\u00f3s-Gradua\u00e7\u00e3o em Ci\u00eancias Gen\u00f4micas e Biotecnologia. Linhas de pesquisa Gen\u00f4mica e transcrit\u00f4mica"
+            },
+            {
+                "Institui\u00e7\u00e3o": "Universidade Cat\u00f3lica de Bras\u00edlia, UCB/DF, Brasil.",
+                "Ano": "04/2011 - 12/2014",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "Pesquisa e desenvolvimento, Pr\u00f3-Reitoria de P\u00f3s-Gradua\u00e7\u00e3o e Pesquisa, P\u00f3s-Gradua\u00e7\u00e3o em Ci\u00eancias Gen\u00f4micas e Biotecnologia. Linhas de pesquisa Metagen\u00f4mica"
+            },
+            {
+                "Institui\u00e7\u00e3o": "Universidade Cat\u00f3lica de Bras\u00edlia, UCB/DF, Brasil.",
+                "Ano": "04/2011 - 12/2014",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "Ensino, Ci\u00eancias Gen\u00f4micas e Biotecnologia, N\u00edvel: P\u00f3s-Gradua\u00e7\u00e3o Disciplinas ministradas Laborat\u00f3rio de Bioinform\u00e1tica"
+            },
+            {
+                "Institui\u00e7\u00e3o": "Universidade Cat\u00f3lica de Bras\u00edlia, UCB/DF, Brasil.",
+                "Ano": "01/2014 - 06/2014",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "Ensino, Medicina, N\u00edvel: Gradua\u00e7\u00e3o Disciplinas ministradas Bioquimica"
+            },
+            {
+                "Institui\u00e7\u00e3o": "Universidade Cat\u00f3lica de Bras\u00edlia, UCB/DF, Brasil.",
+                "Ano": "01/2012 - 12/2013",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "Ensino, Ci\u00eancias Biol\u00f3gicas, N\u00edvel: Gradua\u00e7\u00e3o Disciplinas ministradas Bioquimica"
+            },
+            {
+                "Institui\u00e7\u00e3o": "Universidade Cat\u00f3lica de Bras\u00edlia, UCB/DF, Brasil.",
+                "Ano": "04/2011 - 12/2011",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "Ensino, Biomedicina, N\u00edvel: Gradua\u00e7\u00e3o Disciplinas ministradas Bioinform\u00e1tica"
+            },
+            {
+                "Institui\u00e7\u00e3o": "University of Copenhagen, UK, Dinamarca.",
+                "Ano": "2018 - 2022",
+                "Descri\u00e7\u00e3o": "",
+                "Outras informa\u00e7\u00f5es": "V\u00ednculo: Professor Visitante, Enquadramento Funcional: Visiting Scholar, Carga hor\u00e1ria: 40"
+            }
+        ],
+        "Linhas de Pesquisa": [
+            {
+                "Descri\u00e7\u00e3o": "Gen\u00f4mica e transcrit\u00f4mica",
+                "Detalhes": ""
+            },
+            {
+                "Descri\u00e7\u00e3o": "Gen\u00f4mica e transcrit\u00f4mica",
+                "Detalhes": "Objetivo: Montagem de genomas e transcritomas procariotos e eucariotos.\nAn\u00e1lise de express\u00e3o diferencial.\nAnota\u00e7\u00e3o funcional de genes.. Grande \u00e1rea: Ci\u00eancias Biol\u00f3gicas Palavras-chave: anota\u00e7\u00e3o; trancritomica; genomica."
+            },
+            {
+                "Descri\u00e7\u00e3o": "Metagen\u00f4mica",
+                "Detalhes": "Objetivo: Montagem de genomas e transcritomas procariotos e eucariotos.\nAn\u00e1lise de express\u00e3o diferencial.\nAnota\u00e7\u00e3o funcional de genes.. Grande \u00e1rea: Ci\u00eancias Biol\u00f3gicas Palavras-chave: anota\u00e7\u00e3o; trancritomica; genomica."
+            },
+            {
+                "Descri\u00e7\u00e3o": "Objetivo: Estudo de microorganismos em seu ecossistema a partir do sequenciamento de DNA..Grande \u00e1rea: Ci\u00eancias Biol\u00f3gicasGrande \u00c1rea: Ci\u00eancias Biol\u00f3gicas / \u00c1rea: Microbiologia / Sub\u00e1rea: Biologia e Fisiologia dos Microorganismos / Especialidade: Bacteriologia.Palavras-chave: metagenomica; Microbiota; 16S.",
+                "Detalhes": "Objetivo: Montagem de genomas e transcritomas procariotos e eucariotos.\nAn\u00e1lise de express\u00e3o diferencial.\nAnota\u00e7\u00e3o funcional de genes.. Grande \u00e1rea: Ci\u00eancias Biol\u00f3gicas Palavras-chave: anota\u00e7\u00e3o; trancritomica; genomica."
+            }
+        ],
+        "\u00c1reas": {
+            "1.": "Grande \u00e1rea: Ci\u00eancias Biol\u00f3gicas / \u00c1rea: Gen\u00e9tica / Sub\u00e1rea: Bioinform\u00e1tica.",
+            "2.": "Grande \u00e1rea: Ci\u00eancias Biol\u00f3gicas / \u00c1rea: Gen\u00e9tica / Sub\u00e1rea: Gen\u00e9tica Molecular e de Microorganismos.",
+            "3.": "Grande \u00e1rea: Ci\u00eancias Biol\u00f3gicas / \u00c1rea: Gen\u00e9tica."
+        },
+        "Produ\u00e7\u00f5es": {
+            "Artigos completos publicados em peri\u00f3dicos": [
+                {
+                    "ano": "2024",
+                    "fator_impacto_jcr": "4.5",
+                    "ISSN": "20762607",
+                    "titulo": "Methotrexate and Non-Surgical Periodontal Treatment Change the Oral-Gut Microbiota in Rheumatoid Arthritis: A Prospective Cohort Study",
+                    "revista": "Microorganisms",
+                    "autores": "OLIVEIRA, SIC\u00cdLIA REZENDE2024OLIVEIRA, SIC\u00cdLIA REZENDE ; DE ARRUDA, JOS\u00c9 ALCIDES ALMEIDA ; CORR\u00caA, J\u00d4ICE DIAS ; CARVALHO, VALESSA FLORINDO ; MEDEIROS, JULLIANE DUTRA ; SCHNEIDER, AYDA HENRIQUES ; MACHADO, CAIO CAVALCANTE ; DUFFLES, LET\u00cdCIA FERNANDA ;FERNANDES, GABRIEL DA ROCHA; CALDERARO, D\u00c9BORA CERQUEIRA ; J\u00daNIOR, MARIO TABA ; ABREU, LUCAS GUIMAR\u00c3ES ; FUKADA, SANDRA YASUYO ; OLIVEIRA, REN\u00ca DONIZETI RIBEIRO ; LOUZADA-J\u00daNIOR, PAULO ; CUNHA, FERNANDO QUEIROZ ; SILVA, TARC\u00cdLIA APARECIDA . ",
+                    "data_issn": "20762607",
+                    "DOI": "http://dx.doi.org/10.3390/microorganisms12010068"
+                },
+                {
+                    "ano": "2024",
+                    "fator_impacto_jcr": "12.2",
+                    "ISSN": "19490976",
+                    "titulo": "Evaluation of gut microbiota predictive potential associated with phenotypic characteristics to identify multifactorial diseases",
+                    "revista": "Gut Microbes",
+                    "autores": "FONSECA, DANIELLE CRISTINA2024FONSECA, DANIELLE CRISTINA ; MARQUES GOMES DA ROCHA, ILANNA ; DEPIERI BALMANT, BIANCA ; CALLADO, LETICIA ; AGUIAR PRUD\u00caNCIO, ANA PAULA ; TEPEDINO MARTINS ALVES, JULIANA ; TORRINHAS, RAQUEL SUSANA ;DA ROCHA FERNANDES, GABRIEL; LINETZKY WAITZBERG, DAN . ",
+                    "data_issn": "19490976",
+                    "DOI": "http://dx.doi.org/10.1080/19490976.2023.2297815"
+                },
+                {
+                    "ano": "2024",
+                    "fator_impacto_jcr": "4.4",
+                    "ISSN": "08999007",
+                    "titulo": "Gut bacterial markers involved in association of dietary inflammatory index with visceral adiposity",
+                    "revista": "NUTRITION",
+                    "autores": "FREITAS, RENATA G.B.O.N2024FREITAS, RENATA G.B.O.N ; VASQUES, ANA CAROLINA J. ;DA ROCHA FERNANDES, GABRIEL; RIBEIRO, FRANCIELI B. ; SOLAR, ISABELA ; SHIVAPPA, NITIN ; H\u00c9BERT, JAMES R. ; DE ALMEIDA-PITITTO, BIANCA ; GELONEZE, BRUNO ; FERREIRA, SANDRA ROBERTA G. ",
+                    "data_issn": "08999007",
+                    "DOI": "http://dx.doi.org/10.1016/j.nut.2024.112371"
+                },
+                {
+                    "ano": "2024",
+                    "fator_impacto_jcr": "2.2",
+                    "ISSN": "07394462",
+                    "titulo": "Local age-dependent neuromodulation in antennae",
+                    "revista": "ARCHIVES OF INSECT BIOCHEMISTRY AND PHYSIOLOGY",
+                    "autores": "LORENZO, MARCELO GUSTAVO2024LORENZO, MARCELO GUSTAVO ;FERNANDES, GABRIEL DA ROCHA; LATORRE'ESTIVALIS, JOSE MANUEL . ",
+                    "data_issn": "07394462",
+                    "DOI": "http://dx.doi.org/10.1002/arch.22106"
+                },
+                {
+                    "ano": "2024",
+                    "fator_impacto_jcr": "5.7",
+                    "ISSN": "22352988",
+                    "titulo": "Second booster dose improves antibody neutralization against BA.1, BA.5 and BQ.1.1 in individuals previously immunized with CoronaVac plus BNT162B2 booster protocol",
+                    "revista": "Frontiers in Cellular and Infection Microbiology",
+                    "autores": "CAMPOS, GUILHERME R. F.2024CAMPOS, GUILHERME R. F. ; ALMEIDA, NATHALIE BONATTI FRANCO ; FILGUEIRAS, PRISCILLA SOARES ; CORSINI, CAMILA AMORMINO ; GOMES, SARAH VIEIRA CONTIN ; DE MIRANDA, DANIEL ALVIM PENA ; DE ASSIS, J\u00c9SSICA VIEIRA ; SILVA, THA\u00cdS B\u00c1RBARA DE SOUZA ; ALVES, PEDRO AUGUSTO ;FERNANDES, GABRIEL DA ROCHA; DE OLIVEIRA, JAQUELLINE GERMANO ; RAHAL, PAULA ; GRENFELL, RAFAELLA FORTINI QUEIROZ ; NOGUEIRA, MAUR\u00cdCIO L. ",
+                    "data_issn": "22352988",
+                    "DOI": "http://dx.doi.org/10.3389/fcimb.2024.1371695"
+                },
+                {
+                    "ano": "2024",
+                    "fator_impacto_jcr": "5.7",
+                    "ISSN": "15565068",
+                    "titulo": "Coacervate Whey Protein and Galactooligosaccharide Ameliorate Colonic Inflammation and Alter Membrane Lipid Profile and Gut Microbiota Composition in Mice Fed a High Fat Diet",
+                    "revista": "SSRN Electronic Journal",
+                    "autores": "SUZUKI AMARAL, JULIANE2024SUZUKI AMARAL, JULIANE ; VASQUES ARA\u00daJO, TICIANA ; HILD AONO, ALEXANDRE ; MISSAE OYAMA, LILA ; MORAIS HONORATO DE SOUZA, GABRIEL INACIO ; BATISTA JUNIOR, MIGUEL LUIZ ; BENETTON NUNES HYPOLITO DOS SANTOS, KALTINAITIS ; CRISTIELE, RIBEIRO ; CUADROS-ORELLANA, SARA ;FERNANDES, GABRIEL  R.; MASSANOBU KUROSHU, REGINALDO ; G. CESPEDES, JULIANA ; ESPOSITO, ELISA . ",
+                    "data_issn": "15565068",
+                    "DOI": "http://dx.doi.org/10.2139/ssrn.4760109"
+                },
+                {
+                    "ano": "2024",
+                    "fator_impacto_jcr": "4.6",
+                    "ISSN": "20452322",
+                    "titulo": "Characterization of the gut bacterial and viral microbiota in latent autoimmune diabetes in adults",
+                    "revista": "Scientific Reports",
+                    "autores": "POULSEN, CASPER S.2024POULSEN, CASPER S. ; HESSE, DAN ;Fernandes, Gabriel R.; HANSEN, TUE H. ; KERN, TIMO ; LINNEBERG, ALLAN ; VAN ESPEN, LORE ; J\u00d8RGENSEN, TORBEN ; Nielsen, Trine ; ALIBEGOVIC, AMRA C. ; MATTHIJNSSENS, JELLE ; Pedersen, Oluf ; VESTERGAARD, HENRIK ; Hansen, Torben ; ANDERSEN, METTE K. ",
+                    "data_issn": "20452322",
+                    "DOI": "http://dx.doi.org/10.1038/s41598-024-58985-w"
+                },
+                {
+                    "ano": "2023",
+                    "fator_impacto_jcr": "5.9",
+                    "ISSN": "20726643",
+                    "titulo": "Red Meat Intake, Indole-3-Acetate, and Dorea longicatena Together Affect Insulin Resistance after Gastric Bypass",
+                    "revista": "Nutrients",
+                    "autores": "PRUD\u00caNCIO, ANA PAULA AGUIAR2023PRUD\u00caNCIO, ANA PAULA AGUIAR ; FONSECA, DANIELLE CRISTINA ; MACHADO, NATASHA MENDON\u00c7A ; ALVES, JULIANA TEPEDINO MARTINS ; SALA, PRISCILA ;Fernandes, Gabriel R.; TORRINHAS, RAQUEL SUSANA ; WAITZBERG, DAN LINETZKY . ",
+                    "data_issn": "20726643",
+                    "DOI": "http://dx.doi.org/10.3390/nu15051185"
+                },
+                {
+                    "ano": "2023",
+                    "fator_impacto_jcr": "4.7",
+                    "ISSN": "2309608X",
+                    "titulo": "Global Molecular Response of Paracoccidioides brasiliensis to Zinc Deprivation: Analyses at Transcript, Protein and MicroRNA Levels",
+                    "revista": "JOURNAL OF FUNGI",
+                    "autores": "MESQUITA, LORENA ALVES2023MESQUITA, LORENA ALVES ; BAIL\u00c3O, ALEXANDRE MELO ; DE CURCIO, JULIANA SANTANA ; DA SILVA, KASSYO LOBATO POTENCIANO ;DA ROCHA FERNANDES, GABRIEL; SILVA-BAIL\u00c3O, MIRELLE GARCIA ; NOVAES, EVANDRO ; DE ALMEIDA SOARES, C\u00c9LIA MARIA . ",
+                    "data_issn": "2309608X",
+                    "DOI": "http://dx.doi.org/10.3390/jof9030281"
+                },
+                {
+                    "ano": "2023",
+                    "fator_impacto_jcr": "4.6",
+                    "ISSN": "20452322",
+                    "titulo": "Bacteria, yeasts, and fungi associated with larval food of Brazilian native stingless bees",
+                    "revista": "Scientific Reports",
+                    "autores": "SANTOS, ANA CAROLINA COSTA2023SANTOS, ANA CAROLINA COSTA ; BORGES, LUIZA DINIZ FERREIRA ; ROCHA, NINA DIAS COELHO ; DE CARVALHO AZEVEDO, VASCO ARISTON ; BONETTI, ANA MARIA ; DOS SANTOS, ANDERSON RODRIGUES ;DA ROCHA FERNANDES, GABRIEL; DANTAS, RAQUEL CRISTINA CAVALCANTI ; UEIRA-VIEIRA, CARLOS . ",
+                    "data_issn": "20452322",
+                    "DOI": "http://dx.doi.org/10.1038/s41598-023-32298-w"
+                },
+                {
+                    "ano": "2023",
+                    "fator_impacto_jcr": "3.7",
+                    "ISSN": "19326203",
+                    "titulo": "Global characterization of gene expression in the brain of starved immature Rhodnius prolixus",
+                    "revista": "PLoS One",
+                    "autores": "NEVOA, JESSICA CORAIOLA2023NEVOA, JESSICA CORAIOLA ; LATORRE-ESTIVALIS, JOSE MANUEL ; PAIS, FABIANO SVIATOPOLK-MIRSKY ; MARLI\u00c9RE, NEWMAR PINTO ;FERNANDES, GABRIEL DA ROCHA; LORENZO, MARCELO GUSTAVO ; GUARNERI, ALESSANDRA APARECIDA . ",
+                    "data_issn": "19326203",
+                    "DOI": "http://dx.doi.org/10.1371/journal.pone.0282490"
+                },
+                {
+                    "ano": "2023",
+                    "fator_impacto_jcr": "5.4",
+                    "ISSN": "17417007",
+                    "titulo": "Egg-laying by female Aedes aegypti shapes the bacterial communities of breeding sites",
+                    "revista": "BMC BIOLOGY",
+                    "autores": "MOSQUERA, KATHERINE D.2023MOSQUERA, KATHERINE D. ; MART\u00cdNEZ VILLEGAS, LUIS EDUARDO ;ROCHA FERNANDES, GABRIEL; ROCHA DAVID, MARIANA ; MACIEL-DE-FREITAS, RAFAEL ; A. MOREIRA, LUCIANO ; LORENZO, MARCELO G. ",
+                    "data_issn": "17417007",
+                    "DOI": "http://dx.doi.org/10.1186/s12915-023-01605-2"
+                },
+                {
+                    "ano": "2023",
+                    "fator_impacto_jcr": "9.3",
+                    "ISSN": "17422094",
+                    "titulo": "Organotypic hippocampal culture model reveals differential responses to highly similar Zika virus isolates",
+                    "revista": "Journal of Neuroinflammation",
+                    "autores": "OLIVEIRA, MARINA DA SILVA2023OLIVEIRA, MARINA DA SILVA ; CASSIANO, LARISSA MARCELY GOMES ; PIOLINE, JEANNE ; DE CARVALHO, KETYLLEN REIS ANDRADE ; SALIM, ANNA CHRISTINA DE MATOS ; ALVES, PEDRO AUGUSTO ;FERNANDES, GABRIEL DA ROCHA; MACHADO, ALEXANDRE DE MAGALH\u00c3ES VIEIRA ; COIMBRA, RONEY SANTOS . ",
+                    "data_issn": "17422094",
+                    "DOI": "http://dx.doi.org/10.1186/s12974-023-02826-6"
+                },
+                {
+                    "ano": "2023",
+                    "fator_impacto_jcr": "2.0",
+                    "ISSN": "16789849",
+                    "titulo": "Rapid antigen test as a tool for the identification of SARS-CoV-2 infection and its potential as a self-testing device",
+                    "revista": "SOCIEDADE BRASILEIRA DE MEDICINA TROPICAL. REVISTA",
+                    "autores": "FILGUEIRAS, PRISCILLA SOARES2023FILGUEIRAS, PRISCILLA SOARES ; CORSINI, CAMILA AMORMINO ; ALMEIDA, NATHALIE BONATTI FRANCO ; PEDROSA, MARIA LUYSA CAMARGOS ; MIRANDA, DANIEL ALVIM PENA DE ; GOMES, SARAH VIEIRA CONTIN ; ASSIS, J\u00c9SSICA VIEIRA DE ; SILVA, RAPHAEL ANT\u00d4NIO ; MEDEIROS, MARIA IZABELLA VIEIRA DE ASSIS ROCHA CARVALHO DE ; LOUREN\u00c7O, ADELINA JUNIA ; BICALHO, CECILIA MARIA FLORENCIO ; VILELA, RAQUEL VIRGINIA ROCHA ; JEREMIAS, WANDER DE JESUS ;FERNANDES, GABRIEL DA ROCHA; QUEIROZ, RAFAELLA FORTINI GRENFELL E . ",
+                    "data_issn": "16789849",
+                    "DOI": "http://dx.doi.org/10.1590/0037-8682-0167-2022"
+                },
+                {
+                    "ano": "2023",
+                    "fator_impacto_jcr": "3.5",
+                    "ISSN": "03781119",
+                    "titulo": "Identification and characterization of microRNAs in Biomphalaria tenagophila and comparative analysis of their expression in Schistosoma mansoni-resistant and -susceptible snail populations",
+                    "revista": "GENE",
+                    "autores": "ALVES, TAMIRES CAIXETA2023ALVES, TAMIRES CAIXETA ; QUEIROZ, F\u00c1BIO RIBEIRO ; DE MELO NETO, ANGELO BORGES ;DA ROCHA FERNANDES, GABRIEL; PAIS, FABIANO SVIATOPOLK-MIRSKY ; DE JESUS JEREMIAS, WANDER ; BAB\u00c1, ELIO HIDEO ; DE MORAES MOUR\u00c3O, MARINA ; MORAIS, ENYARA REZENDE ; CABRAL, FERNANDA JANKU ; DO AMARAL, LAURENCE RODRIGUES ; CALDEIRA, ROBERTA LIMA ; ZECH COELHO, PAULO MARCOS ; DE SOUZA GOMES, MATHEUS . ",
+                    "data_issn": "03781119",
+                    "DOI": "http://dx.doi.org/10.1016/j.gene.2023.147742"
+                },
+                {
+                    "ano": "2023",
+                    "fator_impacto_jcr": "7.3",
+                    "ISSN": "16643224",
+                    "titulo": "Uncovering the neuroprotective effect of vitamin B12 in pneumococcal meningitis: insights into its pleiotropic mode of action at the transcriptional level",
+                    "revista": "Frontiers in Immunology",
+                    "autores": "CASSIANO, LARISSA MARCELY GOMES2023CASSIANO, LARISSA MARCELY GOMES ; OLIVEIRA, MARINA DA SILVA ; DE QUEIROZ, KARINA BARBOSA ; AMANCIO, ALICE MUGLIA THOMAZ DA SILVA ; SALIM, ANNA CHRISTINA DE MATOS ;FERNANDES, GABRIEL DA ROCHA; CARNEIRO, CL\u00c1UDIA MARTINS ; COIMBRA, RONEY SANTOS . ",
+                    "data_issn": "16643224",
+                    "DOI": "http://dx.doi.org/10.3389/fimmu.2023.1250055"
+                },
+                {
+                    "ano": "2023",
+                    "fator_impacto_jcr": "3.1",
+                    "ISSN": "16181905",
+                    "titulo": "Comparative metatranscriptome analysis of Brazilian milk and water kefir beverages",
+                    "revista": "International Microbiology",
+                    "autores": "RIOS, DIEGO LISBOA2023RIOS, DIEGO LISBOA ; DA SILVA, PATR\u00cdCIA COSTA LIMA ; MOURA, C\u00c9SAR SILVA SANTANA ; VILLANOEVA, CAMILA NAIR BATISTA COUTO ;DA ROCHA FERNANDES, GABRIEL; BENGOA, ANA AGUSTINA ; GARROTE, GRACIELA LILIANA ; ABRAHAM, ANAL\u00cdA GRACIELA ; NICOLI, JACQUES ROBERT ; NEUMANN, ELISABETH ; NUNES, \u00c1LVARO CANTINI . ",
+                    "data_issn": "16181905",
+                    "DOI": "http://dx.doi.org/10.1007/s10123-023-00431-4"
+                },
+                {
+                    "ano": "2023",
+                    "fator_impacto_jcr": "7.3",
+                    "ISSN": "16643224",
+                    "titulo": "Longitudinal study of humoral immunity against SARS-CoV-2 of health professionals in Brazil: the impact of booster dose and reinfection on antibody dynamics",
+                    "revista": "Frontiers in Immunology",
+                    "autores": "FRANCO-LUIZ, ANA PAULA MOREIRA2023FRANCO-LUIZ, ANA PAULA MOREIRA ; FERNANDES, NUBIA MONTEIRO GON\u00c7ALVES SOARES ; SILVA, THAIS B\u00c1RBARA DE SOUZA ; BERNARDES, WILMA PATR\u00cdCIA DE OLIVEIRA SANTOS ; WESTIN, MATEUS RODRIGUES ; SANTOS, THAIS GARCIA ;FERNANDES, GABRIEL DA ROCHA; SIM\u00d5ES, TAYN\u00c3NA C\u00c9SAR ; SILVA, EDUARDO FERNANDES E. ; GAVA, SANDRA GROSSI ; ALVES, BRENO MAGALH\u00c3ES ; DE CARVALHO MELO, MARIANA ; DA SILVA-PEREIRA, ROSIANE A. ; ALVES, PEDRO AUGUSTO ; FONSECA, CRISTINA TOSCANO . ",
+                    "data_issn": "16643224",
+                    "DOI": "http://dx.doi.org/10.3389/fimmu.2023.1220600"
+                },
+                {
+                    "ano": "2022",
+                    "fator_impacto_jcr": "5.8",
+                    "ISSN": "09441344",
+                    "titulo": "Effects of activated sludge and UV disinfection processes on the bacterial community and antibiotic resistance profile in a municipal wastewater treatment plant",
+                    "revista": "Environmental Science and Pollution Research",
+                    "autores": "DIAS, MARCELA FRAN\u00c7A2022DIAS, MARCELA FRAN\u00c7A ; LEROY-FREITAS, DEBORAH ; MACHADO, ELAYNE CRISTINA ; DA SILVA SANTOS, LETICIA ; LEAL, CINTIA DUTRA ;DA ROCHA FERNANDES, GABRIEL; DE ARA\u00daJO, JULIANA CAL\u00c1BRIA . ",
+                    "data_issn": "09441344",
+                    "DOI": "http://dx.doi.org/10.1007/s11356-022-18749-3"
+                },
+                {
+                    "ano": "2022",
+                    "fator_impacto_jcr": "3.8",
+                    "ISSN": "09651748",
+                    "titulo": "Changes in antennal gene expression underlying sensory system maturation in Rhodnius prolixus",
+                    "revista": "INSECT BIOCHEMISTRY AND MOLECULAR BIOLOGY",
+                    "autores": "LATORRE-ESTIVALIS, JOSE MANUEL2022LATORRE-ESTIVALIS, JOSE MANUEL ; GRO\u00dfE-WILDE, EWALD ;DA ROCHA FERNANDES, GABRIEL; HANSSON, BILL S. ; LORENZO, MARCELO GUSTAVO . ",
+                    "data_issn": "09651748",
+                    "DOI": "http://dx.doi.org/10.1016/j.ibmb.2021.103704"
+                },
+                {
+                    "ano": "2022",
+                    "fator_impacto_jcr": "2.3",
+                    "ISSN": "10759964",
+                    "titulo": "Methotrexate promotes recovery of arthritis-induced alveolar bone loss and modifies the composition of the oral-gut microbiota",
+                    "revista": "ANAEROBE",
+                    "autores": "ALMEIDA DE ARRUDA, JOS\u00c9 ALCIDES2022ALMEIDA DE ARRUDA, JOS\u00c9 ALCIDES ; CORR\u00caA, J\u00d4ICE DIAS ; SINGH, YOUVIKA ; OLIVEIRA, SIC\u00cdLIA REZENDE ; MACHADO, CAIO CAVALCANTE ; SCHNEIDER, AYDA HENRIQUES ; MEDEIROS, JULLIANE DUTRA ;Fernandes, Gabriel R.; MACARI, SORAIA ; BARRIONI, BRENO ROCHA ; DE SOUZA SANTOS, MARIANA ; DUFFLES, LET\u00cdCIA FERNANDA ; IMOTO NAKAYA, HELDER TAKASHI ; FUKADA, SANDRA YASUYO ; GRAVES, DANA T. ; CUNHA, FERNANDO QUEIROZ ; SILVA, TARC\u00cdLIA APARECIDA . ",
+                    "data_issn": "10759964",
+                    "DOI": "http://dx.doi.org/10.1016/j.anaerobe.2022.102577"
+                },
+                {
+                    "ano": "2022",
+                    "fator_impacto_jcr": "2.2",
+                    "ISSN": "00359203",
+                    "titulo": "Long COVID-19 syndrome: a 14-months longitudinal study during the two first epidemic peaks in Southeast Brazil",
+                    "revista": "TRANSACTIONS OF THE ROYAL SOCIETY OF TROPICAL MEDICINE AND HYGIENE",
+                    "autores": "DE MIRANDA, DANIEL A P2022DE MIRANDA, DANIEL A P ; GOMES, SARAH V C ; FILGUEIRAS, PRISCILLA S ; CORSINI, CAMILA A ; ALMEIDA, NATHALIE B F ; SILVA, RAPHAEL A ; MEDEIROS, MARIA IZABELLA V A R C ; VILELA, RAQUEL V R ;FERNANDES, GABRIEL R; GRENFELL, RAFAELLA F Q . ",
+                    "data_issn": "00359203",
+                    "DOI": "http://dx.doi.org/10.1093/trstmh/trac030"
+                },
+                {
+                    "ano": "2022",
+                    "fator_impacto_jcr": "2.2",
+                    "ISSN": "26442906",
+                    "titulo": "COVID-19 Rapid Antigen Test at Hospital Admission Associated to the Knowledge of Individual Risk Factors Allow Overcoming the Difficulty of Managing Suspected Patients in Hospitals",
+                    "revista": "Fortune Journal of Health Sciences",
+                    "autores": "S FILGUEIRAS, PRISCILLA2022S FILGUEIRAS, PRISCILLA ; A CORSINI, CAMILA ; BF ALMEIDA, NATHALIE ; V ASSIS, JESSICA ; LUYSA C PEDROSA, MARIA ; AP DE MIRANDA, DANIEL ; GOMES, SARAH VC ; SILVA, RAPHAEL A ; IZABELLA VARC MEDEIROS, MARIA ; LOUREN\u00c7O, ADELINA J ; MF BICALHO, CEC\u00cdLIA ; VR VILELA, RAQUEL ;R FERNANDES, GABRIEL; FQ GRENFELL, RAFAELLA . ",
+                    "data_issn": "26442906",
+                    "DOI": "http://dx.doi.org/10.26502/fjhs.055"
+                },
+                {
+                    "ano": "2022",
+                    "fator_impacto_jcr": "5.7",
+                    "ISSN": "22352988",
+                    "titulo": "Associations of Blautia Genus With Early-Life Events and Later Phenotype in the NutriHS",
+                    "revista": "Frontiers in Cellular and Infection Microbiology",
+                    "autores": "FREITAS, RENATA G. BORGES DE OLIVEIRA NASCIMENTO2022FREITAS, RENATA G. BORGES DE OLIVEIRA NASCIMENTO ; VASQUES, ANA CAROLINA J. ;FERNANDES, GABRIEL DA ROCHA; RIBEIRO, FRANCIELI B. ; SOLAR, ISABELA ; BARBOSA, MARINA G. ; PITITTO, BIANCA DE ALMEIDA- ; GELONEZE, BRUNO ; FERREIRA, SANDRA ROBERTA G. ",
+                    "data_issn": "22352988",
+                    "DOI": "http://dx.doi.org/10.3389/fcimb.2022.838750"
+                },
+                {
+                    "ano": "2022",
+                    "fator_impacto_jcr": "9.5",
+                    "ISSN": "14675463",
+                    "titulo": "Evaluating hierarchical machine learning approaches to classify biological databases",
+                    "revista": "BRIEFINGS IN BIOINFORMATICS",
+                    "autores": "REZENDE, P\u00c2MELA M2022REZENDE, P\u00c2MELA M ; XAVIER, JOICYMARA S ; ASCHER, DAVID B ;FERNANDES, GABRIEL R; PIRES, DOUGLAS E V . ",
+                    "data_issn": "14675463",
+                    "DOI": "http://dx.doi.org/10.1093/bib/bbac216"
+                },
+                {
+                    "ano": "2022",
+                    "fator_impacto_jcr": "",
+                    "ISSN": "2730664X",
+                    "titulo": "Booster dose of BNT162b2 after two doses of CoronaVac improves neutralization of SARS-CoV-2 Omicron variant",
+                    "revista": "Communications Medicine",
+                    "autores": "CAMPOS, GUILHERME R. F.2022CAMPOS, GUILHERME R. F. ; ALMEIDA, NATHALIE BONATTI FRANCO ; FILGUEIRAS, PRISCILLA SOARES ; CORSINI, CAMILA AMORMINO ; GOMES, SARAH VIEIRA CONTIN ; DE MIRANDA, DANIEL ALVIM PENA ; DE ASSIS, J\u00c9SSICA VIEIRA ; DE SOUZA SILVA, THA\u00cdS B\u00c1RBARA ; ALVES, PEDRO AUGUSTO ;DA ROCHA FERNANDES, GABRIEL; DE OLIVEIRA, JAQUELLINE GERMANO ; RAHAL, PAULA ; GRENFELL, RAFAELLA FORTINI QUEIROZ ; NOGUEIRA, MAUR\u00cdCIO L. ",
+                    "data_issn": "2730664X",
+                    "DOI": "http://dx.doi.org/10.1038/s43856-022-00141-4"
+                },
+                {
+                    "ano": "2022",
+                    "fator_impacto_jcr": "3.8",
+                    "ISSN": "19352735",
+                    "titulo": "Transcriptomic modulation in response to an intoxication with deltamethrin in a population of Triatoma infestans with low resistance to pyrethroids",
+                    "revista": "PLoS Neglected Tropical Diseases",
+                    "autores": "TRAVERSO, LUCILA2022TRAVERSO, LUCILA ; LATORRE ESTIVALIS, JOSE MANUEL ;DA ROCHA FERNANDES, GABRIEL; FRONZA, GEORGINA ; LOBBIA, PATRICIA ; MOUGABURE CUETO, GAST\u00d3N ; ONS, SHEILA . ",
+                    "data_issn": "19352735",
+                    "DOI": "http://dx.doi.org/10.1371/journal.pntd.0010060"
+                },
+                {
+                    "ano": "2022",
+                    "fator_impacto_jcr": "4.1",
+                    "ISSN": "22181989",
+                    "titulo": "Gut Microbiota across Normal Gestation and Gestational Diabetes Mellitus: A Cohort Analysis",
+                    "revista": "METABOLITES",
+                    "autores": "DUALIB, PATRICIA M.2022DUALIB, PATRICIA M. ; TADDEI, CARLA R. ;FERNANDES, GABRIEL; CARVALHO, CAMILA R. S. ; SPARVOLI, LUIZ GUSTAVO ; SILVA, ISIS T. ; MATTAR, ROSIANE ; FERREIRA, SANDRA R. G. ; DIB, SERGIO A. ; ALMEIDA-PITITTO, BIANCA DE . ",
+                    "data_issn": "22181989",
+                    "DOI": "http://dx.doi.org/10.3390/metabo12090796"
+                },
+                {
+                    "ano": "2022",
+                    "fator_impacto_jcr": "4.7",
+                    "ISSN": "09543007",
+                    "titulo": "Gestational weight gain and visceral adiposity in adult offspring: Is there a link with the fecal abundance of Acidaminococcus genus?",
+                    "revista": "EUROPEAN JOURNAL OF CLINICAL NUTRITION",
+                    "autores": "FREITAS, R G B O N2022FREITAS, R G B O N ; VASQUES, A C J ;FERNANDES, G R; RIBEIRO, F B ; SOLAR, I ; BARBOSA, M G ; ALMEIDA-PITITTO, B ; GELONEZE, B ; FERREIRA, S R G . ",
+                    "data_issn": "09543007",
+                    "DOI": "http://dx.doi.org/10.1038/s41430-022-01182-7"
+                },
+                {
+                    "ano": "2022",
+                    "fator_impacto_jcr": "3.9",
+                    "ISSN": "2296858X",
+                    "titulo": "Molecular characterization of a new SARS-CoV-2 recombinant cluster XAG identified in Brazil",
+                    "revista": "FRONTIERS IN MEDICINE",
+                    "autores": "SILVA, THA\u00cdS DE SOUZA2022SILVA, THA\u00cdS DE SOUZA ; SALVATO, RICHARD STEINER ; GREGIANINI, TATIANA SCH\u00c4FFER ; GOMES, IGHOR ARANTES ; PEREIRA, ELISA CAVALCANTE ; DE OLIVEIRA, ENEIDA ; DE MENEZES, ANDR\u00c9 LUIZ ; BARCELLOS, REGINA BONES ; GODINHO, FERNANDA MARQUES ; RIEDIGER, IRINA ; DEBUR, MARIA DO CARMO ; DE OLIVEIRA, CRISTINA MENDES ; RIBEIRO-RODRIGUES, RODRIGO ; MIYAJIMA, FABIO ; DIAS, FERNANDO STEHLING ; ABBUD, ADRIANO ; MONTE-NETO, RUBENS DO ; CALZAVARA-SILVA, CARLOS EDUARDO ; SIQUEIRA, MARILDA MENDON\u00c7A ;FERNANDES, G. R.. ",
+                    "data_issn": "2296858X",
+                    "DOI": "http://dx.doi.org/10.3389/fmed.2022.1008600"
+                },
+                {
+                    "ano": "2022",
+                    "fator_impacto_jcr": "1.7",
+                    "ISSN": "23593997",
+                    "titulo": "Are studies of human gut microbiome the new fad following the SNP mainstream?",
+                    "revista": "Archives of Endocrinology Metabolism",
+                    "autores": "VIVOLO, SANDRA ROBERTA FERREIRA2022VIVOLO, SANDRA ROBERTA FERREIRA ;FERNANDES, GABRIEL DA ROCHA. ",
+                    "data_issn": "23593997",
+                    "DOI": "http://dx.doi.org/10.20945/2359-3997000000568"
+                },
+                {
+                    "ano": "2021",
+                    "fator_impacto_jcr": "6.0",
+                    "ISSN": "00236438",
+                    "titulo": "Microbiome of industrialized Minas Frescal Cheese reveals high prevalence of putative bacteria: A concern in the One Health context",
+                    "revista": "LWT-FOOD SCIENCE AND TECHNOLOGY",
+                    "autores": "DE PAULA, A.C.L.2021DE PAULA, A.C.L. ; MEDEIROS, JULLIANE DUTRA ;Fernandes, G.R.; DA SILVA, V.L. ; DINIZ, CL\u00c1UDIO GALUPPO . ",
+                    "data_issn": "00236438",
+                    "DOI": "http://dx.doi.org/10.1016/j.lwt.2020.110791"
+                },
+                {
+                    "ano": "2021",
+                    "fator_impacto_jcr": "",
+                    "ISSN": "19805497",
+                    "titulo": "Fatores associados ao adoecimento por hansen\u00edase em contatos: revis\u00e3o sistem\u00e1tica e metan\u00e1lise",
+                    "revista": "REVISTA BRASILEIRA DE EPIDEMIOLOGIA",
+                    "autores": "NIITSUMA, EYLEEN NABYLA ALVARENGA2021NIITSUMA, EYLEEN NABYLA ALVARENGA ; BUENO, ISABELA DE CAUX ; ARANTES, ELIS OLIVEIRA ; CARVALHO, ANA PAULA MENDES ; XAVIER JUNIOR, GESNER FRANCISCO ;FERNANDES, GABRIEL DA ROCHA; LANA, FRANCISCO CARLOS F\u00c9LIX . ",
+                    "data_issn": "19805497",
+                    "DOI": "http://dx.doi.org/10.1590/1980-549720210039"
+                },
+                {
+                    "ano": "2020",
+                    "fator_impacto_jcr": "12.8",
+                    "ISSN": "00431354",
+                    "titulo": "Exploring the resistome, virulome and microbiome of drinking water in environmental and clinical settings",
+                    "revista": "WATER RESEARCH",
+                    "autores": "DIAS, MARCELA FRAN\u00c7A2020DIAS, MARCELA FRAN\u00c7A ;DA ROCHA FERNANDES, GABRIEL; CRISTINA DE PAIVA, MAGNA ; CHRISTINA DE MATOS SALIM, ANNA ; SANTOS, ALEXANDRE BUENO ; AMARAL NASCIMENTO, ANDR\u00c9A MARIA . ",
+                    "data_issn": "00431354",
+                    "DOI": "http://dx.doi.org/10.1016/j.watres.2020.115630"
+                },
+                {
+                    "ano": "2020",
+                    "fator_impacto_jcr": "3.6",
+                    "ISSN": "1432184X",
+                    "titulo": "Soil Acidobacteria Strain AB23 Resistance to Oxidative Stress Through Production of Carotenoids",
+                    "revista": "MICROBIAL ECOLOGY (ONLINE)",
+                    "autores": "PINTO, OT\u00c1VIO HENRIQUE BEZERRA2020PINTO, OT\u00c1VIO HENRIQUE BEZERRA ; COSTA, FL\u00c1VIO SILVA ; RODRIGUES, GISELE REGINA ; DA COSTA, ROSIANE ANDRADE ;DA ROCHA FERNANDES, GABRIEL; J\u00daNIOR, OSMINDO RODRIGUES PIRES ; BARRETO, CRISTINE CHAVES . ",
+                    "data_issn": "1432184X",
+                    "DOI": "http://dx.doi.org/10.1007/s00248-020-01548-z"
+                },
+                {
+                    "ano": "2020",
+                    "fator_impacto_jcr": "7.6",
+                    "ISSN": "0893133X",
+                    "titulo": "Maternal dietary omega-3 deficiency worsens the deleterious effects of prenatal inflammation on the gut-brain axis in the offspring across lifetime",
+                    "revista": "NEUROPSYCHOPHARMACOLOGY",
+                    "autores": "LEYROLLE, Q.2020LEYROLLE, Q. ; DECOEUR, F. ; BRIERE, G. ; AMADIEU, C. ; QUADROS, A. R. A. A. ; VOYTYUK, I. ; LACABANNE, C. ; BENMAMAR-BADEL, A. ; BOUREL, J. ; AUBERT, A. ; SERE, A. ; CHAIN, F. ; SCHWENDIMANN, L. ; MATROT, B. ; BOURGEOIS, T. ; GR\u00c9GOIRE, S. ; LEBLANC, J. G. ; DE MORENO DE LEBLANC, A. ; LANGELLA, P. ;FERNANDES, G. R.. ",
+                    "data_issn": "0893133X",
+                    "DOI": "http://dx.doi.org/10.1038/s41386-020-00793-7"
+                },
+                {
+                    "ano": "2020",
+                    "fator_impacto_jcr": "12.2",
+                    "ISSN": "19490984",
+                    "titulo": "Prophylactic treatment prevents the acute breakdown of colonic epithelial barrier in a preclinical model of pelvic radiation disease",
+                    "revista": "Gut Microbes",
+                    "autores": "LAPIERE, ALEXIA2020LAPIERE, ALEXIA ; GEIGER, MALLIA ; ROBERT, V\u00c9RONIQUE ; DEMARQUAY, CHRISTELLE ; AUGER, SANDRINE ; CHADI, SEAD ; BENADJAOUD, MOHAMEDAMINE ;FERNANDES, GABRIEL; MILLIAT, FABIEN ; LANGELLA, PHILIPPE ; BENDERITTER, MARC ; CHATEL, JEAN-MARC ; S\u00c9MONT, ALEXANDRA . ",
+                    "data_issn": "19490984",
+                    "DOI": "http://dx.doi.org/10.1080/19490976.2020.1812867"
+                },
+                {
+                    "ano": "2020",
+                    "fator_impacto_jcr": "2.1",
+                    "ISSN": "15746968",
+                    "titulo": "Unraveling the xylanolytic potential of Acidobacteria bacterium AB60 from Cerrado soils",
+                    "revista": "FEMS Microbiology Letters",
+                    "autores": "RODRIGUES, GISELE REGINA2020RODRIGUES, GISELE REGINA ; PINTO, OT\u00c1VIO HENRIQUE BEZERRA ; SCHROEDER, LU\u00cdS FELIPE ;FERNANDES, GABRIEL DA ROCHA; COSTA, OHANA YONARA ASSIS ; QUIRINO, BETANIA FERRAZ ; KURAMAE, EIKO EURYA ; BARRETO, CRISTINE CHAVES . ",
+                    "data_issn": "15746968",
+                    "DOI": "http://dx.doi.org/10.1093/femsle/fnaa149"
+                },
+                {
+                    "ano": "2020",
+                    "fator_impacto_jcr": "4.7",
+                    "ISSN": "19994915",
+                    "titulo": "Gene Expression Signatures in AML-12 Hepatocyte Cells upon Dengue virus Infection and Acetaminophen Treatment",
+                    "revista": "Viruses-Basel",
+                    "autores": "FERREIRA, JORGE G. G.2020FERREIRA, JORGE G. G. ; GAVA, SANDRA G. ; OLIVEIRA, ENEIDA S. ; BATISTA, IZABELLA C. A. ;FERNANDES, GABRIEL DA R.; MOUR\u00c3O, MARINA M. ; CALZAVARA-SILVA, CARLOS E. ",
+                    "data_issn": "19994915",
+                    "DOI": "http://dx.doi.org/10.3390/v12111284"
+                },
+                {
+                    "ano": "2020",
+                    "fator_impacto_jcr": "5.4",
+                    "ISSN": "18762891",
+                    "titulo": "Beneficial effects resulting from oral administration of Nissle 1917 on a chronic colitis model",
+                    "revista": "BENEFICIAL MICROBES",
+                    "autores": "SOUZA, E.L.S.2020SOUZA, E.L.S. ; CAMPOS, C.L.V. ; REIS, D.C. ; CASSALI, G.D. ; GENEROSO, S.V. ; CARDOSO, V.N. ; AZEVEDO, V. ; MEDEIROS, J.D. ;Fernandes, G.R.; NICOLI, J.R. ; MARTINS, F.S. ",
+                    "data_issn": "18762891",
+                    "DOI": "http://dx.doi.org/10.3920/BM2020.0045"
+                },
+                {
+                    "ano": "2019",
+                    "fator_impacto_jcr": "4.6",
+                    "ISSN": "20452322",
+                    "titulo": "Oral microbial dysbiosis linked to worsened periodontal condition in rheumatoid arthritis patients",
+                    "revista": "Scientific Reports",
+                    "autores": "CORR\u00caA, J\u00d4ICE DIAS2019CORR\u00caA, J\u00d4ICE DIAS ;Fernandes, Gabriel R.; CALDERARO, D\u00c9BORA CERQUEIRA ; MENDON\u00c7A, SANTUZA MARIA SOUZA ; SILVA, JANINE MAYRA ; ALBIERO, MAYRA LAINO ; CUNHA, FERNANDO Q. ; XIAO, E. ; FERREIRA, GILDA APARECIDA ; TEIXEIRA, ANT\u00d4NIO L\u00daCIO ; MUKHERJEE, CHIRANJIT ; LEYS, EUGENE J. ; SILVA, TARC\u00cdLIA APARECIDA ; GRAVES, DANA T. ",
+                    "data_issn": "20452322",
+                    "DOI": "http://dx.doi.org/10.1038/s41598-019-44674-6"
+                },
+                {
+                    "ano": "2019",
+                    "fator_impacto_jcr": "5.1",
+                    "ISSN": "14622920",
+                    "titulo": "Oral delivery of Pancreatitis-Associated Protein by Lactococcus lactis</i> displays protective effects in DNBS-induced colitis model and is able to modulate the composition of the microbiota",
+                    "revista": "Environmental Microbiology",
+                    "autores": "BREYNER, NATALIA M2019BREYNER, NATALIA M ; BOAS, PRISCILLA BAGANO VILAS ;FERNANDES, GABRIEL; CARVALHO, RODRIGO D ; ROCHAT, TATIANA ; MICHEL, MARIE'LAURE ; CHAIN, FLORIAN ; SOKOL, HARRY ; AZEVEDO, MARCELA ; MYIOSHI, ANDERSON ; AZEVEDO, VASCO A. ; LANGELLA, PHILIPPE ; BERM\u00daDEZ'HUMAR\u00c1N, LUIS G. ; CHATEL, JEAN'MARC . Oral delivery of Pancreatitis-Associated Protein by Lactococcus lactis displays protective effects in DNBS-induced colitis model and is able to modulate the composition of the microbiota. Environmental Microbiology, v. 1, p. 1, 2019.Cita\u00e7\u00f5es:10|10",
+                    "data_issn": "14622920",
+                    "DOI": "http://dx.doi.org/10.1111/1462-2920.14748"
+                },
+                {
+                    "ano": "2019",
+                    "fator_impacto_jcr": "5.3",
+                    "ISSN": "15824934",
+                    "titulo": "Staphylococcus epidermidis</i> role in the skin microenvironment",
+                    "revista": "JOURNAL OF CELLULAR AND MOLECULAR MEDICINE",
+                    "autores": "LEONEL, CAROLINE2019LEONEL, CAROLINE ; SENA, ISADORA F. G. ; SILVA, WALISON N. ; PRAZERES, PEDRO H. D. M. ;Fernandes, Gabriel R.; MANCHA AGRESTI, PAMELA ; MARTINS DRUMOND, MARIANA ; MINTZ, AKIVA ; AZEVEDO, VASCO A. C. ; BIRBRAIR, ALEXANDER . Staphylococcus epidermidis role in the skin microenvironment. JOURNAL OF CELLULAR AND MOLECULAR MEDICINE, v. 1, p. 1, 2019.Cita\u00e7\u00f5es:22|23",
+                    "data_issn": "15824934",
+                    "DOI": "http://dx.doi.org/10.1111/jcmm.14415"
+                },
+                {
+                    "ano": "2019",
+                    "fator_impacto_jcr": "4.9",
+                    "ISSN": "1365294X",
+                    "titulo": "Genomic signatures and co-occurrence patterns of the ultra-small Saccharimonadia ( <scp>CPR</scp> /Patescibacteria phylum) suggest a symbiotic lifestyle",
+                    "revista": "Molecular Ecology",
+                    "autores": "LEMOS, LEANDRO N.2019LEMOS, LEANDRO N. ; MEDEIROS, JULLIANE D. ; DINI'ANDREOTE, FRANCISCO ;Fernandes, Gabriel R.; VARANI, ALESSANDRO M. ; OLIVEIRA, GUILHERME ; PYLRO, VICTOR S. Genomic signatures and co-occurrence patterns of the ultra-small Saccharimonadia (CPR/Patescibacteria phylum) suggest a symbiotic lifestyle. Molecular Ecology, v. 1, p. 1, 2019.Cita\u00e7\u00f5es:62|58",
+                    "data_issn": "1365294X",
+                    "DOI": "http://dx.doi.org/10.1111/mec.15208"
+                },
+                {
+                    "ano": "2018",
+                    "fator_impacto_jcr": "2.9",
+                    "ISSN": "23144378",
+                    "titulo": "Insights into the Genome Sequence of Chromobacterium amazonense</i> Isolated from a Tropical Freshwater Lake",
+                    "revista": "INTERNATIONAL JOURNAL OF GENOMICS (ONLINE)",
+                    "autores": "SANTOS, ALEXANDRE BUENO2018SANTOS, ALEXANDRE BUENO ; COSTA, PATR\u00cdCIA SILVA ; DO CARMO, ANDERSON OLIVEIRA ;DA ROCHA FERNANDES, GABRIEL; SCHOLTE, LARISSA LOPES SILVA ; RUIZ, JERONIMO ; KALAPOTHAKIS, EVANGUEDES ; CHARTONE-SOUZA, EDMAR ; NASCIMENTO, ANDR\u00c9A MARIA AMARAL . Insights into the Genome Sequence of Chromobacterium amazonense Isolated from a Tropical Freshwater Lake. INTERNATIONAL JOURNAL OF GENOMICS (ONLINE), v. 2018, p. 1-10, 2018.Cita\u00e7\u00f5es:4|4",
+                    "data_issn": "23144378",
+                    "DOI": "http://dx.doi.org/10.1155/2018/1062716"
+                },
+                {
+                    "ano": "2018",
+                    "fator_impacto_jcr": "25.7",
+                    "ISSN": "01688278",
+                    "titulo": "Immune and Metabolic Shifts During Neonatal Development Reprogram Liver Identity and Function",
+                    "revista": "JOURNAL OF HEPATOLOGY",
+                    "autores": "NAKAGAKI, BRENDA NAEMI2018NAKAGAKI, BRENDA NAEMI ; MAFRA, KASSIANA ; DE CARVALHO, \u00c9RIKA ; LOPES, MATEUS EUST\u00c1QUIO ; CARVALHO-GONTIJO, RAQUEL ; DE CASTRO OLIVEIRA, HORT\u00caNCIA MACIEL ; HENRIQUE CAMPOLINA-SILVA, GABRIEL ; DE MIRANDA, CAMILA DUTRA MOREIRA ; ANTUNES, MA\u00cdSA MOTA ; SILVA, ANA CAROLINA CARVALHO ; DINIZ, ARIANE BARROS ; ALVARENGA, D\u00c9BORA MOREIRA ; FREITAS LOPES, MARIA ALICE ; DE SOUZA LACERDA, VIVIANE APARECIDA ; MATTOS, MATHEUS SILV\u00c9RIO ; ARA\u00daJO, ALAN MOREIRA ; VIDIGAL, PAULA VIEIRA TEIXEIRA ; LIMA, CRISTIANO XAVIER ; MAHECHA, GERM\u00c1N A.B. ;FERNANDES, G. R.. ",
+                    "data_issn": "01688278",
+                    "DOI": "http://dx.doi.org/10.1016/j.jhep.2018.08.018"
+                },
+                {
+                    "ano": "2018",
+                    "fator_impacto_jcr": "2.8",
+                    "ISSN": "13500872",
+                    "titulo": "Comparative transcriptome analyses of magainin I-susceptible and -resistant Escherichia coli strains",
+                    "revista": "MICROBIOLOGY-SGM",
+                    "autores": "CARDOSO, MARLON H.2018CARDOSO, MARLON H. ; DE ALMEIDA, KEYLA C. ; C\u00c2NDIDO, ELIZABETE S. ;FERNANDES, GABRIEL DA R.; DIAS, SIMONI C. ; DE ALENCAR, S\u00c9RGIO A. ; FRANCO, OCT\u00c1VIO L. ",
+                    "data_issn": "13500872",
+                    "DOI": "http://dx.doi.org/10.1099/mic.0.000725"
+                },
+                {
+                    "ano": "2018",
+                    "fator_impacto_jcr": "3.7",
+                    "ISSN": "19326203",
+                    "titulo": "The TLR1 gene is associated with higher protection from leprosy in women",
+                    "revista": "PLoS One",
+                    "autores": "ALVARENGA NIITSUMA, EYLEEN NABYLA2018ALVARENGA NIITSUMA, EYLEEN NABYLA ;FERNANDES, GABRIEL DA ROCHA; LANA, FRANCISCO CARLOS F\u00c9LIX . ",
+                    "data_issn": "19326203",
+                    "DOI": "http://dx.doi.org/10.1371/journal.pone.0205234"
+                },
+                {
+                    "ano": "2018",
+                    "fator_impacto_jcr": "4.6",
+                    "ISSN": "20452322",
+                    "titulo": "Gut microbiome modulation during treatment of mucositis with the dairy bacterium Lactococcus lactis and recombinant strain secreting human antimicrobial PAP",
+                    "revista": "Scientific Reports",
+                    "autores": "CARVALHO, RODRIGO2018CARVALHO, RODRIGO ; VAZ, ALINE ; PEREIRA, FELIPE LUIZ ; DORELLA, FERNANDA ; AGUIAR, ERIC ; CHATEL, JEAN-MARC ; BERMUDEZ, LUIS ; LANGELLA, PHILIPPE ;FERNANDES, GABRIEL; FIGUEIREDO, HENRIQUE ; GOES-NETO, ARIST\u00d3TELES ; AZEVEDO, VASCO . ",
+                    "data_issn": "20452322",
+                    "DOI": "http://dx.doi.org/10.1038/s41598-018-33469-w"
+                },
+                {
+                    "ano": "2017",
+                    "fator_impacto_jcr": "9.8",
+                    "ISSN": "00260495",
+                    "titulo": "Gut microbiota interactions with the immunomodulatory role of vitamin D in normal individuals",
+                    "revista": "Metabolism, Clinical and Experimental (Print)",
+                    "autores": "LUTHOLD, RENATA V.2017LUTHOLD, RENATA V. ;Fernandes, Gabriel R.; DE MORAES, ANA CAROLINA FRANCO ; FOLCHETTI, LUCIANA G.D. ; FERREIRA, SANDRA ROBERTA G. ",
+                    "data_issn": "00260495",
+                    "DOI": "http://dx.doi.org/10.1016/j.metabol.2017.01.007"
+                },
+                {
+                    "ano": "2017",
+                    "fator_impacto_jcr": "5.7",
+                    "ISSN": "22352988",
+                    "titulo": "Enterotype May Drive the Dietary-Associated Cardiometabolic Risk Factors",
+                    "revista": "Frontiers in Cellular and Infection Microbiology",
+                    "autores": "DE MORAES, ANA C. F.2017DE MORAES, ANA C. F. ;Fernandes, Gabriel R.; DA SILVA, ISIS T. ; ALMEIDA-PITITTO, BIANCA ; GOMES, EVERTON P. ; PEREIRA, ALEXANDRE DA COSTA ; FERREIRA, SANDRA R. G. ",
+                    "data_issn": "22352988",
+                    "DOI": "http://dx.doi.org/10.3389/fcimb.2017.00047"
+                },
+                {
+                    "ano": "2017",
+                    "fator_impacto_jcr": "15.5",
+                    "ISSN": "20492618",
+                    "titulo": "Subgingival microbiota dysbiosis in systemic lupus erythematosus: association with periodontal status",
+                    "revista": "Microbiome",
+                    "autores": "CORR\u00caA, J\u00d4ICE DIAS2017CORR\u00caA, J\u00d4ICE DIAS ; CALDERARO, D\u00c9BORA CERQUEIRA ; FERREIRA, GILDA APARECIDA ; MENDON\u00c7A, SANTUZA MARIA SOUZA ;Fernandes, Gabriel R.; XIAO, E. ; TEIXEIRA, ANT\u00d4NIO L\u00daCIO ; LEYS, EUGENE J. ; GRAVES, DANA T. ; SILVA, TARC\u00cdLIA APARECIDA . ",
+                    "data_issn": "20492618",
+                    "DOI": "http://dx.doi.org/10.1186/s40168-017-0252-z"
+                },
+                {
+                    "ano": "2017",
+                    "fator_impacto_jcr": "3.7",
+                    "ISSN": "19326203",
+                    "titulo": "Inositol 1, 4, 5-trisphosphate-dependent nuclear calcium signals regulate angiogenesis and cell motility in triple negative breast cancer",
+                    "revista": "PLoS ONE (Electronic)",
+                    "autores": "GUIMAR\u00c3ES, ERIKA2017GUIMAR\u00c3ES, ERIKA ; MACHADO, RODRIGO ; FONSECA, MATHEUS DE CASTRO ; FRAN\u00c7A, ANDRESSA ; CARVALHO, CLARISSA ; ARA\u00daJO E SILVA, ANA C\u00c2NDIDA ; ALMEIDA, BR\u00cdGIDA ; CASSINI, PUEBLA ; HISSA, B\u00c1RBARA ; DRUMOND, LUCIANA ; GON\u00c7ALVES, CARLOS ;FERNANDES, GABRIEL; DE BROT, MARINA ; MORAES, M\u00c1RCIO ; BARCELOS, LUC\u00cdOLA ; ORTEGA, JOS\u00c9 MIGUEL ; OLIVEIRA, ANDR\u00c9 ; LEITE, M. F\u00c1TIMA . ",
+                    "data_issn": "19326203",
+                    "DOI": "http://dx.doi.org/10.1371/journal.pone.0175041"
+                },
+                {
+                    "ano": "2017",
+                    "fator_impacto_jcr": "5.2",
+                    "ISSN": "21505594",
+                    "titulo": "presents metabolic reprogramming and secretes a serine proteinase during murine infection",
+                    "revista": "Virulence",
+                    "autores": "LACERDA PIGOSSO, LAURINE2017LACERDA PIGOSSO, LAURINE ; BAEZA, LILIAN CRISTIANE ; VIEIRA TOMAZETT, MARIANA ; BATISTA RODRIGUES FALEIRO, MARIANA ; BRIANEZI DIGNANI DE MOURA, VERIDIANA MARIA ; MELO BAIL\u00c3O, ALEXANDRE ; BORGES, CLAYTON LUIZ ; ALVES PARENTE ROCHA, JULIANA ;ROCHA FERNANDES, GABRIEL; GAUTHIER, GREGORY M. ; SOARES, CELIA MARIA DE ALMEIDA . ",
+                    "data_issn": "21505594",
+                    "DOI": "http://dx.doi.org/10.1080/21505594.2017.1355660"
+                },
+                {
+                    "ano": "2017",
+                    "fator_impacto_jcr": "13.6",
+                    "ISSN": "23752548",
+                    "titulo": "Genome-wide signatures of complex introgression and adaptive evolution in the big cats",
+                    "revista": "SCIENCE ADVANCES",
+                    "autores": "FIGUEIR\u00d3, HENRIQUE V.2017FIGUEIR\u00d3, HENRIQUE V. ; LI, GANG ; TRINDADE, FERNANDA J. ; ASSIS, JULIANA ; PAIS, FABIANO ;FERNANDES, GABRIEL; SANTOS, SARAH H. D. ; HUGHES, GRAHAM M. ; KOMISSAROV, ALEKSEY ; ANTUNES, AGOSTINHO ; TRINCA, CRISTINE S. ; RODRIGUES, MA\u00cdRA R. ; LINDEROTH, TYLER ; BI, KE ; SILVEIRA, LEANDRO ; AZEVEDO, FERNANDO C. C. ; KANTEK, DANIEL ; RAMALHO, EMILIANO ; BRASSALOTI, RICARDO A. ; VILLELA, PRISCILLA M. S. ",
+                    "data_issn": "23752548",
+                    "DOI": "http://dx.doi.org/10.1126/sciadv.1700299"
+                },
+                {
+                    "ano": "2017",
+                    "fator_impacto_jcr": "4.9",
+                    "ISSN": "09621083",
+                    "titulo": "Single cell sequencing unveils the lifestyle and CRISPR-based population history of Hydrotalea</i> sp. in acid mine drainage",
+                    "revista": "MOLECULAR ECOLOGY",
+                    "autores": "MEDEIROS, J D2017MEDEIROS, J D ; LEITE, L R ; PYLRO, V S ; OLIVEIRA, F S ; ALMEIDA, V M ;FERNANDES, G R; SALIM, A C M ; ARA\u00daJO, F M G ; VOLPINI, A C ; OLIVEIRA, G ; CUADROS-ORELLANA, S . Single cell sequencing unveils the lifestyle and CRISPR-based population history of Hydrotalea sp. in acid mine drainage. MOLECULAR ECOLOGY, v. 1, p. 1, 2017.Cita\u00e7\u00f5es:6|8",
+                    "data_issn": "09621083",
+                    "DOI": "http://dx.doi.org/10.1111/mec.14294"
+                },
+                {
+                    "ano": "2017",
+                    "fator_impacto_jcr": "4.8",
+                    "ISSN": "17585996",
+                    "titulo": "Worse inflammatory profile in omnivores than in vegetarians associates with the gut microbiota composition",
+                    "revista": "Diabetology ",
+                    "autores": "FRANCO-DE-MORAES, ANA CAROLINA2017FRANCO-DE-MORAES, ANA CAROLINA ; DE ALMEIDA-PITITTO, BIANCA ;DA ROCHA FERNANDES, GABRIEL; GOMES, EVERTON PADILHA ; DA COSTA PEREIRA, ALEXANDRE ; FERREIRA, SANDRA ROBERTA G. ",
+                    "data_issn": "17585996",
+                    "DOI": "http://dx.doi.org/10.1186/s13098-017-0261-x"
+                },
+                {
+                    "ano": "2017",
+                    "fator_impacto_jcr": "5.2",
+                    "ISSN": "1664302X",
+                    "titulo": "Genomic Comparison among Lethal Invasive Strains of Streptococcus pyogenes Serotype M1",
+                    "revista": "Frontiers in Microbiology",
+                    "autores": "Fernandes, Gabriel R.2017Fernandes, Gabriel R.; BARBOSA, AULUS E. A. D. ; ALMEIDA, RENAN N. ; CASTRO, FAB\u00cdOLA F. DOS S. ; DA PONTE, MARINA DE C. P. ; FARIA-JUNIOR, CELIO ; M\u00dcLLER, FERNANDA M. P. ; VIANA, ANT\u00d4NIO A. B. ; GRATTAPAGLIA, DARIO ; FRANCO, OCTAVIO L. ; ALENCAR, S\u00c9RGIO A. ; DIAS, SIMONI C. ",
+                    "data_issn": "1664302X",
+                    "DOI": "http://dx.doi.org/10.3389/fmicb.2017.01993"
+                },
+                {
+                    "ano": "2017",
+                    "fator_impacto_jcr": "14.9",
+                    "ISSN": "13624962",
+                    "titulo": "MicrobiomeDB: a systems biology platform for integrating, mining and analyzing microbiome experiments",
+                    "revista": "NUCLEIC ACIDS RESEARCH (ONLINE)",
+                    "autores": "OLIVEIRA, FRANCISLON S.2017OLIVEIRA, FRANCISLON S. ; BRESTELLI, JOHN ; CADE, SHON ; ZHENG, JIE ; IODICE, JOHN ; FISCHER, STEVE ; AURRECOECHEA, CRISTINA ; KISSINGER, JESSICA C. ; BRUNK, BRIAN P. ; STOECKERT, CHRISTIAN J. ;Fernandes, Gabriel R.; ROOS, DAVID S. ; BEITING, DANIEL P. ",
+                    "data_issn": "13624962",
+                    "DOI": "http://dx.doi.org/10.1093/nar/gkx1027"
+                },
+                {
+                    "ano": "2017",
+                    "fator_impacto_jcr": "4.6",
+                    "ISSN": "20452322",
+                    "titulo": "Comparative transcriptomic analysis indicates genes associated with local and systemic resistance to Colletotrichum graminicola in maize",
+                    "revista": "Scientific Reports",
+                    "autores": "MIRANDA, V\u00cdVIAN DE JESUS2017MIRANDA, V\u00cdVIAN DE JESUS ; Porto, William Farias ;FERNANDES, G. R.; POGUE, ROBERT ; NOLASCO, DIEGO OLIVEIRA ; ARAUJO, ANA CLAUDIA GUERRA ; COTA, LUCIANO VIANA ; FREITAS, CAMILA GUIMAR\u00c3ES DE ; DIAS, Simoni Campos ; FRANCO, Octavio Luiz . ",
+                    "data_issn": "20452322",
+                    "DOI": "http://dx.doi.org/10.1038/s41598-017-02298-8"
+                },
+                {
+                    "ano": "2016",
+                    "fator_impacto_jcr": "3.8",
+                    "ISSN": "19352735",
+                    "titulo": "Effects of Argentilactone on the Transcriptional Profile, Cell Wall and Oxidative Stress of Paracoccidioides spp.",
+                    "revista": "PLoS Neglected Tropical Diseases (Online)",
+                    "autores": "ARA\u00daJO, FELIPE SOUTO2016ARA\u00daJO, FELIPE SOUTO ; COELHO, LUCIENE MELO ; SILVA, L\u00cdVIA DO CARMO ; DA SILVA NETO, BENEDITO RODRIGUES ; PARENTE-ROCHA, JULIANA ALVES ; BAIL\u00c3O, ALEXANDRE MELO ; DE OLIVEIRA, CEC\u00cdLIA MARIA ALVES ;FERNANDES, GABRIEL DA ROCHA; HERN\u00c1NDEZ, ORVILLE ; OCHOA, JUAN GUILLERMO MCEWEN ; SOARES, C\u00c9LIA MARIA DE ALMEIDA ; PEREIRA, MARISTELA . ",
+                    "data_issn": "19352735",
+                    "DOI": "http://dx.doi.org/10.1371/journal.pntd.0004309"
+                },
+                {
+                    "ano": "2016",
+                    "fator_impacto_jcr": "2.9",
+                    "ISSN": "00063525",
+                    "titulo": "HD5 and HBD1 variants? solvation potential energy correlates with their antibacterial activity against Escherichia coli</i>",
+                    "revista": "Biopolymers (New York. Print)",
+                    "autores": "PORTO, WILLIAM F.2016PORTO, WILLIAM F. ; NOLASCO, DIEGO O. ; PIRES, \u00c1LLAN S. ;Fernandes, Gabriel R.; FRANCO, OCT\u00c1VIO L. ; ALENCAR, S\u00c9RGIO A. HD5 and HBD1 variants? solvation potential energy correlates with their antibacterial activity against Escherichia coli. Biopolymers (New York. Print), v. 106, p. 43-50, 2016.Cita\u00e7\u00f5es:7|7",
+                    "data_issn": "00063525",
+                    "DOI": "http://dx.doi.org/10.1002/bip.22763"
+                },
+                {
+                    "ano": "2016",
+                    "fator_impacto_jcr": "4.6",
+                    "ISSN": "20452322",
+                    "titulo": "Venom gland transcriptome analyses of two freshwater stingrays (Myliobatiformes: Potamotrygonidae) from Brazil",
+                    "revista": "Scientific Reports",
+                    "autores": "J\u00daNIOR, NELSON GOMES DE OLIVEIRA2016J\u00daNIOR, NELSON GOMES DE OLIVEIRA ;FERNANDES, GABRIEL DA ROCHA; CARDOSO, MARLON HENRIQUE ; COSTA, FABR\u00cdCIO F. ; C\u00c2NDIDO, ELIZABETE DE SOUZA ; NETO, DOMINGOS GARRONE ; MORTARI, M\u00c1RCIA RENATA ; SCHWARTZ, ELISABETH FERRONI ;FRANCO, OCT\u00c1VIO LUIZ; DE ALENCAR, S\u00c9RGIO AMORIM . ",
+                    "data_issn": "20452322",
+                    "DOI": "http://dx.doi.org/10.1038/srep21935"
+                },
+                {
+                    "ano": "2016",
+                    "fator_impacto_jcr": "",
+                    "ISSN": "21698287",
+                    "titulo": "Draft Genome Sequence of - - ITV01, a Novel Acidophilic Firmicute Isolated from a Chalcopyrite Mine Drainage Site in Brazil",
+                    "revista": "Genome Announcements",
+                    "autores": "DALL?AGNOL, HIVANA2016DALL?AGNOL, HIVANA ; \u00d1ANCUCHEO, IVAN ; JOHNSON, D. BARRIE ; OLIVEIRA, RENATO ; LEITE, LAURA ; PYLRO, VICTOR S. ; HOLANDA, ROSEANNE ; GRAIL, BARRY ; CARVALHO, NELSON ; NUNES, GISELE LOPES ; TZOTZOS, GEORGE ;FERNANDES, GABRIEL ROCHA; DUTRA, JULLIANE ; ORELLANA, SARA CUADROS ; OLIVEIRA, GUILHERME . ",
+                    "data_issn": "21698287",
+                    "DOI": "http://dx.doi.org/10.1128/genomeA.01748-15"
+                },
+                {
+                    "ano": "2016",
+                    "fator_impacto_jcr": "5.2",
+                    "ISSN": "15573125",
+                    "titulo": "An Integrative Approach Uncovers Biomarkers that Associate with Clinically Relevant Disease Outcomes in VulvarCarcinoma",
+                    "revista": "Molecular Cancer Research",
+                    "autores": "LAVORATO-ROCHA, A. M.2016LAVORATO-ROCHA, A. M. ; AKAGI, E. M. ; DE MELO MAIA, B. ; RODRIGUES, I. S. ; BOTELHO, M. C. S. ; MARCHI, F. A. ;FERNANDES, G.; BAIOCCHI, G. ; SOARES, F. A. ; ROGATTO, S. R. ; SATO-KUWABARA, Y. ; ROCHA, R. M. ",
+                    "data_issn": "15573125",
+                    "DOI": "http://dx.doi.org/10.1158/1541-7786.MCR-15-0366"
+                },
+                {
+                    "ano": "2016",
+                    "fator_impacto_jcr": "",
+                    "ISSN": "21698287",
+                    "titulo": "Draft Genome Sequence of Hydrotalea flava</i> Strain CCUG 51397 T</sup>",
+                    "revista": "Genome Announcements",
+                    "autores": "LEITE, LAURA RABELO2016LEITE, LAURA RABELO ; MEDEIROS, JULLIANE DUTRA ;FERNANDES, GABRIEL ROCHA; ARA\u00daJO, FL\u00c1VIO ; PYLRO, VICTOR SATLER ; SALIM, ANNA CHRISTINA ; VOLPINI, \u00c2NGELA ; OLIVEIRA, GUILHERME ; CUADROS-ORELLANA, SARA . Draft Genome Sequence of Hydrotalea flava Strain CCUG 51397 T. Genome Announcements, v. 4, p. e00527-16, 2016.Cita\u00e7\u00f5es:3|3",
+                    "data_issn": "21698287",
+                    "DOI": "http://dx.doi.org/10.1128/genomea.00527-16"
+                },
+                {
+                    "ano": "2016",
+                    "fator_impacto_jcr": "3.8",
+                    "ISSN": "19352735",
+                    "titulo": "ZIKV - CDB: A Collaborative Database to Guide Research Linking SncRNAs and ZIKA Virus Disease Symptoms",
+                    "revista": "PLoS Neglected Tropical Diseases (Online)",
+                    "autores": "PYLRO, VICTOR SATLER2016PYLRO, VICTOR SATLER ; OLIVEIRA, FRANCISLON SILVA ; MORAIS, DANIEL KUMAZAWA ; CUADROS-ORELLANA, SARA ; PAIS, FABIANO SVIATOPOLK-MIRSKY ; MEDEIROS, JULLIANE DUTRA ; GERALDO, JULIANA ASSIS ; GILBERT, JACK ; VOLPINI, ANGELA CRISTINA ;FERNANDES, GABRIEL ROCHA. ",
+                    "data_issn": "19352735",
+                    "DOI": "http://dx.doi.org/10.1371/journal.pntd.0004817"
+                },
+                {
+                    "ano": "2016",
+                    "fator_impacto_jcr": "29.4",
+                    "ISSN": "00165085",
+                    "titulo": "Combination Of Mass Cytometry and Imaging Analysis Reveals Origin, Location, and Functional Repopulation of Liver Myeloid Cells in Mice",
+                    "revista": "Gastroenterology (New York, N.Y. 1943)",
+                    "autores": "DAVID, BRUNA ARAUJO2016DAVID, BRUNA ARAUJO ; REZENDE, RAFAEL MACHADO ; ANTUNES, MA\u00cdSA MOTA ; SANTOS, M\u00d4NICA MORAIS ; FREITAS LOPES, MARIA ALICE ; DINIZ, ARIANE BARROS ; SOUSA PEREIRA, RAFAELA VAZ ; MARCHESI, SARAH COZZER ; ALVARENGA, D\u00c9BORA MOREIRA ; NAKAGAKI, BRENDA NAEMI ; ARA\u00daJO, ALAN MOREIRA ; DOS REIS, DANIELA SILVA ; MONTI ROCHA, RENATA ; MARQUES, PEDRO ELIAS ; LEE, WOO-YONG ; DENISET, JUSTIN ; LIEW, PEI XIONG ; RUBINO, STEPHEN ; COX, LAURA ;FERNANDES, G. R.. ",
+                    "data_issn": "00165085",
+                    "DOI": "http://dx.doi.org/10.1053/j.gastro.2016.08.024"
+                },
+                {
+                    "ano": "2016",
+                    "fator_impacto_jcr": "16.6",
+                    "ISSN": "20411723",
+                    "titulo": "Akkermansia muciniphila mediates negative effects of IFN\u03b3 on glucose metabolism",
+                    "revista": "Nature Communications",
+                    "autores": "GREER, RENEE L.2016GREER, RENEE L. ; DONG, XIAOXI ; MORAES, ANA CAROLINA F. ; ZIELKE, RYSZARD A. ;Fernandes, Gabriel R.; PEREMYSLOVA, EKATERINA ; VASQUEZ-PEREZ, STEPHANY ; SCHOENBORN, ALEXI A. ; GOMES, EVERTON P. ; PEREIRA, ALEXANDRE C. ; FERREIRA, SANDRA R. G. ; YAO, MICHAEL ; FUSS, IVAN J. ; STROBER, WARREN ; SIKORA, ALEKSANDRA E. ; TAYLOR, GREGORY A. ; GULATI, AJAY S. ; MORGUN, ANDREY ; SHULZHENKO, NATALIA . ",
+                    "data_issn": "20411723",
+                    "DOI": "http://dx.doi.org/10.1038/ncomms13329"
+                },
+                {
+                    "ano": "2015",
+                    "fator_impacto_jcr": "5.2",
+                    "ISSN": "1664302X",
+                    "titulo": "Paracoccidioides spp. ferrous and ferric iron assimilation pathways",
+                    "revista": "Frontiers in Microbiology (Online)",
+                    "autores": "BAIL\u00c3O, ELISA FL\u00c1VIA L. C.2015BAIL\u00c3O, ELISA FL\u00c1VIA L. C. ; LIMA, PATR\u00cdCIA DE SOUSA ; SILVA-BAIL\u00c3O, MIRELLE G. ;BAIL\u00c3O, ALEXANDRE M.;FERNANDES, GABRIEL DA ROCHA; KOSMAN, DANIEL J. ; SOARES, C\u00c9LIA MARIA DE ALMEIDA . ",
+                    "data_issn": "1664302X",
+                    "DOI": "http://dx.doi.org/10.3389/fmicb.2015.00821"
+                },
+                {
+                    "ano": "2015",
+                    "fator_impacto_jcr": "",
+                    "ISSN": "21698287",
+                    "titulo": "Whole-Genome Sequence of Leptospira interrogans</i> Serovar Hardjo Subtype Hardjoprajitno Strain Norma, Isolated from Cattle in a Leptospirosis Outbreak in Brazil",
+                    "revista": "Genome Announcements",
+                    "autores": "COSATE, M. R. V.2015COSATE, M. R. V. ; SOARES, S. C. ; MENDES, T. A. ; RAITTZ, R. T. ; MOREIRA, E. C. ; LEITE, R. ;FERNANDES, G. R.; HADDAD, J. P. A. ;ORTEGA, J. MIGUEL. Whole-Genome Sequence of Leptospira interrogans Serovar Hardjo Subtype Hardjoprajitno Strain Norma, Isolated from Cattle in a Leptospirosis Outbreak in Brazil. Genome Announcements, v. 3, p. e01302-15, 2015.Cita\u00e7\u00f5es:1|6",
+                    "data_issn": "21698287",
+                    "DOI": "http://dx.doi.org/10.1128/genomea.01302-15"
+                },
+                {
+                    "ano": "2014",
+                    "fator_impacto_jcr": "64.8",
+                    "ISSN": "00280836",
+                    "titulo": "Addendum: Enterotypes of the human gut microbiome",
+                    "revista": "Nature (London)",
+                    "autores": "Arumugam, Manimozhiyan2014Arumugam, Manimozhiyan ; Raes, Jeroen ; Pelletier, Eric ; Le Paslier, Denis ; Yamada, Takuji ; Mende, Daniel R. ;Fernandes, Gabriel R.; Tap, Julien ; Bruls, Thomas ; Batto, Jean-Michel ; Bertalan, Marcelo ; Borruel, Natalia ; Casellas, Francesc ; Fernandez, Leyden ; Gautier, Laurent ; Hansen, Torben ; Hattori, Masahira ; Hayashi, Tetsuya ; Kleerebezem, Michiel ; Kurokawa, Ken . ",
+                    "data_issn": "00280836",
+                    "DOI": "http://dx.doi.org/10.1038/nature13075"
+                },
+                {
+                    "ano": "2014",
+                    "fator_impacto_jcr": "3.7",
+                    "ISSN": "19326203",
+                    "titulo": "Shedding Some Light over the Floral Metabolism by Arum Lily (Zantedeschia aethiopica) Spathe De Novo Transcriptome Assembly",
+                    "revista": "Plos One",
+                    "autores": "C\u00c2NDIDO, ELIZABETE DE SOUZA2014C\u00c2NDIDO, ELIZABETE DE SOUZA ;FERNANDES, GABRIEL DA ROCHA; ALENCAR, S\u00c9RGIO AMORIM DE ; CARDOSO, MARLON HENRIQUE E SILVA ; LIMA, STELLA MARIS DE FREITAS ; MIRANDA, V\u00cdVIAN DE JESUS ; PORTO, WILLIAM FARIAS ; NOLASCO, DIEGO OLIVEIRA ; OLIVEIRA-J\u00daNIOR, NELSON GOMES DE ;BARBOSA, AULUS ESTEV\u00c3O ANJOS DE DEUS; POGUE, ROBERT EDWARD ;REZENDE, TAIA MARIA BERTO;DIAS, SIMONI CAMPOS;FRANCO, OCT\u00c1VIO LUIZ. ",
+                    "data_issn": "19326203",
+                    "DOI": "http://dx.doi.org/10.1371/journal.pone.0090487"
+                },
+                {
+                    "ano": "2014",
+                    "fator_impacto_jcr": "3.8",
+                    "ISSN": "19352735",
+                    "titulo": "Transcriptional and Proteomic Responses to Carbon Starvation in Paracoccidioides",
+                    "revista": "PLoS Neglected Tropical Diseases (Online)",
+                    "autores": "LIMA, P. S.2014LIMA, P. S. ; CASALETTI, L. ; BAILA\u0303 ;VASCONCELOS, A. T. R.;FERNANDES, G. R.;SOARES, C. M. A.. ",
+                    "data_issn": "19352735",
+                    "DOI": "http://dx.doi.org/10.1371/journal.pntd.0002855"
+                },
+                {
+                    "ano": "2014",
+                    "fator_impacto_jcr": "4.4",
+                    "ISSN": "14712164",
+                    "titulo": "Exercise induction of gut microbiota modifications in obese, non-obese and hypertensive rats",
+                    "revista": "BMC Genomics",
+                    "autores": "PETRIZ, BERNARDO A2014PETRIZ, BERNARDO A ;CASTRO, ALINNE P; ALMEIDA, JEESER A ; GOMES, CLARISSA PC ;FERNANDES, GABRIEL R;KRUGER, RICARDO H; PEREIRA, RINALDO W ; FRANCO, OCTAVIO L . ",
+                    "data_issn": "14712164",
+                    "DOI": "http://dx.doi.org/10.1186/1471-2164-15-511"
+                },
+                {
+                    "ano": "2014",
+                    "fator_impacto_jcr": "5.2",
+                    "ISSN": "1664302X",
+                    "titulo": "Insights into novel antimicrobial compounds and antibiotic resistance genes from soil metagenomes",
+                    "revista": "Frontiers in Microbiology (Online)",
+                    "autores": "DE CASTRO, ALINNE P.2014DE CASTRO, ALINNE P. ;FERNANDES, GABRIEL DA R.; FRANCO, OCT\u00c3\u00a1VIO L. ",
+                    "data_issn": "1664302X",
+                    "DOI": "http://dx.doi.org/10.3389/fmicb.2014.00489"
+                },
+                {
+                    "ano": "2014",
+                    "fator_impacto_jcr": "11.2",
+                    "ISSN": "15387445",
+                    "titulo": "Abstract 3427: Uncovering vulvar cancer: Integrated analysis of genomic and transcriptomic data",
+                    "revista": "Cancer Research",
+                    "autores": "LAVORATO-ROCHA, ANDR\u00c9 M.2014LAVORATO-ROCHA, ANDR\u00c9 M. ; MAIA, BEATRIZ DE MELO ; RODRIGUES, IARA S. ; MARCHI, FABIO A. ;Fernandes, Gabriel R.; BAIOCCHI, GLAUCO ; SOARES, FERNANDO A. ; ROGATTO, SILVIA R. ; SATO-KUWABARA, YUKIE ; ROCHA, RAFAEL M. ",
+                    "data_issn": "15387445",
+                    "DOI": "http://dx.doi.org/10.1158/1538-7445.AM2014-3427"
+                },
+                {
+                    "ano": "2013",
+                    "fator_impacto_jcr": "1.6",
+                    "ISSN": "09208569",
+                    "titulo": "Identification of a novel subtype of feline immunodeficiency virus in a population of naturally infected felines in the Brazilian Federal District",
+                    "revista": "Virus Genes",
+                    "autores": "MAR\u00c7OLA, T. G.2013MAR\u00c7OLA, T. G. ; GOMES, C. P. C. ;SILVA, P. A.;FERNANDES, G. R.;PALUDO, G. R.;PEREIRA, R. W.. ",
+                    "data_issn": "09208569",
+                    "DOI": "http://dx.doi.org/10.1007/s11262-013-0877-3"
+                },
+                {
+                    "ano": "2013",
+                    "fator_impacto_jcr": "",
+                    "ISSN": "00280836",
+                    "titulo": "Enterotypes of the human gut microbiome",
+                    "revista": "Nature (London)",
+                    "autores": "Arumugam, Manimozhiyan2011Arumugam, Manimozhiyan ; Raes, Jeroen ; Pelletier, Eric ; Le Paslier, Denis ; Yamada, Takuji ; Mende, Daniel R. ;FERNANDES, G. R.; Tap, Julien ; Bruls, Thomas ; Batto, Jean-Michel ; Bertalan, Marcelo ; Borruel, Natalia ; Casellas, Francesc ; Fernandez, Leyden ; Gautier, Laurent ; Hansen, Torben ; Hattori, Masahira ; Hayashi, Tetsuya ; Kleerebezem, Michiel ; Kurokawa, Ken . ",
+                    "data_issn": "00280836",
+                    "DOI": "http://dx.doi.org/10.1038/nature09944"
+                },
+                {
+                    "ano": "2011",
+                    "fator_impacto_jcr": "",
+                    "ISSN": "14712164",
+                    "titulo": "Amino acids biosynthesis and nitrogen assimilation pathways: a great genomic deletion during eukaryotes evolution",
+                    "revista": "BMC Genomics",
+                    "autores": "Guedes, RLM2011Guedes, RLM ;Prosdocimi, F;Fernandes, GR; Moura, LK ; Ribeiro, HAL ;Ortega, JM. ",
+                    "data_issn": "14712164",
+                    "DOI": "http://dx.doi.org/10.1186/1471-2164-12-S4-S2"
+                },
+                {
+                    "ano": "2011",
+                    "fator_impacto_jcr": "",
+                    "ISSN": "14712164",
+                    "titulo": "Preimplantation development regulatory pathway construction through a text-mining approach",
+                    "revista": "BMC Genomics",
+                    "autores": "Donnard, Elisa2011Donnard, Elisa ; Barbosa-Silva, Adriano ; Guedes, Rafael LM ;Fernandes, Gabriel R; Velloso, Henrique ; Kohn, Matthew J ; Andrade-Navarro, Miguel A ;Ortega, J;Fernandes, GR. ",
+                    "data_issn": "14712164",
+                    "DOI": "http://dx.doi.org/10.1186/1471-2164-12-S4-S3"
+                },
+                {
+                    "ano": "2008",
+                    "fator_impacto_jcr": "",
+                    "ISSN": "16765680",
+                    "titulo": "A procedure to recruit members to enlarge protein family databases - the building of UECOG (UniRef-Enriched COG Database) as a model",
+                    "revista": "Genetics and Molecular Research",
+                    "autores": "Fernandes, G.R.2008Fernandes, G.R.; Barbosa, D.V.C. ;PROSDOCIMI, F.; Pena, I.A. ; Santana-Santos, L. ; Coelho Junior, O. ;BARBOSA-SILVA, A.; Velloso, H.M. ; Mudado, M.A. ; Natale, D.A. ; Faria-Campos, A.C. ; Aguiar, S.C.V. ;Ortega, J.M.. ",
+                    "data_issn": "16765680",
+                    "DOI": "http://dx.doi.org/10.4238/vol7-3X-Meeting008"
+                },
+                {
+                    "ano": "2008",
+                    "fator_impacto_jcr": "",
+                    "ISSN": "16765680",
+                    "titulo": "Testing the performance of automated annotation of ESTs with the Kegg Orthology (KO) database demonstrates lack of completeness of clusters",
+                    "revista": "Genetics and Molecular Research",
+                    "autores": "Fernandes, G.R.2008Fernandes, G.R.; Mudado, M.A. ;Ortega, J.M.. ",
+                    "data_issn": "16765680",
+                    "DOI": "http://dx.doi.org/10.4238/vol7-3X-Meeting011"
+                }
+            ],
+            "Cita\u00e7\u00f5es": {},
+            "Resumos publicados em anais de congressos": {
+                "1.": "FERNANDES, G. R.; BARBOSA, A. E. A. D. ; ALMEIDA, R. N. ; CASTRO, F. F. S. ; PONTE, M. C. P. ; FARIA-JUNIOR, C. ; MULLER, F. M. P. ; VIANA, A. A. B. ; GRATTAPAGLIA, D. ; FRANCO, O. L. ; ALENCAR, S. A. ; DIAS, S. C. . Streptococcus pyogenes serotype M1 outbreak in Brazil reveals genomic variations among lethal invasive strains. In: X-Meeting 2015 - 11th International Conference of the AB3C + Brazilian Symposium of Bioinformatics, 2015, S\u00e3o Paulo. Proceedings, 2015.",
+                "2.": "COSTA, V. R. M. ; TAMIN, S. ; VO, D. ; QIAO, M. ; LOPES, K. P. ; RIBEIRO, H. A. L. ; VELLOSO, H. M. ; GUEDES, R. L. M. ;FERNANDES, G. R.; PENALVA, L. O. F. ;ORTEGA, J. M.. Most RNAi target genes are more ancient than RNAi origin: MIR 137 as a model. In: 59 Congresso Brasileiro de Gen\u00e9tica, 2013, Aguas de Lindoia. Resumos do 59 Congresso Brasileiro de Gen\u00e9tica, 2013. p. 40-40.",
+                "3.": "LOPES, K. P. ; RIBEIRO, H. A. L. ; VELLOSO, H. M. ; GUEDES, R. L. M. ;FERNANDES, G. R.;ORTEGA, J. M.. How tissue genes appear along evolution, telling the origin of organs. In: 59 Congresso Brasileiro de Gen\u00e9tica, 2013, Aguas de Lindoia. Resumos do 59 Congresso Brasileiro de Gen\u00e9tica, 2013. p. 40-40.",
+                "4.": "ARAUJO, F. S. ; BASTOS, J. V. V. ; BASTOS, B. R. S. ; OLIVEIRA, C. M. A. O. ; MARQUES, M. F. ; COELHO, L. M. ; BAILAO, A. M. ;FERNANDES, G. R.; SOARES, C. M. A. ; PEREIRA, M. . Transcriptome profiling analysis of Paracoccidioides spp exposed to argentilactone. In: 59 Congresso Brasileiro de Gen\u00e9tica, 2013, Aguas de Lindoia. Resumos do 59 Congresso Brasileiro de Gen\u00e9tica, 2013. p. 76-76.",
+                "5.": "MARIA NETO, S. ; CANDIDO, E. S. ; BARBOSA, A. E. A. D. ; NASCIMENTO-SILVA, O. ; POGUE, R. E. ; SOUZA, D. A. ; MAGALHAES, B. S. ;FERNANDES, G. R.; DIAS, S. C. ; FRANCO, O. L. . Deciphering the magainin resistant process of Escherichia coli strains in light of the cytosolic proteome and transcriptome. In: 3 International Symposium on Antimicrobial Peptides: Today knowledge and future applications, 2012, Lille, France. Proceedings of 3 International Symposium on Antimicrobial Peptides: Today knowledge and future application, 2012. v. 1. p. 86.",
+                "6.": "ALMEIDA, R. N. ; BARBOSA, A. E. A. D. ; DIAS, S. C. ; FRANCO, O. L. ; ALENCAR, S. A. ;FERNANDES, G. R.. Comparative genomics analysis to understand infection mechanism in Streptococcus pyogenes outbreak in Distrito Federal. In: 8th International Conference of the Brazilian Association for Bioinformatics and Computational Biology, 2012, Campinas. Xmeeting 2012 - Abstract Book, 2012.",
+                "7.": "FERNANDES, G. R.; ALMEIDA, R. N. ;ORTEGA, J. M.. COMPLEMENTARITY OF HUMAN AND INTESTINAL MICROBIOTA GENOMES. In: 7th International Conference of the Brazilian Association for Bioinformatics and Computational Biology (X-meeting 2011), 2011, Florian\u00f3polis. ABSTRACT BOOK, 2011. v. 1. p. 147.",
+                "8.": "GUEDES, R. L. M. ; COELHO-JR, O. ; VELLOSO, H. M. ; RIBEIRO, H. A. L. ;FERNANDES, G. R.; Donnard, E. R. ; Stussi, F ;ORTEGA, J. M.. The secondary structure of orthogues is nearly 90% versus 70% similar if they respectively belong to the same species or phyla. In: 7th International Conference of the Brazilian Association for Bioinformatics and Computational Biology (X-meeting 2011), 2011, Florian\u00f3polis. ABSTRACT BOOK, 2011. v. 1. p. 149.",
+                "9.": "Stussi, F ; GUEDES, R. L. M. ; VELLOSO, H. M. ; Donnard, E. R. ; RIBEIRO, H. A. L. ;FERNANDES, G. R.;BARBOSA-SILVA, A.; ANDRADE-NAVARRO, M. A. ;ORTEGA, J. M.. Depicting the origin of drought response in Arabdopsis thaliana with text-mining and orthologue clustering tools. In: 7th International Conference of the Brazilian Association for Bioinformatics and Computational Biology (X-meeting 2011), 2011, Florian\u00f3polis. ABSTRACT BOOK, 2011. v. 1. p. 226.",
+                "10.": "MACIEL, T. E. F. ; deSOUZA, R. F. ;FERNANDES, G. R.;ORTEGA, J. M.; FIETTO, J. L. R. . MINING THE LEISHMANIA GENOME FOR NEW TARGETS TO BIOTECHNOLOGICAL APPLICATIONS. In: 6th INTERNATIONAL CONFERENCE OF THE BRAZILIAN ASSOCIATION FOR BIOINFORMATICS AND COMPUTATIONAL BIOLOGY - X-meeting, 2010, Ouro Preto. 6th X-meeting Abstracts book, 2010.",
+                "11.": "FERNANDES, G. R.;ORTEGA, J. M.. UEKO UPDATE: 2.4 MILLION SEQUENCES FROM 25 THOUSAND ORGANISMS. In: 6th INTERNATIONAL CONFERENCE OF THE BRAZILIAN ASSOCIATION FOR BIOINFORMATICS AND COMPUTATIONAL BIOLOGY - X-meeting, 2010, Ouro Preto. 6th X-meeting Abstracts book, 2010.",
+                "12.": "Stussi, F ;BARBOSA-SILVA, A.; Donnard, E. R. ;FERNANDES, G. R.; GUEDES, R. L. M. ;ORTEGA, J. M.. ENRICHING KEGG PATHWAY WITH PESCADOR TEXT MINING TOOL - COLORECTAL CANCER PATHWAY AS A MODEL. In: 6th INTERNATIONAL CONFERENCE OF THE BRAZILIAN ASSOCIATION FOR BIOINFORMATICS AND COMPUTATIONAL BIOLOGY - X-meeting, 2010, Ouro Preto. 6th X-meeting Abstracts book, 2010.",
+                "13.": "GUEDES, R. L. M. ;FERNANDES, G. R.; COELHO-JR, O. ; RIBEIRO, H. A. L. ;BARBOSA-SILVA, A.;ORTEGA, J. M.. SURVEY OF PHOSPHATE KINASES IN 17.65 MILLION METAGENOMICS SEQUENCES USING CLUSTERS OF HOMOLOGUES BUILT WITH SEEDSERVER. In: 5th International Conference of the Brazilian Association for Bioinformatics and Computational Biology, 2009, Angra dos Reis. X-meeting 2009 Proceedings, 2009.",
+                "14.": "QUADROS, L. C. ;FERNANDES, G. R.;PROSDOCIMI, F.;ORTEGA, J. M.. AN ESTIMATION OF THE PROBABILITY OF EVOLUTION OF CODONS TO THE NEAREST STOP BASED ON SNP OCCURRENCE IN HUMAN DNA: SOME CODONS AND SOME AMINO ACIDS RETARD EVOLUTION TO STOP. In: 5th International Conference of the Brazilian Association for Bioinformatics and Computational Biology, 2009, Angra dos Reis. X-meeting 2009 Proceedings, 2009.",
+                "15.": "MACIEL, T. E. F. ; deSOUZA, R. F. ; VIDIGAL, P. M. P. ;FERNANDES, G. R.;ORTEGA, J. M.; ALMEIDA, M. R. ; FIETTO, J. L. R. . COMPARATIVE ANALYSIS BETWEEN LEISHMANIA AND VERTEBRATE HOSTS GENOMES TO IDENTIFICATION OF EXCLUSIVE LEISHMANIA PROTEINS TO BIOTECHNOLOGICAL APPLICATIONS. In: 5th International Conference of the Brazilian Association for Bioinformatics and Computational Biology, 2009, Angra dos Reis. X-meeting 2009 Proceedings, 2009.",
+                "16.": "FERNANDES, G. R.;ORTEGA, J. M.. PRODUCTION OF THE DATABASE UNIREF ENRICHED KEGG ORTHOLOGY (UEKO). In: 5th International Conference of the Brazilian Association for Bioinformatics and Computational Biology, 2009, Angra dos Reis. X-meeting 2009 Proceedings, 2009.",
+                "17.": "QUADROS, L. C. ;FERNANDES, G. R.;PROSDOCIMI, F.;ORTEGA, J. M.. Human proteins are codified by codons that balance the resistance to non-synonymous mutations with the prevention of stop codons. In: 55\u00ba Congresso Brasileiro de Gen\u00e9tica, 2009, Aguas de Lindoia. 55\u00ba Congresso Brasileiro de Gen\u00e9tica, 2009.",
+                "18.": "GUEDES, R. L. M. ;FERNANDES, G. R.; COELHO-JR, O. ; RIBEIRO, H. A. L. ;BARBOSA-SILVA, A.;ORTEGA, J. M.. Seed Server, an automated web tool for grouping of genes related to seed sequences. In: 55\u00ba Congresso Brasileiro de Gen\u00e9tica, 2009, Aguas de Lindoia. 55\u00ba Congresso Brasileiro de Gen\u00e9tica, 2009.",
+                "19.": "FERNANDES, G. R.; Barbosa, V. C. B. ;PROSDOCIMI, F.; PENA, I. A. ; SANTOS, L. S. ; COELHO-JR, O. ;BARBOSA-SILVA, A.;MUDADO, M. A.; VELLOSO, H. M. ; NATALE, D. A. ; AGUIAR, S. C. V. ;ORTEGA, J. M.. Enrichment of COG Database with 905355 sequences from 3414 genomes. In: Intelligent Systems for Molecular Biology, 2008, Toronto. Proceedings of the 16th ISMB, 2008.",
+                "20.": "FERNANDES, G. R.; SIMOES, M. ; NITZSCHE, J. ; SANTOS, M. A. . SVD based tool to annotate protein function and > validate proteins database structure. In: Intelligent Systems for Molecular Biology, 2008, Toronto. Proceedings of the 16th ISMB, 2008.",
+                "21.": "FERNANDES, G. R.;ORTEGA, J. M.. UniRef Enrichment of the Kegg Orthology databases - a solution for the database completeness. In: 4th International Conference of the Brazilian Association for Bioinformatics and Computational Biology, 2008, Salvador. X-meeting 2008 Proceedings, 2008.",
+                "22.": "PINTO, S. ; Donnard, E. R. ;FERNANDES, G. R.;ORTEGA, J. M.. Use of MESs clustering to compare tissues by gene expression. In: 4th International Conference of the Brazilian Association for Bioinformatics and Computational Biology, 2008, Salvador. X-meeting 2008 Proceedings, 2008.",
+                "23.": "QUADROS, L. C. ;FERNANDES, G. R.;PROSDOCIMI, F.;ORTEGA, J. M.. Use of SNP database to develop rules for designing a synthetic p53 coding sequence that resists to mutation. In: 4th International Conference of the Brazilian Association for Bioinformatics and Computational Biology, 2008, Salvador. X-meeting 2008 Proceedings, 2008.",
+                "24.": "QUADROS, L. C. ;FERNANDES, G. R.;PROSDOCIMI, F.;ORTEGA, J. M.. Planejamento de um gene TP53 sint\u00e9tico resistente a muta\u00e7\u00f5es utilizando modelo mutacional extra\u00eddo de an\u00e1lises de SNPs. In: 54\u00ba Congresso Brasileiro de Gen\u00e9tica, 2008, Salvador. 54\u00ba Congresso Brasileiro de Gen\u00e9tica Proceedings, 2008.",
+                "25.": "FERNANDES, G. R.;MUDADO, M. A.;ORTEGA, J. M.. Performance of automated annotation of EST used to probe the completeness of cluster in KO. In: 3rd International Conference of the Brazilian Association for Bioinformatics and Computational Biology, 2007, S\u00e3o Paulo. X-meeting 2007 Proceedings, 2007.",
+                "26.": "ALMEIDA, I. ;FERNANDES, G. R.;ORTEGA, J. M.. Integrated local physical and genetic maps of Zea mays. In: 3rd International Conference of the Brazilian Association for Bioinformatics and Computational Biology, 2007, S\u00e3o Paulo. X-meeting 2007 Proceedings, 2007.",
+                "27.": "FERNANDES, G. R.; Barbosa, V. C. B. ;PROSDOCIMI, F.; PENA, I. A. ; SANTOS, L. S. ; COELHO-JR, O. ;BARBOSA-SILVA, A.; NATALE, D. A. ; AGUIAR, S. C. V. ;ORTEGA, J. M.. UECOG - Uniprot Enriched COG database. In: 3rd International Conference of the Brazilian Association for Bioinformatics and Computational Biology, 2007, S\u00e3o Paulo. X-meeting 2007 Proceedings, 2007.",
+                "28.": "FERNANDES, G. R.;ORTEGA, J. M.. Evaluation of automated annotation of transcripts with the Ortho-MCL Database. In: 53\u00ba Congresso Brasileiro de Gen\u00e9tica, 2007, \u00c1guas de Lind\u00f3ia. CD de Resumos, 2007.",
+                "29.": "FERNANDES, G. R.;ORTEGA, J. M.. Evaluation of automated annotation of transcripts with OrthoMCL-DB. In: Intelligent Systems for Molecular Biology / European Conference on Computational Biology, 2007, Viena. Proceedings of the 15th ISMB, 2007.",
+                "30.": "FERNANDES, G. R.;MUDADO, M. A.;ORTEGA, J. M.. Evaluation of KEGG Orthology (KO) as a source for annotation using ESTs from Model Organisms. In: Intelligent Systems for Molecular Biology, 2006, Fortaleza. Proceedings of the 14th ISMB, 2006."
+            },
+            "Apresenta\u00e7\u00f5es de Trabalho": {
+                "1.": "FERNANDES, G. R.. Bioinformatica aplicada a Genomica. 2018. (Curso de curta dura\u00e7\u00e3o ministrado/Outra).",
+                "2.": "Fernandes, G.R.. CBAB 2017 - Ferramentas de bioinform\u00e1tica para an\u00e1lise de dados de RNA-seq. 2017. (Curso de curta dura\u00e7\u00e3o ministrado/Extens\u00e3o).",
+                "3.": "FERNANDES, G. R.. CBAB 2015 - LNCC. 2015. (Curso de curta dura\u00e7\u00e3o ministrado/Extens\u00e3o).",
+                "4.": "FERNANDES, G. R.. EBI - Metagenomics. 2014. (Curso de curta dura\u00e7\u00e3o ministrado/Extens\u00e3o).",
+                "5.": "Fernandes, G.R.. Bioinform\u00e1tica. 2013. (Curso de curta dura\u00e7\u00e3o ministrado/Extens\u00e3o).",
+                "6.": "Fernandes, G.R.. II Curso de Ver\u00e3o em Bioinform\u00e1tica Estrutural. 2012. (Curso de curta dura\u00e7\u00e3o ministrado/Extens\u00e3o).",
+                "7.": "FERNANDES, G. R.. CBAB 2012 - Ferramentas de bioinform\u00e1tica aplicadas as ab\u00e1lises de sequ\u00eancias transcript\u00f4micas e metagen\u00f4micas. 2012. (Curso de curta dura\u00e7\u00e3o ministrado/Extens\u00e3o).",
+                "8.": "FERNANDES, G. R.. Bioinform\u00e1tica para An\u00e1lise Genomica. 2012. (Curso de curta dura\u00e7\u00e3o ministrado/Extens\u00e3o).",
+                "9.": "FERNANDES, G. R.. FERRAMENTAS DE BIOINFORM\u00c1TICA APLICADAS \u00c0 AN\u00c1LISE DE SEQU\u00caNCIAS GEN\u00d4MICAS, METAGEN\u00d4MICAS E TRANSCRIPT\u00d4MICAS. 2011. (Curso de curta dura\u00e7\u00e3o ministrado/Extens\u00e3o).",
+                "10.": "FERNANDES, G. R.. Bioinform\u00e1tica. 2011. (Curso de curta dura\u00e7\u00e3o ministrado/Extens\u00e3o).",
+                "11.": "FERNANDES, G. R.; LOBO, F. P. . Bioinform\u00e1tica. 2008. (Curso de curta dura\u00e7\u00e3o ministrado/Extens\u00e3o)."
+            }
+        },
+        "ProjetosPesquisa": [
+            {
+                "chave": "2018 - Atual",
+                "titulo_projeto": "Minera\u00e7\u00e3o e An\u00e1lises Sist\u00eamicas de Microbiomas",
+                "descricao": "Descri\u00e7\u00e3o: A Rede MIN.AS Microbioma e\u0301 uma continuidade da ja\u0301 consolidada Rede Genoma de Minas Gerais. Neste novo projeto, propomos trabalhar voltado para um eixo tema\u0301tico integrador e interdisciplinar, envolvendo aproximadamente 77 profissionais de diferentes a\u0301reas do conhecimento como Gene\u0301tica, Bioqui\u0301mica, Microbiologia e Bioinforma\u0301tica de sete Instituic\u0327o\u0303es de ensino e pesquisa, explorando o estudo siste\u0302mico de microbiomas oriundos de diferentes ambientes. Com o advento das novas tecnologias de sequenciamento de DNA, o estudo de microbiomas teve um grande avanc\u0327o ao longo dos u\u0301ltimos anos, permitindo a caracterizac\u0327a\u0303o mais ampla das comunidades de microorganismos quando comparadas aos me\u0301todos tradicionais de cultivo. Microbiomas sa\u0303o fonte de prospecc\u0327a\u0303o de atividades de compostos bioativos, associac\u0327o\u0303es aos estados de sau\u0301de ou doenc\u0327a dos hospedeiros, dentre tantos outros objetivos biotecnolo\u0301gicos. Assim, e\u0301 possi\u0301vel a ana\u0301lise comparativa da abunda\u0302ncia, diversidade e caracteri\u0301sticas funcionais de diversos ecossistemas microbiolo\u0301gicos. Ale\u0301m disso, a formac\u0327a\u0303o de massa cri\u0301tica especializada em cada uma das ICTs participantes da Rede tem impacto na\u0303o so\u0301 na pesquisa dos componentes da equipe, mas na qualidade da pesquisa das Instituic\u0327o\u0303es como um todo. A rede conta com especialistas em cada uma dessas a\u0301reas e propo\u0303e a realizac\u0327a\u0303o de cursos e workshops para a formac\u0327a\u0303o intelectual. Todo o projeto esta\u0301 sendo planejado para que haja ra\u0301pida transfere\u0302ncia de experie\u0302ncia na especificidade do tema e os recursos a serem aplicados venham a garantir resultados ra\u0301pidos e com muito potencial de explorac\u0327a\u0303o. Muitos dos membros da Rede sa\u0303o pesquisadores docentes em Programas de Po\u0301s-Graduac\u0327a\u0303o em Bioinforma\u0301tica, Microbiologia e Gene\u0301tica, de excele\u0302ncia internacional (CAPES, conceitos 6 e 7) e pesquisadores bolsistas de produtividade cienti\u0301fica do CNPq ni\u0301veis 1 e 2 e tem lideranc\u0327a acade\u0302mica e larga experie\u0302ncia em Gesta\u0303o e Participac\u0327a\u0303o de Redes Cooperativas de Pesquisa Nacionais e Internacionais..Situa\u00e7\u00e3o: Em andamento; Natureza: Pesquisa.Integrantes: Gabriel da Rocha Fernandes - Integrante / Jos\u00e9 Miguel Ortega - Integrante / Vasco Ariston de Carvalho Azevedo - Coordenador / Aristoteles Goes Neto - Integrante / gloria regina franco - Integrante.Financiador(es): Funda\u00e7\u00e3o de Amparo \u00e0 Pesquisa do Estado de Minas Gerais - Aux\u00edlio financeiro."
+            },
+            {
+                "chave": "2018 - Atual",
+                "titulo_projeto": "Estudo do papel da microbiota intestinal humana no desenvolvimento de doenc\u0327as cardiovasculares em mulheres",
+                "descricao": "Descri\u00e7\u00e3o: A microbiota e\u0301 o conjunto de microorganismos que habitam um determinado ambiente. Tal conjunto ja\u0301 vem sendo estudado ha\u0301 va\u0301rios anos. Com o surgimento das tecnologias de sequenciamento de DNA foi possi\u0301vel o estudo do conteu\u0301do gene\u0301tico de tais microorganismos, e com isso sua caracterizac\u0327a\u0303o independentemente de culturas in vitro. O sequenciamento de genes marcadores, como o gene codificador do rRNA 16s, tem sido amplamente usado para descric\u0327a\u0303o dos microorganismos em seu habitat natural. Um dos ambientes mais estudados e\u0301 a microbiota humana. Particularmente, a microbiota intestinal tem um papel de destaque. O conjunto de trilho\u0303es de microorganismos que habitam o intestino grosso tem importa\u0302ncia na regulac\u0327a\u0303o da resposta imunolo\u0301gica, no metabolismo, produc\u0327a\u0303o de aminoa\u0301cidos e vitaminas. Hoje reconhece-se o papel essencial da microbiota intestinal nos processos associados a\u0300 sau\u0301de e a\u0300 doenc\u0327a de seu hospedeiro. A aterosclerose e\u0301 uma doenc\u0327a cardiovascular que tem uma forte influe\u0302ncia da microbiota intestinal. Algumas bacte\u0301rias que habitam o intestino sa\u0303o capazes de converter Colina e/ou Fosfatidilcolina a Trimetilamina (TMA). O produto pode ser absorvido pelo intestino e convertido a TMAO no fi\u0301gado, fator que leva a\u0300 aterosclerose. A testosterona tem um papel de regular negativamente essa conversa\u0303o a TMAO. Por isso, o risco cardiovascular associado a microbiota e\u0301 maior nas mulheres. Diante da noto\u0301ria importa\u0302ncia, esse projeto propo\u0303e o estudo da microbiota intestinal em conjunto com a dieta e associa\u0301-los para a construc\u0327a\u0303o de um modelo de predic\u0327a\u0303o de risco cardiovascular. Os pacientes estudados sa\u0303o mulheres volunta\u0301rias do curso de Nutric\u0327a\u0303o da Universidade de Sa\u0303o Paulo, e do projeto Advento. Todos os pacientes a serem estudados responderam um termo de consentimento em pesquisa e ja\u0301 tiveram suas amostras fecais, amostras de sangue, e medidas antropome\u0301tricas coletadas..Situa\u00e7\u00e3o: Em andamento; Natureza: Pesquisa.Integrantes: Gabriel da Rocha Fernandes - Coordenador."
+            }
+        ],
+        "ProjetosExtens\u00e3o": [],
+        "ProjetosDesenvolvimento": [],
+        "ProjetosOutros": [],
+        "Bancas": {
+            "Mestrado": {
+                "1.": "FERNANDES, G R; PEDRIRA, J. N. R.; QUEIROZ, A. T. L..  Participa\u00e7\u00e3o em banca de Pablo Alessandro Barbosa Viana. MINERA\u00c7\u00c3O E CARACTERIZA\u00c7\u00c3O DE RESISTOMAS EM METAGENOMAS EM ESCALA GLOBAL. 2023. Disserta\u00e7\u00e3o (Mestrado em Biotecnologia em Sa\u00fade e Medicina Investigativa) - Instituto Gon\u00e7alo Muniz - FIOCRUZ Bahia.",
+                "2.": "FERNANDES, G R; BRIGIDO, M. M..  Participa\u00e7\u00e3o em banca de Lucas Alves de Melo Pontes. AN\u00c1LISE DO USO DE IDENTIFICADORES MOLECULARES \u00daNICOS E DE DISTINTAS ESTRAT\u00c9GIAS DE PR\u00c9-PROCESSAMENTO PARA O AUMENTO DE QUANTIDADE E QUALIDADE DE SEQU\u00caNCIAS PAIRED-END DE IGH. 2022. Disserta\u00e7\u00e3o (Mestrado em Bioinform\u00e1tica) - Universidade Federal de Minas Gerais.",
+                "3.": "FERNANDES, G R; SALGADO, J. V..  Participa\u00e7\u00e3o em banca de Carlisa Silver e Silva. POTENCIAIS BIOMARCADORES S\u00c9RICOS DE DEPRESS\u00c3O E ANSIEDADE NO  TRAUMATISMO CRANIOENCEF\u00c1LICO LEVE. 2022. Disserta\u00e7\u00e3o (Mestrado em Neuroci\u00eancias) - Universidade Federal de Minas Gerais.",
+                "4.": "FERNANDES, G R.  Participa\u00e7\u00e3o em banca de Karla de Carvalho Schettino. ELBE ? Estudo Longitudinal de Biomarcadores em Endometriose: projeto piloto. 2022. Disserta\u00e7\u00e3o (Mestrado em Ci\u00eancias da Sa\u00fade) - Instituto Ren\u00e9 Rachou - Fiocruz Minas.",
+                "5.": "OLIVEIRA, C. E.;FERNANDES, G. R.; CASTRO, A. P.; MIGLIOLO, L..  Participa\u00e7\u00e3o em banca de Marcos Fernandes Morales. Composi\u00e7\u00e3o da Comunidade bacteriana do solo sob efeito da decomposi\u00e7\u00e3o de Sus scrofa como ferramenta na microbiologia forense. 2020. Disserta\u00e7\u00e3o (Mestrado em Biotecnologia) - Universidade Cat\u00f3lica Dom Bosco.",
+                "6.": "CARVALHO, M. R. S.; CRUZ, I. R.;FERNANDES, G. R.; FRANCO, G. R..  Participa\u00e7\u00e3o em banca de Carolina Guimar\u00e3es Ramos Matosinho. Identifica\u00e7\u00e3o e an\u00e1lise funcional in silico de variantes nos genes de prote\u00ednas do leite das ra\u00e7as Guzer\u00e1 e Gir. 2016. Disserta\u00e7\u00e3o (Mestrado em Gen\u00e9tica) - Universidade Federal de Minas Gerais.",
+                "7.": "LANA, F. C. F.;FERNANDES, G. R.; AMARAL, E. P..  Participa\u00e7\u00e3o em banca de Eyleen Nabyla Alvarenga Niitsuma. An\u00e1lise a influ\u00eancia de polimorfismo do gene TLR1 na suscetibilidade \u00e0 hanseniase per se: um estudo de caso-controle. 2016. Disserta\u00e7\u00e3o (Mestrado em Enfermagem) - Universidade Federal de Minas Gerais.",
+                "8.": "AZEVEDO, V. A. C.; PINTO, A. C.;FERNANDES, G. R.; SOARES, S. C.; CASTRO, T. L. P.; AGUIAR, E. R. G. R.;ORTEGA, J. M..  Participa\u00e7\u00e3o em banca de Doglas Parise. Gen\u00f4mica Comparativa entre os biovares Equis e Ovis de Corynebacterium pseudotuberculosis isolados no M\u00e9xico.. 2016. Disserta\u00e7\u00e3o (Mestrado em Bioinform\u00e1tica) - Universidade Federal de Minas Gerais.",
+                "9.": "NASCIMENTO, A. M. A.; SOUZA, E. C.; CASTRO, T. L. P.;FERNANDES, G. R..  Participa\u00e7\u00e3o em banca de Alexandre Bueno dos Santos. Sequenciamento, montagem, anota\u00e7\u00e3o e an\u00e1lise do genoma do isolado 56AF proximamente relacionado a Chromobacterium amazonense. 2016. Disserta\u00e7\u00e3o (Mestrado em Gen\u00e9tica) - Universidade Federal de Minas Gerais.",
+                "10.": "ALENCAR, S. A.; SA, M. F. G.;FERNANDES, G. R.; FREIRE, E. V. S. A.; FRANCO, O. L..  Participa\u00e7\u00e3o em banca de Lucas de Miranda Pimenta. Estrat\u00e9gias biotecnologicas aplicadas ao controle de insetos-pragas. 2015. Disserta\u00e7\u00e3o (Mestrado em Ci\u00eancias Gen\u00f4micas e Biotecnologia) - Universidade Cat\u00f3lica de Bras\u00edlia.",
+                "11.": "GOES NETO, A.;FERNANDES, G. R.; VAZ, A. B. M.; BATISTA, T. M..  Participa\u00e7\u00e3o em banca de Francislon Silva de Oliveira. An\u00e1lise em larga escala das regi\u00f5es interg\u00eanicas ITS, ITS1 e ITS2 para o filo Basidiomycota (Fungi). 2015. Disserta\u00e7\u00e3o (Mestrado em Bioinform\u00e1tica) - Universidade Federal de Minas Gerais.",
+                "12.": "FRANCO, O. L.; OLIVEIRA, P. S. L.;FERNANDES, G. R..  Participa\u00e7\u00e3o em banca de William Farias Porto. Grammatial e Joker: duas novas ferramentas para desenho racional de pept\u00eddeos antimicrobianos. 2013. Disserta\u00e7\u00e3o (Mestrado em P\u00f3s-Gradua\u00e7\u00e3o em Ci\u00eancas Gen\u00f4micas e Biotecnologia) - Universidade Cat\u00f3lica de Bras\u00edlia."
+            },
+            "Teses de doutorado": {
+                "1.": "FERNANDES, G R.  Participa\u00e7\u00e3o em banca de MATEUS VAILANT THOMAZELLA. Transloca\u00e7\u00e3o microbiana e sua associa\u00e7\u00e3o com a neutrofilia e gravidade em pacientes com febre amarela. 2023. Tese (Doutorado em Alergia e Imunopatologia)  - Universidade de S\u00e3o Paulo.",
+                "2.": "FRANCO, G. R.; GOES NETO, A.; DALMOLIN, R. J. S.;FERNANDES, G R.  Participa\u00e7\u00e3o em banca de \u00c9lisson Nogueira Lopes. Avalia\u00e7\u00e3o do uso de c\u00f3dons em infec\u00e7\u00f5es virais usando como modelo o v\u00edrus da S\u00edndrome Respirat\u00f3ria Aguda Grave 2 (SARS-CoV-2). 2022. Tese (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "3.": "ORTEGA, J. M.;FERNANDES, G R; BRIGIDO, M. M.; CARDENAS, R. G. C. C. L..  Participa\u00e7\u00e3o em banca de F\u00e1bio Rodrigues Martins. Desenvolvimento de Uma Metodologia Computacional Para An\u00e1lise de Variantes G\u00eanicas no L\u00f3cus de Cadeia Pesada de Imunoglobulinas Humanas. 2022. Tese (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "4.": "CRUZ, A. K.; ROCHA, W. D.; OLIVEIRA, C. I.;FERNANDES, G R.  Participa\u00e7\u00e3o em banca de Wanessa Moreira Goes. Sequenciamento e Caracteriza\u00e7\u00e3o do Genoma da Cepa Ph8 de Leishmania Amazonensis Com \u00canfase Em Fatores de Virul\u00eancia Possivelmente Envolvidos No Estabelecimento e Visceraliza\u00e7\u00e3o da Infec\u00e7\u00e3o. 2022. Tese (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "5.": "FERNANDES, G R; LAGE, A. C. P.; DHALIA, R.; CUNHA, M. S..  Participa\u00e7\u00e3o em banca de Stella Garcia Colombarolli. Identifica\u00e7\u00e3o de pept\u00eddeos para o desenvolvimento de um teste diagn\u00f3stico sorol\u00f3gico para Zika. 2022. Tese (Doutorado em Ci\u00eancias da Sa\u00fade)  - Instituto Ren\u00e9 Rachou - Fiocruz Minas.",
+                "6.": "FERNANDES, G R; MOREIRA, M. A. M.; GALANTE, P. A. F.; LIMA, S. C. S..  Participa\u00e7\u00e3o em banca de Caroline de Aguiar Pires Poubel. Caracteriza\u00e7\u00e3o de regi\u00f5es regulat\u00f3rias associadas \u00e0 superexpress\u00e3o do gene FLT3 nas leucemias agudas. 2022. Tese (Doutorado em ONCOLOGIA)  - Instituto Nacional de C\u00e2ncer.",
+                "7.": "FERNANDES, G R; MINARDI, R. C. M.; BLEICHER, L.; DALMOLIN, R. J. S..  Participa\u00e7\u00e3o em banca de Carlos Alberto Xavier Gon\u00e7alves. Ferramentas para determina\u00e7\u00e3o de origem e evolu\u00e7\u00e3o de processos biol\u00f3gicos. 2021. Tese (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "8.": "FERNANDES, G R; NICOLAS, M. F.; DEGRAVE, W. M. S..  Participa\u00e7\u00e3o em banca de Sergio Mascarenhas Morgado. Mobiloma de micobact\u00e9rias. 2021. Tese (Doutorado em Biologia Computacional e Sistemas)  - Instituto Oswaldo Cruz.",
+                "9.": "TRINDADE, G. S.; AGUIAR, R. S.; OLIVEIRA, J. G.;FERNANDES, G. R.; KROON, E. G.; ABRAHAO, J. S..  Participa\u00e7\u00e3o em banca de Maur\u00edcio Teixeira Lima. Ampliando o estudo do Vaccinia virus e de seus hospedeiros no Brasil: caracteriza\u00e7\u00e3o biol\u00f3gica e gen\u00f4mica de isolados de humanos e b\u00fafalos. 2020. Tese (Doutorado em Programa de P\u00f3s-Gradua\u00e7\u00e3o em Microbiologia)  - Universidade Federal de Minas Gerais.",
+                "10.": "TEIXEIRA, S. M. R.; MARQUES, J. T.;FERNANDES, G. R.; COIMBRA, R. S.; ROCHA, W. D..  Participa\u00e7\u00e3o em banca de Ant\u00f4nio Edson Rocha Oliveira. Perfil transcript\u00f4mico na intera\u00e7\u00e3o Paratiso/Hospedeiro durante a infec\u00e7\u00e3o com clones virulento e avirulento de Trypanosoma Cruzi. 2019. Tese (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "11.": "NASCIMENTO, A. M. A.; SOUZA, E. C.; CANTINI, A.; MOURA, S. B.;FERNANDES, G. R.; LANA, F. C. F..  Participa\u00e7\u00e3o em banca de Paulo Eduardo de Souza da Silva. Caracteriza\u00e7\u00e3o do microbioma da pele de indiv\u00edduos sadios e com hanseniase, antes, durante e ap\u00f3s o tratamento. 2017. Tese (Doutorado em Gen\u00e9tica)  - Universidade Federal de Minas Gerais.",
+                "12.": "AZEVEDO, V. A. C.; CASTRO, T. L. P.; PACHECO, L. G. C.;FERNANDES, G. R.; SOARES, S. C.;ORTEGA, J. M.; GOES NETO, A.; ALCANTARA, L. C. J..  Participa\u00e7\u00e3o em banca de Sandeep Tiwari. Characterization of transcriptional regulator PhoP in Corynebacterium pseudotuberculosis: the role in virulence and adaptation to adverse conditions. 2017. Tese (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "13.": "Fernandes, G.R.; BAHL, M. I.; KILPELAINEN, T. O..  Participa\u00e7\u00e3o em banca de Alireza Kashani Pour. Computational Approaches to Study Microbiome, towards understanding obesity, type 2 diabetes and long-term impact of antibiotics. 2017 - University of Copenhagen.",
+                "14.": "BARTHOLOMEU, D. C.; TEIXEIRA, S. M. R.;FERNANDES, G. R.; CRUZ, A. K.; SHAW, J. J..  Participa\u00e7\u00e3o em banca de Hugo Oswaldo Valdivia Rodriguez. Comparative genomics, phylogenomics and population genomics of New World Leishmania. 2016. Tese (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "15.": "CISALPINO, P. S.;SOARES, C. M. A.; ZANCOPE-OLIVEIRA, R.;FERNANDES, G. R.; SORIANI, F. M..  Participa\u00e7\u00e3o em banca de Luciana M\u00e1rcia de Oliveira. Biologia de Sistemas no estudo do dimorfismo t\u00e9rmico uma linhagem de Paracoccidioides brasiliensis at\u00edpica na morfog\u00eanes. 2016. Tese (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "16.": "AZEVEDO, V. A. C.; SOARES, S. C.; RAMOS, R. T. J.; GRUBER, A.;FERNANDES, G. R.;ORTEGA, J. M..  Participa\u00e7\u00e3o em banca de Luis Carlos Guimar\u00e3es. Comparative genomics and pan-genomic study of genus corynebacterium. 2015. Tese (Doutorado em Gen\u00e9tica)  - Universidade Federal de Minas Gerais.",
+                "17.": "BARTHOLOMEU, D. C.; ROCHA, W. D.; COELHO, E. F.;FERNANDES, G. R.; MAGALHAES, W. C. S..  Participa\u00e7\u00e3o em banca de Gabriela Fl\u00e1via Rodrigues Luiz. Identifica\u00e7\u00e3o de marcadores moleculares de diagn\u00f3stico e virul\u00eancia em Leishmania por bioinform\u00e1tica. 2015. Tese (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "18.": "KRUGER, R. H.; KYAW, C. M.; NARDOTO, G. B.; MILLER, R. N. G.;FERNANDES, G. R..  Participa\u00e7\u00e3o em banca de Alinne Pereira de Castro. Efeito da disponibilidade de \u00e1gua na composi\u00e7\u00e3o e fun\u00e7\u00e3o de comunidades microbianas presentes no solo do Cerrado revelado por an\u00e1lises metagen\u00f4micas. 2013. Tese (Doutorado em Programa de P\u00f3s-Gradua\u00e7\u00e3o em Biologia Molecular)  - Universidade de Bras\u00edlia.",
+                "19.": "FERNANDES, G. R..  Participa\u00e7\u00e3o em banca de Keyla Caroline de Almeida. An\u00e1lise prote\u00f4mica e transcriptomica comparativa de E. coli resistente e suscept\u00edvel ao pept\u00eddeo antimicrobiano magainina I. 2013. Tese (Doutorado em Programa de Pos Gradua\u00e7\u00e3o em Patologia Molecular)  - Universidade de Bras\u00edlia.",
+                "20.": "FRANCO, O. L.;FERNANDES, G. R.; BARBOSA, J. A. R. G.; GUADAGNIN, R. V.; TOGAWA, R. C..  Participa\u00e7\u00e3o em banca de Fabiano Cavalcanti Fernandes. Desenvolvimento de modelo multidimensional de predi\u00e7\u00e3o de pept\u00eddeos antimicrobianos utilizando um sistema de inferencia neuro-fuzzy adaptativo (ANFIS). 2012. Tese (Doutorado em Ci\u00eancias Gen\u00f4micas e Biotecnologia)  - Universidade Cat\u00f3lica de Bras\u00edlia.",
+                "21.": "FRANCO, O. L.; MAGALHAES, B. S.;FERNANDES, G. R.; BARBOSA, J. A. R. G.; FREITAS, S. M.; SANTOS, E. A..  Participa\u00e7\u00e3o em banca de Ludovico Migliolo. Caracteriza\u00e7\u00e3o molecular e funcional de pept\u00eddeos sint\u00e9ticos multifuncionais derivados de Pleurinectes americanus. 2012. Tese (Doutorado em Ci\u00eancias Gen\u00f4micas e Biotecnologia)  - Universidade Cat\u00f3lica de Bras\u00edlia."
+            },
+            "Qualifica\u00e7\u00f5es de Doutorado": {
+                "1.": "FERNANDES, G R; DE ARA\u00daJO, JULIANA CAL\u00c1BRIA.  Participa\u00e7\u00e3o em banca de Gabrielle Maria Fonseca Pierangeli Pessanha. An\u00e1lise molecular da microbiota em digest\u00e3o anaer\u00f3bia de vinha\u00e7a de cana-de-a\u00e7\u00facar para produ\u00e7\u00e3o de biog\u00e1s. 2023. Exame de qualifica\u00e7\u00e3o (Doutorando em Bioprodutos e Bioprocessos)  - Universidade Federal de S\u00e3o Paulo.",
+                "2.": "FERNANDES, G R; GOMES, T. C..  Participa\u00e7\u00e3o em banca de Laila Viana de Almeida. An\u00e1lise da infectividade e adapta\u00e7\u00e3o \u00e0 invas\u00e3o de diferentes tipos celulares por Trypanosoma cruzi. 2022. Exame de qualifica\u00e7\u00e3o (Doutorando em Parasitologia)  - Universidade Federal de Minas Gerais.",
+                "3.": "FERNANDES, G R; NOGUEIRA, F. B.; SLAVOV, S. N..  Participa\u00e7\u00e3o em banca de Hegger Machado Fritsch. Caracteriza\u00e7\u00e3o do repert\u00f3rio de anticorpos de pacientes com Covid-19 em uma popula\u00e7\u00e3o Brasileira. 2022. Exame de qualifica\u00e7\u00e3o (Doutorando em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "4.": "FERNANDES, G R; SOARES, S. C.; SOUZA, R. P..  Participa\u00e7\u00e3o em banca de F\u00e1bio Rodrigues Martins. DESENVOLVIMENTO DE UMA METODOLOGIA COMPUTACIONAL PARA  AN\u00c1LISE DE GENES E ALELOS NO LOCUS DE CADEIA PESADA DE IMUNOGLOBULINAS HUMANAS. 2020. Exame de qualifica\u00e7\u00e3o (Doutorando em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "5.": "FERNANDES, G R; MORENO, S. E..  Participa\u00e7\u00e3o em banca de Camila Fontoura Acosta Ribeiro. Efeitos do meropenem sobre a microbiota intestinal ap\u00f3s infec\u00e7\u00e3o sist\u00eamica induzida por E. coli.. 2020. Exame de qualifica\u00e7\u00e3o (Doutorando em Biotecnologia)  - Universidade Cat\u00f3lica Dom Bosco.",
+                "6.": "FERNANDES, G R; FRANCO, G. R.; PAIS, F. S..  Participa\u00e7\u00e3o em banca de Anderson Coqueiro dos Santos. Montagem h\u00edbrida e an\u00e1lises de aneuploidias em genomas complexos. 2020. Exame de qualifica\u00e7\u00e3o (Doutorando em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "7.": "FERNANDES, G R; DHALIA, R..  Participa\u00e7\u00e3o em banca de Stella Garcia Colombarolli. Identifica\u00e7\u00e3o de Pept\u00eddeos para o desenvolvimento de um teste diagn\u00f3stico sorol\u00f3gico para Zika. 2020. Exame de qualifica\u00e7\u00e3o (Doutorando em Ci\u00eancias da Sa\u00fade)  - Instituto Ren\u00e9 Rachou - Fiocruz Minas.",
+                "8.": "FERNANDES, G. R..  Participa\u00e7\u00e3o em banca de Marcela Fran\u00e7a Dias. Estudo da diversidade de genes de resist\u00eancia a antimicrobianos associados ao sistema integron-cassete e da microbiota da \u00e1gua para consumo humano. 2017. Exame de qualifica\u00e7\u00e3o (Doutorando em Gen\u00e9tica)  - Universidade Federal de Minas Gerais.",
+                "9.": "FRANCO, G. R.; PIRES, D. E. V.;FERNANDES, G. R..  Participa\u00e7\u00e3o em banca de Luis Henrique Trentin de Souza. Estudo da estrutura topol\u00f3gica do genoma humano. 2017. Exame de qualifica\u00e7\u00e3o (Doutorando em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "10.": "SILVA, A. M.; SOUZA, D. G.;FERNANDES, G. R..  Participa\u00e7\u00e3o em banca de J\u00f4ice Dias Corr\u00eaa. An\u00e1lise do microbioma oral e da rela\u00e7\u00e3o com a condi\u00e7\u00e3o periodontal no l\u00fapus eritematoso sist\u00eamico. 2016. Exame de qualifica\u00e7\u00e3o (Doutorando em Biologia Celular)  - Universidade Federal de Minas Gerais.",
+                "11.": "KALAPOTHAKIS, E.; FRANCO, G. R.;FERNANDES, G. R..  Participa\u00e7\u00e3o em banca de Meddly Leslye Santolalla Robles. An\u00e1lises da diversidade Gen\u00e9tica dos genes diferenciados dos nativos Americanos. 2016. Exame de qualifica\u00e7\u00e3o (Doutorando em Gen\u00e9tica)  - Universidade Federal de Minas Gerais.",
+                "12.": "FERNANDES, G. R.; FRANCA, L. R.; SOUZA, R. P..  Participa\u00e7\u00e3o em banca de Pablo Augusto de Souza Fonseca. Identifica\u00e7\u00e3o de variantes causais em genes associados com dist\u00farbios reprodutivos em bovinos da ra\u00e7a Gir. 2016. Exame de qualifica\u00e7\u00e3o (Doutorando em Gen\u00e9tica)  - Universidade Federal de Minas Gerais.",
+                "13.": "BARTHOLOMEU, D. C.; PAIS, F. S.;FERNANDES, G. R..  Participa\u00e7\u00e3o em banca de Michele Ara\u00fajo Pereira. An\u00e1ise por RNA-Seq dos efeitos da radia\u00e7\u00e3o ionizante na altera\u00e7\u00e3o do transcriptoma codificante de Trypanosoma cruzi. 2015. Exame de qualifica\u00e7\u00e3o (Doutorando em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "14.": "FRANCO, O. L.; DIAS, S. C.; METHA, A.;FERNANDES, G. R.; BARROS, E. G..  Participa\u00e7\u00e3o em banca de Vivian de Jesus Miranda. Estudo transcriptomico in silico e in vivo do sistema de defesa do milho (Zea mays L.) visando \u00e0 prospec\u00e7\u00e3o de pept\u00eddeos antimicrobianos. 2014. Exame de qualifica\u00e7\u00e3o (Doutorando em Ci\u00eancias Gen\u00f4micas e Biotecnologia)  - Universidade Cat\u00f3lica de Bras\u00edlia."
+            },
+            "Qualifica\u00e7\u00f5es de Mestrado": {
+                "1.": "GASPAR, D. M.;FERNANDES, G R; OLIVEIRA, F. A. S..  Participa\u00e7\u00e3o em banca de J\u00falia Martins de Lima. AVALIA\u00c7\u00c3O DO IMPACTO DO TRATAMENTO ORAL COM SERTRALINA SOBRE A MICROBIOTA INTESTINAL DE CAMUNDONGOS DEPRIMIDOS: UM COMPARATIVO ENTRE DOIS S\u00cdTIOS DE COLETA DE FEZES PARA OS  ESTUDOS DO MICROBIOMA INTESTINAL. 2022. Exame de qualifica\u00e7\u00e3o (Mestrando em Farmacologia)  - Universidade Federal do Cear\u00e1.",
+                "2.": "FERNANDES, G R;ORTEGA, J. M.; KATO, R. B..  Participa\u00e7\u00e3o em banca de Lucas Alves de Melo Pontes. AN\u00c1LISE DE TRANSCRITOS DE MRNA DO GENE DE CADEIA PESADA DE IMUNOGLOBULINA PRODUZIDOS EM RESPOSTA \u00c0 VACINA\u00c7\u00c3O CONTRA FEBRE AMARELA. 2021. Exame de qualifica\u00e7\u00e3o (Mestrando em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "3.": "FERNANDES, G R;ORTEGA, J. M.; KATO, R. B..  Participa\u00e7\u00e3o em banca de Wenderson Felipe Costa Rodrigues. THE EVOLUTION OF IRON UPTAKE MECHANISMS IN LAND  PLANTS. 2021. Exame de qualifica\u00e7\u00e3o (Mestrando em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "4.": "FERNANDES, G R;ORTEGA, J. M.; CARVALHO, D. S..  Participa\u00e7\u00e3o em banca de Marcos Jos\u00e9 Andrade Viana. Plant Co-expression Annotation Resource 2.0: uma ferramenta web para a associa\u00e7\u00e3o de prote\u00ednas de fun\u00e7\u00e3o desconhecida a estresses abi\u00f3ticos em plantas.. 2020. Exame de qualifica\u00e7\u00e3o (Mestrando em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "5.": "FERNANDES, G R;ORTEGA, J. M.; CARVALHO, D. S..  Participa\u00e7\u00e3o em banca de Diego Lucas Neres Rodrigues. GEN\u00d4MICA COMPARATIVA DE Acinetobacter baumannii:  PAN-RESISTOMA E EVOLU\u00c7\u00c3O. 2020. Exame de qualifica\u00e7\u00e3o (Mestrando em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "6.": "FERNANDES, G R;ORTEGA, J. M.; CARVALHO, D. S..  Participa\u00e7\u00e3o em banca de Felipe Ferreira da Silva. Ecology database: construction, validation, and data mining. 2020. Exame de qualifica\u00e7\u00e3o (Mestrando em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais.",
+                "7.": "ALENCAR, S. A.; SA, M. F. G.;FERNANDES, G. R.; FREIRE, E. V. S. A..  Participa\u00e7\u00e3o em banca de Lucas de Miranda Pimenta. Duas estrat\u00e9gias moleculares para o controle de insetos-pragas. 2014. Exame de qualifica\u00e7\u00e3o (Mestrando em Ci\u00eancias Gen\u00f4micas e Biotecnologia)  - Universidade Cat\u00f3lica de Bras\u00edlia.",
+                "8.": "SILVA, P. A.; NAGATA, T.;FERNANDES, G. R..  Participa\u00e7\u00e3o em banca de Rayane Nogueira dos Santos. Metagenoma viral do trato intestinal humano. 2014. Exame de qualifica\u00e7\u00e3o (Mestrando em Ci\u00eancias Gen\u00f4micas e Biotecnologia)  - Universidade Cat\u00f3lica de Bras\u00edlia."
+            },
+            "Trabalhos de conclus\u00e3o de curso de gradua\u00e7\u00e3o": {
+                "1.": "BARBOSA, A. E. A. D.;FERNANDES, G. R..  Participa\u00e7\u00e3o em banca de Maria das Gra\u00e7as Pereira Silva Cabral.Identifica\u00e7\u00e3o e an\u00e1lise de genes que codificam snakinas no genoma das plantas do g\u00eanero Coffea. 2012. Trabalho de Conclus\u00e3o de Curso (Gradua\u00e7\u00e3o em Ci\u00eancias Biol\u00f3gicas)  - Universidade Cat\u00f3lica de Bras\u00edlia.",
+                "2.": "FERNANDES, G. R..  Participa\u00e7\u00e3o em banca de Ana Barbara Moura Siqueira.Padr\u00e3o de Metila\u00e7\u00e3o em Genes da Biog\u00eanese Mitocondrial em tr\u00eas linhagens de ratos. 2012. Trabalho de Conclus\u00e3o de Curso (Gradua\u00e7\u00e3o em Biomedicina)  - Universidade Cat\u00f3lica de Bras\u00edlia.",
+                "3.": "FERNANDES, G. R.; Pogue, R;PEREIRA, R. W..  Participa\u00e7\u00e3o em banca de Fernando Cesar Lerbach Rodrigues.Sistemas para a genotipagem de miR-CNVs por qPCR. 2011. Trabalho de Conclus\u00e3o de Curso (Gradua\u00e7\u00e3o em Ci\u00eancias Biol\u00f3gicas)  - Universidade Cat\u00f3lica de Bras\u00edlia."
+            }
+        },
+        "Orienta\u00e7\u00f5es": {
+            "Orienta\u00e7\u00f5es e supervis\u00f5es em andamento": [
+                {
+                    "Tese de doutorado": {
+                        "1.": "J\u00e9ssica L\u00edgia Pican\u00e7o Machado. Constru\u00e7\u00e3o de modelos preditivos para doen\u00e7as metab\u00f3licas e cardiovasculares utilizando a intera\u00e7\u00e3o entre microbioma, dieta e h\u00e1bitos.. In\u00edcio: 2021. Tese (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. (Orientador)."
+                    }
+                },
+                {
+                    "Disserta\u00e7\u00e3o de mestrado": {
+                        "1.": "Gabriela Ribeiro \u00c1ssimos. Caracteriza\u00e7\u00e3o gen\u00e9tica de cepas de Leishmania (Viannia) braziliensis provenientes de hospedeiros humanos, c\u00e3es dom\u00e9sticos e pequenos mam\u00edferos silvestres e sinantr\u00f3picos de Minas Gerais, Brasil.. 2020.  Disserta\u00e7\u00e3o  (Mestrado em Ci\u00eancias da Sa\u00fade)  - Instituto Ren\u00e9 Rachou - Fiocruz Minas, . Coorientador: Gabriel da Rocha Fernandes.",
+                        "2.": "Larisse De Souza Barbosa Lacerda. O Efeito da Vitamina D na infecc\u0327a\u0303o experimental pelo Schistosoma mansoni e na efica\u0301cia do tratamento com doses subcurativas de prazinquantel em modelo murino. 2020.  Disserta\u00e7\u00e3o  (Mestrado em Ci\u00eancias da Sa\u00fade)  - Instituto Ren\u00e9 Rachou - Fiocruz Minas, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. Coorientador: Gabriel da Rocha Fernandes.",
+                        "3.": "Felipe Borim Corr\u00eaa. Estabelecimento de um pipeline para identifica\u00e7\u00e3o de  Mycobacterium leprae em microbiomas atrav\u00e9s do gene rRNA 16S. 2017.  Disserta\u00e7\u00e3o  (Mestrado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. Orientador: Gabriel da Rocha Fernandes.",
+                        "4.": "Mariana Teixeira Dornelles Parise. LabControl - A software for microbial information management. 2016.  Disserta\u00e7\u00e3o  (Mestrado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais, . Coorientador: Gabriel da Rocha Fernandes.",
+                        "5.": "Henrique C\u00e9sar Teixeira Veras. \ufffcBIOINDICADORES FILOGEN\u00c9TICOS PARA PREDI\u00c7\u00c3O DOS ENTEROTIPOS DO MICROBIOMA INTESTINAL HUMANO. 2013.  Disserta\u00e7\u00e3o  (Mestrado em P\u00f3s-Gradua\u00e7\u00e3o em Ci\u00eancas Gen\u00f4micas e Biotecnologia)  - Universidade Cat\u00f3lica de Bras\u00edlia, Conselho Nacional de Desenvolvimento Cient\u00edfico e Tecnol\u00f3gico. Orientador: Gabriel da Rocha Fernandes."
+                    }
+                },
+                {
+                    "Tese de doutorado": {
+                        "1.": "Eyleen Nabyla Alvarenga Niitsuma. Predi\u00e7\u00e3o do risco de adoecimento por hansen\u00edase em contatos de casos da doen\u00e7a de uma regi\u00e3o end\u00eamica brasileira. 2021. Tese  (Doutorado em Doutorado em Enfermagem)  - Universidade Federal de Minas Gerais, . Coorientador: Gabriel da Rocha Fernandes.",
+                        "2.": "Danielle Cristina Fonseca. Identifica\u00e7\u00e3o do impacto de fatores ambientais associados ao perfil da microbiota intestinal em estados de sa\u00fade e de doen\u00e7a. 2018. Tese  (Doutorado em Ci\u00eancias em Gastroenterologia)  - Universidade de S\u00e3o Paulo, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. Coorientador: Gabriel da Rocha Fernandes.",
+                        "3.": "P\u00e2mela Marinho Rezende. Uso de aprendizado de m\u00e1quina para cria\u00e7\u00e3o de um Banco de Dados com informa\u00e7\u00f5es taxon\u00f4micas de gene de rRNA 16s.. 2017. Tese  (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. Coorientador: Gabriel da Rocha Fernandes.",
+                        "4.": "Laura Rabelo Leite. Caracteriza\u00e7\u00e3o taxon\u00f4mica e funcional de organismos e enzimas de interesse biotecnol\u00f3gicos em ambientes de minera\u00e7\u00e3o.. 2016. Tese  (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais, Vale. Coorientador: Gabriel da Rocha Fernandes.",
+                        "5.": "Diego Lisboa Rios. CARACTERIZA\u00c7\u00c3O FUNCIONAL DA COMUNIDADE DE BACT\u00c9RIAS L\u00c1TICAS, BACT\u00c9RIAS AC\u00c9TICAS E LEVEDURAS DE BEBIDAS DE KEFIR DE LEITE E KEFIR DE \u00c1GUA DO BRASIL E DA ARGENTINA POR AN\u00c1LISE METATRANSCRIPT\u00d4MICA. 2016. Tese  (Doutorado em Gen\u00e9tica)  - Universidade Federal de Minas Gerais, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. Coorientador: Gabriel da Rocha Fernandes.",
+                        "6.": "Juliana Assis Geraldo. Integra\u00e7\u00e3o de dados para curadoria e gen\u00f4mica comparativa dos parasitos presentes no EuPathDB. 2015. Tese  (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. Orientador: Gabriel da Rocha Fernandes."
+                    }
+                }
+            ],
+            "Orienta\u00e7\u00f5es e supervis\u00f5es conclu\u00eddas": [
+                {
+                    "Tese de doutorado": {
+                        "1.": "J\u00e9ssica L\u00edgia Pican\u00e7o Machado. Constru\u00e7\u00e3o de modelos preditivos para doen\u00e7as metab\u00f3licas e cardiovasculares utilizando a intera\u00e7\u00e3o entre microbioma, dieta e h\u00e1bitos.. In\u00edcio: 2021. Tese (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. (Orientador)."
+                    }
+                },
+                {
+                    "Disserta\u00e7\u00e3o de mestrado": {
+                        "1.": "Gabriela Ribeiro \u00c1ssimos. Caracteriza\u00e7\u00e3o gen\u00e9tica de cepas de Leishmania (Viannia) braziliensis provenientes de hospedeiros humanos, c\u00e3es dom\u00e9sticos e pequenos mam\u00edferos silvestres e sinantr\u00f3picos de Minas Gerais, Brasil.. 2020.  Disserta\u00e7\u00e3o  (Mestrado em Ci\u00eancias da Sa\u00fade)  - Instituto Ren\u00e9 Rachou - Fiocruz Minas, . Coorientador: Gabriel da Rocha Fernandes.",
+                        "2.": "Larisse De Souza Barbosa Lacerda. O Efeito da Vitamina D na infecc\u0327a\u0303o experimental pelo Schistosoma mansoni e na efica\u0301cia do tratamento com doses subcurativas de prazinquantel em modelo murino. 2020.  Disserta\u00e7\u00e3o  (Mestrado em Ci\u00eancias da Sa\u00fade)  - Instituto Ren\u00e9 Rachou - Fiocruz Minas, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. Coorientador: Gabriel da Rocha Fernandes.",
+                        "3.": "Felipe Borim Corr\u00eaa. Estabelecimento de um pipeline para identifica\u00e7\u00e3o de  Mycobacterium leprae em microbiomas atrav\u00e9s do gene rRNA 16S. 2017.  Disserta\u00e7\u00e3o  (Mestrado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. Orientador: Gabriel da Rocha Fernandes.",
+                        "4.": "Mariana Teixeira Dornelles Parise. LabControl - A software for microbial information management. 2016.  Disserta\u00e7\u00e3o  (Mestrado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais, . Coorientador: Gabriel da Rocha Fernandes.",
+                        "5.": "Henrique C\u00e9sar Teixeira Veras. \ufffcBIOINDICADORES FILOGEN\u00c9TICOS PARA PREDI\u00c7\u00c3O DOS ENTEROTIPOS DO MICROBIOMA INTESTINAL HUMANO. 2013.  Disserta\u00e7\u00e3o  (Mestrado em P\u00f3s-Gradua\u00e7\u00e3o em Ci\u00eancas Gen\u00f4micas e Biotecnologia)  - Universidade Cat\u00f3lica de Bras\u00edlia, Conselho Nacional de Desenvolvimento Cient\u00edfico e Tecnol\u00f3gico. Orientador: Gabriel da Rocha Fernandes."
+                    }
+                },
+                {
+                    "Tese de doutorado": {
+                        "1.": "Eyleen Nabyla Alvarenga Niitsuma. Predi\u00e7\u00e3o do risco de adoecimento por hansen\u00edase em contatos de casos da doen\u00e7a de uma regi\u00e3o end\u00eamica brasileira. 2021. Tese  (Doutorado em Doutorado em Enfermagem)  - Universidade Federal de Minas Gerais, . Coorientador: Gabriel da Rocha Fernandes.",
+                        "2.": "Danielle Cristina Fonseca. Identifica\u00e7\u00e3o do impacto de fatores ambientais associados ao perfil da microbiota intestinal em estados de sa\u00fade e de doen\u00e7a. 2018. Tese  (Doutorado em Ci\u00eancias em Gastroenterologia)  - Universidade de S\u00e3o Paulo, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. Coorientador: Gabriel da Rocha Fernandes.",
+                        "3.": "P\u00e2mela Marinho Rezende. Uso de aprendizado de m\u00e1quina para cria\u00e7\u00e3o de um Banco de Dados com informa\u00e7\u00f5es taxon\u00f4micas de gene de rRNA 16s.. 2017. Tese  (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. Coorientador: Gabriel da Rocha Fernandes.",
+                        "4.": "Laura Rabelo Leite. Caracteriza\u00e7\u00e3o taxon\u00f4mica e funcional de organismos e enzimas de interesse biotecnol\u00f3gicos em ambientes de minera\u00e7\u00e3o.. 2016. Tese  (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais, Vale. Coorientador: Gabriel da Rocha Fernandes.",
+                        "5.": "Diego Lisboa Rios. CARACTERIZA\u00c7\u00c3O FUNCIONAL DA COMUNIDADE DE BACT\u00c9RIAS L\u00c1TICAS, BACT\u00c9RIAS AC\u00c9TICAS E LEVEDURAS DE BEBIDAS DE KEFIR DE LEITE E KEFIR DE \u00c1GUA DO BRASIL E DA ARGENTINA POR AN\u00c1LISE METATRANSCRIPT\u00d4MICA. 2016. Tese  (Doutorado em Gen\u00e9tica)  - Universidade Federal de Minas Gerais, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. Coorientador: Gabriel da Rocha Fernandes.",
+                        "6.": "Juliana Assis Geraldo. Integra\u00e7\u00e3o de dados para curadoria e gen\u00f4mica comparativa dos parasitos presentes no EuPathDB. 2015. Tese  (Doutorado em Bioinform\u00e1tica)  - Universidade Federal de Minas Gerais, Coordena\u00e7\u00e3o de Aperfei\u00e7oamento de Pessoal de N\u00edvel Superior. Orientador: Gabriel da Rocha Fernandes."
+                    }
+                }
+            ]
+        },
+        "JCR2": [
+            {
+                "doi": "http://dx.doi.org/10.3390/microorganisms12010068",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1080/19490976.2023.2297815",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1016/j.nut.2024.112371",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1002/arch.22106",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3389/fcimb.2024.1371695",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.2139/ssrn.4760109"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1038/s41598-024-58985-w",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3390/nu15051185",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3390/jof9030281",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1038/s41598-023-32298-w",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1371/journal.pone.0282490",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1186/s12915-023-01605-2",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1186/s12974-023-02826-6",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1590/0037-8682-0167-2022",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1016/j.gene.2023.147742",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3389/fimmu.2023.1250055",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1007/s10123-023-00431-4",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3389/fimmu.2023.1220600",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1007/s11356-022-18749-3",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1016/j.ibmb.2021.103704",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1016/j.anaerobe.2022.102577",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1093/trstmh/trac030",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.26502/fjhs.055"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3389/fcimb.2022.838750",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1093/bib/bbac216",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1038/s43856-022-00141-4"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1371/journal.pntd.0010060",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3390/metabo12090796",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1038/s41430-022-01182-7",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3389/fmed.2022.1008600",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.20945/2359-3997000000568",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1016/j.lwt.2020.110791",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1590/1980-549720210039"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1016/j.watres.2020.115630",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1007/s00248-020-01548-z",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1038/s41386-020-00793-7",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1080/19490976.2020.1812867",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1093/femsle/fnaa149",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3390/v12111284",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3920/BM2020.0045",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1038/s41598-019-44674-6",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1111/1462-2920.14748",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1111/jcmm.14415",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1111/mec.15208",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1155/2018/1062716",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1016/j.jhep.2018.08.018",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1099/mic.0.000725",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1371/journal.pone.0205234",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1038/s41598-018-33469-w",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1016/j.metabol.2017.01.007",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3389/fcimb.2017.00047",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1186/s40168-017-0252-z",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1371/journal.pone.0175041",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1080/21505594.2017.1355660",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1126/sciadv.1700299",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1111/mec.14294",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1186/s13098-017-0261-x",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3389/fmicb.2017.01993",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1093/nar/gkx1027",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1038/s41598-017-02298-8",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1371/journal.pntd.0004309",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1002/bip.22763",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1038/srep21935",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1128/genomeA.01748-15"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1158/1541-7786.MCR-15-0366",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1128/genomea.00527-16"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1371/journal.pntd.0004817",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1053/j.gastro.2016.08.024",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1038/ncomms13329",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3389/fmicb.2015.00821",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1128/genomea.01302-15"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1038/nature13075",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1371/journal.pone.0090487",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1371/journal.pntd.0002855",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1186/1471-2164-15-511",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3389/fmicb.2014.00489",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1158/1538-7445.AM2014-3427",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1007/s11262-013-0877-3",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1038/nature09944",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1186/1471-2164-12-S4-S2",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1186/1471-2164-12-S4-S3",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.4238/vol7-3X-Meeting008",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.4238/vol7-3X-Meeting011",
+                "impact-factor": "4.5",
+                "original_title": "Microorganisms (2076-2607)"
+            }
+        ]
+    }
+]
