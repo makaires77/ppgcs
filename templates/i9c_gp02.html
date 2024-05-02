@@ -1,0 +1,61 @@
+<html>
+    <head>
+    <title>
+      TRM9C-GP02
+    </title>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" href="/static/css/style.css">
+      <script src="https://cdn.jsdelivr.net/npm/neo4j-driver"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"></script>
+      <style>
+        /* Define o estilo das linhas */
+        .line {width: 98.5%; height: 30%; position: absolute;}
+        .line-1 {background-color: rgba(255, 255, 255); top: 7%; }
+        .line-5 {background-color: rgba(000, 255, 255); top: 10%;}      
+        .line-6 {background-color: rgba(190, 170, 060); top: 40%;}        
+        .line-7 {background-color: rgba(125, 000, 125, 0.5); top: 70%;}
+        /* Define o estilo dos títulos */
+        .title1 {font-size: 18px; position: absolute; top: 0; left: 2%;}
+        .title2 {font-size: 16px; position: absolute; top: 0; left: 2%;}
+        .title3 {font-size: 16px; position: absolute; top: 0; left: 2%;}
+        /* Define o estilo do gráfico de dispersão */
+        .scatterplot {
+          position: absolute;
+          top: 10%;
+          left: 10%;
+          right: 10%;
+          bottom: 10%;
+        }
+      </style>
+    </head>
+    <body>
+    <h4 class="article-title">Mapa de Estruturas para Desenvolver Tecnologias</h4>
+    <!-- <h4 class="article-title">Nível02 Grupo Processos: GP02 DESENVOLVER</h4>       -->
+      <!-- Adiciona as três linhas ao plano de fundo -->
+      <div class="line line-1">
+        <div class="title1"><strong>Objetivo: </strong>Mobilizar pessoas e recursos conforme metas institucionais do período</div>
+      </div>
+      <div class="line line-5">
+        <div class="title2"><strong>P006: Estruturar Plataformas</strong> (Ensaios, Equipamentos, Ambientes)</div>
+      </div>
+      <div class="line line-6">
+        <div class="title2"><strong>P005: Implementar Gerenciamentos</strong> (Projetos, Processos, Programas)</div>
+      </div>
+      <div class="line line-7">
+        <div class="title2"><strong>P004: Delimitar Escopos</strong> (Papeis, Tempo, Orçamentos)</div>
+      </div>
+      <!-- Container para o grafo -->
+      <div id="scatterplot" class="scatterplot"></div>
+      <script src="/static/js/script.js"></script>
+      <script>
+      // Função para carregar os dados do JSON
+      async function loadGraphData() {
+          const response = await fetch('/static/data/json/roadmap.json');
+          const graphData = await response.json();
+          // Renderizar com o layout de macroprocessos
+          renderGroupedGraph(graphData);
+      }
+      loadGraphData(); // Carrega os dados ao carregar a página
+      </script>
+    </body>
+</html>
