@@ -3493,9 +3493,9 @@ class GetQualis:
                 arquivo.seek(0)
                 json.dump(dados, arquivo, indent=4)
             print('Exemplo:')
-            print([x.get('Produções') for x in dados][0])
+            print([x.get('Produções') for x in dados][0].get('Artigos completos publicados em periódicos')[0])
             
-            return dados
+            return arquivo
         
         except Exception as e:
             print(f"Erro ao atualizar o arquivo: {e}")
