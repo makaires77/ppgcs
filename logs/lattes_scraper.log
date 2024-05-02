@@ -1,0 +1,75 @@
+2024-05-02 06:07:51,920 - ERROR - Tentativa de extrair currículo de Alessandra Aparecida Guarneri em scrape_retry() falhou: Message:        Erro ao realizar a extração para Alessandra Aparecida Guarneri: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=124.0.6367.93)
+Stacktrace:
+	GetHandleVerifier [0x00007FF79AD21502+60802]
+	(No symbol) [0x00007FF79AC9AC02]
+	(No symbol) [0x00007FF79AB57CE4]
+	(No symbol) [0x00007FF79AB2DFDF]
+	(No symbol) [0x00007FF79ABD1E57]
+	(No symbol) [0x00007FF79ABE98D1]
+	(No symbol) [0x00007FF79ABCA923]
+	(No symbol) [0x00007FF79AB98FEC]
+	(No symbol) [0x00007FF79AB99C21]
+	GetHandleVerifier [0x00007FF79B02411D+3217821]
+	GetHandleVerifier [0x00007FF79B0660B7+3488055]
+	GetHandleVerifier [0x00007FF79B05F03F+3459263]
+	GetHandleVerifier [0x00007FF79ADDB846+823494]
+	(No symbol) [0x00007FF79ACA5F9F]
+	(No symbol) [0x00007FF79ACA0EC4]
+	(No symbol) [0x00007FF79ACA1052]
+	(No symbol) [0x00007FF79AC918A4]
+	BaseThreadInitThunk [0x00007FFE01B37344+20]
+	RtlUserThreadStart [0x00007FFE037E26B1+33]
+
+. Tentando novamente...
+2024-05-02 06:07:52,923 - ERROR - Tentativa de extrair currículo de Alessandra Aparecida Guarneri em scrape_retry() falhou: Message:        Erro ao realizar a extração para Alessandra Aparecida Guarneri: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=124.0.6367.93)
+Stacktrace:
+	GetHandleVerifier [0x00007FF79AD21502+60802]
+	(No symbol) [0x00007FF79AC9AC02]
+	(No symbol) [0x00007FF79AB57CE4]
+	(No symbol) [0x00007FF79AB2DFDF]
+	(No symbol) [0x00007FF79ABD1E57]
+	(No symbol) [0x00007FF79ABE98D1]
+	(No symbol) [0x00007FF79ABCA923]
+	(No symbol) [0x00007FF79AB98FEC]
+	(No symbol) [0x00007FF79AB99C21]
+	GetHandleVerifier [0x00007FF79B02411D+3217821]
+	GetHandleVerifier [0x00007FF79B0660B7+3488055]
+	GetHandleVerifier [0x00007FF79B05F03F+3459263]
+	GetHandleVerifier [0x00007FF79ADDB846+823494]
+	(No symbol) [0x00007FF79ACA5F9F]
+	(No symbol) [0x00007FF79ACA0EC4]
+	(No symbol) [0x00007FF79ACA1052]
+	(No symbol) [0x00007FF79AC918A4]
+	BaseThreadInitThunk [0x00007FFE01B37344+20]
+	RtlUserThreadStart [0x00007FFE037E26B1+33]
+
+. Tentando novamente...
+2024-05-02 06:07:53,927 - ERROR - Tentativa de extrair currículo de Alessandra Aparecida Guarneri em scrape_retry() falhou: Message:        Erro ao realizar a extração para Alessandra Aparecida Guarneri: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=124.0.6367.93)
+Stacktrace:
+	GetHandleVerifier [0x00007FF79AD21502+60802]
+	(No symbol) [0x00007FF79AC9AC02]
+	(No symbol) [0x00007FF79AB57CE4]
+	(No symbol) [0x00007FF79AB2DFDF]
+	(No symbol) [0x00007FF79ABD1E57]
+	(No symbol) [0x00007FF79ABE98D1]
+	(No symbol) [0x00007FF79ABCA923]
+	(No symbol) [0x00007FF79AB98FEC]
+	(No symbol) [0x00007FF79AB99C21]
+	GetHandleVerifier [0x00007FF79B02411D+3217821]
+	GetHandleVerifier [0x00007FF79B0660B7+3488055]
+	GetHandleVerifier [0x00007FF79B05F03F+3459263]
+	GetHandleVerifier [0x00007FF79ADDB846+823494]
+	(No symbol) [0x00007FF79ACA5F9F]
+	(No symbol) [0x00007FF79ACA0EC4]
+	(No symbol) [0x00007FF79ACA1052]
+	(No symbol) [0x00007FF79AC918A4]
+	BaseThreadInitThunk [0x00007FFE01B37344+20]
+	RtlUserThreadStart [0x00007FFE037E26B1+33]
+
+. Tentando novamente...
