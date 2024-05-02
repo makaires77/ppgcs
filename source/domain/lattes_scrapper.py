@@ -1967,56 +1967,69 @@ class LattesScraper:
                         else:
                             artigo['Qualis'] = 'Não encontrado'
 
-    def buscar_qualis_e_atualizar_arquivo(self, lista_dados_autor, nome_arquivo):
+    def buscar_qualis_e_atualizar_arquivo(self, lista_dados_autor, pathfilename):
         """
         Busca o Qualis de cada artigo completo publicado em periódicos e atualiza o arquivo original com os dados encontrados.
 
         Args:
             lista_dados_autor (list): Lista de dicionários com os dados dos autores.
-            nome_arquivo (str): Nome do arquivo JSON a ser atualizado.
+            pathfilename (str): Caminho completo e Nome do arquivo JSON a ser atualizado.
         """
+
         try:
-            # with open(nome_arquivo, 'r+') as arquivo:
-            #     # Carregue os dados do arquivo
-            #     dados = json.load(arquivo)
-            with codecs.open(nome_arquivo, 'r', encoding='utf-8') as arquivo:
-                 # Carregue os dados do arquivo
-                 dados = json.load(arquivo)
+            # Verifique se o arquivo existe
+            if not os.path.exists(pathfilename):
+                # O arquivo não existe, então vamos criá-lo
+                with open(pathfilename, 'w', encoding='utf-8') as arquivo:
+                    json.dump({}, arquivo, indent=4)
 
-            # Percorra os dados de cada autor
-            for m,dados_autor in enumerate(lista_dados_autor):
-                for categoria, artigos in dados_autor['Produções'].items():
-                    if categoria == 'Artigos completos publicados em periódicos':
-                        for n,artigo in enumerate(artigos):
-                            print(f'{n+1:3}/{len(artigos):3} artigos do autor {m+1:3}/{len(lista_dados_autor):3}')
-                            clear_output(wait=True)
-                            # Recupere o ISSN do artigo
-                            issn_artigo = artigo['ISSN'].replace('-','')
+            # Abra o arquivo no modo r+ para leitura e escrita
+            with codecs.open(pathfilename, 'r+', encoding='utf-8') as arquivo:
+                # Carregue os dados do arquivo
+                dados = json.load(arquivo)
 
-                            # Busque o Qualis do artigo
-                            qualis = self.encontrar_qualis_por_issn(issn_artigo)
+                # Percorra os dados de cada autor
+                for m, dados_autor in enumerate(lista_dados_autor):
+                    for categoria, artigos in dados_autor['Produções'].items():
+                        if categoria == 'Artigos completos publicados em periódicos':
+                            for n, artigo in enumerate(artigos):
+                                print(f'{n+1:3}/{len(artigos):3} artigos do autor {m+1:3}/{len(lista_dados_autor):3}')
+                                clear_output(wait=True)
 
-                            # Atualize o campo 'Qualis' do artigo
-                            if qualis:
-                                artigo['Qualis'] = qualis
-                            else:
-                                artigo['Qualis'] = 'Não encontrado'
+                                # Recupere o ISSN do artigo
+                                issn_artigo = artigo['ISSN'].replace('-','')
 
-            # Reposicione o cursor no início do arquivo
-            arquivo.seek(0)
+                                # Busque o Qualis do artigo
+                                qualis = self.encontrar_qualis_por_issn(issn_artigo)
 
-            # Reescreva os dados formatados no arquivo
-            # json.dump(dados, arquivo, indent=4)
-            with codecs.open(nome_arquivo, 'w', encoding='utf-8') as arquivo:
+                                # Atualize o campo 'Qualis' do artigo
+                                if qualis:
+                                    artigo['Qualis'] = qualis
+                                else:
+                                    artigo['Qualis'] = 'Não encontrado'
+
+                # Reposicione o cursor no início do arquivo
+                arquivo.seek(0)
+
+                # Reescreva os dados formatados no arquivo
                 json.dump(dados, arquivo, indent=4)
-            return dados
-        
+
         except Exception as e:
             print(f"Erro ao atualizar o arquivo: {e}")
             traceback_str = ''.join(traceback.format_tb(e.__traceback__))
             print(f"{traceback_str}")
-    
+
     def encontrar_qualis_por_issn(self, issn):
+        """
+        Busca o Qualis do artigo pelo ISSN.
+
+        Args:
+            issn (str): ISSN do artigo.
+
+        Returns:
+            str: Estrato do Qualis do artigo ou 'Não encontrado' caso não seja encontrado.
+        """
+
         qualis = self.dados_planilha[self.dados_planilha['ISSN'].str.replace('-','') == issn]['Estrato'].tolist()
         if qualis:
             return qualis[0]
@@ -2209,8 +2222,18 @@ class LattesScraper:
                 traceback_str = ''.join(traceback.format_tb(e.__traceback__))
                 logging.error(traceback_str)
         self.driver.quit()
+        try:
+            filepath = os.path.join(LattesScraper.find_repo_root(),'_data','in_csv','dict_list_temp.json')
+            print(f'Arquivo salvo em {filepath}')
+        except:
+            print('Não foi possível salvar extração em arquivo')
+        self.save_to_json(dict_list, filepath)
+
         return dict_list
 
+    def save_to_json(self, data, file_path):
+        with open(file_path, 'w', encoding='utf-8') as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
   
 class HTMLParser:
     def __init__(self, html):
@@ -3054,7 +3077,7 @@ class HTMLParser:
                             
     def add_qualis(self):
         file_name = 'classificações_publicadas_todas_as_areas_avaliacao1672761192111.xls'
-        planilha_excel = os.path.join(self.find_repo_root(), 'data', file_name)        
+        planilha_excel = os.path.join(self.find_repo_root(), '_data', file_name)        
         planilha = pd.read_excel(planilha_excel)
         for artigo in self.json_data['Produções']['Artigos completos publicados em periódicos']:
             try:
@@ -3469,7 +3492,10 @@ class GetQualis:
                 # Reposicione o cursor no início do arquivo
                 arquivo.seek(0)
                 json.dump(dados, arquivo, indent=4)
-            return dados
+            print('Exemplo:')
+            print([x.get('Produções') for x in dados][0].get('Artigos completos publicados em periódicos')[0])
+            
+            return arquivo
         
         except Exception as e:
             print(f"Erro ao atualizar o arquivo: {e}")
@@ -3626,7 +3652,7 @@ class DiscentCollaborationCounter:
 
         return lista_coautores, padroes
 
-    def get_articles_coauthorings(self, dict_list, ano_inicio=2017, ano_final=2024, limite_similaridade_sobrenome=0.88, limite_similaridade_iniciais=0.83):
+    def get_articles_coauthorings(self, dict_list, ano_inicio=2017, ano_final=2024, limite_similaridade_sobrenome=0.88, limite_similaridade_iniciais=0.8):
         """
         Extrair cada artigo de cada dicionário de currículo
 

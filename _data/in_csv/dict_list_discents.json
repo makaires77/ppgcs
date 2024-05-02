@@ -5143,11 +5143,11 @@
         ],
         "Linhas de Pesquisa": [
             {
-                "Descri\u00e7\u00e3o": "Microbiologia aplicada",
+                "Descri\u00e7\u00e3o": "Biotecnologia",
                 "Detalhes": ""
             },
             {
-                "Descri\u00e7\u00e3o": "Biotecnologia",
+                "Descri\u00e7\u00e3o": "Microbiologia aplicada",
                 "Detalhes": ""
             },
             {
@@ -5159,7 +5159,7 @@
                 "Detalhes": ""
             },
             {
-                "Descri\u00e7\u00e3o": "Aplica\u00e7\u00e3o de nanopart\u00edculas de \u00f3xido de ferro na polariza\u00e7\u00e3o de macr\u00f3fagos associados a c\u00e9lulas derivadas de neoplasias mam\u00e1rias",
+                "Descri\u00e7\u00e3o": "Desenvolvimento de uma nanoplataforma vacinal",
                 "Detalhes": ""
             },
             {
@@ -5167,7 +5167,7 @@
                 "Detalhes": ""
             },
             {
-                "Descri\u00e7\u00e3o": "Desenvolvimento de uma nanoplataforma vacinal",
+                "Descri\u00e7\u00e3o": "Aplica\u00e7\u00e3o de nanopart\u00edculas de \u00f3xido de ferro na polariza\u00e7\u00e3o de macr\u00f3fagos associados a c\u00e9lulas derivadas de neoplasias mam\u00e1rias",
                 "Detalhes": ""
             },
             {
@@ -5332,23 +5332,23 @@
             },
             {
                 "chave": "2022 - Atual",
-                "titulo_projeto": "INCT-CNPq - INCT-POX",
-                "descricao": "Situa\u00e7\u00e3o: Em andamento; Natureza: Pesquisa.Integrantes: Camila Sales Nascimento - Integrante / Carlos Eduardo Calzavara-Silva - Integrante / TAVARES, NAIARA CLEMENTE - Integrante / Jaquelline Germano Oliveira - Integrante / Erna Geessien Kroon - Coordenador."
-            },
-            {
-                "chave": "2022 - Atual",
                 "titulo_projeto": "Biofuncionaliza\u00e7\u00e3o de nanopart\u00edculas contendo pept\u00eddeos potencialmente imunog\u00eanicos das diferentes variantes do SARS-CoV-2 - proposta de uma estrat\u00e9gia din\u00e2mica para vacinas contra a COVID-19",
                 "descricao": "Situa\u00e7\u00e3o: Em andamento; Natureza: Pesquisa.Integrantes: Camila Sales Nascimento - Integrante / Carlos Eduardo Calzavara-Silva - Coordenador / BATISTA, IZABELLA - Integrante / ANNA CAROLINA PINHEIRO LAGE - Integrante / Naiara Cristina Clemente dos Santos Tavares de Paula - Integrante."
             },
             {
                 "chave": "2022 - Atual",
-                "titulo_projeto": "Rede Mineira de Tecnologias Habilitadoras para Deple\u00e7\u00e3o de C\u00e9lulas Tumorais e da Linhagem Germinativa",
-                "descricao": "Situa\u00e7\u00e3o: Em andamento; Natureza: Pesquisa.Integrantes: Camila Sales Nascimento - Integrante / Carlos Eduardo Calzavara-Silva - Coordenador / TAVARES, NAIARA CLEMENTE - Integrante / Anna Carolina Pinheiro Lage - Integrante / Guilherme Mattos Jardim Costa - Integrante."
+                "titulo_projeto": "EMENDAS - IRR-007-FEX-23- ESTRAT\u00c9GIA DE DESENVOLVIMENTO R\u00c1PIDO DE MEDICAMENTO CONTRA A DENGUE",
+                "descricao": "Situa\u00e7\u00e3o: Em andamento; Natureza: Pesquisa.Integrantes: Camila Sales Nascimento - Integrante / Carlos Eduardo Calzavara-Silva - Coordenador / TAVARES, NAIARA CLEMENTE - Integrante / Thais Cristina Ferraz de Oliveira - Integrante."
             },
             {
                 "chave": "2022 - Atual",
-                "titulo_projeto": "EMENDAS - IRR-007-FEX-23- ESTRAT\u00c9GIA DE DESENVOLVIMENTO R\u00c1PIDO DE MEDICAMENTO CONTRA A DENGUE",
-                "descricao": "Situa\u00e7\u00e3o: Em andamento; Natureza: Pesquisa.Integrantes: Camila Sales Nascimento - Integrante / Carlos Eduardo Calzavara-Silva - Coordenador / TAVARES, NAIARA CLEMENTE - Integrante / Thais Cristina Ferraz de Oliveira - Integrante."
+                "titulo_projeto": "INCT-CNPq - INCT-POX",
+                "descricao": "Situa\u00e7\u00e3o: Em andamento; Natureza: Pesquisa.Integrantes: Camila Sales Nascimento - Integrante / Carlos Eduardo Calzavara-Silva - Integrante / TAVARES, NAIARA CLEMENTE - Integrante / Jaquelline Germano Oliveira - Integrante / Erna Geessien Kroon - Coordenador."
+            },
+            {
+                "chave": "2022 - Atual",
+                "titulo_projeto": "Rede Mineira de Tecnologias Habilitadoras para Deple\u00e7\u00e3o de C\u00e9lulas Tumorais e da Linhagem Germinativa",
+                "descricao": "Situa\u00e7\u00e3o: Em andamento; Natureza: Pesquisa.Integrantes: Camila Sales Nascimento - Integrante / Carlos Eduardo Calzavara-Silva - Coordenador / TAVARES, NAIARA CLEMENTE - Integrante / Anna Carolina Pinheiro Lage - Integrante / Guilherme Mattos Jardim Costa - Integrante."
             },
             {
                 "chave": "2021 - 2023",
@@ -5377,13 +5377,13 @@
             },
             {
                 "chave": "2011 - 2013",
-                "titulo_projeto": "Recomenda\u00e7\u00e3o para Armazenamento do Fruto p\u00f3s-colheita na cultura de Maca\u00faba.",
-                "descricao": "Descri\u00e7\u00e3o: : Avaliar o efeito do per\u00edodo de armazenamento do fruto em diferentes atmosferas na umidade e no teor de acidez do \u00f3leo, realizada em pelo menos duas safras. - Avaliar o efeito do per\u00edodo de armazenamento do fruto em diferentes atmosferas na prolifera\u00e7\u00e3o de microorganismos, realizada em pelo menos duas safras. Sub-projetos envolvidos: 1) Produ\u00e7\u00e3o de \u00d3leos de Maca\u00faba com Qualidade: P\u00f3s-colheita, Extra\u00e7\u00e3o, Refino. 2) Caracteriza\u00e7\u00e3o F\u00edso-qu\u00edmica e Controle da flora microbiana durante o armazenamento dos frutos da Maca\u00faba 3) Maca\u00faba: da Coleta de Frutos \u00e0 Produ\u00e7\u00e3o de \u00d3leos e Biodisel...Situa\u00e7\u00e3o: Conclu\u00eddo; Natureza: Pesquisa.Integrantes: Camila Sales Nascimento - Integrante / Maria Helena Ca\u00f1o de Andrade - Coordenador / Lorena Queiroz - Integrante."
+                "titulo_projeto": "Beneficiamento do fruto e extra\u00e7\u00e3o dos \u00f3leos da polpa e da am\u00eandoa do fruto da Maca\u00faba.",
+                "descricao": "Descri\u00e7\u00e3o: Inclui Projetos Internos do Laborat\u00f3rio da Maca\u00faba do DEQ-UFMG e parte do Projeto Propalma ( pesquisa, desenvolvimento e inova\u00e7\u00e3o (PD&I) em palm\u00e1ceas para a produ\u00e7\u00e3o de \u00f3leo e aproveitamento econ\u00f4mico de co-produrtos e res\u00edduos. Propronente: FUNARBE / Parcerias: EMBRAPA - UFMG - UFLA. Assinado em dezembro de 2009. Implementado a partir de 2011). 1. Avaliar a efici\u00eancia de extra\u00e7\u00e3o do \u00f3leo de Maca\u00faba empregando diferentes t\u00e9cnicas de pr\u00e9-processamento da mat\u00e9ria-prima. 2. Avaliar a efici\u00eancia dos processos de filtra\u00e7\u00e3o, degomagem e clarifica\u00e7\u00e3o na qualidade do \u00f3leo. 3. Propor modelo de planta industrial de extra\u00e7\u00e3o dos \u00f3leos da Maca\u00faba Sub-projetos envolvidos: 1- Modelo de Secagem do Fruto e da Massa da polpa do Fruto da Maca\u00faba - Equipamento e Processo 2 - Produ\u00e7\u00e3o de \u00d3leos de Maca\u00faba com Qualidade: P\u00f3s-colheita, Extra\u00e7\u00e3o, Refino 3- Otimiza\u00e7\u00e3o do Processo de Extra\u00e7\u00e3o dos \u00d3leos da Am\u00eandoa do Fruto da Maca\u00faba ..Situa\u00e7\u00e3o: Conclu\u00eddo; Natureza: Pesquisa.Integrantes: Camila Sales Nascimento - Integrante / Maria Helena Ca\u00f1o de Andrade - Coordenador / Lorena Queiroz - Integrante."
             },
             {
                 "chave": "2011 - 2013",
-                "titulo_projeto": "Beneficiamento do fruto e extra\u00e7\u00e3o dos \u00f3leos da polpa e da am\u00eandoa do fruto da Maca\u00faba.",
-                "descricao": "Descri\u00e7\u00e3o: Inclui Projetos Internos do Laborat\u00f3rio da Maca\u00faba do DEQ-UFMG e parte do Projeto Propalma ( pesquisa, desenvolvimento e inova\u00e7\u00e3o (PD&I) em palm\u00e1ceas para a produ\u00e7\u00e3o de \u00f3leo e aproveitamento econ\u00f4mico de co-produrtos e res\u00edduos. Propronente: FUNARBE / Parcerias: EMBRAPA - UFMG - UFLA. Assinado em dezembro de 2009. Implementado a partir de 2011). 1. Avaliar a efici\u00eancia de extra\u00e7\u00e3o do \u00f3leo de Maca\u00faba empregando diferentes t\u00e9cnicas de pr\u00e9-processamento da mat\u00e9ria-prima. 2. Avaliar a efici\u00eancia dos processos de filtra\u00e7\u00e3o, degomagem e clarifica\u00e7\u00e3o na qualidade do \u00f3leo. 3. Propor modelo de planta industrial de extra\u00e7\u00e3o dos \u00f3leos da Maca\u00faba Sub-projetos envolvidos: 1- Modelo de Secagem do Fruto e da Massa da polpa do Fruto da Maca\u00faba - Equipamento e Processo 2 - Produ\u00e7\u00e3o de \u00d3leos de Maca\u00faba com Qualidade: P\u00f3s-colheita, Extra\u00e7\u00e3o, Refino 3- Otimiza\u00e7\u00e3o do Processo de Extra\u00e7\u00e3o dos \u00d3leos da Am\u00eandoa do Fruto da Maca\u00faba ..Situa\u00e7\u00e3o: Conclu\u00eddo; Natureza: Pesquisa.Integrantes: Camila Sales Nascimento - Integrante / Maria Helena Ca\u00f1o de Andrade - Coordenador / Lorena Queiroz - Integrante."
+                "titulo_projeto": "Recomenda\u00e7\u00e3o para Armazenamento do Fruto p\u00f3s-colheita na cultura de Maca\u00faba.",
+                "descricao": "Descri\u00e7\u00e3o: : Avaliar o efeito do per\u00edodo de armazenamento do fruto em diferentes atmosferas na umidade e no teor de acidez do \u00f3leo, realizada em pelo menos duas safras. - Avaliar o efeito do per\u00edodo de armazenamento do fruto em diferentes atmosferas na prolifera\u00e7\u00e3o de microorganismos, realizada em pelo menos duas safras. Sub-projetos envolvidos: 1) Produ\u00e7\u00e3o de \u00d3leos de Maca\u00faba com Qualidade: P\u00f3s-colheita, Extra\u00e7\u00e3o, Refino. 2) Caracteriza\u00e7\u00e3o F\u00edso-qu\u00edmica e Controle da flora microbiana durante o armazenamento dos frutos da Maca\u00faba 3) Maca\u00faba: da Coleta de Frutos \u00e0 Produ\u00e7\u00e3o de \u00d3leos e Biodisel...Situa\u00e7\u00e3o: Conclu\u00eddo; Natureza: Pesquisa.Integrantes: Camila Sales Nascimento - Integrante / Maria Helena Ca\u00f1o de Andrade - Coordenador / Lorena Queiroz - Integrante."
             },
             {
                 "chave": "2006 - 2010",
@@ -21414,7 +21414,7 @@
                     "ISSN": "00664804",
                     "titulo": "Anti-              Leishmania</i>              compounds can be screened using              Leishmania</i>              spp. expressing red fluorescence (              tdTomato</i>              )",
                     "revista": "ANTIMICROBIAL AGENTS AND CHEMOTHERAPY",
-                    "autores": "CRUZ, Mariza Gabriela Faleiro de Moura Lodi2024CRUZ, Mariza Gabriela Faleiro de Moura Lodi; SANTI, ANA MARIA MURTA ; MORAIS-TEIXEIRA, ELIANE DE ; CALDEIRA, ALISSON SAMUEL PORTES ; SIQUEIRA, EZEQUIAS PESSOA DE ; OLIVEIRA, EDWARD ; ALVES, T\u00c2NIA MARIA DE ALMEIDA ; MURTA, SILVANE MARIA FONSECA . Anti-              Leishmania              compounds can be screened using              Leishmania              spp. expressing red fluorescence (              tdTomato              ). ANTIMICROBIAL AGENTS AND CHEMOTHERAPY, v. 68, p. e00509-23, 2024.",
+                    "autores": "CRUZ, Mariza Gabriela Faleiro de Moura Lodi2024CRUZ, Mariza Gabriela Faleiro de Moura Lodi; SANTI, ANA MARIA MURTA ; MORAIS-TEIXEIRA, ELIANE DE ; CALDEIRA, ALISSON SAMUEL PORTES ; SIQUEIRA, EZEQUIAS PESSOA DE ; OLIVEIRA, EDWARD ; ALVES, T\u00c2NIA MARIA DE ALMEIDA ; MURTA, SILVANE MARIA FONSECA . Anti-              Leishmania              compounds can be screened using              Leishmania              spp. expressing red fluorescence (              tdTomato              ). ANTIMICROBIAL AGENTS AND CHEMOTHERAPY, v. 68, p. e00509-23, 2024.Cita\u00e7\u00f5es:1",
                     "data_issn": "00664804",
                     "DOI": "http://dx.doi.org/10.1128/aac.00509-23"
                 },
