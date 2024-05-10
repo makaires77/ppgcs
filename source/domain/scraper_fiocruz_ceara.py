@@ -111,7 +111,8 @@ class FiocruzCearaScraper:
                 for i in pesq_names:
                     if 'Dr' not in i and 'Família' not in i and 'Ambiente' not in i:
                         pesquisadores.append(i.replace('  ',' '))
-                pesq_dados = pesq_content.find_all('p', class_='has-small-font-size')
+                # pesq_dados = pesq_content.find_all('p', class_='has-small-font-size')
+                pesq_dados = pesq_content.find_all('p', class_='is-layout-flex wp-container-7 wp-block-columns has-background has-medium-font-size')
                 pesq_texts = [x.get_text() for x in pesq_dados]
                 for i in pesq_texts:
                     if '– ' in i[:4]:
@@ -126,6 +127,8 @@ class FiocruzCearaScraper:
                 }
                 areas.append(area_info)
         return areas
+
+
 
     def scrape_main_page_quantitative_data(self):
         page_content = self.get_html(self.base_url)

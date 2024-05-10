@@ -1,0 +1,2967 @@
+{
+  "fonte": "https://www.in.gov.br/en/web/dou/-/portaria-conunta-stn/sof/me-n-103-de-5-de-outubro-de-2021-351613861",
+  "ANEXO III": "DISCRIMINAÇÃO DAS NATUREZAS DE DESPESA",
+  "despesas": [
+    {
+      "codigo": "3.0.00.00.00",
+      "rotulo": "DESPESAS CORRENTES",
+      "itens": []
+    },
+    {
+      "codigo": "3.1.00.00.00",
+      "rotulo": "PESSOAL E ENCARGOS SOCIAIS",
+      "itens": [
+        {
+          "codigo": "3.1.71.00.00",
+          "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio",
+          "itens": [
+            {
+              "codigo": "3.1.71.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "3.1.71.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.1.73.00.00",
+          "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.1.73.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "3.1.73.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.1.74.00.00",
+          "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.1.74.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "3.1.74.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.1.80.00.00",
+          "rotulo": "Transferências ao Exterior",
+          "itens": [
+            {
+              "codigo": "3.1.80.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.1.80.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.1.90.00.00",
+          "rotulo": "Aplicações Diretas",
+          "itens": [
+            {
+              "codigo": "3.1.90.01.00",
+              "rotulo": "Aposentadorias, Reserva Remunerada e Reformas"
+            },
+            {
+              "codigo": "3.1.90.03.00",
+              "rotulo": "Pensões"
+            },
+            {
+              "codigo": "3.1.90.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.1.90.07.00",
+              "rotulo": "Contribuição a Entidades Fechadas de Previdência"
+            },
+            {
+              "codigo": "3.1.90.11.00",
+              "rotulo": "Outras Despesas com Pessoal e Encargos"
+            },
+            {
+              "codigo": "3.1.90.12.00",
+              "rotulo": "Vencimentos e Vantagens Fixas - Pessoal Militar"
+            },
+            {
+              "codigo": "3.1.90.13.00",
+              "rotulo": "Obrigações Patronais"
+            },
+            {
+              "codigo": "3.1.90.16.00",
+              "rotulo": "Outras Despesas Variáveis - Pessoal Civil"
+            },
+            {
+              "codigo": "3.1.90.17.00",
+              "rotulo": "Outras Despesas Variáveis - Pessoal Militar"
+            },
+            {
+              "codigo": "3.1.90.67.00",
+              "rotulo": "Depósitos Compulsórios"
+            },
+            {
+              "codigo": "3.1.90.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "3.1.90.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.1.90.96.00",
+              "rotulo": "Ressarcimento de Despesas de Pessoal Requisitado"
+            },
+            {
+              "codigo": "3.1.90.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.1.91.00.00",
+          "rotulo": "Aplicação Direta Decorrente de Operação entre Órgãos, Fundos e Entidades Integrantes dos Orçamentos Fiscal e da Seguridade Social",
+          "itens": [
+            {
+              "codigo": "3.1.91.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.1.91.07.00",
+              "rotulo": "Contribuição a Entidades Fechadas de Previdência"
+            },
+            {
+              "codigo": "3.1.91.13.00",
+              "rotulo": "Obrigações Patronais"
+            },
+            {
+              "codigo": "3.1.91.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "3.1.91.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.1.91.94.00",
+              "rotulo": "Indenizações e Restituições Trabalhistas"
+            },
+            {
+              "codigo": "3.1.91.96.00",
+              "rotulo": "Ressarcimento de Despesas de Pessoal Requisitado"
+            },
+            {
+              "codigo": "3.1.91.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.1.95.00.00",
+          "rotulo": "Aplicação Direta à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.1.95.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.1.95.07.00",
+              "rotulo": "Contribuição a Entidades Fechadas de Previdência"
+            },
+            {
+              "codigo": "3.1.95.11.00",
+              "rotulo": "Obrigações Patronais"
+            },
+            {
+              "codigo": "3.1.95.13.00",
+              "rotulo": "Obrigações Patronais"
+            },
+            {
+              "codigo": "3.1.95.16.00",
+              "rotulo": "Outras Despesas Variáveis - Pessoal Civil"
+            },
+            {
+              "codigo": "3.1.95.67.00",
+              "rotulo": "Depósitos Compulsórios"
+            },
+            {
+              "codigo": "3.1.95.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "3.1.95.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.1.95.94.00",
+              "rotulo": "Indenizações e Restituições Trabalhistas"
+            },
+            {
+              "codigo": "3.1.95.96.00",
+              "rotulo": "Ressarcimento de Despesas de Pessoal Requisitado"
+            },
+            {
+              "codigo": "3.1.95.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.1.96.00.00",
+          "rotulo": "Aplicação Direta à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.1.96.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.1.96.07.00",
+              "rotulo": "Contribuição a Entidades Fechadas de Previdência"
+            },
+            {
+              "codigo": "3.1.96.11.00",
+              "rotulo": "Obrigações Patronais"
+            },
+            {
+              "codigo": "3.1.96.13.00",
+              "rotulo": "Obrigações Patronais"
+            },
+            {
+              "codigo": "3.1.96.16.00",
+              "rotulo": "Outras Despesas Variáveis - Pessoal Civil"
+            },
+            {
+              "codigo": "3.1.96.67.00",
+              "rotulo": "Depósitos Compulsórios"
+            },
+            {
+              "codigo": "3.1.96.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "3.1.96.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.1.96.94.00",
+              "rotulo": "Indenizações e Restituições Trabalhistas"
+            },
+            {
+              "codigo": "3.1.96.96.00",
+              "rotulo": "Ressarcimento de Despesas de Pessoal Requisitado"
+            },
+            {
+              "codigo": "3.1.96.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.1.99.00.00",
+          "rotulo": "A Definir"
+        },
+        {
+          "codigo": "3.1.99.99.00",
+          "rotulo": "A Classificar"
+        }
+      ]
+    },
+    {
+      "codigo": "3.2.00.00.00",
+      "rotulo": "JUROS E ENCARGOS DA DÍVIDA",
+      "itens": [
+        {
+          "codigo": "3.2.71.00.00",
+          "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio",
+          "itens": [
+            {
+              "codigo": "3.2.71.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "3.2.71.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.2.73.00.00",
+          "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.2.73.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "3.2.73.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.2.74.00.00",
+          "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.2.74.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "3.2.74.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.2.75.00.00",
+          "rotulo": "Transferências a Instituições Multigovernamentais à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.2.75.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.2.75.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.2.76.00.00",
+          "rotulo": "Transferências a Instituições Multigovernamentais à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.2.76.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.2.76.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.2.80.00.00",
+          "rotulo": "Transferências ao Exterior",
+          "itens": [
+            {
+              "codigo": "3.2.80.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.2.80.14.00",
+              "rotulo": "Diárias - Civil"
+            },
+            {
+              "codigo": "3.2.80.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.2.80.33.00",
+              "rotulo": "Passagens e Despesas com Locomoção"
+            },
+            {
+              "codigo": "3.2.80.34.00",
+              "rotulo": "Outras Despesas de Pessoal Decorrentes de Contratos de Terceirização"
+            },
+            {
+              "codigo": "3.2.80.35.00",
+              "rotulo": "Serviços de Consultoria"
+            },
+            {
+              "codigo": "3.2.80.36.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Física"
+            },
+            {
+              "codigo": "3.2.80.37.00",
+              "rotulo": "Locação de Mão-de-Obra"
+            },
+            {
+              "codigo": "3.2.80.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.2.80.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.2.80.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.2.80.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.2.90.00.00",
+          "rotulo": "Aplicações Diretas",
+          "itens": [
+            {
+              "codigo": "3.2.90.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.2.90.06.00",
+              "rotulo": "Benefício Mensal ao Deficiente e ao Idoso"
+            },
+            {
+              "codigo": "3.2.90.08.00",
+              "rotulo": "Outros Benefícios Assistenciais do servidor e do militar"
+            },
+            {
+              "codigo": "3.2.90.10.00",
+              "rotulo": "Seguro Desemprego e Abono Salarial"
+            },
+            {
+              "codigo": "3.2.90.14.00",
+              "rotulo": "Diárias - Civil"
+            },
+            {
+              "codigo": "3.2.90.15.00",
+              "rotulo": "Diárias - Militar"
+            },
+            {
+              "codigo": "3.2.90.18.00",
+              "rotulo": "Auxílio Financeiro a Estudantes"
+            },
+            {
+              "codigo": "3.2.90.19.00",
+              "rotulo": "Auxílio-Fardamento"
+            },
+            {
+              "codigo": "3.2.90.20.00",
+              "rotulo": "Auxílio Financeiro a Pesquisadores"
+            },
+            {
+              "codigo": "3.2.90.27.00",
+              "rotulo": "Encargos pela Honra de Avais, Garantias, Seguros e Similares"
+            },
+            {
+              "codigo": "3.2.90.28.00",
+              "rotulo": "Remuneração de Cotas de Fundos Autárquicos"
+            },
+            {
+              "codigo": "3.2.90.29.00",
+              "rotulo": "Distribuição de Resultado de Empresas Estatais Dependentes"
+            },
+            {
+              "codigo": "3.2.90.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.2.90.31.00",
+              "rotulo": "Premiações Culturais, Artísticas, Científicas, Desportivas e Outras"
+            },
+            {
+              "codigo": "3.2.90.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.2.90.33.00",
+              "rotulo": "Passagens e Despesas com Locomoção"
+            },
+            {
+              "codigo": "3.2.90.34.00",
+              "rotulo": "Outras Despesas de Pessoal Decorrentes de Contratos de Terceirização"
+            },
+            {
+              "codigo": "3.2.90.35.00",
+              "rotulo": "Serviços de Consultoria"
+            },
+            {
+              "codigo": "3.2.90.36.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Física"
+            },
+            {
+              "codigo": "3.2.90.37.00",
+              "rotulo": "Locação de Mão-de-Obra"
+            },
+            {
+              "codigo": "3.2.90.38.00",
+              "rotulo": "Arrendamento Mercantil"
+            },
+            {
+              "codigo": "3.2.90.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.2.90.40.00",
+              "rotulo": "Serviços de Tecnologia da Informação e Comunicação - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.2.90.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.2.90.45.00",
+              "rotulo": "Subvenções Econômicas"
+            },
+            {
+              "codigo": "3.2.90.46.00",
+              "rotulo": "Auxílio-Alimentação"
+            },
+            {
+              "codigo": "3.2.90.47.00",
+              "rotulo": "Obrigações Tributárias e Contributivas"
+            },
+            {
+              "codigo": "3.2.90.48.00",
+              "rotulo": "Outros Auxílios Financeiros a Pessoas Físicas"
+            },
+            {
+              "codigo": "3.2.90.49.00",
+              "rotulo": "Auxílio-Transporte"
+            },
+            {
+              "codigo": "3.2.90.53.00",
+              "rotulo": "Aposentadorias do RGPS - Área Rural"
+            },
+            {
+              "codigo": "3.2.90.54.00",
+              "rotulo": "Aposentadorias do RGPS - Área Urbana"
+            },
+            {
+              "codigo": "3.2.90.55.00",
+              "rotulo": "Pensões do RGPS - Área Rural"
+            },
+            {
+              "codigo": "3.2.90.56.00",
+              "rotulo": "Pensões do RGPS - Área Urbana"
+            },
+            {
+              "codigo": "3.2.90.57.00",
+              "rotulo": "Outros Benefícios do RGPS - Área Rural"
+            },
+            {
+              "codigo": "3.2.90.58.00",
+              "rotulo": "Outros Benefícios do RGPS - Área Urbana"
+            },
+            {
+              "codigo": "3.2.90.59.00",
+              "rotulo": "Pensões Especiais"
+            },
+            {
+              "codigo": "3.2.90.62.00",
+              "rotulo": "Aquisição de Produtos para Revenda"
+            },
+            {
+              "codigo": "3.2.90.67.00",
+              "rotulo": "Depósitos Compulsórios"
+            },
+            {
+              "codigo": "3.2.90.81.00",
+              "rotulo": "Distribuição Constitucional ou Legal de Receitas"
+            },
+            {
+              "codigo": "3.2.90.86.00",
+              "rotulo": "Compensações a Regimes de Previdência"
+            },
+            {
+              "codigo": "3.2.90.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "3.2.90.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.2.90.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "3.2.90.95.00",
+              "rotulo": "Indenização pela Execução de Trabalhos de Campo"
+            },
+            {
+              "codigo": "3.2.90.96.00",
+              "rotulo": "Ressarcimento de Despesas de Pessoal Requisitado"
+            },
+            {
+              "codigo": "3.2.90.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.2.91.00.00",
+          "rotulo": "Aplicação Direta Decorrente de Operação entre Órgãos, Fundos e Entidades Integrantes dos Orçamentos Fiscal e da Seguridade Social",
+          "itens": [
+            {
+              "codigo": "3.2.91.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.2.91.08.00",
+              "rotulo": "Outros Benefícios Assistenciais do servidor e do militar"
+            },
+            {
+              "codigo": "3.2.91.18.00",
+              "rotulo": "Auxílio Financeiro a Estudantes"
+            },
+            {
+              "codigo": "3.2.91.28.00",
+              "rotulo": "Remuneração de Cotas de Fundos Autárquicos"
+            },
+            {
+              "codigo": "3.2.91.29.00",
+              "rotulo": "Distribuição de Resultado de Empresas Estatais Dependentes"
+            },
+            {
+              "codigo": "3.2.91.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.2.91.31.00",
+              "rotulo": "Premiações Culturais, Artísticas, Científicas, Desportivas e Outras"
+            },
+            {
+              "codigo": "3.2.91.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.2.91.34.00",
+              "rotulo": "Outras Despesas de Pessoal Decorrentes de Contratos de Terceirização"
+            },
+            {
+              "codigo": "3.2.91.35.00",
+              "rotulo": "Serviços de Consultoria"
+            },
+            {
+              "codigo": "3.2.91.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.2.91.40.00",
+              "rotulo": "Serviços de Tecnologia da Informação e Comunicação - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.2.91.47.00",
+              "rotulo": "Obrigações Tributárias e Contributivas"
+            },
+            {
+              "codigo": "3.2.91.62.00",
+              "rotulo": "Aquisição de Produtos para Revenda"
+            },
+            {
+              "codigo": "3.2.91.86.00",
+              "rotulo": "Compensações a Regimes de Previdência"
+            },
+            {
+              "codigo": "3.2.91.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "3.2.91.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.2.91.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "3.2.91.96.00",
+              "rotulo": "Ressarcimento de Despesas de Pessoal Requisitado"
+            },
+            {
+              "codigo": "3.2.91.97.00",
+              "rotulo": "Aporte para Cobertura do Déficit Atuarial do RPPS"
+            },
+            {
+              "codigo": "3.2.91.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.2.92.00.00",
+          "rotulo": "Aplicação Direta de Recursos Recebidos de Outros Entes da Federação Decorrentes de Delegação ou Descentralização",
+          "itens": [
+            {
+              "codigo": "3.2.92.14.00",
+              "rotulo": "Diárias - Civil"
+            },
+            {
+              "codigo": "3.2.92.18.00",
+              "rotulo": "Auxílio Financeiro a Estudantes"
+            },
+            {
+              "codigo": "3.2.92.20.00",
+              "rotulo": "Auxílio Financeiro a Pesquisadores"
+            },
+            {
+              "codigo": "3.2.92.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.2.92.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.2.92.33.00",
+              "rotulo": "Passagens e Despesas com Locomoção"
+            },
+            {
+              "codigo": "3.2.92.35.00",
+              "rotulo": "Serviços de Consultoria"
+            },
+            {
+              "codigo": "3.2.92.36.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Física"
+            },
+            {
+              "codigo": "3.2.92.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.2.92.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.2.92.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.2.93.00.00",
+          "rotulo": "Aplicação Direta Decorrente de Operação de Órgãos, Fundos e Entidades Integrantes dos Orçamentos Fiscal e da Seguridade Social com Consórcio Público do qual o Ente Participe",
+          "itens": [
+            {
+              "codigo": "3.2.93.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.2.93.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.2.93.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.2.93.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.2.94.00.00",
+          "rotulo": "Aplicação Direta Decorrente de Operação de Órgãos, Fundos e Entidades Integrantes dos Orçamentos Fiscal e da Seguridade Social com Consórcio Público do qual o Ente Não Participe",
+          "itens": [
+            {
+              "codigo": "3.2.94.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.2.94.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.2.94.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.2.94.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.2.95.00.00",
+          "rotulo": "Aplicação Direta à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.2.95.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.2.95.08.00",
+              "rotulo": "Outros Benefícios Assistenciais do servidor e do militar"
+            },
+            {
+              "codigo": "3.2.95.14.00",
+              "rotulo": "Diárias - Civil"
+            },
+            {
+              "codigo": "3.2.95.18.00",
+              "rotulo": "Auxílio Financeiro a Estudantes"
+            },
+            {
+              "codigo": "3.2.95.20.00",
+              "rotulo": "Auxílio Financeiro a Pesquisadores"
+            },
+            {
+              "codigo": "3.2.95.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.2.95.31.00",
+              "rotulo": "Premiações Culturais, Artísticas, Científicas, Desportivas e Outras"
+            },
+            {
+              "codigo": "3.2.95.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.2.95.33.00",
+              "rotulo": "Passagens e Despesas com Locomoção"
+            },
+            {
+              "codigo": "3.2.95.34.00",
+              "rotulo": "Outras Despesas de Pessoal decorrentes de Contratos de Terceirização"
+            },
+            {
+              "codigo": "3.2.95.35.00",
+              "rotulo": "Serviços de Consultoria"
+            },
+            {
+              "codigo": "3.2.95.36.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Física"
+            },
+            {
+              "codigo": "3.2.95.37.00",
+              "rotulo": "Locação de Mão-de-Obra"
+            },
+            {
+              "codigo": "3.2.95.38.00",
+              "rotulo": "Arrendamento Mercantil"
+            },
+            {
+              "codigo": "3.2.95.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.2.95.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.2.95.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.2.95.45.00",
+              "rotulo": "Subvenções Econômicas"
+            },
+            {
+              "codigo": "3.2.95.46.00",
+              "rotulo": "Auxílio-Alimentação"
+            },
+            {
+              "codigo": "3.2.95.47.00",
+              "rotulo": "Obrigações Tributárias e Contributivas"
+            },
+            {
+              "codigo": "3.2.95.48.00",
+              "rotulo": "Outros Auxílios Financeiros a Pessoas Físicas"
+            },
+            {
+              "codigo": "3.2.95.49.00",
+              "rotulo": "Auxílio-Transporte"
+            },
+            {
+              "codigo": "3.2.95.67.00",
+              "rotulo": "Depósitos Compulsórios"
+            },
+            {
+              "codigo": "3.2.95.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "3.2.95.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.2.95.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "3.2.95.96.00",
+              "rotulo": "Ressarcimento de Despesas de Pessoal Requisitado"
+            },
+            {
+              "codigo": "3.2.95.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.2.96.00.00",
+          "rotulo": "Aplicação Direta à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.2.95.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.2.96.08.00",
+              "rotulo": "Outros Benefícios Assistenciais do servidor e do militar"
+            },
+            {
+              "codigo": "3.2.96.14.00",
+              "rotulo": "Diárias - Civil"
+            },
+            {
+              "codigo": "3.2.96.18.00",
+              "rotulo": "Auxílio Financeiro a Estudantes"
+            },
+            {
+              "codigo": "3.2.96.20.00",
+              "rotulo": "Auxílio Financeiro a Pesquisadores"
+            },
+            {
+              "codigo": "3.2.96.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.2.96.31.00",
+              "rotulo": "Premiações Culturais, Artísticas, Científicas, Desportivas e Outras"
+            },
+            {
+              "codigo": "3.2.96.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.2.96.33.00",
+              "rotulo": "Passagens e Despesas com Locomoção"
+            },
+            {
+              "codigo": "3.2.96.34.00",
+              "rotulo": "Outras Despesas de Pessoal decorrentes de Contratos de Terceirização"
+            },
+            {
+              "codigo": "3.2.96.35.00",
+              "rotulo": "Serviços de Consultoria"
+            },
+            {
+              "codigo": "3.2.96.36.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Física"
+            },
+            {
+              "codigo": "3.2.96.37.00",
+              "rotulo": "Locação de Mão-de-Obra"
+            },
+            {
+              "codigo": "3.2.96.38.00",
+              "rotulo": "Arrendamento Mercantil"
+            },
+            {
+              "codigo": "3.2.96.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.2.96.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.2.96.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.2.96.45.00",
+              "rotulo": "Subvenções Econômicas"
+            },
+            {
+              "codigo": "3.2.96.46.00",
+              "rotulo": "Auxílio-Alimentação"
+            },
+            {
+              "codigo": "3.2.96.47.00",
+              "rotulo": "Obrigações Tributárias e Contributivas"
+            },
+            {
+              "codigo": "3.2.96.48.00",
+              "rotulo": "Outros Auxílios Financeiros a Pessoas Físicas"
+            },
+            {
+              "codigo": "3.2.96.49.00",
+              "rotulo": "Auxílio-Transporte"
+            },
+            {
+              "codigo": "3.2.96.67.00",
+              "rotulo": "Depósitos Compulsórios"
+            },
+            {
+              "codigo": "3.2.96.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "3.2.96.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.2.96.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "3.2.96.96.00",
+              "rotulo": "Ressarcimento de Despesas de Pessoal Requisitado"
+            },
+            {
+              "codigo": "3.2.96.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigo": "3.3.00.00.00",
+      "rotulo": "OUTRAS DESPESAS CORRENTES",
+      "itens": [
+        {
+          "codigo": "3.3.71.00.00",
+          "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio",
+          "itens": [
+            {
+              "codigo": "3.3.71.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "3.3.71.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.3.73.00.00",
+          "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.3.73.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "3.3.73.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.3.74.00.00",
+          "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.3.74.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "3.3.74.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.3.75.00.00",
+          "rotulo": "Transferências a Instituições Multigovernamentais à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.3.75.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.3.75.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.3.76.00.00",
+          "rotulo": "Transferências a Instituições Multigovernamentais à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.3.76.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.3.76.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.3.80.00.00",
+          "rotulo": "Transferências ao Exterior",
+          "itens": [
+            {
+              "codigo": "3.3.80.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.3.80.14.00",
+              "rotulo": "Diárias - Civil"
+            },
+            {
+              "codigo": "3.3.80.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.3.80.33.00",
+              "rotulo": "Passagens e Despesas com Locomoção"
+            },
+            {
+              "codigo": "3.3.80.34.00",
+              "rotulo": "Outras Despesas de Pessoal Decorrentes de Contratos de Terceirização"
+            },
+            {
+              "codigo": "3.3.80.35.00",
+              "rotulo": "Serviços de Consultoria"
+            },
+            {
+              "codigo": "3.3.80.36.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Física"
+            },
+            {
+              "codigo": "3.3.80.37.00",
+              "rotulo": "Locação de Mão-de-Obra"
+            },
+            {
+              "codigo": "3.3.80.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.3.80.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.3.80.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.3.80.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.3.90.00.00",
+          "rotulo": "Aplicações Diretas",
+          "itens": [
+            {
+              "codigo": "3.3.90.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.3.90.06.00",
+              "rotulo": "Benefício Mensal ao Deficiente e ao Idoso"
+            },
+            {
+              "codigo": "3.3.90.08.00",
+              "rotulo": "Outros Benefícios Assistenciais do servidor e do militar"
+            },
+            {
+              "codigo": "3.3.90.10.00",
+              "rotulo": "Seguro Desemprego e Abono Salarial"
+            },
+            {
+              "codigo": "3.3.90.14.00",
+              "rotulo": "Diárias - Civil"
+            },
+            {
+              "codigo": "3.3.90.15.00",
+              "rotulo": "Diárias - Militar"
+            },
+            {
+              "codigo": "3.3.90.18.00",
+              "rotulo": "Auxílio Financeiro a Estudantes"
+            },
+            {
+              "codigo": "3.3.90.19.00",
+              "rotulo": "Auxílio-Fardamento"
+            },
+            {
+              "codigo": "3.3.90.20.00",
+              "rotulo": "Auxílio Financeiro a Pesquisadores"
+            },
+            {
+              "codigo": "3.3.90.27.00",
+              "rotulo": "Encargos pela Honra de Avais, Garantias, Seguros e Similares"
+            },
+            {
+              "codigo": "3.3.90.28.00",
+              "rotulo": "Remuneração de Cotas de Fundos Autárquicos"
+            },
+            {
+              "codigo": "3.3.90.29.00",
+              "rotulo": "Distribuição de Resultado de Empresas Estatais Dependentes"
+            },
+            {
+              "codigo": "3.3.90.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.3.90.31.00",
+              "rotulo": "Premiações Culturais, Artísticas, Científicas, Desportivas e Outras"
+            },
+            {
+              "codigo": "3.3.90.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.3.90.33.00",
+              "rotulo": "Passagens e Despesas com Locomoção"
+            },
+            {
+              "codigo": "3.3.90.34.00",
+              "rotulo": "Outras Despesas de Pessoal Decorrentes de Contratos de Terceirização"
+            },
+            {
+              "codigo": "3.3.90.35.00",
+              "rotulo": "Serviços de Consultoria"
+            },
+            {
+              "codigo": "3.3.90.36.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Física"
+            },
+            {
+              "codigo": "3.3.90.37.00",
+              "rotulo": "Locação de Mão-de-Obra"
+            },
+            {
+              "codigo": "3.3.90.38.00",
+              "rotulo": "Arrendamento Mercantil"
+            },
+            {
+              "codigo": "3.3.90.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.3.90.40.00",
+              "rotulo": "Serviços de Tecnologia da Informação e Comunicação - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.3.90.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.3.90.45.00",
+              "rotulo": "Subvenções Econômicas"
+            },
+            {
+              "codigo": "3.3.90.46.00",
+              "rotulo": "Auxílio-Alimentação"
+            },
+            {
+              "codigo": "3.3.90.47.00",
+              "rotulo": "Obrigações Tributárias e Contributivas"
+            },
+            {
+              "codigo": "3.3.90.48.00",
+              "rotulo": "Outros Auxílios Financeiros a Pessoas Físicas"
+            },
+            {
+              "codigo": "3.3.90.49.00",
+              "rotulo": "Auxílio-Transporte"
+            },
+            {
+              "codigo": "3.3.90.53.00",
+              "rotulo": "Aposentadorias do RGPS - Área Rural"
+            },
+            {
+              "codigo": "3.3.90.54.00",
+              "rotulo": "Aposentadorias do RGPS - Área Urbana"
+            },
+            {
+              "codigo": "3.3.90.55.00",
+              "rotulo": "Pensões do RGPS - Área Rural"
+            },
+            {
+              "codigo": "3.3.90.56.00",
+              "rotulo": "Pensões do RGPS - Área Urbana"
+            },
+            {
+              "codigo": "3.3.90.57.00",
+              "rotulo": "Outros Benefícios do RGPS - Área Rural"
+            },
+            {
+              "codigo": "3.3.90.58.00",
+              "rotulo": "Outros Benefícios do RGPS - Área Urbana"
+            },
+            {
+              "codigo": "3.3.90.59.00",
+              "rotulo": "Pensões Especiais"
+            },
+            {
+              "codigo": "3.3.90.62.00",
+              "rotulo": "Aquisição de Produtos para Revenda"
+            },
+            {
+              "codigo": "3.3.90.67.00",
+              "rotulo": "Depósitos Compulsórios"
+            },
+            {
+              "codigo": "3.3.90.81.00",
+              "rotulo": "Distribuição Constitucional ou Legal de Receitas"
+            },
+            {
+              "codigo": "3.3.90.86.00",
+              "rotulo": "Compensações a Regimes de Previdência"
+            },
+            {
+              "codigo": "3.3.90.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "3.3.90.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.3.90.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "3.3.90.95.00",
+              "rotulo": "Indenização pela Execução de Trabalhos de Campo"
+            },
+            {
+              "codigo": "3.3.90.96.00",
+              "rotulo": "Ressarcimento de Despesas de Pessoal Requisitado"
+            },
+            {
+              "codigo": "3.3.90.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.3.91.00.00",
+          "rotulo": "Aplicação Direta Decorrente de Operação entre Órgãos, Fundos e Entidades Integrantes dos Orçamentos Fiscal e da Seguridade Social",
+          "itens": [
+            {
+              "codigo": "3.3.91.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.3.91.08.00",
+              "rotulo": "Outros Benefícios Assistenciais do servidor e do militar"
+            },
+            {
+              "codigo": "3.3.91.18.00",
+              "rotulo": "Auxílio Financeiro a Estudantes"
+            },
+            {
+              "codigo": "3.3.91.28.00",
+              "rotulo": "Remuneração de Cotas de Fundos Autárquicos"
+            },
+            {
+              "codigo": "3.3.91.29.00",
+              "rotulo": "Distribuição de Resultado de Empresas Estatais Dependentes"
+            },
+            {
+              "codigo": "3.3.91.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.3.91.31.00",
+              "rotulo": "Premiações Culturais, Artísticas, Científicas, Desportivas e Outras"
+            },
+            {
+              "codigo": "3.3.91.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.3.91.34.00",
+              "rotulo": "Outras Despesas de Pessoal Decorrentes de Contratos de Terceirização"
+            },
+            {
+              "codigo": "3.3.91.35.00",
+              "rotulo": "Serviços de Consultoria"
+            },
+            {
+              "codigo": "3.3.91.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.3.91.40.00",
+              "rotulo": "Serviços de Tecnologia da Informação e Comunicação - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.3.91.47.00",
+              "rotulo": "Obrigações Tributárias e Contributivas"
+            },
+            {
+              "codigo": "3.3.91.62.00",
+              "rotulo": "Aquisição de Produtos para Revenda"
+            },
+            {
+              "codigo": "3.3.91.86.00",
+              "rotulo": "Compensações a Regimes de Previdência"
+            },
+            {
+              "codigo": "3.3.91.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "3.3.91.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.3.91.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "3.3.91.96.00",
+              "rotulo": "Ressarcimento de Despesas de Pessoal Requisitado"
+            },
+            {
+              "codigo": "3.3.91.97.00",
+              "rotulo": "Aporte para Cobertura do Déficit Atuarial do RPPS"
+            },
+            {
+              "codigo": "3.3.91.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.3.92.00.00",
+          "rotulo": "Aplicação Direta de Recursos Recebidos de Outros Entes da Federação Decorrentes de Delegação ou Descentralização",
+          "itens": [
+            {
+              "codigo": "3.3.92.14.00",
+              "rotulo": "Diárias - Civil"
+            },
+            {
+              "codigo": "3.3.92.18.00",
+              "rotulo": "Auxílio Financeiro a Estudantes"
+            },
+            {
+              "codigo": "3.3.92.20.00",
+              "rotulo": "Auxílio Financeiro a Pesquisadores"
+            },
+            {
+              "codigo": "3.3.92.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.3.92.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.3.92.33.00",
+              "rotulo": "Passagens e Despesas com Locomoção"
+            },
+            {
+              "codigo": "3.3.92.35.00",
+              "rotulo": "Serviços de Consultoria"
+            },
+            {
+              "codigo": "3.3.92.36.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Física"
+            },
+            {
+              "codigo": "3.3.92.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.3.92.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.3.92.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.3.93.00.00",
+          "rotulo": "Aplicação Direta Decorrente de Operação de Órgãos, Fundos e Entidades Integrantes dos Orçamentos Fiscal e da Seguridade Social com Consórcio Público do qual o Ente Participe",
+          "itens": [
+            {
+              "codigo": "3.3.93.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.3.93.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.3.93.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.3.93.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.3.94.00.00",
+          "rotulo": "Aplicação Direta Decorrente de Operação de Órgãos, Fundos e Entidades Integrantes dos Orçamentos Fiscal e da Seguridade Social com Consórcio Público do qual o Ente Não Participe",
+          "itens": [
+            {
+              "codigo": "3.3.94.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.3.94.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.3.94.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.3.94.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.3.95.00.00",
+          "rotulo": "Aplicação Direta à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.3.95.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.3.95.08.00",
+              "rotulo": "Outros Benefícios Assistenciais do servidor e do militar"
+            },
+            {
+              "codigo": "3.3.95.14.00",
+              "rotulo": "Diárias - Civil"
+            },
+            {
+              "codigo": "3.3.95.18.00",
+              "rotulo": "Auxílio Financeiro a Estudantes"
+            },
+            {
+              "codigo": "3.3.95.20.00",
+              "rotulo": "Auxílio Financeiro a Pesquisadores"
+            },
+            {
+              "codigo": "3.3.95.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.3.95.31.00",
+              "rotulo": "Premiações Culturais, Artísticas, Científicas, Desportivas e Outras"
+            },
+            {
+              "codigo": "3.3.95.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.3.95.33.00",
+              "rotulo": "Passagens e Despesas com Locomoção"
+            },
+            {
+              "codigo": "3.3.95.34.00",
+              "rotulo": "Outras Despesas de Pessoal decorrentes de Contratos de Terceirização"
+            },
+            {
+              "codigo": "3.3.95.35.00",
+              "rotulo": "Serviços de Consultoria"
+            },
+            {
+              "codigo": "3.3.95.36.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Física"
+            },
+            {
+              "codigo": "3.3.95.37.00",
+              "rotulo": "Locação de Mão-de-Obra"
+            },
+            {
+              "codigo": "3.3.95.38.00",
+              "rotulo": "Arrendamento Mercantil"
+            },
+            {
+              "codigo": "3.3.95.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.3.95.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.3.95.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.3.95.45.00",
+              "rotulo": "Subvenções Econômicas"
+            },
+            {
+              "codigo": "3.3.95.46.00",
+              "rotulo": "Auxílio-Alimentação"
+            },
+            {
+              "codigo": "3.3.95.47.00",
+              "rotulo": "Obrigações Tributárias e Contributivas"
+            },
+            {
+              "codigo": "3.3.95.48.00",
+              "rotulo": "Outros Auxílios Financeiros a Pessoas Físicas"
+            },
+            {
+              "codigo": "3.3.95.49.00",
+              "rotulo": "Auxílio-Transporte"
+            },
+            {
+              "codigo": "3.3.95.67.00",
+              "rotulo": "Depósitos Compulsórios"
+            },
+            {
+              "codigo": "3.3.95.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "3.3.95.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.3.95.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "3.3.95.96.00",
+              "rotulo": "Ressarcimento de Despesas de Pessoal Requisitado"
+            },
+            {
+              "codigo": "3.3.95.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.3.96.00.00",
+          "rotulo": "Aplicação Direta à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012",
+          "itens": [
+            {
+              "codigo": "3.3.95.04.00",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "3.3.96.08.00",
+              "rotulo": "Outros Benefícios Assistenciais do servidor e do militar"
+            },
+            {
+              "codigo": "3.3.96.14.00",
+              "rotulo": "Diárias - Civil"
+            },
+            {
+              "codigo": "3.3.96.18.00",
+              "rotulo": "Auxílio Financeiro a Estudantes"
+            },
+            {
+              "codigo": "3.3.96.20.00",
+              "rotulo": "Auxílio Financeiro a Pesquisadores"
+            },
+            {
+              "codigo": "3.3.96.30.00",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "3.3.96.31.00",
+              "rotulo": "Premiações Culturais, Artísticas, Científicas, Desportivas e Outras"
+            },
+            {
+              "codigo": "3.3.96.32.00",
+              "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita"
+            },
+            {
+              "codigo": "3.3.96.33.00",
+              "rotulo": "Passagens e Despesas com Locomoção"
+            },
+            {
+              "codigo": "3.3.96.34.00",
+              "rotulo": "Outras Despesas de Pessoal decorrentes de Contratos de Terceirização"
+            },
+            {
+              "codigo": "3.3.96.35.00",
+              "rotulo": "Serviços de Consultoria"
+            },
+            {
+              "codigo": "3.3.96.36.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Física"
+            },
+            {
+              "codigo": "3.3.96.37.00",
+              "rotulo": "Locação de Mão-de-Obra"
+            },
+            {
+              "codigo": "3.3.96.38.00",
+              "rotulo": "Arrendamento Mercantil"
+            },
+            {
+              "codigo": "3.3.96.39.00",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "3.3.96.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.3.96.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "3.3.96.45.00",
+              "rotulo": "Subvenções Econômicas"
+            },
+            {
+              "codigo": "3.3.96.46.00",
+              "rotulo": "Auxílio-Alimentação"
+            },
+            {
+              "codigo": "3.3.96.47.00",
+              "rotulo": "Obrigações Tributárias e Contributivas"
+            },
+            {
+              "codigo": "3.3.96.48.00",
+              "rotulo": "Outros Auxílios Financeiros a Pessoas Físicas"
+            },
+            {
+              "codigo": "3.3.96.49.00",
+              "rotulo": "Auxílio-Transporte"
+            },
+            {
+              "codigo": "3.3.96.67.00",
+              "rotulo": "Depósitos Compulsórios"
+            },
+            {
+              "codigo": "3.3.96.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "3.3.96.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "3.3.96.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "3.3.96.96.00",
+              "rotulo": "Ressarcimento de Despesas de Pessoal Requisitado"
+            },
+            {
+              "codigo": "3.3.96.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "3.3.99.00.00",
+          "rotulo": "A Definir",
+          "itens": [
+            {
+              "codigo": "3.3.99.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigo": "4.0.00.00.00",
+      "rotulo": "DESPESAS DE CAPITAL",
+      "itens": [
+        {
+          "codigo": "4.4.00.00.00",
+          "rotulo": "INVESTIMENTOS",
+          "itens": [
+            {
+              "codigo": "4.4.20.00.00",
+              "rotulo": "Transferências à União"
+            },
+            {
+              "codigo": "4.4.20.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.20.42.00",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.20.99.00",
+              "rotulo": "Transferências à União"
+            },
+            {
+              "codigo": "4.4.22.00.00",
+              "rotulo": "Execução Orçamentária Delegada à União"
+            },
+            {
+              "codigo": "4.4.22.51.00",
+              "rotulo": "Obras e Instalações"
+            },
+            {
+              "codigo": "4.4.22.52.00",
+              "rotulo": "Equipamentos e Material Permanente"
+            },
+            {
+              "codigo": "4.4.22.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.4.22.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "4.4.22.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.30.00.00",
+              "rotulo": "Transferências a Estados e ao Distrito Federal"
+            },
+            {
+              "codigo": "4.4.30.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.30.42.00",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.30.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.31.00.00",
+              "rotulo": "Transferências a Estados e ao Distrito Federal - Fundo a Fundo"
+            },
+            {
+              "codigo": "4.4.31.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.31.42.00",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.31.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.4.31.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.32.00.00",
+              "rotulo": "Execução Orçamentária Delegada a Estados e ao Distrito Federal"
+            },
+            {
+              "codigo": "4.4.32.20.00",
+              "rotulo": "Auxílio Financeiro a Pesquisadores"
+            },
+            {
+              "codigo": "4.4.32.51.00",
+              "rotulo": "Obras e Instalações"
+            },
+            {
+              "codigo": "4.4.32.52.00",
+              "rotulo": "Equipamentos e Material Permanente"
+            },
+            {
+              "codigo": "4.4.32.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.4.32.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "4.4.32.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.35.00",
+              "rotulo": "Transferências Fundo a Fundo aos Estados e ao Distrito Federal à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.4.35.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.35.42.00",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.35.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.4.35.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.36.00.00",
+              "rotulo": "Transferências Fundo a Fundo aos Estados e ao Distrito Federal à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.4.36.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.36.42.00",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.36.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.4.36.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.40.00.00",
+              "rotulo": "Transferências a Municípios"
+            },
+            {
+              "codigo": "4.4.40.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.40.42.00",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.40.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.4.40.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.41.00.00",
+              "rotulo": "Transferências a Municípios - Fundo a Fundo"
+            },
+            {
+              "codigo": "4.4.41.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.41.42.00",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.41.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.4.41.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.42.00.00",
+              "rotulo": "Execução Orçamentária Delegada a Municípios"
+            },
+            {
+              "codigo": "4.4.42.14.00",
+              "rotulo": "Diárias - Civil"
+            },
+            {
+              "codigo": "4.4.42.51.00",
+              "rotulo": "Obras e Instalações)"
+            },
+            {
+              "codigo": "4.4.42.52.00",
+              "rotulo": "Equipamentos e Material Permanente"
+            },
+            {
+              "codigo": "4.4.42.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.4.42.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.45.00.00",
+              "rotulo": "Transferências Fundo a Fundo aos Municípios à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.4.45.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.45.42.00",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.45.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.4.45.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.46.00",
+              "rotulo": "Transferências Fundo a Fundo aos Municípios à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.4.46.41",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.46.42",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.46.92",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.4.46.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.50.00",
+              "rotulo": "Transferências a Instituições Privadas sem Fins Lucrativos"
+            },
+            {
+              "codigo": "4.4.50.14",
+              "rotulo": "Diárias - Civil"
+            },
+            {
+              "codigo": "4.4.50.30",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "4.4.50.36",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Física"
+            },
+            {
+              "codigo": "4.4.50.39",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "4.4.50.41",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.50.42",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.50.47",
+              "rotulo": "Obrigações Tributárias e Contributivas"
+            },
+            {
+              "codigo": "4.4.50.51",
+              "rotulo": "Obras e Instalações"
+            },
+            {
+              "codigo": "4.4.50.52",
+              "rotulo": "Equipamentos e Material Permanente"
+            },
+            {
+              "codigo": "4.4.50.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.70.00",
+              "rotulo": "Transferências a Instituições Multigovernamentais"
+            },
+            {
+              "codigo": "4.4.70.41",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.70.42",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.70.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.71.00",
+              "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio"
+            },
+            {
+              "codigo": "4.4.71.70",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "4.4.71.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.72.00",
+              "rotulo": "Execução Orçamentária Delegada a Consórcios Públicos"
+            },
+            {
+              "codigo": "4.4.72.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.73.00",
+              "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.4.73.70",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "4.4.73.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.74.00",
+              "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.4.74.70",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "4.4.74.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.75.00",
+              "rotulo": "Transferências a Instituições Multigovernamentais à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.4.75.41",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.75.42",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.75.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.76.00",
+              "rotulo": "Transferências a Instituições Multigovernamentais à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.4.76.41",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.76.42",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.76.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.80.00",
+              "rotulo": "Transferências ao Exterior"
+            },
+            {
+              "codigo": "4.4.80.41",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.4.80.42",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.4.80.51",
+              "rotulo": "Obras e Instalações"
+            },
+            {
+              "codigo": "4.4.80.52",
+              "rotulo": "Equipamentos e Material Permanente"
+            },
+            {
+              "codigo": "4.4.80.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.90.00",
+              "rotulo": "Aplicações Diretas"
+            },
+            {
+              "codigo": "4.4.90.04",
+              "rotulo": "Contratação por Tempo Determinado"
+            },
+            {
+              "codigo": "4.4.90.14",
+              "rotulo": "Diárias - Civil"
+            },
+            {
+              "codigo": "4.4.90.15",
+              "rotulo": "Diárias - Militar"
+            },
+            {
+              "codigo": "4.4.90.17",
+              "rotulo": "Outras Despesas Variáveis - Pessoal Militar"
+            },
+            {
+              "codigo": "4.4.90.18",
+              "rotulo": "Auxílio Financeiro a Estudantes"
+            },
+            {
+              "codigo": "4.4.90.20",
+              "rotulo": "Auxílio Financeiro a Pesquisadores"
+            },
+            {
+              "codigo": "4.4.90.30",
+              "rotulo": "Material de Consumo"
+            },
+            {
+              "codigo": "4.4.90.33",
+              "rotulo": "Passagens e Despesas com Locomoção"
+            },
+            {
+              "codigo": "4.4.90.35",
+              "rotulo": "Serviços de Consultoria"
+            },
+            {
+              "codigo": "4.4.90.36",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Física"
+            },
+            {
+              "codigo": "4.4.90.37",
+              "rotulo": "Locação de Mão-de-Obra"
+            },
+            {
+              "codigo": "4.4.90.39",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "4.4.90.40",
+              "rotulo": "Serviços de Tecnologia da Informação e Comunicação - Pessoa Jurídica"
+            },
+            {
+              "codigo": "4.4.90.47",
+              "rotulo": "Obrigações Tributárias e Contributivas"
+            },
+            {
+              "codigo": "4.4.90.51",
+              "rotulo": "Obras e Instalações"
+            },
+            {
+              "codigo": "4.4.90.52",
+              "rotulo": "Equipamentos e Material Permanente"
+            },
+            {
+              "codigo": "4.4.90.61",
+              "rotulo": "Aquisição de Imóveis"
+            },
+            {
+              "codigo": "4.4.90.91",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "4.4.90.92",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.4.90.93",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "4.4.90.95",
+              "rotulo": "Indenização pela Execução de Trabalhos de Campo"
+            },
+            {
+              "codigo": "4.4.90.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.91.00",
+              "rotulo": "Aplicação Direta Decorrente de Operação entre Órgãos, Fundos e Entidades Integrantes dos Orçamentos Fiscal e da Seguridade Social"
+            },
+            {
+              "codigo": "4.4.91.39",
+              "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica"
+            },
+            {
+              "codigo": "4.4.91.47",
+              "rotulo": "Obrigações Tributárias e Contributivas"
+            },
+            {
+              "codigo": "4.4.91.51",
+              "rotulo": "Obras e Instalações"
+            },
+            {
+              "codigo": "4.4.91.52",
+              "rotulo": "Equipamentos e Material Permanente"
+            },
+            {
+              "codigo": "4.4.91.91",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "4.4.91.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.92.00",
+              "rotulo": "Aplicação Direta de Recursos Recebidos de Outros Entes da Federação Decorrentes de Delegação ou Descentralização"
+            },
+            {
+              "codigo": "4.4.92.20",
+              "rotulo": "Auxílio Financeiro a Pesquisadores"
+            },
+            {
+              "codigo": "4.4.92.51",
+              "rotulo": "Obras e Instalações"
+            },
+            {
+              "codigo": "4.4.92.52",
+              "rotulo": "Equipamentos e Material Permanente"
+            },
+            {
+              "codigo": "4.4.92.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.93.00",
+              "rotulo": "Aplicação Direta Decorrente de Operação de Órgãos, Fundos e Entidades Integrantes dos Orçamentos Fiscal e da Seguridade Social com Consórcio Público do qual o Ente Participe"
+            },
+            {
+              "codigo": "4.4.93.51",
+              "rotulo": "Obras e Instalações"
+            },
+            {
+              "codigo": "4.4.93.52",
+              "rotulo": "Equipamentos e Material Permanente"
+            },
+            {
+              "codigo": "4.4.93.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.94.00",
+              "rotulo": "Aplicação Direta Decorrente de Operação de Órgãos, Fundos e Entidades Integrantes dos Orçamentos Fiscal e da Seguridade Social com Consórcio Público do qual o Ente Não Participe"
+            },
+            {
+              "codigo": "4.4.94.51",
+              "rotulo": "Obras e Instalações"
+            },
+            {
+              "codigo": "4.4.94.52",
+              "rotulo": "Equipamentos e Material Permanente"
+            },
+            {
+              "codigo": "4.4.94.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.95.00",
+              "rotulo": "Aplicação Direta à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.4.95.51",
+              "rotulo": "Obras e Instalações"
+            },
+            {
+              "codigo": "4.4.95.52",
+              "rotulo": "Equipamentos e Material Permanente"
+            },
+            {
+              "codigo": "4.4.95.61",
+              "rotulo": "Aquisição de Imóveis"
+            },
+            {
+              "codigo": "4.4.95.91",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "4.4.95.92",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.4.95.93",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "4.4.95.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.96.00",
+              "rotulo": "Aplicação Direta à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.4.96.51",
+              "rotulo": "Obras e Instalações"
+            },
+            {
+              "codigo": "4.4.96.52",
+              "rotulo": "Equipamentos e Material Permanente"
+            },
+            {
+              "codigo": "4.4.96.61",
+              "rotulo": "Aquisição de Imóveis"
+            },
+            {
+              "codigo": "4.4.96.91",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "4.4.96.92",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.4.96.93",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "4.4.96.99",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.4.99.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "4.5.00.00.00",
+          "rotulo": "INVERSÕES FINANCEIRAS",
+          "itens": [
+            {
+              "codigo": "4.5.30.00.00",
+              "rotulo": "Transferências a Estados e ao Distrito Federal"
+            },
+            {
+              "codigo": "4.5.30.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.5.30.42.00",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.5.30.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.31.00.00",
+              "rotulo": "Transferências a Estados e ao Distrito Federal - Fundo a Fundo"
+            },
+            {
+              "codigo": "4.5.31.41.00",
+              "rotulo": "Contribuições - Fundo a Fundo"
+            },
+            {
+              "codigo": "4.5.31.42.00",
+              "rotulo": "Auxílios - Fundo a Fundo"
+            },
+            {
+              "codigo": "4.5.31.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.32.00.00",
+              "rotulo": "Execução Orçamentária Delegada a Estados e ao Distrito Federal"
+            },
+            {
+              "codigo": "4.5.32.61.00",
+              "rotulo": "Aquisição de Imóveis"
+            },
+            {
+              "codigo": "4.5.32.64.00",
+              "rotulo": "Aquisição de Títulos Representativos de Capital já Integralizado"
+            },
+            {
+              "codigo": "4.5.32.65.00",
+              "rotulo": "Constituição ou Aumento de Capital de Empresas"
+            },
+            {
+              "codigo": "4.5.32.66.00",
+              "rotulo": "Concessão de Empréstimos e Financiamentos"
+            },
+            {
+              "codigo": "4.5.32.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.40.00.00",
+              "rotulo": "Transferências a Municípios"
+            },
+            {
+              "codigo": "4.5.40.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.5.40.42.00",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.5.40.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.41.00.00",
+              "rotulo": "Transferências a Municípios - Fundo a Fundo"
+            },
+            {
+              "codigo": "4.5.41.41.00",
+              "rotulo": "Contribuições - Fundo a Fundo"
+            },
+            {
+              "codigo": "4.5.41.42.00",
+              "rotulo": "Auxílios - Transferências Fundo a Fundo"
+            },
+            {
+              "codigo": "4.5.41.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.42.00.00",
+              "rotulo": "Execução Orçamentária Delegada a Municípios"
+            },
+            {
+              "codigo": "4.5.42.64.00",
+              "rotulo": "Aquisição de Títulos Representativos de Capital já Integralizado"
+            },
+            {
+              "codigo": "4.5.42.66.00",
+              "rotulo": "Concessão de Empréstimos e Financiamentos"
+            },
+            {
+              "codigo": "4.5.42.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.50.00.00",
+              "rotulo": "Transferências a Instituições Privadas sem Fins Lucrativos"
+            },
+            {
+              "codigo": "4.5.50.66.00",
+              "rotulo": "Concessão de Empréstimos e Financiamentos"
+            },
+            {
+              "codigo": "4.5.50.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.70.00.00",
+              "rotulo": "Transferências a Instituições Multigovernamentais"
+            },
+            {
+              "codigo": "4.5.70.41.00",
+              "rotulo": "Contribuições"
+            },
+            {
+              "codigo": "4.5.70.42.00",
+              "rotulo": "Auxílios"
+            },
+            {
+              "codigo": "4.5.41.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.71.00.00",
+              "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio"
+            },
+            {
+              "codigo": "4.5.71.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "4.5.71.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.72.00.00",
+              "rotulo": "Execução Orçamentária Delegada a Consórcios Públicos"
+            },
+            {
+              "codigo": "4.5.72.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.73.00.00",
+              "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.5.73.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "4.5.73.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.74.00.00",
+              "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.5.74.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "4.5.74.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.80.00.00",
+              "rotulo": "Transferências ao Exterior"
+            },
+            {
+              "codigo": "4.5.80.66.00",
+              "rotulo": "Concessão de Empréstimos e Financiamentos"
+            },
+            {
+              "codigo": "4.5.80.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.90.00.00",
+              "rotulo": "Aplicações Diretas"
+            },
+            {
+              "codigo": "4.5.90.27.00",
+              "rotulo": "Encargos pela Honra de Avais, Garantias, Seguros e Similares"
+            },
+            {
+              "codigo": "4.5.90.61.00",
+              "rotulo": "Aquisição de Imóveis"
+            },
+            {
+              "codigo": "4.5.90.62.00",
+              "rotulo": "Aquisição de Produtos para Revenda"
+            },
+            {
+              "codigo": "4.5.90.63.00",
+              "rotulo": "Aquisição de Títulos de Crédito"
+            },
+            {
+              "codigo": "4.5.90.64.00",
+              "rotulo": "Aquisição de Títulos Representativos de Capital já Integralizado"
+            },
+            {
+              "codigo": "4.5.90.65.00",
+              "rotulo": "Constituição ou Aumento de Capital de Empresas"
+            },
+            {
+              "codigo": "4.5.90.66.00",
+              "rotulo": "Concessão de Empréstimos e Financiamentos"
+            },
+            {
+              "codigo": "4.5.90.67.00",
+              "rotulo": "Depósitos Compulsórios"
+            },
+            {
+              "codigo": "4.5.90.84.00",
+              "rotulo": "Despesas Decorrentes da Participação em Fundos, Organismos, ou Entidades Assemelhadas, Nacionais e Internacionais"
+            },
+            {
+              "codigo": "4.5.90.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "4.5.90.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.5.90.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "4.5.90.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.91.00.00",
+              "rotulo": "Aplicação Direta Decorrente de Operação entre Órgãos, Fundos e Entidades Integrantes dos Orçamentos Fiscal e da Seguridade Social"
+            },
+            {
+              "codigo": "4.5.91.47.00",
+              "rotulo": "Obrigações Tributárias e Contributivas"
+            },
+            {
+              "codigo": "4.5.91.61.00",
+              "rotulo": "Aquisição de Imóveis"
+            },
+            {
+              "codigo": "4.5.91.62.00",
+              "rotulo": "Aquisição de Produtos para Revenda"
+            },
+            {
+              "codigo": "4.5.91.65.00",
+              "rotulo": "Constituição ou Aumento de Capital de Empresas"
+            },
+            {
+              "codigo": "4.5.91.66.00",
+              "rotulo": "Concessão de Empréstimos e Financiamentos"
+            },
+            {
+              "codigo": "4.5.91.84.00",
+              "rotulo": "Despesas Decorrentes da Participação em Fundos, Organismos, ou Entidades Assemelhadas, Nacionais e Internacionais"
+            },
+            {
+              "codigo": "4.5.91.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "4.5.91.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.5.91.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.95.00.00",
+              "rotulo": "Aplicação Direta à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.5.95.61.00",
+              "rotulo": "Aquisição de Imóveis"
+            },
+            {
+              "codigo": "4.5.95.67.00",
+              "rotulo": "Depósitos Compulsórios"
+            },
+            {
+              "codigo": "4.5.95.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "4.5.95.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.5.95.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "4.5.95.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.96.00.00",
+              "rotulo": "Aplicação Direta à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.5.96.61.00",
+              "rotulo": "Aquisição de Imóveis"
+            },
+            {
+              "codigo": "4.5.96.67.00",
+              "rotulo": "Depósitos Compulsórios"
+            },
+            {
+              "codigo": "4.5.96.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "4.5.96.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.5.96.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "4.5.96.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.5.99.00.00",
+              "rotulo": "A Definir"
+            },
+            {
+              "codigo": "4.5.99.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        },
+        {
+          "codigo": "4.6.00.00.00",
+          "rotulo": "AMORTIZAÇÃO DA DÍVIDA",
+          "itens": [
+            {
+              "codigo": "4.6.71.00.00",
+              "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio"
+            },
+            {
+              "codigo": "4.6.71.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "4.6.71.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.6.73.00.00",
+              "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.6.73.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "4.6.73.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.6.74.00.00",
+              "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.6.74.70.00",
+              "rotulo": "Rateio pela Participação em Consórcio Público"
+            },
+            {
+              "codigo": "4.6.74.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.6.90.00.00",
+              "rotulo": "Aplicações Diretas"
+            },
+            {
+              "codigo": "4.6.90.26.00",
+              "rotulo": "Obrigações Decorrentes de Política Monetária"
+            },
+            {
+              "codigo": "4.6.90.71.00",
+              "rotulo": "Principal da Dívida Contratual Resgatado"
+            },
+            {
+              "codigo": "4.6.90.72.00",
+              "rotulo": "Principal da Dívida Mobiliária Resgatado"
+            },
+            {
+              "codigo": "4.6.90.73.00",
+              "rotulo": "Correção Monetária ou Cambial da Dívida Contratual Resgatada"
+            },
+            {
+              "codigo": "4.6.90.74.00",
+              "rotulo": "Correção Monetária ou Cambial da Dívida Mobiliária Resgatada"
+            },
+            {
+              "codigo": "4.6.90.75.00",
+              "rotulo": "Correção Monetária da Dívida de Operações de Crédito por Antecipação da Receita"
+            },
+            {
+              "codigo": "4.6.90.76.00",
+              "rotulo": "Principal Corrigido da Dívida Mobiliária Refinanciado"
+            },
+            {
+              "codigo": "4.6.90.77.00",
+              "rotulo": "Principal Corrigido da Dívida Contratual Refinanciado"
+            },
+            {
+              "codigo": "4.6.90.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "4.6.90.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.6.90.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "4.6.90.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.6.91.00.00",
+              "rotulo": "Aplicação Direta Decorrente de Operação entre Órgãos, Fundos e Entidades Integrantes dos Orçamentos Fiscal e da Seguridade Social"
+            },
+            {
+              "codigo": "4.6.91.76.00",
+              "rotulo": "Principal Corrigido da Dívida Mobiliária Refinanciado"
+            },
+            {
+              "codigo": "4.6.91.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.6.95.00.00",
+              "rotulo": "Aplicação Direta à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.6.95.71.00",
+              "rotulo": "Principal da Dívida Contratual Resgatado"
+            },
+            {
+              "codigo": "4.6.95.73.00",
+              "rotulo": "Correção Monetária ou Cambial da Dívida Contratual Resgatada"
+            },
+            {
+              "codigo": "4.6.95.77.00",
+              "rotulo": "Principal Corrigido da Dívida Contratual Refinanciado"
+            },
+            {
+              "codigo": "4.6.95.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "4.6.95.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.6.95.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "4.6.95.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.6.96.00.00",
+              "rotulo": "Aplicação Direta à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012"
+            },
+            {
+              "codigo": "4.6.96.71.00",
+              "rotulo": "Principal da Dívida Contratual Resgatado"
+            },
+            {
+              "codigo": "4.6.96.73.00",
+              "rotulo": "Correção Monetária ou Cambial da Dívida Contratual Resgatada"
+            },
+            {
+              "codigo": "4.6.96.77.00",
+              "rotulo": "Principal Corrigido da Dívida Contratual Refinanciado"
+            },
+            {
+              "codigo": "4.6.96.91.00",
+              "rotulo": "Sentenças Judiciais"
+            },
+            {
+              "codigo": "4.6.96.92.00",
+              "rotulo": "Despesas de Exercícios Anteriores"
+            },
+            {
+              "codigo": "4.6.96.93.00",
+              "rotulo": "Indenizações e Restituições"
+            },
+            {
+              "codigo": "4.6.96.99.00",
+              "rotulo": "A Classificar"
+            },
+            {
+              "codigo": "4.6.99.00.00",
+              "rotulo": "A Definir"
+            },
+            {
+              "codigo": "4.6.99.99.00",
+              "rotulo": "A Classificar"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigo": "9.9.99.99.99",
+      "rotulo": "Reserva de Contingência"
+    }
+  ]
+}

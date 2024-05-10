@@ -1,0 +1,230 @@
+{
+  "fonte": "https://www.in.gov.br/en/web/dou/-/portaria-conunta-stn/sof/me-n-103-de-5-de-outubro-de-2021-351613861",
+  "ANEXO II": "NATUREZA DA DESPESA",
+  "despesas": [
+    {
+      "codigo": "3.0.00.00.00",
+      "rotulo": "DESPESAS CORRENTES"
+    },
+    {
+      "codigo": "3.1.00.00.00",
+      "rotulo": "PESSOAL E ENCARGOS SOCIAIS"
+    },
+    {
+      "codigo": "3.1.30.00.00",
+      "rotulo": "Transferências a Estados e ao Distrito Federal",
+      "itens": [
+        {
+          "codigo": "3.1.30.41.00",
+          "rotulo": "Contribuições"
+        },
+        {
+          "codigo": "3.1.30.99.00",
+          "rotulo": "A Classificar"
+        }
+      ]
+    },
+    {
+      "codigo": "3.1.30.99.00",
+      "rotulo": "A Classificar"
+    },
+    {
+      "codigo": "3.1.71.00.00",
+      "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio",
+      "itens": [
+        {
+          "codigo": "3.1.71.70.00",
+          "rotulo": "Rateio pela Participação em Consórcio Público"
+        },
+        {
+          "codigo": "3.1.71.99.00",
+          "rotulo": "A Classificar"
+        }
+      ]
+    },
+    {
+      "codigo": "3.1.71.99.00",
+      "rotulo": "A Classificar"
+    },
+    {
+      "codigo": "3.1.73.00.00",
+      "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que tratam os §§ 1 o e 2 o do art. 24 da Lei Complementar n o 141, de 2012",
+      "itens": [
+        {
+          "codigo": "3.1.73.70.00",
+          "rotulo": "Rateio pela Participação em Consórcio Público"
+        },
+        {
+          "codigo": "3.1.73.99.00",
+          "rotulo": "A Classificar"
+        }
+      ]
+    },
+    {
+      "codigo": "3.1.73.99.00",
+      "rotulo": "A Classificar"
+    },
+    {
+      "codigo": "3.1.74.00.00",
+      "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar n o 141, de 2012",
+      "itens": [
+        {
+          "codigo": "3.1.74.70.00",
+          "rotulo": "Rateio pela Participação em Consórcio Público"
+        },
+        {
+          "codigo": "3.1.74.99.00",
+          "rotulo": "A Classificar"
+        }
+      ]
+    },
+    {
+      "codigo": "3.1.74.99.00",
+      "rotulo": "A Classificar"
+    },
+    {
+      "codigo": "3.1.80.00.00",
+      "rotulo": "Transferências ao Exterior",
+      "itens": [
+        {
+          "codigo": "3.1.80.04.00",
+          "rotulo": "Contratação por Tempo Determinado"
+        },
+        {
+          "codigo": "3.1.80.99.00",
+          "rotulo": "A Classificar"
+        }
+      ]
+    },
+    {
+      "codigo": "3.1.80.99.00",
+      "rotulo": "A Classificar"
+    },
+    {
+      "codigo": "3.1.90.00.00",
+      "rotulo": "Aplicações Diretas",
+      "itens": [
+        {
+          "codigo": "3.1.90.21.00",
+          "rotulo": "Obras e Serviços de Engenharia"
+        },
+        {
+          "codigo": "3.1.90.22.00",
+          "rotulo": "Aquisições de Veículos e Máquinas"
+        },
+        {
+          "codigo": "3.1.90.23.00",
+          "rotulo": "Aquisição de Mobiliário e Equipamentos"
+        },
+        {
+          "codigo": "3.1.90.24.00",
+          "rotulo": "Despesas com Diárias"
+        },
+        {
+          "codigo": "3.1.90.25.00",
+          "rotulo": "Outras Despesas"
+        },
+        {
+          "codigo": "3.1.90.99.00",
+          "rotulo": "A Classificar"
+        }
+      ]
+    },
+    {
+      "codigo": "3.1.90.99.00",
+      "rotulo": "A Classificar"
+    },
+    {
+      "codigo": "3.2.00.00.00",
+      "rotulo": "BENS DE CONSUMO CORRENTES"
+    },
+    {
+      "codigo": "3.2.30.00.00",
+      "rotulo": "Materiais de Consumo",
+      "itens": [
+        {
+          "codigo": "3.2.30.21.00",
+          "rotulo": "Combustíveis e Lubrificantes"
+        },
+        {
+          "codigo": "3.2.30.22.00",
+          "rotulo": "Gêneros Alimentícios"
+        },
+        {
+          "codigo": "3.2.30.23.00",
+          "rotulo": "Medicamentos, Material Médico-Hospitalar e Odontológico"
+        },
+        {
+          "codigo": "3.2.30.24.00",
+          "rotulo": "Vestimenta"
+        },
+        {
+          "codigo": "3.2.30.25.00",
+          "rotulo": "Material de Limpeza e Higiene"
+        },
+        {
+          "codigo": "3.2.30.26.00",
+          "rotulo": "Utensílios Domésticos"
+        },
+        {
+          "codigo": "3.2.30.27.00",
+          "rotulo": "Material de Expediente"
+        },
+        {
+          "codigo": "3.2.30.28.00",
+          "rotulo": "Outros Materiais de Consumo"
+        },
+        {
+          "codigo": "3.2.30.99.00",
+          "rotulo": "A Classificar"
+        }
+      ]
+    },
+    {
+      "codigo": "3.2.30.99.00",
+      "rotulo": "A Classificar"
+    },
+    {
+      "codigo": "3.2.40.00.00",
+      "rotulo": "Serviços de Terceiros",
+      "itens": [
+        {
+          "codigo": "3.2.40.21.00",
+          "rotulo": "Serviços de Comunicação"
+        },
+        {
+          "codigo": "3.2.40.22.00",
+          "rotulo": "Serviços de Transporte"
+        },
+        {
+          "codigo": "3.2.40.23.00",
+          "rotulo": "Serviços de Segurança"
+        },
+        {
+          "codigo": "3.2.40.24.00",
+          "rotulo": "Serviços de Limpeza e Conservação"
+        },
+        {
+          "codigo": "3.2.40.25.00",
+          "rotulo": "Serviços Profissionais"
+        },
+        {
+          "codigo": "3.2.40.26.00",
+          "rotulo": "Serviços de Locação"
+        },
+        {
+          "codigo": "3.2.40.27.00",
+          "rotulo": "Despesas com Aluguel"
+        },
+        {
+          "codigo": "3.2.40.28.00",
+          "rotulo": "Outros Serviços de Terceiros"
+        },
+        {
+          "codigo": "3.2.40.99.00",
+          "rotulo": "A Classificar"
+        }
+      ]
+    }
+  ]
+}
