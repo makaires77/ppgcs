@@ -1,0 +1,1303 @@
+[
+    {
+        "department_name": "Cell Biology & Infection",
+        "head_name": "Guillaume Dumenil",
+        "team_count": "17 Teams",
+        "url": "https://research.pasteur.fr/en/department/cell-biology-infection/",
+        "aditional_info": {
+            "qte_keywords": "7",
+            "qte_teams": "17",
+            "qte_members": "221",
+            "qte_projects": "View all77",
+            "qte_publication": "1714",
+            "teams": [
+                {
+                    "team_name": "Biological Image Analysis",
+                    "head_name": "Jean-Christophe Olivo-Marin",
+                    "url": "https://research.pasteur.fr/en/team/bioimage-analysis/"
+                },
+                {
+                    "team_name": "Biology of infection",
+                    "head_name": "Marc Lecuit",
+                    "url": "https://research.pasteur.fr/en/team/biology-of-infection/"
+                },
+                {
+                    "team_name": "Cell Polarity, Migration And Cancer",
+                    "head_name": "Sandrine Etienne-Manneville",
+                    "url": "https://research.pasteur.fr/en/team/cell-polarity-migration-and-cancer__trashed/"
+                },
+                {
+                    "team_name": "Cellular Biology of Microbial Infection",
+                    "head_name": "Agathe Subtil",
+                    "url": "https://research.pasteur.fr/en/team/cellular-biology-of-microbial-infection/"
+                },
+                {
+                    "team_name": "Chromatin and Infection",
+                    "head_name": "Mélanie Hamon",
+                    "url": "https://research.pasteur.fr/en/team/chromatin-and-infection/"
+                },
+                {
+                    "team_name": "Dynamics of Host-Pathogen Interactions",
+                    "head_name": "Jost Enninga",
+                    "url": "https://research.pasteur.fr/en/team/dynamics-of-host-pathogen-interactions/"
+                },
+                {
+                    "team_name": "Evolutionary cell biology and evolution of morphogenesis",
+                    "head_name": "Thibaut Brunet",
+                    "url": "https://research.pasteur.fr/en/team/evolutionary-cell-biology-and-evolution-of-morphogenesis/"
+                },
+                {
+                    "team_name": "Membrane Biochemistry and Transport",
+                    "head_name": "Thomas Wollert",
+                    "url": "https://research.pasteur.fr/en/team/membrane-biochemistry-and-transport/"
+                },
+                {
+                    "team_name": "Membrane Traffic and Cell Division",
+                    "head_name": "Arnaud Echard",
+                    "url": "https://research.pasteur.fr/en/team/membrane-traffic-and-cell-division/"
+                },
+                {
+                    "team_name": "Membrane Traffic and Pathogenesis",
+                    "head_name": "Chiara Zurzolo",
+                    "url": "https://research.pasteur.fr/en/team/membrane-traffic-and-pathogenesis/"
+                },
+                {
+                    "team_name": "Microbial Individuality and Infection",
+                    "head_name": "Giulia Manina",
+                    "url": "https://research.pasteur.fr/en/team/microbial-individuality-and-infection/"
+                },
+                {
+                    "team_name": "Mitochondrial Biology",
+                    "head_name": "Timothy Wai",
+                    "url": "https://research.pasteur.fr/en/team/mitochondrial-biology/"
+                },
+                {
+                    "team_name": "Nuclear Organization and Oncogenesis",
+                    "head_name": "Anne Dejean",
+                    "url": "https://research.pasteur.fr/en/team/nuclear-organization-and-oncogenesis/"
+                },
+                {
+                    "team_name": "Pathogenesis of vascular infections",
+                    "head_name": "Guillaume Dumenil",
+                    "url": "https://research.pasteur.fr/en/team/pathogenesis-of-vascular-infections/"
+                },
+                {
+                    "team_name": "Photonic BioImaging (UTechS PBI)",
+                    "head_name": "Spencer Shorte",
+                    "url": "https://research.pasteur.fr/en/team/photonic-bioimaging-utechs-pbi/"
+                },
+                {
+                    "team_name": "Ultrastructural BioImaging",
+                    "head_name": "Adeline Mallet",
+                    "url": "https://research.pasteur.fr/en/team/ultrastructural-bioimaging-core-facility/"
+                },
+                {
+                    "team_name": "Image Analysis Hub",
+                    "head_name": "Jean-Yves Tinevez",
+                    "url": "https://research.pasteur.fr/en/team/image-analysis-hub/"
+                }
+            ]
+        }
+    },
+    {
+        "department_name": "Computational Biology",
+        "head_name": "Grégory Batt",
+        "team_count": "9 Teams",
+        "url": "https://research.pasteur.fr/en/department/computational-biology/",
+        "aditional_info": {
+            "qte_teams": "9",
+            "qte_members": "136",
+            "teams": [
+                {
+                    "team_name": "Statistical Genetics",
+                    "head_name": "Hugues Aschard",
+                    "url": "https://research.pasteur.fr/en/team/statistical-genetics/"
+                },
+                {
+                    "team_name": "InBio: Experimental and Computational Methods for Modeling Cellular Processes",
+                    "head_name": "Grégory Batt",
+                    "url": "https://research.pasteur.fr/en/team/inbio/"
+                },
+                {
+                    "team_name": "Sequence Bioinformatics",
+                    "head_name": "Rayan Chikhi",
+                    "url": "https://research.pasteur.fr/en/team/sequence-bioinformatics/"
+                },
+                {
+                    "team_name": "Bioinformatics and Biostatistics HUB",
+                    "head_name": "Marie-Agnès Dillies",
+                    "url": "https://research.pasteur.fr/en/team/bioinformatics-and-biostatistics-hub/"
+                },
+                {
+                    "team_name": "Decision and Bayesian Computation",
+                    "head_name": "Jean-Baptiste Masson",
+                    "url": "https://research.pasteur.fr/en/team/decision-and-bayesian-computation/"
+                },
+                {
+                    "team_name": "Computational Systems Biomedicine",
+                    "head_name": "Benno Schwikowski",
+                    "url": "https://research.pasteur.fr/en/team/csb/"
+                },
+                {
+                    "team_name": "Imaging and Modeling",
+                    "head_name": "Christophe Zimmer",
+                    "url": "https://research.pasteur.fr/en/team/imaging-and-modeling/"
+                },
+                {
+                    "team_name": "Machine Learning for integrative genomics",
+                    "head_name": "Laura Cantini",
+                    "url": "https://research.pasteur.fr/en/team/machine-learning-for-integrative-genomics/"
+                },
+                {
+                    "team_name": "Evolutionary dynamics of infectious diseases",
+                    "head_name": "Sebastian Duchene",
+                    "url": "https://research.pasteur.fr/en/team/evolutionary-dynamics-of-infectious-diseases/"
+                }
+            ],
+            "projects": [
+                {
+                    "title": "DIVA — Data Integration and Visualisation in Augmented and Virtual Environments",
+                    "head_name": "Jean-Baptiste Masson (PI)",
+                    "status": "Completed",
+                    "members": "9 Members",
+                    "description": "A Unique Software Platform for Complex Image Analysis Using Virtual Reality         DIVA (Data Integration and Visualization in Augmented and Virtual Environments)  is a software platform jointly developed by the Decision and Bayesian […]"
+                },
+                {
+                    "title": "JASS – Joint Analysis of (GWAS) Summary Statistics",
+                    "head_name": "Hugues Aschard (PI)",
+                    "status": "Ongoing",
+                    "members": "6 Members",
+                    "description": "JASS is a python package that handles the computation of the joint statistics over sets of selected GWAS results, and the interactive exploration of the results through a web interface. The generation of joint […]"
+                },
+                {
+                    "title": "10X Genomics barcode ordering",
+                    "head_name": "Rayan Chikhi (PI)",
+                    "status": "Completed",
+                    "members": "2 Members",
+                    "description": "Linked-reads are a valuable technologies laying in between short reads and long reads. LR technologies allow the simulation of long reads using barcoded short reads. But the chemistry of such technologies have a limitation […]"
+                },
+                {
+                    "title": "Phylogeography",
+                    "head_name": "Anna Zhukova (PI)",
+                    "status": "Ongoing",
+                    "members": "3 Members",
+                    "description": "Phylogeography is a field of study concerned with the principles and processes governing the geographic distributions of genealogical lineages, especially those within or among closely related species. [Avise et al. Ann Rev Ecol Syst […]"
+                },
+                {
+                    "title": "NGPhylogeny.fr",
+                    "head_name": "Frédéric Lemoine (PI)",
+                    "status": "Completed",
+                    "members": "7 Members",
+                    "description": "New Generation Phylogeny.fr: Refactoring Phylogeny.fr for innovative phylogenetic services Phylogeny.fr is one of the main server available today able to run phylogenetic analysis pipelines. In the context of scientific workflows, none of the workflow […]"
+                },
+                {
+                    "title": "Deciding in Complex environments",
+                    "head_name": "Jean-Baptiste Masson (PI)",
+                    "status": "Ongoing",
+                    "members": "7 Members",
+                    "description": "This project aims at understanding the dynamical behaviour of drosophila larva. The larva is a ~10000 neurons that exhibit complex behaviour dynamics in response to external stimuli and to possible internal states. This project is […]"
+                }
+            ]
+        }
+    },
+    {
+        "department_name": "Developmental and Stem Cell Biology",
+        "head_name": "Laure Bally-Cuif",
+        "team_count": "17 Teams",
+        "url": "https://research.pasteur.fr/en/department/developmental-stem-cell-biology/",
+        "aditional_info": {
+            "qte_keywords": "1",
+            "qte_teams": "17",
+            "qte_members": "163",
+            "qte_projects": "View all55",
+            "qte_publication": "992",
+            "teams": [
+                {
+                    "team_name": "Cellular plasticity in age-related pathologies",
+                    "head_name": "Han Li",
+                    "url": "https://research.pasteur.fr/en/team/cellular-plasticity-in-age-related-pathologies/"
+                },
+                {
+                    "team_name": "Dynamics of Developmental Decisions in Drosophila",
+                    "head_name": "François Schweisguth",
+                    "url": "https://research.pasteur.fr/en/team/4d/"
+                },
+                {
+                    "team_name": "Macrophages and Endothelial Cells",
+                    "head_name": "Elisa Gomez Perdiguero",
+                    "url": "https://research.pasteur.fr/en/team/macrophages-and-endothelial-cells/"
+                },
+                {
+                    "team_name": "Dynamic Regulation of Morphogenesis",
+                    "head_name": "Jérôme Gros",
+                    "url": "https://research.pasteur.fr/en/team/dynamic-regulation-of-morphogenesis/"
+                },
+                {
+                    "team_name": "Epigenomics, Proliferation and the Identity of Cells – EPIC",
+                    "head_name": "Pablo Navarro Gil",
+                    "url": "https://research.pasteur.fr/en/team/epigenomics-proliferation-and-the-identity-of-cells/"
+                },
+                {
+                    "team_name": "Mechanisms of epigenetic inheritance",
+                    "head_name": "Germano Cecere",
+                    "url": "https://research.pasteur.fr/en/team/mechanisms-of-epigenetic-inheritance/"
+                },
+                {
+                    "team_name": "Zebrafish Neurogenetics",
+                    "head_name": "Laure Bally-Cuif",
+                    "url": "https://research.pasteur.fr/en/team/zebrafish-neurogenetics/"
+                },
+                {
+                    "team_name": "Structures and signals in the neurogenic niche",
+                    "head_name": "Pauline Speder",
+                    "url": "https://research.pasteur.fr/en/team/structures-and-signals-in-the-neurogenic-niche/"
+                },
+                {
+                    "team_name": "Stem Cells And Development",
+                    "head_name": "Shahragim Tajbakhsh",
+                    "url": "https://research.pasteur.fr/en/team/stem-cells-and-development/"
+                },
+                {
+                    "team_name": "Human Developmental Genetics",
+                    "head_name": "Kenneth McElreavey",
+                    "url": "https://research.pasteur.fr/en/team/human-developmental-genetics/"
+                },
+                {
+                    "team_name": "Heart Morphogenesis",
+                    "head_name": "Sigolène Meilhac",
+                    "url": "https://research.pasteur.fr/en/team/heart-morphogenesis/"
+                },
+                {
+                    "team_name": "Cell death and epithelial homeostasis",
+                    "head_name": "Romain Levayer",
+                    "url": "https://research.pasteur.fr/en/team/cell-death-and-epithelial-homeostasis/"
+                },
+                {
+                    "team_name": "Physics of Biological Function",
+                    "head_name": "Thomas Gregor",
+                    "url": "https://research.pasteur.fr/en/team/physics-of-biological-functions/"
+                },
+                {
+                    "team_name": "Molecular Mechanisms of Pathological and Physiological Ageing",
+                    "head_name": "Miria Ricchetti",
+                    "url": "https://research.pasteur.fr/en/team/molecular-mechanisms-of-pathological-and-physiological-ageing/"
+                },
+                {
+                    "team_name": "Evolutionary cell biology and evolution of morphogenesis",
+                    "head_name": "Thibaut Brunet",
+                    "url": "https://research.pasteur.fr/en/team/evolutionary-cell-biology-and-evolution-of-morphogenesis/"
+                },
+                {
+                    "team_name": "Mouse Genetics Engineering",
+                    "head_name": "Francina Langa Vives",
+                    "url": "https://research.pasteur.fr/en/team/mouse-genetics-engineering/"
+                },
+                {
+                    "team_name": "Biomaterials and Microfluidics",
+                    "head_name": "Samy Gobaa",
+                    "url": "https://research.pasteur.fr/en/team/biomaterials-and-microfluidics/"
+                }
+            ],
+            "projects": [
+                {
+                    "title": "ERC-2023-Synergy : PEPS, Perpetuating Stemness",
+                    "head_name": "Laure Bally-Cuif (PI)",
+                    "status": "Ongoing",
+                    "members": "7 Members",
+                    "description": "Perpetuating stemness Neural stem cell (NSC) populations in the vertebrate brain generate adult-born neurons for plasticity, growth, and repair. Neurogenic and gliogenic capacity, based on long-term NSC maintenance, functionally define “stemness”. Stemness embodies massive […]"
+                },
+                {
+                    "title": "ERC Consolidator Grant PrApEDoC: Predicting Apoptosis Engagement Downstream of Caspasese",
+                    "head_name": "Romain Levayer (PI)",
+                    "status": "Ongoing",
+                    "members": "2 Members",
+                    "description": "Epithelial cell death is widespread during development and tissue homeostasis. While the core pathway of apoptosis is well known, we lack predictive power to understand when and where a specific cell will die in […]"
+                },
+                {
+                    "title": "ERC-2020-CoG RNAiNHERITANCE  – Somatic and Germline Mechanisms of Small RNA Inheritance",
+                    "head_name": "Germano Cecere (PI)",
+                    "status": "Ongoing",
+                    "members": "6 Members",
+                    "description": "Inherited information is transmitted to progeny primarily via the genome through the gametes. In recent years, epigenetic inheritance has been demonstrated in several organisms, including animals. Yet, the molecules and mechanisms responsible for this […]"
+                },
+                {
+                    "title": "ERC-2017-COG_BinD – Mitotic Bookmarking, Stem Cells and early Development",
+                    "head_name": "Pablo Navarro Gil (PI)",
+                    "status": "Ongoing",
+                    "members": "8 Members",
+                    "description": "The goal of this project is to deliver a new theoretical framework to understand how transcription factors (TFs) sustain cell identity during developmental processes. Recognised as key drivers of cell fate acquisition, TFs are […]"
+                }
+            ]
+        }
+    },
+    {
+        "department_name": "Genomes and Genetics",
+        "head_name": "Romain Koszul",
+        "team_count": "12 Teams",
+        "url": "https://research.pasteur.fr/en/department/genomes-genetics/",
+        "aditional_info": {
+            "qte_keywords": "22",
+            "qte_teams": "12",
+            "qte_members": "135",
+            "qte_projects": "View all56",
+            "qte_tools": "10",
+            "qte_publication": "1715",
+            "teams": [
+                {
+                    "team_name": "Bacterial Genome Plasticity",
+                    "head_name": "Didier Mazel",
+                    "url": "https://research.pasteur.fr/en/team/bacterial-genome-plasticity/"
+                },
+                {
+                    "team_name": "Dynamics of the Genome",
+                    "head_name": "Benoit Arcangioli",
+                    "url": "https://research.pasteur.fr/en/team/dynamics-of-the-genome/"
+                },
+                {
+                    "team_name": "Microbial Evolutionary Genomics",
+                    "head_name": "Eduardo Rocha",
+                    "url": "https://research.pasteur.fr/en/team/microbial-evolutionary-genomics/"
+                },
+                {
+                    "team_name": "Human Evolutionary Genetics",
+                    "head_name": "Lluis Quintana-Murci",
+                    "url": "https://research.pasteur.fr/en/team/human-evolutionary-genetics/"
+                },
+                {
+                    "team_name": "Spatial Regulation of Genomes",
+                    "head_name": "Romain Koszul",
+                    "url": "https://research.pasteur.fr/en/team/spatial-regulation-of-genomes/"
+                },
+                {
+                    "team_name": "Biomics",
+                    "head_name": "Marc Monot",
+                    "url": "https://research.pasteur.fr/en/team/biomics/"
+                },
+                {
+                    "team_name": "Mouse Genetics",
+                    "head_name": "Xavier Montagutelli",
+                    "url": "https://research.pasteur.fr/en/team/mouse-genetics/"
+                },
+                {
+                    "team_name": "Physical Microfluidics and Bioengineering",
+                    "head_name": "Charles Baroud",
+                    "url": "https://research.pasteur.fr/en/team/physical-microfluidics-bioengineering/"
+                },
+                {
+                    "team_name": "Microbial Paleogenomics Unit",
+                    "head_name": "Nicolás Rascovan",
+                    "url": "https://research.pasteur.fr/en/team/microbial-paleogenomics/"
+                },
+                {
+                    "team_name": "Comparative Functional Genomics",
+                    "head_name": "Camille Berthelot",
+                    "url": "https://research.pasteur.fr/en/team/comparative-functional-genomics/"
+                },
+                {
+                    "team_name": "Molecular diversity of microbes",
+                    "head_name": "Aude Bernheim",
+                    "url": "https://research.pasteur.fr/en/team/molecular-diversity-of-microbes/"
+                },
+                {
+                    "team_name": "Cytoplasmic mRNA surveillance in yeast",
+                    "head_name": "Micheline Fromont-Racine",
+                    "url": "https://research.pasteur.fr/en/team/group-micheline-fromont-racine/"
+                }
+            ],
+            "projects": [
+                {
+                    "title": "ERC StG 2020 PaleoMetAmerica",
+                    "head_name": "Nicolás Rascovan (PI)",
+                    "status": "Ongoing",
+                    "members": "9 Members",
+                    "description": "Microbes have played fundamental roles throughout our evolution and history. These roles were not only played by pathogens, but also by the trillions of microorganisms inhabiting our body –the microbiome–, which are essential for […]"
+                },
+                {
+                    "title": "ERC-2017-COG Synarchic – Investigating the functional architecture of microbial genomes with synthetic approaches",
+                    "head_name": "Romain Koszul (PI)",
+                    "status": "Ongoing",
+                    "members": "2 Members",
+                    "description": "The folding of eukaryotic and prokaryotic chromosomes consists of an assortment of intertwined structural features. The resulting complex networks of contacts is highly dynamic and interacts functionally with, or regulates metabolic processes ranging from […]"
+                },
+                {
+                    "title": "ERC-2011-StG EVOMOBILOME",
+                    "head_name": "Eduardo Rocha (PI)",
+                    "status": "Completed",
+                    "members": "4 Members",
+                    "description": "Prokaryotes evolve rapidly new functionalities by horizontal gene transfer delivered by mobile genetic elements (MGE). MGE increase relatedness between individuals and thereby might also promote the establishment of microbial social networks. Many studies have […]"
+                },
+                {
+                    "title": "ERC-2011-StG EVOIMMUNOPOP",
+                    "head_name": "Lluis Quintana-Murci (PI)",
+                    "status": "Ongoing",
+                    "members": "7 Members",
+                    "description": "Human Evolutionary Immunogenomics: population genetic variation in immune responses Recent genome-wide association studies have successfully identified rare and common variants that correlate with complex traits. However, they have provided us with little insight into […]"
+                },
+                {
+                    "title": "ERC-2010-StG Interaction dynamique entre chromosomes eucaryotes : impact sur la stabilité du génome (DICIG)",
+                    "head_name": "Romain Koszul (PI)",
+                    "status": "Completed",
+                    "members": "2 Members",
+                    "description": "Ce projet vise à comprendre les interactions fonctionnelles et mécaniques entre chromosomes, périphérie nucléaire et cytosquelette, ainsi que leur influence sur la stabilité génomique, à travers des approches in vivo et in vitro chez […]"
+                }
+            ]
+        }
+    },
+    {
+        "department_name": "Global Health",
+        "head_name": "Hervé Bourhy",
+        "team_count": "13 Teams",
+        "url": "https://research.pasteur.fr/en/department/global-health/",
+        "aditional_info": {
+            "qte_teams": "13",
+            "qte_members": "153",
+            "qte_projects": "View all129",
+            "qte_keywords": "2",
+            "qte_tools": "2",
+            "qte_publication": "2245",
+            "teams": [
+                {
+                    "team_name": "Lyssavirus epidemiology and neuropathology",
+                    "head_name": "Hervé Bourhy",
+                    "url": "https://research.pasteur.fr/en/team/lyssavirus-epidemiology-and-neuropathology/"
+                },
+                {
+                    "team_name": "Biodiversity and Epidemiology of Bacterial Pathogens",
+                    "head_name": "Sylvain Brisse",
+                    "url": "https://research.pasteur.fr/en/team/biodiversity-and-epidemiology-of-bacterial-pathogens/"
+                },
+                {
+                    "team_name": "Mathematical Modelling Of Infectious Diseases",
+                    "head_name": "Simon Cauchemez",
+                    "url": "https://research.pasteur.fr/en/team/mathematical-modelling-of-infectious-diseases/"
+                },
+                {
+                    "team_name": "Epidemiology of Emerging Diseases",
+                    "head_name": "Arnaud Fontanet",
+                    "url": "https://research.pasteur.fr/en/team/epidemiology-of-emerging-diseases/"
+                },
+                {
+                    "team_name": "Epidemiology and Modelling of Antibacterial Evasion (EMAE)",
+                    "head_name": "Didier Guillemot",
+                    "url": "https://research.pasteur.fr/en/team/epidemiology-and-modelling-of-bacterial-escape-to-antimicrobials/"
+                },
+                {
+                    "team_name": "Environment and Infectious Risks",
+                    "head_name": "Jean-Claude Manuguerra",
+                    "url": "https://research.pasteur.fr/en/team/environment-and-infectious-risks/"
+                },
+                {
+                    "team_name": "Trypanosomatids Infectious Processes",
+                    "head_name": "Paola Minoprio",
+                    "url": "https://research.pasteur.fr/en/team/trypanosoma-infectious-processes/"
+                },
+                {
+                    "team_name": "Ecology and Emergence of Arthropod-borne Pathogens",
+                    "head_name": "Anavaj Sakuntabhai",
+                    "url": "https://research.pasteur.fr/en/team/ecology-and-emergence-of-arthropod-borne-pathogens/"
+                },
+                {
+                    "team_name": "Invasive Bacterial Infections",
+                    "head_name": "Muhamed-Kheir Taha",
+                    "url": "https://research.pasteur.fr/en/team/invasive-bacterial-infections/"
+                },
+                {
+                    "team_name": "Enteric Bacterial Pathogens",
+                    "head_name": "Francois-Xavier Weill",
+                    "url": "https://research.pasteur.fr/en/team/enteric-bacterial-pathogens/"
+                },
+                {
+                    "team_name": "Anthropology and Ecology of Disease Emergence",
+                    "head_name": "Tamara Giles-Vernick",
+                    "url": "https://research.pasteur.fr/en/team/anthropology-and-ecology-of-disease-emergence/"
+                },
+                {
+                    "team_name": "Infectious Disease Epidemiology and Analytics",
+                    "head_name": "Michael White",
+                    "url": "https://research.pasteur.fr/en/team/infectious-disease-epidemiology-and-analytics/"
+                },
+                {
+                    "team_name": "Cystic Fibrosis and Bronchial Diseases",
+                    "head_name": "Lhousseine Touqui",
+                    "url": "https://research.pasteur.fr/en/team/mucoviscidose-et-bronchopathies-chroniques-biopathologie-et-phenotype-cliniques/"
+                }
+            ]
+        }
+    },
+    {
+        "department_name": "Hearing Institute – Institut Pasteur Center",
+        "head_name": "Anne-Lise Giraud",
+        "team_count": "13 Teams",
+        "url": "https://research.pasteur.fr/en/department/hearing-institute-institut-pasteur-center/",
+        "aditional_info": {
+            "qte_teams": "13",
+            "qte_members": "83",
+            "qte_projects": "View all19",
+            "qte_publication": "243",
+            "teams": [
+                {
+                    "team_name": "Auditory Therapies Innovation Lab",
+                    "head_name": "Christine Petit",
+                    "url": "https://research.pasteur.fr/en/team/auditory-therapies-innovation-lab/"
+                },
+                {
+                    "team_name": "Progressive Sensory Disorders, PathoPhysiology and Therapy",
+                    "head_name": "Aziz El Amraoui",
+                    "url": "https://research.pasteur.fr/en/team/progressive-sensory-disorders-pathophysiology-and-therapy/"
+                },
+                {
+                    "team_name": "Neural coding in the auditory system",
+                    "head_name": "Jérémie Barral",
+                    "url": "https://research.pasteur.fr/en/team/neural-coding-in-the-auditory-system/"
+                },
+                {
+                    "team_name": "Auditory system dynamics and multisensory processing",
+                    "head_name": "Brice Bathellier",
+                    "url": "https://research.pasteur.fr/en/team/auditory-system-dynamics-and-multisensory-processing/"
+                },
+                {
+                    "team_name": "Clinical and translational exploration of sensorineural hearing loss",
+                    "head_name": "Didier Dulon",
+                    "url": "https://research.pasteur.fr/en/team/clinical-and-translational-exploration-of-sensorineural-hearing-loss/"
+                },
+                {
+                    "team_name": "Plasticity of central auditory circuits",
+                    "head_name": "Nicolas Michalski",
+                    "url": "https://research.pasteur.fr/en/team/plasticity-of-central-auditory-circuits/"
+                },
+                {
+                    "team_name": "Technologies and Gene Therapy for Deafness",
+                    "head_name": "Saaid Safieddine",
+                    "url": "https://research.pasteur.fr/en/team/technologies-and-gene-therapy-for-deafness/"
+                },
+                {
+                    "team_name": "Auditory Cognition and Communication",
+                    "head_name": "Luc Arnal",
+                    "url": "https://research.pasteur.fr/en/team/auditory-cognition-and-communication/"
+                },
+                {
+                    "team_name": "Cochlear development and therapeutic perspectives",
+                    "head_name": "Raphaël Etournay",
+                    "url": "https://research.pasteur.fr/en/team/cochlear-development-and-therapeutic-perspectives/"
+                },
+                {
+                    "team_name": "Hearing Institute Bioimaging Core Facility",
+                    "head_name": "Maia Brunstein",
+                    "url": "https://research.pasteur.fr/en/team/hearing-institute-bioimaging-core-facility/"
+                },
+                {
+                    "team_name": "Hearing Institute Animal Phenotyping Core Facility",
+                    "head_name": "Marta Lindner",
+                    "url": "https://research.pasteur.fr/en/team/hearing-institute-animal-phenotyping-core-facility/"
+                },
+                {
+                    "team_name": "Neural coding and neuroengineering of human speech functions",
+                    "head_name": "Anne-Lise Giraud",
+                    "url": "https://research.pasteur.fr/en/team/neural-coding-and-engineering-of-human-speech-functions/"
+                },
+                {
+                    "team_name": "Hearing Institute Data Acquisition and Signal Processing Facility",
+                    "head_name": "Clara Dussaux",
+                    "url": "https://research.pasteur.fr/en/team/hearing-institute-data-acquisition-and-signal-processing-facility/"
+                }
+            ]
+        }
+    },
+    {
+        "department_name": "Immunology",
+        "head_name": "Philippe Bousso",
+        "team_count": "17 Teams",
+        "url": "https://research.pasteur.fr/en/department/immunology/",
+        "aditional_info": {
+            "qte_keywords": "1",
+            "qte_teams": "17",
+            "qte_members": "172",
+            "qte_projects": "View all75",
+            "qte_tools": "3",
+            "qte_publication": "1414",
+            "teams": [
+                {
+                    "team_name": "Antibodies in Therapy and Pathology",
+                    "head_name": "Pierre Bruhns",
+                    "url": "https://research.pasteur.fr/en/team/antibodies-in-therapy-and-pathology/"
+                },
+                {
+                    "team_name": "Dynamics of Immune Responses",
+                    "head_name": "Philippe Bousso",
+                    "url": "https://research.pasteur.fr/en/team/dynamics-of-immune-responses/"
+                },
+                {
+                    "team_name": "Humoral Immunology",
+                    "head_name": "Hugo Mouquet",
+                    "url": "https://research.pasteur.fr/en/team/humoral-immunology/"
+                },
+                {
+                    "team_name": "Immunobiology and Therapy",
+                    "head_name": "Caroline Demangel",
+                    "url": "https://research.pasteur.fr/en/team/immunobiology-and-therapy/"
+                },
+                {
+                    "team_name": "Immunoregulation",
+                    "head_name": "Lars Rogge",
+                    "url": "https://research.pasteur.fr/en/team/immunoregulation/"
+                },
+                {
+                    "team_name": "Innate Immunity",
+                    "head_name": "James Di Santo",
+                    "url": "https://research.pasteur.fr/en/team/innate-immunity/"
+                },
+                {
+                    "team_name": "Genome integrity, Immunity and Cancer",
+                    "head_name": "Ludovic Deriano",
+                    "url": "https://research.pasteur.fr/en/team/genome-integrity-immunity-cancer/"
+                },
+                {
+                    "team_name": "Microenvironment and Immunity",
+                    "head_name": "Gérard Eberl",
+                    "url": "https://research.pasteur.fr/en/team/microenvironment-and-immunity/"
+                },
+                {
+                    "team_name": "Stroma, Inflammation and Tissue Repair",
+                    "head_name": "Lucie Peduto",
+                    "url": "https://research.pasteur.fr/en/team/group-lucie-peduto/"
+                },
+                {
+                    "team_name": "UTechS Single Cell Biomarkers",
+                    "head_name": "Milena Hasan",
+                    "url": "https://research.pasteur.fr/en/team/single-cell-biomarkers/"
+                },
+                {
+                    "team_name": "Translational Immunology",
+                    "head_name": "Darragh Duffy",
+                    "url": "https://research.pasteur.fr/en/team/translational-immunology/"
+                },
+                {
+                    "team_name": "Mucosal Inflammation and Immunity",
+                    "head_name": "Molly Ingersoll",
+                    "url": "https://research.pasteur.fr/en/team/mucosal-inflammation-and-immunity/"
+                },
+                {
+                    "team_name": "Brain-immune communication",
+                    "head_name": "Aleksandra Deczkowska",
+                    "url": "https://research.pasteur.fr/en/team/brain-immune-communication/"
+                },
+                {
+                    "team_name": "Dendritic cells and adaptive immunity",
+                    "head_name": "Pierre Guermonprez",
+                    "url": "https://research.pasteur.fr/en/team/dendritic-cells-and-adaptive-immunity/"
+                },
+                {
+                    "team_name": "Group: ILC development and inflammation",
+                    "head_name": "Rachel Golub",
+                    "url": "https://research.pasteur.fr/en/team/group-rachel-golub/"
+                },
+                {
+                    "team_name": "Group : Hematopoietic Development",
+                    "head_name": "Pablo Pereira Esteva",
+                    "url": "https://research.pasteur.fr/en/team/group-hematopoietic-development/"
+                }
+            ]
+        }
+    },
+    {
+        "department_name": "Microbiology",
+        "head_name": "Frédéric Barras",
+        "team_count": "21 Teams",
+        "url": "https://research.pasteur.fr/en/department/microbiology/",
+        "aditional_info": {
+            "qte_keywords": "4",
+            "qte_teams": "21",
+            "qte_members": "209",
+            "qte_projects": "View all88",
+            "qte_tools": "6",
+            "qte_publication": "2281",
+            "teams": [
+                {
+                    "team_name": "Biology and Genetics of Bacterial Cell Wall",
+                    "head_name": "Ivo Gomperts Boneca",
+                    "url": "https://research.pasteur.fr/en/team/biology-and-genetics-of-bacterial-cell-wall/"
+                },
+                {
+                    "team_name": "Biology of Gram-Positive Pathogens",
+                    "head_name": "Patrick Trieu-Cuot",
+                    "url": "https://research.pasteur.fr/en/team/biology-of-gram-positive-pathogens/"
+                },
+                {
+                    "team_name": "Biology of Spirochetes",
+                    "head_name": "Mathieu Picardeau",
+                    "url": "https://research.pasteur.fr/en/team/biology-of-spirochetes/"
+                },
+                {
+                    "team_name": "Genetics of Biofilms",
+                    "head_name": "Jean-Marc Ghigo",
+                    "url": "https://research.pasteur.fr/en/team/genetics-of-biofilms/"
+                },
+                {
+                    "team_name": "Synthetic Biology",
+                    "head_name": "David Bikard",
+                    "url": "https://research.pasteur.fr/en/team/synthetic-biology/"
+                },
+                {
+                    "team_name": "Yersinia",
+                    "head_name": "Javier Pizarro-Cerda",
+                    "url": "https://research.pasteur.fr/en/team/yersinia/"
+                },
+                {
+                    "team_name": "Collection of Cyanobacteria",
+                    "head_name": "Muriel Gugger",
+                    "url": "https://research.pasteur.fr/en/team/collection-of-cyanobacteria/"
+                },
+                {
+                    "team_name": "Pathogenesis of Bacterial Anaerobes",
+                    "head_name": "Bruno Dupuy",
+                    "url": "https://research.pasteur.fr/en/team/pathogenesis-of-bacterial-anaerobes/"
+                },
+                {
+                    "team_name": "Ecology and Evolution of Antibiotics Resistance",
+                    "head_name": "Philippe Glaser",
+                    "url": "https://research.pasteur.fr/en/team/ecology-and-evolution-of-antibiotics-resistance/"
+                },
+                {
+                    "team_name": "Bacterial Toxins",
+                    "head_name": "Emmanuel Lemichez",
+                    "url": "https://research.pasteur.fr/en/team/bacterial-toxins/"
+                },
+                {
+                    "team_name": "Evolutionary Biology of the Microbial Cell",
+                    "head_name": "Simonetta Gribaldo",
+                    "url": "https://research.pasteur.fr/en/team/evolutionary-biology-of-the-microbial-cell/"
+                },
+                {
+                    "team_name": "Stress Adaptation and Metabolism (SAMe)",
+                    "head_name": "Frédéric Barras",
+                    "url": "https://research.pasteur.fr/en/team/stress-adaptation-metabolism-enterobacteria/"
+                },
+                {
+                    "team_name": "National Collection of Cultures of Microorganisms",
+                    "head_name": "Raquel Hurtado Ortiz",
+                    "url": "https://research.pasteur.fr/en/team/national-collection-of-cultures-of-microorganisms/"
+                },
+                {
+                    "team_name": "Collection of the Institut Pasteur (CIP)",
+                    "head_name": "Dominique Clermont",
+                    "url": "https://research.pasteur.fr/en/team/collection-of-the-institut-pasteur-cip/"
+                },
+                {
+                    "team_name": "Integrated Mycobacterial Pathogenomics",
+                    "head_name": "Roland Brosch",
+                    "url": "https://research.pasteur.fr/en/team/integrated-mycobacterial-pathogenomics/"
+                },
+                {
+                    "team_name": "Biology Of Intracellular Bacteria",
+                    "head_name": "Carmen Buchrieser",
+                    "url": "https://research.pasteur.fr/en/team/biology-of-intracellular-bacteria/"
+                },
+                {
+                    "team_name": "Archaeal Virology",
+                    "head_name": "Mart Krupovic",
+                    "url": "https://research.pasteur.fr/en/team/archaeal-virology/"
+                },
+                {
+                    "team_name": "Bacteriophage, bacterium, host",
+                    "head_name": "Laurent Debarbieux",
+                    "url": "https://research.pasteur.fr/en/team/bacteriophage-bacterium-host/"
+                },
+                {
+                    "team_name": "Group: Infection, Genotoxicity and Cancer",
+                    "head_name": "Eliette Touati",
+                    "url": "https://research.pasteur.fr/en/team/group-eliette-touati/"
+                },
+                {
+                    "team_name": "Microbiome-Host Interactions",
+                    "head_name": "Benoît Chassaing",
+                    "url": "https://research.pasteur.fr/en/team/microbiome-host-interactions/"
+                }
+            ]
+        }
+    },
+    {
+        "department_name": "Mycology",
+        "head_name": "Guilhem Janbon",
+        "team_count": "6 Teams",
+        "url": "https://research.pasteur.fr/en/department/mycology/",
+        "aditional_info": {
+            "qte_keywords": "14",
+            "qte_teams": "6",
+            "qte_members": "54",
+            "qte_projects": "View all13",
+            "qte_publication": "395",
+            "teams": [
+                {
+                    "team_name": "Fungal Biology and Pathogenicity",
+                    "head_name": "Christophe D’Enfert",
+                    "url": "https://research.pasteur.fr/en/team/fungal-biology-and-pathogenicity/"
+                },
+                {
+                    "team_name": "RNA Biology of Fungal Pathogens",
+                    "head_name": "Guilhem Janbon",
+                    "url": "https://research.pasteur.fr/en/team/rna-biology-of-fungal-pathogens/"
+                },
+                {
+                    "team_name": "Molecular Genetics and Epigenetics",
+                    "head_name": "Eugene Gladyshev",
+                    "url": "https://research.pasteur.fr/en/team/molecular-genetics-and-epigenetics/"
+                },
+                {
+                    "team_name": "Immunology of Fungal Infections",
+                    "head_name": "Jessica Quintin",
+                    "url": "https://research.pasteur.fr/en/team/immunology-of-fungal-infections/"
+                },
+                {
+                    "team_name": "Fungal Heterogeneity",
+                    "head_name": "Iuliana Ene",
+                    "url": "https://research.pasteur.fr/en/team/fungal-heterogeneity/"
+                },
+                {
+                    "team_name": "Immunobiology of Aspergillus",
+                    "head_name": "Vishu Kumar Aimanianda Bopaiah",
+                    "url": "https://research.pasteur.fr/en/team/immunobiology-of-aspergillus/"
+                }
+            ]
+        }
+    },
+    {
+        "department_name": "Neuroscience",
+        "head_name": "Pierre-Marie Lledo",
+        "team_count": "10 Teams",
+        "url": "https://research.pasteur.fr/en/department/neuroscience/",
+        "aditional_info": {
+            "qte_keywords": "15",
+            "qte_teams": "10",
+            "qte_members": "143",
+            "qte_projects": "View all54",
+            "qte_tools": "5",
+            "qte_publication": "1044",
+            "teams": [
+                {
+                    "team_name": "Human Genetics and Cognitive Functions",
+                    "head_name": "Thomas Bourgeron",
+                    "url": "https://research.pasteur.fr/en/team/human-genetics-and-cognitive-functions/"
+                },
+                {
+                    "team_name": "Synapse and Circuit Dynamics",
+                    "head_name": "David DiGregorio",
+                    "url": "https://research.pasteur.fr/en/team/dynamic-neuronal-imaging/"
+                },
+                {
+                    "team_name": "Signaling and receptors dynamics",
+                    "head_name": "Pierre-Jean Corringer",
+                    "url": "https://research.pasteur.fr/en/team/channel-receptors/"
+                },
+                {
+                    "team_name": "Integrative Neurobiology of Cholinergic Systems",
+                    "head_name": "Uwe Maskos",
+                    "url": "https://research.pasteur.fr/en/team/integrative-neurobiology-of-cholinergic-systems/"
+                },
+                {
+                    "team_name": "Perception & Action",
+                    "head_name": "Pierre-Marie Lledo",
+                    "url": "https://research.pasteur.fr/en/team/perception-and-action/"
+                },
+                {
+                    "team_name": "Neural circuits for spatial navigation and memory",
+                    "head_name": "Christoph Schmidt-Hieber",
+                    "url": "https://research.pasteur.fr/en/team/neural-circuits-for-spatial-navigation-and-memory/"
+                },
+                {
+                    "team_name": "Decision and Bayesian Computation",
+                    "head_name": "Jean-Baptiste Masson",
+                    "url": "https://research.pasteur.fr/en/team/decision-and-bayesian-computation/"
+                },
+                {
+                    "team_name": "Neural Circuit Dynamics and Decision Making",
+                    "head_name": "Florent Haiss",
+                    "url": "https://research.pasteur.fr/en/team/neural-circuit-dynamics-and-decision-making/"
+                },
+                {
+                    "team_name": "Brain-immune communication",
+                    "head_name": "Aleksandra Deczkowska",
+                    "url": "https://research.pasteur.fr/en/team/brain-immune-communication/"
+                },
+                {
+                    "team_name": "Applied and Theoretical Neuroanatomy",
+                    "head_name": "Roberto Toro",
+                    "url": "https://research.pasteur.fr/en/team/applied-and-theoretical-neuroanatomy/"
+                }
+            ]
+        }
+    },
+    {
+        "department_name": "Parasites and Insect Vectors",
+        "head_name": "Lucy Glover",
+        "team_count": "10 Teams",
+        "url": "https://research.pasteur.fr/en/department/parasites-and-insect-vectors/",
+        "aditional_info": {
+            "qte_keywords": "138",
+            "qte_teams": "10",
+            "qte_members": "89",
+            "qte_projects": "View all55",
+            "qte_publication": "1471",
+            "teams": [
+                {
+                    "team_name": "Biology of Host-parasite Interactions",
+                    "head_name": "Artur Scherf",
+                    "url": "https://research.pasteur.fr/en/team/biology-of-host-parasite-interactions/"
+                },
+                {
+                    "team_name": "Center for the Production and Infection of Anopheles",
+                    "head_name": "Sabine Thiberge",
+                    "url": "https://research.pasteur.fr/en/team/center-for-production-and-infection-of-anopheles/"
+                },
+                {
+                    "team_name": "Malaria Parasite Biology and Vaccines",
+                    "head_name": "Chetan Chitnis",
+                    "url": "https://research.pasteur.fr/en/team/malaria-parasite-biology-and-vaccines/"
+                },
+                {
+                    "team_name": "Molecular Parasitology and Signaling",
+                    "head_name": "Gérald Spaeth",
+                    "url": "https://research.pasteur.fr/en/team/molecular-parasitology-and-signaling/"
+                },
+                {
+                    "team_name": "Trypanosome Cell Biology",
+                    "head_name": "Philippe Bastin",
+                    "url": "https://research.pasteur.fr/en/team/trypanosome-cell-biology/"
+                },
+                {
+                    "team_name": "Malaria Infection & Immunity",
+                    "head_name": "Rogerio Amino",
+                    "url": "https://research.pasteur.fr/en/team/malaria-infection-immunity/"
+                },
+                {
+                    "team_name": "Trypanosome Molecular Biology",
+                    "head_name": "Lucy Glover",
+                    "url": "https://research.pasteur.fr/en/team/trypanosomes-molecular-biology/"
+                },
+                {
+                    "team_name": "Parasite RNA Biology",
+                    "head_name": "Sebastian Baumgarten",
+                    "url": "https://research.pasteur.fr/en/team/parasite-rna-biology/"
+                },
+                {
+                    "team_name": "Plasmodium Infection and Transmission",
+                    "head_name": "Liliana Mancio Silva",
+                    "url": "https://research.pasteur.fr/en/team/biology-of-plasmodium-infection-and-transmission/"
+                }
+            ]
+        }
+    },
+    {
+        "department_name": "Structural Biology and Chemistry",
+        "head_name": "Paola Arimondo",
+        "team_count": "21 Teams",
+        "url": "https://research.pasteur.fr/en/department/structural-biology-chemistry/",
+        "aditional_info": {
+            "qte_keywords": "6",
+            "qte_teams": "21",
+            "qte_members": "199",
+            "qte_projects": "View all89",
+            "qte_tools": "5",
+            "qte_publication": "2126",
+            "teams": [
+                {
+                    "team_name": "Antibody Engineering",
+                    "head_name": "Pierre Lafaye",
+                    "url": "https://research.pasteur.fr/en/team/antibody-engineering/"
+                },
+                {
+                    "team_name": "Biochemistry of Macromolecular Interactions",
+                    "head_name": "Daniel Ladant",
+                    "url": "https://research.pasteur.fr/en/team/biochemistry-of-macromolecular-interactions/"
+                },
+                {
+                    "team_name": "Bioorganic chemistry of nucleic acids",
+                    "head_name": "Marcel Hollenstein",
+                    "url": "https://research.pasteur.fr/en/team/bioorganic-chemistry-of-nucleic-acids/"
+                },
+                {
+                    "team_name": "Chemistry of Biomolecules",
+                    "head_name": "Laurence Mulard",
+                    "url": "https://research.pasteur.fr/en/team/chemistry-of-biomolecules/"
+                },
+                {
+                    "team_name": "Crystallography",
+                    "head_name": "Ahmed Haouz",
+                    "url": "https://research.pasteur.fr/en/team/crystallography/"
+                },
+                {
+                    "team_name": "Molecular Biophysics",
+                    "head_name": "Patrick England",
+                    "url": "https://research.pasteur.fr/en/team/biophysics/"
+                },
+                {
+                    "team_name": "Proteomics",
+                    "head_name": "Mariette Matondo",
+                    "url": "https://research.pasteur.fr/en/team/proteomics/"
+                },
+                {
+                    "team_name": "Structural Bioinformatics",
+                    "head_name": "Michael Nilges",
+                    "url": "https://research.pasteur.fr/en/team/structural-bioinformatics/"
+                },
+                {
+                    "team_name": "Architecture and Dynamics of Biological Macromolecules",
+                    "head_name": "Marc Delarue",
+                    "url": "https://research.pasteur.fr/en/team/architecture-and-dynamics-of-biological-macromolecules/"
+                },
+                {
+                    "team_name": "Mass Spectrometry for Biology",
+                    "head_name": "Julia Chamot-Rooke",
+                    "url": "https://research.pasteur.fr/en/team/mass-spectrometry-for-biology/"
+                },
+                {
+                    "team_name": "Structural Microbiology",
+                    "head_name": "Pedro Alzari",
+                    "url": "https://research.pasteur.fr/en/team/structural-microbiology/"
+                },
+                {
+                    "team_name": "Epigenetic Chemical Biology",
+                    "head_name": "Paola Arimondo",
+                    "url": "https://research.pasteur.fr/en/team/chimie-biologique-epigenetique/"
+                },
+                {
+                    "team_name": "NanoImaging Core",
+                    "head_name": "Matthijn Vos",
+                    "url": "https://research.pasteur.fr/en/team/nanoimaging/"
+                },
+                {
+                    "team_name": "Biological NMR and HDX-MS Technological Platform",
+                    "head_name": "Iñaki Guijarro",
+                    "url": "https://research.pasteur.fr/en/team/biological-nmr-and-hdx-ms-technological-platform/"
+                },
+                {
+                    "team_name": "Chemogenomic and Biological Screening Platform (PF-CCB)",
+                    "head_name": "Fabrice Agou",
+                    "url": "https://research.pasteur.fr/en/team/fabrice-agou-team/"
+                },
+                {
+                    "team_name": "Production and Purification of Recombinant Proteins Technological Platform",
+                    "head_name": "Stéphane Petres",
+                    "url": "https://research.pasteur.fr/en/team/production-and-purification-of-recombinant-proteins/"
+                },
+                {
+                    "team_name": "Bacterial transmembrane systems",
+                    "head_name": "Nadia Izadi-Pruneyre",
+                    "url": "https://research.pasteur.fr/en/team/bacterial-transmembrane-systems/"
+                },
+                {
+                    "team_name": "Computational Structural Biology",
+                    "head_name": "Max Bonomi",
+                    "url": "https://research.pasteur.fr/en/team/computational-structural-biology/"
+                },
+                {
+                    "team_name": "Bacterial Cell Cycle Mechanisms",
+                    "head_name": "Anne Marie Wehenkel",
+                    "url": "https://research.pasteur.fr/en/team/bacterial-cell-cycle-mechanisms/"
+                }
+            ],
+            "projects": [
+                {
+                    "title": "CACSICE",
+                    "head_name": "Michael Nilges (PI)",
+                    "status": "Ongoing",
+                    "members": "2 Members",
+                    "description": "Centre for the Analysis of Complex Systems in Complex Environments About CACSICE Cells function through transient interactions of macromolecular complexes. Understanding fully the dynamic processes of life at the molecular level requies understanding the […]"
+                },
+                {
+                    "title": "AEGIS (Accelerated Early staGe drug dIScovery)",
+                    "head_name": "Michael Nilges (PI)",
+                    "status": "Ongoing",
+                    "members": "4 Members",
+                    "description": "AEGIS is a Marie Skłodowska -Curie Innovative Training Network (ITN) for early stage researchers (ESR) funded by the European Commission under the H2020 Programme the EU framework programme for research and innovation. The principal […]"
+                },
+                {
+                    "title": "ARIA for hybrid structure determination on the cloud",
+                    "head_name": "Benjamin Bardiaux (PI)",
+                    "status": "Ongoing",
+                    "members": "3 Members",
+                    "description": "Protein structure determination is crucial for understanding protein function, as it paves the way to the discovery of new drugs and of new approaches to control pathological biological processes. The recent advances in structural […]"
+                },
+                {
+                    "title": "DIM 1 HEALTH 2019 project : EpiK- The Cytosine code as potent target to kill pathogens and fight human diseases",
+                    "head_name": "Paola Arimondo (PI)",
+                    "status": "Ongoing",
+                    "members": "3 Members",
+                    "description": "EpiK- The Cytosine code as potent target to kill pathogens and fight human diseases Today it is a major health need to find alternatives for increasing antibiotic resistance. Currently there is a large interest […]"
+                }
+            ]
+        }
+    },
+    {
+        "department_name": "Virology",
+        "head_name": "Jean-Pierre Vartanian",
+        "team_count": "24 Teams",
+        "url": "https://research.pasteur.fr/en/department/virology/",
+        "aditional_info": {
+            "qte_teams": "24",
+            "qte_members": "207",
+            "qte_projects": "View all103",
+            "qte_publication": "1952",
+            "teams": [
+                {
+                    "team_name": "Arboviruses and Insect Vectors",
+                    "head_name": "Anna-Bella Failloux",
+                    "url": "https://research.pasteur.fr/en/team/arboviruses-and-insect-vectors/"
+                },
+                {
+                    "team_name": "Biology of Viral Emerging Infections",
+                    "head_name": "Sylvain Baize",
+                    "url": "https://research.pasteur.fr/en/team/biology-of-viral-emerging-infections/"
+                },
+                {
+                    "team_name": "HIV, Inflammation and Persistence",
+                    "head_name": "Michaela Muller-Trutwin",
+                    "url": "https://research.pasteur.fr/en/team/hiv-inflammation-and-persistence/"
+                },
+                {
+                    "team_name": "Oncogenic Virus Epidemiology and Pathophysiology",
+                    "head_name": "Antoine Gessain",
+                    "url": "https://research.pasteur.fr/en/team/oncogenic-virus-epidemiology-and-pathophysiology/"
+                },
+                {
+                    "team_name": "Structural Virology",
+                    "head_name": "Félix A. Rey",
+                    "url": "https://research.pasteur.fr/en/team/structural-virology/"
+                },
+                {
+                    "team_name": "Viral Neuro-Immunology",
+                    "head_name": "Christophe Prehaud",
+                    "url": "https://research.pasteur.fr/en/team/viral-neuro-immunology/"
+                },
+                {
+                    "team_name": "Virus and Immunity",
+                    "head_name": "Olivier Schwartz",
+                    "url": "https://research.pasteur.fr/en/team/virus-and-immunity/"
+                },
+                {
+                    "team_name": "Viruses and RNA Interference",
+                    "head_name": "Carla Saleh",
+                    "url": "https://research.pasteur.fr/en/team/viruses-and-rna-interference/"
+                },
+                {
+                    "team_name": "Group: MISTIC",
+                    "head_name": "Elisabeth Menu",
+                    "url": "https://research.pasteur.fr/en/team/group-elisabeth-menu/"
+                },
+                {
+                    "team_name": "Evolutionary genomics of RNA viruses",
+                    "head_name": "Etienne Simon-Loriere",
+                    "url": "https://research.pasteur.fr/en/team/evolutionary-genomics-rna-viruses/"
+                },
+                {
+                    "team_name": "Insect-Virus Interactions",
+                    "head_name": "Louis Lambrechts",
+                    "url": "https://research.pasteur.fr/en/team/insect-virus-interactions/"
+                },
+                {
+                    "team_name": "RNA Biology of Influenza Virus",
+                    "head_name": "Nadia Naffakh",
+                    "url": "https://research.pasteur.fr/en/team/rna-biology-of-influenza-virus/"
+                },
+                {
+                    "team_name": "Pathogen discovery",
+                    "head_name": "Nolwenn Dheilly",
+                    "url": "https://research.pasteur.fr/en/team/pathogen-discovery/"
+                },
+                {
+                    "team_name": "Virus sensing and signaling",
+                    "head_name": "Nolwenn Jouvenet",
+                    "url": "https://research.pasteur.fr/en/team/virus-sensing-and-signaling/"
+                },
+                {
+                    "team_name": "Advanced Molecular Virology",
+                    "head_name": "Francesca Di Nunzio",
+                    "url": "https://research.pasteur.fr/en/team/advanced-molecular-virology/"
+                },
+                {
+                    "team_name": "Group : Marc Lavigne",
+                    "head_name": "Marc Lavigne",
+                    "url": "https://research.pasteur.fr/en/team/group-marc-lavigne/"
+                },
+                {
+                    "team_name": "Molecular mechanisms of multiplication of Pneumoviruses M3P",
+                    "head_name": "Marie-Anne Rameix-Welti",
+                    "url": "https://research.pasteur.fr/en/team/molecular-mechanisms-of-multiplication-of-pneumoviruses/"
+                },
+                {
+                    "team_name": "Structural biology of infectious diseases",
+                    "head_name": "Pablo Guardado-Calvo",
+                    "url": "https://research.pasteur.fr/en/team/structural-biology-of-infectious-diseases/"
+                },
+                {
+                    "team_name": "Hepacivirus-host interactions",
+                    "head_name": "Annette Martin",
+                    "url": "https://research.pasteur.fr/en/team/hepacivirus-host-interactions-group/"
+                },
+                {
+                    "team_name": "Virus and cellular stress",
+                    "head_name": "Jean-Pierre Vartanian",
+                    "url": "https://research.pasteur.fr/en/team/virus-and-cellular-stress/"
+                },
+                {
+                    "team_name": "Interactomics, RNA and immunity",
+                    "head_name": "Caroline Demeret",
+                    "url": "https://research.pasteur.fr/en/team/interactomics-rna-and-immunity/"
+                },
+                {
+                    "team_name": "Viral reservoirs and immune control",
+                    "head_name": "Asier Sáez-Cirión",
+                    "url": "https://research.pasteur.fr/en/team/viral-reservoirs-and-immune-control/"
+                },
+                {
+                    "team_name": "Institut Pasteur-Oncovita joint laboratory",
+                    "head_name": "Anastasia V. Komarova",
+                    "url": "https://research.pasteur.fr/en/team/institut-pasteur-oncovita-joint-laboratory/"
+                }
+            ],
+            "projects": [
+                {
+                    "title": "PREventing EMerging Pahtogenic Threats (PREEMPT) (DARPA)",
+                    "head_name": "Carla Saleh (PI)",
+                    "status": "Completed",
+                    "members": "2 Members",
+                    "description": "2018 – 2022 “PREventing EMerging Pathogenic Threats (PREEMPT)” (DARPA) PI: Carla SALEH (IP Paris)"
+                },
+                {
+                    "title": "Study of immune crosstalk in COVID-19 COVIMUNE",
+                    "head_name": "Anavaj Sakuntabhai (PI)",
+                    "status": "Ongoing",
+                    "members": "5 Members",
+                    "description": "Our overall goal is to understand the cellular and molecular aspects of immune response to SARS-CoV-2 virus in terms of activation of over-reactive immunity and induction of immune protection. COVIMUNE is designed to target […]"
+                },
+                {
+                    "title": "Integrative Pathobiology of Tick-borne Flaviviruses",
+                    "head_name": "Nolwenn Jouvenet (PI)",
+                    "status": "Ongoing",
+                    "members": "2 Members",
+                    "description": "Collaborative project with UMR Virologie (INRA, ANSES, ENVA), Maisons-Alfort, France. Flaviviruses, which are principally transmitted by mosquitoes and ticks, cause devastating human diseases such as Dengue fever in the tropics and subtropics and are […]"
+                },
+                {
+                    "title": "ZikaPLAN consortium – Zika Preparedness Latin American Network",
+                    "head_name": "Annelies Wilder-Smith (PI)",
+                    "status": "Completed",
+                    "members": "2 Members",
+                    "description": "25 leading research and public health organizations from Latin America, North America, Africa, Asia and Europe united to fight Zika virus today and build long-term outbreak response capacity in Latin America. ZikaPLAN takes a […]"
+                },
+                {
+                    "title": "Epidemiology and evolution of respiratory viruses",
+                    "head_name": "Sylvie van Der Werf (PI)",
+                    "status": "ongoing",
+                    "members": "4 Members",
+                    "description": "Research in this area is strongly linked to the activities of the National Influenza Reference Center (NIC) and WHO Reference Laboratory for H5 and SARS-CoV viruses, associated to the unit. We contribute to […]"
+                },
+                {
+                    "title": "EBO-SURSY PROJECT",
+                    "head_name": "Noël Tordo (PI)",
+                    "status": "Ongoing",
+                    "members": "4 Members",
+                    "description": "Le projet EBO-SURSY est financé par l’Union Européenne (UE) à hauteur de 8 millions d’euros. Il a été lancé le 15 janvier 2017 dans 10 pays prioritaires pour une période de 5 ans.   […]"
+                }
+            ]
+        }
+    }
+]
