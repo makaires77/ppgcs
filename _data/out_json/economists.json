@@ -1,0 +1,108 @@
+{
+    "economists": [
+        {
+        "name": "Joseph Schumpeter",
+        "birth_date": "1883-02-08",
+        "main_publications": [
+            {"title": "The Theory of Economic Development", "date": "1911"},
+            {"title": "Capitalism, Socialism and Democracy", "date": "1942"}
+        ],
+        "birth_place": "Triesch, Moravia, Austria-Hungary (now Czech Republic)",
+        "sustenance": ["Academic", "Brief Political Career"],
+        "institutions": ["University of Czernowitz", "University of Graz", "Harvard University"],
+        "wealth_magnitude": "Unknown",
+        "death_date": "1950-01-08"
+        },
+        {
+        "name": "John Maynard Keynes",
+        "birth_date": "1883-06-05",
+        "main_publications": [
+          {"title": "The General Theory of Employment, Interest and Money", "date": "1936"}
+        ],
+        "birth_place": "Cambridge, England",
+        "sustenance": ["Academic", "Government Advisor", "Writer", "Investor"],
+        "institutions": ["University of Cambridge", "British Government"],
+        "wealth_magnitude": "Millions (GBP)",
+        "death_date": "1946-04-21"
+      },
+      {
+        "name": "Friedrich August von Hayek",
+        "birth_date": "1899-05-08",
+        "main_publications": [
+          {"title": "The Road to Serfdom", "date": "1944"},
+          {"title": "The Constitution of Liberty", "date": "1960"}
+        ],
+        "birth_place": "Vienna, Austria",
+        "sustenance": ["Academic", "Writer"],
+        "institutions": ["London School of Economics", "University of Chicago", "University of Freiburg"],
+        "wealth_magnitude": "Unknown",
+        "death_date": "1992-03-23"
+      },
+      {
+        "name": "Milton Friedman",
+        "birth_date": "1912-07-31",
+        "main_publications": [
+          {"title": "A Theory of the Consumption Function", "date": "1957"},
+          {"title": "Capitalism and Freedom", "date": "1962"},
+          {"title": "A Monetary History of the United States", "date": "1963"}
+        ],
+        "birth_place": "Brooklyn, New York, USA",
+        "sustenance": ["Academic", "Public Intellectual"],
+        "institutions": ["University of Chicago", "Hoover Institution"],
+        "wealth_magnitude": "Millions (USD)",
+        "death_date": "2006-11-16"
+      },
+      {
+        "name": "Amartya Sen",
+        "birth_date": "1933-11-03",
+        "main_publications": [
+          {"title": "Poverty and Famines: An Essay on Entitlement and Deprivation", "date": "1981"},
+          {"title": "Development as Freedom", "date": "1999"}
+        ],
+        "birth_place": "Santiniketan, India",
+        "sustenance": ["Academic", "Author"],
+        "institutions": ["Harvard University", "London School of Economics", "University of Cambridge"],
+        "wealth_magnitude": "Unknown",
+        "death_date": "Alive"
+      },
+      {
+        "name": "Joseph Stiglitz",
+        "birth_date": "1943-02-09",
+        "main_publications": [
+          {"title": "Globalization and Its Discontents", "date": "2002"},
+          {"title": "The Price of Inequality", "date": "2012"}
+        ],
+        "birth_place": "Gary, Indiana, USA",
+        "sustenance": ["Academic", "Author", "Policy Advisor"],
+        "institutions": ["Columbia University", "World Bank", "Council of Economic Advisers"],
+        "wealth_magnitude": "Unknown",
+        "death_date": "Alive"
+      },
+      {
+        "name": "Ha-Joon Chang",
+        "birth_date": "1963-10-07",
+        "main_publications": [
+          {"title": "Kicking Away the Ladder: Development Strategy in Historical Perspective", "date": "2002"},
+          {"title": "23 Things They Don't Tell You About Capitalism", "date": "2010"}
+        ],
+        "birth_place": "Seoul, South Korea",
+        "sustenance": ["Academic", "Author"],
+        "institutions": ["University of Cambridge"],
+        "wealth_magnitude": "Unknown",
+        "death_date": "Alive"
+      },      
+      {
+        "name": "Thomas Piketty",
+        "birth_date": "1971-05-07",
+        "main_publications": [
+          {"title": "Capital in the Twenty-First Century", "date": "2013"},
+          {"title": "Capital and Ideology", "date": "2019"}
+        ],
+        "birth_place": "Clichy, France",
+        "sustenance": ["Academic", "Author"],
+        "institutions": ["Paris School of Economics", "École des Hautes Études en Sciences Sociales"],
+        "wealth_magnitude": "Unknown",
+        "death_date": "Alive"
+      }      
+    ]
+  }

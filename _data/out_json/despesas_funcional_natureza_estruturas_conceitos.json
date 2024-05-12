@@ -1,0 +1,1401 @@
+{
+  "CLASSIFICACAO_FUNCIONAL_DESPESA": {
+    "fonte": "https://www1.siop.planejamento.gov.br/mto/lib/exe/fetch.php/mto2024:mto2024.pdf",
+    "rotulo": "CLASSIFICAÇÃO FUNCIONAL DA DESPESA",
+    "conceito": "A classificação funcional é formada por funções e subfunções [tabela no item 10.2.2. do MTO2024] e procura explicitar as áreas em que as despesas são realizadas. Cada atividade, projeto e operação especial identificará a função e a subfunção às quais se vinculam. Notadamente, a função refere-se ao maior nível de agregação das diversas áreas de atuação do setor público e deve estar relacionada à missão institucional do órgão de atuação, já a subfunção é relacionada à área da despesa na qual a ação será executada. ",
+    "itens": [
+      {
+        "funcoes": {
+          "rotulo": "Funções",
+          "conceito": "A despesa, assim como a receita, é classificada em duas categorias econômicas, com os seguintes códigos: 3 - Despesas Correntes: as que não contribuem, diretamente, para a formação ou aquisição de um bem de capital. 4 - Despesas de Capital: as que contribuem, diretamente, para a formação ou aquisição de um bem de capital.",
+          "itens": [
+            {
+              "codigo": "01",
+              "rotulo": "Legislativa",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "031",
+                  "rotulo": "Ação Legislativa",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "032",
+                  "rotulo": "Controle Externo",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "02",
+              "rotulo": "Judiciária",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "061",
+                  "rotulo": "Ação Judiciária",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "062",
+                  "rotulo": "Defesa do Interesse Público no Processo Judiciário",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "03",
+              "rotulo": "Essencial à Justiça",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "091",
+                  "rotulo": "Defesa da Ordem Jurídica",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "092",
+                  "rotulo": "Representação Judicial e Extrajudicial",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "04",
+              "rotulo": "Administração",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "121",
+                  "rotulo": "Planejamento e Orçamento",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "122",
+                  "rotulo": "Administração Geral",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "123",
+                  "rotulo": "Administração Financeira",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "124",
+                  "rotulo": "Controle Interno",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "125",
+                  "rotulo": "Normatização e Fiscalização",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "126",
+                  "rotulo": "Tecnologia da Informação",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "127",
+                  "rotulo": "Ordenamento Territorial",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "128",
+                  "rotulo": "Formação de Recursos Humanos",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "129",
+                  "rotulo": "Administração de Receitas",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "130",
+                  "rotulo": "Administração de Concessões",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "131",
+                  "rotulo": "Comunicação Social",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "05",
+              "rotulo": "Defesa Nacional",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "151",
+                  "rotulo": "Defesa Aérea",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "152",
+                  "rotulo": "Defesa Naval",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "153",
+                  "rotulo": "Defesa Terrestre",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "06",
+              "rotulo": "Segurança Pública",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "151",
+                  "rotulo": "Defesa Aérea",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "152",
+                  "rotulo": "Defesa Naval",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "153",
+                  "rotulo": "Defesa Terrestre",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "07",
+              "rotulo": "Relações Exteriores",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "211",
+                  "rotulo": "Relações Diplomáticas",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "212",
+                  "rotulo": "Cooperação Internacional",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "08",
+              "rotulo": "Assistência Social",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "241",
+                  "rotulo": "Assistência ao Idoso",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "242",
+                  "rotulo": "Assistência à Pessoa com Deficiência",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "243",
+                  "rotulo": "Assistência à Criança e ao Adolescente",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "244",
+                  "rotulo": "Assistência Comunitária",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "09",
+              "rotulo": "Previdência Social",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "271",
+                  "rotulo": "Previdência Básica",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "272",
+                  "rotulo": "Previdência do Regime Estatutário",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "273",
+                  "rotulo": "Previdência Complementar",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "274",
+                  "rotulo": "Previdência Especial",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "10",
+              "rotulo": "Saúde",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "301",
+                  "rotulo": "Atenção Básica",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "302",
+                  "rotulo": "Assistência Hospitalar e Ambulatorial",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "303",
+                  "rotulo": "- Suporte Profilático e Terapêutico",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "304",
+                  "rotulo": "Vigilância Sanitária",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "305",
+                  "rotulo": "Vigilância Epidemiológica",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "306",
+                  "rotulo": "Alimentação e Nutrição",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "11",
+              "rotulo": "Trabalho",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "331",
+                  "rotulo": "Proteção e Benefícios ao Trabalhador",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "332",
+                  "rotulo": "Relações de Trabalho",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "333",
+                  "rotulo": "Empregabilidade",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "334",
+                  "rotulo": "Fomento ao Trabalho",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "12",
+              "rotulo": "Educação",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "361",
+                  "rotulo": "Ensino Fundamental",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "362",
+                  "rotulo": "Ensino Médio",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "363",
+                  "rotulo": "Ensino Profissional",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "364",
+                  "rotulo": "Ensino Superior",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "365",
+                  "rotulo": "Educação Infantil",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "366",
+                  "rotulo": "Educação de Jovens e Adultos",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "367",
+                  "rotulo": "Educação Especial",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "368",
+                  "rotulo": "Educação Básica",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "13",
+              "rotulo": "Cultura",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "391",
+                  "rotulo": "Patrimônio Histórico, Artístico e Arqueológico",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "392",
+                  "rotulo": "Difusão Cultural",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "14",
+              "rotulo": "Direitos da Cidadania",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "421",
+                  "rotulo": "Custódia e Reintegração Social",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "422",
+                  "rotulo": "Direitos Individuais, Coletivos e Difusos",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "423",
+                  "rotulo": "Assistência aos Povos Indígenas",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "15",
+              "rotulo": "Urbanismo",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "451",
+                  "rotulo": "Infra-estrutura Urbana",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "452",
+                  "rotulo": "Serviços Urbanos",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "453",
+                  "rotulo": "Transportes Coletivos Urbanos",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "16",
+              "rotulo": "Habitação",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "481",
+                  "rotulo": "Habitação Rural",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "482",
+                  "rotulo": "Habitação Urbana",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "17",
+              "rotulo": "Saneamento",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "451",
+                  "rotulo": "Infra-estrutura Urbana",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "452",
+                  "rotulo": "Serviços Urbanos",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "18",
+              "rotulo": "Gestão Ambiental",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "541",
+                  "rotulo": "Preservação e Conservação Ambiental",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "542",
+                  "rotulo": "Controle Ambiental",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "543",
+                  "rotulo": "Recuperação de Áreas Degradadas",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "544",
+                  "rotulo": "Recursos Hídricos",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "545",
+                  "rotulo": "Meteorologia",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "19",
+              "rotulo": "Ciência e Tecnologia",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "571",
+                  "rotulo": "Desenvolvimento Científico",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "572",
+                  "rotulo": "Desenvolvimento Tecnológico e Engenharia",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "573",
+                  "rotulo": "Difusão do Conhecimento Científico e Tecnológico",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "20",
+              "rotulo": "Agricultura",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "605",
+                  "rotulo": "Abastecimento",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "606",
+                  "rotulo": "Extensão Rural",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "607",
+                  "rotulo": "Irrigação",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "608",
+                  "rotulo": "Promoção da Produção Agropecuária",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "609",
+                  "rotulo": "Defesa Agropecuária",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "21",
+              "rotulo": "Organização Agrária",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "631",
+                  "rotulo": "Reforma Agrária",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "632",
+                  "rotulo": "Colonização",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "22",
+              "rotulo": "Indústria",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "661",
+                  "rotulo": "Promoção Industrial",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "662",
+                  "rotulo": "Produção Industrial",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "663",
+                  "rotulo": "Mineração",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "664",
+                  "rotulo": "Propriedade Industrial",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "665",
+                  "rotulo": "Normalização e Qualidade",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "23",
+              "rotulo": "Comércio e Serviços",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "691",
+                  "rotulo": "Promoção Comercial",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "692",
+                  "rotulo": "Comercialização",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "693",
+                  "rotulo": "Comércio Exterior",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "694",
+                  "rotulo": "Serviços Financeiros",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "695",
+                  "rotulo": "Turismo",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "24",
+              "rotulo": "Comunicações",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "721",
+                  "rotulo": "Comunicações Postais",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "722",
+                  "rotulo": "Telecomunicações",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "25",
+              "rotulo": "Energia",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "751",
+                  "rotulo": "Conservação de Energia",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "752",
+                  "rotulo": "Energia Elétrica",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "753",
+                  "rotulo": "Combustíveis Minerais",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "754",
+                  "rotulo": "Biocombustíveis",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "26",
+              "rotulo": "Transporte",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "781",
+                  "rotulo": "Transporte Aéreo",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "782",
+                  "rotulo": "Transporte Rodoviário",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "783",
+                  "rotulo": "Transporte Ferroviário",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "784",
+                  "rotulo": "Transporte Aquaviário",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "785",
+                  "rotulo": "Transportes Especiais",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "27",
+              "rotulo": "Desporto e Lazer",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "811",
+                  "rotulo": "Desporto de Rendimento",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "812",
+                  "rotulo": "Desporto Comunitário",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "813",
+                  "rotulo": "Lazer",
+                  "conceito": ""
+                }
+              ]
+            },
+            {
+              "codigo": "28",
+              "rotulo": "Encargos Especiais",
+              "conceito": "",
+              "itens": [
+                {
+                  "codigo": "841",
+                  "rotulo": "Refinanciamento da Dívida Interna",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "842",
+                  "rotulo": "Refinanciamento da Dívida Externa",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "843",
+                  "rotulo": "Serviço da Dívida Interna",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "844",
+                  "rotulo": "Serviço da Dívida Externa",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "845",
+                  "rotulo": "Outras Transferências",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "846",
+                  "rotulo": "Outros Encargos Especiais",
+                  "conceito": ""
+                },
+                {
+                  "codigo": "847",
+                  "rotulo": "Transferências para a Educação Básica",
+                  "conceito": ""
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "CLASSIFICAÇÃO_DESPESA_POR_NATUREZA": {
+    "fonte": "https://www.in.gov.br/en/web/dou/-/portaria-conunta-stn/sof/me-n-103-de-5-de-outubro-de-2021-351613861",
+    "trecho": "ANEXO II - NATUREZA DA DESPESA",
+    "rotulo": "CLASSIFICAÇÃO DA DESPESA POR NATUREZA",
+    "conceito": "Os arts. 12 e 13 da Lei nº 4.320, de 1964, tratam da classificação da despesa por categoria econômica e elementos. Assim como no caso da receita, o art. 8º dessa lei estabelece que os itens da discriminação da despesa serão identificados por números de código decimal, na forma do respectivo Anexo IV, atualmente consubstanciados no Anexo II da Portaria Conjunta STN/SOF nº 163, de 2001, consolidada pela Portaria Conjunta STN/SOF/ME nº 103, de 5 de outubro de 2021. O conjunto de informações que formam o código é conhecido como classificação por natureza da despesa [tabela no item 10.2.3] e informa a categoria econômica da despesa, o grupo a que ela pertence, a modalidade de aplicação e o elemento. Na base de dados do sistema de orçamento, o campo que se refere à natureza da despesa contém um código composto por oito algarismos, sendo que o 1º dígito representa a categoria econômica, o 2º o grupo de natureza da despesa, o 3º e o 4º dígitos representam a modalidade de aplicação, o 5º e o 6º o elemento de despesa e o 7º e o 8º dígitos representam o desdobramento facultativo do elemento de despesa (subelemento)",
+    "itens": {
+      "A": {
+        "rotulo": "Categorias Econômicas",
+        "conceito": "A despesa, assim como a receita, é classificada em duas categorias econômicas, com os seguintes códigos: 3 - Despesas Correntes: as que não contribuem, diretamente, para a formação ou aquisição de um bem de capital. 4 - Despesas de Capital: as que contribuem, diretamente, para a formação ou aquisição de um bem de capital.",
+        "itens": [
+          {
+            "codigo": 3,
+            "rotulo": "Despesas Correntes",
+            "conceito": "Classificam-se nessa categoria todas as despesas que não contribuem, diretamente, para a formação ou aquisição de um bem de capital."
+          },
+          {
+            "codigo": 4,
+            "rotulo": "Despesas de Capital",
+            "conceito": "Classificam-se nessa categoria aquelas despesas que contribuem, diretamente, para a formação ou aquisição de um bem de capital."
+          }
+        ]
+      },
+      "B": {
+        "rotulo": "Grupos de Natureza de Despesa",
+        "conceito": "O GND é um agregador de elemento de despesa com as mesmas características quanto ao objeto de gasto, conforme discriminado a seguir: 1. Pessoal e Encargos Sociais; 2. Juros e Encargos da Dívida; 3. Outras Despesas Correntes; 4. Investimentos; 5. Inversões financeiras; 6. Amortização da Dívida; 9. Reserva de Contingência",
+        "itens": [
+          {
+            "codigo": 1,
+            "rotulo": "Pessoal e Encargos Sociais",
+            "conceito": "Despesas orçamentárias com pessoal ativo, inativo e pensionistas, relativas a mandatos eletivos, cargos, funções ou empregos, civis, militares e de membros de Poder, com quaisquer espécies remuneratórias, tais como vencimentos e vantagens, fixas e variáveis, subsídios, proventos da aposentadoria, reformas e pensões, inclusive adicionais, gratificações, horas extras e vantagens pessoais de qualquer natureza, bem como encargos sociais e contribuições recolhidas pelo ente às entidades de previdência, conforme estabelece o caput do art. 18 da Lei Complementar 101, de 2000."
+          },
+          {
+            "codigo": 2,
+            "rotulo": "Juros e Encargos da Dívida",
+            "conceito": "Despesas orçamentárias com o pagamento de juros, comissões e outros encargos de operações de crédito internas e externas contratadas, bem como da dívida pública mobiliária."
+          },
+          {
+            "codigo": 3,
+            "rotulo": "Outras Despesas Correntes",
+            "conceito": "Despesas orçamentárias com aquisição de material de consumo, pagamento de diárias, contribuições, subvenções, auxílio-alimentação, auxílio-transporte, além de outras despesas da categoria econômica 'Despesas Correntes' não classificáveis nos demais grupos de natureza de despesa."
+          },
+          {
+            "codigo": 4,
+            "rotulo": "Investimentos",
+            "conceito": "Despesas orçamentárias com softwares e com o planejamento e a execução de obras, inclusive com a aquisição de imóveis considerados necessários à realização destas últimas, e com a aquisição de instalações, equipamentos e material permanente."
+          },
+          {
+            "codigo": 5,
+            "rotulo": "Inversões Financeiras",
+            "conceito": "Despesas orçamentárias com a aquisição de imóveis ou bens de capital já em utilização; aquisição de títulos representativos do capital de empresas ou entidades de qualquer espécie, já constituídas, quando a operação não importe aumento do capital; e com a constituição ou aumento do capital de empresas, além de outras despesas classificáveis neste grupo."
+          },
+          {
+            "codigo": 6,
+            "rotulo": "Amortização da Dívida",
+            "conceito": "Despesas orçamentárias com o pagamento e/ou refinanciamento do principal e da atualização monetária ou cambial da dívida pública interna e externa, contratual ou mobiliária."
+          }
+        ]
+      },
+      "C": {
+        "rotulo": "Modalidades de Aplicação",
+        "conceito": "A modalidade de aplicação indica se os recursos serão aplicados mediante transferência financeira, inclusive a decorrente de descentralização orçamentária para outros níveis de Governo, seus órgãos ou entidades, ou diretamente para entidades privadas sem fins lucrativos e outras instituições; ou, então, diretamente pela unidade detentora do crédito orçamentário, ou por outro órgão ou entidade no âmbito do mesmo nível de Governo. A modalidade de aplicação objetiva, principalmente, eliminar a dupla contagem dos recursos transferidos ou descentralizados.",
+        "itens": [
+          {
+            "codigo": 20,
+            "rotulo": "Transferências à União",
+            "conceito": "Despesas orçamentárias realizadas pelos Estados, Municípios ou pelo Distrito Federal, mediante transferência de recursos financeiros à União, inclusive para suas entidades da administração indireta."
+          },
+          {
+            "codigo": 22,
+            "rotulo": "Execução Orçamentária Delegada à União",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros, decorrentes de delegação ou descentralização à União para execução de ações de responsabilidade exclusiva do delegante."
+          },
+          {
+            "codigo": 30,
+            "rotulo": "Transferências a Estados e ao Distrito Federal",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros da União ou dos Municípios aos Estados e ao Distrito Federal, inclusive para suas entidades da administração indireta."
+          },
+          {
+            "codigo": 31,
+            "rotulo": "Transferências a Estados e ao Distrito Federal - Fundo a Fundo",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros da União ou dos Municípios aos Estados e ao Distrito Federal por intermédio da modalidade fundo a fundo."
+          },
+          {
+            "codigo": 32,
+            "rotulo": "Execução Orçamentária Delegada a Estados e ao Distrito Federal",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros, decorrentes de delegação ou descentralização a Estados e ao Distrito Federal para execução de ações de responsabilidade exclusiva do delegante."
+          },
+          {
+            "codigo": 35,
+            "rotulo": "Transferências Fundo a Fundo aos Estados e ao Distrito Federal à conta de recursos de que tratam os §§ 1° e 2° do art. 24 da Lei Complementar nº 141, de 2012",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros da União ou dos Municípios aos Estados e ao Distrito Federal por intermédio da modalidade fundo a fundo, à conta de recursos referentes aos restos a pagar considerados para fins da aplicação mínima em ações e serviços públicos de saúde e posteriormente cancelados ou prescritos, de que tratam os §§ 1oe 2odo art. 24 da Lei Complementar no141, de 2012."
+          },
+          {
+            "codigo": 36,
+            "rotulo": "Transferências Fundo a Fundo aos Estados e ao Distrito Federal à conta de recursos de que trata o art. 25 da Lei Complementar nº 141, de 2012",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros da União ou dos Municípios aos Estados e ao Distrito Federal por intermédio da modalidade fundo a fundo, à conta de recursos referentes à diferença da aplicação mínima em ações e serviços públicos de saúde que deixou de ser aplicada em exercícios anteriores, de que trata o art. 25 da Lei Complementar no141, de 2012."
+          },
+          {
+            "codigo": 40,
+            "rotulo": "Transferências a Municípios",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros da União ou dos Estados aos Municípios, inclusive para suas entidades da administração indireta."
+          },
+          {
+            "codigo": 41,
+            "rotulo": "Transferências a Municípios - Fundo a Fundo",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros da União, dos Estados ou do Distrito Federal aos Municípios por intermédio da modalidade fundo a fundo."
+          },
+          {
+            "codigo": 42,
+            "rotulo": "Execução Orçamentária Delegada a Municípios",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros, decorrentes de delegação ou descentralização a Municípios para execução de ações de responsabilidade exclusiva do delegante."
+          },
+          {
+            "codigo": 45,
+            "rotulo": "Transferências Fundo a Fundo aos Municípios à conta de recursos de que tratam os §§ 1° e 2° do art. 24 da Lei Complementar nº 141, de 2012",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros da União, dos Estados ou do Distrito Federal aos Municípios por intermédio da modalidade fundo a fundo, à conta de recursos referentes aos restos a pagar considerados para fins da aplicação mínima em ações e serviços públicos de saúde e posteriormente cancelados ou prescritos, de que tratam os §§ 1oe 2odo art. 24 da Lei Complementar no141, de 2012."
+          },
+          {
+            "codigo": 46,
+            "rotulo": "Transferências Fundo a Fundo aos Municípios à conta de recursos de que trata o art. 25 da Lei Complementar nº 141, de 2012",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros da União, dos Estados ou do Distrito Federal aos Municípios por intermédio da modalidade fundo a fundo, à conta de recursos referentes à diferença da aplicação mínima em ações e serviços públicos de saúde que deixou de ser aplicada em exercícios anteriores de que trata o art. 25 da Lei Complementar no141, de 2012."
+          },
+          {
+            "codigo": 50,
+            "rotulo": "Transferências a Instituições Privadas sem Fins Lucrativos",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros a entidades sem fins lucrativos que não integrem a administração pública."
+          },
+          {
+            "codigo": 60,
+            "rotulo": "Transferências a Instituições Privadas com Fins Lucrativos",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros a entidades com fins lucrativos que não integrem a administração pública."
+          },
+          {
+            "codigo": 67,
+            "rotulo": "Execução de Contrato de Parceria Público-Privada - PPP",
+            "conceito": "Despesas orçamentárias do Parceiro Público decorrentes de Contrato de Parceria Público-Privada - PPP, nos termos da Lei no11.079, de 30 de dezembro de 2004, e da Lei no12.766, de 27 de dezembro de 2012."
+          },
+          {
+            "codigo": 70,
+            "rotulo": "Transferências a Instituições Multigovernamentais",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros a entidades criadas e mantidas por dois ou mais entes da Federação ou por dois ou mais países, inclusive o Brasil, exclusive as transferências relativas à modalidade de aplicação 71 (Transferências a Consórcios Públicos mediante contrato de rateio)."
+          },
+          {
+            "codigo": 71,
+            "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros a entidades criadas sob a forma de consórcios públicos nos termos da Lei no11.107, de 6 de abril de 2005, mediante contrato de rateio, objetivando a execução dos programas e ações dos respectivos entes consorciados, observado o disposto no § 1odo art. 11 da Portaria STN no72, de 2012."
+          },
+          {
+            "codigo": 72,
+            "rotulo": "Execução Orçamentária Delegada a Consórcios Públicos",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros, decorrentes de delegação ou descentralização a consórcios públicos para execução de ações de responsabilidade exclusiva do delegante."
+          },
+          {
+            "codigo": 73,
+            "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que tratam os §§ 1° e 2° do art. 24 da Lei Complementar nº 141, de 2012",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros a entidades criadas sob a forma de consórcios públicos nos termos da Lei no11.107, de 6 de abril de 2005, por meio de contrato de rateio, à conta de recursos referentes aos restos a pagar considerados para fins da aplicação mínima em ações e serviços públicos de saúde e posteriormente cancelados ou prescritos, de que tratam §§ 1oe 2odo art. 24 da Lei Complementar no141, de 13 de janeiro de 2012, observado o disposto no § 1odo art. 11 da Portaria STN no72, de 1ode fevereiro de 2012."
+          },
+          {
+            "codigo": 74,
+            "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar nº 141 de 2012",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros a entidades criadas sob a forma de consórcios públicos nos termos da Lei no11.107, de 6 de abril de 2005, por meio de contrato de rateio, à conta de recursos referentes à diferença da aplicação mínima em ações e serviços públicos de saúde que deixou de ser aplicada em exercícios anteriores, de que trata o art. 25 da Lei Complementar no141, de 2012, observado o disposto no § 1odo art. 11 da Portaria STN no72, de 2012."
+          },
+          {
+            "codigo": 75,
+            "rotulo": "Transferências a Instituições Multigovernamentais à conta de recursos de que tratam os §§ 1o e 2o do art. 24 da Lei Complementar no 141, de 2012",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros a entidades criadas e mantidas por dois ou mais entes da Federação ou por dois ou mais países, inclusive o Brasil, exclusive as transferências relativas à modalidade de aplicação 73 (Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que tratam os §§ 1oe 2odo art. 24 da Lei Complementar no141, de 2012), à conta de recursos referentes aos restos a pagar considerados para fins da aplicação mínima em ações e serviços públicos de saúde e posteriormente cancelados ou prescritos, de que tratam os §§ 1oe 2odo art. 24 da Lei Complementar no141, de 2012."
+          },
+          {
+            "codigo": 76,
+            "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar nº 141 de 2012",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros a entidades criadas e mantidas por dois ou mais entes da Federação ou por dois ou mais países, inclusive o Brasil, exclusive as transferências relativas à modalidade de aplicação 74 (Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar no141, de 2012), à conta de recursos referentes à diferença da aplicação mínima em ações e serviços públicos de saúde que deixou de ser aplicada em exercícios anteriores, de que trata o art. 25 da Lei Complementar no141, de 2012."
+          },
+          {
+            "codigo": 80,
+            "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar nº 141 de 2012",
+            "conceito": "Despesas orçamentárias realizadas mediante transferência de recursos financeiros a órgãos e entidades governamentais pertencentes a outros países, a organismos internacionais e a fundos instituídos por diversos países, inclusive aqueles que tenham sede ou recebam os recursos no Brasil."
+          },
+          {
+            "codigo": 90,
+            "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar nº 141 de 2012",
+            "conceito": "Aplicação direta, pela unidade orçamentária, dos créditos a ela alocados ou oriundos de descentralização de outras entidades integrantes ou não dos Orçamentos Fiscal ou da Seguridade Social, no âmbito da mesma esfera de governo."
+          },
+          {
+            "codigo": 91,
+            "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar nº 141 de 2012",
+            "conceito": "Despesas orçamentárias de órgãos, fundos, autarquias, fundações, empresas estatais dependentes e outras entidades integrantes dos orçamentos fiscal e da seguridade social decorrentes da aquisição de materiais, bens e serviços, pagamento de impostos, taxas e contribuições, além de outras operações, quando o recebedor dos recursos também for órgão, fundo, autarquia, fundação, empresa estatal dependente ou outra entidade constante desses orçamentos, no âmbito da mesma esfera de Governo."
+          },
+          {
+            "codigo": 92,
+            "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar nº 141 de 2012",
+            "conceito": "Despesas orçamentárias realizadas à conta de recursos financeiros decorrentes de delegação ou descentralização de outros entes da Federação para execução de ações de responsabilidade exclusiva do ente delegante ou descentralizador."
+          },
+          {
+            "codigo": 93,
+            "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar nº 141 de 2012",
+            "conceito": "Despesas orçamentárias de órgãos, fundos, autarquias, fundações, empresas estatais dependentes e outras entidades integrantes dos orçamentos fiscal e da seguridade social decorrentes da aquisição de materiais, bens e serviços, além de outras operações, exceto no caso de transferências, delegações ou descentralizações, quando o recebedor dos recursos for consórcio público do qual o ente da Federação participe, nos termos da Lei no11.107, de 6 de abril de 2005."
+          },
+          {
+            "codigo": 94,
+            "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar nº 141 de 2012",
+            "conceito": "Despesas orçamentárias de órgãos, fundos, autarquias, fundações, empresas estatais dependentes e outras entidades integrantes dos orçamentos fiscal e da seguridade social decorrentes da aquisição de materiais, bens e serviços, além de outras operações, exceto no caso de transferências, delegações ou descentralizações, quando o recebedor dos recursos for consórcio público do qual o ente da Federação não participe, nos termos da Lei no11.107, de 6 de abril de 2005."
+          },
+          {
+            "codigo": 95,
+            "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar nº 141 de 2012",
+            "conceito": "Aplicação direta, pela unidade orçamentária, dos créditos a ela alocados ou oriundos de descentralização de outras entidades integrantes ou não dos Orçamentos Fiscal ou da Seguridade Social, no âmbito da mesma esfera de Governo, à conta de recursos referentes aos restos a pagar considerados para fins da aplicação mínima em ações e serviços públicos de saúde e posteriormente cancelados ou prescritos, de que tratam os §§ 1oe 2odo art. 24 da Lei Complementar no141, de 2012."
+          },
+          {
+            "codigo": 96,
+            "rotulo": "Transferências a Consórcios Públicos mediante contrato de rateio à conta de recursos de que trata o art. 25 da Lei Complementar nº 141 de 2012",
+            "conceito": "Aplicação direta, pela unidade orçamentária, dos créditos a ela alocados ou oriundos de descentralização de outras entidades integrantes ou não dos Orçamentos Fiscal ou da Seguridade Social, no âmbito da mesma esfera de Governo, à conta de recursos referentes à diferença da aplicação mínima em ações e serviços públicos de saúde que deixou de ser aplicada em exercícios anteriores, de que trata o art. 25 da Lei Complementar no141, de 2012."
+          },
+          { "codigo": 99, "rotulo": "A Definir" }
+        ]
+      },
+      "D": {
+        "rotulo": "Elementos de despesa",
+        "conceito": "O elemento de despesa tem por finalidade identificar os objetos de gasto, tais como vencimentos e vantagens fixas, juros, diárias, material de consumo, serviços de terceiros prestados sob qualquer forma, subvenções sociais, obras e instalações, equipamentos e material permanente, auxílios, amortização e outros de que a administração pública se serve para a consecução de seus fins.",
+        "itens": [
+          {
+            "codigo": "01",
+            "rotulo": "Aposentadorias, Reserva Remunerada e Reformas",
+            "conceito": "Despesas orçamentárias com pagamento de aposentadorias de servidores inativos e de agentes vinculados à Administração Pública, pelo Regime Próprio de Previdência do Servidor - RPPS, por outros institutos próprios de previdência ou diretamente pela Administração Pública, de reserva remunerada e de reformas dos militares."
+          },
+          {
+            "codigo": "03",
+            "rotulo": "Pensões",
+            "conceito": "Despesas orçamentárias com pagamento de pensões civis, pelo Regime Próprio de Previdência do Servidor -- RPPS, por outros institutos próprios de previdência ou diretamente pela Administração Pública, e de pensões militares, quando vinculadas a cargos públicos."
+          },
+          {
+            "codigo": "04",
+            "rotulo": "Contratação por Tempo Determinado",
+            "conceito": "Despesas orçamentárias com a contratação de pessoal por tempo determinado para atender a necessidade temporária de excepcional interesse público, de acordo com legislação específica de cada ente da Federação, inclusive obrigações patronais e outras despesas variáveis, quando for o caso."
+          },
+          {
+            "codigo": "06",
+            "rotulo": "Benefício Mensal ao Deficiente e ao Idoso",
+            "conceito": "Despesas orçamentárias decorrentes do cumprimento do art. 203, inciso V, da Constituição Federal, que dispõe: 'Art. 203 - A assistência social será prestada a quem dela necessitar, independentemente de contribuição à seguridade social, e tem por objetivos: V - a garantia de um salário mínimo de benefício mensal à pessoa portadora de deficiência e ao idoso que comprovem não possuir meios de prover a própria manutenção ou de tê-la provida por sua família, conforme dispuser a lei.'"
+          },
+          {
+            "codigo": "07",
+            "rotulo": "Contribuição a Entidades Fechadas de Previdência",
+            "conceito": "Despesas orçamentárias com os encargos da entidade patrocinadora no regime de previdência fechada, para complementação de aposentadoria."
+          },
+          {
+            "codigo": "08",
+            "rotulo": "Outros Benefícios Assistenciais do servidor e do militar",
+            "conceito": "Despesas orçamentárias com benefícios assistenciais, inclusive auxílio-funeral devido à família do servidor ou do militar falecido na atividade, ou do aposentado, ou a terceiro que custear, comprovadamente, as despesas com o funeral do ex-servidor ou do ex-militar; auxílio-natalidade devido a servidora ou militar, por motivo de nascimento de filho, ou a cônjuge ou companheiro servidor público ou militar, quando a parturiente não for servidora; auxílio-creche ou assistência pré-escolar devido a dependente do servidor ou militar, conforme regulamento; auxílio-reclusão; salário-família; e assistência-saúde."
+          },
+          {
+            "codigo": "10",
+            "rotulo": "Seguro Desemprego e Abono Salarial",
+            "conceito": "Despesas orçamentárias com pagamento do seguro-desemprego e do abono de que tratam o inciso II do art. 7oe o § 3odo art. 239 da Constituição Federal, respectivamente."
+          },
+          {
+            "codigo": "11",
+            "rotulo": "Vencimentos e Vantagens Fixas - Pessoal Civil",
+            "conceito": "Despesas orçamentárias com: Vencimento; Salário Pessoal Permanente; Vencimento ou Salário de Cargos de Confiança; Subsídios; Vencimento do Pessoal em Disponibilidade Remunerada; Auxílio-Doença (ou Licença para Tratamento de Saúde); Salário Maternidade (ou Licença Maternidade); Gratificações, tais como: Gratificação Adicional Pessoal Disponível; Gratificação de Interiorização; Gratificação de Dedicação Exclusiva; Gratificação de Regência de Classe; Gratificação pela Chefia ou Coordenação de Curso de Área ou Equivalente; Gratificação por Produção Suplementar; Gratificação por Trabalho de Raios X ou Substâncias Radioativas; Gratificação pela Chefia de Departamento, Divisão ou Equivalente; Gratificação de Direção Geral ou Direção (Magistério de lº e 2º Graus); Gratificação de Função-Magistério Superior; Gratificação de Atendimento e Habilitação Previdenciários; Gratificação Especial de Localidade; Gratificação de Desempenho das Atividades Rodoviárias; Gratificação da Atividade de Fiscalização do Trabalho; Gratificação de Engenheiro Agrônomo; Gratificação de Natal; Gratificação de Estímulo à Fiscalização e Arrecadação de Contribuições e de Tributos; Gratificação por Encargo de Curso ou de Concurso; Gratificação de Produtividade do Ensino; Gratificação de Habilitação Profissional; Gratificação de Atividade; Gratificação de Representação de Gabinete; Adicional de Insalubridade; Adicional Noturno; Adicional de Férias 1/3 (art. 7º, inciso XVII, da Constituição); Adicionais de Periculosidade; Representação Mensal; Licença-Prêmio por assiduidade; Retribuição Básica (Vencimentos ou Salário no Exterior); Diferenças Individuais Permanentes; Vantagens Pecuniárias de Ministro de Estado, de Secretário de Estado e de Município; Férias Antecipadas de Pessoal Permanente; Aviso Prévio (cumprido); Férias Vencidas e Proporcionais; Parcela Incorporada (ex-quintos e ex-décimos); Indenização de Habilitação Policial; Adiantamento do 13º Salário; 13º Salário Proporcional; Incentivo Funcional - Sanitarista; Abono Provisório; 'Pró-labore' de Procuradores; e outras despesas correlatas de caráter permanente."
+          },
+          {
+            "codigo": "12",
+            "rotulo": "Vencimentos e Vantagens Fixas - Pessoal Militar",
+            "conceito": "Despesas orçamentárias com: Soldo; Gratificação de Localidade Especial; Gratificação de Representação; Adicional de Tempo de Serviço; Adicional de Habilitação; Adicional de Compensação Orgânica; Adicional Militar; Adicional de Permanência; Adicional de Férias; Adicional Natalino; e outras despesas correlatas, de caráter permanente, previstas na estrutura remuneratória dos militares."
+          },
+          {
+            "codigo": "13",
+            "rotulo": "Obrigações Patronais",
+            "conceito": "Despesas orçamentárias com encargos que a administração tem pela sua condição de empregadora, e resultantes de pagamento de pessoal ativo, inativo e pensionistas, tais como Fundo de Garantia por Tempo de Serviço e contribuições para Institutos de Previdência, inclusive a alíquota de contribuição suplementar para cobertura do déficit atuarial, bem como os encargos resultantes do pagamento com atraso das contribuições de que trata este elemento de despesa."
+          },
+          {
+            "codigo": "14",
+            "rotulo": "Diárias - Civil",
+            "conceito": "Despesas orçamentárias com cobertura de alimentação, pousada e locomoção urbana, do servidor público estatutário ou celetista que se desloca de sua sede em objeto de serviço, em caráter eventual ou transitório, entendido como sede o Município onde a repartição estiver instalada e onde o servidor tiver exercício em caráter permanente."
+          },
+          {
+            "codigo": "15",
+            "rotulo": "Diárias - Militar",
+            "conceito": "Despesas orçamentárias decorrentes do deslocamento do militar da sede de sua unidade por motivo de serviço, destinadas à indenização das despesas de alimentação e pousada."
+          },
+          {
+            "codigo": "16",
+            "rotulo": "Outras Despesas Variáveis - Pessoal Civil",
+            "conceito": "Despesas orçamentárias relacionadas às atividades do cargo/emprego ou função do servidor, e cujo pagamento só se efetua em circunstâncias específicas, tais como: hora-extra; substituições; e outras despesas da espécie, decorrentes do pagamento de pessoal dos órgãos e entidades da administração direta e indireta."
+          },
+          {
+            "codigo": "17",
+            "rotulo": "Outras Despesas Variáveis - Pessoal Militar",
+            "conceito": "Despesas orçamentárias eventuais, de natureza remuneratória, devidas em virtude do exercício da atividade militar, exceto aquelas classificadas em elementos de despesas específicos."
+          },
+          {
+            "codigo": "18",
+            "rotulo": "Auxílio Financeiro a Estudantes",
+            "conceito": "Despesas orçamentárias com ajuda financeira concedida pelo Estado a estudantes comprovadamente carentes, e concessão de auxílio para o desenvolvimento de estudos e pesquisas de natureza científica, realizadas por pessoas físicas na condição de estudante, observado o disposto no art. 26 da Lei Complementar no101/2000."
+          },
+          {
+            "codigo": "19",
+            "rotulo": "Auxílio-Fardamento",
+            "conceito": "Despesas orçamentárias com o auxílio-fardamento, pago diretamente ao servidor ou militar."
+          },
+          {
+            "codigo": "20",
+            "rotulo": "Auxílio Financeiro a Pesquisadores",
+            "conceito": "Despesas Orçamentárias com apoio financeiro concedido a pesquisadores, individual ou coletivamente, exceto na condição de estudante, no desenvolvimento de pesquisas científicas e tecnológicas, nas suas mais diversas modalidades, observado o disposto no art. 26 da Lei Complementar no101/2000."
+          },
+          {
+            "codigo": "21",
+            "rotulo": "Juros sobre a Dívida por Contrato",
+            "conceito": "Despesas orçamentárias com juros referentes a operações de crédito efetivamente contratadas."
+          },
+          {
+            "codigo": "22",
+            "rotulo": "Outros Encargos sobre a Dívida por Contrato",
+            "conceito": "Despesas orçamentárias com outros encargos da dívida pública contratada, tais como: taxas, comissões bancárias, prêmios, imposto de renda e outros encargos."
+          },
+          {
+            "codigo": "23",
+            "rotulo": "Juros, Deságios e Descontos da Dívida Mobiliária",
+            "conceito": "Despesas orçamentárias com a remuneração real devida pela aplicação de capital de terceiros em títulos públicos."
+          },
+          {
+            "codigo": "24",
+            "rotulo": "Outros Encargos sobre a Dívida Mobiliária",
+            "conceito": "Despesas orçamentárias com outros encargos da dívida mobiliária, tais como: comissão, corretagem, seguro, etc."
+          },
+          {
+            "codigo": "25",
+            "rotulo": "Encargos sobre Operações de Crédito por Antecipação da Receita",
+            "conceito": "Despesas orçamentárias com o pagamento de encargos da dívida pública, inclusive os juros decorrentes de operações de crédito por antecipação da receita, conforme art. 165, § 8o, da Constituição."
+          },
+          {
+            "codigo": "26",
+            "rotulo": "Obrigações decorrentes de Política Monetária",
+            "conceito": "Despesas orçamentárias com a cobertura do resultado negativo do Banco Central do Brasil, como autoridade monetária, apurado em balanço, nos termos da legislação vigente."
+          },
+          {
+            "codigo": "27",
+            "rotulo": "Encargos pela Honra de Avais, Garantias, Seguros e Similares",
+            "conceito": "Despesas orçamentárias que a administração é compelida a realizar em decorrência da honra de avais, garantias, seguros, fianças e similares concedidos."
+          },
+          {
+            "codigo": "28",
+            "rotulo": "Remuneração de Cotas de Fundos Autárquicos",
+            "conceito": "Despesas orçamentárias com encargos decorrentes da remuneração de cotas de fundos autárquicos, à semelhança de dividendos, em razão dos resultados positivos desses fundos."
+          },
+          {
+            "codigo": "29",
+            "rotulo": "Distribuição de Resultado de Empresas Estatais Dependentes",
+            "conceito": "Despesas orçamentárias com a distribuição de resultado positivo de empresas estatais dependentes, inclusive a título de dividendos e participação de empregados nos referidos resultados."
+          },
+          {
+            "codigo": "30",
+            "rotulo": "Material de Consumo",
+            "conceito": "Despesas orçamentárias com álcool automotivo; gasolina automotiva; diesel automotivo; lubrificantes automotivos; combustível e lubrificantes de aviação; gás engarrafado; outros combustíveis e lubrificantes; material biológico, farmacológico e laboratorial; animais para estudo, corte ou abate; alimentos para animais; material de coudelaria ou de uso zootécnico; sementes e mudas de plantas; gêneros de alimentação; material de construção para reparos em imóveis; material de manobra e patrulhamento; material de proteção, segurança, socorro e sobrevivência; material de expediente; material de cama e mesa, copa e cozinha, e produtos de higienização; material gráfico e de processamento de dados; aquisição de disquete; pen-drive; material para esportes e diversões; material para fotografia e filmagem; material para instalação elétrica e eletrônica; material para manutenção, reposição e aplicação; material odontológico, hospitalar e ambulatorial; material químico; material para telecomunicações; vestuário, uniformes, fardamento, tecidos e aviamentos; material de acondicionamento e embalagem; suprimento de proteção ao voo; suprimento de aviação; sobressalentes de máquinas e motores de navios e esquadra; explosivos e munições; bandeiras, flâmulas e insígnias e outros materiais de uso não-duradouro."
+          },
+          {
+            "codigo": "31",
+            "rotulo": "Premiações Culturais, Artísticas, Científicas, Desportivas e Outras",
+            "conceito": "Despesas orçamentárias com a aquisição de prêmios, condecorações, medalhas, troféus, bem como com o pagamento de prêmios em pecúnia, inclusive decorrentes de sorteios lotéricos."
+          },
+          {
+            "codigo": "32",
+            "rotulo": "Material, Bem ou Serviço para Distribuição Gratuita",
+            "conceito": "Despesas orçamentárias com aquisição de materiais, bens ou serviços para distribuição gratuita, tais como livros didáticos, medicamentos, gêneros alimentícios e outros materiais, bens ou serviços que possam ser distribuídos gratuitamente, exceto se destinados a premiações culturais, artísticas, científicas, desportivas e outras."
+          },
+          {
+            "codigo": "33",
+            "rotulo": "Passagens e Despesas com Locomoção",
+            "conceito": "Despesas orçamentárias, realizadas diretamente ou por meio de empresa contratada, com aquisição de passagens (aéreas, terrestres, fluviais ou marítimas), taxas de embarque, seguros, fretamento, pedágios, locação ou uso de veículos para transporte de pessoas e suas respectivas bagagens, inclusive quando decorrentes de mudanças de domicílio no interesse da administração."
+          },
+          {
+            "codigo": "34",
+            "rotulo": "Outras Despesas de Pessoal decorrentes de Contratos de Terceirização",
+            "conceito": "Despesas orçamentárias relativas a salários e demais encargos de agentes terceirizados contratados em substituição de mão de obra de servidores ou empregados públicos, bem como quaisquer outras formas de remuneração por contratação de serviços de mão de obra terceirizada, de acordo com o art. 18, § 1o, da Lei Complementar no101, de 2000, computadas para fins de limites da despesa total com pessoal previstos no art. 19 dessa Lei."
+          },
+          {
+            "codigo": "35",
+            "rotulo": "Serviços de Consultoria",
+            "conceito": "Despesas orçamentárias decorrentes de contratos com pessoas físicas ou jurídicas, prestadoras de serviços nas áreas de consultorias técnicas ou auditorias financeiras ou jurídicas, ou assemelhadas."
+          },
+          {
+            "codigo": "36",
+            "rotulo": "Outros Serviços de Terceiros - Pessoa Física",
+            "conceito": "Despesas orçamentárias decorrentes de serviços prestados por pessoa física pagos diretamente a esta e não enquadrados nos elementos de despesa específicos, tais como: remuneração de serviços de natureza eventual, prestado por pessoa física sem vínculo empregatício; estagiários, monitores diretamente contratados; gratificação por encargo de curso ou de concurso; diárias a colaboradores eventuais; locação de imóveis; salário de internos nas penitenciárias; e outras despesas pagas diretamente à pessoa física."
+          },
+          {
+            "codigo": "37",
+            "rotulo": "Locação de Mão-de-Obra",
+            "conceito": "Despesas orçamentárias com prestação de serviços por pessoas jurídicas para órgãos públicos, tais como limpeza e higiene, vigilância ostensiva e outros, nos casos em que o contrato especifique o quantitativo físico do pessoal a ser utilizado."
+          },
+          {
+            "codigo": "38",
+            "rotulo": "Arrendamento Mercantil",
+            "conceito": "Despesas orçamentárias com contratos de arrendamento mercantil, com opção ou não de compra do bem de propriedade do arrendador."
+          },
+          {
+            "codigo": "39",
+            "rotulo": "Outros Serviços de Terceiros - Pessoa Jurídica",
+            "conceito": "Despesas orçamentárias decorrentes da prestação de serviços por pessoas jurídicas para órgãos públicos, exceto as relativas aos Serviços de Tecnologia da Informação e Comunicação - TIC, tais como: assinaturas de jornais e periódicos; tarifas de energia elétrica, gás, água e esgoto; serviços de comunicação (telex, correios, telefonia fixa e móvel, que não integrem pacote de comunicação de dados); fretes e carretos; locação de imóveis (inclusive despesas de condomínio e tributos à conta do locatário, quando previstos no contrato de locação); locação de equipamentos e materiais permanentes; conservação e adaptação de bens imóveis; seguros em geral (exceto os decorrentes de obrigação patronal); serviços de asseio e higiene; serviços de divulgação, impressão, encadernação e emolduramento; serviços funerários; despesas com congressos, simpósios, conferências ou exposições; vale-refeição; auxílio-creche (exclusive a indenização a servidor); e outros congêneres, bem como os encargos resultantes do pagamento com atraso de obrigações não tributárias."
+          },
+          {
+            "codigo": "40",
+            "rotulo": "Serviços de Tecnologia da Informação e Comunicação - Pessoa Jurídica",
+            "conceito": "Despesas orçamentárias decorrentes da prestação de serviços por pessoas jurídicas para órgãos e entidades da Administração Pública, relacionadas à Tecnologia da Informação e Comunicação - TIC, não classificadas em outros elementos de despesa, tais como: locação de equipamentos e softwares, desenvolvimento e manutenção de software, hospedagens de sistemas, comunicação de dados, serviços de telefonia fixa e móvel, quando integrarem pacote de comunicação de dados, suporte a usuários de TIC, suporte de infraestrutura de TIC, serviços técnicos profissionais de TIC, manutenção e conservação de equipamentos de TIC, digitalização, outsourcing de impressão e serviços relacionados a computação em nuvem, treinamento e capacitação em TIC, tratamento de dados, conteúdo de web; e outros congêneres."
+          },
+          {
+            "codigo": "41",
+            "rotulo": "Contribuições",
+            "conceito": "Despesas orçamentárias às quais não correspondam contraprestação direta em bens e serviços e não sejam reembolsáveis pelo recebedor, inclusive as destinadas a atender a despesas de manutenção de outras entidades de direito público ou privado, observado o disposto na legislação vigente."
+          },
+          {
+            "codigo": "42",
+            "rotulo": "Auxílios",
+            "conceito": "Despesas orçamentárias destinadas a atender a despesas de investimentos ou inversões financeiras de outras esferas de governo ou de entidades privadas sem fins lucrativos, observado, respectivamente, o disposto nos artigos 25 e 26 da Lei Complementar no101/2000."
+          },
+          {
+            "codigo": "43",
+            "rotulo": "Subvenções Sociais",
+            "conceito": "Despesas orçamentárias para cobertura de despesas de instituições privadas de caráter assistencial ou cultural, sem finalidade lucrativa, de acordo com os artigos 16, parágrafo único, e 17 da Lei no4.320/1964, observado o disposto no art. 26 da LRF."
+          },
+          {
+            "codigo": "45",
+            "rotulo": "Subvenções Econômicas",
+            "conceito": "Despesas orçamentárias com o pagamento de subvenções econômicas, a qualquer título, autorizadas em leis específicas, tais como: ajuda financeira a entidades privadas com fins lucrativos; concessão de bonificações a produtores, distribuidores e vendedores; cobertura, direta ou indireta, de parcela de encargos de empréstimos e financiamentos e dos custos de aquisição, de produção, de escoamento, de distribuição, de venda e de manutenção de bens, produtos e serviços em geral; e, ainda, outras operações com características semelhantes."
+          },
+          {
+            "codigo": "46",
+            "rotulo": "Auxílio-Alimentação",
+            "conceito": "Despesas orçamentárias com auxílio-alimentação pagas em forma de pecúnia, de bilhete ou de cartão magnético, diretamente aos militares, servidores, estagiários ou empregados da Administração Pública direta e indireta."
+          },
+          {
+            "codigo": "47",
+            "rotulo": "Obrigações Tributárias e Contributivas",
+            "conceito": "Despesas orçamentárias decorrentes do pagamento de tributos e contribuições sociais e econômicas (Imposto de Renda, ICMS, IPVA, IPTU, Taxa de Limpeza Pública, COFINS, PIS/PASEP, etc.), exceto as incidentes sobre a folha de salários, classificadas como obrigações patronais, bem como os encargos resultantes do pagamento com atraso das obrigações de que trata este elemento de despesa."
+          },
+          {
+            "codigo": "48",
+            "rotulo": "Outros Auxílios Financeiros a Pessoas Físicas",
+            "conceito": "Despesas orçamentárias com a concessão de auxílio financeiro diretamente a pessoas físicas, sob as mais diversas modalidades, tais como ajuda ou apoio financeiro e subsídio ou complementação na aquisição de bens, não classificados explícita ou implicitamente em outros elementos de despesa, observado o disposto no art. 26 da Lei Complementar no101/2000."
+          },
+          {
+            "codigo": "49",
+            "rotulo": "Auxílio-Transporte",
+            "conceito": "Despesas orçamentárias com auxílio-transporte pagas em forma de pecúnia, de bilhete ou de cartão magnético, diretamente aos militares, servidores, estagiários ou empregados da Administração Pública direta e indireta, destinado ao custeio parcial das despesas realizadas com transporte coletivo municipal, intermunicipal ou interestadual nos deslocamentos de suas residências para os locais de trabalho e vice-versa, ou trabalho-trabalho nos casos de acumulação lícita de cargos ou empregos."
+          },
+          {
+            "codigo": "51",
+            "rotulo": "Obras e Instalações",
+            "conceito": "Despesas com estudos e projetos; início, prosseguimento e conclusão de obras; pagamento de pessoal temporário não pertencente ao quadro da entidade e necessário à realização das mesmas; pagamento de obras contratadas; instalações que sejam incorporáveis ou inerentes ao imóvel, tais como: elevadores, aparelhagem para ar condicionado central, etc."
+          },
+          {
+            "codigo": "52",
+            "rotulo": "Equipamentos e Material Permanente",
+            "conceito": "Despesas orçamentárias com aquisição de aeronaves; aparelhos de medição; aparelhos e equipamentos de comunicação; aparelhos, equipamentos e utensílios médico, odontológico, laboratorial e hospitalar; aparelhos e equipamentos para esporte e diversões; aparelhos e utensílios domésticos; armamentos; coleções e materiais bibliográficos; embarcações, equipamentos de manobra e patrulhamento; equipamentos de proteção, segurança, socorro e sobrevivência; instrumentos musicais e artísticos; máquinas, aparelhos e equipamentos de uso industrial; máquinas, aparelhos e equipamentos gráficos e equipamentos diversos; máquinas, aparelhos e utensílios de escritório; máquinas, ferramentas e utensílios de oficina; máquinas, tratores e equipamentos agrícolas, rodoviários e de movimentação de carga; mobiliário em geral; obras de arte e peças para museu; semoventes; veículos diversos; veículos ferroviários; veículos rodoviários; outros materiais permanentes."
+          },
+          {
+            "codigo": "53",
+            "rotulo": "Aposentadorias do RGPS - Área Rural",
+            "conceito": "Despesas orçamentárias com pagamento de aposentadorias dos segurados do plano de benefícios do Regime Geral de Previdência Social - RGPS, relativos à área rural."
+          },
+          {
+            "codigo": "54",
+            "rotulo": "Aposentadorias do RGPS - Área Urbana",
+            "conceito": "Despesas orçamentárias com pagamento de aposentadorias dos segurados do plano de benefícios do Regime Geral de Previdência Social - RGPS, relativos à área urbana."
+          },
+          {
+            "codigo": "55",
+            "rotulo": "Pensões do RGPS - Área Rural",
+            "conceito": "Despesas orçamentárias com pagamento de pensionistas do plano de benefícios do Regime Geral de Previdência Social - RGPS, inclusive decorrentes de sentenças judiciais, todas relativas à área rural."
+          },
+          {
+            "codigo": "56",
+            "rotulo": "Pensões do RGPS - Área Urbana",
+            "conceito": "Despesas orçamentárias com pagamento de pensionistas do plano de benefícios do Regime Geral de Previdência Social - RGPS, inclusive decorrentes de sentenças judiciais, todas relativas à área urbana."
+          },
+          {
+            "codigo": "57",
+            "rotulo": "Outros Benefícios do RGPS - Área Rural",
+            "conceito": ""
+          },
+          {
+            "codigo": "58",
+            "rotulo": "Outros Benefícios do RGPS - Área Urbana",
+            "conceito": ""
+          },
+          {
+            "codigo": "59",
+            "rotulo": "Pensões Especiais",
+            "conceito": "Despesas orçamentárias com pagamento de pensões especiais, inclusive as de caráter indenizatório, concedidas por legislação específica ou por determinação judicial, quando não vinculadas a cargos públicos."
+          },
+          {
+            "codigo": "61",
+            "rotulo": "Aquisição de Imóveis",
+            "conceito": "Despesas orçamentárias com a aquisição de imóveis considerados necessários à realização de obras ou para sua pronta utilização."
+          },
+          {
+            "codigo": "62",
+            "rotulo": "Aquisição de Produtos para Revenda",
+            "conceito": "Despesas orçamentárias com a aquisição de bens destinados à venda futura."
+          },
+          {
+            "codigo": "63",
+            "rotulo": "Aquisição de Títulos de Crédito",
+            "conceito": "Despesas orçamentárias com a aquisição de títulos de crédito não representativos de quotas de capital de empresas."
+          },
+          {
+            "codigo": "64",
+            "rotulo": "Aquisição de Títulos Representativos de Capital já Integralizado",
+            "conceito": "Despesas orçamentárias com a aquisição de ações ou quotas de qualquer tipo de sociedade, desde que tais títulos não representem constituição ou aumento de capital."
+          },
+          {
+            "codigo": "65",
+            "rotulo": "Constituição ou Aumento de Capital de Empresas",
+            "conceito": "Despesas orçamentárias com a constituição ou aumento de capital de empresas industriais, agrícolas, comerciais ou financeiras, mediante subscrição de ações representativas do seu capital social."
+          },
+          {
+            "codigo": "66",
+            "rotulo": "Concessão de Empréstimos e Financiamentos",
+            "conceito": "Despesas orçamentárias com a concessão de qualquer empréstimo ou financiamento, inclusive bolsas de estudo reembolsáveis."
+          },
+          {
+            "codigo": "67",
+            "rotulo": "Depósitos Compulsórios",
+            "conceito": "Despesas orçamentárias com depósitos compulsórios exigidos por legislação específica, ou determinados por decisão judicial."
+          },
+          {
+            "codigo": "70",
+            "rotulo": "Rateio pela Participação em Consórcio Público",
+            "conceito": "Despesa orçamentária relativa ao rateio das despesas decorrentes da participação do ente Federativo em Consórcio Público instituído nos termos da Lei no11.107, de 6 de abril de 2005."
+          },
+          {
+            "codigo": "71",
+            "rotulo": "Principal da Dívida Contratual Resgatado",
+            "conceito": "Despesas orçamentárias com a amortização efetiva do principal da dívida pública contratual, interna e externa."
+          },
+          {
+            "codigo": "72",
+            "rotulo": "Principal da Dívida Mobiliária Resgatado",
+            "conceito": "Despesas orçamentárias com a amortização efetiva do valor nominal do título da dívida pública mobiliária, interna e externa."
+          },
+          {
+            "codigo": "73",
+            "rotulo": "Correção Monetária ou Cambial da Dívida Contratual Resgatada",
+            "conceito": "Despesas orçamentárias decorrentes da atualização do valor do principal da dívida contratual, interna e externa, efetivamente amortizado."
+          },
+          {
+            "codigo": "74",
+            "rotulo": "Correção Monetária ou Cambial da Dívida Mobiliária Resgatada",
+            "conceito": "Despesas orçamentárias decorrentes da atualização do valor nominal do título da dívida pública mobiliária, efetivamente amortizado."
+          },
+          {
+            "codigo": "75",
+            "rotulo": "Correção Monetária da Dívida de Operações de Crédito por Antecipação de Receita",
+            "conceito": "Despesas orçamentárias com correção monetária da dívida decorrente de operação de crédito por antecipação de receita."
+          },
+          {
+            "codigo": "76",
+            "rotulo": "Principal Corrigido da Dívida Mobiliária Refinanciado",
+            "conceito": "Despesas orçamentárias com o refinanciamento do principal da dívida pública mobiliária, interna e externa, inclusive correção monetária ou cambial, com recursos provenientes da emissão de novos títulos da dívida pública mobiliária."
+          },
+          {
+            "codigo": "77",
+            "rotulo": "Principal Corrigido da Dívida Contratual Refinanciado",
+            "conceito": "Despesas orçamentárias com o refinanciamento do principal da dívida pública contratual, interna e externa, inclusive correção monetária ou cambial, com recursos provenientes da emissão de títulos da dívida pública mobiliária."
+          },
+          {
+            "codigo": "81",
+            "rotulo": "Distribuição Constitucional ou Legal de Receitas",
+            "conceito": "Despesas orçamentárias decorrentes da transferência a órgãos e entidades públicos, inclusive de outras esferas de governo, ou a instituições privadas, de receitas tributárias, de contribuições e de outras receitas vinculadas, prevista na Constituição ou em leis específicas, cuja competência de arrecadação é do órgão transferidor."
+          },
+          {
+            "codigo": "82",
+            "rotulo": "Aporte de Recursos pelo Parceiro Público em Favor do Parceiro Privado Decorrente de Contrato de Parceria Público-Privada - PPP",
+            "conceito": "Despesas orçamentárias relativas ao aporte de recursos pelo parceiro público em favor do parceiro privado, conforme previsão constante do contrato de Parceria Público-Privada - PPP, destinado à realização de obras e aquisição de bens reversíveis, nos termos do § 2odo art. 6oe do § 2odo art. 7o, ambos da Lei no11.079, de 30 de dezembro de 2004."
+          },
+          {
+            "codigo": "83",
+            "rotulo": "Despesas Decorrentes de Contrato de Parceria Público-Privada - PPP, exceto Subvenções Econômicas, Aporte e Fundo Garantidor",
+            "conceito": "Despesas orçamentárias com o pagamento, pelo parceiro público, do parcelamento dos investimentos realizados pelo parceiro privado com a realização de obras e aquisição de bens reversíveis, incorporados no patrimônio do parceiro público até o início da operação do objeto da Parceria Público-Privada - PPP, bem como de outras despesas que não caracterizem subvenção (elemento 45), aporte de recursos do parceiro público ao parceiro privado (elemento 82) ou participação em fundo garantidor de PPP (elemento 84)."
+          },
+          {
+            "codigo": "84",
+            "rotulo": "Despesas Decorrentes da Participação em Fundos, Organismos, ou Entidades Assemelhadas, Nacionais e Internacionais",
+            "conceito": "Despesas orçamentárias relativas à participação em fundos, organismos, ou entidades assemelhadas, Nacionais e Internacionais, inclusive as decorrentes de integralização de cotas."
+          },
+          {
+            "codigo": "85",
+            "rotulo": "Contrato de Gestão",
+            "conceito": "Despesas orçamentárias decorrentes de transferências às organizações sociais ou outras entidades privadas sem fins lucrativos para execução de serviços no âmbito do contrato de gestão firmado com o Poder Público."
+          },
+          {
+            "codigo": "86",
+            "rotulo": "Compensações a Regimes de Previdência",
+            "conceito": "Despesas orçamentárias com compensações financeiras para os regimes de previdência, incluindo militares, conforme previsto no art. 201, §9º e §9º-A e com a compensação ao Fundo do Regime Geral de Previdência Social - FRGPS em virtude de desonerações, como a prevista no inciso IV do art. 9º da Lei nº 12.546, de 14 de dezembro de 2011, que estabelece a necessidade de a União compensar o valor correspondente à estimativa de renúncia previdenciária decorrente dessa Lei."
+          },
+          {
+            "codigo": "91",
+            "rotulo": "Sentenças Judiciais",
+            "conceito": "Despesas orçamentárias resultantes de: a) pagamento de precatórios, em cumprimento ao disposto no art. 100 e seus parágrafos da Constituição, e no art. 78 do Ato das Disposições Constitucionais Transitórias - ADCT; b) cumprimento de sentenças judiciais, transitadas em julgado, de empresas públicas e sociedades de economia mista, integrantes dos Orçamentos Fiscal e da Seguridade Social; c) cumprimento de sentenças judiciais, transitadas em julgado, de pequeno valor, na forma definida em lei, nos termos do § 3odo art. 100 da Constituição; d) cumprimento de decisões judiciais, proferidas em Mandados de Segurança e Medidas Cautelares; e e) cumprimento de outras decisões judiciais."
+          },
+          {
+            "codigo": "92",
+            "rotulo": "Despesas de Exercícios Anteriores",
+            "conceito": "Despesas orçamentárias com o cumprimento do disposto no art. 37 da Lei nº 4.320/1964, que assim estabelece:'Art. 37. As despesas de exercícios encerrados, para as quais o orçamento respectivo consignava crédito próprio, com saldo suficiente para atendê-las, que não se tenham processado na época própria, bem como os Restos a Pagar com prescrição interrompida e os compromissos reconhecidos após o encerramento do exercício correspondente, poderão ser pagas à conta de dotação específica consignada no orçamento, discriminada por elemento, obedecida, sempre que possível, a ordem cronológica.'"
+          },
+          {
+            "codigo": "93",
+            "rotulo": "Indenizações e Restituições",
+            "conceito": "Despesas orçamentárias com indenizações, exclusive as trabalhistas, e restituições, devidas por órgãos e entidades a qualquer título, inclusive devolução de receitas quando não for possível efetuar essa devolução mediante a compensação com a receita correspondente, bem como outras despesas de natureza indenizatória não classificadas em elementos de despesas específicos."
+          },
+          {
+            "codigo": "94",
+            "rotulo": "Indenizações e Restituições Trabalhistas",
+            "conceito": "Despesas orçamentárias resultantes do pagamento efetuado a servidores públicos civis e empregados de entidades integrantes da administração pública, inclusive férias e aviso prévio indenizados, multas e contribuições incidentes sobre os depósitos do Fundo de Garantia por Tempo de Serviço, etc., em função da perda da condição de servidor ou empregado, podendo ser em decorrência da participação em programa de desligamento voluntário, bem como a restituição de valores descontados indevidamente, quando não for possível efetuar essa restituição mediante compensação com a receita correspondente."
+          },
+          {
+            "codigo": "95",
+            "rotulo": "Indenização pela Execução de Trabalhos de Campo",
+            "conceito": "Despesas orçamentárias com indenizações devidas aos servidores que se afastarem de seu local de trabalho, sem direito à percepção de diárias, para execução de trabalhos de campo, tais como os de campanha de combate e controle de endemias; marcação, inspeção e manutenção de marcos decisórios; topografia, pesquisa, saneamento básico, inspeção e fiscalização de fronteiras internacionais."
+          },
+          {
+            "codigo": "96",
+            "rotulo": "Ressarcimento de Despesas de Pessoal Requisitado",
+            "conceito": "Despesas orçamentárias com ressarcimento das despesas realizadas pelo órgão ou entidade de origem quando o servidor pertencer a outras esferas de governo ou a empresas estatais não-dependentes e optar pela remuneração do cargo efetivo, nos termos das normas vigentes."
+          },
+          {
+            "codigo": "97",
+            "rotulo": "Aporte para Cobertura do Déficit Atuarial do RPPS",
+            "conceito": "Despesas orçamentárias com aportes periódicos destinados à cobertura do déficit atuarial do Regime Próprio de Previdência Social - RPPS, conforme plano de amortização estabelecido em lei do respectivo ente Federativo, exceto as decorrentes de alíquota de contribuição suplementar."
+          },
+          {
+            "codigo": "98",
+            "rotulo": "Despesas do Orçamento de Investimento",
+            "conceito": "Despesas orçamentárias decorrentes da execução das programações do Orçamento de Investimento."
+          },
+          {
+            "codigo": "99",
+            "rotulo": "A Classificar",
+            "conceito": "Elemento transitório que deverá ser utilizado enquanto se aguarda a classificação em elemento específico, vedada a sua utilização na execução orçamentária."
+          }
+        ]
+      }
+    }
+  }
+}
