@@ -23,6 +23,37 @@ class FiocruzCearaScraper:
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
         }
 
+        self.urls_fioce = {
+            'url_linhas': 
+            {
+                'biotecnologia': '',
+                'saude_familia': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-da-familia/linhas-de-pesquisa/',
+                'saude_ambiente': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-e-ambiente/linhas-de-pesquisa/',
+                'saude_digital': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-digital/linhas-de-pesquisa-em-saude-digital/'
+            },
+            'url_plataformas': 
+            {
+                'biotecnologia': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/biotecnologia/',
+                'saude_familia': '',
+                'saude_digital': '',
+                'saude_ambiente': ''
+            },
+            'url_pesquisadores': 
+            {
+                'biotecnologia': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/biotecnologia/pesquisadores/',
+                'saude_familia': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-da-familia/pesquisadores/',
+                'saude_digital': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-digital/pesquisadores-em-saude-digital/',
+                'saude_ambiente': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-e-ambiente/pesquisadores/'
+            },
+            'url_parcerias':
+            {
+                'biotecnologia': '',
+                'saude_familia': '',
+                'saude_digital': '',
+                'saude_ambiente': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-e-ambiente/parcerias-em-saude-e-ambiente/',
+            }
+        }
+
     def get_html(self, url):
         response = requests.get(url, headers=self.headers)
         if response.status_code == 200:
@@ -111,8 +142,12 @@ class FiocruzCearaScraper:
                 for i in pesq_names:
                     if 'Dr' not in i and 'Família' not in i and 'Ambiente' not in i:
                         pesquisadores.append(i.replace('  ',' '))
-                # pesq_dados = pesq_content.find_all('p', class_='has-small-font-size')
-                pesq_dados = pesq_content.find_all('p', class_='is-layout-flex wp-container-7 wp-block-columns has-background has-medium-font-size')
+                
+                ## TO-IMPROVE: Extrai todas as linhas juntas para todos pesquisadores juntos repetindo a cada extração
+                pesq_dados = pesq_content.find_all('p', class_='has-small-font-size')
+
+                ## TO-DO: Extrair as linhas de forma segumentada por pesquisador ou área
+                # pesq_dados = pesq_content.find_all('p', class_='is-layout-flex wp-container-7 wp-block-columns has-background has-medium-font-size')
                 pesq_texts = [x.get_text() for x in pesq_dados]
                 for i in pesq_texts:
                     if '– ' in i[:4]:
@@ -128,7 +163,36 @@ class FiocruzCearaScraper:
                 areas.append(area_info)
         return areas
 
+    def scrape_lines(self, url):
+        # url = 'https://ceara.fiocruz.br/portal/index.php/pesquisa/biotecnologia/pesquisadores/'
 
+        response = requests.get(url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        pesquisadores = {}
+
+        for tag in soup.find_all(id=True):
+            pesquisador_id = tag.get('id') # Recupera o nome do pesquisador
+            pesquisador_section = soup.find(id=pesquisador_id) # Carrega a div com dados do pesquisador
+            if pesquisador_section.find('div', class_='is-layout-flow wp-block-column has-medium-font-size'):
+                nome_pesquisador = pesquisador_section.find('p', class_='has-black-color has-text-color has-medium-font-size').text
+                try:
+                    linhas_pesquisa_div = pesquisador_section.find_all('p', class_='has-small-font-size')
+                    lista_textos = [x.text for x in linhas_pesquisa_div]
+                    linhas_pesquisa = [x.strip() for x in lista_textos if '–' in x]
+                    pesquisadores[nome_pesquisador] = linhas_pesquisa
+                except Exception as e:
+                    print(f'Não foi possível extrair dados de {nome_pesquisador}')
+                    print(e)
+
+        for nome, linhas in pesquisadores.items():
+            print(f"\n{nome}")
+            if linhas:
+                for linha in linhas:
+                    print(linha)
+            else:
+                print("Linhas de Pesquisa não encontradas.")
+        
+        return pesquisadores
 
     def scrape_main_page_quantitative_data(self):
         page_content = self.get_html(self.base_url)
