@@ -125,29 +125,42 @@ class FiocruzCearaScraper:
                 area_name = area.find('h5').get_text(strip=True) if area.find('h5') else ''
                 area_desc = area.find('p').get_text(strip=True).replace('\n',' ') if area.find('p') else ''
                 area_desc = area_desc.replace('                                             ',' ')
-                area_url = area.find('a')['href'] if area.find('a') else ''
+                area_url  = area.find('a')['href'] if area.find('a') else ''
                 area_content = self.get_html(area_url)
                 area_plats = area_content.find_all('p')
                 area_plats = [x.get_text().replace('\xa0',' ') for x in area_plats]
-                if 'digital' in area_url:
+                if 'familia' in area_url or 'ambiente' in area_url:
+                    pesq_url = os.path.join(area_url+'/pesquisadores/')
+                    pesq_content = self.get_html(pesq_url)
+                    pesq_names = pesq_content.find_all('h5')
+                    line_url = os.path.join(area_url+'/linhas-de-pesquisa/')
+                    line_content = self.get_html(line_url)
+                    line_divs = line_content.find_all('div', class_='card-header')
+                    if line_divs:
+                        for line_div in line_divs:
+                            line_text = line_div.find('h5', class_='mb-0').text
+                            if isinstance(line_text, str):
+                                linha_name = '- '+line_text.replace('\n\n                    ','').strip()
+                                pesq_line.append(linha_name)
+                    else:
+                        print('Não foi possível extrair nomes das linhas de pesquisa')
+                elif 'digital' in area_url:
                     pesq_url = os.path.join(area_url+'/pesquisadores-em-saude-digital/')
+                    pesq_content = self.get_html(pesq_url)
+                    pesq_names = pesq_content.find_all('p', class_='has-black-color has-text-color has-medium-font-size')
                 else:
                     pesq_url = os.path.join(area_url+'/pesquisadores/')
-                pesq_content = self.get_html(pesq_url)
-                if 'familia' in area_url or 'ambiente' in area_url:
-                    pesq_names = pesq_content.find_all('h5')
-                else:
+                    pesq_content = self.get_html(pesq_url)
                     pesq_names = pesq_content.find_all('p', class_='has-black-color has-text-color has-medium-font-size')
+                print('URL pesquisada:')
+                print(pesq_url)
                 pesq_names = [x.get_text().strip() for x in pesq_names]
                 for i in pesq_names:
                     if 'Dr' not in i and 'Família' not in i and 'Ambiente' not in i:
                         pesquisadores.append(i.replace('  ',' '))
                 
-                ## TO-IMPROVE: Extrai todas as linhas juntas para todos pesquisadores juntos repetindo a cada extração
-                pesq_dados = pesq_content.find_all('p', class_='has-small-font-size')
-
-                ## TO-DO: Extrair as linhas de forma segumentada por pesquisador ou área
                 # pesq_dados = pesq_content.find_all('p', class_='is-layout-flex wp-container-7 wp-block-columns has-background has-medium-font-size')
+                pesq_dados = pesq_content.find_all('p', class_='has-small-font-size')
                 pesq_texts = [x.get_text() for x in pesq_dados]
                 for i in pesq_texts:
                     if '– ' in i[:4]:
@@ -156,7 +169,7 @@ class FiocruzCearaScraper:
                     'area_name': area_name,
                     'area_desc': area_desc,
                     'area_plats': area_plats,
-                    'area_names': pesquisadores,
+                    'area_pesquisadores': pesquisadores,
                     'area_lines': pesq_line,
                     # 'area_url': area_url,                    
                 }

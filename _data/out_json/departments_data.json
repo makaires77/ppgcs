@@ -9,7 +9,7 @@
             "qte_teams": "17",
             "qte_members": "221",
             "qte_projects": "View all77",
-            "qte_publication": "1714",
+            "qte_publication": "1715",
             "teams": [
                 {
                     "team_name": "Biological Image Analysis",
@@ -454,7 +454,7 @@
             "qte_projects": "View all129",
             "qte_keywords": "2",
             "qte_tools": "2",
-            "qte_publication": "2245",
+            "qte_publication": "2247",
             "teams": [
                 {
                     "team_name": "Lyssavirus epidemiology and neuropathology",
@@ -611,7 +611,7 @@
         "aditional_info": {
             "qte_keywords": "1",
             "qte_teams": "17",
-            "qte_members": "172",
+            "qte_members": "173",
             "qte_projects": "View all75",
             "qte_tools": "3",
             "qte_publication": "1414",
@@ -716,11 +716,6 @@
                     "team_name": "Biology and Genetics of Bacterial Cell Wall",
                     "head_name": "Ivo Gomperts Boneca",
                     "url": "https://research.pasteur.fr/en/team/biology-and-genetics-of-bacterial-cell-wall/"
-                },
-                {
-                    "team_name": "Biology of Gram-Positive Pathogens",
-                    "head_name": "Patrick Trieu-Cuot",
-                    "url": "https://research.pasteur.fr/en/team/biology-of-gram-positive-pathogens/"
                 },
                 {
                     "team_name": "Biology of Spirochetes",
@@ -868,7 +863,7 @@
         "aditional_info": {
             "qte_keywords": "15",
             "qte_teams": "10",
-            "qte_members": "143",
+            "qte_members": "144",
             "qte_projects": "View all54",
             "qte_tools": "5",
             "qte_publication": "1044",
@@ -886,7 +881,7 @@
                 {
                     "team_name": "Signaling and receptors dynamics",
                     "head_name": "Pierre-Jean Corringer",
-                    "url": "https://research.pasteur.fr/en/team/channel-receptors/"
+                    "url": "https://research.pasteur.fr/en/team/signaling-and-receptors-dynamics/"
                 },
                 {
                     "team_name": "Integrative Neurobiology of Cholinergic Systems",
@@ -994,10 +989,10 @@
         "aditional_info": {
             "qte_keywords": "6",
             "qte_teams": "21",
-            "qte_members": "199",
+            "qte_members": "202",
             "qte_projects": "View all89",
             "qte_tools": "5",
-            "qte_publication": "2126",
+            "qte_publication": "2127",
             "teams": [
                 {
                     "team_name": "Antibody Engineering",
@@ -1134,9 +1129,9 @@
         "url": "https://research.pasteur.fr/en/department/virology/",
         "aditional_info": {
             "qte_teams": "24",
-            "qte_members": "207",
+            "qte_members": "204",
             "qte_projects": "View all103",
-            "qte_publication": "1952",
+            "qte_publication": "1953",
             "teams": [
                 {
                     "team_name": "Arboviruses and Insect Vectors",
