@@ -174,32 +174,26 @@ class FiocruzCearaScraper:
             print(f'\nPesquisando linhas da área: {area}...')
             if 'biotecnologia' in url or 'digital' in url:
                 # Extrair dados das linhas para páginas que agregam linhas por cada pesquisador
-                print(url)
+                # print(url)
                 for tag in soup.find_all(id=True):
                     pesquisador_id = tag.get('id') # Recupera o nome do pesquisador
                     pesquisador_section = soup.find(id=pesquisador_id) # Carrega a div com dados do pesquisador
-                    # print(pesquisador_section)
-                    if pesquisador_section.find('div', class_='is-layout-flow wp-block-column has-medium-font-size'):
+                    if (pesquisador_section.find('div', class_='is-layout-flow wp-block-column has-medium-font-size') or
+                        pesquisador_section.find('div', class_='is-layout-flow wp-block-column is-vertically-aligned-top')):
                         nome_pesquisador = pesquisador_section.find('p', class_='has-black-color has-text-color has-medium-font-size').text
                         try:
                             linhas_pesquisa_div = pesquisador_section.find_all('p', class_='has-small-font-size')
                             lista_textos = [x.text for x in linhas_pesquisa_div]
                             linhas_pesquisa = [x.strip() for x in lista_textos if '–' in x]
-                            pesquisadores[nome_pesquisador] = linhas_pesquisa
-                        except Exception as e:
-                            print(f'Não foi possível extrair dados de {nome_pesquisador}')
-                            print(e)                            
-                    elif pesquisador_section.find('div', class_='is-layout-flow wp-block-column is-vertically-aligned-top'):
-                        nome_pesquisador = pesquisador_section.find('p', class_='has-black-color has-text-color has-medium-font-size').text
-                        try:
-                            linhas_pesquisa_div = pesquisador_section.find_all('p', class_='has-small-font-size')
-                            lista_textos = [x.text for x in linhas_pesquisa_div]
-                            linhas_pesquisa = [x.strip() for x in lista_textos if '–' in x]
+                            if linhas_pesquisa == []:
+                                linhas_pesquisa_div = pesquisador_section.parent.find_all('p', class_='has-small-font-size')
+                                lista_textos = [x.text for x in linhas_pesquisa_div]
+                                linhas_pesquisa = [x.strip() for x in lista_textos if '–' in x]
                             pesquisadores[nome_pesquisador] = linhas_pesquisa
                         except Exception as e:
                             print(f'Não foi possível extrair dados de {nome_pesquisador}')
                             print(e)
-                print(f'{len(pesquisadores)} pesquisadores extraídos')
+                # print(f'{len(pesquisadores)} pesquisadores extraídos')
             else:
                 # Extrair dados das linhas para páginas que agregam o grupo de pesquisadores por linhas
                 print(url)
