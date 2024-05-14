@@ -23,6 +23,38 @@ class FiocruzCearaScraper:
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
         }
 
+        self.urls = {
+            'url_linhas': 
+            {
+                'biotecnologia': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/biotecnologia/pesquisadores/',
+                'saude_familia': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-da-familia/linhas-de-pesquisa/',
+                'saude_ambiente': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-e-ambiente/linhas-de-pesquisa/',
+                # 'saude_digital': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-digital/linhas-de-pesquisa-em-saude-digital/'
+                'saude_digital': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-digital/pesquisadores-em-saude-digital/'
+            },
+            'url_plataformas': 
+            {
+                'biotecnologia': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/biotecnologia/',
+                'saude_familia': '',
+                'saude_ambiente': '',
+                'saude_digital': ''                
+            },
+            'url_pesquisadores': 
+            {
+                'biotecnologia': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/biotecnologia/pesquisadores/',
+                'saude_familia': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-da-familia/pesquisadores/',
+                'saude_ambiente': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-e-ambiente/pesquisadores/',
+                'saude_digital': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-digital/pesquisadores-em-saude-digital/',                
+            },
+            'url_parcerias':
+            {
+                'biotecnologia': '',
+                'saude_familia': '',
+                'saude_digital': '',
+                'saude_ambiente': 'https://ceara.fiocruz.br/portal/index.php/pesquisa/saude-e-ambiente/parcerias-em-saude-e-ambiente/',
+            }
+        }
+
     def get_html(self, url):
         response = requests.get(url, headers=self.headers)
         if response.status_code == 200:
@@ -33,13 +65,13 @@ class FiocruzCearaScraper:
             return None
 
     def scrape(self):
-        driver = webdriver.Chrome()  # você precisa configurar o WebDriver para o navegador que você está usando
-        driver.get(self.url)
+        driver = webdriver.Chrome()
+        driver.get(self.base_url)
 
         thematic_areas = []
 
         try:
-            # Espera até que os elementos de interesse estejam disponíveis na página
+            # Esperar até que os elementos de interesse estejam disponíveis na página
             thematic_area_elements = WebDriverWait(driver, 10).until(
                 EC.presence_of_all_elements_located((By.CLASS_NAME, "thematic-area"))
             )
@@ -47,11 +79,11 @@ class FiocruzCearaScraper:
             for thematic_area_element in thematic_area_elements:
                 area_name = thematic_area_element.find_element(By.TAG_NAME, 'h5').text.strip()
 
-                # Encontra o botão dentro do elemento de área temática e clica nele
+                # Encontrar o botão dentro do elemento de área temática e clica nele
                 button = thematic_area_element.find_element(By.TAG_NAME, 'button')
                 button.click()
 
-                # Espera até que o conteúdo colapsável esteja visível
+                # Esperar até que o conteúdo colapsável esteja visível
                 collapse_content = WebDriverWait(driver, 10).until(
                     EC.visibility_of_element_located((By.CSS_SELECTOR, button.get_attribute('data-target')))
                 )
@@ -65,11 +97,10 @@ class FiocruzCearaScraper:
                     'link': link
                 })
 
-                # Fecha o conteúdo colapsado
                 button.click()
                 
         finally:
-            driver.quit()  # Garante que o navegador seja fechado mesmo em caso de exceção
+            driver.quit()
 
         return json.dumps(thematic_areas, indent=4)
 
@@ -84,33 +115,154 @@ class FiocruzCearaScraper:
         page_content = self.get_html(self.base_url)
         if not page_content:
             return []
-
         areas = []
-
-        content_section = page_content.find('section', class_='fiocruz-areas')
-        conteiner_section = content_section.find('section', class_='container')
-        if content_section:
-            
-            area_section = content_section.find('div', class_='container')
-            if area_section:
-                articles = area_section.find_all('article', class_='team-cards')
-                for article in articles:
-                    area_name = article.find('div', class_='team-name').get_text(strip=True) if article.find('div', class_='team-name') else ''
-                    team_count = article.find('div', class_='dept-name').get_text(strip=True) if article.find('div', class_='dept-name') else ''
-                    image_url = article.find('img')['src'] if article.find('img') else ''
-
-                    area_url = article.find('a')['href'] if article.find('a') else ''
-                    area_details = self.extract_research_area_details(area_url)
-
-                    area_info = {
-                        'area_name': area_name,
-                        'team_count': team_count,
-                        'image_url': image_url,
-                        'details': area_details
-                    }
-                    areas.append(area_info)
-
+        pesq_texts=''
+        area_divs = page_content.find_all('div', class_='fiocruz-card')
+        if area_divs:
+            for area in area_divs:
+                pesq_line = []
+                pesquisadores=[]
+                area_name = area.find('h5').get_text(strip=True) if area.find('h5') else ''
+                area_desc = area.find('p').get_text(strip=True).replace('\n',' ') if area.find('p') else ''
+                area_desc = area_desc.replace('                                             ',' ')
+                area_url  = area.find('a')['href'] if area.find('a') else ''
+                area_content = self.get_html(area_url)
+                area_plats = area_content.find_all('p')
+                area_plats = [x.get_text().replace('\xa0',' ') for x in area_plats]
+                if 'familia' in area_url or 'ambiente' in area_url:
+                    pesq_url = os.path.join(area_url+'/pesquisadores/')
+                    pesq_content = self.get_html(pesq_url)
+                    pesq_names = pesq_content.find_all('h5')
+                    line_url = os.path.join(area_url+'/linhas-de-pesquisa/')
+                    line_content = self.get_html(line_url)
+                    line_divs = line_content.find_all('div', class_='card-header')
+                    if line_divs:
+                        for line_div in line_divs:
+                            line_text = line_div.find('h5', class_='mb-0').text
+                            if isinstance(line_text, str):
+                                linha_name = '- '+line_text.replace('\n\n                    ','').strip()
+                                pesq_line.append(linha_name)
+                    else:
+                        print('Não foi possível extrair nomes das linhas de pesquisa')
+                elif 'digital' in area_url:
+                    pesq_url = os.path.join(area_url+'/pesquisadores-em-saude-digital/')
+                    pesq_content = self.get_html(pesq_url)
+                    pesq_names = pesq_content.find_all('p', class_='has-black-color has-text-color has-medium-font-size')
+                else:
+                    pesq_url = os.path.join(area_url+'/pesquisadores/')
+                    pesq_content = self.get_html(pesq_url)
+                    pesq_names = pesq_content.find_all('p', class_='has-black-color has-text-color has-medium-font-size')
+                print('URL pesquisada:')
+                print(pesq_url)
+                pesq_names = [x.get_text().strip() for x in pesq_names]
+                for i in pesq_names:
+                    if 'Dr' not in i and 'Família' not in i and 'Ambiente' not in i:
+                        pesquisadores.append(i.replace('  ',' '))
+                
+                # pesq_dados = pesq_content.find_all('p', class_='is-layout-flex wp-container-7 wp-block-columns has-background has-medium-font-size')
+                pesq_dados = pesq_content.find_all('p', class_='has-small-font-size')
+                pesq_texts = [x.get_text() for x in pesq_dados]
+                for i in pesq_texts:
+                    if '– ' in i[:4]:
+                        pesq_line.append(i.strip())
+                area_info = {
+                    'area_name': area_name,
+                    'area_desc': area_desc,
+                    'area_plats': area_plats,
+                    'area_pesquisadores': pesquisadores,
+                    'area_lines': pesq_line,
+                    # 'area_url': area_url,                    
+                }
+                areas.append(area_info)
         return areas
+
+    def scrape_lines(self):
+        pesquisadores = {}
+        urls = self.urls.get('url_linhas').values()
+        for url in urls:
+            response = requests.get(url)
+            soup = BeautifulSoup(response.content, 'html.parser')
+            area=url.replace('https://ceara.fiocruz.br/portal/index.php/pesquisa/','').replace('/linhas-de-pesquisa-em-saude-digital/','').replace('/pesquisadores-em-saude-digital/','').replace('/linhas-de-pesquisa/','').replace('/pesquisadores','').replace('/','').replace('-',' ').title()            
+            print(f'\nPesquisando linhas da área: {area}...')
+            if 'biotecnologia' in url or 'digital' in url:
+                # Extrair dados das linhas para páginas que agregam linhas por cada pesquisador OK!!
+                print(url)
+                for tag in soup.find_all(id=True):
+                    pesquisador_id = tag.get('id') # Recupera o nome do pesquisador
+                    pesquisador_section = soup.find(id=pesquisador_id) # Carrega a div com dados do pesquisador
+                    if (pesquisador_section.find('div', class_='is-layout-flow wp-block-column has-medium-font-size') or
+                        pesquisador_section.find('div', class_='is-layout-flow wp-block-column is-vertically-aligned-top')):
+                        nome_pesquisador = pesquisador_section.find('p', class_='has-black-color has-text-color has-medium-font-size').text
+                        try:
+                            linhas_pesquisa_div = pesquisador_section.find_all('p', class_='has-small-font-size')
+                            lista_textos = [x.text for x in linhas_pesquisa_div]
+                            linhas_pesquisa = [x.strip().rstrip(';') for x in lista_textos if '–' in x]
+                            if linhas_pesquisa == []:
+                                linhas_pesquisa_div = pesquisador_section.parent.find_all('p', class_='has-small-font-size')
+                                lista_textos = [x.text for x in linhas_pesquisa_div]
+                                linhas_pesquisa = [x.strip().rstrip(';') for x in lista_textos if '–' in x]
+                            # Uniformizar divisão da lista de linhas de pesquisa
+                            linhas=[]
+                            for x in linhas_pesquisa:
+                                if ';' in x:
+                                    linhas = x.split(';')
+                                    linhas_pesquisa = linhas
+                            pesquisadores[nome_pesquisador] = linhas_pesquisa
+                        except Exception as e:
+                            print(f'Não foi possível extrair dados de {nome_pesquisador}')
+                            print(e)
+                # qte = len(pesquisadores.values())
+                # print(f'{qte} linhas de pesquisa encontradas')
+                # print(f'{len(pesquisadores)} pesquisadores extraídos')
+            else:
+                # Extrair dados das linhas para páginas que agregam o grupo de pesquisadores por linhas FALTA EXTRAIR AS LINHAS DE CADA CARD!
+                print(url)
+                # qte = len(soup.find_all('div', class_="card"))
+                # print(f'{qte} linhas de pesquisa encontradas')
+                nome_linha = ''
+                linhas_pesquisador={}
+                for tag in soup.find_all('div', class_="card"): # Iterar a cada card de linha de pesquisa
+                    nome_linha = tag.find('h5', class_='mb-0').text.strip() # Carrega a div com dados da linha
+                    # print(f' Linha: {nome_linha}')
+                    card_body = tag.find('div', class_='card-body') # Recupera dados de cada linha de pesquisa
+                    if card_body:
+                        temas_linha = [x.text.strip().replace('\n                    ',' ') for x in tag.find_all('p') if x.text.strip() !='Pesquisadores']
+                        # print(f'Estuda: {temas_linha}')
+                        lista_pesquisadores = []
+                        ul_element = card_body.find('ul')
+                        if ul_element:
+                            li_elements = ul_element.find_all('li')
+                            if li_elements:
+                                lista_pesquisadores = [li.get_text().split('–', 1)[0].strip() for li in li_elements]
+                        # print(f'        {len(lista_pesquisadores)} pesquisadores nesta linha: {lista_pesquisadores}')
+                        try:
+                            linhas_pesquisa_do_pesquisador=[]
+                            for nome_pesquisador in lista_pesquisadores:
+                                linhas_pesquisador.setdefault(nome_pesquisador, []) # Inicializar lista vazia para o pesquisador, se ainda não existir
+                                if '- '+nome_linha not in linhas_pesquisa_do_pesquisador:
+                                    linhas_pesquisa_do_pesquisador.append('- '+nome_linha) # Obter linhas de pesquisa para o pesquisador
+                                linhas_pesquisador[nome_pesquisador].extend(linhas_pesquisa_do_pesquisador) # Adicionar linhas de pesquisa à lista do pesquisador
+                        except Exception as e:
+                            print('Não foi possível adicionar linhas do pesquisador')
+                            print(e)
+                        # print(linhas_pesquisador)
+                        pesquisadores.update(linhas_pesquisador)
+                    else:
+                        print('card-body não encontrado')
+        print('\n')
+        print('-'*120)
+        print(f'LINHAS DE CADA PESQUISADOR')
+        for nome, linhas in pesquisadores.items():
+            print(f"\n{nome}")
+            if linhas:
+                if isinstance(linhas, list):
+                    for linha in linhas:
+                        print(linha)
+                else:
+                    print(linha)
+            else:
+                print("Linhas de Pesquisa não encontradas.")
+        return pesquisadores
 
     def scrape_main_page_quantitative_data(self):
         page_content = self.get_html(self.base_url)
@@ -167,12 +319,12 @@ class FiocruzCearaScraper:
 
         details = {}
 
-        # Extracting the main title of the research area
+        # Extrair titulo principal da área de pesquisa
         title_div = page_content.find('div', id='header-infos')
         if title_div:
             details['title'] = title_div.find('h1').get_text(strip=True) if title_div.find('h1') else ''
 
-        # Extracting research directors
+        # Extrair diretores
         directors = []
         for member in page_content.find_all('div', class_='member'):
             name = member.find('div', class_='member-name').get_text(strip=True) if member.find('div', class_='member-name') else ''

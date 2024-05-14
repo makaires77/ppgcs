@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TRM9C-Macroprocesso PDI</title>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" href="/static/css/style.css">
+      <script src="https://cdn.jsdelivr.net/npm/neo4j-driver"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"></script>      
+      <style>
+        /* Define o estilo das linhas */
+        .line {width: 98.5%; height: 30%; position: absolute;}
+        .line-1 {background-color: rgba(255, 255, 255); top: 7%;}
+        .line-2 {background-color: rgba(255, 155, 000); top: 10%;}
+        .line-3 {background-color: rgba(000, 255, 255); top: 40%;}
+        .line-4 {background-color: rgba(000, 255, 000); top: 70%;}
+        /* Define o estilo dos títulos */
+        .title1 {font-size: 18px; position: absolute; top: 0; left: 2%; font-style: italic;}
+        .title2 {font-size: 16px; position: absolute; top: 0; left: 2%; }
+        /* Define o estilo do gráfico de dispersão */
+        .scatterplot {
+          position: absolute;
+          top: 10%;
+          left: 10%;
+          right: 10%;
+          bottom: 10%;
+        }
+      @media print {
+        .scatterplot {
+            position: static;
+            width: 100%;
+            page-break-inside: avoid;
+            display: block;
+        }
+        .line {
+            page-break-inside: avoid;
+            display: block;
+        }
+        /* Esconde elementos que não são necessários na impressão */
+        /* .article-title, .title1, .title2, .title3, nav {
+            display: none;
+        } */
+      }        
+      </style>
+    </head>
+    <body>
+    {% if show_render_button %}
+      <!-- Botão de Renderização do Grafo -->
+      <button id="renderGraph" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">Renderizar Grafo</button>
+    {% endif %}
+    <!-- <h1 class="article-title">Mapa i9C, por Macroprocessos de PDI</h1> -->
+    <!-- <h4 class="article-title">Macroprocesso de Pesquisa, Desenvolvimento e Inovação (PDI), por Grupos de Processos Estruturantes</h4>       -->
+      <!-- Adiciona as três linhas ao plano de fundo -->
+      <div class="line line-1">
+        <div class="title1">Nível01: Grupo de Processos (> GP01 > GP02 > GP03 >)</div>
+      </div>
+      <div class="line line-2">
+        <div class="title2"><strong>GP03: INOVAR</strong> (Desenvolver Tecnologias, Gerar Negócios, Avaliar Impactos)</div>
+      </div>
+      <div class="line line-3">
+        <div class="title2"><strong>GP02: DESENVOLVER</strong> (Delimitar Escopos, Implementar Gerenciamentos, Estruturar Plataformas)</div>
+      </div>
+      <div class="line line-4">
+        <div class="title2"><strong>GP01: PESQUISAR</strong> (Mapear Necessidades, Organizar Conhecimentos, Analisar Competências)</div>
+      </div>
+      <!-- Container para o grafo -->
+      <div id="scatterplot" class="scatterplot"></div>
+      <script src="/static/js/script.js"></script>
+      <script>
+      // Função para carregar os dados do JSON
+      async function loadGraphData() {
+          const response = await fetch('/static/data/json/roadmap.json');
+          const graphData = await response.json();
+          // Renderizar com o layout de macroprocessos
+          renderGroupedGraph(graphData);
+      }
+      loadGraphData(); // Carrega os dados ao carregar a página
+      </script>
+    </body>
+</html>

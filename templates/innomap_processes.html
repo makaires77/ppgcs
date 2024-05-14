@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TRM9C-Todas camadas</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/neo4j-driver"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"></script>
+    <style>
+        /* Define o estilo das camadas */
+        .line {width: 98.5%; height: 10%; position: absolute;}
+        .line-1 {background-color: rgba(255, 255, 255); top: 7%;}
+        .line-2 {background-color: rgba(255, 155, 000); top: 10%;}
+        .line-3 {background-color: rgba(255, 255, 000); top: 20%;}
+        .line-4 {background-color: rgba(000, 060, 000, 0.5); top: 30%;}
+        .line-5 {background-color: rgba(000, 255, 255); top: 40%;}
+        .line-6 {background-color: rgba(190, 170, 060); top: 50%;}
+        .line-7 {background-color: rgba(125, 000, 125, 0.5); top: 60%;}
+        .line-8 {background-color: rgba(000, 255, 000); top: 70%;}
+        .line-9 {background-color: rgba(000, 255, 200); top: 80%;}
+        .line-0 {background-color: rgba(000, 000, 000, 0.2); top: 90%; color: white; }
+
+        /* Define o estilo dos títulos */
+        .title1 {font-size: 18px; font-style: italic; top: 0; left: 2%; position: absolute; }
+        .title2 {font-size: 16px; font-style: italic; top: 0; left: 2%; position: absolute; color: rgb(000, 000, 000); }
+        .title3 {font-size: 16px; font-style: italic; top: 0; left: 2%; position: absolute; color: rgb(0, 0, 0); }
+        
+        /* Define o estilo do gráfico de dispersão */
+        .scatterplot {position: absolute; top: 10%; left: 10%; right: 10%; bottom: 5%;}
+
+        @media print {
+        .scatterplot {
+            position: static;
+            width: 100%;
+            page-break-inside: avoid;
+            display: block;
+        }
+        .line {
+            page-break-inside: avoid;
+            display: block;
+        }
+        /* Esconde elementos que não são necessários na impressão */
+        /* .article-title, .title1, .title2, .title3, nav {
+            display: none; */
+        /* } */
+      }                
+    </style>
+</head>
+<body>
+    {% include 'breadcrumb.html' %}
+    <h1 class="article-title">Mapa i9C, por Processos Estruturantes</h1>
+    <h4 class="article-title">Macroprocesso de Pesquisa, Desenvolvimento e Inovação (PDI), por Processos Estruturantes</h4>
+    <!-- Adicionar as nove linhas ao plano de fundo -->
+    <div class="line line-1">
+        <!-- <div class="title1"> Nível00: Processos Estruturantes (> P001 > P002 > ... P009 >) </div> -->
+    </div>
+    <div class="line line-2">
+        <div class="title2"><strong>P009: Avaliar Impactos</strong> (Indicadores, Evidências, Mensuração)</div>
+    </div>
+    <div class="line line-3">
+        <div class="title2"><strong>P008: Gerar Negócios</strong> (Modelos, Protótipos, Empreendimentos)</div>
+    </div>
+    <div class="line line-4">
+        <div class="title2"><strong>P007: Desenvolver Tecnologias</strong> (Aplicação, Solução, Produto-Serviço)</div>
+    </div>
+    <div class="line line-5">
+        <div class="title2"><strong>P006: Estruturar Plataformas</strong> (Ensaios, Equipamentos, Ambientes)</div>
+    </div>
+    <div class="line line-6">
+        <div class="title2"><strong>P005: Implementar Gerenciamentos</strong> (Projetos, Processos, Programas)</div>
+    </div>
+    <div class="line line-7">
+        <div class="title2"><strong>P004: Delimitar Escopos</strong> (Papeis, Tempo, Orçamentos)</div>
+    </div>
+    <div class="line line-8">
+        <div class="title2"><strong>P003: Analisar Competências</strong> (Atitudes, Experiências, Habilidades)</div>
+    </div>
+    <div class="line line-9">
+        <div class="title2"><strong>P002: Organizar Conhecimentos</strong> (Temas, Tópicos, Assuntos)</div>
+    </div>
+    <div class="line line-0">
+        <div class="title3"><strong>P001: Mapear Necessidades</strong> (Dores, Desejos, Desafios)</div>
+    </div>
+    <!-- Container para o grafo -->
+    <div id="scatterplot" class="scatterplot"></div>
+    <script src="/static/js/script.js"></script>
+    <script>
+    // Função para carregar os dados do JSON
+    async function loadGraphData() {
+        const response = await fetch('/static/data/json/roadmap.json');
+        const graphData = await response.json();
+        // Renderizar com o layout 'hierarchical' como padrão
+        renderGraph(graphData, 'hierarchical');
+    }
+    loadGraphData(); // Carrega os dados ao carregar a página
+    </script>
+</body>
+</html>

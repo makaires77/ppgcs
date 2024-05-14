@@ -10,10 +10,10 @@ class PasteurScraper:
     def __init__(self, base_url, base_repo_dir):
         self.base_repo_dir = base_repo_dir
         self.folder_utils = os.path.join(base_repo_dir, 'utils')
-        self.folder_assets = os.path.join(base_repo_dir, 'assets')        
+        self.folder_assets = os.path.join('static','assets','images')        
         self.folder_domain = os.path.join(base_repo_dir, 'source', 'domain')
-        self.folder_data_input = os.path.join(base_repo_dir, 'data', 'input')
-        self.folder_data_output = os.path.join(base_repo_dir, 'data', 'output')            
+        self.folder_data_input = os.path.join(base_repo_dir, '_data', 'in_csv')
+        self.folder_data_output = os.path.join(base_repo_dir, '_data', 'out_json')            
         self.base_url = base_url
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
