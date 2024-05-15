@@ -1,0 +1,351 @@
+{
+    "nodes": [
+        {
+            "id": "id001",
+            "label": "Dsf-A",
+            "title": "Desafio A",
+            "row": 9,
+            "color": "white",
+            "size": 18
+        },
+        {
+            "id": "id002",
+            "label": "Ch-1",
+            "title": "Conhecimento 1",
+            "row": 8,
+            "color": "wheat",
+            "size": 18
+        },
+        {
+            "id": "id003",
+            "label": "Ch-2",
+            "title": "Conhecimento 2",
+            "row": 8,
+            "color": "deepskyblue",
+            "size": 18
+        },
+        {
+            "id": "id004",
+            "label": "Ch-3",
+            "title": "Conhecimento 3",
+            "row": 8,
+            "color": "gold",
+            "size": 18
+        },        
+        {
+            "id": "id005",
+            "label": "Cp-1",
+            "title": "Competência 1",
+            "row": 7,
+            "color": "wheat",
+            "size": 18
+        },
+        {
+            "id": "id006",
+            "label": "Cp-2",
+            "title": "Competência 2",
+            "row": 7,
+            "color": "deepskyblue",
+            "size": 18
+        },
+        {
+            "id": "id007",
+            "label": "Cp-3",
+            "title": "Competência 3",
+            "row": 7,
+            "color": "gold",
+            "size": 18
+        },        
+        {
+            "id": "id008",
+            "label": "Es-1",
+            "title": "Escopo 1",
+            "row": 6,
+            "color": "wheat",
+            "size": 18
+        },
+        {
+            "id": "id009",
+            "label": "Es-2",
+            "title": "Escopo 2",
+            "row": 6,
+            "color": "deepskyblue",
+            "size": 18
+        },
+        {
+            "id": "id010",
+            "label": "Es-3",
+            "title": "Escopo 3",
+            "row": 6,
+            "color": "gold",
+            "size": 18
+        },        
+        {
+            "id": "id011",
+            "label": "Gr-1",
+            "title": "Gerenciamento 1",
+            "row": 5,
+            "color": "wheat",
+            "size": 18
+        },
+        {
+            "id": "id012",
+            "label": "Gr-2",
+            "title": "Gerenciamento 2",
+            "row": 5,
+            "color": "deepskyblue",
+            "size": 18
+        },
+        {
+            "id": "id013",
+            "label": "Gr-3",
+            "title": "Gerenciamento 3",
+            "row": 5,
+            "color": "gold",
+            "size": 18
+        },
+
+        {
+            "id": "id014",
+            "label": "Pf-1",
+            "title": "Plataforma 1",
+            "row": 4,
+            "color": "wheat",
+            "size": 18
+        },
+        {
+            "id": "id015",
+            "label": "Pf-2",
+            "title": "Plataforma 2",
+            "row": 4,
+            "color": "deepskyblue",
+            "size": 18
+        },
+        {
+            "id": "id016",
+            "label": "Pf-3",
+            "title": "Plataforma 3",
+            "row": 4,
+            "color": "gold",
+            "size": 18
+        },        
+        {
+            "id": "id017",
+            "label": "Tc-1",
+            "title": "Tecnologia 1",
+            "row": 3,
+            "color": "wheat",
+            "size": 18
+        },
+        {
+            "id": "id018",
+            "label": "Tc-2",
+            "title": "Tecnologia 2",
+            "row": 3,
+            "color": "deepskyblue",
+            "size": 18
+        },
+        {
+            "id": "id019",
+            "label": "Tc-3",
+            "title": "Tecnologia 3",
+            "row": 3,
+            "color": "gold",
+            "size": 18 
+        },        
+        {
+            "id": "id020",
+            "label": "Sv-1",
+            "title": "Serviço/Produto 1",
+            "row": 2,
+            "color": "wheat",
+            "size": 18
+        },
+        {
+            "id": "id021",
+            "label": "Sv-2",
+            "title": "Serviço/Produto 2",
+            "row": 2,
+            "color": "deepskyblue",
+            "size": 18
+        },
+        {
+            "id": "id022",
+            "label": "Sv-3",
+            "title": "Serviço/Produto 3",
+            "row": 2,
+            "color": "gold",
+            "size": 18
+        },        
+        {
+            "id": "id023",
+            "label": "Ip-1",
+            "title": "Impacto 1",
+            "row": 1,
+            "color": "wheat",
+            "size": 18
+        },
+        {
+            "id": "id024",
+            "label": "Ip-2",
+            "title": "Impacto 2",
+            "row": 1,
+            "color": "deepskyblue",
+            "size": 18
+        },
+        {
+            "id": "id025",
+            "label": "Ip-3",
+            "title": "Impacto 3",
+            "row": 1,
+            "color": "gold",
+            "size": 18
+        }        
+    ],
+    "links": [
+        {
+            "source": "id001",
+            "target": "id002",
+            "weight": 1,
+            "color": "wheat"
+        },
+        {
+            "source": "id001",
+            "target": "id003",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id001",
+            "target": "id004",
+            "weight": 1,
+            "color": "gold"
+        },        
+        {
+            "source": "id002",
+            "target": "id005",
+            "weight": 1,
+            "color": "wheat"
+        },
+        {
+            "source": "id003",
+            "target": "id006",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id004",
+            "target": "id007",
+            "weight": 1,
+            "color": "gold"
+        },        
+        {
+            "source": "id005",
+            "target": "id008",
+            "weight": 1,
+            "color": "wheat"
+        },
+        {
+            "source": "id006",
+            "target": "id009",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id007",
+            "target": "id010",
+            "weight": 1,
+            "color": "gold"
+        },        
+        {
+            "source": "id008",
+            "target": "id011",
+            "weight": 1,
+            "color": "wheat"
+        },
+        {
+            "source": "id009",
+            "target": "id012",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id010",
+            "target": "id013",
+            "weight": 1,
+            "color": "gold"
+        },        
+        {
+            "source": "id011",
+            "target": "id014",
+            "weight": 1,
+            "color": "wheat"
+        },
+        {
+            "source": "id012",
+            "target": "id015",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id013",
+            "target": "id016",
+            "weight": 1,
+            "color": "gold"
+        },  
+        {
+            "source": "id014",
+            "target": "id017",
+            "weight": 1,
+            "color": "wheat"
+        },                
+        {
+            "source": "id015",
+            "target": "id018",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id016",
+            "target": "id019",
+            "weight": 1,
+            "color": "gold"
+        },
+        {
+            "source": "id017",
+            "target": "id020",
+            "weight": 1,
+            "color": "wheat"
+        },
+        {
+            "source": "id018",
+            "target": "id021",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id019",
+            "target": "id022",
+            "weight": 1,
+            "color": "gold"
+        },        
+        {
+            "source": "id020",
+            "target": "id023",
+            "weight": 1,
+            "color": "wheat"
+        },        
+        {
+            "source": "id021",
+            "target": "id024",
+            "weight": 1,
+            "color": "deepskyblue"
+        },        
+        {
+            "source": "id022",
+            "target": "id025",
+            "weight": 1,
+            "color": "gold"
+        }
+    ]
+}

@@ -1,0 +1,126 @@
+{
+    "nodes": [
+        {
+            "id": "id001",
+            "label": "Dsf-A",
+            "title": "Desafio A",
+            "row": 9,
+            "color": "white",
+            "size": 15
+        },
+        {
+            "id": "id004",
+            "label": "Ch-3",
+            "title": "Conhecimento 3",
+            "row": 8,
+            "color": "gold",
+            "size": 15
+        },        
+        {
+            "id": "id007",
+            "label": "Cp-3",
+            "title": "Competência 3",
+            "row": 7,
+            "color": "gold",
+            "size": 15
+        },        
+        {
+            "id": "id010",
+            "label": "Es-3",
+            "title": "Escopo 3",
+            "row": 6,
+            "color": "gold",
+            "size": 15
+        },        
+        {
+            "id": "id013",
+            "label": "Gr-3",
+            "title": "Gerenciamento 3",
+            "row": 5,
+            "color": "gold",
+            "size": 15
+        },
+        {
+            "id": "id016",
+            "label": "Pf-3",
+            "title": "Plataforma 3",
+            "row": 4,
+            "color": "gold",
+            "size": 15
+        },        
+        {
+            "id": "id019",
+            "label": "Tc-3",
+            "title": "Tecnologia 3",
+            "row": 3,
+            "color": "gold",
+            "size": 15 
+        },        
+        {
+            "id": "id022",
+            "label": "Sv-3",
+            "title": "Serviço/Produto 3",
+            "row": 2,
+            "color": "gold",
+            "size": 15
+        },        
+        {
+            "id": "id025",
+            "label": "Ip-3",
+            "title": "Impacto 3",
+            "row": 1,
+            "color": "gold",
+            "size": 15
+        }        
+    ],
+    "links": [
+        {
+            "source": "id001",
+            "target": "id004",
+            "weight": 1,
+            "color": "gold"
+        },        
+        {
+            "source": "id004",
+            "target": "id007",
+            "weight": 1,
+            "color": "gold"
+        },        
+        {
+            "source": "id007",
+            "target": "id010",
+            "weight": 1,
+            "color": "gold"
+        },        
+        {
+            "source": "id010",
+            "target": "id013",
+            "weight": 1,
+            "color": "gold"
+        },        
+        {
+            "source": "id013",
+            "target": "id016",
+            "weight": 1,
+            "color": "gold"
+        },  
+        {
+            "source": "id016",
+            "target": "id019",
+            "weight": 1,
+            "color": "gold"
+        },
+        {
+            "source": "id019",
+            "target": "id022",
+            "weight": 1,
+            "color": "gold"
+        },        
+        {
+            "source": "id022",
+            "target": "id025",
+            "weight": 1,
+            "color": "gold"
+        }
+    ]
+}

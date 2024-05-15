@@ -1,0 +1,93 @@
+{
+    "entities": [
+      {
+        "type": "Researcher",
+        "properties": ["id", "name", "specialization", "affiliation", "content"]
+      },
+      {
+        "type": "Article",
+        "properties": ["id", "title", "abstract", "publicationYear", "journal", "content"]
+      },
+      {
+        "type": "Patent",
+        "properties": ["id", "title", "abstract", "applicationYear", "status", "content"]
+      },
+      {
+        "type": "HealthCondition",
+        "properties": ["id", "name", "type", "prevalence"]
+      },
+      {
+        "type": "SocialDeterminant",
+        "properties": ["id", "name", "category", "content"]
+      },
+      {
+        "type": "PopulationSegment",
+        "properties": ["id", "demographics", "socioeconomicStatus", "location"]
+      },
+      {
+        "type": "Institution",
+        "properties": ["id", "name", "type", "content"]
+      },
+      {
+        "type": "ResearchArea",
+        "properties": ["id", "name", "content"]
+      }
+    ],
+    "edges": [
+      {
+        "type": "AUTHORED_BY",
+        "source": "Article",
+        "target": "Researcher",
+        "properties": []
+      },
+      {
+        "type": "INVENTED_BY",
+        "source": "Patent",
+        "target": "Researcher",
+        "properties": []
+      },
+      {
+        "type": "FOCUSES_ON",
+        "source": ["Article", "Patent"],
+        "target": "HealthCondition",
+        "properties": []
+      },
+      {
+        "type": "AFFECTS",
+        "source": "SocialDeterminant",
+        "target": "HealthCondition",
+        "properties": []
+      },
+      {
+        "type": "SUFFERS_FROM",
+        "source": "PopulationSegment",
+        "target": "HealthCondition",
+        "properties": []
+      },
+      {
+        "type": "AFFILIATED_WITH",
+        "source": "Researcher",
+        "target": "Institution",
+        "properties": []
+      },
+      {
+        "type": "RELATED_TO",
+        "source": ["Researcher", "Article", "Patent"],
+        "target": "ResearchArea",
+        "properties": []
+      },
+      {
+        "type": "BELONGS_TO",
+        "source": ["Article", "Patent"],
+        "target": "ResearchArea",
+        "properties": []
+      },
+      {
+        "type": "CITES",
+        "source": ["Article", "Patent"],
+        "target": ["Article", "Patent"],
+        "properties": []
+      }
+    ]
+  }
+  

@@ -1,0 +1,126 @@
+{
+    "nodes": [
+        {
+            "id": "id001",
+            "label": "Dsf-A",
+            "title": "Desafio A",
+            "row": 9,
+            "color": "white",
+            "size": 15
+        },
+        {
+            "id": "id003",
+            "label": "Ch-2",
+            "title": "Conhecimento 2",
+            "row": 8,
+            "color": "deepskyblue",
+            "size": 15
+        },
+        {
+            "id": "id006",
+            "label": "Cp-2",
+            "title": "Competência 2",
+            "row": 7,
+            "color": "deepskyblue",
+            "size": 15
+        },
+        {
+            "id": "id009",
+            "label": "Es-2",
+            "title": "Escopo 2",
+            "row": 6,
+            "color": "deepskyblue",
+            "size": 15
+        },
+        {
+            "id": "id012",
+            "label": "Gr-2",
+            "title": "Gerenciamento 2",
+            "row": 5,
+            "color": "deepskyblue",
+            "size": 15
+        },
+        {
+            "id": "id015",
+            "label": "Pf-2",
+            "title": "Plataforma 2",
+            "row": 4,
+            "color": "deepskyblue",
+            "size": 15
+        },
+        {
+            "id": "id018",
+            "label": "Tc-2",
+            "title": "Tecnologia 2",
+            "row": 3,
+            "color": "deepskyblue",
+            "size": 15
+        },
+        {
+            "id": "id021",
+            "label": "Sv-2",
+            "title": "Serviço/Produto 2",
+            "row": 2,
+            "color": "deepskyblue",
+            "size": 15
+        },
+        {
+            "id": "id024",
+            "label": "Ip-2",
+            "title": "Impacto 2",
+            "row": 1,
+            "color": "deepskyblue",
+            "size": 15
+        }
+    ],
+    "links": [
+        {
+            "source": "id001",
+            "target": "id003",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id003",
+            "target": "id006",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id006",
+            "target": "id009",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id009",
+            "target": "id012",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id012",
+            "target": "id015",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id015",
+            "target": "id018",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id018",
+            "target": "id021",
+            "weight": 1,
+            "color": "deepskyblue"
+        },
+        {
+            "source": "id021",
+            "target": "id024",
+            "weight": 1,
+            "color": "deepskyblue"
+        }
+    ]
+}

@@ -1,0 +1,126 @@
+{
+    "nodes": [
+        {
+            "id": "id001",
+            "label": "Dsf-A",
+            "title": "Desafio A",
+            "row": 9,
+            "color": "white",
+            "size": 15
+        },
+        {
+            "id": "id002",
+            "label": "Ch-1",
+            "title": "Conhecimento 1",
+            "row": 8,
+            "color": "wheat",
+            "size": 15
+        },
+        {
+            "id": "id005",
+            "label": "Cp-1",
+            "title": "Competência 1",
+            "row": 7,
+            "color": "wheat",
+            "size": 15
+        },
+        {
+            "id": "id008",
+            "label": "Es-1",
+            "title": "Escopo 1",
+            "row": 6,
+            "color": "wheat",
+            "size": 15
+        },
+        {
+            "id": "id011",
+            "label": "Gr-1",
+            "title": "Gerenciamento 1",
+            "row": 5,
+            "color": "wheat",
+            "size": 15
+        },
+        {
+            "id": "id014",
+            "label": "Pf-1",
+            "title": "Plataforma 1",
+            "row": 4,
+            "color": "wheat",
+            "size": 15
+        },
+        {
+            "id": "id017",
+            "label": "Tc-1",
+            "title": "Tecnologia 1",
+            "row": 3,
+            "color": "wheat",
+            "size": 15
+        },
+        {
+            "id": "id020",
+            "label": "Sv-1",
+            "title": "Serviço/Produto 1",
+            "row": 2,
+            "color": "wheat",
+            "size": 15
+        },
+        {
+            "id": "id023",
+            "label": "Ip-1",
+            "title": "Impacto 1",
+            "row": 1,
+            "color": "wheat",
+            "size": 15
+        }
+    ],
+    "links": [
+        {
+            "source": "id001",
+            "target": "id002",
+            "weight": 1,
+            "color": "wheat"
+        },
+        {
+            "source": "id002",
+            "target": "id005",
+            "weight": 1,
+            "color": "wheat"
+        },
+        {
+            "source": "id005",
+            "target": "id008",
+            "weight": 1,
+            "color": "wheat"
+        },
+        {
+            "source": "id008",
+            "target": "id011",
+            "weight": 1,
+            "color": "wheat"
+        },
+        {
+            "source": "id011",
+            "target": "id014",
+            "weight": 1,
+            "color": "wheat"
+        },
+        {
+            "source": "id014",
+            "target": "id017",
+            "weight": 1,
+            "color": "wheat"
+        },                
+        {
+            "source": "id017",
+            "target": "id020",
+            "weight": 1,
+            "color": "wheat"
+        },
+        {
+            "source": "id020",
+            "target": "id023",
+            "weight": 1,
+            "color": "wheat"
+        }
+    ]
+}

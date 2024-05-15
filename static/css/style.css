@@ -1,0 +1,160 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+ }
+ 
+ #main-content {
+   width: 100%; /* Ocupa toda a largura disponível */
+   min-height: 100vh; /* Minha altura para ocupar toda a altura da viewport */
+   display: flex;
+   flex-direction: column; /* Ajusta conforme necessário */
+ }
+
+ #graphContainer {
+   width: 100vw; /* 100% da largura da viewport */
+   height: 100vh; /* 100% da altura da viewport */
+   display: block; /* ou 'flex' dependendo da sua estrutura */
+   justify-content: center;
+   align-items: center;
+ }
+
+ #renderGraph {
+   display: none; /* Inicialmente oculto */
+   position: fixed;
+   top: 20px;
+   right: 20px;
+   z-index: 1000; /* Garante que o botão fique acima de outros elementos */
+   padding: 10px;
+   background-color: #007bff; /* Exemplo de cor de fundo */
+   color: white; /* Exemplo de cor de texto */
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+.button-style {
+   background-color: #4CAF50; /* Cor de fundo verde */
+   border: none;
+   color: white;
+   padding: 10px 20px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   margin: 4px 2px;
+   cursor: pointer;
+   border-radius: 5px; /* Bordas arredondadas */
+}
+
+.button-style:hover {
+   background-color: #45a049; /* Cor mais escura ao passar o mouse */
+}
+
+/* CSS para ocultar o botões */
+.hidden {
+   display: none;
+}
+
+/* Estilo ao passar o mouse sobre o botão */
+ #renderGraph:hover {
+   background-color: #0056b3;
+}
+
+@keyframes fadeIn {
+   from { opacity: 0; }
+   to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+   from { opacity: 1; }
+   to { opacity: 0; }
+}
+
+/* Estilização do breadcrumb */
+.breadcrumb {
+    list-style: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    display: flex; /* Usa flexbox para alinhar os itens horizontalmente */
+    align-items: center;
+}
+
+.breadcrumb li {
+    display: inline; /* Exibe os itens da lista inline */
+}
+
+.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+    padding: 0 10px; /* Adiciona um pouco de espaço ao redor dos links */
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: '|'; /* Adiciona um separador entre os itens */
+    color: #6c757d;
+    padding: 0 10px;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Estilização do conteudo principal */
+.container {
+    display: flex;
+    flex-direction: column;
+}
+ 
+.line {
+    display: flex;
+    flex-wrap: wrap;
+}
+ 
+.line .title1 {
+    width: 100%;
+    background-color: #ddd;
+    padding: 5px;
+    text-align: left;
+}
+ 
+.line .title2 {
+    width: 75%;
+    padding: 1px;
+    text-align: left;
+}
+
+.link {
+   fill: none;
+   stroke: blue;
+   stroke-width: 2;
+}
+
+.tooltip {
+   position: absolute;
+   text-align: center;
+   padding: 8px;
+   font: 12px sans-serif;
+   background: white;
+   border: 0px;
+   border-radius: 8px;
+   pointer-events: none;
+   opacity: 0;
+   transition: opacity 0.3s;
+}
+
+.scatterplot {
+   min-width: 800px;
+   min-height: 600px;
+}
+
+#scatterplot {
+   min-width: 800px; /* Exemplo */
+   min-height: 600px; /* Exemplo */
+   position: absolute;
+   top: 10%;
+   left: 10%;
+   right: 10%;
+   bottom: 5%;
+}
