@@ -32,6 +32,11 @@ body {
    cursor: pointer;
 }
 
+.container {
+   display: flex;
+   justify-content: space-between; /* Alinha os itens com espaço máximo entre eles */
+}
+
 .button-style {
    background-color: #4CAF50; /* Cor de fundo verde */
    border: none;

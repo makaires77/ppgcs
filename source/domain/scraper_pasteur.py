@@ -638,8 +638,9 @@ class PasteurScraper:
         sys.stdout = report_output = StringIO()
 
         # Generate the report content
-        logo_esq = os.path.join(self.folder_assets,'logo_fioce.png')
-        logo_dir = os.path.join(self.folder_assets,'logo_pasteur.png')
+        url_base = '/static/assets/images/'
+        logo_esq = os.path.join(url_base,'logo_fioce.png')
+        logo_dir = os.path.join(url_base,'logo_pasteur.png')
         print(self.inserir_logotipos(logo_esq, None, logo_dir))                
         print("<h1><center><b>Coordenação de Pesquisa da Fiocruz Ceará</b></center></h1>")
         print("<h2><center><b>Estruturação em pesquisa do Instituto Pasteur</b></center></h2>")
@@ -744,7 +745,7 @@ class PasteurScraper:
         for i in platforms_data:
             print(f"  {i.get('head_name'):>25}: <b>{i.get('title')}</b>")
 
-        print("<h4>Associação de Projetos com as Plaaformas</h4>")
+        print("<h4>Associação de Projetos com as Plataformas</h4>")
         for i in platforms_data:
             platform_title = i.get('title')
             print('-'*150)
@@ -776,8 +777,9 @@ class PasteurScraper:
         html_content = self.convert_to_html(report_content)
 
         # Save the HTML content to a file
-        filename = 'report_pasteur_research.html'
-        filepath = os.path.join(self.folder_data_output,filename)
+        filename = 'report_pasteur_fr.html'
+        pathrepo = os.path.join(self.base_repo_dir, 'templates')
+        filepath = os.path.join(pathrepo,filename)
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(html_content)
 

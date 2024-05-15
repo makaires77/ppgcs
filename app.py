@@ -1,14 +1,30 @@
-from flask import Flask, render_template, send_from_directory, jsonify, json, request
+from flask import Flask, render_template, jsonify, json, request
+from flask import send_from_directory
 from flask_cors import CORS
 import os
 
 app = Flask(__name__)
+app.static_folder = 'static'
 CORS(app)
 
 @app.route('/')
 def index():
     # Página inicial com links para os dois templates
     return render_template('index.html')
+
+@app.route('/static/assets/images/<filename>')
+def serve_image(filename):
+    return send_from_directory('static/assets/images', filename)
+
+@app.route('/pasteur_fr_report')
+def pasteur_fr_report():
+    # Renderizar link para report no breadcrumb
+    return render_template('report_pasteur_fr.html', show_render_button=True)
+
+@app.route('/fiocruz_ce_report')
+def fiocruz_ce_report():
+    # Renderizar link para report no breadcrumb
+    return render_template('report_fiocruz_ce.html', show_render_button=True)
 
 @app.route('/i9c_gp_nobc')
 def i9c_gp_nobc():
