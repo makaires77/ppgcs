@@ -32,9 +32,28 @@ body {
    cursor: pointer;
 }
 
-.container {
-   display: flex;
-   justify-content: space-between; /* Alinha os itens com espaço máximo entre eles */
+body .container { /* Mais específico do que apenas .container */
+   display: grid;
+   grid-template-columns: 1fr auto 1fr;
+   align-items: center;
+   width: 100%; 
+}
+
+body .container img { /* Mais específico do que apenas .container img */
+   max-width: 100%;
+   height: auto;
+}
+
+body .container img:first-child {
+   margin-right: auto;
+}
+
+body .container img:nth-child(2) {
+   margin: 0 auto;
+}
+
+body .container img:last-child {
+   margin-left: auto;
 }
 
 .button-style {
