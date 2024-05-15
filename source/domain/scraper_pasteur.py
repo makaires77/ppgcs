@@ -625,7 +625,7 @@ class PasteurScraper:
         return head
     
     def generate_pasteur_report_html(self):
-        # Use StringIO to capture print output
+        # Use StringIO to capture print output to generate template
         from io import StringIO
         import sys
 
@@ -639,9 +639,8 @@ class PasteurScraper:
         old_stdout = sys.stdout
         sys.stdout = report_output = StringIO()
 
-        print(f"""<!DOCTYPE html><html>{self.inserir_head()}<body>""")
-
         # Generate the report content
+        print(f"""<!DOCTYPE html><html>{self.inserir_head()}<body>""")
         url_base = '/static/assets/images/'
         logo_esq = os.path.join(url_base,'logo_fioce.png')
         logo_cen = os.path.join(url_base,'logo_pasteur_fiocruz.png')
@@ -650,27 +649,26 @@ class PasteurScraper:
         print(logotipos.replace('&quot;','\"').replace('&lt;','<').replace('&gt;','>').replace('<br>',''))
         print("<h1><center><b>Coordenação de Pesquisa da Fiocruz Ceará</b></center></h1>")
         print("<h2><center><b>Estruturação em pesquisa do Instituto Pasteur</b></center></h2>")
+        
         logging.info("Obtendo os dados do site do Instituto Pasteur, aguarde...")
         main_data = self.scrape_main_page_quantitative_data()
         print(f"<h2><center><b>{len(main_data)} seções de dados principais extraídas</b></center></h2>")
+        
         logging.info(f"{len(main_data)} seções de dados principais extraídas")
         for i, j in main_data.items():
             print(f"<center>{j} {i}</center>")
-
         print(f"\n<center>{'='*separator}</center>\n")  
-
+        
         logging.info("Obtendo áreas prioritárias de pesquisa, aguarde...")
         priority_research = self.scrape_priority_scientific_areas()
         json_file['priority_research'] = priority_research
-
         print(f"<h2><center><b>{len(priority_research)} áreas prioritárias em pesquisa</b></center></h2>")
+        
         logging.info(f"{len(priority_research)} áreas prioritárias em pesquisa extraídas")
         for i in priority_research:
             print(f"<center>{i.get('team_count')} em <b>{i.get('area_name')}</b></center>")
         print()
-
         print(f"\n<center>{'='*separator}</center>\n")  
-
         for i in priority_research:
             titulo = i.get('details').get('title')
             diretores = i.get('details').get('directors')
@@ -703,7 +701,6 @@ class PasteurScraper:
                 print()
                 print("<b>Medidas da área:</b>")
                 print(indicador)
-
             print(f"\n<center>{'='*separator}</center>\n")   
 
         logging.info("Obtendo os centros de referência, aguarde...")
@@ -711,8 +708,8 @@ class PasteurScraper:
         heads_centers_data = self.scrape_centers()
         json_file['centers_data'] = centers_data
         json_file['heads_centers_data'] = heads_centers_data
-
         print(f"<h2><center>{len(centers_data)} centros extraídos</h2></center>")
+
         logging.info(f"{len(centers_data)} centros extraídos")
         for i in heads_centers_data:
             print(f"<b><center>{i.get('title')}</b></center>\n<center>{i.get('head_name')}</center>")
@@ -721,14 +718,13 @@ class PasteurScraper:
             print(f"\n<center><h2>{i.get('center_title')}</h2> ({len(i.get('teams')):02} times associados)</center>")
             for team in i.get('teams'):
                 print(f"  {team.get('head_name'):>35}: <b>{team.get('title')}</b>")
-
         print(f"\n<center>{'='*separator}</center>\n")  
 
         logging.info("Obtendo os departamentos, aguarde...")
         departments_data = self.scrape_department_data()
         json_file['departments_data'] = departments_data
-
         print(f"<h2><center>{len(departments_data)} Departamentos extraídos</h2></center>")
+
         logging.info(f"{len(departments_data)} departamentos extraídos")
         for i in departments_data:
             print(f"  {i.get('head_name'):>25}: <b>{i.get('department_name')}</b>")
@@ -739,18 +735,16 @@ class PasteurScraper:
             for team in i.get('aditional_info').get('teams'):
                 print(f"  {team.get('head_name'):>35}: <b>{team.get('team_name')}</b>")
             print('-'*150)
-
         print(f"\n<center>{'='*separator}</center>\n")
 
         logging.info("Obtendo as plataformas, aguarde...")
         platforms_data = self.scrape_platforms()
         json_file['platforms_data'] = platforms_data
-
         print(f"<h2><center>{len(platforms_data)} Plataformas extraídas</h2></center>")
+
         logging.info(f"{len(platforms_data)} plataformas extraídas")
         for i in platforms_data:
             print(f"  {i.get('head_name'):>25}: <b>{i.get('title')}</b>")
-
         print("<h4>Associação de Projetos com as Plataformas</h4>")
         for i in platforms_data:
             platform_title = i.get('title')
@@ -772,7 +766,6 @@ class PasteurScraper:
                         print(f"[Transversal Project] {j.get('title')}")
                 except:
                     print(f"            Projetos não encontrados para esta plataforma")
-
         print("""</body></html>""")
 
         # Reset stdout so further print statements go to the console again
