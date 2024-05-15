@@ -592,7 +592,9 @@ class PasteurScraper:
         if alinhamento not in ("left", "center", "right"):
             raise ValueError("O alinhamento deve ser 'left', 'center' ou 'right'.")
 
-        return html.escape(f"""<img src="{imagem}" alt="Logotipo" align="{alinhamento}" height="80">""")
+        return html.escape(f"""
+            <img src="{imagem}" alt="Logotipo" align="{alinhamento}" width="300" height="200">
+        """)
 
     def inserir_logotipos(self, logotipo_esquerdo=None, logotipo_centro=None, logotipo_direito=None):
         """
@@ -619,11 +621,7 @@ class PasteurScraper:
             html += self.inserir_logotipo(logotipo_direito, "right")
 
         return html
-    
-    def inserir_head(self):
-        head = """<head><meta charset="UTF-8"><title>Oportunidades Pasteur-Fiocruz</title><link rel="stylesheet" type="text/css" href="/static/css/style.css"></head>"""   
-        return head
-    
+
     def generate_pasteur_report_html(self):
         # Use StringIO to capture print output
         from io import StringIO
@@ -639,15 +637,10 @@ class PasteurScraper:
         old_stdout = sys.stdout
         sys.stdout = report_output = StringIO()
 
-        print(f"""<!DOCTYPE html><html>{self.inserir_head()}<body>""")
-
         # Generate the report content
-        url_base = '/static/assets/images/'
-        logo_esq = os.path.join(url_base,'logo_fioce.png')
-        logo_cen = os.path.join(url_base,'logo_pasteur_fiocruz.png')
-        logo_dir = os.path.join(url_base,'logo_pasteur.png')
-        logotipos = self.inserir_logotipos(logo_esq, logo_cen, logo_dir)
-        print(logotipos.replace('&quot;','\"').replace('&lt;','<').replace('&gt;','>').replace('<br>',''))
+        logo_esq = os.path.join(self.folder_assets,'logo_fioce.png')
+        logo_dir = os.path.join(self.folder_assets,'logo_pasteur.png')
+        print(self.inserir_logotipos(logo_esq, None, logo_dir))                
         print("<h1><center><b>Coordenação de Pesquisa da Fiocruz Ceará</b></center></h1>")
         print("<h2><center><b>Estruturação em pesquisa do Instituto Pasteur</b></center></h2>")
         logging.info("Obtendo os dados do site do Instituto Pasteur, aguarde...")
@@ -657,7 +650,7 @@ class PasteurScraper:
         for i, j in main_data.items():
             print(f"<center>{j} {i}</center>")
 
-        print(f"\n<center>{'='*separator}</center>\n")  
+        print(f"\n{'='*separator}\n")  
 
         logging.info("Obtendo áreas prioritárias de pesquisa, aguarde...")
         priority_research = self.scrape_priority_scientific_areas()
@@ -669,7 +662,7 @@ class PasteurScraper:
             print(f"<center>{i.get('team_count')} em <b>{i.get('area_name')}</b></center>")
         print()
 
-        print(f"\n<center>{'='*separator}</center>\n")  
+        print(f"\n{'='*separator}\n")  
 
         for i in priority_research:
             titulo = i.get('details').get('title')
@@ -704,7 +697,7 @@ class PasteurScraper:
                 print("<b>Medidas da área:</b>")
                 print(indicador)
 
-            print(f"\n<center>{'='*separator}</center>\n")   
+            print(f"\n{'='*separator}\n")   
 
         logging.info("Obtendo os centros de referência, aguarde...")
         centers_data = self.scrape_centers_data()
@@ -722,7 +715,7 @@ class PasteurScraper:
             for team in i.get('teams'):
                 print(f"  {team.get('head_name'):>35}: <b>{team.get('title')}</b>")
 
-        print(f"\n<center>{'='*separator}</center>\n")  
+        print(f"\n{'='*separator}\n")  
 
         logging.info("Obtendo os departamentos, aguarde...")
         departments_data = self.scrape_department_data()
@@ -740,7 +733,7 @@ class PasteurScraper:
                 print(f"  {team.get('head_name'):>35}: <b>{team.get('team_name')}</b>")
             print('-'*150)
 
-        print(f"\n<center>{'='*separator}</center>\n")
+        print(f"\n{'='*separator}\n")
 
         logging.info("Obtendo as plataformas, aguarde...")
         platforms_data = self.scrape_platforms()
@@ -751,7 +744,7 @@ class PasteurScraper:
         for i in platforms_data:
             print(f"  {i.get('head_name'):>25}: <b>{i.get('title')}</b>")
 
-        print("<h4>Associação de Projetos com as Plataformas</h4>")
+        print("<h4>Associação de Projetos com as Plaaformas</h4>")
         for i in platforms_data:
             platform_title = i.get('title')
             print('-'*150)
@@ -773,8 +766,6 @@ class PasteurScraper:
                 except:
                     print(f"            Projetos não encontrados para esta plataforma")
 
-        print("""</body></html>""")
-
         # Reset stdout so further print statements go to the console again
         sys.stdout = old_stdout
 
@@ -785,9 +776,8 @@ class PasteurScraper:
         html_content = self.convert_to_html(report_content)
 
         # Save the HTML content to a file
-        filename = 'report_pasteur_fr.html'
-        pathrepo = os.path.join(self.base_repo_dir, 'templates')
-        filepath = os.path.join(pathrepo,filename)
+        filename = 'report_pasteur_research.html'
+        filepath = os.path.join(self.folder_data_output,filename)
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(html_content)
 
@@ -802,4 +792,4 @@ class PasteurScraper:
     def convert_to_html(text):
         # Replace line breaks with <br>, and any other transformations needed
         html_content = text.replace('\n', '<br>')
-        return f"{html_content}"
+        return f"<html><body>{html_content}</body></html>"
