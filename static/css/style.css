@@ -5,7 +5,7 @@ body {
  
  #main-content {
    width: 100%; /* Ocupa toda a largura disponível */
-   min-height: 100vh; /* Minha altura para ocupar toda a altura da viewport */
+   min-height: 100vh; /* Mínima altura para ocupar toda a altura da viewport */
    display: flex;
    flex-direction: column; /* Ajusta conforme necessário */
  }
@@ -18,7 +18,10 @@ body {
  }
  
  #main-content .logo-container img {
-   max-width: 100%; /* Garante que a imagem se adapte ao container */
+   max-width: 33.33%; /* Garante que a imagem se adapte ao container */
+   margin-right: 40px; /* Adiciona margem à direita de cada imagem, exceto a última */   
+   margin-left: 40px; /* Adiciona margem à direita de cada imagem, exceto a última */
+   max-height: 90px;
    height: auto;
  }
 
