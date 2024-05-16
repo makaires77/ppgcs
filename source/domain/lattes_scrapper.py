@@ -695,7 +695,6 @@ class LattesScraper:
     def get_professional_experience(self, soup):
         """Extrai informações da atuação profissional."""
         experiences = []
-        div = soup.find('div', class_='')
         atuacao_profissional_section = soup.find('a', name='AtuacaoProfissional')
         if atuacao_profissional_section:
             all_experiences = atuacao_profissional_section.find_next_siblings('div', limit=1)[0].find_all('div', class_='inst_back')
@@ -705,7 +704,7 @@ class LattesScraper:
                 experiences.append(experience_info)
         return experiences
 
-    def get_productions(self, soup):
+    def get_productions(self):
         logging.debug("Extraindo produções do currículo.")
         try:
             productions = {
@@ -817,7 +816,7 @@ class LattesScraper:
         #             if element:
         #                 results.append(element)
         #                 break
-        return results
+        return resultados
 
     def get_element_without_pagination(self, NOME, resultados, termos_busca):
         """
@@ -3489,13 +3488,16 @@ class GetQualis:
             # Reescreva os dados formatados no arquivo
             # json.dump(dados, arquivo, indent=4)
             with codecs.open(nome_arquivo, 'w', encoding='utf-8') as arquivo:
-                # Reposicione o cursor no início do arquivo
                 arquivo.seek(0)
                 json.dump(dados, arquivo, indent=4)
             print('Exemplo:')
-            print([x.get('Produções') for x in dados][0].get('Artigos completos publicados em periódicos')[0])
-            
-            return arquivo
+            try:
+                test = [x.get('Produções') for x in dados][0] if [x.get('Produções') for x in dados][0] else [x.get('Produções') for x in dados][1]
+                if test:
+                    print(test.get('Artigos completos publicados em periódicos')[0])
+            except:
+                pass
+            return dados
         
         except Exception as e:
             print(f"Erro ao atualizar o arquivo: {e}")
