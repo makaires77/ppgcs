@@ -1,9 +1,72 @@
-2024-04-12 07:49:44,147 - ERROR - Tentativa de extrair currículo de Anya Pimentel Gomes Fernandes Vieira Meyer falhou: Message: Erro ao realizar a extração para Anya Pimentel Gomes Fernandes Vieira Meyer: Message: 
+2024-05-15 21:40:03,979 - ERROR - Tentativa de extrair currÃ­culo de Alice Paula Di Sabatino Guimaraes em scrape_retry() falhou: Message:        Erro ao realizar a extraÃ§Ã£o para Alice Paula Di Sabatino Guimaraes: Message: disconnected: not connected to DevTools
+  (failed to check if window was closed: disconnected: not connected to DevTools)
+  (Session info: chrome=124.0.6367.207)
+Stacktrace:
+#0 0x622e84a8ecb3 <unknown>
+#1 0x622e8477d4a7 <unknown>
+#2 0x622e84763c60 <unknown>
+#3 0x622e84763b43 <unknown>
+#4 0x622e8477f822 <unknown>
+#5 0x622e8480859c <unknown>
+#6 0x622e847ea1b3 <unknown>
+#7 0x622e847bb24a <unknown>
+#8 0x622e847bbc1e <unknown>
+#9 0x622e84a52fdb <unknown>
+#10 0x622e84a56f2b <unknown>
+#11 0x622e84a3f0f1 <unknown>
+#12 0x622e84a57a92 <unknown>
+#13 0x622e84a23faf <unknown>
+#14 0x622e84a7de08 <unknown>
+#15 0x622e84a7dfe0 <unknown>
+#16 0x622e84a8de04 <unknown>
+#17 0x778e96894ac3 <unknown>
 
 . Tentando novamente...
-2024-04-12 07:57:21,404 - ERROR - Tentativa de extrair currículo de José Luis Passos Cordeiro falhou: Message: Erro ao realizar a extração para José Luis Passos Cordeiro: Message: 
+2024-05-15 21:40:05,005 - ERROR - Tentativa de extrair currÃ­culo de Alice Paula Di Sabatino Guimaraes em scrape_retry() falhou: Message:        Erro ao realizar a extraÃ§Ã£o para Alice Paula Di Sabatino Guimaraes: Message: disconnected: not connected to DevTools
+  (failed to check if window was closed: disconnected: not connected to DevTools)
+  (Session info: chrome=124.0.6367.207)
+Stacktrace:
+#0 0x622e84a8ecb3 <unknown>
+#1 0x622e8477d4a7 <unknown>
+#2 0x622e84763c60 <unknown>
+#3 0x622e84763b43 <unknown>
+#4 0x622e8477f822 <unknown>
+#5 0x622e8480859c <unknown>
+#6 0x622e847ea1b3 <unknown>
+#7 0x622e847bb24a <unknown>
+#8 0x622e847bbc1e <unknown>
+#9 0x622e84a52fdb <unknown>
+#10 0x622e84a56f2b <unknown>
+#11 0x622e84a3f0f1 <unknown>
+#12 0x622e84a57a92 <unknown>
+#13 0x622e84a23faf <unknown>
+#14 0x622e84a7de08 <unknown>
+#15 0x622e84a7dfe0 <unknown>
+#16 0x622e84a8de04 <unknown>
+#17 0x778e96894ac3 <unknown>
 
 . Tentando novamente...
-2024-04-12 08:02:22,633 - ERROR - Tentativa de extrair currículo de Roberto Nicolete falhou: Message: Erro ao realizar a extração para Roberto Nicolete: Message: 
+2024-05-15 21:40:06,029 - ERROR - Tentativa de extrair currÃ­culo de Alice Paula Di Sabatino Guimaraes em scrape_retry() falhou: Message:        Erro ao realizar a extraÃ§Ã£o para Alice Paula Di Sabatino Guimaraes: Message: disconnected: not connected to DevTools
+  (failed to check if window was closed: disconnected: not connected to DevTools)
+  (Session info: chrome=124.0.6367.207)
+Stacktrace:
+#0 0x622e84a8ecb3 <unknown>
+#1 0x622e8477d4a7 <unknown>
+#2 0x622e84763c60 <unknown>
+#3 0x622e84763b43 <unknown>
+#4 0x622e8477f822 <unknown>
+#5 0x622e8480859c <unknown>
+#6 0x622e847ea1b3 <unknown>
+#7 0x622e847bb24a <unknown>
+#8 0x622e847bbc1e <unknown>
+#9 0x622e84a52fdb <unknown>
+#10 0x622e84a56f2b <unknown>
+#11 0x622e84a3f0f1 <unknown>
+#12 0x622e84a57a92 <unknown>
+#13 0x622e84a23faf <unknown>
+#14 0x622e84a7de08 <unknown>
+#15 0x622e84a7dfe0 <unknown>
+#16 0x622e84a8de04 <unknown>
+#17 0x778e96894ac3 <unknown>
 
 . Tentando novamente...
