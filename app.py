@@ -7,6 +7,10 @@ app = Flask(__name__)
 app.static_folder = 'static'
 CORS(app)
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(app.root_path, '/static/favicon.ico') 
+
 @app.route('/')
 def index():
     # Página inicial com links para os dois templates

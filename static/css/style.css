@@ -1,6 +1,6 @@
 body {
-    font-family: sans-serif;
-    margin: 20px;
+   font-family: sans-serif;
+   margin: 20px;
  }
  
  #main-content {
@@ -8,6 +8,18 @@ body {
    min-height: 100vh; /* Minha altura para ocupar toda a altura da viewport */
    display: flex;
    flex-direction: column; /* Ajusta conforme necessário */
+ }
+
+ #main-content .logo-container { /* Seletor mais específico para o contêiner da logo */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%; /* Garante que o container ocupe toda a largura */
+ }
+ 
+ #main-content .logo-container img {
+   max-width: 100%; /* Garante que a imagem se adapte ao container */
+   height: auto;
  }
 
  #graphContainer {
@@ -30,30 +42,6 @@ body {
    border: none;
    border-radius: 5px;
    cursor: pointer;
-}
-
-body .container { /* Mais específico do que apenas .container */
-   display: grid;
-   grid-template-columns: 1fr auto 1fr;
-   align-items: center;
-   width: 100%; 
-}
-
-body .container img { /* Mais específico do que apenas .container img */
-   max-width: 100%;
-   height: auto;
-}
-
-body .container img:first-child {
-   margin-right: auto;
-}
-
-body .container img:nth-child(2) {
-   margin: 0 auto;
-}
-
-body .container img:last-child {
-   margin-left: auto;
 }
 
 .button-style {

@@ -621,9 +621,9 @@ class PasteurScraper:
         return html
     
     def inserir_head(self):
-        head = """<head><meta charset="UTF-8"><title>Oportunidades Pasteur-Fiocruz</title><link rel="stylesheet" type="text/css" href="/static/css/style.css"></head>"""   
+        head = """<head><meta charset="UTF-8"><title>Oportunidades Pasteur-Fiocruz</title><link rel="stylesheet" type="text/css" href="/static/css/style.css"></head><body><link rel="icon" type="image/x-icon" href="/static/favicon.ico"><div id="main-content"><div class="logo-container">"""   
         return head
-    
+
     def generate_pasteur_report_html(self):
         # Use StringIO to capture print output to generate template
         from io import StringIO
@@ -640,14 +640,14 @@ class PasteurScraper:
         sys.stdout = report_output = StringIO()
 
         # Generate the report content
-        print(f"""<!DOCTYPE html><html>{self.inserir_head()}<body>""")
+        print(f"""<!DOCTYPE html><html>{self.inserir_head()}""")
         url_base = '/static/assets/images/'
         logo_esq = os.path.join(url_base,'logo_fioce.png')
         logo_cen = os.path.join(url_base,'logo_pasteur_fiocruz.png')
         logo_dir = os.path.join(url_base,'logo_pasteur.png')
         logotipos = self.inserir_logotipos(logo_esq, logo_cen, logo_dir)
         print(logotipos.replace('&quot;','\"').replace('&lt;','<').replace('&gt;','>').replace('<br>',''))
-        print("<h1><center><b>Coordenação de Pesquisa da Fiocruz Ceará</b></center></h1>")
+        print("</div><h1><center><b>Coordenação de Pesquisa da Fiocruz Ceará</b></center></h1>")
         print("<h2><center><b>Estruturação em pesquisa do Instituto Pasteur</b></center></h2>")
         
         logging.info("Obtendo os dados do site do Instituto Pasteur, aguarde...")
@@ -766,7 +766,7 @@ class PasteurScraper:
                         print(f"[Transversal Project] {j.get('title')}")
                 except:
                     print(f"            Projetos não encontrados para esta plataforma")
-        print("""</body></html>""")
+        print("""</div></body></html>""")
 
         # Reset stdout so further print statements go to the console again
         sys.stdout = old_stdout
