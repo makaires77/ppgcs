@@ -1,0 +1,50 @@
+2024-05-16 09:26:03,869 - ERROR - Tentativa de extrair currículo de AGATA LOPES RIBEIRO em scrape_retry() falhou: Message:        Erro ao realizar a extração para AGATA LOPES RIBEIRO: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=125.0.6422.61)
+Stacktrace:
+	GetHandleVerifier [0x00007FF67C2B22C2+60002]
+	(No symbol) [0x00007FF67C22CA59]
+	(No symbol) [0x00007FF67C0E7EDA]
+	(No symbol) [0x00007FF67C0BD5B5]
+	(No symbol) [0x00007FF67C163727]
+	(No symbol) [0x00007FF67C17B3A1]
+	(No symbol) [0x00007FF67C15C033]
+	(No symbol) [0x00007FF67C129657]
+	(No symbol) [0x00007FF67C12A251]
+	GetHandleVerifier [0x00007FF67C5C3E2D+3278285]
+	GetHandleVerifier [0x00007FF67C610190+3590448]
+	GetHandleVerifier [0x00007FF67C6061D0+3549552]
+	GetHandleVerifier [0x00007FF67C361DE6+779654]
+	(No symbol) [0x00007FF67C237ACF]
+	(No symbol) [0x00007FF67C232EE4]
+	(No symbol) [0x00007FF67C233072]
+	(No symbol) [0x00007FF67C222C4F]
+	BaseThreadInitThunk [0x00007FFFA0AC257D+29]
+	RtlUserThreadStart [0x00007FFFA1BCAA48+40]
+
+. Tentando novamente...
+2024-05-16 09:26:04,889 - ERROR - Tentativa de extrair currículo de AGATA LOPES RIBEIRO em scrape_retry() falhou: Message:        Erro ao realizar a extração para AGATA LOPES RIBEIRO: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=125.0.6422.61)
+Stacktrace:
+	GetHandleVerifier [0x00007FF67C2B22C2+60002]
+	(No symbol) [0x00007FF67C22CA59]
+	(No symbol) [0x00007FF67C0E7EDA]
+	(No symbol) [0x00007FF67C0BD5B5]
+	(No symbol) [0x00007FF67C163727]
+	(No symbol) [0x00007FF67C17B3A1]
+	(No symbol) [0x00007FF67C15C033]
+	(No symbol) [0x00007FF67C129657]
+	(No symbol) [0x00007FF67C12A251]
+	GetHandleVerifier [0x00007FF67C5C3E2D+3278285]
+	GetHandleVerifier [0x00007FF67C610190+3590448]
+	GetHandleVerifier [0x00007FF67C6061D0+3549552]
+	GetHandleVerifier [0x00007FF67C361DE6+779654]
+	(No symbol) [0x00007FF67C237ACF]
+	(No symbol) [0x00007FF67C232EE4]
+	(No symbol) [0x00007FF67C233072]
+	(No symbol) [0x00007FF67C222C4F]
+	BaseThreadInitThunk [0x00007FFFA0AC257D+29]
+	RtlUserThreadStart [0x00007FFFA1BCAA48+40]
+
+. Tentando novamente...
