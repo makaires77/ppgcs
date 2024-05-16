@@ -3495,7 +3495,7 @@ class GetQualis:
             print('Exemplo:')
             print([x.get('Produções') for x in dados][0].get('Artigos completos publicados em periódicos')[0])
             
-            return arquivo
+            return dados
         
         except Exception as e:
             print(f"Erro ao atualizar o arquivo: {e}")
