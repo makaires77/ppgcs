@@ -1,0 +1,50 @@
+2024-05-17 08:52:38,773 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-05-17 08:56:18,907 - INFO - Currículo não encontrado: Andrea Silva Walter de Aguiar 
+2024-05-17 09:05:23,311 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-05-17 09:05:55,952 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-05-17 09:13:47,368 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-05-17 09:14:19,632 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-05-17 09:14:51,885 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-05-17 09:15:31,182 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-05-17 09:16:01,469 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-05-17 09:20:32,943 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-05-17 09:24:04,750 - INFO - Currículo não encontrado: Andrea Silva Walter de Aguiar 
+2024-05-17 09:33:15,108 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-05-17 10:47:43,970 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-05-17 10:51:34,022 - INFO - Currículo não encontrado: Andrea Silva Walter De Aguiar
+2024-05-17 10:59:40,559 - INFO - Currículo não encontrado: Cristiane França Martins Teodoro
+2024-05-17 11:00:27,347 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-05-17 11:05:10,854 - ERROR - Tentativa de extrair currículo de Evanildo Henrique Macedo Da Costa em scrape_retry() falhou: Message:        Erro ao realizar a extração para Evanildo Henrique Macedo Da Costa: Message: 
+
+. Tentando novamente...
+2024-05-17 11:08:55,846 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-05-17 11:12:45,583 - INFO - Currículo não encontrado: Andrea Silva Walter De Aguiar
+2024-05-17 11:20:55,183 - INFO - Currículo não encontrado: Cristiane França Martins Teodoro
+2024-05-17 11:21:28,995 - ERROR - Tentativa de extrair currículo de Cristiane Mourao Carvalhedo Mesquita em scrape_retry() falhou: Message:        Erro ao realizar a extração para Cristiane Mourao Carvalhedo Mesquita: Message: 
+
+. Tentando novamente...
+2024-05-17 11:43:18,123 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-05-17 11:43:50,389 - INFO - Currículo não encontrado: Kilvia Helana Cardoso Mesquista
+2024-05-17 11:43:51,989 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-05-17 11:44:24,105 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-05-17 11:44:56,301 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-05-17 11:45:28,549 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-05-17 11:46:00,734 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-05-17 11:51:08,669 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-05-17 12:03:53,174 - INFO - Currículo não encontrado: Renata Castelo Da Nobrega
+2024-05-17 12:10:50,019 - INFO - Currículo não encontrado: Vanessa Pinheiro Gonçalves Ferreira
+2024-05-17 12:23:17,642 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-05-17 12:23:49,907 - INFO - Currículo não encontrado: Andrea Silva Walter De Aguiar
+2024-05-17 12:23:51,533 - INFO - Currículo não encontrado: Cristiane França Martins Teodoro
+2024-05-17 12:25:02,778 - INFO - Currículo não encontrado: Kilvia Helana Cardoso Mesquista
+2024-05-17 12:26:28,296 - INFO - Currículo não encontrado: Lenir Santos
+2024-05-17 12:28:56,619 - INFO - Currículo não encontrado: Renata Castelo Da Nobrega
+2024-05-17 12:29:43,849 - INFO - Currículo não encontrado: Vanessa Pinheiro Gonçalves Ferreira
+2024-05-17 12:33:22,335 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-05-17 12:33:54,548 - INFO - Currículo não encontrado: Andrea Silva Walter De Aguiar
+2024-05-17 12:33:56,440 - INFO - Currículo não encontrado: Cristiane França Martins Teodoro
+2024-05-17 12:35:10,698 - INFO - Currículo não encontrado: Kilvia Helana Cardoso Mesquista
+2024-05-17 12:36:35,787 - INFO - Currículo não encontrado: Lenir Santos
+2024-05-17 12:37:23,654 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-05-17 12:38:41,364 - INFO - Currículo não encontrado: Renata Castelo Da Nobrega
+2024-05-17 12:39:28,121 - INFO - Currículo não encontrado: Vanessa Pinheiro Gonçalves Ferreira
