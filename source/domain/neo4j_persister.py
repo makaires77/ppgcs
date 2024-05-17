@@ -1,5 +1,5 @@
 import pandas as pd
-import os, neo4j, logging
+import os, neo4j, logging, json
 from pathlib import Path
 from neo4j import GraphDatabase
 from neo4j.exceptions import Neo4jError
@@ -53,6 +53,7 @@ class Neo4jPersister:
             'Monografias de cursos de aperfeiçoamento/especialização',
             'Trabalhos de conclusão de curso de graduação',
             'Orientações e supervisões concluídas',
+            'Orientações e supervisões em andamento',
             'Citações',
             'Trabalhos completos publicados em anais de congressos',
             'Produtos tecnológicos',
@@ -61,7 +62,6 @@ class Neo4jPersister:
             'Programas de computador sem registro',
             'Professor titular',
             'Avaliação de cursos',
-            'Orientações e supervisões em andamento',
             'Processos ou técnicas',
             'Outras produções artísticas/culturais',
             'Textos em jornais de notícias/revistas',
@@ -357,7 +357,6 @@ class Neo4jPersister:
 
         return created_nodes, updated_nodes, created_relations, updated_relations
 
-
     def persistir_artigos_completos(self, session, id_lattes, dados):
         created_nodes = 0
         updated_nodes = 0
@@ -561,10 +560,51 @@ class Neo4jPersister:
 
         return created_nodes, updated_nodes, created_relations, updated_relations
 
+    # Testes ??!         
+    def persist_advices_relationships(self, dict_docent_list, dict_discent_list):
+        query_rel_advices = """
+        MATCH (do:Docente {id_lattes: $id_lattes_docente})
+        MATCH (di:Discente {id_lattes: $id_lattes_discente})
+        MERGE (do)-[:ORIENTOU]->(di)
+        """
+
+        with self._driver.session() as session:
+            for item in dict_docent_list:
+                identificacao = item.get('Identificação')
+                id_lattes_docente = identificacao.get('ID Lattes')
+                orientacoes = item.get('Áreas').values()
+                for docente in orientacoes:
+                    docente, nomes_discentes, tipo_orientacao = self.extract_advices(docente)
+                    if tipo_orientacao:
+                        session.run(query_rel_advices, id_lattes_docente=id_lattes_docente, id_lattes_discente=id_lattes_discente)
+
     def persistir_orientacoes_concluidas(self, session, id_lattes, dados):
         query_create_node = """
-        MERGE (p:Pesquisador {id_lattes: $id_lattes})
+        MERGE (p:Docente {id_lattes: $id_lattes})
         MERGE (o:OrientacaoConcluida {
+            tipo: $tipo,
+            titulo: $titulo,
+            ano: $ano,
+            autor: $autor,
+            instituicao: $instituicao
+        })
+        MERGE (p)-[:ORIENTOU]->(o)
+        """
+        result = session.run(query_create_node, id_lattes=id_lattes, **dados)
+
+        # Obtendo as informações de contadores
+        summary = result.consume()
+        created_nodes = summary.counters.nodes_created
+        updated_nodes = summary.counters.nodes_deleted  
+        created_relations = summary.counters.relationships_created
+        updated_relations = summary.counters.relationships_deleted 
+
+        return created_nodes, updated_nodes, created_relations, updated_relations
+
+    def persistir_orientacoes_andamento(self, session, id_lattes, dados):
+        query_create_node = """
+        MERGE (p:Docente {id_lattes: $id_lattes})
+        MERGE (o:OrientacaoAndamento {
             tipo: $tipo,
             titulo: $titulo,
             ano: $ano,
@@ -586,7 +626,7 @@ class Neo4jPersister:
 
     def persistir_participacoes_bancas(self, session, id_lattes, dados):
         query_create_node = """
-        MERGE (p:Pesquisador {id_lattes: $id_lattes})
+        MERGE (p:Docente {id_lattes: $id_lattes})
         MERGE (b:Banca {
             tipo: $tipo,
             titulo: $titulo,
