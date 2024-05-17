@@ -1,5 +1,5 @@
 import pandas as pd
-import os, neo4j, logging, json
+import os, re, logging, json, neo4j
 from pathlib import Path
 from neo4j import GraphDatabase
 from neo4j.exceptions import Neo4jError
@@ -560,69 +560,54 @@ class Neo4jPersister:
 
         return created_nodes, updated_nodes, created_relations, updated_relations
 
-    # Testes ??!         
-    def persist_advices_relationships(self, dict_docent_list, dict_discent_list):
+    ## ORIENTAÇÕES
+    def extract_advices(self, docente, tipo_orientacao):
+        linhas = docente.splitlines()
+        nomes_discentes = []
+        ano_inicio = None
+        instituicao = None
+
+        for linha in linhas:
+            match_nome = re.search(r"^([A-Z]+(?: [A-Z]+)+)", linha)
+            match_ano = re.search(r"Início: (\d{4})", linha)
+            match_instituicao = re.search(r"\(([^)]+)\)\s*\.?$", linha)  # Captura a instituição entre parênteses no final da linha
+
+            if match_nome:
+                nomes_discentes.append(match_nome.group(1).strip())
+            if match_ano:
+                ano_inicio = int(match_ano.group(1))
+            if match_instituicao:
+                instituicao = match_instituicao.group(1).strip()
+
+        return docente, nomes_discentes, tipo_orientacao, ano_inicio, instituicao
+
+    def persist_advices_relationships(self, dict_docent_list):
         query_rel_advices = """
         MATCH (do:Docente {id_lattes: $id_lattes_docente})
-        MATCH (di:Discente {id_lattes: $id_lattes_discente})
-        MERGE (do)-[:ORIENTOU]->(di)
+        MERGE (di:Discente {nome: $nome_discente})
+        MERGE (do)-[:ORIENTA {tipo: $tipo_orientacao, ano_inicio: $ano_inicio, instituicao: $instituicao}]->(di)
         """
 
         with self._driver.session() as session:
             for item in dict_docent_list:
                 identificacao = item.get('Identificação')
                 id_lattes_docente = identificacao.get('ID Lattes')
-                orientacoes = item.get('Áreas').values()
-                for docente in orientacoes:
-                    docente, nomes_discentes, tipo_orientacao = self.extract_advices(docente)
-                    if tipo_orientacao:
-                        session.run(query_rel_advices, id_lattes_docente=id_lattes_docente, id_lattes_discente=id_lattes_discente)
-
-    def persistir_orientacoes_concluidas(self, session, id_lattes, dados):
-        query_create_node = """
-        MERGE (p:Docente {id_lattes: $id_lattes})
-        MERGE (o:OrientacaoConcluida {
-            tipo: $tipo,
-            titulo: $titulo,
-            ano: $ano,
-            autor: $autor,
-            instituicao: $instituicao
-        })
-        MERGE (p)-[:ORIENTOU]->(o)
-        """
-        result = session.run(query_create_node, id_lattes=id_lattes, **dados)
-
-        # Obtendo as informações de contadores
-        summary = result.consume()
-        created_nodes = summary.counters.nodes_created
-        updated_nodes = summary.counters.nodes_deleted  
-        created_relations = summary.counters.relationships_created
-        updated_relations = summary.counters.relationships_deleted 
-
-        return created_nodes, updated_nodes, created_relations, updated_relations
-
-    def persistir_orientacoes_andamento(self, session, id_lattes, dados):
-        query_create_node = """
-        MERGE (p:Docente {id_lattes: $id_lattes})
-        MERGE (o:OrientacaoAndamento {
-            tipo: $tipo,
-            titulo: $titulo,
-            ano: $ano,
-            autor: $autor,
-            instituicao: $instituicao
-        })
-        MERGE (p)-[:ORIENTA]->(o)
-        """
-        result = session.run(query_create_node, id_lattes=id_lattes, **dados)
-
-        # Obtendo as informações de contadores
-        summary = result.consume()
-        created_nodes = summary.counters.nodes_created
-        updated_nodes = summary.counters.nodes_deleted  
-        created_relations = summary.counters.relationships_created
-        updated_relations = summary.counters.relationships_deleted 
-
-        return created_nodes, updated_nodes, created_relations, updated_relations
+                
+                # Processar as orientações em andamento
+                orientacoes_andamento = item.get('Orientações e supervisões em andamento', {})
+                for tipo_orientacao, trabalhos in orientacoes_andamento.items():
+                    for trabalho in trabalhos.values():
+                        _, nomes_discentes, tipo_orientacao_encontrado, ano_inicio, instituicao = self.extract_advices(trabalho, tipo_orientacao)
+                        for nome_discente in nomes_discentes:
+                            session.run(query_rel_advices, id_lattes_docente=id_lattes_docente, nome_discente=nome_discente, tipo_orientacao=tipo_orientacao_encontrado, ano_inicio=ano_inicio, instituicao=instituicao)
+                
+                # Processar as orientações concluídas
+                orientacoes_concluidas = item.get('Orientações e supervisões concluídas', {})
+                for tipo_orientacao, trabalhos in orientacoes_concluidas.items():
+                    for trabalho in trabalhos.values():
+                        _, nomes_discentes, tipo_orientacao_encontrado, _, _ = self.extract_advices(trabalho, tipo_orientacao)
+                        for nome_discente in nomes_discentes:
+                            session.run(query_rel_advices, id_lattes_docente=id_lattes_docente, nome_discente=nome_discente, tipo_orientacao=tipo_orientacao_encontrado, ano_inicio=None, instituicao=None) # Ano e instituição nulos para orientações concluídas
 
     def persistir_participacoes_bancas(self, session, id_lattes, dados):
         query_create_node = """
