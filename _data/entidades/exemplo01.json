@@ -1,0 +1,111 @@
+{
+    "nodes": [
+      {
+        "label": "Artigo",
+        "properties": {
+          "titulo": "Deep Learning for Cancer Drug Discovery",
+          "autores": ["John Smith", "Jane Doe"],
+          "ano": 2023,
+          "doi": "10.1016/j.drudis.2023.103456",
+          "resumo": "Este artigo explora o uso de deep learning para a descoberta de novos medicamentos contra o câncer, focando em modelos generativos para otimização de moléculas.",
+          "palavras_chave": ["deep learning", "drug discovery", "cancer", "generative models"],
+          "TRL": 3,
+          "BRL": 2,
+          "CRL": null,
+          "IRL": null
+        }
+      },
+      {
+        "label": "Patente",
+        "properties": {
+          "numero": "US12345678",
+          "inventor": "Alice Johnson",
+          "data_concessao": "2022-01-15",
+          "resumo": "Esta patente descreve um novo método para o tratamento de doenças autoimunes usando anticorpos monoclonais.",
+          "reivindicacoes": ["Método para tratamento de doenças autoimunes", "Anticorpo monoclonal específico para proteína X"],
+          "TRL": 6
+        }
+      },
+      {
+        "label": "PesquisaClinica",
+        "properties": {
+          "identificador": "NCT01234567",
+          "titulo": "Fase II Trial of New Immunotherapy for Melanoma",
+          "fase": "Fase II",
+          "intervencao": "Anticorpo monoclonal anti-PD-1",
+          "condicao": "Melanoma avançado",
+          "resultados": "Aumento da sobrevida global em comparação com o tratamento padrão.",
+          "CRL": 7,
+          "IRL": 6
+        }
+      },
+      {
+        "label": "Tecnologia",
+        "properties": {
+          "nome": "Terapia CAR-T",
+          "descricao": "Terapia celular que utiliza células T modificadas para reconhecer e destruir células cancerígenas.",
+          "TRL": 8,
+          "BRL": 7,
+          "CRL": 6,
+          "IRL": 6
+        }
+      },
+      {
+        "label": "Termo",
+        "properties": {
+          "nome": "deep learning",
+          "tipo": "palavra-chave"
+        }
+      },
+      {
+        "label": "AreaConhecimento",
+        "properties": {
+          "nome": "Inteligência Artificial"
+        }
+      }
+    ],
+    "relationships": [
+      {
+        "type": "CONTEM",
+        "startNode": "Artigo",
+        "endNode": "Termo",
+        "properties": {
+          "relevancia": 0.8
+        }
+      },
+      {
+        "type": "RELACIONADO_A",
+        "startNode": "Artigo",
+        "endNode": "Tecnologia",
+        "properties": {
+          "tipo": "explora"
+        }
+      },
+      {
+        "type": "RELACIONADO_A",
+        "startNode": "Artigo",
+        "endNode": "AreaConhecimento"
+      },
+      {
+        "type": "RELACIONADO_A",
+        "startNode": "Patente",
+        "endNode": "Tecnologia",
+        "properties": {
+          "tipo": "protege"
+        }
+      },
+      {
+        "type": "RELACIONADO_A",
+        "startNode": "PesquisaClinica",
+        "endNode": "Tecnologia",
+        "properties": {
+          "tipo": "avalia"
+        }
+      },
+      {
+        "type": "PERTENCE_A",
+        "startNode": "Tecnologia",
+        "endNode": "AreaConhecimento"
+      }
+    ]
+  }

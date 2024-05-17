@@ -1,0 +1,90 @@
+{
+    "nodes": [
+      {
+        "label": "Artigo Científico",
+        "properties": {
+          "id": "String",
+          "titulo": "String",
+          "autores": "String[]",
+          "ano": "Integer",
+          "resumo": "String",
+          "palavras_chave": "String[]",
+          "fonte": "String"
+        }
+      },
+      {
+        "label": "Patente",
+        "properties": {
+          "id": "String",
+          "titulo": "String",
+          "inventores": "String[]",
+          "ano": "Integer",
+          "resumo": "String",
+          "classificacao": "String",
+          "fonte": "String"
+        }
+      },
+      {
+        "label": "Dado SUS",
+        "properties": {
+          "id": "String",
+          "tipo": "String", 
+          "valor": "String",
+          "data": "Date",
+          "fonte": "String"
+        }
+      },
+      {
+        "label": "Competencia",
+        "properties": {
+          "nome": "String",
+          "descricao": "String",
+          "tipo": "String" 
+        }
+      },
+      {
+        "label": "Tecnologia",
+        "properties": {
+          "nome": "String",
+          "descricao": "String",
+          "tipo": "String" 
+        }
+      },
+      {
+        "label": "Oportunidade",
+        "properties": {
+          "descricao": "String",
+          "potencial_mercado": "Float",
+          "impacto_saude": "Float",
+          "prioridade": "Integer"
+        }
+      }
+    ],
+    "relationships": [
+      {
+        "type": "RELACIONADO_A",
+        "startNode": "Artigo Científico",
+        "endNode": ["Competencia", "Tecnologia"]
+      },
+      {
+        "type": "RELACIONADO_A",
+        "startNode": "Patente",
+        "endNode": ["Competencia", "Tecnologia"]
+      },
+      {
+        "type": "RELACIONADO_A",
+        "startNode": "Dado SUS",
+        "endNode": ["Competencia", "Tecnologia", "Oportunidade"]
+      },
+      {
+        "type": "REQUER",
+        "startNode": "Tecnologia",
+        "endNode": "Competencia"
+      },
+      {
+        "type": "GERA",
+        "startNode": "Tecnologia",
+        "endNode": "Oportunidade"
+      }
+    ]
+  }

@@ -1,0 +1,119 @@
+{
+    "nodes": [
+      {
+        "label": "Artigo",
+        "properties": {
+          "titulo": "string",
+          "autores": "string[]",
+          "ano": "int",
+          "doi": "string",
+          "resumo": "string",
+          "palavras_chave": "string[]",
+          "TRL": "int", 
+          "BRL": "int",
+          "CRL": "int",
+          "IRL": "int"
+        }
+      },
+      {
+        "label": "Patente",
+        "properties": {
+          "numero": "string",
+          "inventor": "string",
+          "data_concessao": "date",
+          "resumo": "string",
+          "reivindicacoes": "string[]",
+          "TRL": "int"
+        }
+      },
+      {
+        "label": "PesquisaClinica",
+        "properties": {
+          "identificador": "string",
+          "titulo": "string",
+          "fase": "string",
+          "intervencao": "string",
+          "condicao": "string",
+          "resultados": "string",
+          "CRL": "int",
+          "IRL": "int"
+        }
+      },
+      {
+        "label": "Tecnologia",
+        "properties": {
+          "nome": "string",
+          "descricao": "string",
+          "TRL": "int",
+          "BRL": "int",
+          "CRL": "int",
+          "IRL": "int"
+        }
+      },
+      {
+        "label": "Termo",
+        "properties": {
+          "nome": "string",
+          "tipo": "string Ex: 'palavra-chave', 'conceito', 'entidade'"
+        }
+      },
+      {
+        "label": "AreaConhecimento",
+        "properties": {
+          "nome": "string"
+        }
+      }
+    ],
+    "relationships": [
+      {
+        "type": "CITA",
+        "startNode": "Artigo",
+        "endNode": "Artigo"
+      },
+      {
+        "type": "CONTEM",
+        "startNode": "Artigo",
+        "endNode": "Termo"
+      },
+      {
+        "type": "RELACIONADO_A",
+        "startNode": "Artigo",
+        "endNode": "Tecnologia"
+      },
+      {
+        "type": "RELACIONADO_A",
+        "startNode": "Artigo",
+        "endNode": "AreaConhecimento"
+      },
+      {
+        "type": "CONTEM",
+        "startNode": "Patente",
+        "endNode": "Termo"
+      },
+      {
+        "type": "RELACIONADO_A",
+        "startNode": "Patente",
+        "endNode": "Tecnologia"
+      },
+      {
+        "type": "RELACIONADO_A",
+        "startNode": "Patente",
+        "endNode": "AreaConhecimento"
+      },
+      {
+        "type": "RELACIONADO_A",
+        "startNode": "PesquisaClinica",
+        "endNode": "Tecnologia"
+      },
+      {
+        "type": "RELACIONADO_A",
+        "startNode": "PesquisaClinica",
+        "endNode": "AreaConhecimento"
+      },
+      {
+        "type": "PERTENCE_A",
+        "startNode": "Tecnologia",
+        "endNode": "AreaConhecimento"
+      }
+    ]
+  }

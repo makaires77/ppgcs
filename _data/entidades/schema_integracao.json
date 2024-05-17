@@ -1,0 +1,67 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Modelo Neo4j para Integração Semântica no Complexo Econômico e Industrial da Saúde",
+    "description": "Este schema define as entidades e propriedades para um modelo Neo4j que integra dados de diversas fontes (artigos científicos, patentes, dados do SUS) e permite a identificação de competências e oportunidades de pesquisa e desenvolvimento tecnológico no contexto da saúde.",
+    "properties": {
+      "Entidades": {
+        "type": "object",
+        "properties": {
+          "Artigo": {
+            "type": "object",
+            "properties": {
+              "id": {"type": "string"},
+              "titulo": {"type": "string"},
+              "autores": {"type": "array", "items": {"type": "string"}},
+              "ano": {"type": "number"},
+              "resumo": {"type": "string"},
+              "palavras_chave": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "Patente": {
+            "type": "object",
+            "properties": {
+              "id": {"type": "string"},
+              "titulo": {"type": "string"},
+              "inventores": {"type": "array", "items": {"type": "string"}},
+              "ano": {"type": "number"},
+              "descricao": {"type": "string"},
+              "classificacao": {"type": "string"}
+            }
+          },
+          "DadoSUS": {
+            "type": "object",
+            "properties": {
+              "id": {"type": "string"},
+              "tipo": {"type": "string"},
+              "valor": {"type": "string"},
+              "data": {"type": "string"}
+            }
+          },
+          "Competencia": {
+            "type": "object",
+            "properties": {
+              "nome": {"type": "string"},
+              "descricao": {"type": "string"}
+            }
+          },
+          "Oportunidade": {
+            "type": "object",
+            "properties": {
+              "descricao": {"type": "string"},
+              "area": {"type": "string"}
+            }
+          }
+        }
+      },
+      "Relacionamentos": {
+        "type": "object",
+        "properties": {
+          "CITA": {"type": "string"},
+          "RELACIONA_COM": {"type": "string"},
+          "POSSUI": {"type": "string"},
+          "INDICA": {"type": "string"}
+        }
+      }
+    }
+  }    
