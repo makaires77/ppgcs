@@ -1964,7 +1964,7 @@ class LattesScraper:
                         if qualis:
                             artigo['Qualis'] = qualis
                         else:
-                            artigo['Qualis'] = 'Não encontrado'
+                            artigo['Qualis'] = 'NA'
 
     def buscar_qualis_e_atualizar_arquivo(self, lista_dados_autor, pathfilename):
         """
@@ -2005,13 +2005,15 @@ class LattesScraper:
                                 if qualis:
                                     artigo['Qualis'] = qualis
                                 else:
-                                    artigo['Qualis'] = 'Não encontrado'
+                                    artigo['Qualis'] = 'NA'
 
                 # Reposicione o cursor no início do arquivo
                 arquivo.seek(0)
 
                 # Reescreva os dados formatados no arquivo
                 json.dump(dados, arquivo, indent=4)
+
+                return dados
 
         except Exception as e:
             print(f"Erro ao atualizar o arquivo: {e}")
@@ -2026,7 +2028,7 @@ class LattesScraper:
             issn (str): ISSN do artigo.
 
         Returns:
-            str: Estrato do Qualis do artigo ou 'Não encontrado' caso não seja encontrado.
+            str: Estrato do Qualis do artigo ou 'NA' caso não seja encontrado.
         """
 
         qualis = self.dados_planilha[self.dados_planilha['ISSN'].str.replace('-','') == issn]['Estrato'].tolist()
@@ -3408,7 +3410,7 @@ class HTMLParser:
                         if qualis:
                             artigo['Qualis'] = qualis
                         else:
-                            artigo['Qualis'] = 'Não encontrado'
+                            artigo['Qualis'] = 'NA'
 
     def encontrar_qualis_por_issn(self, issn):
         qualis = self.dados_planilha[self.dados_planilha['ISSN'].str.replace('-','') == issn]['Estrato'].tolist()
@@ -3483,21 +3485,13 @@ class GetQualis:
                             if qualis:
                                 artigo['Qualis'] = qualis
                             else:
-                                artigo['Qualis'] = 'Não encontrado'
+                                artigo['Qualis'] = 'NA'
 
             # Reescreva os dados formatados no arquivo
             # json.dump(dados, arquivo, indent=4)
             with codecs.open(nome_arquivo, 'w', encoding='utf-8') as arquivo:
                 arquivo.seek(0)
                 json.dump(dados, arquivo, indent=4)
-            print('Exemplo:')
-            try:
-                test = [x.get('Produções') for x in dados][0] if [x.get('Produções') for x in dados][0] else [x.get('Produções') for x in dados][1]
-                if test:
-                    print(test.get('Artigos completos publicados em periódicos')[0])
-            except:
-                pass
-            return dados
         
         except Exception as e:
             print(f"Erro ao atualizar o arquivo: {e}")
@@ -3510,51 +3504,6 @@ class GetQualis:
             return qualis[0]
         else:
             return None
-
-    # def buscar_qualis_e_atualizar_arquivo(self, lista_dados_autor, nome_arquivo):
-    #     """
-    #     Busca o Qualis de cada artigo completo publicado em periódicos e atualiza o arquivo original com os dados encontrados.
-
-    #     Args:
-    #         lista_dados_autor (list): Lista de dicionários com os dados dos autores.
-    #         nome_arquivo (str): Nome do arquivo JSON a ser atualizado.
-    #     """
-    #     try:
-    #         # Carregue os dados do arquivo
-    #         with codecs.open(nome_arquivo, 'r', encoding='utf-8') as arquivo:
-    #             dados = json.load(arquivo)
-
-    #         # Percorra os dados de cada autor
-    #         for m, dados_autor in enumerate(lista_dados_autor):
-    #             for categoria, artigos in dados_autor['Produções'].items():
-    #                 if categoria == 'Artigos completos publicados em periódicos':
-    #                     for n, artigo in enumerate(artigos):
-    #                         print(f'{n+1:3}/{len(artigos):3} artigos do autor {m+1:3}/{len(lista_dados_autor):3}')
-    #                         clear_output(wait=True)
-
-    #                         # Recupere o ISSN do artigo
-    #                         issn_artigo = artigo['ISSN'].replace('-','')
-
-    #                         # Busque o Qualis do artigo
-    #                         qualis = self.encontrar_qualis_por_issn(issn_artigo)
-
-    #                         # Atualize o campo 'Qualis' do artigo
-    #                         if qualis:
-    #                             artigo['Qualis'] = qualis
-    #                         else:
-    #                             artigo['Qualis'] = 'Não encontrado'
-
-    #         # Reposicione o cursor no início do arquivo e grave os dados formatados
-    #         with codecs.open(nome_arquivo, 'w', encoding='utf-8') as arquivo:
-    #             arquivo.seek(0)
-    #             json.dump(dados, arquivo, indent=4)
-
-    #     except Exception as e:
-    #         print(f"Erro ao atualizar o arquivo: {e}")
-
-    #     return dados
-
-
 
 class DiscentCollaborationCounter:
     def __init__(self, dict_list):
@@ -4726,53 +4675,90 @@ class ArticlesCounter:
                                        })
         return dtf_atualizado
 
+    # def contar_qualis(self, dict_list, ano_inicio, ano_final):
+    #         lista_pubqualis = []
+    #         for dic in dict_list:
+    #             autor = dic.get('Identificação',{}).get('Nome',{})
+    #             artigos = dic.get('Produções', {}).get('Artigos completos publicados em periódicos', {})
+    #             current_year = datetime.now().year
+    #             for i in artigos:
+    #                 ano = i.get('ano') 
+    #                 if not ano or pd.isna(ano):
+    #                     ano = current_year
+    #                 else:
+    #                     try:
+    #                         ano = int(ano)
+    #                     except ValueError:
+    #                         ano = current_year
+
+    #                 # Garantindo conversão para string
+    #                 ano = str(ano)
+
+    #                 qualis = i.get('Qualis',{})
+    #                 lista_pubqualis.append((ano, autor, qualis))
+
+    #         # **Print total count without year filter**
+    #         total_count = len(lista_pubqualis)
+    #         print(f'Total de publicações (sem filtro de ano): {total_count}')
+
+    #         # **Filter dataframe based on year range**
+    #         df_qualis_autores_anos = pd.DataFrame(lista_pubqualis, columns=['Ano','Autor', 'Qualis'])
+    #         df_filtered = df_qualis_autores_anos[(df_qualis_autores_anos['Ano'].astype(int) >= ano_inicio) & (df_qualis_autores_anos['Ano'].astype(int) <= ano_final)]
+
+    #         # **Calculate and print minimum and maximum years (filtered)**
+    #         try:
+    #             minimo = np.nanmin(df_filtered['Ano'])
+    #         except ValueError:
+    #             minimo = None
+    #         print(f'Mínimo (filtro ano {ano_inicio}-{ano_final}): {minimo}')
+
+    #         maximo = np.nanmax(df_filtered['Ano'])
+    #         print(f'Máximo (filtro ano {ano_inicio}-{ano_final}): {maximo}')
+
+    #         # Imprimir a contagem de publicações com o intervalo válido
+    #         print(f'Contagem de Publicações por Qualis Periódicos no período {minimo} a {maximo}')
+
+    #         # Contar as ocorrências de cada combinação de Autor e Qualis
+    #         pivot_table = df_qualis_autores_anos.pivot_table(index='Autor', columns='Qualis', aggfunc='size', fill_value=0)
+        
+    #         return pivot_table
+
     def contar_qualis(self, dict_list, ano_inicio, ano_final):
-        lista_pubqualis = []
-        for dic in dict_list:
-            autor = dic.get('Identificação',{}).get('Nome',{})
-            artigos = dic.get('Produções', {}).get('Artigos completos publicados em periódicos', {})
-            current_year = datetime.now().year
-            for i in artigos:
-                ano = i.get('ano') 
-                if not ano or pd.isna(ano):
-                    ano = current_year
-                else:
-                    try:
-                        ano = int(ano)
-                    except ValueError:
+            lista_pubqualis = []
+            for dic in dict_list:
+                autor = dic.get('Identificação',{}).get('Nome',{})
+                artigos = dic.get('Produções', {}).get('Artigos completos publicados em periódicos', {})
+                current_year = datetime.now().year
+                for i in artigos:
+                    ano = i.get('ano') 
+                    if not ano or pd.isna(ano):
                         ano = current_year
+                    else:
+                        try:
+                            ano = int(ano)
+                        except ValueError:
+                            ano = current_year
 
-                # Garantindo conversão para string
-                ano = str(ano)
+                    # Garantindo conversão para string
+                    ano = str(ano)
 
-                qualis = i.get('Qualis',{})
-                lista_pubqualis.append((ano, autor, qualis))
+                    qualis = i.get('Qualis',{})
+                    lista_pubqualis.append((autor, qualis))
 
-        # **Print total count without year filter**
-        total_count = len(lista_pubqualis)
-        print(f'Total de publicações (sem filtro de ano): {total_count}')
+            # **Print total count without year filter**
+            total_count = len(lista_pubqualis)
+            print(f'Total de publicações (sem filtro de ano): {total_count}')
 
-        # **Filter dataframe based on year range**
-        df_qualis_autores_anos = pd.DataFrame(lista_pubqualis, columns=['Ano','Autor', 'Qualis'])
-        df_filtered = df_qualis_autores_anos[(df_qualis_autores_anos['Ano'].astype(int) >= ano_inicio) & (df_qualis_autores_anos['Ano'].astype(int) <= ano_final)]
+            # Criar um DataFrame a partir da lista_pubqualis
+            df_qualis_autores = pd.DataFrame(lista_pubqualis, columns=['Autor', 'Qualis'])
+            
+            # Concatenar os Qualis de cada autor em uma única string
+            df_qualis_autores = df_qualis_autores.groupby('Autor')['Qualis'].agg(lambda x: ', '.join(x.astype(str))).reset_index()
 
-        # **Calculate and print minimum and maximum years (filtered)**
-        try:
-            minimo = np.nanmin(df_filtered['Ano'])
-        except ValueError:
-            minimo = None
-        print(f'Mínimo (filtro ano {ano_inicio}-{ano_final}): {minimo}')
+            # Renomear a coluna Qualis para Publicações Qualis
+            df_qualis_autores = df_qualis_autores.rename(columns={'Qualis': 'Publicações Qualis'})
 
-        maximo = np.nanmax(df_filtered['Ano'])
-        print(f'Máximo (filtro ano {ano_inicio}-{ano_final}): {maximo}')
-
-        # Imprimir a contagem de publicações com o intervalo válido
-        print(f'Contagem de Publicações por Qualis Periódicos no período {minimo} a {maximo}')
-
-        # Contar as ocorrências de cada combinação de Autor e Qualis
-        pivot_table = df_qualis_autores_anos.pivot_table(index='Autor', columns='Qualis', aggfunc='size', fill_value=0)
-    
-        return pivot_table
+            return df_qualis_autores
 
     def apurar_qualis_periodo(self, dict_list, ano_inicio, ano_final):
         lista_pubqualis = []
@@ -4811,7 +4797,7 @@ class ArticlesCounter:
             'B3': 10,
             'B4': 5,
             'C': 0,
-            'Não encontrado': 0
+            'NA': 0
         }
         import pandas as pd
         lista_pubqualis = []
