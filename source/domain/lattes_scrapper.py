@@ -373,6 +373,69 @@ class LattesScraper:
         self._scrape(data)
         self._persist(data)
 
+
+    def extract_remanescents(self, lista_restante, dict_list_actual, instituicao, termo1, termo2, termo3):
+        print(f'Resta extrair {len(lista_restante)} currículos:')
+        print(lista_restante)
+        print('-'*110)
+        
+        if lista_restante:
+            # Iniciar a extração de currículos remanescentes
+            t0 = time.time()
+            scraper = LattesScraper(instituicao, termo1, termo2, termo3, 'bolt://localhost:7687', 'neo4j', 'password', only_doctors=False)
+            dict_list_1 = scraper.scrape(lista_restante, instituicao, termo1, termo2, termo3)
+            print(f'\n{preparer.tempo(t0,time.time())} para busca de {len(lista_restante)} nomes com extração de dados de {len(dict_list_1)} dicionários')
+
+            # Dicionário vazio para armazenar elementos combinados
+            dicionario_combinado = {}
+
+            # Percorrer a lista de dicionários existentes (dict_list_docents)
+            for dicionario in dict_list_actual:
+                # Obter a chave única do dicionário
+                chave_unica = dicionario.get("Identificação").get("Nome")
+
+                # Verificar se a chave é hashável
+                if isinstance(chave_unica, (str, int, float, tuple)):
+                    # Se a chave for hashável, adicionar o dicionário ao dicionário combinado
+                    dicionario_combinado[chave_unica] = dicionario
+                else:
+                    # Se a chave não for hashável, registrar um erro
+                    print(f"Erro: Chave 'Identificação' não hashável em dicionário: {dicionario}")
+
+            # Percorrer a lista de dicionários recém-extraídos (dict_list_1)
+            for dicionario in dict_list_1:
+                # Obter a chave única do dicionário
+                chave_unica = dicionario.get("Identificação").get("Nome")
+
+                # Verificar se a chave é hashável
+                if isinstance(chave_unica, (str, int, float, tuple)):
+                    # Se a chave for hashável, adicionar o dicionário ao dicionário combinado
+                    # Verifique se a chave já existe no dicionário combinado
+                    if chave_unica not in dicionario_combinado:
+                        dicionario_combinado[chave_unica] = dicionario
+                    # else:
+                    #     # Se a chave já existe, combinar os valores dos dicionários
+                    #     dicionario_combinado = dict_list_actual.copy()
+                    #     dicionario_combinado.append(dicionario)                
+                else:
+                    # Se a chave não for hashável, registrar um erro
+                    print(f"Erro: Chave 'Identificação' não hashável em dicionário: {dicionario}")
+
+            # Converter o dicionário em lista
+            lista_dict_combinado = list(dicionario_combinado.values())
+            print(f'Total de dicionários na lista completa: {len(lista_dict_combinado)}')
+            
+            # Obter o caminho do arquivo JSON
+            pathfilename = os.path.join(os.getcwd(), '_data', 'in_csv', 'dict_list_combined.json')
+            save_to_json(lista_dict_combinado, pathfilename)
+
+            print(f"Arquivo JSON salvo em: {pathfilename}")
+
+            return lista_dict_combinado
+        else:
+            print(f'{len(dict_list_actual)-len(lista_restante)} Currículos já extraídos com sucesso.')
+
+
     def _persist(self, data):
         # Conectar ao banco de dados Neo4j
         graph = Graph(self.neo4j_uri, auth=(self.neo4j_user, self.neo4j_password))
@@ -1344,7 +1407,7 @@ class LattesScraper:
         Retorna:
             dict: Dicionário com os parâmetros de paginação (página_inicial, pagina_final, pagina_anterior, pagina_seguinte).
         """
-
+        ## TO-DO: incluir clique em 'próximo' a cada dezena para paginar mais de 20 resultados
         # Extrai parâmetros da página atual
         parametros_pagina_atual = re.findall(r'paginaAtual": (\d+),', pagina_atual)
         pagina_atual = int(parametros_pagina_atual[0]) if parametros_pagina_atual else None
