@@ -5,7 +5,7 @@ import seaborn as sns
 import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
-import codecs, unicodedata, unidecode, string, sqlite3, asyncio, nltk
+import codecs, unicodedata, string, sqlite3, asyncio, nltk
 import os, re, bs4, sys, csv, time, json, h5py, pytz, glob, stat, shutil, psutil
 import warnings, platform, requests, urllib, difflib, subprocess, torch, logging, traceback
 
@@ -17,6 +17,7 @@ from zipfile import ZipFile
 from string import Formatter
 from PyPDF2 import PdfReader
 from neo4j import GraphDatabase
+from unidecode import unidecode
 from Levenshtein import distance
 from nltk.corpus import stopwords
 from sklearn.cluster import KMeans
@@ -397,7 +398,7 @@ class LattesScraper:
             json.dump(data, file, ensure_ascii=False, indent=4)
 
     # Função para normalizar os nomes
-    def normalizar_nome(nome):
+    def normalizar_nome(self, nome):
         """Normaliza um nome, removendo acentos e caracteres especiais, convertendo para minúsculas e padronizando espaços."""
 
         # Remove acentos e caracteres especiais
@@ -2328,6 +2329,56 @@ class LattesScraper:
         else:
             print(f'{len(dict_list_actual)-len(lista_restante)} Currículos já extraídos com sucesso.')
 
+    def avaliar_remanescentes(self, lista_busca, dict_list_docents, filename='dict_list_temp.json'):
+        print(f'{len(lista_busca)} currículos a buscar no total')
+        print(f'{len(dict_list_docents)} currículos já extraídos')
+        total_extraidos = 0
+        total_nao_extraidos = 0
+
+        ## Lista para armazenar nomes extraídos com sucesso
+        nomes_extraidos = []
+
+        jfm = JSONFileManager()
+        # Carregar arquivo dict_list_temp.json
+        pathfilename = os.path.join(self.folder_data_input, filename)
+        dict_list_docents, formatted_creation_date, formatted_modification_date, time_count, unit = jfm.load_from_json(os.path.join(self.folder_data_input,pathfilename))
+        lista_restante = lista_busca[:]
+
+        for i in dict_list_docents:
+            nome = i.get('Identificação').get('Nome')
+            print(nome)
+            nome_normalizado = self.scraper.normalizar_nome(nome)
+            encontrado = False
+
+            ## Verificar se o nome ou uma forma similar já foi extraído
+            for nome_original in lista_restante:
+                nome_original_normalizado = self.scraper.normalizar_nome(nome_original)
+                if nome_original_normalizado == nome_normalizado:
+                    lista_restante.remove(nome_original)
+                    encontrado = True
+                    break
+
+            ## Incrementar o contador correspondente
+            if encontrado:
+                total_extraidos += 1
+            else:
+                total_nao_extraidos += 1
+
+            ## Imprimir o status da extração
+            if encontrado:
+                print(f'({total_extraidos:>02}) {nome}')
+            else:
+                print(f'({total_nao_extraidos}) Não extraído: {nome}')
+            ## Adicionar à lista de nomes extraídos apenas se não for exatamente igual ao buscado
+            if encontrado and nome_original_normalizado != nome_normalizado:
+                nomes_extraidos.append(nome)
+
+        print(f'\n{len(lista_restante)} currículos não extraídos')
+        for i in lista_restante:
+            print(f'   {i}')
+
+        return lista_restante
+    
     def save_to_json(self, data, file_path):
         with open(file_path, 'w', encoding='utf-8') as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
