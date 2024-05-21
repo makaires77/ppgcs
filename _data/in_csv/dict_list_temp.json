@@ -1,846 +1,737 @@
 [
     {
         "Identificação": {
-            "Nome": "Caroline Pereira Bittencourt Passaes",
-            "ID Lattes": "2952628863641871",
-            "Última atualização": "29/04/2024"
+            "Nome": "Aline de Oliveira Albuquerque",
+            "ID Lattes": "6612124263035713",
+            "Última atualização": "19/07/2023"
         },
         "Idiomas": [
-            {
-                "Idioma": "Inglês",
-                "Proficiência": "Compreende Bem, Fala Bem, Lê Bem, Escreve Bem."
-            },
-            {
-                "Idioma": "Espanhol",
-                "Proficiência": "Compreende Razoavelmente, Fala Razoavelmente, Lê Razoavelmente, Escreve Razoavelmente."
-            },
             {
                 "Idioma": "Português",
                 "Proficiência": "Compreende Bem, Fala Bem, Lê Bem, Escreve Bem."
             },
             {
-                "Idioma": "Francês",
+                "Idioma": "Inglês",
                 "Proficiência": "Compreende Bem, Fala Bem, Lê Bem, Escreve Bem."
+            },
+            {
+                "Idioma": "Francês",
+                "Proficiência": "Compreende Pouco, Fala Pouco, Lê Razoavelmente, Escreve Pouco."
+            },
+            {
+                "Idioma": "Espanhol",
+                "Proficiência": "Compreende Razoavelmente, Fala Pouco, Lê Razoavelmente, Escreve Pouco."
             }
         ],
         "Formação": {
             "Acadêmica": [
                 {
-                    "Ano": "2008 - 2012",
-                    "Descrição": "Doutorado em Biologia Parasitária. Fundação Oswaldo Cruz, FIOCRUZ, Brasil. Título: Estudos sobre aspectos virais e genéticos relacionados à integrase e ao processo de integração do HIV-1 O Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto (Oasisbr) é uma iniciativa do Instituto Brasileiro de Informação em Ciência e Tecnologia (Ibict) que reúne a produção científica e os dados de pesquisa em acesso aberto, publicados em revistas científicas, repositórios digitais de publicações científicas, repositórios digitais de dados de pesquisa e bibliotecas digitais de teses e dissertações. , Ano de obtenção: 2012. Orientador: Mariza Gonçalves Morgado. Bolsista do(a): Fundação Carlos Chagas Filho de Amparo à Pesquisa do Estado do RJ, FAPERJ, Brasil."
+                    "Ano": "2020",
+                    "Descrição": "Doutorado em andamento em Biotecnologia de Recursos Naturais. Universidade Federal do Ceará, UFC, Brasil. Título: Implicações Estruturais das Interações Moleculares dos Complexos Envolvendo Notch1 no Desenvolvimento Computacional de Anticorpos para via de Notch Orientador: João Hermínio Martins da Silva. Bolsista do(a): Coordenação de Aperfeiçoamento de Pessoal de Nível Superior, CAPES, Brasil. Palavras-chave: Notch; Cancer; Anticorpos."
                 },
                 {
-                    "Ano": "2011 - 2011",
-                    "Descrição": "Doutorado em Biologia Parasitária. Fundação Oswaldo Cruz, FIOCRUZ, Brasil. com período sanduíche em University of Miami Miller School of Medicine (Orientador: Mario Stevenson). Título: ASPECTOS VIROLÓGICOS, IMUNOLÓGICOS  E GENÉTICOS RELACIONADOS À INTEGRASE  E AO PROCESSO DE INTEGRAÇÃO DO HIV-1, Ano de obtenção: 2011. Orientador: Mariza Gonçalves Morgado. Bolsista do(a): Fundação Carlos Chagas Filho de Amparo à Pesquisa do Estado do RJ, FAPERJ, Brasil."
+                    "Ano": "2018 - 2020",
+                    "Descrição": "Mestrado em Biotecnologia de Recursos Naturais. Universidade Federal do Ceará, UFC, Brasil. Título: Avaliação Computacional de um Conjunto de Fragmentos de Anticorpos Anti-DLL1 como Base para Proposição de um Novo Biofármaco O Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto (Oasisbr) é uma iniciativa do Instituto Brasileiro de Informação em Ciência e Tecnologia (Ibict) que reúne a produção científica e os dados de pesquisa em acesso aberto, publicados em revistas científicas, repositórios digitais de publicações científicas, repositórios digitais de dados de pesquisa e bibliotecas digitais de teses e dissertações. , Ano de Obtenção: 2020. Orientador: João Hermínio Martins da Silva. Bolsista do(a): Coordenação de Aperfeiçoamento de Pessoal de Nível Superior, CAPES, Brasil. Palavras-chave: scFv; DLL1; Cancer. Grande área: Ciências Biológicas Grande Área: Ciências Biológicas / Área: Imunologia."
                 },
                 {
-                    "Ano": "2005 - 2007",
-                    "Descrição": "Mestrado em Biologia Parasitária. Fundação Oswaldo Cruz, FIOCRUZ, Brasil. Título: CARACTERIZAÇÃO MOLECULAR DA REGIÃO DA INTEGRASE DO GENE pol DE SUBTIPOS DE HIV-1 PREVALENTES NO BRASIL: AVALIAÇÃO DE MARCADORES DE RESISTÊNCIA E ANTIGENICIDADE O Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto (Oasisbr) é uma iniciativa do Instituto Brasileiro de Informação em Ciência e Tecnologia (Ibict) que reúne a produção científica e os dados de pesquisa em acesso aberto, publicados em revistas científicas, repositórios digitais de publicações científicas, repositórios digitais de dados de pesquisa e bibliotecas digitais de teses e dissertações. , Ano de Obtenção: 2007. Orientador: Mariza Gonçalves Morgado. Bolsista do(a): Conselho Nacional de Desenvolvimento Científico e Tecnológico, CNPQ, Brasil. Palavras-chave: AIDS; Subtipos HIV; Integrase. Grande área: Ciências Biológicas Grande Área: Ciências Biológicas / Área: Imunologia / Subárea: Imunologia Celular."
+                    "Ano": "2014 - 2017",
+                    "Descrição": "Graduação em Biotecnologia. Universidade Federal do Ceará, UFC, Brasil. Título: Otimização Computacional de um Conjunto de Fragmentos de Anticorpos Específicos para Terapia da Infecção pelo Vírus da Hepatite B. Orientador: João Hermínio Martins da Silva."
                 },
                 {
-                    "Ano": "2007 - 2008",
-                    "Descrição": "Aperfeiçoamento em Ensino em Biociencias e Saude.  (Carga Horária: 180h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil. Título: Atualizacao em Ensino de Biociencias e Saude. Ano de finalização: 2008."
-                },
-                {
-                    "Ano": "2001 - 2005",
-                    "Descrição": "Graduação em Ciências Biológicas. Universidade do Estado do Rio de Janeiro, UERJ, Brasil. Título: Atividade antiinflamatória tópicado Extrato Aquoso de Baccharis trimera e suas frações. Orientador: Marsen Garcia Pinto Coelho. Bolsista do(a): Conselho Nacional de Desenvolvimento Científico e Tecnológico, CNPQ, Brasil."
+                    "Ano": "2011 - 2013",
+                    "Descrição": "Ensino Médio (2º grau). Colégio Antares, ATS, Brasil."
                 }
             ],
-            "Pos-Doc": [
-                {
-                    "Ano": "2014 - 2018",
-                    "Descrição": "Pós-Doutorado. Institut Pasteur, PASTEUR, França. Bolsista do(a): Agence Nationale de recherches sur le sida et les hépatites virales., ANRS, França."
-                },
-                {
-                    "Ano": "2012 - 2014",
-                    "Descrição": "Pós-Doutorado. Commissariat à l'Energie Atomique - Fontenay-aux-Roses, CEA/FONTENAY, França. Bolsista do(a): Agence Nationale de recherches sur le sida et les hépatites virales., ANRS, França."
-                },
-                {
-                    "Ano": "2012 - 2012",
-                    "Descrição": "Pós-Doutorado. Instituto Oswaldo Cruz, IOC, Brasil. Bolsista do(a): Conselho Nacional de Desenvolvimento Científico e Tecnológico, CNPQ, Brasil. Grande área: Ciências Biológicas Grande Área: Ciências Biológicas / Área: Genética / Subárea: Genética Molecular e de Microorganismos."
-                }
-            ],
+            "Pos-Doc": [],
             "Complementar": [
                 {
-                    "Ano": "2016 - 2016",
-                    "Descrição": "Simoa 2.0.  (Carga horária: 16h). Quanterix Corporation, QUANTERIX, Estados Unidos."
+                    "Ano": "2023 - 2023",
+                    "Descrição": "II Workshop de Modelagem Computacional e Desenho de Fármacos.  (Carga horária: 20h). Fundação Oswaldo Cruz (CE), FIOCRUZ CEARÁ, Brasil."
+                },
+                {
+                    "Ano": "2022 - 2022",
+                    "Descrição": "II Treinamento Anual em Biossegurança Fiocruz-Ceará.  (Carga horária: 4h). Fundação Oswaldo Cruz (CE), FIOCRUZ CEARÁ, Brasil."
+                },
+                {
+                    "Ano": "2020 - 2020",
+                    "Descrição": "BioIn4Girls - Ciclo de Palestras em Bioinformática.  (Carga horária: 20h). Universidade Federal do Rio Grande do Sul, UFRGS, Brasil."
+                },
+                {
+                    "Ano": "2020 - 2020",
+                    "Descrição": "Programa Inova Labs Fiocruz. Fundação Biominas, BIOMINAS, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "Identifying Gene Regulatory Networks from Gene Expression Data.  (Carga horária: 40h). Fundação Oswaldo Cruz (MG), FIOCRUZ MINAS, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "Workshop de atualização em Biologia Computacional da Fiocruz Ceará.  (Carga horária: 20h). Fundação Oswaldo Cruz (CE), FIOCRUZ CEARÁ, Brasil."
                 },
                 {
                     "Ano": "2016 - 2016",
-                    "Descrição": "Formation BD FACSAria?.  (Carga horária: 40h). BD (Becton, Dickinson and Company), BD, Bélgica."
+                    "Descrição": "PRINCÍPIOS DA NEUROCIÊNCIA: BASES NEUROFISIOLÓGICAS DO COMPORTAMENTO.  (Carga horária: 40h). INSTITUTO VIVER DE SAÚDE ENSINO E PERFORMACE, IVESP, Brasil."
+                },
+                {
+                    "Ano": "2016 - 2016",
+                    "Descrição": "PERÍCIA FORENSE.  (Carga horária: 10h). INSTITUTO WISER - DESENVOLVIMENTO E INOVAÇÃO ACADÊMICA, INSTITUTO WISER, Brasil."
+                },
+                {
+                    "Ano": "2016 - 2016",
+                    "Descrição": "PRODUÇÃO DE CERVEJA ARTESANAL UTILIZANDO LEVEDURAS.  (Carga horária: 8h). Universidade Federal do Ceará, UFC, Brasil."
+                },
+                {
+                    "Ano": "2015 - 2015",
+                    "Descrição": "BIOLOGIA FORENSE.  (Carga horária: 9h). RENOVA CURSOS, RC, Brasil."
+                },
+                {
+                    "Ano": "2015 - 2015",
+                    "Descrição": "AVALIAÇÃO DA INJEÇÃO DE SURFACTANTES COMO MÉTODO DE RECUPERAÇÃO AVANÇADA DE.  (Carga horária: 2h). Universidade Federal do Ceará, UFC, Brasil."
+                },
+                {
+                    "Ano": "2015 - 2015",
+                    "Descrição": "INTRODUÇÃO À BIOTECNOLOGIA NA QUÍMICA TÊXTIL.  (Carga horária: 2h). Universidade Federal do Ceará, UFC, Brasil."
                 },
                 {
                     "Ano": "2014 - 2014",
-                    "Descrição": "FORMATION AU LOGICIEL R.  (Carga horária: 20h). Biosciences & Co, FC-3BIO, França."
+                    "Descrição": "BIOQUÍMICA E PRODUÇÃO DE CERVEJA ARTESANAIS.  (Carga horária: 4h). Universidade Federal do Ceará, UFC, Brasil."
+                },
+                {
+                    "Ano": "2014 - 2014",
+                    "Descrição": "II MINICURSO DE PROPAGAÇÃO IN VITRO DE PLANTAS.  (Carga horária: 20h). Universidade Federal do Ceará, UFC, Brasil."
+                },
+                {
+                    "Ano": "2014 - 2014",
+                    "Descrição": "BIOMATERIAIS PARA APLICAÇÕES MÉDICAS.  (Carga horária: 4h). Universidade Federal do Ceará, UFC, Brasil."
                 },
                 {
                     "Ano": "2013 - 2014",
-                    "Descrição": "Français langue étrangère, 60heures, niveau A2.2.  (Carga horária: 60h). Mairie de Paris, França."
+                    "Descrição": "INGLÊS AVANÇADO.  (Carga horária: 320h). CENTRO DE LINGUAS ESTRANGEIRAS DO CEFET, CLEC, Brasil."
                 },
                 {
-                    "Ano": "2011 - 2011",
-                    "Descrição": "Doutorado Sanduiche - FAPERJ. University of Miami Miller School of Medicine, UMMSM, Estados Unidos."
+                    "Ano": "2010 - 2012",
+                    "Descrição": "INGLÊS.  (Carga horária: 400h). CENTRO DE LINGUAS ESTRANGEIRAS DO CEFET, CLEC, Brasil."
                 },
                 {
-                    "Ano": "2010 - 2011",
-                    "Descrição": "Aperfeiçoamento - Focus. FISK Curso de Idiomas, FISK, Brasil."
+                    "Ano": "2010 - 2010",
+                    "Descrição": "SUPORTE TÉCNIICO.  (Carga horária: 60h). SINDICATO DOS TRABALHADORES DA UFC, SINTUFCE, Brasil."
                 },
                 {
-                    "Ano": "2010 - 2011",
-                    "Descrição": "Básico de Francês. Aliança Francesa, AF, Brasil."
+                    "Ano": "2009 - 2009",
+                    "Descrição": "WEB PROGRAMAÇÃO.  (Carga horária: 33h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
                 },
                 {
-                    "Ano": "2009 - 2010",
-                    "Descrição": "Avançado de Inglês. FISK Curso de Idiomas, FISK, Brasil."
+                    "Ano": "2009 - 2009",
+                    "Descrição": "WEB PUBLICAÇÃO.  (Carga horária: 12h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
                 },
                 {
-                    "Ano": "2004 - 2005",
-                    "Descrição": "Intermediário de Inglês. Yes Curso de Idiomas, YES, Brasil."
+                    "Ano": "2008 - 2008",
+                    "Descrição": "CORELDRAW 13.  (Carga horária: 21h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
                 },
                 {
-                    "Ano": "2002 - 2003",
-                    "Descrição": "Básico de Inglês. Yes Curso de Idiomas, YES, Brasil."
+                    "Ano": "2008 - 2008",
+                    "Descrição": "FINALIZAÇÃO.  (Carga horária: 12h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
+                },
+                {
+                    "Ano": "2008 - 2008",
+                    "Descrição": "WEB CRIAÇÃO.  (Carga horária: 21h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
+                },
+                {
+                    "Ano": "2008 - 2008",
+                    "Descrição": "ADOBE INDESIGN CS.  (Carga horária: 24h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
+                },
+                {
+                    "Ano": "2008 - 2008",
+                    "Descrição": "WEB ANIMAÇÃO.  (Carga horária: 21h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
+                },
+                {
+                    "Ano": "2007 - 2007",
+                    "Descrição": "INTERNET E OUTLOOK 2003.  (Carga horária: 18h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
+                },
+                {
+                    "Ano": "2007 - 2007",
+                    "Descrição": "MICROSOFT POWER POINT 2003.  (Carga horária: 12h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
+                },
+                {
+                    "Ano": "2007 - 2007",
+                    "Descrição": "LINUX E OPEN OFFICE.  (Carga horária: 24h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
+                },
+                {
+                    "Ano": "2007 - 2007",
+                    "Descrição": "ADOBE PHOTOSHOP CS2.  (Carga horária: 21h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
+                },
+                {
+                    "Ano": "2007 - 2007",
+                    "Descrição": "MICROSOFT ACCESS  2003.  (Carga horária: 27h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
+                },
+                {
+                    "Ano": "2007 - 2007",
+                    "Descrição": "EXCEL 2003.  (Carga horária: 24h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
+                },
+                {
+                    "Ano": "2006 - 2006",
+                    "Descrição": "WORD 2003.  (Carga horária: 21h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
+                },
+                {
+                    "Ano": "2006 - 2006",
+                    "Descrição": "Windows XP.  (Carga horária: 15h). S.O.S EDUCAÇÃO PROFISSIONAL, SOS, Brasil."
                 }
             ]
         },
         "Atuação Profissional": [
             {
-                "Instituição": "Institut Pasteur, PASTEUR, França.",
-                "Ano": "2023 - Atual",
+                "Instituição": "Universidade Federal do Ceará, UFC, Brasil.",
+                "Ano": "2017 - 2017",
                 "Descrição": "",
-                "Outras informações": "Vínculo: Salariée, Enquadramento Funcional: Experte technique internationale, Carga horária: 35, Regime: Dedicação exclusiva."
+                "Outras informações": "Vínculo: Bolsista, Enquadramento Funcional: PROGRAMA DE INICIAÇÃO TECNOLÓGICA-PIBIT/CNPq, Carga horária: 16"
             },
             {
-                "Instituição": "Institut Pasteur, PASTEUR, França.",
-                "Ano": "2018 - 2023",
+                "Instituição": "Universidade Federal do Ceará, UFC, Brasil.",
+                "Ano": "2016 - 2017",
                 "Descrição": "",
-                "Outras informações": "Vínculo: Servidor Público, Enquadramento Funcional: Research Associate, Regime: Dedicação exclusiva. Em 01/03/2023, Caroline foi cedida ao Ministère de l'Europe et des Affaires étrangères para realizar missão científica de cooperação entre a França e o Brasil. Durante essa missão, seu contrato com o Institut Pasteur estará suspenso."
+                "Outras informações": "Vínculo: Estágio Voluntário, Enquadramento Funcional: Estágio Voluntário, Carga horária: 20"
             },
             {
-                "Instituição": "Institut Pasteur, PASTEUR, França.",
-                "Ano": "2012 - 2018",
+                "Instituição": "Universidade Federal do Ceará, UFC, Brasil.",
+                "Ano": "2014 - 2017",
                 "Descrição": "",
-                "Outras informações": "Vínculo: Bolsista, Enquadramento Funcional: Chercheur Post Doc, Regime: Dedicação exclusiva."
+                "Outras informações": "Vínculo: Bolsista, Enquadramento Funcional: Iniciação Cientifica Modalidade CNPq, Carga horária: 12 Ao seu início em 2014, a bolsa de iniciação cientifica do CNPq estava vinculada ao projeto \"Caracterização dos genótipos do H. pylori e avaliação do estresse oxidativo em pacientes portadores de câncer gástrico e familiares de câncer gástrico\". O vinculo ao Departamento de Cirurgia, no entanto, permitiu uma flexibilização da atuação do bolsista em outros projetos do departamento, a exemplo do projeto \"Efeitos modulatórios da Acupuntura e Eletroacunputura sobre a inflamação e o estresse oxidativo no figado de ratos deprimidos\". A bolsa foi renovada com o projeto \"Biomarcadores em dependentes de cocaína/crack e resposta a intervenção com leite enriquecido com ômega 3, 6 e 9 e micronutrientes\". Concomitantemente, foi possível obter experiência na área de química de proteínas trabalhando numa iniciação cientifica voluntária vinculada ao Laboratório de Plantas Laticíferas, coordenado pelo Prof. Dr. Marcio Viana Ramos, no projeto \"Caracterização Bioquímica e Bioprospecção de proteínas de sementes raras da Amazônia. Após cerca de dois anos trabalhando neste projeto, foi necessária a busca por novos desafios, o que levou a estudante a ingressar, em abril de 2016, o Grupo de Pesquisa em Processos Biotecnológicos, vinculado ao Departamento de Engenharia Química, para trabalhar com enzimas."
             },
             {
-                "Instituição": "Commissariat à l?énergie atomique et aux énergies alternatives, CEA, França.",
-                "Ano": "2014 - 2015",
+                "Instituição": "Universidade Federal do Ceará, UFC, Brasil.",
+                "Ano": "2015 - 2015",
                 "Descrição": "",
-                "Outras informações": "Vínculo: Colaborador, Enquadramento Funcional: Collaborateur extérieur, Carga horária: 40"
+                "Outras informações": "Vínculo: MONITORIA, Enquadramento Funcional: MONITORIA, Carga horária: 12 A monitoria nas disciplinas de Biologia Celular Geral e Biologia da Célula, ofertadas pelo Departamento de Biologia da Universidade Federal do Ceará, teve caráter voluntário durante sua duração. A vivência da monitoria é de suma importância na academia, pois não somente introduz os alunos a participação direta no ensino, como também auxilia na formação de vínculos profissionais e interpessoais."
             },
             {
-                "Instituição": "Commissariat à l?énergie atomique et aux énergies alternatives, CEA, França.",
-                "Ano": "2012 - 2014",
+                "Instituição": "Universidade Federal do Ceará, UFC, Brasil.",
+                "Ano": "03/2014 - 12/2015",
                 "Descrição": "",
-                "Outras informações": "Vínculo: Bolsista, Enquadramento Funcional: Ingénieur Post Doc, Carga horária: 40, Regime: Dedicação exclusiva."
-            },
-            {
-                "Instituição": "Fundação Oswaldo Cruz, FIOCRUZ, Brasil.",
-                "Ano": "2012 - 2012",
-                "Descrição": "",
-                "Outras informações": "Vínculo: Bolsista recém-doutor, Enquadramento Funcional: Pesquisador Visistante, Regime: Dedicação exclusiva."
-            },
-            {
-                "Instituição": "Fundação Oswaldo Cruz, FIOCRUZ, Brasil.",
-                "Ano": "2008 - 2012",
-                "Descrição": "",
-                "Outras informações": "Vínculo: Bolsista de Doutorado, Enquadramento Funcional: Aluno, Regime: Dedicação exclusiva."
-            },
-            {
-                "Instituição": "Fundação Oswaldo Cruz, FIOCRUZ, Brasil.",
-                "Ano": "2007 - 2008",
-                "Descrição": "",
-                "Outras informações": "Vínculo: Tecnologista - Bolsista, Enquadramento Funcional: Tecnologista - Biólogo, Carga horária: 40"
-            },
-            {
-                "Instituição": "Fundação Oswaldo Cruz, FIOCRUZ, Brasil.",
-                "Ano": "2005 - 2007",
-                "Descrição": "",
-                "Outras informações": "Vínculo: Aluno de Mestrado, Enquadramento Funcional: Aluno de Mestrado, Carga horária: 40, Regime: Dedicação exclusiva."
-            },
-            {
-                "Instituição": "Universidade do Estado do Rio de Janeiro, UERJ, Brasil.",
-                "Ano": "2002 - 2005",
-                "Descrição": "",
-                "Outras informações": "Vínculo: Bolsista de Iniciação Científi, Enquadramento Funcional: Aluno de Iniciação Científica, Carga horária: 20, Regime: Dedicação exclusiva."
-            },
-            {
-                "Instituição": "Universidade do Estado do Rio de Janeiro, UERJ, Brasil.",
-                "Ano": "2002 - 2002",
-                "Descrição": "",
-                "Outras informações": "Vínculo: Estágio Voluntário, Enquadramento Funcional: Aluno de Iniciação Científica, Carga horária: 20, Regime: Dedicação exclusiva."
+                "Outras informações": "Extensão universitária , Centro de Ciências, Departamento de Bioquímica e Biologia Molecular. Atividade de extensão realizada Programa Integrado de Qualificação Discente - PIQD."
             }
         ],
         "Linhas de Pesquisa": [],
         "Áreas": {
-            "1.": "Grande área: Ciências Biológicas / Área: Bioquímica / Subárea: Biologia Molecular.",
-            "2.": "Grande área: Ciências Biológicas / Área: Genética / Subárea: Genética Molecular e de Microorganismos.",
-            "3.": "Grande área: Ciências Biológicas / Área: Imunologia / Subárea: Imunologia Aplicada.",
-            "4.": "Grande área: Ciências Biológicas / Área: Biologia Geral / Subárea: Biologia Celular.",
-            "5.": "Grande área: Ciências Biológicas / Área: Parasitologia."
+            "1.": "Grande área: Ciências Biológicas / Área: Bioquímica / Subárea: Biotecnologia.",
+            "2.": "Grande área: Ciências Biológicas / Área: Bioquímica / Subárea: Biologia Geral.",
+            "3.": "Grande área: Ciências Biológicas / Área: Bioquímica / Subárea: Proteínas.",
+            "4.": "Grande área: Ciências Biológicas / Área: Morfologia / Subárea: Citologia e Biologia Celular.",
+            "5.": "Grande área: Ciências Biológicas / Área: Biofísica / Subárea: Bioinformática.",
+            "6.": "Grande área: Ciências Biológicas / Área: Imunologia."
         },
         "Produções": {
             "Artigos completos publicados em periódicos": [
                 {
-                    "ano": "2024",
-                    "fator_impacto_jcr": "16.6",
-                    "ISSN": "20411723",
-                    "titulo": "Early antiretroviral therapy favors post-treatment SIV control associated with the expansion of enhanced memory CD8  T-cells",
-                    "revista": "Nature Communications",
-                    "autores": "PASSAES, CAROLINE2024PASSAES, CAROLINE; DESJARDINS, DELPHINE ; CHAPEL, ANAÏS ; MONCEAUX, VALÉRIE ; LEMAITRE, JULIEN ; MÉLARD, ADELINE ; PERDOMO-CELIS, FEDERICO ; PLANCHAIS, CYRIL ; GOURVÈS, MAËL ; DIMANT, NASTASIA ; DAVID, ANNIE ; DEREUDDRE-BOSQUET, NATHALIE ; BARRAIL-TRAN, AURÉLIE ; GOUGET, HÉLÈNE ; GUILLAUME, CÉLINE ; RELOUZAT, FRANCIS ; LAMBOTTE, OLIVIER ; GUEDJ, JÉRÉMIE ; MÜLLER-TRUTWIN, MICHAELA ; MOUQUET, HUGO . Early antiretroviral therapy favors post-treatment SIV control associated with the expansion of enhanced memory CD8+ T-cells. Nature Communications, v. 15, p. 178, 2024.",
-                    "data_issn": "20411723",
-                    "DOI": "http://dx.doi.org/10.1038/s41467-023-44389-3"
-                },
-                {
-                    "ano": "2023",
-                    "fator_impacto_jcr": "82.9",
-                    "ISSN": "10788956",
-                    "titulo": "In-depth virological and immunological characterization of HIV-1 cure after CCR5-32/-32 allogeneic hematopoietic stem cell transplantation",
-                    "revista": "NATURE MEDICINE",
-                    "autores": "JENSEN, BJÖRN-ERIK OLE2023JENSEN, BJÖRN-ERIK OLE ; KNOPS, ELENA ; CORDS, LEON ; LÜBKE, NADINE ; SALGADO, MARIA ; BUSMAN-SAHAY, KATHLEEN ; ESTES, JACOB D. ; HUYVENEERS, LAURA E. P. ; PERDOMO-CELIS, FEDERICO ; WITTNER, MELANIE ; GÁLVEZ, CRISTINA ; MUMMERT, CHRISTIANE ;PASSAES, CAROLINE; EBERHARD, JOHANNA M. ; MÜNK, CARSTEN ; HAUBER, ILONA ; HAUBER, JOACHIM ; HEGER, EVA ; DE CLERCQ, JOZEFIEN ; VANDEKERCKHOVE, LINOS . ",
-                    "data_issn": "10788956",
-                    "DOI": "http://dx.doi.org/10.1038/s41591-023-02213-x"
-                },
-                {
-                    "ano": "2023",
-                    "fator_impacto_jcr": "15.9",
-                    "ISSN": "15588238",
-                    "titulo": "Reprogramming dysfunctional CD8  T cells to promote properties associated with natural HIV control",
-                    "revista": "The journal of clinical investigation (Online)",
-                    "autores": "PERDOMO-CELIS, FEDERICO2023PERDOMO-CELIS, FEDERICO ;PASSAES, CAROLINE; MONCEAUX, VALÉRIE ; VOLANT, STEVENN ; BOUFASSA, FAROUDY ; DE TRUCHIS, PIERRE ; MARCOU, MORGANE ; BOURDIC, KATIA ; WEISS, LAURENCE ; JUNG, CORINNE ; BOURGEOIS, CHRISTINE ; GOUJARD, CÉCILE ; MEYER, LAURENCE ; MÜLLER-TRUTWIN, MICHAELA ; LAMBOTTE, OLIVIER ; SÁEZ-CIRIÓN, ASIER . Reprogramming dysfunctional CD8+ T cells to promote properties associated with natural HIV control. The journal of clinical investigation (Online), v. 133, p. x, 2023.",
-                    "data_issn": "15588238",
-                    "DOI": "http://dx.doi.org/10.1172/JCI167843"
+                    "ano": "2022",
+                    "fator_impacto_jcr": "5.6",
+                    "ISSN": "15499596",
+                    "titulo": "Investigation of Unprecedented Sites and Proposition of New Ligands for Programmed Cell Death Protein I through Molecular Dynamics with Probes and Virtual Screening",
+                    "revista": "Journal of Chemical Information and Modeling",
+                    "autores": "1ANDRADE, LUCA2022ANDRADE, LUCA ;ALBUQUERQUE, ALINE; SANTOS-COSTA, ANDRIELLY ; VASCONCELOS, DISRAELI ; SAVINO, WILSON ; SARTORI, GERALDO RODRIGUES ; MARTINS DA SILVA, JOÃO HERMINIO . ",
+                    "data_issn": "15499596",
+                    "DOI": "http://dx.doi.org/10.1021/acs.jcim.1c01122"
                 },
                 {
                     "ano": "2022",
-                    "fator_impacto_jcr": "5.9",
-                    "ISSN": "23993642",
-                    "titulo": "NK cell spatial dynamics and IgA responses in gut-associated lymphoid tissues during SIV infections",
-                    "revista": "Communications Biology",
-                    "autores": "RASCLE, PHILIPPE2022RASCLE, PHILIPPE ; PLANCHAIS, CYRIL ; JACQUELIN, BÉATRICE ; LAZZERINI, MARIE ; CONTRERAS, VANESSA ;PASSAES, CAROLINE; SAEZ-CIRION, ASIER ; MOUQUET, HUGO ; HUOT, NICOLAS ; MÜLLER-TRUTWIN, MICHAELA . ",
-                    "data_issn": "23993642",
-                    "DOI": "http://dx.doi.org/10.1038/s42003-022-03619-y"
-                },
-                {
-                    "ano": "2022",
-                    "fator_impacto_jcr": "11.1",
-                    "ISSN": "23523964",
-                    "titulo": "Novel role of UHRF1 in the epigenetic repression of the latent HIV-1",
-                    "revista": "EBIOMEDICINE",
-                    "autores": "VERDIKT, ROXANE2022VERDIKT, ROXANE ; BENDOUMOU, MARYAM ; BOUCHAT, SOPHIE ; NESTOLA, LORENA ; PASTERNAK, ALEXANDER O. ; DARCIS, GILLES ; AVETTAND-FENOEL, VÉRONIQUE ; VANHULLE, CAROLINE ; AÏT-AMMAR, AMINA ; SANTANGELO, MARION ; PLANT, ESTELLE ; DOUCE, VALENTIN LE ; DELACOURT, NADÈGE ; CICILIONYT', AURELIJA ; NECSOI, COCA ; CORAZZA, FRANCIS ;Passaes, Caroline Pereira Bittencourt; SCHWARTZ, CHRISTIAN ; BIZET, MARTIN ; FUKS, FRANÇOIS . ",
-                    "data_issn": "23523964",
-                    "DOI": "http://dx.doi.org/10.1016/j.ebiom.2022.103985"
-                },
-                {
-                    "ano": "2021",
-                    "fator_impacto_jcr": "7.8",
-                    "ISSN": "2076393X",
-                    "titulo": "COVID-19 Research: Lessons from Non-Human Primate Models",
-                    "revista": "Vaccines",
-                    "autores": "ALBRECHT, LAURE2021ALBRECHT, LAURE ; BISHOP, ELODIE ; JAY, BASILE ; LAFOUX, BLAISE ; MINOVES, MARIE ;PASSAES, CAROLINE. ",
-                    "data_issn": "2076393X",
-                    "DOI": "http://dx.doi.org/10.3390/vaccines9080886"
-                },
-                {
-                    "ano": "2021",
-                    "fator_impacto_jcr": "7.3",
-                    "ISSN": "16643224",
-                    "titulo": "CD32 CD4  T Cells Sharing B Cell Properties Increase With Simian Immunodeficiency Virus Replication in Lymphoid Tissues",
-                    "revista": "Frontiers in Immunology",
-                    "autores": "HUOT, NICOLAS2021HUOT, NICOLAS ; RASCLE, PHILIPPE ; PLANCHAIS, CYRIL ; CONTRERAS, VANESSA ;PASSAES, CAROLINE; LE GRAND, ROGER ; BEIGNON, ANNE-SOPHIE ; KORNOBIS, ETIENNE ; LEGENDRE, RACHEL ; VARET, HUGO ; SAEZ-CIRION, ASIER ; MOUQUET, HUGO ; JACQUELIN, BEATRICE ; MÜLLER-TRUTWIN, MICHAELA . CD32+CD4+ T Cells Sharing B Cell Properties Increase With Simian Immunodeficiency Virus Replication in Lymphoid Tissues. Frontiers in Immunology, v. 12, p. x, 2021.Citações:6|5",
-                    "data_issn": "16643224",
-                    "DOI": "http://dx.doi.org/10.3389/fimmu.2021.695148"
-                },
-                {
-                    "ano": "2021",
-                    "fator_impacto_jcr": "5.4",
-                    "ISSN": "0022538X",
-                    "titulo": "Ultrasensitive Detection of p24 in Plasma Samples from People with Primary and Chronic HIV-1 Infection",
-                    "revista": "JOURNAL OF VIROLOGY",
-                    "autores": "PASSAES, CAROLINE2021PASSAES, CAROLINE; DELAGREVERIE, HÉLOÏSE M. ; AVETTAND-FENOEL, VÉRONIQUE ; DAVID, ANNIE ; MONCEAUX, VALÉRIE ; ESSAT, ASMA ; MÜLLER-TRUTWIN, MICHAELA ; DUFFY, DARRAGH ; DE CASTRO, NATHALIE ; WITTKOP, LINDA ; ROUZIOUX, CHRISTINE ; MOLINA, JEAN-MICHEL ; MEYER, LAURENCE ; DELAUGERRE, CONSTANCE ; SÁEZ-CIRIÓN, ASIER . ",
-                    "data_issn": "0022538X",
-                    "DOI": "http://dx.doi.org/10.1128/JVI.00016-21"
-                },
-                {
-                    "ano": "2021",
-                    "fator_impacto_jcr": "5.8",
-                    "ISSN": "25890042",
-                    "titulo": "Role of NKG2a/c CD8  T cells in pathogenic versus non-pathogenic SIV infections",
-                    "revista": "Iscience",
-                    "autores": "HUOT, NICOLAS2021HUOT, NICOLAS ; RASCLE, PHILIPPE ; TCHITCHEK, NICOLAS ; WIMMER, BENEDIKT ;PASSAES, CAROLINE; CONTRERAS, VANESSA ; DESJARDINS, DELPHINE ; STAHL-HENNIG, CHRISTIANE ; LE GRAND, ROGER ; SAEZ-CIRION, ASIER ; JACQUELIN, BEATRICE ; MÜLLER-TRUTWIN, MICHAELA . Role of NKG2a/c+CD8+ T cells in pathogenic versus non-pathogenic SIV infections. Iscience, v. 24, p. 102314, 2021.Citações:7|7",
-                    "data_issn": "25890042",
-                    "DOI": "http://dx.doi.org/10.1016/j.isci.2021.102314"
-                },
-                {
-                    "ano": "2021",
-                    "fator_impacto_jcr": "16.6",
-                    "ISSN": "20411723",
-                    "titulo": "SIV-induced terminally differentiated adaptive NK cells in lymph nodes associated with enhanced MHC-E restricted activity",
-                    "revista": "Nature Communications",
-                    "autores": "HUOT, NICOLAS2021HUOT, NICOLAS ; RASCLE, PHILIPPE ; PETITDEMANGE, CAROLINE ; CONTRERAS, VANESSA ; STÜRZEL, CHRISTINA M. ; BAQUERO, EDUARD ; HARPER, JUSTIN L. ;PASSAES, CAROLINE; LEGENDRE, RACHEL ; VARET, HUGO ; MADEC, YOANN ; SAUERMANN, ULRIKE ; STAHL-HENNIG, CHRISTIANE ; NATTERMANN, JACOB ; SAEZ-CIRION, ASIER ; LE GRAND, ROGER ; KEITH REEVES, R. ; PAIARDINI, MIRKO ; KIRCHHOFF, FRANK ; JACQUELIN, BEATRICE . ",
-                    "data_issn": "20411723",
-                    "DOI": "http://dx.doi.org/10.1038/s41467-021-21402-1"
-                },
-                {
-                    "ano": "2021",
-                    "fator_impacto_jcr": "11.8",
-                    "ISSN": "10584838",
-                    "titulo": "The Genome-wide Methylation Profile of CD4  T Cells From Individuals With Human Immunodeficiency Virus (HIV) Identifies Distinct Patterns Associated With Disease Progression",
-                    "revista": "CLINICAL INFECTIOUS DISEASES",
-                    "autores": "MORON-LOPEZ, SARA2021MORON-LOPEZ, SARA ; URREA, VICTOR ; DALMAU, JUDITH ; LOPEZ, MIGUEL ; PUERTAS, MARIA C ; OUCHI, DAN ; GÓMEZ, ANTONIO ;PASSAES, CAROLINE; MOTHE, BEATRIZ ; BRANDER, CHRISTIAN ; SAEZ-CIRION, ASIER ; CLOTET, BONAVENTURA ; ESTELLER, MANEL ; BERDASCO, MARIA ; MARTINEZ-PICADO, JAVIER . The Genome-wide Methylation Profile of CD4+ T Cells From Individuals With Human Immunodeficiency Virus (HIV) Identifies Distinct Patterns Associated With Disease Progression. CLINICAL INFECTIOUS DISEASES, v. 72, p. e256-e264, 2021.Citações:13",
-                    "data_issn": "10584838",
-                    "DOI": "http://dx.doi.org/10.1093/cid/ciaa1047"
-                },
-                {
-                    "ano": "2020",
-                    "fator_impacto_jcr": "8.8",
-                    "ISSN": "22111247",
-                    "titulo": "Optimal Maturation of the SIV-Specific CD8  T Cell Response after Primary Infection Is Associated with Natural Control of SIV: ANRS SIC Study",
-                    "revista": "Cell Reports",
-                    "autores": "PASSAES, CAROLINE2020PASSAES, CAROLINE; MILLET, ANTOINE ; MADELAIN, VINCENT ; MONCEAUX, VALÉRIE ; DAVID, ANNIE ; VERSMISSE, PIERRE ; SYLLA, NAYA ; GOSTICK, EMMA ; LLEWELLYN-LACEY, SIAN ; PRICE, DAVID A. ; BLANCHER, ANTOINE ; DEREUDDRE-BOSQUET, NATHALIE ; DESJARDINS, DELPHINE ; PANCINO, GIANFRANCO ; LE GRAND, ROGER ; LAMBOTTE, OLIVIER ; MÜLLER-TRUTWIN, MICHAELA ; ROUZIOUX, CHRISTINE ; GUEDJ, JÉRÉMIE ; AVETTAND-FENOEL, VÉRONIQUE . Optimal Maturation of the SIV-Specific CD8+ T Cell Response after Primary Infection Is Associated with Natural Control of SIV: ANRS SIC Study. Cell Reports, v. 32, p. 108174, 2020.Citações:10|10",
-                    "data_issn": "22111247",
-                    "DOI": "http://dx.doi.org/10.1016/j.celrep.2020.108174"
-                },
-                {
-                    "ano": "2020",
-                    "fator_impacto_jcr": "8.0",
-                    "ISSN": "23793708",
-                    "titulo": "TLR7 dosage polymorphism shapes interferogenesis and HIV-1 acute viremia in women",
-                    "revista": "JCI INSIGHT",
-                    "autores": "AZAR, PASCAL2020AZAR, PASCAL ; MEJÍA, JOSÉ ENRIQUE ; CENAC, CLAIRE ; SHAIYKOVA, ARNOO ; YOUNESS, ALI ; LAFFONT, SOPHIE ; ESSAT, ASMA ; IZOPET, JACQUES ;PASSAES, CAROLINE; MÜLLER-TRUTWIN, MICHAELA ; DELOBEL, PIERRE ; MEYER, LAURENCE ; GUÉRY, JEAN-CHARLES . ",
-                    "data_issn": "23793708",
-                    "DOI": "http://dx.doi.org/10.1172/jci.insight.136047"
-                },
-                {
-                    "ano": "2020",
-                    "fator_impacto_jcr": "17.1",
-                    "ISSN": "19466234",
-                    "titulo": "Vulnerability to reservoir reseeding due to high immune activation after allogeneic hematopoietic stem cell transplantation in individuals with HIV-1",
-                    "revista": "Science Translational Medicine",
-                    "autores": "EBERHARD, JOHANNA M.2020EBERHARD, JOHANNA M. ; ANGIN, MATHIEU ;PASSAES, CAROLINE; SALGADO, MARIA ; MONCEAUX, VALERIE ; KNOPS, ELENA ; KOBBE, GUIDO ; JENSEN, BJÖRN ; CHRISTOPEIT, MAXIMILIAN ; KRÖGER, NICOLAUS ; VANDEKERCKHOVE, LINOS ; BADIOLA, JON ; BANDERA, ALESSANDRA ; RAJ, KAVITA ; VAN LUNZEN, JAN ; HÜTTER, GERO ; KUBALL, JÜRGEN H. E. ; MARTINEZ-LAPERCHE, CAROLINA ; BALSALOBRE, PASCUAL ; KWON, MI . ",
-                    "data_issn": "19466234",
-                    "DOI": "http://dx.doi.org/10.1126/scitranslmed.aay9355"
-                },
-                {
-                    "ano": "2020",
-                    "fator_impacto_jcr": "5.4",
-                    "ISSN": "0022538X",
-                    "titulo": "Antiapoptotic Clone 11-Derived Peptides Induce Death of CD4 T Cells Susceptible to HIV-1 Infection",
-                    "revista": "JOURNAL OF VIROLOGY",
-                    "autores": "MIKHAILOVA, ANASTASSIA2020MIKHAILOVA, ANASTASSIA ; VALLE-CASUSO, JOSÉ CARLOS ; DAVID, ANNIE ; MONCEAUX, VALÉRIE ; VOLANT, STEVENN ;PASSAES, CAROLINE; ELFIDHA, AMAL ; MÜLLER-TRUTWIN, MICHAELA ; POYET, JEAN-LUC ; SÁEZ-CIRIÓN, ASIER . ",
-                    "data_issn": "0022538X",
-                    "DOI": "http://dx.doi.org/10.1128/JVI.00611-20"
-                },
-                {
-                    "ano": "2019",
-                    "fator_impacto_jcr": "20.8",
-                    "ISSN": "25225812",
-                    "titulo": "Metabolic plasticity of HIV-specific CD8  T cells is associated with enhanced antiviral potential and natural control of HIV-1 infection",
-                    "revista": "Nature Metabolism",
-                    "autores": "ANGIN, MATHIEU2019ANGIN, MATHIEU ; VOLANT, STEVENN ;PASSAES, CAROLINE; LECUROUX, CAMILLE ; MONCEAUX, VALÉRIE ; DILLIES, MARIE-AGNÈS ; VALLE-CASUSO, JOSÉ CARLOS ; PANCINO, GIANFRANCO ; VASLIN, BRUNO ; LE GRAND, ROGER ; WEISS, LAURENCE ; GOUJARD, CECILE ; MEYER, LAURENCE ; BOUFASSA, FAROUDY ; MÜLLER-TRUTWIN, MICHAELA ; LAMBOTTE, OLIVIER ; SÁEZ-CIRIÓN, ASIER . Metabolic plasticity of HIV-specific CD8+ T cells is associated with enhanced antiviral potential and natural control of HIV-1 infection. Nature Metabolism, v. 1, p. 704-716, 2019.Citações:62|64",
-                    "data_issn": "25225812",
-                    "DOI": "http://dx.doi.org/10.1038/s42255-019-0081-4"
-                },
-                {
-                    "ano": "2019",
-                    "fator_impacto_jcr": "29.0",
-                    "ISSN": "15504131",
-                    "titulo": "Cellular Metabolism Is a Major Determinant of HIV-1 Reservoir Seeding in CD4  T Cells and Offers an Opportunity to Tackle Infection",
-                    "revista": "Cell Metabolism",
-                    "autores": "VALLE-CASUSO, JOSÉ CARLOS2019VALLE-CASUSO, JOSÉ CARLOS ; ANGIN, MATHIEU ; VOLANT, STEVENN ;PASSAES, CAROLINE; MONCEAUX, VALÉRIE ; MIKHAILOVA, ANASTASSIA ; BOURDIC, KATIA ; AVETTAND-FENOEL, VÉRONIQUE ; BOUFASSA, FAROUDY ; SITBON, MARC ; LAMBOTTE, OLIVIER ; THOULOUZE, MARIA-ISABEL ; MÜLLER-TRUTWIN, MICHAELA ; CHOMONT, NICOLAS ; SÁEZ-CIRIÓN, ASIER . Cellular Metabolism Is a Major Determinant of HIV-1 Reservoir Seeding in CD4+ T Cells and Offers an Opportunity to Tackle Infection. Cell Metabolism, v. 29, p. 611-626.e5, 2019.Citações:105|112",
-                    "data_issn": "15504131",
-                    "DOI": "http://dx.doi.org/10.1016/j.cmet.2018.11.015"
-                },
-                {
-                    "ano": "2018",
-                    "fator_impacto_jcr": "3.7",
-                    "ISSN": "19326203",
-                    "titulo": "Correction: Stage-specific IFN-induced and IFN gene expression reveal convergence of type I and type II IFN and highlight their role in both acute and chronic stage of pathogenic SIV infection",
-                    "revista": "PLoS One",
-                    "autores": "ECHEBLI, NADIA2018ECHEBLI, NADIA ; TCHITCHEK, NICOLAS ; DUPUY, STÉPHANIE ; BRUEL, TIMOTHÉE ;PASSAES, CAROLINE; BOSQUET, NATHALIE ; LE GRAND, ROGER ; BOURGEOIS, CHRISTINE ; FAVIER, BENOIT ; CHEYNIER, RÉMI ; LAMBOTTE, OLIVIER ; VASLIN, BRUNO . ",
-                    "data_issn": "19326203",
-                    "DOI": "http://dx.doi.org/10.1371/journal.pone.0193629"
-                },
-                {
-                    "ano": "2017",
-                    "fator_impacto_jcr": "5.4",
-                    "ISSN": "0022538X",
-                    "titulo": "Ultrasensitive HIV-1 p24 Assay Detects Single Infected Cells and Differences in Reservoir Induction by Latency Reversal Agents",
-                    "revista": "JOURNAL OF VIROLOGY",
-                    "autores": "PASSAES, C. P. B.2017PASSAES, C. P. B.; BRUEL, T. ; DECALF, J. ; DAVID, A. ; ANGIN, MATHIEU ; MONCEAUX, V. ; MÜLLER-TRUTWIN, MICHAELA C. ; NOËL, NICOLAS ; BOURDIC, K. ; LAMBOTTE, O. ; ALBERT, MATTHEW L. ; DUFFY, D. ; SCHWARTZ, O. ; SAEZ-CIRION, A. ",
-                    "data_issn": "0022538X",
-                    "DOI": "http://dx.doi.org/10.1128/JVI.02296-16"
-                },
-                {
-                    "ano": "2016",
-                    "fator_impacto_jcr": "6.7",
-                    "ISSN": "15537374",
-                    "titulo": "Elevated Basal Pre-infection CXCL10 in Plasma and in the Small Intestine after Infection Are Associated with More Rapid HIV/SIV Disease Onset",
-                    "revista": "PLoS Pathogens (Online)",
-                    "autores": "PLOQUIN, MICKAËL J.2016PLOQUIN, MICKAËL J. ; MADEC, YOANN ; CASROUGE, ARMANDA ; HUOT, NICOLAS ;PASSAES, CAROLINE; LÉCUROUX, CAMILLE ; ESSAT, ASMA ; BOUFASSA, FAROUDY ; JACQUELIN, BÉATRICE ; JOCHEMS, SIMON P. ; PETITJEAN, GAËL ; ANGIN, MATHIEU ; GÄRTNER, KATHLEEN ; GARCIA-TELLEZ, THALÍA ; NOËL, NICOLAS ; BOOIMAN, THIJS ; BOESER-NUNNINK, BRIGITTE D. ; ROQUES, PIERRE ; SAEZ-CIRION, ASIER ; VASLIN, BRUNO . ",
-                    "data_issn": "15537374",
-                    "DOI": "http://dx.doi.org/10.1371/journal.ppat.1005774"
-                },
-                {
-                    "ano": "2015",
-                    "fator_impacto_jcr": "",
-                    "ISSN": "15254135",
-                    "titulo": "HIV Controllers With Different Viral Load Cutoff Levels  Have Distinct Virologic and Immunologic Profiles",
-                    "revista": "Journal of Acquired Immune Deficiency Syndromes (1999)",
-                    "autores": "CORTES, F. H.2015CORTES, F. H. ;Passaes, Caroline P.B.;BELLO, G.;TEIXEIRA, S. L. M.; VORSATZ, C. ; BABIC, D. ; SHARKEY, M. ; Grinsztejn, Beatriz ; VELOSO, VALDILEA ; STEVENSON, M. ;Morgado, Mariza G.. ",
-                    "data_issn": "15254135",
-                    "DOI": "http://dx.doi.org/10.1097/QAI.0000000000000500"
-                },
-                {
-                    "ano": "2014",
-                    "fator_impacto_jcr": "",
-                    "ISSN": "00426822",
-                    "titulo": "HIV cure research: Advances and prospects",
-                    "revista": "Virology (New York, N.Y. Print)",
-                    "autores": "PASSAES, CAROLINE P.2014PASSAES, CAROLINE P.; SÁEZ-CIRIÓN, ASIER . ",
-                    "data_issn": "00426822",
-                    "DOI": "http://dx.doi.org/10.1016/j.virol.2014.02.021"
-                },
-                {
-                    "ano": "2014",
-                    "fator_impacto_jcr": "3.7",
-                    "ISSN": "19326203",
-                    "titulo": "Association of Single Nucleotide Polymorphisms in the Lens Epithelium-Derived Growth Factor (LEDGF/p75) with HIV-1 Infection Outcomes in Brazilian HIV-1  Individuals",
-                    "revista": "Plos One",
-                    "autores": "PASSAES, C. P. B.2014PASSAES, C. P. B.; CARDOSO, CYNTHIA CHESTER ; CAETANO, DIOGO GAMA ; TEIXEIRA, SYLVIA LOPES MAIA ; GUIMARÃES, MONICK LINDENMEYER ; Campos, Dayse Pereira ; SANTOS, Valdiléa Gonçalves Veloso dos ; BABIC, DUNJA Z. ; STEVENSON, MARIO ; MORAES, MILTON OZÓRIO ; Morgado, Mariza Gonçalves . Association of Single Nucleotide Polymorphisms in the Lens Epithelium-Derived Growth Factor (LEDGF/p75) with HIV-1 Infection Outcomes in Brazilian HIV-1+ Individuals. Plos One, v. 9, p. e101780, 2014.Citações:1|1",
-                    "data_issn": "19326203",
-                    "DOI": "http://dx.doi.org/10.1371/journal.pone.0101780"
-                },
-                {
-                    "ano": "2012",
-                    "fator_impacto_jcr": "12.7",
-                    "ISSN": "01466615",
-                    "titulo": "Monitoring the emergence of resistance mutations in patients infected with HIV-1 under salvage therapy with raltegravir in Rio de Janeiro, Brazil: A follow-up study",
-                    "revista": "Journal of Medical Virology (Print)",
-                    "autores": "PASSAES, C. P. B.2012PASSAES, C. P. B.;Guimarães, Monick Lindenmeyer; CARDOSO, SANDRA WAGNER ; PILOTTO, JOSÉ HENRIQUE ; VELOSO, VALDILEA ; Grinsztejn, Beatriz ; Morgado, Mariza Gonçalves ; MORGADO, M. G. ",
-                    "data_issn": "01466615",
-                    "DOI": "http://dx.doi.org/10.1002/jmv.23409"
-                },
-                {
-                    "ano": "2012",
-                    "fator_impacto_jcr": "4.8",
-                    "ISSN": "1743422X",
-                    "titulo": "Temporal dynamics of HIV-1 circulating subtypes in distinct exposure categories in southern Brazil.",
-                    "revista": "Virology Journal",
-                    "autores": "ALMEIDA, S. E. M.2012ALMEIDA, S. E. M.;MEDEIROS, R. M.; JUNQUEIRA, D. M. ; GRAF, T. ;PASSAES, C. P. B.;BELLO, G.; MORGADO, M. G. ;GUIMARAES, M. L.. ",
-                    "data_issn": "1743422X",
-                    "DOI": "http://dx.doi.org/10.1002/jmv.23409"
-                },
-                {
-                    "ano": "2011",
-                    "fator_impacto_jcr": "20.3",
-                    "ISSN": "00064971",
-                    "titulo": "The Nerve Growth Factor (NGF) reduces APOBEC3G synthesis and enhances HIV-1 transcription and replication in human primary macrophages",
-                    "revista": "Blood (Philadelphia, PA)",
-                    "autores": "SOUZA, T. M. L.2011SOUZA, T. M. L. ; RODRIGUES, D. Q. ;PASSAES, C. P. B.; BARRETO-DE-SOUZA, V. ;AGUIAR, R. S.;TEMEROZO, J. R.;MORGADO, M. G.;FONTES, C.F.L.; ARAUJO, E. G. ;BOU-HABIB, D. C.. ",
-                    "data_issn": "00064971",
-                    "DOI": "http://dx.doi.org/10.1002/jmv.23409"
-                },
-                {
-                    "ano": "2011",
-                    "fator_impacto_jcr": "8.8",
-                    "ISSN": "13866532",
-                    "titulo": "HIV-1 genetic diversity and drug resistance among treatment naïve patients from Southern Brazil: An association of HIV-1 subtypes with exposure categories",
-                    "revista": "Journal of Clinical Virology",
-                    "autores": "Gräf, Tiago2011Gräf, Tiago;Passaes, Caroline P.B.; Ferreira, Luis G.E. ;Grisard, Edmundo C.;Morgado, Mariza G.;Bello, Gonzalo;Pinto, Aguinaldo R.. ",
-                    "data_issn": "13866532",
-                    "DOI": "http://dx.doi.org/10.1016/j.jcv.2011.04.011"
-                },
-                {
-                    "ano": "2009",
                     "fator_impacto_jcr": "3.2",
-                    "ISSN": "15671348",
-                    "titulo": "Genetic characterization of HIV-1 BC recombinants and evolutionary history of the CRF31_BC in Southern Brazil",
-                    "revista": "Infection, Genetics and Evolution (Print)",
-                    "autores": "PASSAES, C. P. B.2009PASSAES, C. P. B.;Bello, Gonzalo; Lorete, Roberta S. ;Matos Almeida, Sabrina E.;Junqueira, Dennis Maletich;Veloso, Valdilea G.;Morgado, Mariza G.;Guimarães, Monick Lindenmeyer. ",
-                    "data_issn": "15671348",
-                    "DOI": "http://dx.doi.org/10.1016/j.meegid.2009.01.008"
+                    "ISSN": "20751729",
+                    "titulo": "Development of New Potential Inhibitors of β1 Integrins through In Silico Methods-Screening and Computational Validation",
+                    "revista": "Life-Basel",
+                    "autores": "3VASCONCELOS, DISRAELI2022VASCONCELOS, DISRAELI ; CHAVES, BEATRIZ ;ALBUQUERQUE, ALINE; ANDRADE, LUCA ; HENRIQUES, ANDRIELLY ; SARTORI, GERALDO ; SAVINO, WILSON ; CAFFARENA, ERNESTO ; MARTINS-DA-SILVA, JOÃO HERMINIO . ",
+                    "data_issn": "20751729",
+                    "DOI": "http://dx.doi.org/10.3390/life12070932"
                 },
                 {
-                    "ano": "2009",
-                    "fator_impacto_jcr": "3.6",
-                    "ISSN": "15254135",
-                    "titulo": "Lack of primary mutations associated with integrase inhibitors among HIV-1 subtypes B, C and F circulating in Brazil",
-                    "revista": "Journal of Acquired Immune Deficiency Syndromes (1999)",
-                    "autores": "PASSAES, C. P. B.2009PASSAES, C. P. B.;GUIMARAES, M. L.;LORETE, R. S.; CHEQUER-FERNANDEZ, S. L. ;TEIXEIRA, S. L. M.; COUTO-FERNANDEZ, J. C. ;MORGADO, M. G.. ",
-                    "data_issn": "15254135",
-                    "DOI": "http://dx.doi.org/10.1016/j.meegid.2009.01.008"
+                    "ano": "2022",
+                    "fator_impacto_jcr": "5.6",
+                    "ISSN": "15499596",
+                    "titulo": "Discovery of New Zika Protease and Polymerase Inhibitors through the Open Science Collaboration Project OpenZika",
+                    "revista": "Journal of Chemical Information and Modeling",
+                    "autores": "MOTTIN, MELINA2022MOTTIN, MELINA ; DE PAULA SOUSA, BRUNA KATIELE ; DE MORAES ROSO MESQUITA, NATHALYA CRISTINA ; DE OLIVEIRA, KETLLYN IRENE ZAGATO ; NOSKE, GABRIELA DIAS ; SARTORI, GERALDO RODRIGUES ;DE OLIVEIRA ALBUQUERQUE, ALINE; URBINA, FABIO ; PUHL, ANA C. ; MOREIRA-FILHO, JOSÉ TEÓFILO ; SOUZA, GUILHERME E. ; GUIDO, RAFAEL V. C. ; MURATOV, EUGENE ; NEVES, BRUNO JUNIOR ; MARTINS DA SILVA, JOÃO HERMÍNIO ; CLARK, ALEX E. ; SIQUEIRA-NETO, JAIR L. ; PERRYMAN, ALEXANDER L. ; OLIVA, GLAUCIUS ; EKINS, SEAN ; ANDRADE, CAROLINA HORTA . ",
+                    "data_issn": "15499596",
+                    "DOI": "http://dx.doi.org/10.1021/acs.jcim.2c00596"
                 },
                 {
-                    "ano": "2009",
-                    "fator_impacto_jcr": "1.5",
-                    "ISSN": "08892229",
-                    "titulo": "Evidences of recent decline in the expansion rate of the HIV type 1 subtype C and CRF31_BC epidemics in southern Brazil",
-                    "revista": "AIDS Research and Human Retroviruses",
-                    "autores": "BELLO, G.2009BELLO, G.;GUIMARAES, M. L.;PASSAES, C. P. B.;Matos Almeida, Sabrina E.; VELOSO, V. ;MORGADO, M. G.. ",
-                    "data_issn": "08892229",
-                    "DOI": "http://dx.doi.org/10.1016/j.meegid.2009.01.008"
+                    "ano": "2022",
+                    "fator_impacto_jcr": "5.6",
+                    "ISSN": "26740338",
+                    "titulo": "In silico mapping of the dynamic interactions and structure-activity relationship of flavonoid compounds against the immune checkpoint programmed-cell death 1 pathway",
+                    "revista": "Frontiers in Drug Discovery",
+                    "autores": "SARTORI, GERALDO RODRIGUES2022SARTORI, GERALDO RODRIGUES ;ALBUQUERQUE, ALINE DE OLIVEIRA; SANTOS-COSTA, ANDRIELLY HENRIQUES ; ANDRADE, LUCA MILÉRIO ; ALMEIDA, DIEGO DA SILVA ; GAIETA, EDUARDO MENEZES ; SAMPAIO, JEAN VIEIRA ; ALBUQUERQUE, VITÓRIA TAIANA DE MELO LIMA ; MARTINS DA SILVA, JOÃO HERMÍNIO . ",
+                    "data_issn": "26740338",
+                    "DOI": "http://dx.doi.org/10.3389/fddsv.2022.1032587"
                 },
                 {
-                    "ano": "2009",
-                    "fator_impacto_jcr": "1.5",
-                    "ISSN": "08892229",
-                    "titulo": "Near Full-Length Genome Characterization of HIV Type 1 Unique BC Recombinant Forms from Southern Brazil",
-                    "revista": "AIDS Research and Human Retroviruses",
-                    "autores": "PASSAES, C. P. B.2009PASSAES, C. P. B.;GUIMARAES, M. L.;BELLO, G.;MORGADO, M. G.. ",
-                    "data_issn": "08892229",
-                    "DOI": "http://dx.doi.org/10.1016/j.meegid.2009.01.008"
-                },
-                {
-                    "ano": "2008",
+                    "ano": "2021",
                     "fator_impacto_jcr": "",
-                    "ISSN": "02699370",
-                    "titulo": "Origin and evolutionary history of HIV-1 subtype C in Brazil",
-                    "revista": "AIDS (London)",
-                    "autores": "BELLO, G.2008BELLO, G.;PASSAES, C. P. B.;GUIMARAES, M. L.;LORETE, R. S.;ALMEIDA, S. E. M.;MEDEIROS, R. M.; ALENCASTRO, P. R. ;MORGADO, M. G.. ",
-                    "data_issn": "02699370",
-                    "DOI": "http://dx.doi.org/10.1016/j.meegid.2009.01.008"
-                },
-                {
-                    "ano": "2004",
-                    "fator_impacto_jcr": "3.3",
-                    "ISSN": "00223573",
-                    "titulo": "Acute and topic anti-edematogenic fractions isolated from the seeds of Pterodon pubescens</i>",
-                    "revista": "Journal of Pharmacy and Pharmacology",
-                    "autores": "Silva, M. C. C.2004Silva, M. C. C. ; Gayer, C. R. M. ; Lopes, C. S. ; CALIXTO, N. O. ; REIS, P. A. ;PASSAES, C. P. B.; Paes, M. C. ; Dalmau, S. R. ; Sabino, K. C. C. ; Todeschini, A. R. ; Coelho, M. G. P. Acute and topic anti-edematogenic fractions isolated from the seeds of Pterodon pubescens. Journal of Pharmacy and Pharmacology, v. 56, p. 135-141, 2004.Citações:38|39",
-                    "data_issn": "00223573",
-                    "DOI": "http://dx.doi.org/10.1211/0022357022485"
+                    "ISSN": "07391102",
+                    "titulo": "Computationally-obtained structural insights into the molecular interactions between Pidilizumab and binding partners DLL1 and PD-1",
+                    "revista": "JOURNAL OF BIOMOLECULAR STRUCTURE ",
+                    "autores": "ALBUQUERQUE, ALINE DE OLIVEIRA2021ALBUQUERQUE, ALINE DE OLIVEIRA; DA SILVA JUNIOR, HAROLDO CID ; SARTORI, GERALDO RODRIGUES ; MARTINS DA SILVA, JOÃO HERMÍNIO . ",
+                    "data_issn": "07391102",
+                    "DOI": "http://dx.doi.org/10.1080/07391102.2021.1885492"
                 }
             ],
-            "Resumos expandidos publicados em anais de congressos": {
-                "1.": "PASSAES, C. P. B.. Caracterização Molecular da Região da integrase do gene pol de subtipos de HIV-1 prevalentes no Brasil: avaliação de marcadores de resistência e antigenicidade. In: Prêmio de incentivo em ciência e tecnologia para o SUS 2007, 2007, Brasília - DF. Prêmio de incentivo em ciência e tecnologia para o SUS 2007. Brasília - DF: Editora MS, 2007. p. 93-97."
-            },
             "Resumos publicados em anais de congressos": {
-                "1.": "ECHEBLI, N. ; TCHITCHEK, N. ; DUPUY, S. ; BRUEL, T. ;Passaes, Caroline Pereira Bittencourt; GRAND, R. L. ; VASLIN, B. . Transcriptome analysis of differentially expressed ISG subsets in acute  and chronic phase suggests INfg participate in sustaining persistent ISG  expression in pathogenic SIV infection in cynomolgus macaques. In: 21st International AIDS Conference (AIDS 2016), 2016, Durban. AIDS 2016 Abstract Book, 2016. p. 62-62.",
-                "2.": "PLOQUIN, M. ; CASROUGE, A. ; JAQUELIN, B. ; HUOT, N. ;PASSAES, C. P. B.; JOCHEMS, S. ; ROQUES, P. ; DEREUDDRE-BOSQUET, N. ; GRAND, R. L. ; VASLIN, B. ; SAEZ-CIRION, A. ; BARRE-SINOUSSI, F. ; SILVESTRI, G. ; PAIARDINI, M. ; ALBERT, M. ; MULLER-TRUTWIN, M. . Preserved DPP4 activity associates with slow HIV/SIV disease progression. In: Convention nationale de lutte contre le sida - SIDACTION, 2015, Paris. Convention nationale de lutte contre le sida - SIDACTION, 2015.",
-                "3.": "DUPUY, S. ; BRUEL, T. ;Passaes, CP; SYLLA, N. ; EVEN, S. ; COSMA, A. ; CHEYNIER, R. ; DEREUDDRE-BOSQUET, N. ; GRAND, R. L. ; VASLIN, B. . Dynamics of INF-I and ISG expression in SIVmac251 infection in cynomolgus macaques. In: Keystone Symposia Conference HIV Pathogenesis ? Virus vs. Host, 2014, Fairmont Banff Springs. Abstract book Keystone Symposia Conference HIV Pathogenesis ? Virus vs. Host, 2014.",
-                "4.": "PASSAES, C. P. B.; CARDOSO, Cynthia Chester ; CAETANO, D.G. ;TEIXEIRA, S. L. M.;GUIMARAES, M. L.; CAMPOS, D. P. ;Veloso, Valdilea G.; BABIC, D. ; STEVENSON, M. ; MORAES, M. O. ;Morgado, Mariza G.. Association of single nucleotide polymorphisms (SNPs) in the gene coding for the lens epithelium-derived growth factor (LEDGF/p75) with the outcome of HIV infection in Brazilian HIV+ patients. In: The American Society of Human Genetics 2013 Annual Meeting, 2013, Boston. The American Society of Human Genetics 2013 Annual Meeting, 2013.",
-                "5.": "PASSAES, C. P. B.; CORTES, F. H. ;BELLO, G.; BABIC, D. ; SHARKEY, M. ; VORSATZ, C. ; GRINSTEJN, B. ; VELOSO, V. ; STEVENSON, M. ; MORGADO, M. G. . Total, Episomal, and Integrated HIV DNA Quantification from HIV Elite Controllers: Insights for Ongoing Replication and HIV Reservoir. In: 19th Conference on Retroviruses and Opportunistic Infections, 2012, Seattle. Abstract Book CROI 2012, 2012.",
-                "6.": "PINTO, A. R. ; GRAF, T. ;PASSAES, C. P. B.; BATISTTI NETO, A. ; STOCO, P. H. ; SCHLINDWEIN, A. D. ; MEIRELLES, I. A. K. ; FERREIRA, L. G. E. ;MORGADO, M. G.;BELLO, G.. HIV-1 genetic diversity and drug resistance among treatment naïve patients from Southern Brazil: an association of HIV-1 subtypes with exposure categories. In: IAS 2011, 2011, Roma - Itália. Abstract Book IAS 2011, 2011.",
-                "7.": "ALMEIDA, S. E. M.;MEDEIROS, R. M.; JUNQUEIRA, D. M. ; GRAF, T. ;BELLO, G.;PASSAES, C. P. B.;MORGADO, M. G.;GUIMARAES, M. L.. Temporal Dynamics of HIV-1  Circulating  Subtypes in  Different  Exposure  Categories in the  City of Porto  Alegre, Brazil. In: IX Simpaids, 2011, Salvador - BA. Livro de Resumos do IX Simpaids, 2011.",
-                "8.": "DELATORRE, E. O. ;PASSAES, C. P. B.;GUIMARAES, M. L.;MORGADO, M. G.. A Novel Single Round Genotyping Test for Detection of INTEGRASE Mutations. In: IX Simpaids, 2011, Salvador - BA. Livro de Resumos do IX Simpaids, 2011.",
-                "9.": "PASSAES, C. P. B.. The dice game: a creative approach to stimulate the use of condoms. In: AIDS 2010, 2010, Viena - Áustria. AIDS 2010 Conference CD-ROM, 2010.",
-                "10.": "PASSAES, C. P. B.;GUIMARAES, M. L.; WAGNER, S. ; VELOSO, V. ; GRINSTEJN, B. ;MORGADO, M. G.. Monitoring the emergence of resistance mutations in patients under salvage therapy with Raltegravir in Rio de Janeiro, Brazil: a six month follow-up. In: AIDS 2010, 2010, Viena - Áustria. AIDS 2010 Conference CD-ROM, 2010.",
-                "11.": "PASSAES, C. P. B.;GUIMARAES, M. L.; COUTO-FERNANDEZ, J. C. ; WAGNER, S. ; GRINSTEJN, B. ;MORGADO, M. G.. Evaluating the occurrence of HIV-1 integrase resistance mutations in patients failing HAART from Brazil: an optimistic scenario for the use of integrase inhibitors. In: VIII Simpósio Brasileiro de Pesquisa em AIDS, 2009, Rio de Janeiro. Livro de Resumos do VIII Simpósio Brasileiro de Pesquisa em AIDS, 2009.",
-                "12.": "BELLO, G.;GUIMARAES, M. L.;PASSAES, C. P. B.;ALMEIDA, S. E. M.; VELOSO, V. ;MORGADO, M. G.. Evidences of recent decline in the expansion rate of the HIV-1 subtype C and CRF31_BC epidemics in Southern Brazil. In: VIII Simpósio Brasileiro de Pesquisa em AIDS, 2009, Rio de Janeiro. Livro de Resumos do VIII Simpósio Brasileiro de Pesquisa em AIDS, 2009.",
-                "13.": "BELLO, G.;LORETE, R. S.;GUIMARAES, M. L.;PASSAES, C. P. B.;MORGADO, M. G.. Timing the Introduction of HIV-1 Subtype C in Brazil. In: 15th Conference on Retroviruses and Opportunistic Infections, 2008, Boston. Abstract Book of 15th Conference on Retroviruses and Opportunistic Infections, 2008.",
-                "14.": "PASSAES, C. P. B.;GUIMARAES, M. L.;MORGADO, M. G.. Mapping primary resistance mutation to integrase inhibitors in HIV-1 subtype F. In: 2º Congresso da Comunidade dos Países de Língua Portuguesa em DST/AIDS, 2008, Rio de Janeiro. Livro de Resumos do 2º Congresso da Comunidade dos Países de Língua Portuguesa em DST/AIDS, 2008.",
-                "15.": "BELLO, G.;PASSAES, C. P. B.;GUIMARAES, M. L.;LORETE, R. S.;ALMEIDA, S. E. M.;MEDEIROS, R. M.; ALENCASTRO, P. R. ;MORGADO, M. G.. Origin and evolutionary history of HIV-1 subtype C in Brazil. In: 2º Congresso da Comunidade dos Países de Língua Portuguesa em DST/AIDS, 2008, Rio de Janeiro. Livro de resumos do 2º Congresso da Comunidade dos Países de Língua Portuguesa em DST/AIDS, 2008.",
-                "16.": "PASSAES, C. P. B.;GUIMARAES, M. L.;LORETE, R. S.;ALMEIDA, S. E. M.;MORGADO, M. G.. Trends of integrase inhibitors drug resistance in treatment-naive patients with HIV-1 Subtype C infection in Brazil. In: XVII International AIDS Conference, 2008, Cidade do México. Abstract CD room XVII International AIDS Conference, 2008.",
-                "17.": "BELLO, G.;GUIMARAES, M. L.;PASSAES, C. P. B.; COUTO-FERNANDEZ, J. C. ; CASSEB, J. ;ALMEIDA, S. E. M.; ALCAIDE R ;MORGADO, M. G.. Evidence of multiple HIV-1 subtype C introductions in Southeast Brazilian region. In: XVII International AIDS Conference, 2008, Cidade do México. Abstract CD room XVII International AIDS Conference, 2008.",
-                "18.": "GUIMARAES, M. L.;PASSAES, C. P. B.;BELLO, G.;LORETE, R. S.;ALMEIDA, S. E. M.;MEDEIROS, R. M.; ALENCASTRO, P. R. ;MORGADO, M. G.. Temporal trends and evolutionary history of HIV-1 CRF31_BC in Porto Alegre, Brazil from 1998 - 2006. In: XVII International AIDS Conference, 2008, Cidade do México. Abstract CD room XVII International AIDS Conference, 2008.",
-                "19.": "PASSAES, C. P. B.;BELLO, G.;MORGADO, M. G.. Functional Conservation of HIV-1 Integrase in a Group of Elite Controllers from Brazil. In: Aids Vaccine 2008, 2008, Cape Town. Abstract Book AIDS Vaccine 2008, 2008.",
-                "20.": "PASSAES, C. P. B.;GUIMARAES, M. L.;LORETE, R. S.; COUTO-FERNANDEZ, J. C. ;MORGADO, M. G.. Genetic diversity of integrase in HIV-1 subtypes B, C and F prevalent in Brazil: Study in drug naive and multidrug resistant individuals reveals impact for drug resistance. In: 14th Conference on Retrovirus and Opportunistic Infections, 2007, Los Angeles. Abstract Book of 14th Conference on Retrovirus and Opportunistic Infections, 2007.",
-                "21.": "GUIMARAES, M. L.; MOREIRA, A. S. ;PASSAES, C. P. B.; COUTO-FERNANDEZ, J. C. ; VELOSO, V. ;MORGADO, M. G.. Genetic diversity of gp41 in HIV-1 subtypes B, F, and C, prevalent in Brazil: Characterization in drug-naive and multidrug resistant individuals reveals substantial impact for T-20 resistance.. In: 4th IAS Conference on HIV Pathogenesis, Treatment and Prevention, 2007, Sydney. Abstract Book of 4th IAS Conference on HIV Pathogenesis, Treatment and Prevention, 2007.",
-                "22.": "GUIMARAES, M. L.; MOREIRA, A. S. ;PASSAES, C. P. B.;MORGADO, M. G.. Molecular characterization of gp41 epitopes: Impact in HIV vaccine desing.. In: AIDS Vaccine 07, 2007, Seattle. Abstract Book of AIDS Vaccine 07, 2007.",
-                "23.": "PASSAES, C. P. B.;GUIMARAES, M. L.;MORGADO, M. G.. Genetic diversity of the integrase immunodominant epitopes among the HIV-1 subtypes B, C and F prevalent in Brazil.. In: AIDS Vaccine 07, 2007, Seattle. Abstract Book of AIDS Vaccine 07, 2007.",
-                "24.": "PASSAES, C. P. B.;GUIMARAES, M. L.;MORGADO, M. G.. ANALYSIS OF THREE NEAR FULL-LENGTH GENOME OF SAMPLES FROM SOUTHERN BRAZIL INDICATES A SECOND-GENERATION CRF31_BC RECOMBINANT. In: VII Simpósio Brasileiro de Pesquisa em AIDS, 2007, Itapema - SC. Livro de Resumos do VII Simpósio Brasileiro de Pesquisa em AIDS, 2007. p. 30.",
-                "25.": "PASSAES, C. P. B.;GUIMARAES, M. L.; CHEQUER-FERNANDEZ, S. L. ;LORETE, R. S.;MORGADO, M. G.. Naturally occurring integrase polymorphisms in HIV-1 subtypes B, C and F prevalent in Brazil: impact for drug resistance. In: XVII Encontro Nacional de Virologia, 2006, Campos do Jordão. Virus - Reviews and Research. São Paulo: SBV, 2006. v. 11. p. 96-96.",
-                "26.": "PASSAES, C. P. B.;GUIMARAES, M. L.; CHEQUER-FERNANDEZ, S. L. ;LORETE, R. S.;TEIXEIRA, S. L. M.; COUTO-FERNANDEZ, J. C. ;MORGADO, M. G.. Genetic diversity of integrase in HIV-1 subtypes B, F and C prevalent in Brazil: Study in drug naive and multidrug resistant individuals reveals impact for drug resistance. In: Seminários Avançados sobre Patogênese em HIV/AIDS, 2006, Rio de Janeiro. Resumos do Seminários Avançados sobre Patogênese em HIV/AIDS, 2006.",
-                "27.": "PASSAES, C. P. B.;GUIMARAES, M. L.;MORGADO, M. G.. Caracterização molecular da região da integrase do gene pol de subtipos de HIV-1 prevalentes no Brasil: avaliação de marcadores de resitência e antigenicidade. In: IX Jornada de Pós-Graduação, 2005, Rio de Janeiro. Livro de Resumos da IX Jornada de Pós-Graduação, 2005.",
-                "28.": "PASSAES, C. P. B.;CALIXTO, Nivea Oliveira; LOPES, Carlos da Silva ;COELHO, Marsen Garcia Pinto. EFEITO ANTIEDEMATOGÊNICO DAS SUBFRAÇÕES PROVENIENTES DA FRAÇÃO DICLOROMETANO (DCM) DO EXTRATO OLEOSO DE SEMENTES DE Pterodon pubescens (EOPp). In: Simpósio de Plantas Medicinais do Brasil, 2004, Manaus-AM, 2004.",
-                "29.": "PINTO, Amanda Chaves ; CARDOSO, Cynthia Chester ; MARQUES, Paulo Roberto ;PASSAES, C. P. B.;REIS, Patrícia Alves;SABINO, Katia Costa de Carvalho. AVALIAÇÃO DO EXTRATO AQUOSO DE ECHINODORUS MACROPHYLLUS NA RESPOSTA DE HIPERSENSIBILIDADE TARDIA.. In: Simpósio de Plantas Medicinais do Brasil, 2004, Manaus-AM, 2004.",
-                "30.": "NOGUEIRA, Natália Pereira de Almeida ; LARANJA, Gustavo Augusto Travassos ;PASSAES, C. P. B.;REIS, Patrícia Alves;COELHO, Marsen Garcia Pinto. Toxicological Evaluation of the Aqueous Extract of Baccharis trimera (AEBt) and its fractions. In: XXXVI Congresso Brasileiro de Farmacologia e Terapêutica Experimental, 2004, Águas de Lindóia-SP. Livro de Resumos do XXXVI Congresso Brasileiro de Farmacologia e Terapêutica Experimental, 2004.",
-                "31.": "PASSAES, C. P. B.; PINTO, Amanda Chaves ; NOGUEIRA, Natália Pereira de Almeida ;COELHO, Marsen Garcia Pinto. Avaliação da atividade da Fração Etanólica do Extrato Aquoso de Baccharis trimera na migração de neutrófilos no modelo de inflamação tópica induzida pelo Óleo de Cróton. In: 13ª Semana de Iniciação Científica, 2004, Rio de Janeiro-RJ, 2004.",
-                "32.": "PINTO, Amanda Chaves ; CARDOSO, Cynthia Chester ; MARQUES, Paulo Roberto ;PASSAES, C. P. B.;REIS, Patrícia Alves;COELHO, Marsen Garcia Pinto;SABINO, Katia Costa de Carvalho. Avaliação da resposta imunoinflamatória em animais tratados com o Extrato Aquoso de Echinodorus macrophillus. In: 13ª Semana de Iniciação Científica, 2004, Rio de Janeiro-RJ.",
-                "33.": "PASSAES, C. P. B.;REIS, Patrícia Alves;CALIXTO, Nivea Oliveira; LOPES, Carlos da Silva ;COELHO, Marsen Garcia Pinto. Atividade antiinflamatória tópica do Extrato Aquoso de Baccharis trimera (EABt) e suas frações. In: XVIII Reunião Anual das Sociedades de Biologia Experimental, 2003, Curitiba-PR. Anais da  XVIII Reunião Anual das Sociedades de Biologia Experimental, 2003.",
-                "34.": "REIS, Patrícia Alves;PASSAES, C. P. B.; LOPES, Carlos da Silva ;SABINO, Katia Costa de Carvalho;COELHO, Marsen Garcia Pinto. Efeito antiedematogênico de frações do Extrato Aquoso de Baccharis trimera Lers. (Carqueja). In: XVIII Reunião Anual das Sociedades de Biologia Experimental, 2003, Curitiba-PR. Anais da XVIII Reunião Anual das Sociedades de Biologia Experimental, 2003.",
-                "35.": "COELHO, Luciana Pontes ; CASTRO, Fernanda Lima de ; PINTO, Amanda Chaves ;PASSAES, C. P. B.; PEREIRA, Monica Farah ;GAYER, Carlos Roberto Machado; LOPES, Carlos da Silva ;SABINO, Katia Costa de Carvalho;COELHO, Marsen Garcia Pinto. Atividade antinociceptiva da fração Diclorometano proveniente do Extrato Oleoso de Sementes de Pterodon pubescens (EOPP) e suas subfrações. In: XVIII Reunião Anual das Sociedades de Biologia Experimental, 2003, Curitiba-RJ. Anais da XVIII Reunião Anual das Sociedades de Biologia Experimental, 2003.",
-                "36.": "PASSAES, C. P. B.;COELHO, Marsen Garcia Pinto. Estudo comparativo do potencial antiinflamatório tópico do Extrato Aquoso de Baccharis trimera (EABt) e suas frações aquosa e etanólica com a Indometacina.. In: 12ª Semana de Iniciação Científica, 2003, Rio de Janeiro. Anais da 12ª Semana de Iniciação Científica, 2003. p. 63.",
-                "37.": "CASTRO, Fernanda Lima de ;PASSAES, C. P. B.;COELHO, Marsen Garcia Pinto. Atividade Antiinflamatória e Antinociceptiva do Extrato Aquoso de Echinodorus macrophyllus. In: 12ª Semana de Iniciação Científica, 2003, Rio de Janeiro. Anais da 12ª Semana de Iniciação Científica, 2003. p. 63.",
-                "38.": "REIS, Patrícia Alves; LOPES, Carlos da Silva ; NOGUEIRA, Natália Pereira de Almeida ;PASSAES, C. P. B.; CASTRO, Fernanda Lima de ;COELHO, Marsen Garcia Pinto. Anti-inflammatoryproperties of aqueous extracts of Baccharis species with different high resolutions gas chromatography (GC) chemical profile. In: Reunião anual da SBBq, 2002, Caxambú. Anais da XXXIª Reunião da SBBq, 2002.",
-                "39.": "PASSAES, C. P. B.;REIS, Patrícia Alves; NOGUEIRA, Natália Pereira de Almeida ; LOPES, Carlos da Silva ; CASTRO, Fernanda Lima de ;COELHO, Marsen Garcia Pinto. Atividade Antiedematogênica do Extrato Metanólico de Kalanchoe pinnata (EMKp). In: 11ª Semana de Iniciação Científica, 2002, Rio de Janeiro. Anais da 11ª Semana de Iniciação Científica, 2002.",
-                "40.": "NOGUEIRA, Natália Pereira de Almeida ;PASSAES, C. P. B.; CASTRO, Fernanda Lima de . Avaliação da atividade antinociceptiva (AN) do extrato metanólico de folhas e flores de Kalanchoe pinnata (EMKP). In: 11ª SEMANA DE INICIAÇÃO CIENTÍFICA - UERJ, 2002, Rio de Janeiro. Anais da 11ª Semana de Iniciação Científica - UERJ. Rio de Janeiro: UERJ, 2002. p. 57."
+                "1.": "ALBUQUERQUE, ALINE; COSTA, ANDRIELLY ; ANDRADE, LUCA ; SARTORI, GERALDO ; SILVA, JOÃO . Structural modeling and design of scFv fragments from the antineoplastic antibody Brontictuzumab for enhanced binding to Notch1 NRR region. In: International Symposium on Immunobiologicals, 2023, Rio de Janeiro. Annals of the Symposium: building pathways to accelerated the development of the national tecnhnological innovation ecosystem, 2023. p. 43.",
+                "2.": "ANDRADE, LUCA ;ALBUQUERQUE, ALINE; COSTA, ANDRIELLY ; VASCONCELOS, DISRAELI ; SARTORI, GERALDO ; SILVA, JOÃO . Discovery and characterization of sites through molecular dynamics with probes and virtual screening to propose new immunobiological targeting the PD-1. In: International Symposium on Immunobiologicals, 2022, Rio de Janeiro. Annals of the symposium: vacines, biopharmaceuticals, in vitro diagnosis, management, other related themes, 2022. p. 56.",
+                "3.": "ALBUQUERQUE, ALINE; COSTA, ANDRIELLY ; ANDRADE, LUCA ; SARTORI, GERALDO ; SILVA, JOÃO . Conformational dynamics behind the inhibition of Notch1 NRR region by the antineoplastic antibody Brontictuzumab. In: International Symposium on Immunobiologicals, 2022, Rio de Janeiro. Annals of the symposium: vacines, biopharmaceuticals, in vitro diagnosis, management, other related themes, 2022. p. 45.",
+                "4.": "ALBUQUERQUE, A. O.; SILVA, J. H. M. . Computational  insights  into  the  molecular  interactions  of  anti-PD1/anti-DLL1 dual antibodies. In: IV International Symposium on Immunobiologicals, 2019, Rio de Janeiro. Anais do VI Seminário Científico e Tecnológico de Bio-Manguinhos, 2019.",
+                "5.": "DIAS, ARTUR ;ALBUQUERQUE, ALINE; FIGUEIREDO, ALEXANDRE ; SILVA, JOÃO ; ARISSAWA, MÁRCIA . Modelagem, docking e dinâmica molecular de dois fragmentos de anticorpos contra o antígeno de superfície do vírus da Hepatite B. In: V Seminário Anual Científico e Tecnológico, 2017, Rio de Janeiro. Anais do V Seminário Anual Científico e Tecnológico de Bio-Manguinhos, 2017. p. 52."
             },
             "Apresentações de Trabalho": {
-                "1.": "Passaes, CP; BRUEL, T. ; DECALF, J. ; DAVID, A. ; ANGIN, M. ; MONCEAUX, V. ; MULLER-TRUTWIN, M. ; NOEL, N. ; BOURDIC, K. ; LAMBOTTE, O. ; ALBERT, M. ; DUFFY, D. ; SCHWARTZ, O. ; SAEZ-CIRION, A. . Ultrasensitive detection of HIV Gag p24 protein at the single cell level in culture and in patient samples. 2016. (Apresentação de Trabalho/Simpósio).",
-                "2.": "PASSAES, C. P. B.; VERSMISSE, P. ; SYLLA, N. ; TORRES, C. ; GRAND, R. L. ; PANCINO, G. ; DEREUDDRE-BOSQUET, N. ; VASLIN, B. ; SAEZ-CIRION, A. . Role of CD8+ T cells during acute infection in cynomolgus macaques controlling SIV replication. 2014. (Apresentação de Trabalho/Simpósio).",
-                "3.": "PASSAES, C. P. B.; VERSMISSE, P. ; SYLLA, N. ; TORRES, C. ; CASSAN, C. ; TARGAT, B. ; COSMA, A. ; GRAND, R. L. ; PANCINO, G. ; DEREUDDRE-BOSQUET, N. ; VASLIN, B. ; SAEZ-CIRION, A. . Role of CD8+ T Cells During Acute Infection in Cynomolgus Macaques Controlling SIV Replication. 2014. (Apresentação de Trabalho/Congresso).",
-                "4.": "CORTES, F. H. ;PASSAES, C. P. B.;Bello, Gonzalo;TEIXEIRA, S. L. M.; VORSATZ, C. ; BABIC, D. ; SHARKEY, M. ; Grinsztejn, Beatriz ; VELOSO, VALDILEA ; STEVENSON, M. ;Morgado, Mariza G.. HIV controllers patients with distinct viral load cut-off levels have distinct virologic and immunologic profiles. 2013. (Apresentação de Trabalho/Congresso).",
-                "5.": "PASSAES, C. P. B.; CORTES, F. H. ;BELLO, G.; BABIC, D. ; SHARKEY, M. ; VORSATZ, C. ; GRINSTEJN, B. ; VELOSO, V. ; STEVENSON, M. ;MORGADO, M. G.. Total, episomal, and integrated HIV DNA quantification from elite controllers: insights for ongoing replication and HIV reservoir. 2012. (Apresentação de Trabalho/Congresso).",
-                "6.": "PASSAES, C. P. B.;GUIMARAES, M. L.; WAGNER, S. ; VELOSO, V. ; GRINSTEJN, B. ;MORGADO, M. G.. Monitoring the emergence of resistance mutations in patients under salvage therapy with Raltegravir in Rio de Janeiro, Brazil: a six month follow-up. 2010. (Apresentação de Trabalho/Congresso).",
-                "7.": "PASSAES, C. P. B.;GUIMARAES, M. L.;MORGADO, M. G.. Mapping primary resistance mutations to integrase inhibitors in HIV-1 subtype F. 2008. (Apresentação de Trabalho/Congresso).",
-                "8.": "PASSAES, C. P. B.. Novas abordagens sobre HIV / AIDS - pesquisa, tratamento e novas perspectivas em vacinas.. 2008. (Apresentação de Trabalho/Conferência ou palestra).",
-                "9.": "PASSAES, C. P. B.;GUIMARAES, M. L.;LORETE, R. S.;ALMEIDA, S. E. M.;MORGADO, M. G.. Trends of integrase inhibitors drug resistance in treatment-naive patients with HIV-1 Subtype C infection in Brazil. 2008. (Apresentação de Trabalho/Congresso).",
-                "10.": "PASSAES, C. P. B.;GUIMARAES, M. L.;LORETE, R. S.; COUTO-FERNANDEZ, J. C. ;MORGADO, M. G.. Genetic diversity of integrase in HIV-1 subtypes B, C and F prevalent in Brazil: Study in drug naive and multidrug resistant individuals reveals impact for drug resistance. 2007. (Apresentação de Trabalho/Congresso).",
-                "11.": "PASSAES, C. P. B.;GUIMARAES, M. L.;MORGADO, M. G.. Genetic diversity of the integrase immunodominant epitopes among the HIV-1 subtypes B, C and F prevalent in Brazil.. 2007. (Apresentação de Trabalho/Congresso).",
-                "12.": "PASSAES, C. P. B.. Novas abordagens sobre HIV / AIDS - pesquisa, tratamento e novas perspectivas em vacinas.. 2007. (Apresentação de Trabalho/Conferência ou palestra).",
-                "13.": "PASSAES, C. P. B.;GUIMARAES, M. L.;LORETE, R. S.; CHEQUER-FERNANDEZ, S. L. ;TEIXEIRA, S. L. M.; COUTO-FERNANDEZ, J. C. ;MORGADO, M. G.. Genetic diversity of integrase in HIV-1 subtypes B, F and C prevalent in Brazil: Study in drug naive and multidrug resistant individuals reveals impact for drug resistance. 2006. (Apresentação de Trabalho/Seminário).",
-                "14.": "PASSAES, C. P. B.;GUIMARAES, M. L.; CHEQUER-FERNANDEZ, S. L. ;LORETE, R. S.;MORGADO, M. G.. Naturally occurring integrase polymorphisms in HIV-1 subtypes B, C and F prevalent in Brazil: impact for drug resistance. 2006. (Apresentação de Trabalho/Congresso).",
-                "15.": "PASSAES, C. P. B.;GUIMARAES, M. L.;MORGADO, M. G.. Caracterização molecular da região da integrase do gene pol de subtipos de HIV-1 prevalentes no Brasil: avaliação de marcadores de resitência e antigenicidade. 2005. (Apresentação de Trabalho/Congresso).",
-                "16.": "PASSAES, C. P. B.; PINTO, Amanda Chaves ; NOGUEIRA, Natália Pereira de Almeida ;COELHO, Marsen Garcia Pinto. Avaliação da atividade da Fração Etanólica do Extrato Aquoso de Baccharis trimera na migração de neutrófilos no modelo de inflamação tópica induzida pelo Óleo de Cróton. 2004. (Apresentação de Trabalho/Outra).",
-                "17.": "PASSAES, C. P. B.;REIS, Patrícia Alves;CALIXTO, Nivea Oliveira; LOPES, Carlos da Silva ;COELHO, Marsen Garcia Pinto. Atividade antiinflamatória tópica do Extrato Aquoso de Baccharis trimera (EABt) e suas frações. 2003. (Apresentação de Trabalho/Congresso).",
-                "18.": "PASSAES, C. P. B.;COELHO, Marsen Garcia Pinto. Estudo comparativo do potencial antiinflamatório tópico do Extrato Aquoso de Baccharis trimera (EABt) e suas frações aquosa e etanólica com a Indometacina.. 2003. (Apresentação de Trabalho/Outra).",
-                "19.": "PASSAES, C. P. B.; NOGUEIRA, Natália Pereira de Almeida ; CASTRO, Fernanda Lima de ;COELHO, Marsen Garcia Pinto. Atividade Antiedematogênica do Extrato Metanólico de Kalanchoe pinnata (EMKp). 2002. (Apresentação de Trabalho/Outra)."
-            },
-            "Outras produções bibliográficas": {
-                "1.": "PASSAES, C. P. B.;BELLO, G.;MORGADO, M. G.. Functional Conservation of HIV-1 Integrase in a Group of Elite Controllers from Brazil.\n\t\t\t\t\t\t\tNY:\n\t\t\t\t\t\t\t\t\tMary Ann Liebert, Inc. - AIDS Research and Human Retroviruses Volume 24, Supplement 1, 2008,  2008 (Resumo)."
-            },
-            "Processos ou técnicas": {
-                "1.": "PASSAES, C. P. B.;GUIMARAES, M. L.;MORGADO, M. G.. Genotipagem da integrase do HIV-1. 2005."
-            },
-            "Entrevistas, mesas redondas, programas e comentários na mídia": {
-                "1.": "DE PAULA, V. S. ; VILLAR, L.M. ; AMADO, L. A. ; SANTOS, D. R. L. ;PASSAES, C. P. B.; PRADO, T ; SANTOS, R. T. . Metodologias aplicadas ao estudo das infecções virais. 2010. (Curso de curta duração ministrado/Extensão).",
-                "2.": "DE PAULA, V. S. ; VILLAR, L.M. ;PASSAES, C. P. B.; SANTOS, D. R. L. ; AMADO, L. A. ; SANTOS, R. T. ; PRADO, T ; SANTOS, A. ; COSTA, E. ; TAVARES, F. ; VASCONCELOS, G. ; PASCHOAL, M. E. S. ; FUMIAN, T. . Metodologias Aplicadas ao estudo das infecções virais.\n\t\t\t\t\t\t\t2010. (Desenvolvimento de material didático ou instrucional - Apostila).",
-                "3.": "Passaes, Caroline Pereira Bittencourt. Atualização em HIV/AIDS: pesquisa, terapia e perspectivas em vacinas. 2009. (Curso de curta duração ministrado/Extensão)."
+                "1.": "ALBUQUERQUE, A. O.; COSTA, A. H. S. ; ANDRADE, L. M. ; SARTORI, G. R. ; SILVA, J. H. M. . STRUCTURAL MODELING AND DESIGN OF SCFV FRAGMENTS FROM THE ANTINEOPLASTIC ANTIBODY BRONTICTUZUMAB FOR ENHANCED BINDING TO NOTCH1 NRR REGION. 2023. (Apresentação de Trabalho/Simpósio).",
+                "2.": "ALBUQUERQUE, A. O.; COSTA, A. H. S. ; ANDRADE, L. M. ; SARTORI, G. R. ; SILVA, J. H. M. . CONFORMATIONAL DYNAMICS BEHIND THE INHIBITION OF NOTCH1 NRR REGION BY THE ANTINEOPLASTIC ANTIBODY BRONTICTUZUMAB. 2022. (Apresentação de Trabalho/Simpósio).",
+                "3.": "ANDRADE, L. M. ;ALBUQUERQUE, A. O.; HENRIQUES, A. ; VASCONCELOS, D. ; SARTORI, G. ; HERMINIO, J. . DISCOVERY AND CHARACTERIZATION OF SITES THROUGH MOLECULAR DYNAMICS WITH PROBES AND VIRTUAL SCREENING TO PROPOSE NEW IMMUNOBIOLOGICAL TARGETING THE PD-1. 2022. (Apresentação de Trabalho/Simpósio).",
+                "4.": "COSTA, A. H. S. ; ANDRADE, L. M. ;ALBUQUERQUE, A. O.; SARTORI, G. R. ; MARTINS, J. H. . Modulation of interface region on PD-L1 through cryptic site revealing: use of molecular dynamic simulation to find new cavities. 2021. (Apresentação de Trabalho/Outra).",
+                "5.": "SOUZA, B. K. P. ; MOTTIN, M. ; BERNATCHEZ, J. ; MESQUITA, N. ; ZHU, Z. ; RICH, J. ; CLARK, A. E. ; ZORN, K. ; FOIL, D. ; SARTORI, G. R. ;ALBUQUERQUE, A. O.; MARTINS, J. H. ; NEVES, B. ; MURATOV, E. N. ; PERRYMAN, A. ; OLIVA, G. ; SIQUEIRA-NETO, J. ; EKINS, S. ; ANDRADE, C. . Discovery of Novel Zika virus NS3 protein inhibitors through the integration of docking, machine learning models and experimental evaluation. 2020. (Apresentação de Trabalho/Congresso).",
+                "6.": "ALBUQUERQUE, A. O.; SILVA, J. H. M. . Computational insights into the molecular interactions of anti-PD1/anti-DLL1 dual antibodies. 2019. (Apresentação de Trabalho/Simpósio).",
+                "7.": "ALBUQUERQUE, A. O.; OLIVEIRA, A. A. ; SILVA, J. H. M. . O USO DE ANTICORPOS MONOCLONAIS ANTI-PD1 NO DIAGNÓSTICO E TRATAMENTO DO LINFOMA. 2019. (Apresentação de Trabalho/Simpósio).",
+                "8.": "ALBUQUERQUE, A. O.; CHAVES, B. ; SARTORI, G. R. ; SILVA, J. H. M. . VALIDAÇÃO DE UMA METODOLOGIA DE DOCKING COMPUTACIONAL PARA ANTICORPOS ANTI-PD1 UTILIZADOS NA IMUNOTERAPIA CONTRA O CÂNCER. 2019. (Apresentação de Trabalho/Congresso).",
+                "9.": "ANDRADE, L. M. ; SARTORI, G. R. ; COSTA, A. H. S. ;ALBUQUERQUE, A. O.; SILVA, J. H. M. . PROPOSIÇÃO DE ALVOS MOLECULARES PARA PD-1 VIA DINÂMICA MOLECULAR A PARTIR DA UTILIZAÇÃO DE CO-SOLVENTES ORGÂNICOS. 2019. (Apresentação de Trabalho/Congresso).",
+                "10.": "OLIVEIRA, A. A. ; SILVA, D. M. A. ; REBOUCAS, M. O. ;ALBUQUERQUE, A. O.; SOUSA, F. C. F. . AUTISMO E INFLAMAÇÃO: O ENVOLVIMENTO DA IL-12. 2018. (Apresentação de Trabalho/Simpósio).",
+                "11.": "ALBUQUERQUE, A. O.. Regulação da expressão gênica. 2018. (Apresentação de Trabalho/Conferência ou palestra).",
+                "12.": "ALBUQUERQUE, A. O.; DIAS, A. H. S. ; SILVA, J. H. M. . MODELAGEM COMPUTACIONAL DE ANTICORPOS MONOCLONAIS VISANDO A COMPREENSÃO DOS PARÂMETROS MOLECULARES ENVOLVIDOS NO RECONHECIMENTO DO ANTÍGENO DE SUPERFÍCIE DE HEPATITE B (HBSAG). 2017. (Apresentação de Trabalho/Outra).",
+                "13.": "ALBUQUERQUE, A. O.. Avaliação do estresse oxidativo em pacientes com câncer gástrico seus familiares e associação com marcadores de virulência do H. pylori. 2015. (Apresentação de Trabalho/Congresso).",
+                "14.": "ALBUQUERQUE, A. O.. ESTRUTURAS RESPONSÁVEIS POR TOXICIDADE FACILMENTE OBSERVÁVEIS EM AULAS DE BIOLOGIA CELULAR. 2015. (Apresentação de Trabalho/Congresso).",
+                "15.": "SILVA, Y. C. ;ALBUQUERQUE, A. O.; ROSA, F.L.C. ; OLIVEIRA, A. A. ; LIMA, M. L. B. . PROGRAMA TUTORIAL ACADÊMICO DO BACHARELADO EM BIOTECNOLOGIA DA UFC ATRAVÉS DO PIQD BIOTEC/UFC PARA RECÉM-INGRESSOS. 2015. (Apresentação de Trabalho/Congresso).",
+                "16.": "ALBUQUERQUE, A. O.; SILVA, Y. C. ; ROSA, F.L.C. ; OLIVEIRA, A. A. ; TORRES, A. L. S. . CINE BIOTEC ? O POTENCIAL EDUCATIVO DO AUDIOVISUAL NA EDUCAÇÃO FORMAL E NA PROMOÇÃO DE DEBATES ÉTICOS, CIENTÍFICOS E CULTURAIS. 2015. (Apresentação de Trabalho/Congresso).",
+                "17.": "SOUZA, R. O. ; BARBOSA, B. P. ; VASCONCELOS, L. R. A. ;ALBUQUERQUE, A. O.; MEDEIROS, D. C. . APRENDENDO BIOQUÍMICA E BIOLOGIA MOLECULAR ATRAVÉS DA ABBM. 2015. (Apresentação de Trabalho/Congresso).",
+                "18.": "ALBUQUERQUE, A. O.; RODRIGUES, J. P. V. ; PEREIRA, V. C. ; SALDANHA, L. C. ; SILVA, Y. C. . A ARTICULAÇÃO DOS SABERES DISCENTE NO PROCESSO DE FORMAÇÃO ACADÊMICA: SEMINÁRIOS PROMOVIDOS PELO PROGRAMA INTEGRADO DE QUALIFICAÇÃO DISCENTE DO BACHARELADO EM BIOTECNOLOGIA. 2014. (Apresentação de Trabalho/Congresso).",
+                "19.": "PEREIRA, V. C. ; RODRIGUES, J. P. V. ; SALDANHA, L. C. ;ALBUQUERQUE, A. O.; SILVA, Y. C. . ADAPTAÇÃO, INTERAÇÃO E ASSISTÊNCIA SÓCIO-DIDÁTICA AOS RECÉM-INGRESSOS DO BACHARELADO EM BIOTECNOLOGIA. 2014. (Apresentação de Trabalho/Congresso).",
+                "20.": "LIMA, P. G. ; SOUSA, B. H. A. L. ; João Pedro Viana Rodrigues, ; GIRAO, M. S. ;ALBUQUERQUE, A. O.. CINE BIOTEC ? PROMOÇÃO DE DEBATES CIENTÍFICOS-CULTURAIS BASEADOS DA REPRODUÇÃO DE FILMES CONTEMPORÂNEOS. 2014. (Apresentação de Trabalho/Congresso).",
+                "21.": "SILVA, Y. C. ; RODRIGUES, J. P. V. ; PEREIRA, V. C. ; SALDANHA, L. C. ;ALBUQUERQUE, A. O.. SEMANA ZERO DO BACHARELADO EM BIOTECNOLOGIA ? IMPORTANTE FERRAMENTA DE INTEGRAÇÃO DOS RECÉM-INGRESSOS À UNIVERSIDADE É NOT. 2014. (Apresentação de Trabalho/Congresso)."
             }
         },
-        "ProjetosPesquisa": [
+        "ProjetosPesquisa": [],
+        "ProjetosExtensão": [
             {
-                "chave": "2015 - Atual",
-                "titulo_projeto": "p(rimate)-VISCONTI study - A Non-Human Primate Model For HIV Remission",
-                "descricao": "Descrição: Our hypothesis is that, in the context of early cART introduction, obtaining an equilibrium between limiting the viral reservoir and allowing the maturation of immune responses might be critical for remission of infection. We believe that post-treatment controllers from the VISCONTI study benefited from an early treatment that allowed them to attain such a viro-immunological balance. The time and length of treatment initiation would be critical to achieve this balance..Situação: Em andamento; Natureza: Pesquisa.Integrantes: Caroline Pereira Bittencourt Passaes - Integrante / Asier Saez-Cirion - Coordenador / Michaela Muller-Trutwin - Integrante / Christine Rouzioux - Integrante / ROGER LE GRAND - Integrante."
-            },
-            {
-                "chave": "2012 - Atual",
-                "titulo_projeto": "SIVmac/cynomolgus macaque models to analyze early steps leading to long term control of SIV infection",
-                "descricao": "Situação: Em andamento; Natureza: Pesquisa.Integrantes: Caroline Pereira Bittencourt Passaes - Coordenador / Asier Saez-Cirion - Integrante / Bruno Vaslin - Integrante / Michaela Muller-Trutwin - Integrante / Christine Rouzioux - Integrante."
-            },
-            {
-                "chave": "2008 - 2012",
-                "titulo_projeto": "Caracterização de pacientes HIV-positivos não-progressores de longo termo (LTNP) do Riio de Janeiro - contribuição de fatores virológicos, genéticos e imunológicos",
-                "descricao": "Situação: Concluído; Natureza: Pesquisa.Alunos envolvidos: Doutorado: (1) .Integrantes: Caroline Pereira Bittencourt Passaes - Integrante / Mariza Gonçalves Morgado - Coordenador / Gonzalo Bello - Integrante."
-            },
-            {
-                "chave": "2008 - 2012",
-                "titulo_projeto": "Aspectos virológicos, imunológicos e genéticos relacionados à integrase e ao processo de integração do HIV-1.",
-                "descricao": "Situação: Concluído; Natureza: Pesquisa.Alunos envolvidos: Doutorado: (1) .Integrantes: Caroline Pereira Bittencourt Passaes - Integrante / Mariza Gonçalves Morgado - Coordenador / Gonzalo Bello - Integrante."
-            },
-            {
-                "chave": "2008 - 2010",
-                "titulo_projeto": "Análise do perfil genotípico e da eficácia da terapia de resgate com inibidores de fusão e/ou integração em pacientes HIV-1 positivos multi-resistentes à HAART",
-                "descricao": "Situação: Em andamento; Natureza: Pesquisa.Alunos envolvidos: Doutorado: (1) .Integrantes: Caroline Pereira Bittencourt Passaes - Integrante / Monick Lindenmeyer Guimarães - Coordenador / Mariza Gonçalves Morgado - Integrante."
-            },
-            {
-                "chave": "2005 - 2007",
-                "titulo_projeto": "Caracterização molecular de novos alvos terapêuticos contra HIV/AIDS: análise da integrase do gene pol e da gp41 do gene env",
-                "descricao": "Situação: Concluído; Natureza: Pesquisa.Alunos envolvidos: Mestrado acadêmico: (1) .Integrantes: Caroline Pereira Bittencourt Passaes - Integrante / Monick Lindenmeyer Guimarães - Coordenador / José Carlos Couto-Fernandez - Integrante / Mariza Gonçalves Morgado - Integrante / Carlos Silva de Jesus - Integrante."
-            },
-            {
-                "chave": "2005 - 2007",
-                "titulo_projeto": "Caracterização molecular da região da integrase do gene pol de subtipos de HIV-1 prevalentes no Brasil: avaliação de marcadores de resistência e antigenicidade",
-                "descricao": "Situação: Desativado; Natureza: Pesquisa.Alunos envolvidos: Mestrado acadêmico: (1) .Integrantes: Caroline Pereira Bittencourt Passaes - Integrante / Monick Lindenmeyer Guimarães - Integrante / José Carlos Couto-Fernandez - Integrante / Mariza Gonçalves Morgado - Coordenador.Financiador(es): Conselho Nacional de Desenvolvimento Científico e Tecnológico - Auxílio financeiro / Conselho Nacional de Desenvolvimento Científico e Tecnológico - Bolsa."
+                "chave": "2014 - 2016",
+                "titulo_projeto": "Programa Integrado de Qualificação Discente do curso de Biotecnologia - PIQD Biotec/UFC",
+                "descricao": "Descrição: O Programa Integrado de Qualificação Discente (PIQD Biotec) é um projeto de extensão do curso de Biotecnologia da Universidade Federal do Ceará que tem por objetivo divulgar a biotecnologia como ciência, suas áreas de atuação e o Bacharelado em Biotecnologia da UFC, além da qualificação dos membros através das atividades desenvolvidas..Situação: Concluído; Natureza: Extensão.Integrantes: Aline de Oliveira Albuquerque - Coordenador / Ana Lucia Ponte Freitas - Integrante."
             }
         ],
+        "ProjetosDesenvolvimento": [],
+        "ProjetosOutros": [],
+        "Bancas": {
+            "Trabalhos de conclusão de curso de graduação": {
+                "1.": "SILVA, A. L. C.; SILVA, J. H. M.;ALBUQUERQUE, A. O..  Participação em banca de Francisca Yara Silva Lima.Modelagem computacional e expressão heteróloga de nanocorpos com potencial inibidor de VLA-4. 2022. Trabalho de Conclusão de Curso (Graduação em Ciências Biológicas)  - Universidade Federal do Ceará."
+            }
+        },
+        "Orientações": {},
+        "JCR2": [
+            {
+                "doi": "http://dx.doi.org/10.1021/acs.jcim.1c01122",
+                "impact-factor": "5.6",
+                "original_title": "Journal Of Chemical Information And Modeling (1549-9596)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3390/life12070932",
+                "impact-factor": "5.6",
+                "original_title": "Journal Of Chemical Information And Modeling (1549-9596)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1021/acs.jcim.2c00596",
+                "impact-factor": "5.6",
+                "original_title": "Journal Of Chemical Information And Modeling (1549-9596)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.3389/fddsv.2022.1032587"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1080/07391102.2021.1885492",
+                "impact-factor": "5.6",
+                "original_title": "Journal Of Chemical Information And Modeling (1549-9596)"
+            }
+        ]
+    },
+    {
+        "Identificação": {
+            "Nome": "Lucélia Góis de Oliveira Arruda",
+            "ID Lattes": "8026669770454419",
+            "Última atualização": "11/10/2023"
+        },
+        "Idiomas": [],
+        "Formação": {
+            "Acadêmica": [
+                {
+                    "Ano": "2019 - 2022",
+                    "Descrição": "Mestrado profissional em SAÚDE DA FAMILIA- RENASF. Fundação Oswaldo Cruz, FIO CRUZ, Brasil. Título: covive social- uma plataforma de comunicação digital entre o serviço social hospitalar e as famílias no contexto da covid- 19., Ano de Obtenção:. Orientador: LUIZ ODORICO MONTEIRO DE ANDRADE. Coorientador: ivana cristina de holanda cunha barreto."
+                },
+                {
+                    "Ano": "2019",
+                    "Descrição": "Especialização em andamento em Educação Permanente: Saúde e Educação em uma Perspectiva Integradora.  (Carga Horária: 388h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil. Título: EDUCAÇÃO PERMANENTE E CONTROLE SOCIAL NO MUNICÍPIO DE CAUCAIA. Orientador: Manases José Bernardo de Lima."
+                },
+                {
+                    "Ano": "2016 - 2018",
+                    "Descrição": "Especialização em DOCÊNCIA DO ENSINO SUPERIOR.  (Carga Horária: 510h). FACULDADE EXCELêNCIA, FAEX, Brasil. Título: A IMPORTÂNCIA DA FORMAÇÃO DO PROFISSIONAL DA ATENÇÃO PRIMÁRIA EM SAÚDE. Orientador: MARIA VERÔNICA PONIACANO GOMES."
+                },
+                {
+                    "Ano": "2016 - 2018",
+                    "Descrição": "Especialização em SAÚDE PÚBLICA DA FAMÍLIA E DO IDOSO.  (Carga Horária: 470h). FACULDADE PLUS, PLUS, Brasil. Título: DESAFIOS E DEMANDAS DO ASSISTENTE SOCIAL NO NÚCLEO DE APOIO A SAÚDE DA FAMÍLIA: RELATO DE EXPERIÊNCIA. Orientador: BRUNA K.C. FERNANDES."
+                },
+                {
+                    "Ano": "2012 - 2015",
+                    "Descrição": "Graduação em SERVIÇO SOCIAL. FACULDADE TERRA NORDESTE, FATENE, Brasil. Título: PROGRAMA BOLSA FAMÍLIA EM CAUCAIA: O IMPACTO SOBRE A RENDA FAMILIAR. Orientador: Prof. Ms. Francisca Silvia Helena Barbosa Duarte."
+                },
+                {
+                    "Ano": "2015 - 2017",
+                    "Descrição": "Curso técnico/profissionalizante em ALIMENTAÇÃO ESCOLAR. INSTITUTO FEDERAL DO CEARA - CAMPUS TIANGUA, IFCE, Brasil."
+                }
+            ],
+            "Pos-Doc": [],
+            "Complementar": [
+                {
+                    "Ano": "2022 - 2022",
+                    "Descrição": "DIMENSÕES DO TRABALHO PROFISSIONAL DO/A ASSISTENTE SOCIAL.  (Carga horária: 10h). potere social, POTERE, Brasil."
+                },
+                {
+                    "Ano": "2022 - 2022",
+                    "Descrição": "RELACIONAMENTO INTERPESSOAL.  (Carga horária: 10h). CURSOS ONLINE EDUCA, EDUCA, Brasil."
+                },
+                {
+                    "Ano": "2022 - 2022",
+                    "Descrição": "ORATÓRIA E APRESENTAÇÃO EMM PÚBLICO.  (Carga horária: 10h). CURSOS ONLINE EDUCA, EDUCA, Brasil."
+                },
+                {
+                    "Ano": "2022 - 2022",
+                    "Descrição": "ADMINISTRAÇÃO HOSPITALAR.  (Carga horária: 280h). ESCOLA DE CURSOS ONLINE, ESCON, Brasil."
+                },
+                {
+                    "Ano": "2022 - 2022",
+                    "Descrição": "GESTAO DO SUS.  (Carga horária: 120h). Instituto Nacional de Aperfeiçoamento Profissional, INCI, Brasil."
+                },
+                {
+                    "Ano": "2022 - 2022",
+                    "Descrição": "GOVERNANÇA EM SAÚDE DIGITAL NO MUNDO E NO BRASIL.  (Carga horária: 10h). Universidade Federal de Goiás, UFG, Brasil."
+                },
+                {
+                    "Ano": "2020 - 2020",
+                    "Descrição": "O FAZER DA SAÚDE INDÍGENA.  (Carga horária: 60h). Universidade Federal de São Paulo, UNIFESP, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "GERENTE D UNIDADES DE ATENÇÃO PRIMÁRIA A SAÚDE.  (Carga horária: 180h). SECRETARIA MUNICIPAL DE SAÚDE DE CAUCAIA, SMS, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "INDICADORES DE IMUNIZAÇÃO.  (Carga horária: 44h). SECRETARIA MUNICIPAL DE SAÚDE DE CAUCAIA, SMS, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "CURSO DE APOIO MATRICIAL NA ATENÇÃO BÁSICA COM  ÊNFASE NOS NASF-AB.  (Carga horária: 180h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "ABORDAGENS DE ADULTOS EM SITUAÇÕES DE URG, E EMERGÊNCIA NA ATENÇÃO BÁSICA.  (Carga horária: 30h). Universidade Federal de Pernambuco, UFPE, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "PRÁTICAS ÉTICAS E LEGAIS NO ENFRENTAMENTO DA MORTE.  (Carga horária: 15h). Universidade Federal de Pernambuco, UFPE, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "POLITICA NACIONAL DE HUMANIZAÇÃO.  (Carga horária: 15h). Universidade Federal de Pernambuco, UFPE, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "TERRITORIALIZAÇÃO COMO INSTRUMENTO DO PLANEJAMENTO LOCAL NA ATENÇÃO BÁSICA.  (Carga horária: 30h). UNIVERSIDADE FEDERAL DE SANTA CATARINA, UFSC, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "CURSO DE APERFEIÇOAMENTO EM SALA DE VACINAS.  (Carga horária: 60h). SECRETARIA MUNICIPAL DE SAÚDE DE CAUCAIA, SMS, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "PROCESSO DE INCORPORAÇÃO DE TECNOLOGIA EM SAÚDE NO SUS.  (Carga horária: 20h). UNIVERSIDADE FEDERAL DE CIÊNCIAS DA SAÚDE DE PORTO ALEGRE, UFCSPA, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "GESTÃO LOCAL DE DESASTRES  NATURAIS PARA A ATENÇÃO BÁSICA.  (Carga horária: 60h). Universidade Federal de São Paulo, UNIFESP, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "FLUXOGRAMA DA ASSISTÊNCIAS FARMACÊUTICAS NAS UNIDADES BÁSICAS DE SAÚDE.  (Carga horária: 20h). SECRETARIA MUNICIPAL DE SAÚDE DE CAUCAIA, SMS, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "A INTEGRAÇÃO DA SAÚDE MENTAL NA ATENÇÃO PRIMÁRIA.  (Carga horária: 40h). SECRETARIA MUNICIPAL DE SAÚDE DE CAUCAIA, SMS, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "INTRODUÇÃO Á AVALIAÇÃO EM SAÚDE.  (Carga horária: 60h). Fundação de Apoio a Universidade Federal de São Paulo, FAPUNIFESP, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "PEDIATRIA NA ATENÇÃO PRIMÁRIA.  (Carga horária: 42h). SECRETARIA MUNICIPAL DE SAÚDE DE CAUCAIA, SMS, Brasil."
+                },
+                {
+                    "Ano": "2018 - 2018",
+                    "Descrição": "MINI CURSO TESTE RÁPIDOS.  (Carga horária: 4h). Escola de Saúde Pública do Ceará, ESP/CE, Brasil."
+                },
+                {
+                    "Ano": "2018 - 2018",
+                    "Descrição": "CURSO DE AMBIÊNCIA ACOLHEDORA PARA UNIDADES DE APS COM ÊNFASE NA FARMACIA.  (Carga horária: 180h). NÚCLEO DE EDUCAÇÃO PERMANENTE EM SAÚDE, CAUCAIA, Brasil."
+                },
+                {
+                    "Ano": "2017 - 2017",
+                    "Descrição": "OFICINA DIALOGANDO SOBRE A UNIVERSIDADE HUMANA.  (Carga horária: 32h). SECRETÁRIA DO TRABALHO E DESENVOLVIMENTO SOCIAL DO ESTADO DO CEARÁ, STDS, Brasil."
+                },
+                {
+                    "Ano": "2017 - 2017",
+                    "Descrição": "ÉTICA E POSTURA PROFISSIONAL.  (Carga horária: 20h). FACULDADE TERRA NORDESTE, FATENE, Brasil."
+                },
+                {
+                    "Ano": "2016 - 2016",
+                    "Descrição": "Urgência E EMERGÊNCIA NA CONSTRUÇÃO DA REDE DE PREVENÇÃO AO SUICÍDIO.  (Carga horária: 20h). GERÊNCIA DE GESTÃO DE PESSOAS, GEPES, Brasil."
+                },
+                {
+                    "Ano": "2015 - 2015",
+                    "Descrição": "OPERAÇÃO DO SISTEMA DE BENEFÍCIOS AO CIDADÃO-SIBEC.  (Carga horária: 12h). UNIVERSIDADE CAIXA, SIBEC, Brasil."
+                },
+                {
+                    "Ano": "2014 - 2014",
+                    "Descrição": "PROMOÇÃO DA EQUIDADE NO SISTEMA ÚNICO DE SAÚDE- SUS.  (Carga horária: 120h). Fundação Demócrito Rocha, FDR, Brasil."
+                },
+                {
+                    "Ano": "2014 - 2014",
+                    "Descrição": "INSTRUTOR DOS NOVOS FORMULÁRIOS DO CADASTRO ÚNICO.  (Carga horária: 40h). SECRETÁRIA DO TRABALHO E DESENVOLVIMENTO SOCIAL DO ESTADO DO CEARÁ, STDS, Brasil."
+                },
+                {
+                    "Ano": "2013 - 2013",
+                    "Descrição": "I CURSO DE FORMAÇÃO POLÍTICA E PROFISSIONAL DO SERVIÇO SOCIAL.  (Carga horária: 16h). FACULDADE TERRA NORDESTE, FATENE, Brasil."
+                },
+                {
+                    "Ano": "2013 - 2013",
+                    "Descrição": "MINICURSO- ORIENTAÇÃO PARA ELABORAÇÃO DE ARTIGOS CIENTÍFICOS.  (Carga horária: 4h). FACULDADE TERRA NORDESTE, FATENE, Brasil."
+                },
+                {
+                    "Ano": "2013 - 2013",
+                    "Descrição": "DIREITOS HUMANOS E GERAÇÃO DA PAZ.  (Carga horária: 120h). Fundação Demócrito Rocha, FDR, Brasil."
+                },
+                {
+                    "Ano": "2013 - 2013",
+                    "Descrição": "CURSO DE APERFEIÇOAMENTO CRACK.  (Carga horária: 10h). Associação Brasileira de Educação a Distância, ABED, Brasil."
+                },
+                {
+                    "Ano": "2013 - 2013",
+                    "Descrição": "AUTISMO: DIFICULDADE DE INTERAÇÃO SOCIAL, DE COMUNICAÇÃO E REPETIÇÃO DE  CO.  (Carga horária: 8h). Associação Brasileira de Educação a Distância, ABED, Brasil."
+                },
+                {
+                    "Ano": "2013 - 2013",
+                    "Descrição": "ÉTICA E ADMINISTRAÇÃO PÚBLICA.  (Carga horária: 40h). INSTITUTO LEGISLATIVO BRASILEIRO, ILB, Brasil."
+                },
+                {
+                    "Ano": "2013 - 2013",
+                    "Descrição": "BULLYING.  (Carga horária: 5h). Associação Brasileira de Educação a Distância, ABED, Brasil."
+                },
+                {
+                    "Ano": "2013 - 2013",
+                    "Descrição": "DOUTRINAS POLÍTICAS -SOCIAL - DEMOCRACIA.  (Carga horária: 20h). INSTITUTO LEGISLATIVO BRASILEIRO, ILB, Brasil."
+                }
+            ]
+        },
+        "Atuação Profissional": [
+            {
+                "Instituição": "FIOCRUZ- CE, FIO CRUZ, Brasil.",
+                "Ano": "2020 - Atual",
+                "Descrição": "",
+                "Outras informações": "Vínculo: , Enquadramento Funcional:"
+            },
+            {
+                "Instituição": "UNIDADE DE PRONTO ATENDIMENTO VILA VELHA, UPA, Brasil.",
+                "Ano": "2016 - 2018",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Celetista, Enquadramento Funcional: ASSISTENTE SOCIAL, Carga horária: 30 PLANTONISTA"
+            },
+            {
+                "Instituição": "SECRETARIA MUNICIPAL DE SAÚDE DE CAUCAIA, SMS, Brasil.",
+                "Ano": "2016 - Atual",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Servidor Público, Enquadramento Funcional: ASSISTENTE SOCIAL NASF, Carga horária: 30"
+            },
+            {
+                "Instituição": "SECRETARIA MUNICIPAL DE SAÚDE DE CAUCAIA, SMS, Brasil.",
+                "Ano": "2021 - 2022",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Servidor Público, Enquadramento Funcional: DIRETORA  DE RH-HOSPITAL MUNICIPAL DE CAUCAIA, Carga horária: 40"
+            },
+            {
+                "Instituição": "SECRETARIA MUNICIPAL DE SAÚDE DE CAUCAIA, SMS, Brasil.",
+                "Ano": "2018 - 2020",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Servidor Público, Enquadramento Funcional: COORDENADORA  DO NASF, Carga horária: 30"
+            },
+            {
+                "Instituição": "SECRETARIA MUNICIPAL DE SAÚDE DE CAUCAIA, SMS, Brasil.",
+                "Ano": "2017 - 2020",
+                "Descrição": "",
+                "Outras informações": "Vínculo: COOPERATIVA, Enquadramento Funcional: ASSISTENTE SOCIAL HOSPITAL MUNICIPAL, Carga horária: 30 PLANTÕES NOTURNOS HOSPITAL MUNICIPAL DE CAUCAIA"
+            },
+            {
+                "Instituição": "SECRETARIA MUNICIPAL DE SAÚDE DE CAUCAIA, SMS, Brasil.",
+                "Ano": "2017 - 2018",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Servidor Público, Enquadramento Funcional: COORDENADORA DE DISTRITO DA APS, Carga horária: 30"
+            },
+            {
+                "Instituição": "FACULDADE EXCELêNCIA, FAEX, Brasil.",
+                "Ano": "2019 - 2021",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Celetista, Enquadramento Funcional: CLT PROFESSORA, Carga horária: 20 DOCENTE DA DISCIPLINA ESTÁGIO SUPERVISIONADO EM SERVIÇO SOCIAL I"
+            },
+            {
+                "Instituição": "FACULDADE EXCELêNCIA, FAEX, Brasil.",
+                "Ano": "2018 - 2019",
+                "Descrição": "",
+                "Outras informações": "Vínculo: CARÁTER TEMPORÁRIO, Enquadramento Funcional: PROFESSORA, Carga horária: 20 Prestadora de Serviços de docência de PÓS-GRADUAÇÃO\nDISCIPLINAS: SAÚDE MENTAL, EPIDEMIOLOGIA E ENDEMIAS, SEGURIDADE SOCIAL E A SAÚDE, GESTÃO EM SAÚDE PÚBLICA E SAÚDE DO IDOSO"
+            },
+            {
+                "Instituição": "SECRETARIA DE DESENVOLVIMENTO SOCIAL- CAUCAIA, SDS, Brasil.",
+                "Ano": "2015 - 2019",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Servidor Público, Enquadramento Funcional: MULTIPLICADORA DE CADASTRO ÚNICO, Carga horária: 30 BOLSA FAMÍLIA"
+            },
+            {
+                "Instituição": "SECRETARIA DE DESENVOLVIMENTO SOCIAL- CAUCAIA, SDS, Brasil.",
+                "Ano": "2015 - 2017",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Servidor Público, Enquadramento Funcional: orientadora social, Carga horária: 200 Grupos e atividades com crianças e adolescentes, mulheres e idosos."
+            },
+            {
+                "Instituição": "CV & C CURSOS E TREINAMENTOS LTDA, UNIATENEU, Brasil.",
+                "Ano": "2023 - Atual",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Professor Visitante, Enquadramento Funcional: PROFESSORA PROFESSORA DO CURSO DE RADIOLOGIA NAS SEGUINTES DISCIPLINAS:\nPSICOLOGIA APLICADA Á SAÚDE, MARKETING PESSOAL, ÉTICA PROFISSIONAL"
+            },
+            {
+                "Instituição": "GRUPO EDUCACIONAL AQUI VOCÊ PODE, UNIPLAN, Brasil.",
+                "Ano": "2023 - Atual",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Professor Visitante, Enquadramento Funcional: GRUPO EDUCACIONAL AQUI VOCÊ PODE PROFESSORA DOCENTE NO CURSO DE FARMÁCIA COM A DISCIPLINA ORINTAÇÃO DO PROJETO TCC E SAÚDE PÚBLICA E EPIDEMIOLOGIA."
+            },
+            {
+                "Instituição": "FACULDADE DE ENSINO PORTAL, FEP, Brasil.",
+                "Ano": "2023 - Atual",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Professor Visitante, Enquadramento Funcional: PROFESSORA"
+            }
+        ],
+        "Linhas de Pesquisa": [],
+        "Áreas": {},
+        "Produções": {
+            "": [],
+            "Apresentações de Trabalho": {
+                "1.": "OLIVEIRA, L. G.. PALESTRA PRÁTICAS INTEGRATIVAS (LAVA PÉS). 2022. (Apresentação de Trabalho/Outra).",
+                "2.": "OLIVEIRA, L. G.. SUÍCIDIO: FALAR SOBRE ISSO É SINÔNIMMO DE CUIDADO. 2022. (Apresentação de Trabalho/Outra).",
+                "3.": "OLIVEIRA, L. G.. O QUE TE FAZ SORRIR?. 2022. (Apresentação de Trabalho/Outra).",
+                "4.": "ARRUDA, L. G. O. ;OLIVEIRA, L. G.. NÃO SE ENTREGUE Á DOR PORQUE ELA VAI PASSAR. 2022. (Apresentação de Trabalho/Conferência ou palestra).",
+                "5.": "OLIVEIRA, L. G.; ARRUDA, L. G. O. ; ANDRADE, L. O. M. ; CUNHA, I. C. H. ; CANUTO, O. M. C. ; MAIA, H. A. . A JORNADA DO PACIENTE E SUA FAMÍLIA NO CONTEXTO DA COVID-19: NECESSIDADES DE INFORMAÇÃO E COMUNICAÇÃO. 2022. (Apresentação de Trabalho/Congresso).",
+                "6.": "ARRUDA, L. G. O. ;OLIVEIRA, L. G.; CUNHA, I. C. H. ; ANDRADE, L. O. M. . COVIVE SOCIAL- UMA PLATAFORMA DE COMUNICAÇÃO DIGITAL ENTRE O SERVIÇO SOCIAL HOSPITALAR E AS FAMÍLIAS NO CONTEXTO DA COVID-19. 2022. (Apresentação de Trabalho/Congresso).",
+                "7.": "OLIVEIRA, L. G.. VAMOS FALAR SOBRE ENDOMETRIOSE. 2021. (Apresentação de Trabalho/Conferência ou palestra).",
+                "8.": "OLIVEIRA, L. G.; MARTINIANO, L. L. ; AMARANTE, L. F. ; BARROS, L. M. . o instagram como ferramenta de educação em saúde na introdução alimentar. 2021. (Apresentação de Trabalho/Simpósio).",
+                "9.": "OLIVEIRA, L. G.. AULA PÚBLICA ONLINE CORONAVÍRUS E A CRISE DO CAPITAL NO SÉCULO XXI. 2020. (Apresentação de Trabalho/Comunicação).",
+                "10.": "OLIVEIRA, L. G.. o trabalho do assistente social e os desafios profissionais em tempos de pandemia. 2020. (Apresentação de Trabalho/Conferência ou palestra).",
+                "11.": "OLIVEIRA, L. G.. EXPERIÊNCIA PROFISSIONAL NA ÁREA DA SAÚDE JUNTO AO NASF. 2019. (Apresentação de Trabalho/Conferência ou palestra).",
+                "12.": "OLIVEIRA, L. G.. GRAVIDEZ NA ADOLESCÊNCIA. 2019. (Apresentação de Trabalho/Conferência ou palestra).",
+                "13.": "OLIVEIRA, L. G.. FINANCIAMENTO DO SUS. 2019. (Apresentação de Trabalho/Conferência ou palestra).",
+                "14.": "OLIVEIRA, L. G.; ARRUDA, L. G. O. . A INSERÇÃO DO SERVIÇO SOCIAL PARA O FORTALECIMENTO DO CONTROLE SOCIAL NO SUS DO MUNICIPIO DE CAUCAIA. 2019. (Apresentação de Trabalho/Simpósio).",
+                "15.": "OLIVEIRA, L. G.. PREVENÇÃO AO CÂNCER DE MAMA. 2018. (Apresentação de Trabalho/Conferência ou palestra).",
+                "16.": "OLIVEIRA, L. G.. ABUSO SEXUAL E EXPLORAÇÃO SEXUAL. 2017. (Apresentação de Trabalho/Conferência ou palestra).",
+                "17.": "OLIVEIRA, L. G.. SUICÍDIO NÃO É A SOLUÇÃO!. 2017. (Apresentação de Trabalho/Conferência ou palestra).",
+                "18.": "OLIVEIRA, L. G.. JUVENTUDE E CULTURA. 2016. (Apresentação de Trabalho/Conferência ou palestra).",
+                "19.": "OLIVEIRA, L. G.. CIRCULO DIALÓGICO DO ESTÁGIO SUPERVISIONADO. 2016. (Apresentação de Trabalho/Conferência ou palestra)."
+            },
+            "Entrevistas, mesas redondas, programas e comentários na mídia": {
+                "1.": "OLIVEIRA, L. G.. AMBIÊNCIA ACOLHEDORA PARA UNIDADE DE ATENÇÃO PRIMÁRIA EM SAÚDE COM ÊNFASE NA HIGIENE E LIMPEZA. 2018. .",
+                "2.": "OLIVEIRA, L. G.. SERVIÇOS DE CONVIVÊNCIA E FORTALECIMENTO DE VÍNCULOS: APRIMORANDO ASPECTOS CONCEITUAIS E METODOLÓGICOS PARA O PÚBLICO DE 6 A 17 ANOS. 2016. ."
+            },
+            "Demais trabalhos": {
+                "1.": "OLIVEIRA, L. G.. SUICÍDIO NÃO É A SOLUÇÃO. 2017 (PALESTRANTE) ."
+            }
+        },
+        "ProjetosPesquisa": [],
         "ProjetosExtensão": [],
         "ProjetosDesenvolvimento": [
             {
-                "chave": "2016 - Atual",
-                "titulo_projeto": "Development of single molecule array (Simoa) for ultrasensitive detection of SIV p27 antigens",
-                "descricao": "Situação: Em andamento; Natureza: Desenvolvimento.Integrantes: Caroline Pereira Bittencourt Passaes - Integrante / Asier Saez-Cirion - Coordenador / Annie David - Integrante."
-            },
-            {
-                "chave": "2015 - Atual",
-                "titulo_projeto": "Detection of HIV p24 at a single cell level using single molecule array (Simoa) technology: implications for HIV-1 latency studies",
-                "descricao": "Situação: Em andamento; Natureza: Desenvolvimento.Integrantes: Caroline Pereira Bittencourt Passaes - Integrante / Asier Saez-Cirion - Coordenador / Timothee Bruel - Integrante / Annie David - Integrante / Mathieu Angin - Integrante / Valerie Monceaux - Integrante / Olivier Schwartz - Integrante / Darragh Duffy - Integrante / Jeremie Decalf - Integrante."
-            },
-            {
-                "chave": "2012 - 2013",
-                "titulo_projeto": "IDENTIFICAÇÃO DE BIOMARCADORES VIRAIS ASSOCIADOS À SINDROME INFLAMATÓRIA DE RECONSTITUIÇÃO IMUNE (IRIS) EM PACIENTES CO-INFECTADOS POR HIV E TUBERCULOSE",
-                "descricao": "Situação: Em andamento; Natureza: Desenvolvimento.Alunos envolvidos: Graduação: (1) .Integrantes: Caroline Pereira Bittencourt Passaes - Integrante / Mariza Gonçalves Morgado - Coordenador / Diogo Gama Caetano - Integrante."
-            },
-            {
-                "chave": "2009 - 2010",
-                "titulo_projeto": "Desenvolvimento de uma metodologia nacional de genotipagem da integrase do HIV-1: ampliação do protocolo e avaliação da estabilidade e reprodutibilidade do método para monitoramento dos pacientes sob terapia com o raltegravir",
-                "descricao": "Situação: Em andamento; Natureza: Desenvolvimento.Alunos envolvidos: Doutorado: (1) .Integrantes: Caroline Pereira Bittencourt Passaes - Integrante / Monick Lindenmeyer Guimarães - Integrante / Mariza Gonçalves Morgado - Coordenador.Financiador(es): Ministério da Saúde - Auxílio financeiro."
+                "chave": "2020 - Atual",
+                "titulo_projeto": "COVIVE SOCIAL- UMA PLATAFORMA DE COMUNICAÇÃO DIGITAL ENTRE O SERVIÇO SOCIAL HOSPITALAR E AS FAMÍLIAS NO CONTEXTO DA COVID-19",
+                "descricao": "Descrição: atua como membro de equipe do projeto de desenvolvimento e inovação tecnológica.Situação: Em andamento; Natureza: Desenvolvimento.Integrantes: Lucélia Góis de Oliveira Arruda - Integrante / LUCÉLIA GOIS DE OLIVEIRA ARRUDA - Integrante / LUIZ ODORICO MONTEIRO DE ANDRADE - Coordenador / IVANA CRISTINA DE HOLANA CUNHA - Integrante."
             }
         ],
         "ProjetosOutros": [],
         "Bancas": {
-            "Teses de doutorado": {
-                "1.": "Passaes, Caroline P.B.; SOARES, M. A.; SOUZA, T. M. L..  Participação em banca de Edson Oliveira Delatorre. \"Avaliação da prevalência da resistência transmitida e da história evolutiva de clados raros do HIV-1 no Rio de Janeiro em uma população de gestantes submetidas à​ terapia para prevenção da transmissão vertical'. 2015. Tese (Doutorado em Biologia Parasitária)  - Fundação Oswaldo Cruz."
-            },
             "Trabalhos de conclusão de curso de graduação": {
-                "1.": "Passaes, Caroline Pereira Bittencourt; MESQUITA, M. M. A.; SOUZA, T. M. L..  Participação em banca de Viviane Machado de Mello Andrade.Efeito de compostos triazólicos sobre a replicação in vitro do Herpes Simples tipo 1, Vírus Respiratório Sincicial e sobre a transcriptase reversa do HIV-1. 2012. Trabalho de Conclusão de Curso (Graduação em Ciências Biológicas: Modalidade Médica)  - Universidade Federal do Rio de Janeiro.",
-                "2.": "PASSAES, C. P. B..  Participação em banca de Bruno Cister Alves.Análise da produção de IL-27 e outros fatores solúveis mediante estímulos com ligantes de TLR-2 em macrófagos humanos cultivados in vitro. 2012. Trabalho de Conclusão de Curso (Graduação em Ciências Biológicas: Modalidade Médica)  - Universidade Federal do Rio de Janeiro.",
-                "3.": "GIANNINI, A. L. M.; VALADAO, A. L. C.;PASSAES, C. P. B..  Participação em banca de Claudia Priscila Ramos Muniz.Epidemiologia molecular e resistência primária nas regiões de conexão e RNAse H da transcriptase reversa viral de pacientes infectados pelo HIV-1 na região Sul do Brasil. 2010. Trabalho de Conclusão de Curso (Graduação em Ciências Biológicas)  - Universidade Federal do Rio de Janeiro.",
-                "4.": "GUIMARAES, M. L.; Cavalcanti, S.M.B.;TEIXEIRA, S. L. M.;PASSAES, C. P. B..  Participação em banca de Thaysse Cristina Neiva Ferreira Leite.Determinação dos subtipos de HIV-1 em indivíduos soropositivos do Rio de Janeiro com diferentes perfis de progressão para a AIDS. 2010. Trabalho de Conclusão de Curso (Graduação em Biomedicina)  - Universidade Federal Fluminense."
-            },
-            "Outras participações": {
-                "1.": "Jansen, AM;Passaes, Caroline Pereira Bittencourt; Pratt-Riccio LR. 20ª Reunião Anual de Iniciação Científica. 2012. Fundação Oswaldo Cruz."
+                "1.": "OLIVEIRA, L. G..  Participação em banca de FRANCISCA JULIANA PESSOA RODRIGUES.SAUDE MENTAL NA ATENÇAÕ BÁSICA: O TRABALHO DO AGENTE COMUNITÁRIO DE SAÚDE COM PESOAS COM ADOECIMENTO LOCAL. 2021. Trabalho de Conclusão de Curso (Graduação em SERVIÇO SOCIAL)  - Universidade Estadual do Ceará.",
+                "2.": "SILVA, C. S. P.; LIMA, L. O.; ARRUDA, L. G. O.;OLIVEIRA, L. G..  Participação em banca de FRANCISCA DAIANE DE OLIVEIRA AGUIAR.VIOLÊNCIA DOMÉSTICA E FAMILIAR CONTRA MULHER COM ÊNFASE NA VIOLÊNCIA PSICOLÓGICA: UMA REVISÃO BIBLIOGRAFICA DA LEI MARIA DA PENHA. 2020. Trabalho de Conclusão de Curso (Graduação em SERVIÇO SOCIAL)  - FACULDADE EXCELêNCIA.",
+                "3.": "OLIVEIRA, L. G..  Participação em banca de AGELIKY MARTINS KREZIAS.RELAÇÕES DE GÊNERO NOS PROGRAMAS DE TRANSFERÊNCIA DE RENDA ASSISTIDOS PELO CRAS ARATURI, NO MUNICÍPIO DE CAUCAIA-CE.. 2019. Trabalho de Conclusão de Curso (Graduação em SERVIÇO SOCIAL)  - FACULDADE TERRA NORDESTE.",
+                "4.": "OLIVEIRA, L. G..  Participação em banca de FRANCISCA MICHERLANE GOMES DE OLIVEIRA.A CONTRIBUIÇÃO DA FAMÍLIA NO PROCESSO DE DESENVOLVIMENTO E APRENDIZAGEM DE CRIANÇA COM TDAH. 2019. Trabalho de Conclusão de Curso (Graduação em SERVIÇO SOCIAL)  - FACULDADE TERRA NORDESTE.",
+                "5.": "OLIVEIRA, L. G..  Participação em banca de NEYLIVÂNIA ALMEIDA DE SOUSA.OS SERVIÇOS DE Convivências E FORTALECIMENTOS DE VÍNCULOS AO IDOSO E OS DESAFIOS DO ASSISTENTE SOCIAL. 2019. Trabalho de Conclusão de Curso (Graduação em SERVIÇO SOCIAL)  - FACULDADE EXCELêNCIA.",
+                "6.": "OLIVEIRA, L. G..  Participação em banca de NARGILA FERNANDES SILVA.A VIOLÊNCIA CONTRA A PESSOA IDOSA. 2019. Trabalho de Conclusão de Curso (Graduação em SERVIÇO SOCIAL)  - FACULDADE EXCELêNCIA.",
+                "7.": "OLIVEIRA, L. G..  Participação em banca de MARIA LEIDIANE FERREIRA DE ALMEIDA.A IMPORTÂNCIA DO SERVIÇO SOCIAL NO ACOMPANHAMENTO AO PACIENTE RENAL CRÔNICO E SUA FAMÍLIA. 2019. Trabalho de Conclusão de Curso (Graduação em SERVIÇO SOCIAL)  - FACULDADE EXCELêNCIA.",
+                "8.": "OLIVEIRA, L. G..  Participação em banca de MARIA FABIANA ROCHA ARRUDA.O IMPACTO DO ABANDONO FAMILIAR NA SAÚDE DO IDOSO INSTITUCIONALIZADO. 2019. Trabalho de Conclusão de Curso (Graduação em SERVIÇO SOCIAL)  - FACULDADE EXCELêNCIA.",
+                "9.": "OLIVEIRA, L. G..  Participação em banca de MARIA DE JESUS LIMA DE SOUSA.A FAMÍLIA E A DEPENDÊNCIA QUÍMICA LICITA. 2019. Trabalho de Conclusão de Curso (Graduação em SERVIÇO SOCIAL)  - FACULDADE EXCELêNCIA.",
+                "10.": "OLIVEIRA, L. G.; TEMOTEO, P. S.; DUARTE, F. S. H. B..  Participação em banca de AGELIKY MARTINS KREZIAS.RELAÇÕES DE GENERO NOS PROGRAMAS DE Transferências DE RENDA ASSISTIDOS PELO CRAS ARATURI, NO MUNÍCIPIO DE CAUCAIA. 2019. Trabalho de Conclusão de Curso (Graduação em SERVIÇO SOCIAL)  - FACULDADE TERRA NORDESTE."
             }
         },
-        "Orientações": {
-            "Orientações e supervisões concluídas": [
+        "Orientações": {},
+        "JCR2": []
+    },
+    {
+        "Identificação": {
+            "Nome": "Rômulo Mendanha de Araújo Alves",
+            "ID Lattes": "3557465355946634",
+            "Última atualização": "19/06/2017"
+        },
+        "Idiomas": [
+            {
+                "Idioma": "Inglês",
+                "Proficiência": "Compreende Pouco, Fala Pouco, Lê Razoavelmente, Escreve Razoavelmente."
+            },
+            {
+                "Idioma": "Francês",
+                "Proficiência": "Compreende Pouco, Fala Pouco, Lê Pouco, Escreve Pouco."
+            },
+            {
+                "Idioma": "Basco",
+                "Proficiência": "Compreende Pouco, Fala Pouco, Lê Pouco, Escreve Pouco."
+            }
+        ],
+        "Formação": {
+            "Acadêmica": [
                 {
-                    "Monografia de conclusão de curso de aperfeiçoamento/especialização": {
-                        "1.": "Edson Oliveira Delatorre. Desenvolvimento de uma metodologia nacional de genotipagem da integrase do HIV-1: ampliação do protocolo e avaliação da estabilidade e reprodutibilidade do método para monitoramento dos pacientes sob terapia com o raltegravir. 2011. Monografia. (Aperfeiçoamento/Especialização em Capacitação Profissional em Serviço)  - Instituto Oswaldo Cruz. Orientador: Caroline Pereira Bittencourt Passaes.",
-                        "2.": "Mauricio Tadeu Pires Granzinolli. ANEMIA FERROPRIVA NA PRIMEIRA INFÂNCIA: SITUAÇÃO ATUAL NO BRASIL. 2009. Monografia. (Aperfeiçoamento/Especialização em Análises Clínicas e Gestão Laboratorial)  - Faculdades Integradas Maria Thereza. Orientador: Caroline Pereira Bittencourt Passaes."
-                    }
+                    "Ano": "2013",
+                    "Descrição": "Graduação em andamento em Direito. Universidade Salgado de Oliveira, UNIVERSO, Brasil. Título: Contrato de Adesão: Os limites da autonomia da vontade e o dirigismo contratual. Orientador: Walter de Paula Silva."
+                },
+                {
+                    "Ano": "2000 - 2003",
+                    "Descrição": "Graduação em Administração. Universidade Salgado de Oliveira, UNIVERSO, Brasil. Título: Fluxo de Caixa Colégio Decisao. Orientador: Carlos Alberto Lemos."
                 }
-            ]
+            ],
+            "Pos-Doc": [],
+            "Complementar": []
         },
-        "JCR2": [
+        "Atuação Profissional": [
             {
-                "doi": "http://dx.doi.org/10.1038/s41467-023-44389-3",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1038/s41591-023-02213-x",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1172/JCI167843",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1038/s42003-022-03619-y",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1016/j.ebiom.2022.103985",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.3390/vaccines9080886",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.3389/fimmu.2021.695148",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1128/JVI.00016-21",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1016/j.isci.2021.102314",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1038/s41467-021-21402-1",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1093/cid/ciaa1047",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1016/j.celrep.2020.108174",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1172/jci.insight.136047",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1126/scitranslmed.aay9355",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1128/JVI.00611-20",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1038/s42255-019-0081-4",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1016/j.cmet.2018.11.015",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1371/journal.pone.0193629",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1128/JVI.02296-16",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1371/journal.ppat.1005774",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1097/QAI.0000000000000500",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1016/j.virol.2014.02.021",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1371/journal.pone.0101780",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1002/jmv.23409",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": null,
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": null,
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1016/j.jcv.2011.04.011",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1016/j.meegid.2009.01.008",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": null,
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": null,
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": null,
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": null,
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
-            },
-            {
-                "doi": "http://dx.doi.org/10.1211/0022357022485",
-                "impact-factor": "16.6",
-                "original_title": "Nature Communications (2041-1723)"
+                "Instituição": "Colégio Decisão, CD, Brasil.",
+                "Ano": "1998 - Atual",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Professor Visitante, Enquadramento Funcional: Professor"
             }
-        ]
+        ],
+        "Linhas de Pesquisa": [],
+        "Áreas": {
+            "1.": "Grande área: Ciências Sociais Aplicadas / Área: Administração."
+        },
+        "Produções": {
+            "": []
+        },
+        "ProjetosPesquisa": [],
+        "ProjetosExtensão": [],
+        "ProjetosDesenvolvimento": [],
+        "ProjetosOutros": [],
+        "Bancas": {},
+        "Orientações": {},
+        "JCR2": []
     }
 ]

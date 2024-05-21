@@ -3645,6 +3645,7 @@ class DiscentCollaborationCounter:
                 if ano and int(ano) >= ano_inicio:
                     total_artigos_periodo +=1
                     for nome_coautor in coautores:
+                        nome_discente=''
                         for nome_discente in lista_normalizada_discentes:
                             similaridade_sobrenome, similaridade_iniciais = self.similar_index(nome_discente, nome_coautor)
                             if similaridade_sobrenome > limite_similaridade_sobrenome and similaridade_iniciais > limite_similaridade_iniciais:
@@ -3653,9 +3654,9 @@ class DiscentCollaborationCounter:
 
                     if colaborou == True:
                         colaboracoes_com_discentes += 1
-                        print(f'ANO {ano} DOI {doi:51} com colaboração com discente {nome_discente}')
+                        print(f"ANO {ano} DOI {doi:51} com colaboração com discente '{nome_discente}'")
                     else:
-                        print(f'ANO {ano} DOI {doi:51} sem nenhum nome de discente encontrado entre coautorias')
+                        print(f'ANO {ano} DOI {doi:51} nome de discente em coautorias não encontrado')
 
                     if len(artigos) == 0:
                         porcentagem_colab_discentes = 0
