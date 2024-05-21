@@ -80,7 +80,7 @@ class SucupiraScraperEdge:
         finally:
             self.driver.quit()
 
-    def scrape(self):
+    def scrape_sucupira(self):
         self.driver.get('https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf')
 
         self.close_popups()

@@ -5,8 +5,8 @@ import seaborn as sns
 import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
-import os, re, bs4, sys, csv, time, json, h5py, pytz, glob, stat
-import codecs, unicodedata, string, sqlite3, asyncio, nltk, shutil, psutil 
+import codecs, unicodedata, unidecode, string, sqlite3, asyncio, nltk
+import os, re, bs4, sys, csv, time, json, h5py, pytz, glob, stat, shutil, psutil
 import warnings, platform, requests, urllib, difflib, subprocess, torch, logging, traceback
 
 from PIL import Image
@@ -351,20 +351,62 @@ class DictToHDF5:
                 graph.create(node)
 
 class LattesScraper:
-    def __init__(self, institution, term1, term2, term3, neo4j_uri, neo4j_user, neo4j_password, only_doctors=False):
+    def __init__(self, search_terms, neo4j_uri, neo4j_user, neo4j_password, only_doctors=False):
         self.verbose = False
         self.configure_logging()
         self.driver = self.connect_driver(only_doctors)
         self.only_doctors = only_doctors
-        self.institution = institution
-        self.unit = term1
-        self.term = term2
-        self.term3 = term3
+        self.search_terms = search_terms
         self.session = requests.Session()
         self.delay = 30
         self.neo4j_uri = neo4j_uri
         self.neo4j_user = neo4j_user
         self.neo4j_password = neo4j_password
+
+    def tempo(self, start, end):
+        t = end - start
+        tempo = timedelta(
+            weeks=t // (3600 * 24 * 7),
+            days=t // (3600 * 24) % 7,
+            hours=t // 3600 % 24,
+            minutes=t // 60 % 60,
+            seconds=t % 60
+        )
+        fmt = '{H:02}:{M:02}:{S:02}'
+        return self.strfdelta(tempo, fmt=fmt, inputtype='timedelta')
+
+    def strfdelta(self, tdelta, fmt='{H:02}h {M:02}m {S:02}s', inputtype='timedelta'):
+        if inputtype == 'timedelta':
+            remainder = int(tdelta.total_seconds())
+        else:
+            conversion_factors = {'s': 1, 'm': 60, 'h': 3600, 'd': 86400, 'w': 604800}
+            remainder = int(tdelta) * conversion_factors[inputtype]
+        f = Formatter()
+        desired_fields = [field_tuple[1] for field_tuple in f.parse(fmt)]
+        possible_fields = ('W', 'D', 'H', 'M', 'S')
+        constants = {'W': 604800, 'D': 86400, 'H': 3600, 'M': 60, 'S': 1}
+        values = {}
+        for field in possible_fields:
+            if field in desired_fields and field in constants:
+                values[field], remainder = divmod(remainder, constants[field])
+        return f.format(fmt, **values)
+
+    # Função para salvar a lista de dicionários em um arquivo .json
+    def save_to_json(self, data, file_path):
+        with open(file_path, 'w', encoding='utf-8') as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
+
+    # Função para normalizar os nomes
+    def normalizar_nome(nome):
+        """Normaliza um nome, removendo acentos e caracteres especiais, convertendo para minúsculas e padronizando espaços."""
+
+        # Remove acentos e caracteres especiais
+        nome_sem_acentos = unidecode(nome)
+
+        # Converte para minúsculas e remove espaços extras
+        nome_normalizado = nome_sem_acentos.lower().strip().replace("  ", " ")
+
+        return nome_normalizado
 
     def configure_logging(self):
         logging.basicConfig(filename='logs/lattes_scraper.log', level=logging.INFO, filemode='w', format='%(asctime)s - %(levelname)s - %(message)s')
@@ -372,69 +414,6 @@ class LattesScraper:
     def scrape_and_persist(self, data):
         self._scrape(data)
         self._persist(data)
-
-
-    def extract_remanescents(self, lista_restante, dict_list_actual, instituicao, termo1, termo2, termo3):
-        print(f'Resta extrair {len(lista_restante)} currículos:')
-        print(lista_restante)
-        print('-'*110)
-        
-        if lista_restante:
-            # Iniciar a extração de currículos remanescentes
-            t0 = time.time()
-            scraper = LattesScraper(instituicao, termo1, termo2, termo3, 'bolt://localhost:7687', 'neo4j', 'password', only_doctors=False)
-            dict_list_1 = scraper.scrape(lista_restante, instituicao, termo1, termo2, termo3)
-            print(f'\n{preparer.tempo(t0,time.time())} para busca de {len(lista_restante)} nomes com extração de dados de {len(dict_list_1)} dicionários')
-
-            # Dicionário vazio para armazenar elementos combinados
-            dicionario_combinado = {}
-
-            # Percorrer a lista de dicionários existentes (dict_list_docents)
-            for dicionario in dict_list_actual:
-                # Obter a chave única do dicionário
-                chave_unica = dicionario.get("Identificação").get("Nome")
-
-                # Verificar se a chave é hashável
-                if isinstance(chave_unica, (str, int, float, tuple)):
-                    # Se a chave for hashável, adicionar o dicionário ao dicionário combinado
-                    dicionario_combinado[chave_unica] = dicionario
-                else:
-                    # Se a chave não for hashável, registrar um erro
-                    print(f"Erro: Chave 'Identificação' não hashável em dicionário: {dicionario}")
-
-            # Percorrer a lista de dicionários recém-extraídos (dict_list_1)
-            for dicionario in dict_list_1:
-                # Obter a chave única do dicionário
-                chave_unica = dicionario.get("Identificação").get("Nome")
-
-                # Verificar se a chave é hashável
-                if isinstance(chave_unica, (str, int, float, tuple)):
-                    # Se a chave for hashável, adicionar o dicionário ao dicionário combinado
-                    # Verifique se a chave já existe no dicionário combinado
-                    if chave_unica not in dicionario_combinado:
-                        dicionario_combinado[chave_unica] = dicionario
-                    # else:
-                    #     # Se a chave já existe, combinar os valores dos dicionários
-                    #     dicionario_combinado = dict_list_actual.copy()
-                    #     dicionario_combinado.append(dicionario)                
-                else:
-                    # Se a chave não for hashável, registrar um erro
-                    print(f"Erro: Chave 'Identificação' não hashável em dicionário: {dicionario}")
-
-            # Converter o dicionário em lista
-            lista_dict_combinado = list(dicionario_combinado.values())
-            print(f'Total de dicionários na lista completa: {len(lista_dict_combinado)}')
-            
-            # Obter o caminho do arquivo JSON
-            pathfilename = os.path.join(os.getcwd(), '_data', 'in_csv', 'dict_list_combined.json')
-            save_to_json(lista_dict_combinado, pathfilename)
-
-            print(f"Arquivo JSON salvo em: {pathfilename}")
-
-            return lista_dict_combinado
-        else:
-            print(f'{len(dict_list_actual)-len(lista_restante)} Currículos já extraídos com sucesso.')
-
 
     def _persist(self, data):
         # Conectar ao banco de dados Neo4j
@@ -989,7 +968,7 @@ class LattesScraper:
 
         return result_links
 
-    def obter_resultados_pagina(numero_pagina):
+    def obter_resultados_pagina(numero_pagina, intLRegPagina, strLQuery):
         """
         Função para obter resultados de uma página específica.
 
@@ -1150,12 +1129,12 @@ class LattesScraper:
         print(f"        Falha ao paginar com todas as estratégias para o link: {href_elemento}")
 
     ## TO-FIX: Não está tratando muito bem o stale file handler, porque está avançando para próximo
-    def find_terms(self, NOME, instituicao, termo1, termo2, termo3, delay, limite=5):
+    def find_terms(self, NOME, termos_busca, delay, limite=5):
         """
         Função para manipular o HTML até abir a página HTML de cada currículo, considerando homônimos
         Parâmetros:
             - NOME: É o nome completo de cada pesquisador
-            - Instituição, termo1, termo2 e termo3: Strings a buscar no currículo para escolher homônimo
+            - termos_busca: Lista de strings a buscar no currículo para escolher homônimo
             - driver (webdriver object): The Selenium webdriver object.
             - limite (int): Número máximo de tentativas em casos de erro.
             - delay (int): tempo em milisegundos a esperar nas operações de espera.
@@ -1166,13 +1145,9 @@ class LattesScraper:
         """
         ignored_exceptions=(NoSuchElementException,StaleElementReferenceException,)
         # Inicializar variáveis para evitar UnboundLocalError
-        duvidas = []
         count = 0
         qte_res = 0
-        verbose = True
         elm_vinculo = None
-        force_break_loop = False
-        termos_busca = [instituicao, termo1, termo2, termo3]
         try:
             # Esperar carregar a lista de resultados na página
             css_resultados = ".resultado"
@@ -1741,7 +1716,7 @@ class LattesScraper:
         else:
             descricao = None
 
-        return nome, descrica
+        return nome, descricao
 
     def navegar_paginas(self, url_inicial, termos_busca):
         """
@@ -1800,7 +1775,7 @@ class LattesScraper:
         proxima_pagina = base_url + f"page={numero_pagina_atual + 1}"
         return proxima_pagina
 
-    def navegar_paginas(url_inicial, termos_busca):
+    def navegar_paginas(self, url_inicial, termos_busca):
         """
         Navega pelas páginas de resultados e coleta links relevantes.
 
@@ -1883,7 +1858,7 @@ class LattesScraper:
             link_pessoa = resultado.find('a')['href']
 
             pontuacao_compatibilidade = self.calcular_pontuacao_compatibilidade(
-                termos_busca, nome_pessoa, informacoes_adicionais
+                self.termos_busca, nome_pessoa, informacoes_adicionais
             )
 
             if pontuacao_compatibilidade > pontuacao_maxima:
@@ -1943,34 +1918,6 @@ class LattesScraper:
                 self.fill_name(NOME, retry_count - 1)
             else:
                 print("       Tentativas esgotadas. Abortando ação.")
-
-    def search_profile(self, name, instituicao, termo1, termo2, termo3, retry_count=3):
-        '''
-        Usa a função find_terms para assegurar escolha do homônimo correto
-        '''
-        try:
-            # Find terms to interact with the web page and extract the profile
-            profile_element, _, _, _, _ = self.find_terms(
-                name,
-                instituicao,
-                termo1,
-                termo2,
-                termo3,
-                10,  # delay extração tooltips (10 funciona sem erros em dia normal)
-                3
-            )
-            # print('Elemento encontrado:', profile_element)
-            if profile_element:
-                return profile_element
-            else:
-                logging.info(f'Currículo não encontrado: {name}')
-                self.return_search_page()
-        except requests.HTTPError as e1:
-            logging.error(f"HTTPError occurred: {str(e1)}")
-            return None
-        except Exception as e2:
-            logging.error(f"Erro inesperado ao buscar: {str(e2)}")
-            return None
 
     def extract_tooltip_data(self, retries=3, delay=2):
         """
@@ -2189,27 +2136,36 @@ class LattesScraper:
         # Verificar se a nova página foi carregada
         # (Opcional, implemente a verificação de acordo com seus critérios)
 
-    def scrape_retry(self, name, instituicao, termo1, termo2, termo3, retry_count):
-        dict_list = []
+    def search_profile(self, name, termos_busca, retry_count=3):
+        '''
+        Usa a função find_terms para assegurar escolha do homônimo correto
+        '''
         try:
-            for _ in range(retry_count):
-                try:
-                    dict_list.extend(self.scrape_single(name, instituicao, termo1, termo2, termo3))
-                    break  # Se o a extração for bem-sucedido, saia do loop de retry
-                except TimeoutException as se:
-                    logging.error(f"Tentativa de extrair currículo de {name} em scrape_retry() falhou: {se}. Tentando novamente...")
-                    time.sleep(1)  # Aguarda um segundo antes de tentar novamente
+            # Find terms to interact with the web page and extract the profile
+            profile_element, _, _, _, _ = self.find_terms(
+                name,
+                termos_busca,
+                10,  # delay extração tooltips (10 funciona sem erros em dia normal)
+                3 # limite de tentativas
+            )
+            # print('Elemento encontrado:', profile_element)
+            if profile_element:
+                return profile_element
             else:
-                logging.error(f"Todas as tentativas em em scrape_retry() falharam para {name}.")
-        except Exception as e:
-            raise TimeoutException(f"Erro inesperado em scrape_retry() para {name}")
-        return dict_list
+                logging.info(f'Currículo não encontrado: {name}')
+                self.return_search_page()
+        except requests.HTTPError as e1:
+            logging.error(f"HTTPError occurred: {str(e1)}")
+            return None
+        except Exception as e2:
+            logging.error(f"Erro inesperado ao buscar: {str(e2)}")
+            return None
 
-    def scrape_single(self, name, instituicao, termo1, termo2, termo3):
+    def scrape_single(self, name, termos_busca):
         dict_list = []  # Inicialize a lista de dicionários vazia
         try:
             self.fill_name(name)
-            elm_vinculo = self.search_profile(name, instituicao, termo1, termo2, termo3)
+            elm_vinculo = self.search_profile(name, termos_busca)
             if elm_vinculo:
                 if self.verbose:
                     print(f"       {name}: vínculo encontrado no currículo, tentando abrir...")
@@ -2266,19 +2222,35 @@ class LattesScraper:
             raise TimeoutException(f"       Erro ao realizar a extração para {name}: {e}")
         return dict_list
 
+    def scrape_retry(self, name, termos_busca, retry_count):
+        dict_list = []
+        try:
+            for _ in range(retry_count):
+                try:
+                    dict_list.extend(self.scrape_single(name, termos_busca))
+                    break  # Se o a extração for bem-sucedido, saia do loop de retry
+                except TimeoutException as se:
+                    logging.error(f"Tentativa de extrair currículo de {name} em scrape_retry() falhou: {se}. Tentando novamente...")
+                    time.sleep(1)  # Aguarda um segundo antes de tentar novamente
+            else:
+                logging.error(f"Todas as tentativas em em scrape_retry() falharam para {name}.")
+        except Exception as e:
+            raise TimeoutException(f"Erro inesperado em scrape_retry() para {name}")
+        return dict_list
+
     # Realizar chamada recursiva para processar cada nome da lista
-    def scrape(self, name_list, instituicao, termo1, termo2, termo3, retry_count=5):
+    def scrape(self, name_list, termos_busca, retry_count=5):
         dict_list = []
         for k, name in enumerate(name_list):
             print(f'{k+1:>2}/{len(name_list)}: {name}')
             try:
-                dict_list.extend(self.scrape_retry(name, instituicao, termo1, termo2, termo3, retry_count))
+                dict_list.extend(self.scrape_retry(name, termos_busca, retry_count))
             except TimeoutException:
                 logging.error(f"Erro de Timeout ao extrair {name}")
                 if retry_count > 0:
                     logging.info(f"Tentando novamente para {name}...")
                     # Realiza novar tentativa para o mesmo nome passando número de tentativas decrementado de 1
-                    dict_list.extend(self.scrape([name], instituicao, termo1, termo2, termo3, retry_count-1))
+                    dict_list.extend(self.scrape([name], termos_busca, retry_count-1))
                 else:
                     logging.error(f"Todas as tentativas falharam para {name}")
             except Exception as e:
@@ -2295,10 +2267,71 @@ class LattesScraper:
 
         return dict_list
 
+    def extract_remanescents(self, lista_restante, dict_list_actual, search_terms):
+        print(f'Resta extrair {len(lista_restante)} currículos:')
+        print(lista_restante)
+        print('-'*110)
+        
+        if lista_restante:
+            # Iniciar a extração de currículos remanescentes
+            t0 = time.time()
+            scraper = LattesScraper(search_terms, 'bolt://localhost:7687', 'neo4j', 'password', only_doctors=False)
+            dict_list_1 = scraper.scrape(lista_restante, search_terms)
+            print(f'\n{self.tempo(t0,time.time())} para busca de {len(lista_restante)} nomes com extração de dados de {len(dict_list_1)} dicionários')
+
+            # Dicionário vazio para armazenar elementos combinados
+            dicionario_combinado = {}
+
+            # Percorrer a lista de dicionários existentes (dict_list_docents)
+            for dicionario in dict_list_actual:
+                # Obter a chave única do dicionário
+                chave_unica = dicionario.get("Identificação").get("Nome")
+
+                # Verificar se a chave é hashável
+                if isinstance(chave_unica, (str, int, float, tuple)):
+                    # Se a chave for hashável, adicionar o dicionário ao dicionário combinado
+                    dicionario_combinado[chave_unica] = dicionario
+                else:
+                    # Se a chave não for hashável, registrar um erro
+                    print(f"Erro: Chave 'Identificação' não hashável em dicionário: {dicionario}")
+
+            # Percorrer a lista de dicionários recém-extraídos (dict_list_1)
+            for dicionario in dict_list_1:
+                # Obter a chave única do dicionário
+                chave_unica = dicionario.get("Identificação").get("Nome")
+
+                # Verificar se a chave é hashável
+                if isinstance(chave_unica, (str, int, float, tuple)):
+                    # Se a chave for hashável, adicionar o dicionário ao dicionário combinado
+                    # Verifique se a chave já existe no dicionário combinado
+                    if chave_unica not in dicionario_combinado:
+                        dicionario_combinado[chave_unica] = dicionario
+                    # else:
+                    #     # Se a chave já existe, combinar os valores dos dicionários
+                    #     dicionario_combinado = dict_list_actual.copy()
+                    #     dicionario_combinado.append(dicionario)                
+                else:
+                    # Se a chave não for hashável, registrar um erro
+                    print(f"Erro: Chave 'Identificação' não hashável em dicionário: {dicionario}")
+
+            # Converter o dicionário em lista
+            lista_dict_combinado = list(dicionario_combinado.values())
+            print(f'Total de dicionários na lista completa: {len(lista_dict_combinado)}')
+            
+            # Obter o caminho do arquivo JSON
+            pathfilename = os.path.join(os.getcwd(), '_data', 'in_csv', 'dict_list_combined.json')
+            self.save_to_json(lista_dict_combinado, pathfilename)
+
+            print(f"Arquivo JSON salvo em: {pathfilename}")
+
+            return lista_dict_combinado
+        else:
+            print(f'{len(dict_list_actual)-len(lista_restante)} Currículos já extraídos com sucesso.')
+
     def save_to_json(self, data, file_path):
         with open(file_path, 'w', encoding='utf-8') as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
-  
+
 class HTMLParser:
     def __init__(self, html):
         self.soup = BeautifulSoup(html, 'html.parser')
