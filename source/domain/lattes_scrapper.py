@@ -58,7 +58,6 @@ warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 class JSONFileManager:
-    # Carregar arquivo 'dict_list.json' para a variável dict_list
     def list_json(self, folder):
         # Criar uma lista para armazenar os nomes dos arquivos JSON
         json_files = []
@@ -80,6 +79,7 @@ class JSONFileManager:
         for file in json_files:
             print(f'  {file}')
 
+    # Carregar arquivo 'dict_list.json' para a variável com dados de criação e modificação
     def load_from_json(self, file_path):
         """
         Carrega um arquivo JSON e retorna seu conteúdo e data de criação.
@@ -120,6 +120,11 @@ class JSONFileManager:
             time_count = round(time_delta.total_seconds() / 86400, 1)
 
         return data, formatted_creation_date, formatted_modification_date, time_count, unit
+
+    # Função para salvar a lista de dicionários em um arquivo .json
+    def save_to_json(self, data, file_path):
+        with open(file_path, 'w', encoding='utf-8') as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
 
 class attribute_to_be_non_empty:
     """
@@ -364,17 +369,8 @@ class LattesScraper:
         self.neo4j_user = neo4j_user
         self.neo4j_password = neo4j_password
 
-    def tempo(self, start, end):
-        t = end - start
-        tempo = timedelta(
-            weeks=t // (3600 * 24 * 7),
-            days=t // (3600 * 24) % 7,
-            hours=t // 3600 % 24,
-            minutes=t // 60 % 60,
-            seconds=t % 60
-        )
-        fmt = '{H:02}:{M:02}:{S:02}'
-        return self.strfdelta(tempo, fmt=fmt, inputtype='timedelta')
+    def configure_logging(self):
+        logging.basicConfig(filename='logs/lattes_scraper.log', level=logging.INFO, filemode='w', format='%(asctime)s - %(levelname)s - %(message)s')
 
     def strfdelta(self, tdelta, fmt='{H:02}h {M:02}m {S:02}s', inputtype='timedelta'):
         if inputtype == 'timedelta':
@@ -391,6 +387,18 @@ class LattesScraper:
             if field in desired_fields and field in constants:
                 values[field], remainder = divmod(remainder, constants[field])
         return f.format(fmt, **values)
+    
+    def tempo(self, start, end):
+        t = end - start
+        tempo = timedelta(
+            weeks=t // (3600 * 24 * 7),
+            days=t // (3600 * 24) % 7,
+            hours=t // 3600 % 24,
+            minutes=t // 60 % 60,
+            seconds=t % 60
+        )
+        fmt = '{H:02}:{M:02}:{S:02}'
+        return self.strfdelta(tempo, fmt=fmt, inputtype='timedelta')
 
     # Função para salvar a lista de dicionários em um arquivo .json
     def save_to_json(self, data, file_path):
@@ -408,9 +416,6 @@ class LattesScraper:
         nome_normalizado = nome_sem_acentos.lower().strip().replace("  ", " ")
 
         return nome_normalizado
-
-    def configure_logging(self):
-        logging.basicConfig(filename='logs/lattes_scraper.log', level=logging.INFO, filemode='w', format='%(asctime)s - %(levelname)s - %(message)s')
 
     def scrape_and_persist(self, data):
         self._scrape(data)
@@ -2260,7 +2265,7 @@ class LattesScraper:
                 logging.error(traceback_str)
         self.driver.quit()
         try:
-            filepath = os.path.join(LattesScraper.find_repo_root(),'_data','in_csv','dict_list_temp.json')
+            filepath = os.path.join(LattesScraper.find_repo_root(),'_data','in_csv','temp_dict_list.json')
             print(f'Arquivo salvo em {filepath}')
         except:
             print('Não foi possível salvar extração em arquivo')
@@ -2320,7 +2325,7 @@ class LattesScraper:
             print(f'Total de dicionários na lista completa: {len(lista_dict_combinado)}')
             
             # Obter o caminho do arquivo JSON
-            pathfilename = os.path.join(os.getcwd(), '_data', 'in_csv', 'dict_list_combined.json')
+            pathfilename = os.path.join(os.getcwd(), '_data', 'in_csv', 'combined_dict_list.json')
             self.save_to_json(lista_dict_combinado, pathfilename)
 
             print(f"Arquivo JSON salvo em: {pathfilename}")
@@ -2329,7 +2334,7 @@ class LattesScraper:
         else:
             print(f'{len(dict_list_actual)-len(lista_restante)} Currículos já extraídos com sucesso.')
 
-    def avaliar_remanescentes(self, lista_busca, dict_list_docents, filename='dict_list_temp.json'):
+    def avaliar_remanescentes(self, lista_busca, dict_list_docents, filename='temp_dict_list.json'):
         print(f'{len(lista_busca)} currículos a buscar no total')
         print(f'{len(dict_list_docents)} currículos já extraídos')
         total_extraidos = 0
@@ -2340,19 +2345,18 @@ class LattesScraper:
 
         jfm = JSONFileManager()
         # Carregar arquivo dict_list_temp.json
-        pathfilename = os.path.join(self.folder_data_input, filename)
-        dict_list_docents, formatted_creation_date, formatted_modification_date, time_count, unit = jfm.load_from_json(os.path.join(self.folder_data_input,pathfilename))
+        pathfilename = os.path.join(self.find_repo_root(), '_data','in_csv', filename)
+        dict_list_docents, formatted_creation_date, formatted_modification_date, time_count, unit = jfm.load_from_json(pathfilename)
         lista_restante = lista_busca[:]
 
         for i in dict_list_docents:
             nome = i.get('Identificação').get('Nome')
-            print(nome)
-            nome_normalizado = self.scraper.normalizar_nome(nome)
+            nome_normalizado = self.normalizar_nome(nome)
             encontrado = False
 
             ## Verificar se o nome ou uma forma similar já foi extraído
             for nome_original in lista_restante:
-                nome_original_normalizado = self.scraper.normalizar_nome(nome_original)
+                nome_original_normalizado = self.normalizar_nome(nome_original)
                 if nome_original_normalizado == nome_normalizado:
                     lista_restante.remove(nome_original)
                     encontrado = True
@@ -3225,7 +3229,7 @@ class HTMLParser:
                             
     def add_qualis(self):
         file_name = 'classificações_publicadas_todas_as_areas_avaliacao1672761192111.xls'
-        planilha_excel = os.path.join(self.find_repo_root(), '_data', file_name)        
+        planilha_excel = os.path.join(self.find_repo_root(), '_data', file_name)
         planilha = pd.read_excel(planilha_excel)
         for artigo in self.json_data['Produções']['Artigos completos publicados em periódicos']:
             try:
