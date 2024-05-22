@@ -1,0 +1,44 @@
+
+https://portal.fiocruz.br/tecnologias
+
+field_tecnologia_categoria
+Diagnóstico
+Dispositivos e equipamentos em saúde
+Fármacos e Medicamentos
+Modelos experimentais
+Nanotecnologias e novos materiais
+Processos industriais
+Tecnologias da informação e comunicação em saúde
+Tecnologias socioeducacionais e ambientais
+Vacinas
+
+field_taxonomia_doencas
+Arboviroses
+Câncer
+Dengue
+Doenças crônicas não transmissíveis
+Doenças dermatológicas
+Doenças infecciosas
+Doenças parasitárias
+Esclerose múltipla
+Febre amarela
+HTLV
+Hanseníase
+Leishmaniose
+Malária
+Meningite
+Sepse
+Tuberculose
+Zika
+
+
+field_estagio_trl
+1. Pesquisa básica
+2. Pesquisa aplicada
+3. Prova de conceito
+4. Teste em escala
+5. Teste em escala piloto
+6. Protótipo em teste
+7. Demonstração em ambiente operacional
+8. Produto validado e qualificado
+9. Produção e comercialização
