@@ -1,6 +1,6 @@
 {
     "economists": [
-        {
+      {
         "name": "Joseph Schumpeter",
         "birth_date": "1883-02-08",
         "main_publications": [
@@ -12,8 +12,8 @@
         "institutions": ["University of Czernowitz", "University of Graz", "Harvard University"],
         "wealth_magnitude": "Unknown",
         "death_date": "1950-01-08"
-        },
-        {
+      },
+      {
         "name": "John Maynard Keynes",
         "birth_date": "1883-06-05",
         "main_publications": [
