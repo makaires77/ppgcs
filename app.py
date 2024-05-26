@@ -4,6 +4,7 @@ from flask_cors import CORS
 import os
 
 app = Flask(__name__)
+os.environ['FLASK_RUN_PORT'] = '8080'
 app.static_folder = 'static'
 CORS(app)
 
@@ -19,6 +20,11 @@ def index():
 @app.route('/static/assets/images/<filename>')
 def serve_image(filename):
     return send_from_directory('static/assets/images', filename)
+
+@app.route('/templates/graph_revistas_capes.html')
+def graph_revistas_capes():
+    # Renderizar link para report no breadcrumb
+    return render_template('graph_revistas_capes.html', show_render_button=True)
 
 @app.route('/pasteur_fr_report')
 def pasteur_fr_report():

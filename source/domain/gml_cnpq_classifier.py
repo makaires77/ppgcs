@@ -57,7 +57,7 @@ class ClassificadorArtigosCNPq:
         return hierarquia
 
     def processar_atuacao(self, atuacoes):
-        # Supondo que 'atuacoes' é uma lista de strings com as classificações do pesquisador
+        # Onde 'atuacoes' é lista de strings com as áreas de atuação do pesquisador
         # A função deve processar essa lista e extrair as informações relevantes
         grande_areas = set()
         areas = set()
@@ -66,7 +66,7 @@ class ClassificadorArtigosCNPq:
             # Processar cada string de atuação e extrair a Grande Área e Área correspondente, dependendo do formato específico das strings de atuação.
             # Por exemplo:
             # Se a string de atuação é "1. Grande área: Ciências Biológicas / Área: Bioquímica / ..."
-            # Você precisaria extrair "Ciências Biológicas" como a Grande Área e "Bioquímica" como a Área.
+            # Vai extrair "Ciências Biológicas" como a Grande Área e "Bioquímica" como a Área.
             parts = atuacao.split(' / ')
             if parts:
                 grande_area = parts[0].split(': ')[-1].strip()
@@ -213,8 +213,6 @@ class TrainingPipeline:
 
 # Esta implementação assume que você pode acessar as propriedades do nó `Person` diretamente pelo ID, e que a estrutura do dado `atuacao` é uma lista de strings com informações hierárquicas de classificação. As funções de similaridade e ponderação podem ser expandidas com base nos requisitos de negócios e validações de especialistas do domínio.
 
-
-
 #Pontos-Chave e Considerações:
 
 # - **Treinamento do LDA**: O método `treinar_lda_para_grandeareas` é responsável por treinar um modelo LDA usando os títulos dos artigos. Isso permitirá classificar os artigos nas 'GrandeÁreas' com base no conteúdo dos títulos.
@@ -240,11 +238,7 @@ class TrainingPipeline:
 
 # Integração com Neo4j: 
 # A classe interage com o Neo4j para realizar consultas e operações relacionadas ao grafo. Isso inclui tanto a obtenção de informações de classificação quanto o cálculo de similaridade.
-
 # Ajustes e Otimização: Dependendo dos resultados iniciais, pode ser necessário ajustar os parâmetros do modelo LDA (como o número de tópicos) ou a lógica de ponderação da similaridade para melhorar a precisão da classificação.
-
 # Integração e Escalabilidade: Ao implementar esta classe em um sistema maior, deve-se considerar a integração com outros componentes do sistema e garantir que a solução seja escalável para lidar com grandes conjuntos de dados.
-
 # Atualização e Manutenção do Modelo: Com o tempo, novos artigos serão inseridos e a classificação nas áreas de pesquisa podem evoluir. Portanto, é importante manter o modelo atualizado e reavaliá-lo periodicamente.
-
 # Usamos técnicas avançadas de PLN, análise de grafos e aprendizado de máquina para criar um sistema de classificação de artigos científicos altamente sofisticado e adaptado às necessidades específicas da classificação multinível do CNPq

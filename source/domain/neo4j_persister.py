@@ -126,6 +126,67 @@ class Neo4jPersister:
                         CREATE (j:Revista {issn: $issn, nome_revista: $nome_revista, area_avaliacao: $area_avaliacao, estrato: $estrato})
                     """, nome_revista=nome_revista, issn=issn, area_avaliacao=area_avaliacao,  estrato=estrato)
 
+    def persistir_areas_avaliacao_capes(self):
+        """
+        Persiste áreas de avaliação únicas como nós no Neo4j, relacionando-as às revistas.
+
+        Args:
+            session: Objeto de sessão do Neo4j (opcional). Se não fornecido, usa o driver da classe.
+        """
+        session = session or self._driver.session()
+
+        # Consulta Cypher para criar nós de área de avaliação e relacionamentos
+        query = """
+        MATCH (r:Revista)
+        UNWIND split(r.area_avaliacao, ', ') AS area
+        MERGE (a:AreaAvaliacao {nome: area})
+        MERGE (r)-[:AVALIADA_EM]->(a)
+        """
+
+        # Execução da consulta
+        with session:
+            session.run(query)
+
+    def desenhar_grafo_revistas_capes(self):
+        from pyvis.network import Network
+
+        with self._driver.session() as session:
+            result = session.run("""
+                MATCH (a:AreaAvaliacao)<-[:AVALIADA_EM]-(revista:Revista)
+                WITH a, collect(revista) AS revistas
+                CALL apoc.path.subgraphAll(a, {relationshipFilter:'AVALIADA_EM'}) YIELD nodes, relationships
+                RETURN nodes, relationships
+            """)
+
+            # Converter o resultado em um grafo Pyvis
+            net = Network(notebook=True, cdn_resources='in_line')
+
+            # Adicionar nós
+            for record in result:
+                for node in record["nodes"]:
+                    if "Revista" in node.labels:
+                        label = node.get("nome_revista")
+                        node_id = label.replace(" ", "")  # Remover espaços em branco
+                        net.add_node(node_id, label=label, shape="circle")
+                    else:
+                        net.add_node(node.id, label=node.get("nome"), shape="box")
+
+            # Adicionar arestas
+            for record in result:
+                for rel in record["relationships"]:
+                    start_node_id = rel.start_node.get("nome_revista").strip() if "Revista" in rel.start_node.labels else rel.start_node
+                    end_node_id = rel.end_node.get("nome_revista").strip() if "Revista" in rel.end_node.labels else rel.end_node
+                    net.add_edge(start_node_id, end_node_id)
+
+            # Obter o caminho completo para o diretório 'templates' na raiz do projeto
+            templates_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'templates')
+
+            # Criar o diretório 'templates' se ele não existir
+            os.makedirs(templates_dir, exist_ok=True)
+
+            # Salvar o HTML em 'templates/grafo_revistas.html'
+            net.show(os.path.join(templates_dir, "grafo_revistas.html"))
+
     # Testes Ok! 
     def persist_docent_nodes(self, dict_list):
         query_pessoa = """
