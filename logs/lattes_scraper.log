@@ -1,0 +1,15 @@
+2024-06-03 15:24:16,473 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-06-03 15:30:24,500 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-06-03 15:30:57,457 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-06-03 15:31:30,108 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-06-03 15:32:02,524 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-06-03 15:32:35,449 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-06-03 15:35:59,891 - INFO - Currículo não encontrado: Cristiane França Martins Teodoro
+2024-06-03 15:58:33,819 - INFO - Currículo não encontrado: Lenir Santos
+2024-06-03 16:18:04,507 - INFO - Currículo não encontrado: Renata Castelo Da Nobrega
+2024-06-03 16:25:03,460 - INFO - Currículo não encontrado: Vanessa Pinheiro Gonçalves Ferreira
+2024-06-03 16:29:34,886 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-06-03 16:33:50,774 - INFO - Currículo não encontrado: Cristiane França Martins Teodoro
+2024-06-03 16:33:54,152 - INFO - Currículo não encontrado: Lenir Santos
+2024-06-03 16:34:42,072 - INFO - Currículo não encontrado: Renata Castelo Da Nobrega
+2024-06-03 16:35:28,918 - INFO - Currículo não encontrado: Vanessa Pinheiro Gonçalves Ferreira
