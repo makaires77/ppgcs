@@ -3759,7 +3759,7 @@ class DiscentCollaborationCounter:
         Extrair cada artigo de cada dicionário de currículo
 
         Argumentos:
-            dict_list (dict): O dicionário contendo todos os dados extraídos dos currículos
+            dict_list (dict): Lista de dicionários  contendo todos os dados extraídos dos currículos
         
         Retorna:
             colaboracoes (list): Uma lista de dicionários com chave nome do dono do currículo e valores lista de todos autores
@@ -3767,61 +3767,65 @@ class DiscentCollaborationCounter:
         lista_normalizada_discentes = self.normalize_discents()
         colaboracoes = []
         percentuais = {}
+        print(f'{len(dict_list)} currículos a analisar colaborações')
         for dic in dict_list:
             autor = dic.get('Identificação',{}).get('Nome',{})
             artigos = dic.get('Produções', {}).get('Artigos completos publicados em periódicos', {})
             lista_coautores_artigo = []
             total_artigos_periodo = 0            
             colaboracoes_com_discentes = 0
-            for i in artigos:
-                colaborou = False
-                ano = i.get('ano',{})
-                qualis = i.get('Qualis',{})
-                doi = i.get('DOI',{})
-                string_autores = i.get('autores')
-                coautores, padroes = self.get_coauthors(string_autores)
-                regex_quatrodigitos = r"\d{4}?.*$"
-                match_quatrodigitos = re.search(regex_quatrodigitos, coautores[0])
-                if match_quatrodigitos:
-                    nome_prim_autor = re.sub(regex_quatrodigitos, "", coautores[0])
-                    coautores[0] = nome_prim_autor
-                regex_restantedados = r"\.\s+(\w+)+.*$"
-                match_restantedados = re.search(regex_quatrodigitos, coautores[-1])
-                if match_restantedados:
-                    nome_ultimo_autor = re.sub(regex_restantedados, "", coautores[-1])
-                    coautores[-1] = nome_ultimo_autor
-                coautores = [self.iniciais_nome(x) for x in coautores]
-                lista_coautores_artigo.append(coautores)
-                colaboracoes.append({autor: coautores})
-                if ano and int(ano) >= ano_inicio:
-                    total_artigos_periodo +=1
-                    for nome_coautor in coautores:
-                        nome_discente=''
-                        for nome_discente in lista_normalizada_discentes:
-                            similaridade_sobrenome, similaridade_iniciais = self.similar_index(nome_discente, nome_coautor)
-                            if similaridade_sobrenome > limite_similaridade_sobrenome and similaridade_iniciais > limite_similaridade_iniciais:
-                                colaborou = True
-                                # print(f'{autor:40} {nome_discente:20} {nome_coautor:25} | {similaridade_sobrenome:.6f} | {similaridade_iniciais:.6f}')
-
-                    if colaborou == True:
-                        colaboracoes_com_discentes += 1
-                        print(f"ANO {ano} DOI {doi:51} com colaboração com discente '{nome_discente}'")
-                    else:
-                        print(f'ANO {ano} DOI {doi:51} nome de discente em coautorias não encontrado')
-
-                    if len(artigos) == 0:
-                        porcentagem_colab_discentes = 0
-                    else:
-                        porcentagem_colab_discentes = np.round((colaboracoes_com_discentes / total_artigos_periodo) * 100, 2)
-                        percentuais[autor] = porcentagem_colab_discentes
-                if ano == '':
-                    print(f'Ano não extraído para {i}')
-
-
+            if artigos:    
+                try:
+                    for i in artigos:
+                        colaborou = False
+                        ano = i.get('ano',{})
+                        qualis = i.get('Qualis',{})
+                        doi = i.get('DOI',{})
+                        string_autores = i.get('autores')
+                        coautores, padroes = self.get_coauthors(string_autores)
+                        regex_quatrodigitos = r"\d{4}?.*$"
+                        match_quatrodigitos = re.search(regex_quatrodigitos, coautores[0])
+                        if match_quatrodigitos:
+                            nome_prim_autor = re.sub(regex_quatrodigitos, "", coautores[0])
+                            coautores[0] = nome_prim_autor
+                        regex_restantedados = r"\.\s+(\w+)+.*$"
+                        match_restantedados = re.search(regex_quatrodigitos, coautores[-1])
+                        if match_restantedados:
+                            nome_ultimo_autor = re.sub(regex_restantedados, "", coautores[-1])
+                            coautores[-1] = nome_ultimo_autor
+                        coautores = [self.iniciais_nome(x) for x in coautores]
+                        lista_coautores_artigo.append(coautores)
+                        colaboracoes.append({autor: coautores})
+                        if ano and int(ano) >= ano_inicio:
+                            total_artigos_periodo +=1
+                            for nome_coautor in coautores:
+                                nome_discente=''
+                                for nome_discente in lista_normalizada_discentes:
+                                    similaridade_sobrenome, similaridade_iniciais = self.similar_index(nome_discente, nome_coautor)
+                                    if similaridade_sobrenome > limite_similaridade_sobrenome and similaridade_iniciais > limite_similaridade_iniciais:
+                                        colaborou = True
+                                        # print(f'{autor:40} {nome_discente:20} {nome_coautor:25} | {similaridade_sobrenome:.6f} | {similaridade_iniciais:.6f}')
+                            if colaborou == True:
+                                colaboracoes_com_discentes += 1
+                                print(f"ANO {ano} DOI {doi:51} com colaboração com discente '{nome_discente}'")
+                            else:
+                                print(f'ANO {ano} DOI {doi:51} nome de discente em coautorias não encontrado')
+                            if len(artigos) == 0:
+                                porcentagem_colab_discentes = 0
+                            else:
+                                porcentagem_colab_discentes = np.round((colaboracoes_com_discentes / total_artigos_periodo) * 100, 2)
+                                percentuais[autor] = porcentagem_colab_discentes
+                        if ano == '':
+                            print(f'Ano não extraído para {i}')
+                except Exception as e:
+                    print('Erro ao contar colaborações:')
+                    print(e)
+            else:
+                porcentagem_colab_discentes = 0
+                percentuais[autor] = porcentagem_colab_discentes
             print('-'*120)
             print(f'Nome de discente detectado em {colaboracoes_com_discentes} dos {total_artigos_periodo} artigos de {autor}, perfazendo {porcentagem_colab_discentes}% de colaborações com discente')
             print('='*120)
-
 
         return colaboracoes, percentuais
 
@@ -3830,8 +3834,7 @@ class DiscentCollaborationCounter:
         for name in coauthors_list:
             if name in discent_list:
                 count+=1
-
-        return qte_discent_collaborations
+        return count
 
     def normalize(self, texto):
         """
