@@ -31,6 +31,7 @@ Design de Soluções de TI
     Avaliação do Potencial da Solução
     Design Thinking e Prototipagem
 
+CAMADAS DE DETALHAMENTO
 Camada 1: Fundamentos de Programação e Estruturas de Dados
     Inovação em Linguagens de Programação: Desenvolver ou contribuir para novas linguagens que simplifiquem a programação ou ofereçam novas capacidades.
     Avanços em Estruturas de Dados: Criar ou aprimorar estruturas de dados para otimizar o desempenho e a eficiência dos algoritmos.
