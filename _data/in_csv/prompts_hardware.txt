@@ -1,0 +1,5 @@
+O que são NPUs em termos de hardware computacional?
+O que são FPGAs em termos de hardware computacional?
+Há diferença entre o conceito de NPU e de FPGA?
+Como esses conceitos se relacionam com os coiceitos mais populares de CPUs e GPUs?
+Como as arquiteturas computacionais mais modernas utilizam isso para fabricar hardware atualmente e na perspectiva de futuro próximo?
