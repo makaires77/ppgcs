@@ -1,5 +1,5 @@
 {
-    "fonte": "https://bvsms.PLTaude.gov.br/bvs/saudelegis/gm/2023/prt2261_08_12_2023.html",
+    "fonte": "https://bvsms.saude.gov.br/bvs/saudelegis/gm/2023/prt2261_08_12_2023.html",
     "documentos": [
         "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=08/12/2023&jornal=600&pagina=99&totalArquivos=106",
         "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=08/12/2023&jornal=600&pagina=100&totalArquivos=106",
@@ -8,11 +8,11 @@
         "https://www.gov.br/anvisa/pt-br/assuntos/medicamentos/cmed/reunioes-CMED/cte/Atada8aReunioOrdinriaCTECMEDCOMPILADA.pdf",
         "https://bvsms.PLTaude.gov.br/bvs/saudelegis/doc_tec/jan_24/PARECER%20DE%20M%C3%89RITO%207%20_%20PORTARIA%20GM%202261.2023.pdf"
     ],
-    "instrumento": "",
+    "instrumento": "MatrizCEIS_Portaria_GM_2261_08_12_2023",
     "blocos": [{
     "bloco": "I",
     "id": "B01",
-    "titulo": "1. PREPARAÇÃO DO SISTEMA DE SAÚDE PARA EMERGÊNCIAS SANITÁRIAS",
+    "titulo": "B01. PREPARAÇÃO DO SISTEMA DE SAÚDE PARA EMERGÊNCIAS SANITÁRIAS",
     "produtos":[
         {
             "id": "B01.D01.P01",
@@ -198,7 +198,7 @@
     "desafios": [
         {
             "id": "B01.D01",
-            "nome": "Preparação para resposta a emergências em saúde e proteção para doenças imunopreveníveis",
+            "nome": "D01. PREPARAÇÃO PARA RESPOSTA A EMERGÊNCIAS EM SAÚDE E PROTEÇÃO PARA DOENÇAS IMUNOPREVENÍVEIS",
             "plataformas": [
                 {
                     "id": "B01.D01.PLT01",
@@ -240,7 +240,7 @@
         },
         {
             "id": "B01.D02",
-            "nome": "Modernização das tecnologias produtivas de soros imunoprotetores",
+            "nome": "D02. MODERNIZAÇÃO DAS TECNOLOGIAS PRODUTIVAS DE SOROS IMUNOPROTETORES",
             "plataformas": [
                 {
                     "id": "B01.D02.PLT10",
@@ -254,7 +254,7 @@
         },
         {
             "id": "B01.D03",
-            "nome": "Superação de vulnerabilidade em hemoderivados, bioprodutos e modernização de serviços tecnológicos em hemoterapia",
+            "nome": "D03. SUPERAÇÃO DE VULNERABILIDADE EM HEMODERIVADOS, BIOPRODUTOS E MODERNIZAÇÃO DE SERVIÇOS TECNOLÓGICOS EM HEMOTERAPIA",
             "plataformas": [
             {
                 "id": "B01.D03.PLT12",
@@ -284,7 +284,7 @@
         },
         {
             "id": "B01.D04",
-            "nome": "Vulnerabilidade tecnológica e econômica para acesso em saúde",
+            "nome": "D04. VULNERABILIDADE TECNOLÓGICA E ECONÔMICA PARA ACESSO EM SAÚDE",
             "plataformas": [ 
                 {
                 "id": "B01.D04.PLT18",
@@ -306,7 +306,7 @@
         },
         {
             "id": "B01.D05",
-            "nome": "Alternativas tecnológicas para desenvolvimento sustentável e química verde",
+            "nome": "D05. ALTERNATIVAS TECNOLÓGICAS PARA DESENVOLVIMENTO SUSTENTÁVEL E QUÍMICA VERDE",
             "plataformas": [
                 {
                 "id": "B01.D05.PLT22",
@@ -320,7 +320,7 @@
         },
         {
             "id": "B01.D06",
-            "nome": "Tecnologias para Sistemas de Saúde (SUS)",
+            "nome": "D06. TECNOLOGIAS PARA SISTEMAS DE SAÚDE (SUS)",
             "plataformas": [
                 { 
                     "id": "B01.D06.PLT24",
@@ -369,7 +369,7 @@
 {
     "bloco": "II",
     "id": "B02",
-    "titulo": "2. DOENÇAS E AGRAVOS CRÍTICOS PARA O SUS",
+    "titulo": "B02. DOENÇAS E AGRAVOS CRÍTICOS PARA O SUS",
     "produtos": [
         {
             "id": "B02.D07.P46",
@@ -583,7 +583,7 @@
     "desafios": [
         {
             "id": "B02.D07",
-            "nome": "7. DOENÇAS E POPULAÇÕES NEGLIGENCIADAS",
+            "nome": "D07. DOENÇAS E POPULAÇÕES NEGLIGENCIADAS",
             "plataformas": [
                 {
                     "id": "B02.D07.PLT34",
@@ -628,10 +628,12 @@
                 {
                     "id": "B02.D07.PLT44",
                     "nome": "Plataforma produtiva para testes diagnóstico in vitro"
-                },
+                }
+            ]
+        },
         {
             "id": "B02.D08",
-            "grupo": "8. CÂNCERES COM MAIOR INCIDÊNCIA",
+            "nome": "D08. CÂNCERES COM MAIOR INCIDÊNCIA",
             "tipos": "Câncer de pele não melanoma; Câncer de mama; próstata; colorretal; pulmão, traqueia e brônquios; colo do útero; tireoide; linfomas; leucemias; CÂNCERES PEDIÁTRICOS", 
             "plataformas": [
                 {
@@ -670,7 +672,7 @@
         },
         {
             "id": "B02.D09",
-            "nome": "9. DOENÇAS CARDIOVASCULARES",
+            "nome": "D09. DOENÇAS CARDIOVASCULARES",
             "plataformas": [
                 {
                     "id": "B02.D09.PLT53",
@@ -688,7 +690,7 @@
         },
         {
             "id": "B02.D10",
-            "nome": "10. DIABETES",
+            "nome": "D10. DIABETES",
             "plataformas": [
                 {
                     "id": "B02.D10.PLT56",
@@ -714,7 +716,7 @@
         },
         {
             "id": "B02.D11",
-            "nome": "11. DOENÇAS ASSOCIADAS AO ENVELHECIMENTO DA POPULAÇÃO",
+            "nome": "D11. DOENÇAS ASSOCIADAS AO ENVELHECIMENTO DA POPULAÇÃO",
             "plataformas": [
                 {
                     "id": "B02.D11.PLT61",
@@ -744,7 +746,7 @@
         },
         {
             "id": "B02.D12",
-            "nome": "12. DOENÇAS RARAS",
+            "nome": "D12. DOENÇAS RARAS",
             "plataformas": [
                 {
                     "id": "B02.D12.PLT67",
@@ -778,7 +780,7 @@
         },      
         {
             "id": "B02.D13",
-            "nome": "13. OUTRAS DOENÇAS CRÔNICAS NÃO TRANSMISSÍVEIS",
+            "nome": "D13. OUTRAS DOENÇAS CRÔNICAS NÃO TRANSMISSÍVEIS",
             "plataformas": [
                 {
                     "id": "B02.D13.PLT74",
@@ -818,6 +820,5 @@
                 }
             ]
         }
-    ]}]
-}]
-}
+    ]}
+]}
