@@ -1,0 +1,47 @@
+{
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Despesas",
+        "level": 1,
+        "children": ["2", "3"]
+      },
+      {
+        "id": "2",
+        "label": "Pessoal",
+        "level": 2,
+        "children": ["4", "5"]
+      },
+      {
+        "id": "3",
+        "label": "Custeio",
+        "level": 2,
+        "children": ["6", "7"]
+      },
+      {
+        "id": "4",
+        "label": "Salários",
+        "level": 3,
+        "children": []
+      },
+      {
+        "id": "5",
+        "label": "Encargos",
+        "level": 3,
+        "children": []
+      },
+      {
+        "id": "6",
+        "label": "Material",
+        "level": 3,
+        "children": []
+      },
+      {
+        "id": "7",
+        "label": "Serviços",
+        "level": 3,
+        "children": []
+      }
+    ]
+  }
+  

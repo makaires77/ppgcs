@@ -129,6 +129,10 @@ def update_graph():
         return jsonify({"success": True, "message": "Graph updated successfully."}), 200
     except Exception as e:
         return jsonify({"success": False, "message": str(e)}), 500
-    
+
+@app.route('/graph_hierarquico')
+def graph_hierarquico():
+    return render_template('graph_hierarquico.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
