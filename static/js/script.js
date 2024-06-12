@@ -4,45 +4,45 @@ const margin = { top: 0, right: 0, bottom: 0, left: 0 };
 // Variável para armazenar o tipo de layout selecionado
 let layoutType = 'hierarchical'; // Valor padrão
 
+// Variável para indicar se o input de arquivo está ativo
+let fileInputActive = false;
+
+// Variável para indicar se o grafo já foi carregado (inicialmente true)
+let graphLoaded = true;
+
+// Variável para armazenar o nome do arquivo JSON carregado
+let currentJsonFileName = null;
+
 // Variável para armazenar os dados do grafo
 let graphData = null;
 
 // Botão para renderizar grafo no HTML
 document.addEventListener('DOMContentLoaded', function() {
-
     // Ouvinte de evento para o botão "Escolher Grafo"
     const renderBtn = document.getElementById('renderGraph');
-    if (renderBtn) { 
+    const jsonFileInput = document.getElementById('jsonFile'); 
+    const newFileInput = document.createElement('input'); // Cria o input apenas uma vez
+    newFileInput.type = 'file';
+    newFileInput.accept = '.json';
+    newFileInput.style.display = 'none';
+    document.body.appendChild(newFileInput); // Adiciona o input ao DOM
+
+    if (renderBtn) {
         renderBtn.addEventListener('click', () => {
-            if (jsonFileInput) { // Verifica se o input existe
-                jsonFileInput.click();
-            } else {
-                console.error("Input de arquivo não encontrado!");
-            }
+            newFileInput.value = null;  // Limpa o valor do input antes de abrir a janela
+            newFileInput.click();
         });
     }
+    
+    // Adiciona o ouvinte de evento ao newFileInput
+    newFileInput.addEventListener('change', handleFileChange);
 
-    const jsonFileInput = document.getElementById('jsonFile');
-    if (jsonFileInput) { 
-        jsonFileInput.addEventListener('change', () => {
-            const file = jsonFileInput.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const graphData = JSON.parse(event.target.result);
-                    renderGraph(graphData);
-                };
-                reader.readAsText(file);
-            }
-        });
-    }
-
-    // Adicionar ouvintes de evento para os botões de layout
+    // Adicionar ouvintes de evento para os botões de layout (se existirem)
     const hierarchicalLayoutBtn = document.getElementById('hierarchicalLayoutBtn');
     if (hierarchicalLayoutBtn) {
         hierarchicalLayoutBtn.addEventListener('click', () => {
             layoutType = 'hierarchical';
-            if (graphData) { 
+            if (graphData) {
                 renderGraph(graphData, layoutType);
             }
         });
@@ -68,6 +68,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Função para lidar com a mudança do arquivo (movida para fora do ouvinte do botão)
+function handleFileChange(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            graphData = JSON.parse(event.target.result);
+            renderGraph(graphData);
+            resizeAndRenderGraph();
+        };
+        reader.readAsText(file);
+    }
+
+    // Remove o input de arquivo após o carregamento
+    document.body.removeChild(e.target);
+}
 
 // Função loadContent modificada para carregar os dados do JSON após o carregamento da página
 function loadContent(href) {
@@ -143,23 +160,24 @@ function adjustLayout() {
 function initializeRenderGraphButton() {
     const renderBtn = document.getElementById('renderGraph');
     if (renderBtn) {
-        renderBtn.style.display = 'block'; // Garante que o botão esteja visível
+        renderBtn.style.display = 'block';
         renderBtn.onclick = () => {
-            // Criar input de tipo file para o usuário selecionar um arquivo
-            const fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.accept = '.json';
-            fileInput.style.display = 'none'; // Esconder input para não mudar layout
-            fileInput.onchange = e => {
-                const file = e.target.files[0];
-                if (file) {
-                    // Construir caminho do arquivo baseado na pasta especificada
-                    const filePath = `/static/data/json/${file.name}`;
-                    loadGraphData(filePath); // Carrega o grafo após a seleção do arquivo
-                }
-            };
-            document.body.appendChild(fileInput); // Adicionar input ao corpo do documento para poder ser clicado
-            fileInput.click(); // Emular clique para abrir a janela de seleção de arquivo
+            if (!fileInputActive) {
+                fileInputActive = true;
+
+                // Cria um novo input de arquivo
+                const newFileInput = document.createElement('input');
+                newFileInput.type = 'file';
+                newFileInput.accept = '.json';
+                newFileInput.style.display = 'none';
+
+                // Adiciona o ouvinte de evento ao novo input
+                newFileInput.addEventListener('change', handleFileChange);
+
+                document.body.appendChild(newFileInput);
+                newFileInput.click();
+                graphLoaded = false; // Reinicia graphLoaded aqui
+            }
         };
     }
 }
@@ -169,7 +187,7 @@ async function loadGraphData(filePath) {
     const response = await fetch(filePath);
     graphData = await response.json(); // Atualiza a variável global
 
-    // Agora chamamos resizeAndRenderGraph aqui, após carregar os dados
+    // Agora chamar resizeAndRenderGraph aqui, após carregar os dados
     resizeAndRenderGraph();
 }
 

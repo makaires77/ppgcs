@@ -86,10 +86,17 @@ def i9c_mp():
     else:
         return render_template('innomap_macroprocesses.html')
 
+# @app.route('/data/json/roadmap.json')
+# def serve_roadmap_json():
+#     # Servir o arquivo JSON diretamente do diretório especificado
+#     return send_from_directory('static/data/json', 'roadmap.json')
+
 @app.route('/data/json/roadmap.json')
 def serve_roadmap_json():
-    # Servir o arquivo JSON diretamente do diretório especificado
-    return send_from_directory('static/data/json', 'roadmap.json')
+    # Servir o arquivo JSON com um caminho absoluto (para evitar problemas de separador de diretório)
+    app.logger.info('Rota /data/json/roadmap.json acessada')
+    json_path = os.path.join(app.root_path, 'static', 'data', 'json', 'roadmap.json')
+    return send_from_directory(os.path.dirname(json_path), os.path.basename(json_path))
 
 @app.route('/api/graphdata', methods=['GET'])
 def get_graph_data():
