@@ -39,9 +39,10 @@
         }
     </script>
     <!-- Botão de Renderização do Grafo -->
+    <label for="jsonFile" id="renderGraph">Escolher Grafo</label>
     <input type="file" id="jsonFile" accept=".json" style="display: none;">
-    <button id="renderGraph">Escolher Grafo</button>     
-    <div id="scatterplot"></div>    
+    <button id="renderGraph">Escolher Grafo</button>
+    <div id="scatterplot"></div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

@@ -46,7 +46,17 @@ body {
    border: none;
    border-radius: 5px;
    cursor: pointer;
-}
+ }
+
+ #jsonFile {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   opacity: 0; /* Torna o input transparente */
+   cursor: pointer;
+ }
 
 .button-style {
    background-color: #4CAF50; /* Cor de fundo verde */

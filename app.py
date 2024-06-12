@@ -13,7 +13,7 @@ def index():
     # Página inicial com links para os dois templates
     return render_template('index.html')
 
-@app.route('/favicon.ico')
+@app.route('/static/favicon.ico')
 def favicon():
     return send_from_directory('static', 'favicon.ico') 
 

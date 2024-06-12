@@ -13,6 +13,9 @@ let graphLoaded = true;
 // Variável para armazenar o nome do arquivo JSON carregado
 let currentJsonFileName = null;
 
+// Variável para indicar se o scatterplot já foi processado
+let scatterplotProcessed = false;
+
 // Variável para armazenar os dados do grafo
 let graphData = null;
 
@@ -20,86 +23,64 @@ let graphData = null;
 document.addEventListener('DOMContentLoaded', function() {
     // Ouvinte de evento para o botão "Escolher Grafo"
     const renderBtn = document.getElementById('renderGraph');
-    const jsonFileInput = document.getElementById('jsonFile'); 
-    const newFileInput = document.createElement('input'); // Cria o input apenas uma vez
-    newFileInput.type = 'file';
-    newFileInput.accept = '.json';
-    newFileInput.style.display = 'none';
-    document.body.appendChild(newFileInput); // Adiciona o input ao DOM
+    let jsonFileInput = document.getElementById('jsonFile'); // Input de arquivo oculto
+    let observer = null; // Variável para armazenar o observer
 
     if (renderBtn) {
         renderBtn.addEventListener('click', () => {
-            newFileInput.value = null;  // Limpa o valor do input antes de abrir a janela
-            newFileInput.click();
-        });
-    }
-    
-    // Adiciona o ouvinte de evento ao newFileInput
-    newFileInput.addEventListener('change', handleFileChange);
+            if (!fileInputActive) {
+                fileInputActive = true;
 
-    // Adicionar ouvintes de evento para os botões de layout (se existirem)
-    const hierarchicalLayoutBtn = document.getElementById('hierarchicalLayoutBtn');
-    if (hierarchicalLayoutBtn) {
-        hierarchicalLayoutBtn.addEventListener('click', () => {
-            layoutType = 'hierarchical';
-            if (graphData) {
-                renderGraph(graphData, layoutType);
+                // Cria um novo input de arquivo se não existir
+                if (!jsonFileInput) {
+                    jsonFileInput = document.createElement('input');
+                    jsonFileInput.type = 'file';
+                    jsonFileInput.accept = '.json';
+                    jsonFileInput.style.display = 'none';
+                    document.body.appendChild(jsonFileInput);
+                }
+
+                // Limpa o valor do input antes de abrir a janela
+                jsonFileInput.value = null;
+
+                // Aciona o clique no input
+                jsonFileInput.click();
+
+                // Adiciona o ouvinte de evento ao input
+                jsonFileInput.addEventListener('change', handleFileChange);
             }
         });
     }
-
-    const groupedLayoutBtn = document.getElementById('groupedLayoutBtn');
-    if (groupedLayoutBtn) {
-        groupedLayoutBtn.addEventListener('click', () => {
-            layoutType = 'grouped';
-            if (graphData) {
-                renderGraph(graphData, layoutType);
-            }
-        });
-    }
-
-    // Efeito de transição entre páginas
-    const links = document.querySelectorAll('.ajax-link');
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const href = this.getAttribute('href');
-            loadContent(href);
-        });
-    });
 });
 
-// Função para lidar com a mudança do arquivo (movida para fora do ouvinte do botão)
+// Função para lidar com a mudança do arquivo
 function handleFileChange(e) {
     const file = e.target.files[0];
     if (file) {
         const reader = new FileReader();
-        reader.onload = function(event) {
+        reader.onload = function (event) {
             graphData = JSON.parse(event.target.result);
             renderGraph(graphData);
             resizeAndRenderGraph();
+
+            // Desconecta o observer após a renderização
+            if (observer) {
+                observer.disconnect();
+            }
         };
         reader.readAsText(file);
     }
-
-    // Remove o input de arquivo após o carregamento
-    document.body.removeChild(e.target);
 }
 
-// Função loadContent modificada para carregar os dados do JSON após o carregamento da página
+// Função loadContent modificada
 function loadContent(href) {
     fetch(href)
         .then(response => response.text())
         .then(html => {
-            const mainContent = document.getElementById('main-content');
-            mainContent.innerHTML = html;
-            mainContent.style.animation = 'none';
-            mainContent.offsetHeight; // Força o navegador a reflow/repaint
-            mainContent.style.animation = '';
-            mainContent.style.animation = 'fadeIn 0.5s ease-out';
+            // ... (seu código existente para atualizar o mainContent) ...
 
             // Observer para verificar quando o scatterplot é adicionado
-            const observer = new MutationObserver(mutations => {
+            observer = new MutationObserver(mutations => {
                 mutations.forEach(mutation => {
                     if (mutation.addedNodes && mutation.addedNodes.length > 0) {
                         mutation.addedNodes.forEach(node => {
@@ -131,7 +112,9 @@ function resizeAndRenderGraph() {
     const width = container.clientWidth - margin.left - margin.right;
     const height = container.clientHeight - margin.top - margin.bottom;
 
-    renderGraph(graphData, layoutType, width, height); // Passa width e height para renderGraph
+    if (graphData) { // Renderiza apenas se graphData estiver definido
+        renderGraph(graphData, layoutType, width, height); // Passa width e height para renderGraph
+    }
 }
 
 // Efeito de transição entre páginas
