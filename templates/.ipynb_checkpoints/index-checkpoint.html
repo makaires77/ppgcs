@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://d3js.org/d3.v6.min.js"></script>
-    <!-- <script src="{{ url_for('static', filename='js/script.js') }}"></script> -->
 </head>
 <body>
     {% include 'breadcrumb.html' %}
+    <!-- Botão de Renderização do Grafo -->
+    <button id="renderGraph" class="hidden">Escolher Grafo</button>
     <h4>Níveis de detalhe: 
         <a href="#" class="button-style" onclick="loadPage('/i9c_mp_nobc');return false;">Macroprocessos PDI</a> 
         <a href="#" class="button-style" onclick="loadPage('/i9c_gp01');return false;">Pesquisar</a>  
@@ -26,6 +27,8 @@
         <button onclick="saveNewNode()">Salvar</button>
         <button onclick="closeForm()">Cancelar</button>
     </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script>
         // Função para carregar conteúdo dinamicamente
         function loadPage(pageUrl) {
@@ -39,10 +42,5 @@
                 });
         }
     </script>
-    <!-- Botão de Renderização do Grafo -->
-    <input type="file" id="jsonFile" accept=".json" style="display: none;">
-    <button id="renderGraph">Escolher Grafo</button>     
-    <div id="scatterplot"></div>    
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

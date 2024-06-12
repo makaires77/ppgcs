@@ -8,24 +8,14 @@ os.environ['FLASK_RUN_PORT'] = '8080'
 app.static_folder = 'static'
 CORS(app)
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(app.root_path, '/static/favicon.ico') 
+
 @app.route('/')
 def index():
     # Página inicial com links para os dois templates
     return render_template('index.html')
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory('static', 'favicon.ico') 
-
-# Rota para servir arquivos estáticos (HTML, CSS, JS)
-@app.route('/static/<path:filename>')
-def serve_static(filename):
-    return send_from_directory('static', filename)
-
-# Rota para servir arquivos JSON
-@app.route('/static/data/json/<path:filename>')
-def serve_json(filename):
-    return send_from_directory('static/data/json', filename)
 
 @app.route('/static/assets/images/<filename>')
 def serve_image(filename):
