@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grafo Hierárquico</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+        /* (Estilos CSS para o grafo - inclua seus próprios estilos aqui) */
+        .node circle {
+            fill: #fff;
+            stroke: steelblue;
+            stroke-width: 3px;
+        }
+
+        .node text {
+            font: 12px sans-serif;
+        }
+
+        .link {
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 2px;
+        }
+    </style>
+</head>
+<body>
+    <svg width="960" height="600"></svg>
+    <script>
+        // Margem para o gráfico dentro do SVG
+        const margin = {top: 20, right: 90, bottom: 30, left: 90},
+              width = 960 - margin.left - margin.right,
+              height = 600 - margin.top - margin.bottom;
+        
+        // Cria o objeto svg no corpo do documento
+        const svg = d3.select("body").append("svg")
+            .attr("width", width + margin.right + margin.left)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+        
+        // Cria o objeto d3.tree
+        const treemap = d3.tree().size([height, width]);
+        
+        // Carrega os dados do arquivo JSON
+        d3.json("/api/graphdata").then(function(data) {
+            // Cria a hierarquia dos dados
+            const root = d3.hierarchy(data, function(d) { return d.children; });
+            
+            // Mapeia a hierarquia para as coordenadas do treemap
+            root = treemap(root);
+            
+            // Cria os links (linhas) do grafo
+            const link = svg.selectAll(".link")
+                .data(root.descendants().slice(1))
+                .enter().append("path")
+                .attr("class", "link")
+                .attr("d", function(d) {
+                    return "M" + d.y + "," + d.x
+                        + "C" + (d.y + d.parent.y) / 2 + "," + d.x
+                        + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
+                        + " " + d.parent.y + "," + d.parent.x;
+                });
+        
+            // Cria os nós (círculos) do grafo
+            const node = svg.selectAll(".node")
+                .data(root.descendants())
+                .enter().append("g")
+                .attr("class", function(d) { return "node" + (d.children ? " node--internal" : " node--leaf"); })
+                .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+                .on("click", click);
+        
+            // Adiciona um círculo a cada nó
+            node.append("circle")
+                .attr("r", 2.5);
+        
+            // Adiciona um texto a cada nó
+            node.append("text")
+                .attr("dy", ".35em")
+                .attr("x", function(d) { return d.children ? -8 : 8; })
+                .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
+                .text(function(d) { return d.data.label; });
+        
+            // Função para expandir/colapsar os nós ao clicar
+            function click(d) {
+                if (d.children) {
+                    d._children = d.children;
+                    d.children = null;
+                } else {
+                    d.children = d._children;
+                    d._children = null;
+                }
+                update(d);
+            }
+        
+            // Função para atualizar o grafo após expandir/colapsar
+            function update(source) {
+                // Re-calcula o layout da árvore
+                treemap(root);
+
+                // Duração da transição em milissegundos
+                const duration = 750;
+
+                // Atualiza os nós
+                const node = svg.selectAll(".node")
+                    .data(root.descendants(), d => d.id || (d.id = ++i)); // i is a global counter
+
+                // Transição para novos nós
+                const nodeEnter = node.enter().append("g")
+                    .attr("class", d => "node" + (d.children ? " node--internal" : " node--leaf"))
+                    .attr("transform", d => `translate(${source.y0},${source.x0})`)
+                    .on("click", click);
+
+                nodeEnter.append("circle")
+                    .attr("r", 2.5);
+
+                nodeEnter.append("text")
+                    .attr("dy", ".35em")
+                    .attr("x", d => d.children || d._children ? -8 : 8)
+                    .attr("text-anchor", d => d.children || d._children ? "end" : "start")
+                    .text(d => d.data.label)
+                    .style("fill-opacity", 0);
+
+                // Transição para nós existentes
+                const nodeUpdate = node.merge(nodeEnter).transition()
+                    .duration(duration)
+                    .attr("transform", d => `translate(${d.y},${d.x})`);
+
+                nodeUpdate.select("circle")
+                    .attr("r", 2.5);
+
+                nodeUpdate.select("text")
+                    .style("fill-opacity", 1);
+
+                // Transição para nós a serem removidos
+                const nodeExit = node.exit().transition()
+                    .duration(duration)
+                    .attr("transform", d => `translate(${source.y},${source.x})`)
+                    .remove();
+
+                nodeExit.select("circle")
+                    .attr("r", 0);
+
+                nodeExit.select("text")
+                    .style("fill-opacity", 0);
+
+                // Atualiza os links
+                const link = svg.selectAll(".link")
+                    .data(root.links(), d => d.target.id);
+
+                // Enter any new links at the parent's previous position.
+                const linkEnter = link.enter().insert("path", "g")
+                    .attr("class", "link")
+                    .attr("d", d => {
+                        const o = {x: source.x0, y: source.y0};
+                        return diagonal(o, o);
+                    });
+
+                // Transition links to their new position.
+                link.merge(linkEnter).transition()
+                    .duration(duration)
+                    .attr("d", diagonal);
+
+                // Transition exiting nodes to the parent's new position.
+                link.exit().transition()
+                    .duration(duration)
+                    .attr("d", d => {
+                        const o = {x: source.x, y: source.y};
+                        return diagonal(o, o);
+                    })
+                    .remove();
+
+                // Stash the old positions for transition.
+                root.eachBefore(d => {
+                    d.x0 = d.x;
+                    d.y0 = d.y;
+                });
+            }
+
+            // Cria uma função para desenhar os links (linhas)
+            function diagonal(s, d) {
+                const path = `M ${s.y} ${s.x}
+                        C ${(s.y + d.y) / 2} ${s.x},
+                        ${(s.y + d.y) / 2} ${d.x},
+                        ${d.y} ${d.x}`
+                    
+                return path
+            }            
+        });
+    </script>
+</body>
+</html>
