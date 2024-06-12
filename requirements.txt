@@ -45,4 +45,5 @@ seaborn
 frontend
 selenium
 beautifulsoup4
+sentence_transformers
 # pygraphviz

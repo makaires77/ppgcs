@@ -1,0 +1,123 @@
+Ciências Exatas e da Terra / Ciência da Computação
+Linguística, Letras e Artes / Linguística
+Linguística, Letras e Artes / Artes
+Ciências Sociais Aplicadas / Direito
+Ciências Sociais Aplicadas / Administração de Empresas. Administração Pública. Contabilidade
+Ciências Sociais Aplicadas / Economia
+Ciências Sociais Aplicadas / Demografia
+Ciências Sociais Aplicadas / Arquitetura e Urbanismo
+Ciências Sociais Aplicadas / Planejamento Urbano e Regional
+Ciências Sociais Aplicadas / Desenho Industrial
+Ciências Sociais Aplicadas / Ciência da Informação
+Ciências Sociais Aplicadas / Museologia
+Ciências Sociais Aplicadas / Comunicação
+Ciências Sociais Aplicadas / Serviço Social
+Ciências Sociais Aplicadas / Turismo
+Engenharias / Engenharia Civil
+Engenharias / Engenharia de Minas
+Engenharias / Engenharia de Materiais e Metalúrgica
+Engenharias / Engenharia Elétrica
+Engenharias / Engenharia Mecânica
+Engenharias / Engenharia Química
+Engenharias / Engenharia Sanitária
+Engenharias / Engenharia de Produção
+Engenharias / Engenharia Nuclear
+Engenharias / Engenharia de Transportes
+Engenharias / Engenharia Naval e Oceânica
+Engenharias / Engenharia Aeroespacial
+Engenharias / Engenharia Biomédica
+Multidisciplinar / Ensino
+Multidisciplinar / Materiais
+Multidisciplinar / Biotecnologia
+Multidisciplinar / Ciências Ambientais
+Linguística, Letras e Artes / Letras
+Ciências Exatas e da Terra / Química
+Ciências Exatas e da Terra / Astronomia
+Ciências Exatas e da Terra / Probabilidade e Estatística
+Ciências Exatas e da Terra / Matemática
+Ciências Exatas e da Terra / Geociências
+Ciências Exatas e da Terra / Física
+Ciências Biológicas / Biologia Geral
+Ciências Biológicas / Genética
+Ciências Biológicas / Morfologia
+Ciências Biológicas / Fisiologia
+Ciências Biológicas / Bioquímica
+Ciências Biológicas / Biofísica
+Ciências Biológicas / Farmacologia
+Ciências Biológicas / Imunologia
+Ciências Biológicas / Microbiologia
+Ciências Biológicas / Parasitologia
+Ciências Biológicas / Ecologia
+Ciências Biológicas / Botânica
+Ciências Biológicas / Zoologia
+Ciências Biológicas / Oceanografia
+Ciências da Saúde / Medicina
+Ciências da Saúde / Clínica Médica
+Ciências da Saúde / Angiologia
+Ciências da Saúde / Dermatologia
+Ciências da Saúde / Cancerologia
+Ciências da Saúde / Endocrinologia
+Ciências da Saúde / Cardiologia
+Ciências da Saúde / Gastroenterologia
+Ciências da Saúde / Pneumologia
+Ciências da Saúde / Nefrologia
+Ciências da Saúde / Fisiatria
+Ciências da Saúde / Medicina Legal e Deontologia
+Ciências da Saúde / Alergologia e Imunologia Clínica
+Ciências da Saúde / Hematologia
+Ciências da Saúde / Neurologia
+Ciências da Saúde / Pediatria
+Ciências da Saúde / Doenças Infecciosas e Parasitárias
+Ciências da Saúde / Reumatologia
+Ciências da Saúde / Saúde Materno-Infantil
+Ciências da Saúde / Psiquiatria
+Ciências da Saúde / Anatomia Patológica e Patologia Clínica
+Ciências da Saúde / Radiologia Médica
+Ciências da Saúde / Ginecologia e Obstetrícia
+Ciências da Saúde / Oftalmologia
+Ciências da Saúde / Ortopedia
+Ciências da Saúde / Cirurgia
+Ciências da Saúde / Cirurgia Plástica e Restauradora
+Ciências da Saúde / Cirurgia Otorrinolaringologia
+Ciências da Saúde / Cirurgia Oftalmológica
+Ciências da Saúde / Cirurgia Cardiovascular
+Ciências da Saúde / Cirurgia Toráxica
+Ciências da Saúde / Cirurgia Pediátrica
+Ciências da Saúde / Neurocirurgia
+Ciências da Saúde / Cirurgia Urológica
+Ciências da Saúde / Cirurgia Proctológica
+Ciências da Saúde / Cirurgia Ortopédica
+Ciências da Saúde / Cirurgia Traumatológica
+Ciências da Saúde / Anestesiologia
+Ciências da Saúde / Cirurgia Experimental
+Ciências da Saúde / Nutrição
+Ciências da Saúde / Farmácia
+Ciências da Saúde / Saúde Coletiva
+Ciências Agrárias / Medicina Veterinária
+Ciências Agrárias / Agronomia
+Ciências Agrárias / Recursos Florestais e Engenharia Florestal
+Ciências Agrárias / Engenharia Agrícola
+Ciências Agrárias / Zootecnia
+Ciências Agrárias / Recursos Pesqueiros e Engenharia de Pesca
+Ciências Agrárias / Ciência e Tecnologia de Alimentos
+Ciências da Saúde / Odontologia
+Ciências da Saúde / Enfermagem
+Ciências da Saúde / Educação Física
+Ciências da Saúde / Fonoaudiologia
+Ciências da Saúde / Fisioterapia e Terapia Ocupacional
+Ciências da Saúde / Cirurgia Gastroenterologica
+Ciências Humanas / Filosofia
+Ciências Humanas / Teologia
+Ciências Humanas / Sociologia
+Ciências Humanas / Antropologia
+Ciências Humanas / Arqueologia
+Ciências Humanas / História
+Ciências Humanas / Geografia
+Ciências Humanas / Psicologia
+Ciências Humanas / Educação
+Ciências Humanas / Ciência Política
+Multidisciplinar / Interdisciplinar
+Multidisciplinar / Interdisciplinar. Engenharia/Tecnologia/Gestão
+Multidisciplinar / Interdisciplinar. Meio Ambiente e Agrárias
+Multidisciplinar / Interdisciplinar. Saúde e Biológicas
+Multidisciplinar / Interdisciplinar. Sociais e Humanidades
