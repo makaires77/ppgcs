@@ -17,7 +17,6 @@
     </h4>
     <!-- Contêiner principal para o conteúdo dinâmico -->
     <div id="main-content"></div>
-
     <div id="addNodeForm" style="display: none;">
         <label for="nodeName">Nome:</label>
         <input type="text" id="nodeName" name="nodeName" required>
@@ -32,17 +31,18 @@
                 .then(response => response.text())
                 .then(html => {
                     document.getElementById('main-content').innerHTML = html;
-                    // Adicionar mais lógicas, como ativar scripts específicos da página carregada, se necessário.
+                    // Adicionar mais lógicas ativar scripts específicos
+
                 }).catch(error => {
                     console.error('Falha ao carregar a página:', error);
                 });
         }
     </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <!-- Botão de Renderização do Grafo -->
     <label for="jsonFile" id="renderGraph">Escolher Grafo</label>
     <input type="file" id="jsonFile" accept=".json" style="display: none;">
     <button id="renderGraph">Escolher Grafo</button>
     <div id="scatterplot"></div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
