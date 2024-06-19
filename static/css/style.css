@@ -26,6 +26,7 @@ body {
  }
 
  #graphContainer {
+   position: relative;
    width: 100vw; /* 100% da largura da viewport */
    height: 100vh; /* 100% da altura da viewport */
    display: block; /* ou 'flex' dependendo da sua estrutura */
@@ -45,7 +46,17 @@ body {
    border: none;
    border-radius: 5px;
    cursor: pointer;
-}
+ }
+
+ #jsonFile {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   opacity: 0; /* Torna o input transparente */
+   cursor: pointer;
+ }
 
 .button-style {
    background-color: #4CAF50; /* Cor de fundo verde */
@@ -125,6 +136,7 @@ body {
 .line {
     display: flex;
     flex-wrap: wrap;
+    z-index: 1;
 }
  
 .line .title1 {
@@ -165,11 +177,12 @@ body {
 }
 
 #scatterplot {
-   min-width: 800px; /* Exemplo */
-   min-height: 600px; /* Exemplo */
+   min-width: 800px;
+   min-height: 600px;
    position: absolute;
    top: 10%;
    left: 10%;
    right: 10%;
-   bottom: 5%;
+   bottom: 0%;
+   z-index: 2;
 }

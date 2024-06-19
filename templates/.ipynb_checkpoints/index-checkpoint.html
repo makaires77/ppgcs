@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TRM9C-Visualizações</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+    {% include 'breadcrumb.html' %}
+    <!-- Botão de Renderização do Grafo -->
+    <button id="renderGraph" class="hidden">Escolher Grafo</button>
+    <h4>Níveis de detalhe: 
+        <a href="#" class="button-style" onclick="loadPage('/i9c_mp_nobc');return false;">Macroprocessos PDI</a> 
+        <a href="#" class="button-style" onclick="loadPage('/i9c_gp01');return false;">Pesquisar</a>  
+        <a href="#" class="button-style" onclick="loadPage('/i9c_gp02');return false;">Desenvolver</a>  
+        <a href="#" class="button-style" onclick="loadPage('/i9c_gp03');return false;">Inovar</a> 
+        <a href="#" class="button-style" onclick="loadPage('/i9c_gp_nobc');return false;">Todas Camadas</a>
+    </h4>
+    <!-- Contêiner principal para o conteúdo dinâmico -->
+    <div id="main-content"></div>
+
+    <div id="addNodeForm" style="display: none;">
+        <label for="nodeName">Nome:</label>
+        <input type="text" id="nodeName" name="nodeName" required>
+        <!-- Adicione outros campos conforme necessário -->
+        <button onclick="saveNewNode()">Salvar</button>
+        <button onclick="closeForm()">Cancelar</button>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        // Função para carregar conteúdo dinamicamente
+        function loadPage(pageUrl) {
+            fetch(pageUrl)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('main-content').innerHTML = html;
+                    // Adicionar mais lógicas, como ativar scripts específicos da página carregada, se necessário.
+                }).catch(error => {
+                    console.error('Falha ao carregar a página:', error);
+                });
+        }
+    </script>
+</body>
+</html>

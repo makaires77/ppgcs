@@ -8,14 +8,24 @@ os.environ['FLASK_RUN_PORT'] = '8080'
 app.static_folder = 'static'
 CORS(app)
 
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(app.root_path, '/static/favicon.ico') 
-
 @app.route('/')
 def index():
     # Página inicial com links para os dois templates
     return render_template('index.html')
+
+@app.route('/static/favicon.ico')
+def favicon():
+    return send_from_directory('static', 'favicon.ico') 
+
+# Rota para servir arquivos estáticos (HTML, CSS, JS)
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('static', filename)
+
+# Rota para servir arquivos JSON
+@app.route('/static/data/json/<path:filename>')
+def serve_json(filename):
+    return send_from_directory('static/data/json', filename)
 
 @app.route('/static/assets/images/<filename>')
 def serve_image(filename):
@@ -76,10 +86,17 @@ def i9c_mp():
     else:
         return render_template('innomap_macroprocesses.html')
 
+# @app.route('/data/json/roadmap.json')
+# def serve_roadmap_json():
+#     # Servir o arquivo JSON diretamente do diretório especificado
+#     return send_from_directory('static/data/json', 'roadmap.json')
+
 @app.route('/data/json/roadmap.json')
 def serve_roadmap_json():
-    # Servir o arquivo JSON diretamente do diretório especificado
-    return send_from_directory('static/data/json', 'roadmap.json')
+    # Servir o arquivo JSON com um caminho absoluto (para evitar problemas de separador de diretório)
+    app.logger.info('Rota /data/json/roadmap.json acessada')
+    json_path = os.path.join(app.root_path, 'static', 'data', 'json', 'roadmap.json')
+    return send_from_directory(os.path.dirname(json_path), os.path.basename(json_path))
 
 @app.route('/api/graphdata', methods=['GET'])
 def get_graph_data():

@@ -1,19 +1,121 @@
 // Definir margens
 const margin = { top: 0, right: 0, bottom: 0, left: 0 };
 
-// Declarar graphData no escopo global
+// Variável para armazenar o tipo de layout selecionado
+let layoutType = 'hierarchical'; // Valor padrão
+
+// Variável para indicar se o input de arquivo está ativo
+let fileInputActive = false;
+
+// Variável para indicar se o grafo já foi carregado (inicialmente true)
+let graphLoaded = true;
+
+// Variável para armazenar o nome do arquivo JSON carregado
+let currentJsonFileName = null;
+
+// Variável para indicar se o scatterplot já foi processado
+let scatterplotProcessed = false;
+
+// Variável para armazenar os dados do grafo
 let graphData = null;
 
 // Botão para renderizar grafo no HTML
 document.addEventListener('DOMContentLoaded', function() {
+    // Ouvinte de evento para o botão "Escolher Grafo"
     const renderBtn = document.getElementById('renderGraph');
+    let jsonFileInput = document.getElementById('jsonFile'); // Input de arquivo oculto
+    let observer = null; // Variável para armazenar o observer
+
     if (renderBtn) {
-        renderBtn.addEventListener('click', function() {
-            // Aqui você chama sua função de renderização do grafo
-            renderGraph(graphData);
+        renderBtn.addEventListener('click', () => {
+            if (!fileInputActive) {
+                fileInputActive = true;
+
+                // Cria um novo input de arquivo se não existir
+                if (!jsonFileInput) {
+                    jsonFileInput = document.createElement('input');
+                    jsonFileInput.type = 'file';
+                    jsonFileInput.accept = '.json';
+                    jsonFileInput.style.display = 'none';
+                    document.body.appendChild(jsonFileInput);
+                }
+
+                // Limpa o valor do input antes de abrir a janela
+                jsonFileInput.value = null;
+
+                // Aciona o clique no input
+                jsonFileInput.click();
+
+                // Adiciona o ouvinte de evento ao input
+                jsonFileInput.addEventListener('change', handleFileChange);
+            }
         });
     }
 });
+
+// Função para lidar com a mudança do arquivo
+function handleFileChange(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            graphData = JSON.parse(event.target.result);
+            renderGraph(graphData);
+            resizeAndRenderGraph();
+
+            // Desconecta o observer após a renderização
+            if (observer) {
+                observer.disconnect();
+            }
+        };
+        reader.readAsText(file);
+    }
+}
+
+// Função loadContent modificada
+function loadContent(href) {
+    fetch(href)
+        .then(response => response.text())
+        .then(html => {
+            // ... (seu código existente para atualizar o mainContent) ...
+
+            // Observer para verificar quando o scatterplot é adicionado
+            observer = new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                        mutation.addedNodes.forEach(node => {
+                            if (node.id === 'scatterplot') {
+                                resizeAndRenderGraph();
+                                observer.disconnect(); // Desconecta o observer após encontrar o scatterplot
+                            }
+                        });
+                    }
+                });
+            });
+
+            observer.observe(mainContent, { childList: true, subtree: true });
+        })
+        .catch(error => {
+            console.error('Error loading the page: ', error);
+        });
+}
+
+// Lidar com o redimensionamento e renderização do grafo
+function resizeAndRenderGraph() {
+    // Verifique se o container existe antes de prosseguir
+    const container = document.getElementById('scatterplot');
+    if (!container) {
+        console.error("scatterplot element not found!");
+        return;
+    }
+
+    const width = container.clientWidth - margin.left - margin.right;
+    const height = container.clientHeight - margin.top - margin.bottom;
+
+    if (graphData) { // Renderiza apenas se graphData estiver definido
+        renderGraph(graphData, layoutType, width, height); // Passa width e height para renderGraph
+    }
+}
 
 // Efeito de transição entre páginas
 document.addEventListener('DOMContentLoaded', function() {
@@ -30,57 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeRenderGraphButton();
 });
 
-function loadContent(href) {
-    fetch(href)
-        .then(response => response.text())
-        .then(html => {
-            const mainContent = document.getElementById('main-content');
-            mainContent.innerHTML = html;
-            mainContent.style.animation = 'none';
-            mainContent.offsetHeight; // Força o navegador a reflow/repaint
-            mainContent.style.animation = '';
-            mainContent.style.animation = 'fadeIn 0.5s ease-out';
-
-            // Re-inicializa o botão de renderização após carregar o conteúdo
-            initializeRenderGraphButton();
-        })
-        .catch(error => {
-            console.error('Error loading the page: ', error);
-        });
-}
-
-function initializeRenderGraphButton() {
-    const renderBtn = document.getElementById('renderGraph');
-    if (renderBtn) {
-        renderBtn.style.display = 'block'; // Garante que o botão esteja visível
-        renderBtn.onclick = () => {
-            // Criar input de tipo file para o usuário selecionar um arquivo
-            const fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.accept = '.json';
-            fileInput.style.display = 'none'; // Esconder input para não mudar layout
-            fileInput.onchange = e => {
-                const file = e.target.files[0];
-                if (file) {
-                    // Construir caminho do arquivo baseado na pasta especificada
-                    const filePath = `/static/data/json/${file.name}`;
-                    loadGraphData(filePath).then(() => renderGraph(graphData));
-                }
-            };
-            document.body.appendChild(fileInput); // Adicionar input ao corpo do documento para poder ser clicado
-            fileInput.click(); // Emular clique para abrir a janela de seleção de arquivo
-        };
-    }
-}
-
-// Carregar dados e renderizar o grafo armazenado em JSON
-async function loadGraphData(filePath) {
-    const response = await fetch(filePath);
-    graphData = await response.json();
-    // Chamar função de redimensionamento que por sua vez chamará renderGraph
-    resizeAndRenderGraph();
-}
-
 function adjustLayout() {
     // Ajustar o layout ou reaplicar estilos
     const mainContent = document.getElementById('main-content');
@@ -88,7 +139,42 @@ function adjustLayout() {
     mainContent.style.height = 'auto'; 
     // Outros ajuste conforme necessário aqui
 }
-function renderGraph(graphData) {
+
+function initializeRenderGraphButton() {
+    const renderBtn = document.getElementById('renderGraph');
+    if (renderBtn) {
+        renderBtn.style.display = 'block';
+        renderBtn.onclick = () => {
+            if (!fileInputActive) {
+                fileInputActive = true;
+
+                // Cria um novo input de arquivo
+                const newFileInput = document.createElement('input');
+                newFileInput.type = 'file';
+                newFileInput.accept = '.json';
+                newFileInput.style.display = 'none';
+
+                // Adiciona o ouvinte de evento ao novo input
+                newFileInput.addEventListener('change', handleFileChange);
+
+                document.body.appendChild(newFileInput);
+                newFileInput.click();
+                graphLoaded = false; // Reinicia graphLoaded aqui
+            }
+        };
+    }
+}
+
+// Carregar dados e renderizar o grafo armazenado em JSON
+async function loadGraphData(filePath) {
+    const response = await fetch(filePath);
+    graphData = await response.json(); // Atualiza a variável global
+
+    // Agora chamar resizeAndRenderGraph aqui, após carregar os dados
+    resizeAndRenderGraph();
+}
+
+function renderGraph(graphData, layoutType = 'hierarchical') {
     let svg = d3.select("#scatterplot").select("svg");
     const bounds = document.getElementById('scatterplot').getBoundingClientRect();
     const width = bounds.width;
@@ -305,15 +391,6 @@ function renderGroupedGraph(graphData) {
        .attr("alignment-baseline", "hanging") // Ajusta a linha de base do texto
        .attr("font-size", "10px")
        .attr("fill", "white");
-}
-
-// Lidar com o redimensionamento e renderização do grafo
-function resizeAndRenderGraph() {
-    const container = document.getElementById('scatterplot');
-    const width = container.clientWidth - margin.left - margin.right;
-    const height = container.clientHeight - margin.top - margin.bottom;
-
-    renderGraph(graphData, width, height);
 }
 
 // Configura o evento de redimensionamento usando D3
