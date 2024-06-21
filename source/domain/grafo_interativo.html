@@ -1,0 +1,187 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "lightblue", "font": {"color": "white"}, "id": "Pesquisar", "label": "Pesquisar", "shape": "dot", "title": "macroprocesso"}, {"color": "lightblue", "font": {"color": "white"}, "id": "Desenvolver", "label": "Desenvolver", "shape": "dot", "title": "macroprocesso"}, {"color": "lightblue", "font": {"color": "white"}, "id": "Inovar", "label": "Inovar", "shape": "dot", "title": "macroprocesso"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "P001", "label": "P001", "shape": "dot", "title": "processo"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "P002", "label": "P002", "shape": "dot", "title": "processo"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "P003", "label": "P003", "shape": "dot", "title": "processo"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "P004", "label": "P004", "shape": "dot", "title": "processo"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "P005", "label": "P005", "shape": "dot", "title": "processo"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "P006", "label": "P006", "shape": "dot", "title": "processo"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "P007", "label": "P007", "shape": "dot", "title": "processo"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "P008", "label": "P008", "shape": "dot", "title": "processo"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "P009", "label": "P009", "shape": "dot", "title": "processo"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Dores", "label": "Dores", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Desejos", "label": "Desejos", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Desafios", "label": "Desafios", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Temas", "label": "Temas", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "T\u00f3picos", "label": "T\u00f3picos", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Assuntos", "label": "Assuntos", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Atitudes", "label": "Atitudes", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Experi\u00eancias", "label": "Experi\u00eancias", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Habilidades", "label": "Habilidades", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Papeis", "label": "Papeis", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Tempo", "label": "Tempo", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Or\u00e7amentos", "label": "Or\u00e7amentos", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Projetos", "label": "Projetos", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Processos", "label": "Processos", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Programas", "label": "Programas", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Ensaios", "label": "Ensaios", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Equipamentos", "label": "Equipamentos", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Ambientes", "label": "Ambientes", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Aplica\u00e7\u00e3o", "label": "Aplica\u00e7\u00e3o", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Solu\u00e7\u00e3o", "label": "Solu\u00e7\u00e3o", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Produto-Servi\u00e7o", "label": "Produto-Servi\u00e7o", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Modelos", "label": "Modelos", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Prot\u00f3tipos", "label": "Prot\u00f3tipos", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Empreendimentos", "label": "Empreendimentos", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Indicadores", "label": "Indicadores", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Evid\u00eancias", "label": "Evid\u00eancias", "shape": "dot", "title": "entidade"}, {"color": "lightyellow", "font": {"color": "white"}, "id": "Mensura\u00e7\u00e3o", "label": "Mensura\u00e7\u00e3o", "shape": "dot", "title": "entidade"}]);
+                  edges = new vis.DataSet([{"from": "Pesquisar", "to": "P001"}, {"from": "Pesquisar", "to": "P002"}, {"from": "Pesquisar", "to": "P003"}, {"from": "Desenvolver", "to": "P004"}, {"from": "Desenvolver", "to": "P005"}, {"from": "Desenvolver", "to": "P006"}, {"from": "Inovar", "to": "P007"}, {"from": "Inovar", "to": "P008"}, {"from": "Inovar", "to": "P009"}, {"from": "P001", "to": "Dores"}, {"from": "P001", "to": "Desejos"}, {"from": "P001", "to": "Desafios"}, {"from": "P002", "to": "Temas"}, {"from": "P002", "to": "T\u00f3picos"}, {"from": "P002", "to": "Assuntos"}, {"from": "P003", "to": "Atitudes"}, {"from": "P003", "to": "Experi\u00eancias"}, {"from": "P003", "to": "Habilidades"}, {"from": "P004", "to": "Papeis"}, {"from": "P004", "to": "Tempo"}, {"from": "P004", "to": "Or\u00e7amentos"}, {"from": "P005", "to": "Projetos"}, {"from": "P005", "to": "Processos"}, {"from": "P005", "to": "Programas"}, {"from": "P006", "to": "Ensaios"}, {"from": "P006", "to": "Equipamentos"}, {"from": "P006", "to": "Ambientes"}, {"from": "P007", "to": "Aplica\u00e7\u00e3o"}, {"from": "P007", "to": "Solu\u00e7\u00e3o"}, {"from": "P007", "to": "Produto-Servi\u00e7o"}, {"from": "P008", "to": "Modelos"}, {"from": "P008", "to": "Prot\u00f3tipos"}, {"from": "P008", "to": "Empreendimentos"}, {"from": "P009", "to": "Indicadores"}, {"from": "P009", "to": "Evid\u00eancias"}, {"from": "P009", "to": "Mensura\u00e7\u00e3o"}, {"from": "Dores", "to": "Desejos"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "physics"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "barnesHut": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.3,
+            "damping": 0.09,
+            "gravitationalConstant": -80000,
+            "springConstant": 0.001,
+            "springLength": 250
+        },
+        "enabled": true,
+        "forceAtlas2Based": {
+            "avoidOverlap": 1,
+            "centralGravity": 0.01,
+            "damping": 0.4,
+            "gravitationalConstant": -50,
+            "springConstant": 0.08,
+            "springLength": 100
+        },
+        "solver": "forceAtlas2Based",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
