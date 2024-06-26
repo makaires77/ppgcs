@@ -9,11 +9,14 @@
 <body>
     {% include 'breadcrumb.html' %}
     <h4>Níveis de detalhe: 
+        <!-- Renderizar Botões para abrir links para templates HTML -->
         <a href="#" class="button-style" onclick="loadPage('/i9c_mp_nobc');return false;">Macroprocessos PDI</a> 
         <a href="#" class="button-style" onclick="loadPage('/i9c_gp01');return false;">Pesquisar</a>  
         <a href="#" class="button-style" onclick="loadPage('/i9c_gp02');return false;">Desenvolver</a>  
         <a href="#" class="button-style" onclick="loadPage('/i9c_gp03');return false;">Inovar</a> 
         <a href="#" class="button-style" onclick="loadPage('/i9c_gp_nobc');return false;">Todas Camadas</a>
+        <!-- Abrir templates HTML do grafo em nova aba do browser-->
+        <a href="/grafo_interativo.html" class="button-style" target="_blank">Grafo</a>
     </h4>
     <!-- Contêiner principal para o conteúdo dinâmico -->
     <div id="main-content"></div>

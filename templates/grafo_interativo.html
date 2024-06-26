@@ -1,0 +1,144 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 1200px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+        #config {
+            float: left;
+            width: 400px;
+            height: 600px;
+        }
+        
+
+        
+</style>
+
+</head>
+
+<body>
+    {% include 'breadcrumb.html' %}
+<div id = "mynetwork"></div>
+
+
+<div id = "config"></div>
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#007BFFFF", "font": {"color": "black"}, "id": "Pesquisar", "label": "Pesquisar", "shape": "dot", "size": 50, "title": "macroprocesso"}, {"color": "#007BFFFF", "font": {"color": "black"}, "id": "Desenvolver", "label": "Desenvolver", "shape": "dot", "size": 50, "title": "macroprocesso"}, {"color": "#007BFFFF", "font": {"color": "black"}, "id": "Inovar", "label": "Inovar", "shape": "dot", "size": 50, "title": "macroprocesso"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P001", "label": "P001", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P002", "label": "P002", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P003", "label": "P003", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P004", "label": "P004", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P005", "label": "P005", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P006", "label": "P006", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P007", "label": "P007", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P008", "label": "P008", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P009", "label": "P009", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Dores", "label": "Dores", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Desejos", "label": "Desejos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Desafios", "label": "Desafios", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Temas", "label": "Temas", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "T\u00f3picos", "label": "T\u00f3picos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Assuntos", "label": "Assuntos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Atitudes", "label": "Atitudes", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Experi\u00eancias", "label": "Experi\u00eancias", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Habilidades", "label": "Habilidades", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Papeis", "label": "Papeis", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Tempo", "label": "Tempo", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Or\u00e7amentos", "label": "Or\u00e7amentos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Projetos", "label": "Projetos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Processos", "label": "Processos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Programas", "label": "Programas", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Ensaios", "label": "Ensaios", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Equipamentos", "label": "Equipamentos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Ambientes", "label": "Ambientes", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Aplica\u00e7\u00e3o", "label": "Aplica\u00e7\u00e3o", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Solu\u00e7\u00e3o", "label": "Solu\u00e7\u00e3o", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Produto-Servi\u00e7o", "label": "Produto-Servi\u00e7o", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Modelos", "label": "Modelos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Prot\u00f3tipos", "label": "Prot\u00f3tipos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Empreendimentos", "label": "Empreendimentos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Indicadores", "label": "Indicadores", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Evid\u00eancias", "label": "Evid\u00eancias", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Mensura\u00e7\u00e3o", "label": "Mensura\u00e7\u00e3o", "shape": "dot", "size": 5, "title": "entidade"}]);
+        edges = new vis.DataSet([{"from": "Pesquisar", "to": "P001", "value": 1}, {"from": "Pesquisar", "to": "P002", "value": 1}, {"from": "Pesquisar", "to": "P003", "value": 1}, {"from": "Desenvolver", "to": "P004", "value": 1}, {"from": "Desenvolver", "to": "P005", "value": 1}, {"from": "Desenvolver", "to": "P006", "value": 1}, {"from": "Inovar", "to": "P007", "value": 1}, {"from": "Inovar", "to": "P008", "value": 1}, {"from": "Inovar", "to": "P009", "value": 1}, {"from": "P001", "to": "Dores", "value": 1}, {"from": "P001", "to": "Desejos", "value": 1}, {"from": "P001", "to": "Desafios", "value": 1}, {"from": "P002", "to": "Temas", "value": 1}, {"from": "P002", "to": "T\u00f3picos", "value": 1}, {"from": "P002", "to": "Assuntos", "value": 1}, {"from": "P003", "to": "Atitudes", "value": 1}, {"from": "P003", "to": "Experi\u00eancias", "value": 1}, {"from": "P003", "to": "Habilidades", "value": 1}, {"from": "P004", "to": "Papeis", "value": 1}, {"from": "P004", "to": "Tempo", "value": 1}, {"from": "P004", "to": "Or\u00e7amentos", "value": 1}, {"from": "P005", "to": "Projetos", "value": 1}, {"from": "P005", "to": "Processos", "value": 1}, {"from": "P005", "to": "Programas", "value": 1}, {"from": "P006", "to": "Ensaios", "value": 1}, {"from": "P006", "to": "Equipamentos", "value": 1}, {"from": "P006", "to": "Ambientes", "value": 1}, {"from": "P007", "to": "Aplica\u00e7\u00e3o", "value": 1}, {"from": "P007", "to": "Solu\u00e7\u00e3o", "value": 1}, {"from": "P007", "to": "Produto-Servi\u00e7o", "value": 1}, {"from": "P008", "to": "Modelos", "value": 1}, {"from": "P008", "to": "Prot\u00f3tipos", "value": 1}, {"from": "P008", "to": "Empreendimentos", "value": 1}, {"from": "P009", "to": "Indicadores", "value": 1}, {"from": "P009", "to": "Evid\u00eancias", "value": 1}, {"from": "P009", "to": "Mensura\u00e7\u00e3o", "value": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "physics"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "barnesHut": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.3,
+            "damping": 0.09,
+            "gravitationalConstant": -80000,
+            "springConstant": 0.001,
+            "springLength": 250
+        },
+        "enabled": true,
+        "forceAtlas2Based": {
+            "avoidOverlap": 1,
+            "centralGravity": 0.01,
+            "damping": 0.4,
+            "gravitationalConstant": -50,
+            "springConstant": 0.08,
+            "springLength": 100
+        },
+        "solver": "forceAtlas2Based",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+        // if this network requires displaying the configure window,
+        // put it in its div
+        options.configure["container"] = document.getElementById("config");
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
