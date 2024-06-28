@@ -2,12 +2,27 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Início</a></li>
-    <!-- <li class="breadcrumb-item"><a href="/i9c_mp">Macroprocesso PDI</a></li> -->
     <li class="breadcrumb-item"><a href="/grafo_interativo.html">Grafo Interativo</a></li>
+    <li class="breadcrumb-item dropdown">
+      <a class="dropdown-toggle" href="#" id="siscomexDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        SisComex
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="siscomexDropdown">
+        <li><a class="dropdown-item" href="/revisao_lista">Revisão de Lista</a></li>
+      </ul>
+    </li>
     <li class="breadcrumb-item"><a href="/i9c_gp">Completo</a></li>
-    <li class="breadcrumb-item"><a href="/graph_revistas_capes">Classes CNPQ</a></li>
-    <li class="breadcrumb-item"><a href="/graph_revistas_capes">Classes CAPES</a></li>    
-    <li class="breadcrumb-item"><a href="/pasteur_fr_report">Report01</a></li>
-    <li class="breadcrumb-item"><a href="/pasteur_fr_report">Report02</a></li>
+    <li class="breadcrumb-item"><a href="/graph_revistas_capes">CNPQ</a></li>
+    <li class="breadcrumb-item"><a href="/graph_revistas_capes">CAPES</a></li>
+    <li class="breadcrumb-item dropdown">
+      <a class="dropdown-toggle" href="#" id="reportsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Reports
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reportsDropdown"> <li><a class="dropdown-item" href="/pasteur_fr_report">Report01</a></li>
+        <li><a class="dropdown-item" href="/pasteur_fr_report">Report02</a></li>
+      </ul>
+    </li> 
   </ol>
 </nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

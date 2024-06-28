@@ -2,7 +2,46 @@ body {
    font-family: sans-serif;
    margin: 20px;
  }
+
+/* Estilização do dropdown do breadcrumb */
+.breadcrumb {
+   background-color: #e9ecef; /* Cor de fundo mais clara */
+   border-radius: 0; /* Remove as bordas arredondadas */
+ }
+.breadcrumb .dropdown-menu {
+   display: none;
+ }
  
+ .breadcrumb .dropdown:hover .dropdown-menu {
+   display: block;
+ }
+ 
+ .breadcrumb .dropdown-menu-end {
+   right: 0; /* Alinha o dropdown à direita */
+ }
+ 
+ .breadcrumb-item {
+   padding: 0.25rem 0.25rem; /* Ajusta o espaçamento interno */
+ }
+ 
+ .breadcrumb-item.active a {
+   background-color: #f8f9fa;
+   color: #007bff;
+ }
+ 
+ .breadcrumb .dropdown:hover .dropdown-toggle {
+   background-color: #e9ecef; 
+ }
+ 
+ .breadcrumb .dropdown-menu a:hover {
+   background-color: #f8f9fa; 
+ }
+
+ /* Adiciona margem entre o breadcrumb e os botões */
+ .breadcrumb + h4 {
+   margin-top: 2px; /* Ajuste o valor da margem conforme necessário */
+ }
+
  #main-content {
    width: 100%; /* Ocupa toda a largura disponível */
    min-height: 100vh; /* Mínima altura para ocupar toda a altura da viewport */
@@ -94,37 +133,6 @@ body {
 @keyframes fadeOut {
    from { opacity: 1; }
    to { opacity: 0; }
-}
-
-/* Estilização do breadcrumb */
-.breadcrumb {
-    list-style: none;
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
-    display: flex; /* Usa flexbox para alinhar os itens horizontalmente */
-    align-items: center;
-}
-
-.breadcrumb li {
-    display: inline; /* Exibe os itens da lista inline */
-}
-
-.breadcrumb li a {
-    color: #0275d8;
-    text-decoration: none;
-    padding: 0 10px; /* Adiciona um pouco de espaço ao redor dos links */
-}
-
-.breadcrumb li:not(:last-child)::after {
-    content: '|'; /* Adiciona um separador entre os itens */
-    color: #6c757d;
-    padding: 0 10px;
-}
-
-.breadcrumb a:hover {
-    text-decoration: underline;
 }
 
 /* Estilização do conteudo principal */
