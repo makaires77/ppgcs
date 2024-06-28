@@ -47,6 +47,10 @@ def index():
     # Página inicial com links para os dois templates
     return render_template('index.html')
 
+@app.route('/lib/<path:filename>')
+def serve_lib(filename):
+    return send_from_directory('lib', filename)
+
 # Rota para servir arquivos estáticos (HTML, CSS, JS)
 @app.route('/static/<path:filename>')
 def serve_static(filename):
