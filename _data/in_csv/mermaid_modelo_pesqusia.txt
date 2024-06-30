@@ -1,0 +1,41 @@
+graph LR
+
+Dados((Pesquisa\nAlinhar\nCompetências\nno CEIS))
+Necessidades((Levantar\nNecessidades\ndo CEIS))
+Competencias((Levantar\nCompetências))
+Complementariedade((Identificar\nComplementariedades))
+Grafo((Grafo de\nConhecimento))
+
+Evidencias(Inovar\nBaseado\nem Evidências)
+Relacionamentos(Compreender\nrelcionamentos\ncomplexos)
+Sinergia(Permitr\nGeração de\nSinergias)
+
+Dados --> Necessidades --> H1
+Dados --> Competencias --> H2
+H1 --> Grafo
+H2 --> Grafo
+Grafo --> Complementariedade
+Complementariedade --> H3
+H3 --> Sinergia
+H3 --> Relacionamentos
+H3 --> Evidencias
+
+
+graph LR
+
+Pesquisa((Pesquisa Alinhar\nCompetências PD&I\nàs necessidades do CEIS))
+Modelo((Modelagem do\necossistema do CEIS\nem um Grafo de Conhecimento))
+Alinhamento((Alinhamento entre\ncompetências e necessidades,\ncom base em métricas\ne indicadores objetivos))
+Oportunidades((Idenitificar Oportunidades\nde inovar mais e melhor))
+Compreender((Melhor compreensão\ndas relações entre os atores e\nas tecnologias))
+Inovar(Inovar mais e melhor,\naumentar desempenho da\nexecução das Políticas Públicas\ndo CEIS para o SUS)
+
+Pesquisa --> H1 --> Modelo
+
+Modelo --> H2 --> Compreender
+Modelo --> H3 --> Alinhamento
+Modelo --> H4 --> Oportunidades
+
+Compreender ----> Inovar
+Alinhamento ---> Inovar
+Oportunidades --> Inovar

@@ -1,0 +1,1 @@
+2024-06-14 05:40:10,201 - ERROR - Erro ao calcular a similaridade entre embeddings: invalid index of a 0-dim tensor. Use `tensor.item()` in Python or `tensor.item<T>()` in C++ to convert a 0-dim tensor to a number
