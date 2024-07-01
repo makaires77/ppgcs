@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seleção de Valores de Interesse</title>
+    <meta charset="UTF-8">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/neo4j-driver"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            const feedbackDiv = document.createElement('div'); // Cria uma div para o feedback
+            document.body.appendChild(feedbackDiv); // Adiciona a div ao final do body
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch('/carregar_arquivo', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.success) {
+                            // Exibe uma mensagem de sucesso e um botão para iniciar a revisão
+                            feedbackDiv.innerHTML = `
+                                <p class="alert alert-success">Arquivo carregado com sucesso!</p>
+                                <button class="btn btn-primary" onclick="iniciarRevisao()">Iniciar Revisão</button>
+                            `;
+                        } else {
+                            feedbackDiv.innerHTML = `<p class="alert alert-danger">${data.error}</p>`;
+                        }
+                    } else {
+                        feedbackDiv.innerHTML = `<p class="alert alert-danger">Erro no upload do arquivo.</p>`;
+                    }
+                } catch (error) {
+                    feedbackDiv.innerHTML = `<p class="alert alert-danger">Erro: ${error}</p>`;
+                }
+            });
+
+            function iniciarRevisao() {
+                // Remover o formulário e o feedback
+                form.remove();
+                feedbackDiv.remove();
+                // Começar a exibir os valores e permitir a interação com as teclas
+                document.getElementById('valor').textContent = '{{ valor }}';
+                document.addEventListener('keydown', function(event) {
+                    fetch('/revisao_lista', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ tecla: event.key })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('valor').textContent = data.valor;
+                    });
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    {% include 'breadcrumb.html' %}
+    <h1><span id="valor"></span></h1>
+
+    <form method="POST" action="/carregar_arquivo" enctype="multipart/form-data">
+        <input type="file" name="arquivo">
+        <input type="submit" value="Carregar Arquivo">
+    </form>
+</body>
+</html>

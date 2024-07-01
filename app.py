@@ -8,6 +8,36 @@ os.environ['FLASK_RUN_PORT'] = '8080'
 app.static_folder = 'static'
 CORS(app)
 
+# Variáveis globais para a funcionalidade de revisão
+valores = []
+lista_saida = []
+indice_atual = 0
+
+@app.route('/revisao_lista')
+def revisao_lista():
+    global indice_atual
+    return render_template('revisao_lista.html', valor=valores[indice_atual] if valores else "")
+
+@app.route('/revisao_lista', methods=['POST'])
+def processar_tecla():
+    global indice_atual, lista_saida
+    tecla_pressionada = request.json["tecla"]
+    if tecla_pressionada == "a":
+        lista_saida.append(valores[indice_atual])
+    indice_atual = (indice_atual + 1) % len(valores)
+    return jsonify({"valor": valores[indice_atual] if indice_atual < len(valores) else ""})
+
+@app.route('/carregar_arquivo', methods=['POST'])
+def carregar_arquivo():
+    global valores
+    arquivo = request.files['arquivo']
+    if arquivo and arquivo.filename.endswith('.txt'):
+        valores = arquivo.read().decode('utf-8').splitlines()
+        return redirect(url_for('revisao_lista'))  # Redireciona para a revisão
+    else:
+        return jsonify({"success": False, "error": "Formato de arquivo inválido"})
+        
+# Funcionalidades para carregar templates
 @app.route('/static/favicon.ico')
 def favicon():
     return send_from_directory('static', 'favicon.ico') 
@@ -16,6 +46,10 @@ def favicon():
 def index():
     # Página inicial com links para os dois templates
     return render_template('index.html')
+
+@app.route('/lib/<path:filename>')
+def serve_lib(filename):
+    return send_from_directory('lib', filename)
 
 # Rota para servir arquivos estáticos (HTML, CSS, JS)
 @app.route('/static/<path:filename>')

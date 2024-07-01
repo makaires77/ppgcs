@@ -1,144 +1,334 @@
 <html>
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <head>
+        <meta charset="utf-8">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <center>
 <h1></h1>
+{% include 'breadcrumb.html' %}
 </center>
 
 <!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
 <script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
 
-<style type="text/css">
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
 
-        #mynetwork {
-            width: 100%;
-            height: 1200px;
-            background-color: #ffffff;
-            border: 1px solid lightgray;
-            position: relative;
-            float: left;
-        }
+             #mynetwork {
+                 width: 100%;
+                 height: 1200px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
 
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+        </style>
+    </head>
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
         
+            <div id="config"></div>
 
+        <script type="text/javascript">
         
-        #config {
-            float: left;
-            width: 400px;
-            height: 600px;
-        }
-        
+            // Parâmetros dos botões
+            const parametros = {
+                looping: {
+                physics: {
+                    forceAtlas2Based: {
+                        theta: 0.5,
+                        gravitationalConstant: -60,
+                        centralGravity: 0.01,
+                        springLength: 100,
+                        springConstant: 0.5,
+                        damping: 0.2,
+                        avoidOverlap: 1
+                    },
+                    maxVelocity: 50,
+                    minVelocity: 0.75,
+                    solver: "forceAtlas2Based"
+                }
+                },
+                colapsar: {
+                physics: {
+                    forceAtlas2Based: {
+                        gravitationalConstant: 0,
+                        centralGravity: 1,
+                        springLength: 100,
+                        damping: 0.1,
+                        avoidOverlap: 1
+                    },
+                    minVelocity: 0.75,
+                    solver: "forceAtlas2Based"
+                }
+                },                    
+                organizar: {
+                physics: {
+                    forceAtlas2Based: {
+                        theta: 0.5,
+                        gravitationalConstant: -60,
+                        centralGravity: 0.05,
+                        springLength: 100,
+                        springConstant: 0.5,
+                        damping: 0.3,
+                        avoidOverlap: 1
+                    },
+                    minVelocity: 0.75,
+                    solver: "forceAtlas2Based"
+                }
+                },
+                Fragilizar: {
+                physics: {
+                    forceAtlas2Based: {
+                        theta: 1,
+                        gravitationalConstant: -50,
+                        centralGravity: 0.01,
+                        springLength: 100,
+                        springConstant: 0.5,
+                        damping: 0.2,
+                        avoidOverlap: 1
+                    },
+                    maxVelocity: 50,
+                    minVelocity: 0.75,
+                    solver: "forceAtlas2Based"
+                }
+                },                    
+                dispersar: {
+                physics: {
+                    forceAtlas2Based: {
+                        gravitationalConstant: -500,
+                        centralGravity: 0,
+                        springLength: 100,
+                        damping: 0.1,
+                        avoidOverlap: 1
+                    },
+                    minVelocity: 0.75,
+                    solver: "forceAtlas2Based"
+                }
+                },
+            };
 
-        
-</style>
+            // Função para gerar parâmetros aleatórios
+            function gerarParametrosAleatorios() {
+                return {
+                physics: {
+                    forceAtlas2Based: {
+                        gravitationalConstant: -50 * (Math.random() * 2 - 1), // Valor entre -50 e 50
+                        centralGravity: 0.1 * Math.random(), // Valor entre 0 e 0.1
+                        springLength: 100 + Math.random() * 50, // Valor entre 100 e 150
+                        damping: 0.1 + Math.random() * 0.4, // Valor entre 0.1 e 0.5
+                        avoidOverlap: 1
+                    },
+                    minVelocity: 0.75,
+                    solver: "forceAtlas2Based"
+                }
+                };
+            }
 
-</head>
+            // initialize global variables.
+            var edges;
+            var nodes;
+            var allNodes;
+            var allEdges;
+            var nodeColors;
+            var originalNodes;
+            var network;
+            var container;
+            var options, data;
+            var filter = {
+                item : '',
+                property : '',
+                value : []
+            };
+            
+            // This method is responsible for drawing the graph, returns the drawn network
+            function drawGraph() {
+                var container = document.getElementById('mynetwork');
 
-<body>
-    {% include 'breadcrumb.html' %}
-<div id = "mynetwork"></div>
+                // parsing and collecting nodes and edges from the python
+                nodes = new vis.DataSet([{"color": "#007BFFFF", "font": {"color": "black"}, "id": "Pesquisar", "label": "Pesquisar", "shape": "dot", "size": 50, "title": "macroprocesso"}, {"color": "#007BFFFF", "font": {"color": "black"}, "id": "Desenvolver", "label": "Desenvolver", "shape": "dot", "size": 50, "title": "macroprocesso"}, {"color": "#007BFFFF", "font": {"color": "black"}, "id": "Inovar", "label": "Inovar", "shape": "dot", "size": 50, "title": "macroprocesso"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P001", "label": "P001", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P002", "label": "P002", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P003", "label": "P003", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P004", "label": "P004", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P005", "label": "P005", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P006", "label": "P006", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P007", "label": "P007", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P008", "label": "P008", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P009", "label": "P009", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Dores", "label": "Dores", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Desejos", "label": "Desejos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Desafios", "label": "Desafios", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Temas", "label": "Temas", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "T\u00f3picos", "label": "T\u00f3picos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Assuntos", "label": "Assuntos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Atitudes", "label": "Atitudes", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Experi\u00eancias", "label": "Experi\u00eancias", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Habilidades", "label": "Habilidades", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Papeis", "label": "Papeis", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Tempo", "label": "Tempo", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Or\u00e7amentos", "label": "Or\u00e7amentos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Projetos", "label": "Projetos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Processos", "label": "Processos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Programas", "label": "Programas", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Ensaios", "label": "Ensaios", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Equipamentos", "label": "Equipamentos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Ambientes", "label": "Ambientes", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Aplica\u00e7\u00e3o", "label": "Aplica\u00e7\u00e3o", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Solu\u00e7\u00e3o", "label": "Solu\u00e7\u00e3o", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Produto-Servi\u00e7o", "label": "Produto-Servi\u00e7o", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Modelos", "label": "Modelos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Prot\u00f3tipos", "label": "Prot\u00f3tipos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Empreendimentos", "label": "Empreendimentos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Indicadores", "label": "Indicadores", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Evid\u00eancias", "label": "Evid\u00eancias", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Mensura\u00e7\u00e3o", "label": "Mensura\u00e7\u00e3o", "shape": "dot", "size": 5, "title": "entidade"}]);
+                edges = new vis.DataSet([{"from": "Pesquisar", "to": "P001", "value": 1}, {"from": "Pesquisar", "to": "P002", "value": 1}, {"from": "Pesquisar", "to": "P003", "value": 1}, {"from": "Desenvolver", "to": "P004", "value": 1}, {"from": "Desenvolver", "to": "P005", "value": 1}, {"from": "Desenvolver", "to": "P006", "value": 1}, {"from": "Inovar", "to": "P007", "value": 1}, {"from": "Inovar", "to": "P008", "value": 1}, {"from": "Inovar", "to": "P009", "value": 1}, {"from": "P001", "to": "Dores", "value": 1}, {"from": "P001", "to": "Desejos", "value": 1}, {"from": "P001", "to": "Desafios", "value": 1}, {"from": "P002", "to": "Temas", "value": 1}, {"from": "P002", "to": "T\u00f3picos", "value": 1}, {"from": "P002", "to": "Assuntos", "value": 1}, {"from": "P003", "to": "Atitudes", "value": 1}, {"from": "P003", "to": "Experi\u00eancias", "value": 1}, {"from": "P003", "to": "Habilidades", "value": 1}, {"from": "P004", "to": "Papeis", "value": 1}, {"from": "P004", "to": "Tempo", "value": 1}, {"from": "P004", "to": "Or\u00e7amentos", "value": 1}, {"from": "P005", "to": "Projetos", "value": 1}, {"from": "P005", "to": "Processos", "value": 1}, {"from": "P005", "to": "Programas", "value": 1}, {"from": "P006", "to": "Ensaios", "value": 1}, {"from": "P006", "to": "Equipamentos", "value": 1}, {"from": "P006", "to": "Ambientes", "value": 1}, {"from": "P007", "to": "Aplica\u00e7\u00e3o", "value": 1}, {"from": "P007", "to": "Solu\u00e7\u00e3o", "value": 1}, {"from": "P007", "to": "Produto-Servi\u00e7o", "value": 1}, {"from": "P008", "to": "Modelos", "value": 1}, {"from": "P008", "to": "Prot\u00f3tipos", "value": 1}, {"from": "P008", "to": "Empreendimentos", "value": 1}, {"from": "P009", "to": "Indicadores", "value": 1}, {"from": "P009", "to": "Evid\u00eancias", "value": 1}, {"from": "P009", "to": "Mensura\u00e7\u00e3o", "value": 1}]);
 
+                nodeColors = {};
+                allNodes = nodes.get({ returnType: "Object" });
+                for (nodeId in allNodes) {
+                nodeColors[nodeId] = allNodes[nodeId].color;
+                }
+                allEdges = edges.get({ returnType: "Object" });
+                // adding nodes and edges to the graph
+                data = {nodes: nodes, edges: edges};
 
-<div id = "config"></div>
+                // Espera o DOM carregar antes de criar os botões
+                window.addEventListener('DOMContentLoaded', (event) => {
+                    // Cria os botões
+                    for (const [nome, opcoes] of Object.entries(parametros)) {
+                        const botao = document.createElement('button');
+                        botao.textContent = nome.charAt(0).toUpperCase() + nome.slice(1);
+                        
+                        // Correção: Criando uma cópia profunda dos parâmetros
+                        const opcoesCopia = JSON.parse(JSON.stringify(opcoes)); 
 
-<script type="text/javascript">
+                        botao.onclick = function() { 
+                            event.stopPropagation();
+                            console.log(nome); 
+                            console.log(opcoesCopia); // Imprime a cópia dos parâmetros
+                            network.setOptions(opcoesCopia); 
+                        }; 
+                        
+                        document.body.appendChild(botao);
+                    }
 
-    // initialize global variables.
-    var edges;
-    var nodes;
-    var network; 
-    var container;
-    var options, data;
+                    // Botão para parâmetros aleatórios
+                    const botaoAleatorio = document.createElement('button');
+                    botaoAleatorio.textContent = 'Aleatório';
+                    botaoAleatorio.onclick = () => { network.setOptions(gerarParametrosAleatorios()); };
+                    document.body.appendChild(botaoAleatorio);
 
-    
-    // This method is responsible for drawing the graph, returns the drawn network
-    function drawGraph() {
-        var container = document.getElementById('mynetwork');
-        
-        
+                    // Botão para centralizar e ajustar o zoom
+                    const botaoCentralizar = document.createElement('button');
+                    botaoCentralizar.textContent = 'Centralizar';
+                    botaoCentralizar.onclick = () => {
+                        network.fit({ animation: true }); // Ajusta o zoom para mostrar todos os nós
+                        network.moveTo({ position: {x: 0, y: 0} }); // Centraliza a visualização
+                    };
+                    document.body.appendChild(botaoCentralizar);
 
-        // parsing and collecting nodes and edges from the python
-        nodes = new vis.DataSet([{"color": "#007BFFFF", "font": {"color": "black"}, "id": "Pesquisar", "label": "Pesquisar", "shape": "dot", "size": 50, "title": "macroprocesso"}, {"color": "#007BFFFF", "font": {"color": "black"}, "id": "Desenvolver", "label": "Desenvolver", "shape": "dot", "size": 50, "title": "macroprocesso"}, {"color": "#007BFFFF", "font": {"color": "black"}, "id": "Inovar", "label": "Inovar", "shape": "dot", "size": 50, "title": "macroprocesso"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P001", "label": "P001", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P002", "label": "P002", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P003", "label": "P003", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P004", "label": "P004", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P005", "label": "P005", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P006", "label": "P006", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P007", "label": "P007", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P008", "label": "P008", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#28A745E6", "font": {"color": "black"}, "id": "P009", "label": "P009", "shape": "dot", "size": 25, "title": "processo"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Dores", "label": "Dores", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Desejos", "label": "Desejos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Desafios", "label": "Desafios", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Temas", "label": "Temas", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "T\u00f3picos", "label": "T\u00f3picos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Assuntos", "label": "Assuntos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Atitudes", "label": "Atitudes", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Experi\u00eancias", "label": "Experi\u00eancias", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Habilidades", "label": "Habilidades", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Papeis", "label": "Papeis", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Tempo", "label": "Tempo", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Or\u00e7amentos", "label": "Or\u00e7amentos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Projetos", "label": "Projetos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Processos", "label": "Processos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Programas", "label": "Programas", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Ensaios", "label": "Ensaios", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Equipamentos", "label": "Equipamentos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Ambientes", "label": "Ambientes", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Aplica\u00e7\u00e3o", "label": "Aplica\u00e7\u00e3o", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Solu\u00e7\u00e3o", "label": "Solu\u00e7\u00e3o", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Produto-Servi\u00e7o", "label": "Produto-Servi\u00e7o", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Modelos", "label": "Modelos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Prot\u00f3tipos", "label": "Prot\u00f3tipos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Empreendimentos", "label": "Empreendimentos", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Indicadores", "label": "Indicadores", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Evid\u00eancias", "label": "Evid\u00eancias", "shape": "dot", "size": 5, "title": "entidade"}, {"color": "#FFC107CD", "font": {"color": "black"}, "id": "Mensura\u00e7\u00e3o", "label": "Mensura\u00e7\u00e3o", "shape": "dot", "size": 5, "title": "entidade"}]);
-        edges = new vis.DataSet([{"from": "Pesquisar", "to": "P001", "value": 1}, {"from": "Pesquisar", "to": "P002", "value": 1}, {"from": "Pesquisar", "to": "P003", "value": 1}, {"from": "Desenvolver", "to": "P004", "value": 1}, {"from": "Desenvolver", "to": "P005", "value": 1}, {"from": "Desenvolver", "to": "P006", "value": 1}, {"from": "Inovar", "to": "P007", "value": 1}, {"from": "Inovar", "to": "P008", "value": 1}, {"from": "Inovar", "to": "P009", "value": 1}, {"from": "P001", "to": "Dores", "value": 1}, {"from": "P001", "to": "Desejos", "value": 1}, {"from": "P001", "to": "Desafios", "value": 1}, {"from": "P002", "to": "Temas", "value": 1}, {"from": "P002", "to": "T\u00f3picos", "value": 1}, {"from": "P002", "to": "Assuntos", "value": 1}, {"from": "P003", "to": "Atitudes", "value": 1}, {"from": "P003", "to": "Experi\u00eancias", "value": 1}, {"from": "P003", "to": "Habilidades", "value": 1}, {"from": "P004", "to": "Papeis", "value": 1}, {"from": "P004", "to": "Tempo", "value": 1}, {"from": "P004", "to": "Or\u00e7amentos", "value": 1}, {"from": "P005", "to": "Projetos", "value": 1}, {"from": "P005", "to": "Processos", "value": 1}, {"from": "P005", "to": "Programas", "value": 1}, {"from": "P006", "to": "Ensaios", "value": 1}, {"from": "P006", "to": "Equipamentos", "value": 1}, {"from": "P006", "to": "Ambientes", "value": 1}, {"from": "P007", "to": "Aplica\u00e7\u00e3o", "value": 1}, {"from": "P007", "to": "Solu\u00e7\u00e3o", "value": 1}, {"from": "P007", "to": "Produto-Servi\u00e7o", "value": 1}, {"from": "P008", "to": "Modelos", "value": 1}, {"from": "P008", "to": "Prot\u00f3tipos", "value": 1}, {"from": "P008", "to": "Empreendimentos", "value": 1}, {"from": "P009", "to": "Indicadores", "value": 1}, {"from": "P009", "to": "Evid\u00eancias", "value": 1}, {"from": "P009", "to": "Mensura\u00e7\u00e3o", "value": 1}]);
+                });
+                
+                var options = {
+                    "configure": {
+                        "enabled": true,
+                        "filter": [
+                            "physics"
+                        ]
+                    },
+                    "edges": {
+                        "color": {
+                            "inherit": true
+                        },
+                        "smooth": {
+                            "enabled": true,
+                            "type": "dynamic"
+                        }
+                    },
+                    "interaction": {
+                        "dragNodes": true,
+                        "hideEdgesOnDrag": false,
+                        "hideNodesOnDrag": false
+                    },
+                    // Layout hierárquico
+                    // "layout": {
+                    //     "hierarchical": {
+                    //         "direction": 'LR',   // Left to Right (horizontal)
+                    //         "sortMethod": 'directed' 
+                    //     }
+                    // },                    
+                    "physics": {
+                        "barnesHut": {
+                            "avoidOverlap": 0,
+                            "centralGravity": 0.3,
+                            "damping": 0.09,
+                            "gravitationalConstant": -80000,
+                            "springConstant": 0.001,
+                            "springLength": 250
+                        },
+                        "enabled": true,
+                        "forceAtlas2Based": {
+                            "avoidOverlap": 1,
+                            "centralGravity": 0.01,
+                            "damping": 0.4,
+                            "gravitationalConstant": -50,
+                            "springConstant": 0.08,
+                            "springLength": 100
+                        },
+                        "solver": "forceAtlas2Based",
+                        "stabilization": {
+                            "enabled": true,
+                            "fit": true,
+                            "iterations": 1000,
+                            "onlyDynamicEdges": false,
+                            "updateInterval": 50
+                        }
+                    }
+                };            
 
-        // adding nodes and edges to the graph
-        data = {nodes: nodes, edges: edges};
+                // if this network requires displaying the configure window put it in its div
+                options.configure["container"] = document.getElementById("config");
 
-        var options = {
-    "configure": {
-        "enabled": true,
-        "filter": [
-            "physics"
-        ]
-    },
-    "edges": {
-        "color": {
-            "inherit": true
-        },
-        "smooth": {
-            "enabled": true,
-            "type": "dynamic"
-        }
-    },
-    "interaction": {
-        "dragNodes": true,
-        "hideEdgesOnDrag": false,
-        "hideNodesOnDrag": false
-    },
-    "physics": {
-        "barnesHut": {
-            "avoidOverlap": 0,
-            "centralGravity": 0.3,
-            "damping": 0.09,
-            "gravitationalConstant": -80000,
-            "springConstant": 0.001,
-            "springLength": 250
-        },
-        "enabled": true,
-        "forceAtlas2Based": {
-            "avoidOverlap": 1,
-            "centralGravity": 0.01,
-            "damping": 0.4,
-            "gravitationalConstant": -50,
-            "springConstant": 0.08,
-            "springLength": 100
-        },
-        "solver": "forceAtlas2Based",
-        "stabilization": {
-            "enabled": true,
-            "fit": true,
-            "iterations": 1000,
-            "onlyDynamicEdges": false,
-            "updateInterval": 50
-        }
-    }
-};
-        
-        
+                network = new vis.Network(container, data, options);
 
-        
-        // if this network requires displaying the configure window,
-        // put it in its div
-        options.configure["container"] = document.getElementById("config");
-        
+                // Manipulador de evento para aplicar as forças personalizadas (INSERIR AQUI)
+                network.on("stabilizationIterationsDone", function () {
+                    // Calcula e aplica as forças para os nós relacionados
+                    for (const nodeId in nodes._data) {
+                        const node = nodes._data[nodeId];
+                        const group = node.group; // Obtém o grupo do nó (nome do nó principal)
 
-        network = new vis.Network(container, data, options);
-	 
-        
+                        // Verifica se o nó pertence a um dos grupos principais
+                        if (group === "Pesquisar" || group === "Desenvolver" || group === "Inovar") {
+                            continue; // Ignora os nós principais, pois já foram posicionados
+                        }
 
+                        // Obtém a posição do nó principal
+                        const mainNode = nodes.get(group);
+                        const mainX = mainNode.x;
+                        const mainY = mainNode.y;
 
-        
+                        // Calcula a força de atração em direção ao nó principal
+                        const dx = mainX - node.x;
+                        const dy = mainY - node.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        const force = 0.01 * distance; // Ajuste a intensidade da força conforme necessário
 
-        return network;
+                        // Aplica a força ao nó
+                        network.moveNode(nodeId, node.x + dx * force, node.y + dy * force);
+                    }
 
-    }
+                    // Posicionamento dos nós principais
+                    const largura = network.canvas.frame.canvas.clientWidth; // Largura do canvas
+                    const altura = network.canvas.frame.canvas.clientHeight; // Altura do canvas
 
-    drawGraph();
+                    // Posiciona "Pesquisar" no canto inferior esquerdo
+                    network.moveNode("Pesquisar", 50, altura - 50); // x = 50, y = altura - 50
 
-</script>
-</body>
+                    // Posiciona "Inovar" no canto superior direito
+                    network.moveNode("Inovar", largura - 50, 50); // x = largura - 50, y = 50
+
+                    // Posiciona "Desenvolver" no meio
+                    network.moveNode("Desenvolver", largura / 2, altura / 2); // x = largura / 2, y = altura / 2
+                });
+
+                return network;
+
+              }
+
+              drawGraph();
+        </script>
+    </body>
 </html>
