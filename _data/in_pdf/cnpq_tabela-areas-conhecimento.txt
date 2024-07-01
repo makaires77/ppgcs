@@ -1,0 +1,1272 @@
+Tabela de Áreas do Conhecimento   
+1.00.00.00-3 Ciências Exatas e da Terra 
+1.01.00.00-8 Matemática   
+1.01.01.00-4   Álgebra   
+1.01.01.01-2 Conjuntos 1.01.01.02-
+0 Lógica Matemática 1.01.01.03-9 
+Teoria dos Números   
+1.01.01.04-7 Grupos de Algebra Não-Comutaviva 
+1.01.01.05-5 Algebra Comutativa   
+1.01.01.06-3   Geometria Algebrica   
+1.01.02.00-0   Análise   
+1.01.02.01-9   Análise Complexa   
+1.01.02.02-7   Análise Funcional   
+1.01.02.03-5   Análise Funcional Não-Linear   
+1.01.02.04-3   Equações Diferênciais Ordinárias   
+1.01.02.05-1   Equações Diferênciais Parciais   
+1.01.02.06-0   Equações Diferênciais Funcionais   
+1.01.03.00-7   Geometria e Topologia   
+1.01.03.01-5   Geometria Diferêncial   
+1.01.03.02-3 Topologia Algébrica 
+1.01.03.03-1 Topologia das Variedades 
+1.01.03.04-0 Sistemas Dinâmicos   
+1.01.03.05-8 Teoria das Singularidades e Teoria das Catástrofes 
+1.01.03.06-6 Teoria das Folheações   
+1.01.04.00-3   Matemática Aplicada   
+1.01.04.01-1   Física Matemática   
+1.01.04.02-0   Análise Numérica   
+1.01.04.03-8   Matemática Discreta e Combinatoria   
+1.02.00.00-2  Probabilidade e Estatística   
+1.02.01.00-9   Probabilidade   
+1.02.01.01-7  Teoria Geral e Fundamentos da Probabilidade  
+1.02.01.02-5  Teoria Geral e Processos Estocásticos  
+1.02.01.03-3  Teoremas de Limite   
+1.02.01.04-1  Processos Markovianos  
+1.02.01.05-0  Análise Estocástica  
+1.02.01.06-8  Processos Estocásticos Especiais  
+1.02.02.00-5  Estatística  
+1.02.02.01-3  Fundamentos da Estatística  
+1.02.02.02-1  Inferência Paramétrica  
+1.02.02.03-0  Inferência Nao-Paramétrica   
+1.02.02.04-8 Inferência em Processos Estocásticos 
+1.02.02.05-6 Análise Multivariada   
+1.02.02.06-4 Regressão e Correlação 
+1.02.02.07-2 Planejamento de Experimentos 
+1.02.02.08-0 Análise de Dados   
+1.02.03.00-1   Probabilidade e Estatística Aplicadas   
+1.03.00.00-7  Ciência da Computação   
+1.03.01.00-3   Teoria da Computação   
+1.03.01.01-1 Computabilidade e Modelos de Computaçã o 
+1.03.01.02-0 Linguagem Formais e Automatos   
+1.03.01.03-8 Análise de Algoritmos e Complexidade de Computação 
+1.03.01.04-6 Lógicas e Semântica de Programas   
+1.03.02.00-0   Matemática da Computação   
+1.03.02.01-8 Matemática Simbólica 1.03.02.02-6 
+Modelos Analíticos e de Simulação   
+1.03.03.00-6   Metodologia e Técnicas da Computação   
+1.03.03.01-4 Linguagens de Programação 
+1.03.03.02-2 Engenharia de Software 
+1.03.03.03-0 Banco de Dados 1.03.03.04-9 
+Sistemas de Informação   
+1.03.03.05-7   Processamento Gráfico (Graphics)   
+1.03.04.00-2   Sistemas de Computação  1.03.04.01-0  Hardware  
+1.03.04.02-9   Arquitetura de Sistemas de Computação  
+1.03.04.03-7  Software Básico  
+1.03.04.04-5  Teleinformática  
+1.04.00.00-1  Astronomia  
+1.04.01.00-8   Astronomia de Posição e Mecânica Cele ste  
+1.04.01.01-6  Astronomia Fundamental  
+1.04.01.02-4  Astronomia Dinâmica  
+1.04.02.00-4  Astrofísica Estelar  
+1.04.03.00-0   Astrofísica do Meio Interestelar  
+1.04.03.01-9  Meio Interestelar  
+1.04.03.02-7  Nebulosa  
+1.04.04.00-7  Astrofísica Extragaláctica  
+1.04.04.01-5  Galáxias  
+1.04.04.02-3  Aglomerados de Galáxias  
+1.04.04.03-1  Quasares  
+1.04.04.04-0  Cosmologia  
+1.04.05.00-3   Astrofísica do Sistema Solar  
+1.04.05.01-1  Física Solar  
+1.04.05.02-0   Movimento da Terra  
+1.04.05.03-8  Sistema Planetário  
+1.04.06.00-0  Instrumentação Astronômica  
+1.04.06.01-8  Astronômia Ótica  
+1.04.06.02-6  Radioastronomia  
+1.04.06.03-4  Astronomia Espacial  
+1.04.06.04-2   Processamento de Dados Astronômicos  
+1.05.00.00-6  Física  
+1.05.01.00 -2 Física Geral   
+1.05.01.01-0   Métodos Matemáticos da Física   
+1.05.01.02-9 Física Clássica e Física Quântica; Mec ânica e Campos 
+1.05.01.03-7 Relatividade e Gravitação   
+1.05.01.04-5   Física Estatística e Termodinâmica  
+1.05.01.05-3  Metrologia, Técnicas Gerais de Laboratório, Sistema  de Instrumentação  
+1.05.01.06-1  Instrumentação Específica de Uso Geral em Física  
+1.05.02.00-9  Áreas Clássicas de Fenomenologia e suas Aplicações  
+1.05.02.01-7  Eletricidade e Magnetismo; Campos e Partículas Carreg adas   
+1.05.02.02-5 Ótica 
+1.05.02.03-3 Acústica   
+1.05.02.04-1 Transferência de Calor; Processos Térmi cos e Termodinâmicos 
+1.05.02.05-0 Mecânica, Elasticidade e Reologia   
+1.05.02.06-8   Dinâmica dos Fluidos   
+1.05.03.00-5   Física das Partículas Elementares e Ca mpos   
+1.05.03.01-3   Teoria Geral de Partículas e Campos   
+1.05.03.02-1  Teorias Específicas e Modelos de Interação; Sistema tica de Partículas; Raios Cósmicos  
+1.05.03.03-0  Reações Específicas e Fenomiologia de Partículas  
+1.05.03.04-8  Propriedades de Partículas Específicas e Ressonâncias   
+1.05.04.00-1  Física Nuclear  
+1.05.04.01-0  Estrutura Nuclear  
+1.05.04.02-8  Desintegração Nuclear e Radioatividade   
+1.05.04.03-6   Reações Nucleares e Espalhamento Gera l   
+1.05.04.04-4 Reações Nucleares e Espalhamento (Reaç ões Específicas) 
+1.05.04.05-2 Propriedades de Núcleos Específicos   
+1.05.04.06-0   Métodos Experimentais e Instrumentaçã o para Partículas Elementares e Física Nuclear   
+1.05.05.00-8   Física Atômica e Molécular   
+1.05.05.01-6 Estrutura Eletrônica de Átomos e Molécula s; Teoria 
+1.05.05.02-4 Espectros Atômicos e Integração de Fóton s   
+1.05.05.03-2 Espectros Moléculares e Interações de F ótons com Moléculas 
+1.05.05.04-0 Processos de Colisão e Interações de Áto mos e Moléculas   
+1.05.05.05-9 Inf.Sobre Átomos e Moléculas Obtidos Expe rimentalmente;Instrumentação e Técnicas 
+1.05.05.06-7 Estudos de Átomos e Moléculas Especiais   
+1.05.06.00-4   Física dos Fluidos, Física de Plasmas  e Descargas Elétricas   
+1.05.06.01-2   Cinética e Teoria de Transporte de F luidos; Propriedades Físicas de Gases  1.05.06.02-0   Física de Plasmas e Descargas Elétrica s   
+1.05.07.00-0   Física da Matéria Condensada   
+1.05.07.01-9   Estrutura de Líquidos e Sólidos; Cri stalografia   
+1.05.07.02-7 Propriedades Mecânicas e Acústicas da M atéria Condensada 
+1.05.07.03-5 Dinâmica da Rede e Estatística de Crist ais   
+1.05.07.04-3 Equação de Estado, Equilíbrio de Fases e Transições de Fase 
+1.05.07.05-1 Propriedades Térmicas da Matéria Conden sada   
+1.05.07.06-0 Propriedades de Transportes de Matéria Condensada (Não Eletrônicas) 
+1.05.07.07-8 Campos Quânticos e Sólidos, Hélio, Líq uido, Sólido   
+1.05.07.08-6 Superfícies e Interfaces; Películas e F ilamentos 
+1.05.07.09-4 Estados Eletrônicos   
+1.05.07.10-8 Transp.Eletrônicos e Prop. Elétricas de Superfícies; Interfaces e Películas 1.05.07.11-6 
+Estruturas Eletrônicas e Propriedades Elétricas de Sup erfícies Interfaces e Películas 1.05.07.12-4 
+Supercondutividade   
+1.05.07.13-2   Materiais Magnéticos e Propriedades M agnéticas   
+1.05.07.14-0  Ressonância Mag.e Relax.Na Mat.Condens;Efeitos Mosb auer;Corr.Ang.Pertubada  
+1.05.07.15-9  Materiais Dielétricos e Propriedades Dielétricas  
+1.05.07.16-7  Prop.Óticas e Espectrosc.da Mat.Condens;Outras Inter. da Mat.Com Rad.e Part.  
+1.05.07.17-5  Emissão Eletrônica e Iônica por Líquidos e Sólidos; F enômenos de Impacto   
+1.06.00.00 -0 Química  
+1.06.01.00-7  Química Orgânica  
+1.06.01.01-5   Estrutura, Conformação e Estereoquími ca  
+1.06.01.02-3  Sintese Orgânica  
+1.06.01.03-1  Fisico-Química Orgânica  
+1.06.01.04-0  Fotoquímica Orgânica   
+1.06.01.05-8 Química dos Produtos Naturais 1.06.01.0 6-6 
+Evolução, Sistemática e Ecologia Química   
+1.06.01.07-4  Polimeros e Colóides  
+1.06.02.00-3  Química Inorgânica  
+1.06.02.01-1  Campos de Coordenação  
+1.06.02.02-0   Não-Metais e Seus Compostos  
+1.06.02.03-8  Compostos Organo-Metálicos   
+1.06.02.04-6   Determinação de Estrutura de Composto s Inorgânicos   
+1.06.02.05-4  Foto-Química Inorgânica  
+1.06.02.06-2  Fisico Química Inorgânica  
+1.06.02.07-0  Química Bio-Inorgânica   
+1.06.03.00-0   Fisico-Química   
+1.06.03.01-8   Cinética Química e Catálise   
+1.06.03.02-6  Eletroquímica  
+1.06.03.03-4  Espectroscopia  
+1.06.03.04-2  Química de Interfaces  
+1.06.03.05-0   Química do Estado Condensado  
+1.06.03.06-9   Química Nuclear e Radioquímica  
+1.06.03.07-7  Química Teórica  
+1.06.03.08-5  Termodinâmica Química  
+1.06.04.00-6  Química Analítica  
+1.06.04.01-4  Separação  
+1.06.04.02-2   Métodos Óticos de Análise  
+1.06.04.03-0  Eletroanalítica  
+1.06.04.04-9  Gravimetria  
+1.06.04.05-7  Titimetria  
+1.06.04.06-5  Instrumentação Analítica   
+1.06.04.07-3   Análise de Traços e Química Ambienta l   
+1.07.00.00-5  GeoCiências  
+1.07.01.00-1  Geologia  
+1.07.01.01-0  Mineralogia  
+1.07.01.02-8  Petrologia  
+1.07.01.03-6  Geoquímica  
+1.07.01.04-4  Geologia Regional  
+1.07.01.05-2  Geotectônica  
+1.07.01.06-0  Geocronologia  
+1.07.01.07-9  Cartografia Geológica  1.07.01.08-7  Metalogenia  
+1.07.01.09-5  Hidrogeologia  
+1.07.01.10-9  Prospecção Mineral  
+1.07.01.11-7  Sedimentologia  
+1.07.01.12-5  Paleontologia Estratigráfica  
+1.07.01.13-3  Estratigrafia  
+1.07.01.14-1  Geologia Ambiental  
+1.07.02.00-8  Geofísica  
+1.07.02.01-6  Geomagnetismo  
+1.07.02.02-4  Sismologia   
+1.07.02.03-2 Geotermia e Fluxo Térmico 
+1.07.02.04-0 Propriedades Físicas das Rochas   
+1.07.02.05-9  Geofísica Nuclear  
+1.07.02.06-7  Sensoriamento Remoto  
+1.07.02.07-5  Aeronomia   
+1.07.02.08-3   Desenvolvimento de Instrumentação Ge ofísica   
+1.07.02.09-1  Geofísica Aplicada  
+1.07.02.10-5  Gravimetria  
+1.07.03.00-4  Meteorologia  
+1.07.03.01-2  Meteorologia Dinâmica  
+1.07.03.02-0  Meteorologia Sinótica  
+1.07.03.03-9  Meteorologia Física  
+1.07.03.04-7  Química da Atmosfera  
+1.07.03.05-5  Instrumentação Meteorológica  
+1.07.03.06-3  Climatologia  
+1.07.03.07-1  Micrometeorologia   
+1.07.03.08-0   Sensoriamento Remoto da Atmosfera   
+1.07.03.09-8  Meteorologia Aplicada  
+1.07.04.00-0  Geodesia  
+1.07.04.01-9  Geodesia Física  
+1.07.04.02-7  Geodesia Geométrica  
+1.07.04.03-5  Geodesia Celeste  
+1.07.04.04-3  Fotogrametria  
+1.07.04.05-1  Cartografia Básica  
+1.07.05.00-7  Geografia Física  
+1.07.05.01-5  Geomorfologia  
+1.07.05.02-3  Climatologia Geográfica  
+1.07.05.03-1  Pedologia  
+1.07.05.04-0  Hidrogeografia  
+1.07.05.05-8  Geoecologia  
+1.07.05.06-6  Fotogeografia (Físico-Ecológica)  
+1.07.05.07-4  Geocartografia   
+1.08.00.00-0  Oceanografia   
+1.08.01.00-6   Oceanografia Biológica   
+1.08.01.01-4   Interação entre os Organismos Marinh os e os Parâmetros Ambientais   
+1.08.02.00-2   Oceanografia Física   
+1.08.02.01-0 Variáveis Físicas da Água do Mar 
+1.08.02.02-9 Movimento da Água do Mar 1.08.02.03-7 
+Origem das Massas de Água 1.08.02.04-5 Interação do 
+Oceano com o Leito do Mar 1.08.02.05-3 Interação do  
+Oceano com a Atmosfera   
+1.08.03.00-9   Oceanografia Química   
+1.08.03.01-7   Propriedades Químicas da Água do Mar   
+1.08.03.02-5   Interações Químico-Biológicas/Geológi cas das Substâncias Químicas da Água do Mar   
+1.08.04.00-5   Oceanografia Geológica   
+1.08.04.01-3   Geomorfologia Submarina   
+1.08.04.02-1   Sedimentologia Marinha   
+1.08.04.03-0   Geofísica Marinha   
+2.00.00.00-6  Ciências Biológicas   
+2.01.00.00-0  Biologia Geral   
+2.02.00.00-5  Genética   
+2.02.01.00-1   Genética Quantitativa  2.02.02.00-8 Genética Molecular e de Microorganismo s 
+2.02.03.00-4 Genética Vegetal   
+2.02.04.00-0 Genética Animal 2.02.05.00-7 
+Genética Humana e Médica 2.02.06.00-3 
+Mutagênese  
+2.03.00.00-0  Botânica   
+2.03.01.00-6   Paleobotânica   
+2.03.02.00-2   Morfologia Vegetal   
+2.03.02.01-0   Morfologia Externa   
+2.03.02.02-9   Citologia Vegetal   
+2.03.02.03-7   Anatomia Vegetal   
+2.03.02.04-5   Palinologia   
+2.03.03.00-9   Fisiologia Vegetal   
+2.03.03.01-7   Nutrição e Crescimento Vegetal   
+2.03.03.02-5   Reprodução Vegetal   
+2.03.03.03-3   Ecofisiologia Vegetal   
+2.03.04.00-5   Taxonomia Vegetal   
+2.03.04.01-3 Taxonomia de Criptógamos 
+2.03.04.02-1 Taxonomia de Fanerógamos   
+2.03.05.00-1   Fitogeografia   
+2.03.06.00-8   Botânica Aplicada   
+2.04.00.00-4  Zoologia   
+2.04.01.00-0   Paleozoologia   
+2.04.02.00-7 Morfologia dos Grupos Recentes 
+2.04.03.00-3 Fisiologia dos Grupos Recentes 
+2.04.04.00-0 Comportamento Animal 2.04.05.00-
+6 Taxonomia dos Grupos Recentes 2.04.06.00-2 
+Zoologia Aplicada   
+2.04.06.01-0 Conservação das Espécies Animais 
+2.04.06.02-9 Utilização dos Animais 2.04.06.03-7 
+Controle Populacional de Animais  
+2.05.00.00-9  Ecologia   
+2.05.01.00-5 Ecologia Teórica 2.05.02.00-
+1 Ecologia de Ecossistemas 2.05.03.00-8 
+Ecologia Aplicada  
+2.06.00.00-3  Morfologia   
+2.06.01.00-0   Citologia e Biologia Celular   
+2.06.02.00-6   Embriologia   
+2.06.03.00-2   Histologia   
+2.06.04.00-9   Anatomia   
+2.06.04.01-7   Anatomia Humana   
+2.07.00.00-8  Fisiologia   
+2.07.01.00-4   Fisiologia Geral   
+2.07.02.00-0   Fisiologia de Órgaos e Sistemas   
+2.07.02.01-9 Neurofisiologia 2.07.02.02-
+7 Fisiologia Cardiovascular 2.07.02.03-5 
+Fisiologia da Respiração 2.07.02.04-3 
+Fisiologia Renal 2.07.02.05-1 Fisiologia 
+Endocrina 2.07.02.06-0 Fisiologia da 
+Digestão 2.07.02.07-8 Cinesiologia  
+ 
+2.07.03.00-7 Fisiologia do Esforço 
+2.07.04.00-3 Fisiologia Comparada  
+2.08.00.00-2  Bioquímica   
+2.08.01.00-9  Química de Macromoléculas  
+2.08.01.01-7  Proteínas  
+2.08.01.02-5  Lipídeos  
+2.08.01.03-3  Glicídeos  
+2.08.02.00 -5 Bioquímica dos Microorganismos  
+2.08.03.00-1  Metabolismo e Bioenergética  
+2.08.04.00-8  Biologia Molecular  
+2.08.05.00-4  Enzimologia  2.09.00.00-7  Biofísica   
+2.09.01.00-3 Biofísica Molecular 
+2.09.02.00-0 Biofísica Celular   
+2.09.03.00-6 Biofísica de Processos e Sistemas 
+2.09.04.00-2 Radiologia e Fotobiologia  
+2.10.00.00-0  Farmacologia   
+2.10.01.00-6   Farmacologia Geral   
+2.10.01.01-4   Farmacocinética   
+2.10.01.02-2   Biodisponibilidade   
+2.10.02.00-2   Farmacologia Autonômica   
+2.10.03.00-9   Neuropsicofarmacologia   
+2.10.04.00-5   Farmacologia Cardiorenal   
+2.10.05.00-1   Farmacologia Bioquímica e Molecular   
+2.10.06.00-8   Etnofarmacologia   
+2.10.07.00-4   Toxicologia   
+2.10.08.00-0   Farmacologia Clínica   
+2.11.00.00-4  Imunologia   
+2.11.01.00-0   Imunoquímica   
+2.11.02.00-7   Imunologia Celular   
+2.11.03.00-3   Imunogenética   
+2.11.04.00-0   Imunologia Aplicada   
+2.12.00.00-9  Microbiologia   
+2.12.01.00-5   Biologia e Fisiologia dos Microorgan ismos   
+2.12.01.01-3  Virologia  
+2.12.01.02-1  Bacterologia  
+2.12.01.03-0  Micologia  
+2.12.02.00-1  Microbiologia Aplicada  
+2.12.02.01-0  Microbiologia Médica   
+2.12.02.02-8   Microbiologia Industrial e de Fermen tação   
+2.13.00.00-3  Parasitologia   
+2.13.01.00-0   Protozoologia de Parasitos   
+2.13.01.01-8   Protozoologia Parasitária Humana   
+2.13.01.02-6   Protozoologia Parasitária Animal   
+2.13.02.00-6   Helmintologia de Parasitos   
+2.13.02.01-4   Helmintologia Humana   
+2.13.02.02-2   Helmintologia Animal   
+2.13.03.00-2   Entomologia e Malacologia de Parasito s e Vetores   
+3.00.00.00-9  Engenharias   
+3.01.00.00-3  Engenharia Civil   
+3.01.01.00-0  Construção Civil  
+3.01.01.01-8  Materiais e Componentes de Construção  
+3.01.01.02-6  Processos Construtivos  
+3.01.01.03-4  Instalações Prediais   
+3.01.02.00-6  Estruturas  
+3.01.02.01-4   Estruturas de Concreto  
+3.01.02.02-2  Estruturas de Madeiras  
+3.01.02.03-0  Estruturas Metálicas  
+3.01.02.04-9  Mecânica das Estruturas   
+3.01.03.00-2   Geotécnica   
+3.01.03.01-0 Fundações e Escavações 
+3.01.03.02-9 Mecânicas das Rochas 
+3.01.03.03-7 Mecânicas dos Solos 3.01.03.04-
+5 Obras de Terra e Enrocamento 3.01.03.05-3 
+Pavimentos   
+3.01.04.00-9   Engenharia Hidráulica   
+3.01.04.01-7   Hidráulica   
+3.01.04.02-5   Hidrologia   
+3.01.05.00-5   Infra-Estrutura de Transportes   
+3.01.05.01-3 Aeroportos; Projeto e Construção 
+3.01.05.02-1 Ferrovias; Projetos e Construção   
+3.01.05.03-0 Portos e Vias Nevegáveis; Projeto e Const rução 
+3.01.05.04-8 Rodovias; Projeto e Construção  3.02.00.00-8  Engenharia de Minas   
+3.02.01.00-4  Pesquisa Mineral  
+3.02.01.01-2  Caracterização do Minério  
+3.02.01.02-0   Dimensionamento de Jazidas  
+3.02.02.00-0  Lavra  
+3.02.02.01-9  Lavra a Céu Aberto   
+3.02.02.02-7   Lavra de Mina Subterrânea   
+3.02.02.03-5  Equipamentos de Lavra  
+3.02.03.00-7  Tratamento de Minérios  
+3.02.03.01-5  Métodos de Concentração e Enriquecimento de Minério s  
+3.02.03.02-3  Equipamentos de Beneficiamento de Minérios   
+3.03.00.00-2  Engenharia de Materiais e Metalúrgica   
+3.03.01.00-9   Instalações e Equipamentos Metalúrgic os   
+3.03.01.01-7  Instalações Metalúrgicas  
+3.03.01.02-5  Equipamentos Metalúrgicos  
+3.03.02.00-5  Metalurgia Extrativa  
+3.03.02.01-3  Aglomeração  
+3.03.02.02-1  Eletrometalurgia  
+3.03.02.03-0  Hidrometalurgia  
+3.03.02.04-8  Pirometalurgia  
+3.03.02.05-6  Tratamento de Minérios  
+3.03.03.00 -1 Metalurgia de Transformação  
+3.03.03.01-0  Conformação Mecânica  
+3.03.03.02-8  Fundição  
+3.03.03.03-6   Metalurgia de Po  
+3.03.03.04-4  Recobrimentos  
+3.03.03.05-2  Soldagem  
+3.03.03.06-0   Tratamento Térmicos, Mecânicos e Quí micos  
+3.03.03.07-9  Usinagem  
+3.03.04.00-8  Metalurgia Fisica  
+3.03.04.01-6   Estrutura dos Metais e Ligas   
+3.03.04.02-4 Propriedades Físicas dos Metais e Ligas  
+3.03.04.03-2 Propriedades Mecânicas dos Metais e Lig as 
+3.03.04.04-0 Transformação de Fases   
+3.03.04.05-9   Corrosão   
+3.03.05.00-4   Materiais não Metálicos   
+3.03.05.01-2 Extração e Transformação de Materiais 
+3.03.05.02-0 Cerâmicos   
+3.03.05.03-9 Materiais Conjugados não Metálicos 
+3.03.05.04-7 Polímeros, Aplicações  
+3.04.00.00-7  Engenharia Elétrica   
+3.04.01.00-3   Materiais Elétricos   
+3.04.01.01-1   Materiais Condutores   
+3.04.01.02-0   Materiais e Componentes Semicondutore s   
+3.04.01.03-8 Materiais e Dispositivos Supercondutore s 3.04.01.04-
+6 Materiais Dielétricos, Piesoelétricos e Ferroelétr icos   
+3.04.01.05-4 Materiais e Componentes Eletroóticos e Magnetoóticos, Materiais Fotoelétricos 
+3.04.01.06-2 Materiais e Dispositivos Magnéticos   
+3.04.02.00-0   Medidas Elétricas, Magnéticas e Eletrô nicas; Instrumentação   
+3.04.02.01-8 Medidas Elétricas 
+3.04.02.02-6 Medidas Magnéticas   
+3.04.02.03-4 Instrumentação Eletromecânica 
+3.04.02.04-2 Instrumentação Eletrônica   
+3.04.02.05-0   Sistemas Eletrônicos de Medida e de C ontrole   
+3.04.03.00-6   Circuitos Elétricos, Magnéticos e Elet rônicos   
+3.04.03.01-4 Teoria Geral dos Circuitos Elétricos 
+3.04.03.02-2 Circuitos Lineares e Não-Lineares 
+3.04.03.03-0 Circuitos Eletrônicos   
+3.04.03.04-9   Circuitos Magnéticos, Magnetismos, El etromagnetismo   
+3.04.04.00-2   Sistemas Elétricos de Potência   
+3.04.04.01-0   Geração da Energia Elétrica   
+3.04.04.02-9   Transmissão da Energia Elétrica, Distr ibuição da Energia Elétrica  3.04.04.03-7   Conversão e Retificação da Energia Elé trica  
+3.04.04.04-5  Medição, Controle, Correção e Proteção de Sistemas Elé tricos de Potência  
+3.04.04.05-3  Máquinas Elétricas e Dispositivos de Potência  
+3.04.04.06-1  Instalações Elétricas Prediais e Industriais  
+3.04.05.00-9  Eletrônica Industrial, Sistemas e Controles Eletrônico s   
+3.04.05.01-7   Eletrônica Industrial   
+3.04.05.02-5 Automação Eletrônica de Processos Elétrico s e Industriais 
+3.04.05.03-3 Controle de Processos Eletrônicos, Retr oalimentação   
+3.04.06.00-5   Telecomunicações   
+3.04.06.01-3 Teoria Eletromagnética, Microondas, Prop agação de Ondas, Antenas 
+3.04.06.02-1 Radionavegação e Radioastronomia   
+3.04.06.03-0   Sistemas de Telecomunicações   
+3.05.00.00-1  Engenharia Mecânica   
+3.05.01.00-8   Fenômenos de Transporte   
+3.05.01.01-6 Transferência de Calor 
+3.05.01.02-4 Mecânica dos Fluidos 
+3.05.01.03-2 Dinâmica dos Gases   
+3.05.01.04-0   Principios Variacionais e Métodos Num éricos   
+3.05.02.00-4   Engenharia Térmica   
+3.05.02.01-2 Termodinâmica 3.05.02.02-0 
+Controle Ambiental 3.05.02.03-9 
+Aproveitamento da Energia   
+3.05.03.00-0   Mecânica dos Sólidos   
+3.05.03.01-9 Mecânica dos Corpos Sólidos, Elásticos e  Plásticos 
+3.05.03.02-7 Dinâmica dos Corpos Rígidos, Elásticos e Plásticos 
+3.05.03.03-5 Análise de Tensões   
+3.05.03.04-3   Termoelasticidade   
+3.05.04.00-7   Projetos de Máquinas   
+3.05.04.01-5 Teoria dos Mecanismos 
+3.05.04.02-3 Estática e Dinâmica Aplicada 
+3.05.04.03-1 Elementos de Máquinas   
+3.05.04.04-0 Fundamentos Gerais de Projetos das Máqu inas 
+3.05.04.05-8 Máquinas, Motores e Equipamentos   
+3.05.04.06-6 Métodos de Síntese e Otimização Aplicado s ao Projeto Mecânico 
+3.05.04.07-4 Controle de Sistemas Mecânicos   
+3.05.04.08-2   Aproveitamento de Energia   
+3.05.05.00-3   Processos de Fabricação   
+3.05.05.01-1   Matrizes e Ferramentas   
+3.05.05.02-0 Máquinas de Usinagem e Conformação 
+3.05.05.03-8 Controle Numérico   
+3.05.05.04-6   Robotização   
+3.05.05.05-4   Processos de Fabricação, Seleção Econô mica   
+3.06.00.00-6  Engenharia Química   
+3.06.01.00-2   Processos Industriais de Engenharia Qu ímica   
+3.06.01.01-0   Processos Bioquimicos   
+3.06.01.02-9   Processos Orgânicos   
+3.06.01.03-7   Processos Inorgânicos   
+3.06.02.00-9   Operações Industriais e Equipamentos para Engenharia Química   
+3.06.02.01-7   Reatores Químicos   
+3.06.02.02-5 Operações Características de Processos Bioquímicos 
+3.06.02.03-3 Operações de Separação e Mistura   
+3.06.03.00-5   Tecnologia Química   
+3.06.03.01-3 Balancos Globais de Matéria e Energia 
+3.06.03.02-1 Água   
+3.06.03.03-0 Álcool 
+3.06.03.04-8 Alimentos 
+3.06.03.05-6 Borrachas 
+3.06.03.06-4 Carvão 
+3.06.03.07-2 Cerâmica 
+3.06.03.08-0 Cimento 
+3.06.03.09-9 Couro 
+3.06.03.10-2 Detergentes  3.06.03.11-0  Fertilizantes  
+3.06.03.12-9  Medicamentos  
+3.06.03.13-7  Metais não-Ferrosos  
+3.06.03.14-5  Óleos  
+3.06.03.15-3  Papel e Celulose  
+3.06.03.16-1  Petróleo e Petroquímica  
+3.06.03.17-0  Polímeros  
+3.06.03.18-8  Produtos Naturais  
+3.06.03.19-6  Têxteis   
+3.06.03.20-0 Tratamentos e Aproveitamento de Rejeito s 
+3.06.03.21-8 Xisto  
+3.07.00.00-0  Engenharia Sanitária   
+3.07.01.00-7   Recursos Hídricos   
+3.07.01.01-5 Planejamento Integrado dos Recursos Híd ricos 
+3.07.01.02-3 Tecnologia e Problemas Sanitários de Ir rigação 
+3.07.01.03-1 Águas Subterrâneas e Poços Profundos 
+3.07.01.04-0 Controle de Enchentes e de Barragens 
+3.07.01.05-8 Sedimentologia   
+3.07.02.00-3   Tratamento de Águas de Abastecimento  e Residuárias   
+3.07.02.01-1   Química Sanitária   
+3.07.02.02-0 Processos Simplificados de Tratamento de  Águas 
+3.07.02.03-8 Técnicas Convencionais de Tratamento d e Águas 
+3.07.02.04-6 Técnicas Avancadas de Tratamento de Águ as 
+3.07.02.05-4 Estudos e Caracterização de Efluentes I ndustriais 
+3.07.02.06-2 Lay Out de Processos Industriais   
+3.07.02.07-0   Resíduos Radioativos   
+3.07.03.00-0   Saneamento Básico   
+3.07.03.01-8 Técnicas de Abastecimento da Água 
+3.07.03.02-6 Drenagem de Águas Residuárias 3.07.03.0 3-
+4 Drenagem Urbana de Águas Pluviais 3.07.03.04-2 
+Resíduos Sólidos, Domésticos e Industriais 3.07.03. 05-0 
+Limpeza Pública   
+3.07.03.06-9   Instalações Hidráulico-Sanitárias   
+3.07.04.00-6   Saneamento Ambiental   
+3.07.04.01-4 Ecologia Aplicada à Engenharia Sanitária  
+3.07.04.02-2 Microbiologia Aplicada e Engenharia Sani tária 
+3.07.04.03-0 Parasitologia Aplicada à Engenharia Sani tária 
+3.07.04.04-9 Qualidade do Ar, das Águas e do Solo 
+3.07.04.05-7 Controle da Poluição   
+3.07.04.06-5   Legislação Ambiental   
+3.08.00.00-5  Engenharia de Produção   
+3.08.01.00-1   Gerência de Produção   
+3.08.01.01-0   Planejamento de Instalações Industri ais   
+3.08.01.02-8 Planejamento, Projeto e Controle de Sist emas de Produção 
+3.08.01.03-6 Higiene e Segurança do Trabalho   
+3.08.01.04-4   Suprimentos   
+3.08.01.05-2   Garantia de Controle de Qualidade   
+3.08.02.00-8   Pesquisa Operacional   
+3.08.02.01-6 Processos Estocásticos e Teorias da Fil as 
+3.08.02.02-4 Programação Linear, Não-Linear, Mista e  Dinâmica 
+3.08.02.03-2 Séries Temporais   
+3.08.02.04-0 Teoria dos Grafos 
+3.08.02.05-9 Teoria dos Jogos   
+3.08.03.00-4   Engenharia do Produto   
+3.08.03.01-2   Ergonomia   
+3.08.03.02-0 Metodologia de Projeto do Produto 
+3.08.03.03-9 Processos de Trabalho 3.08.03.04-7 
+Gerência do Projeto e do Produto 3.08.03.05-5 
+Desenvolvimento de Produto   
+3.08.04.00-0   Engenharia Econômica   
+3.08.04.01-9 Estudo de Mercado 
+3.08.04.02-7 Localização Industrial  3.08.04.03-5 Análise de Custos 
+3.08.04.04-3 Economia de Tecnologia   
+3.08.04.05-1 Vida Econômica dos Equipamentos 
+3.08.04.06-0 Avaliação de Projetos  
+3.09.00.00-0  Engenharia Nuclear   
+3.09.01.00-6   Aplicações de Radioisotopos   
+3.09.01.01-4 Produção de Radioisotopos 3.09.01.02-2 
+Aplicações Industriais de Radioisotopos   
+3.09.01.03-0   Instrumentação para Medida e Control e de Radiação   
+3.09.02.00-2   Fusão Controlada   
+3.09.02.01-0 Processos Industriais da Fusão Controla da 
+3.09.02.02-9 Problemas Tecnológicos da Fusão Control ada   
+3.09.03.00-9   Combustível Nuclear   
+3.09.03.01-7   Extração de Combustível Nuclear   
+3.09.03.02-5 Conversão, Enriquecimento e Fabricação de Combustível Nuclear 
+3.09.03.03-3 Reprocessamento de Combustível Nuclear   
+3.09.03.04-1   Rejeitos de Combustível Nuclear   
+3.09.04.00-5   Tecnologia dos Reatores   
+3.09.04.01-3   Núcleo do Reator   
+3.09.04.02-1 Materiais Nucleares e Blindagem de Rea tores 
+3.09.04.03-0 Transferência de Calor em Reatores   
+3.09.04.04-8 Geração e Integração Com Sistemas Elétr icos em Reatores 
+3.09.04.05-6 Instrumentação Para Operação e Controle  de Reatores 
+3.09.04.06-4 Seguranca, Localização e Licênciamento de Reatores 
+3.09.04.07-2 Aspectos Econômicos de Reatores  
+3.10.00.00-2  Engenharia de Transportes   
+3.10.01.00-9   Planejamento de Transportes   
+3.10.01.01-7 Planejamento e Organização do Sistema de  Transporte 
+3.10.01.02-5 Economia dos Transportes   
+3.10.02.00-5   Veículos e Equipamentos de Controle   
+3.10.02.01-3 Vias de Transporte 
+3.10.02.02-1 Veículos de Transportes 
+3.10.02.03-0 Estação de Transporte   
+3.10.02.04-8   Equipamentos Auxiliares e Controles   
+3.10.03.00-1   Operações de Transportes   
+3.10.03.01-0 Engenharia de Tráfego 3.10.03.02-8 
+Capacidade de Vias de Transporte   
+3.10.03.03-6   Operação de Sistemas de Transporte   
+3.11.00.00-7  Engenharia Naval e Oceânica   
+3.11.01.00-3   Hidrodinâmica de Navios e Sistemas O ceânicos   
+3.11.01.01-1 Resistência Hidrodinâmica 
+3.11.01.02-0 Propulsão de Navios   
+3.11.02.00-0   Estruturas Navais e Oceânicas   
+3.11.02.01-8 Análise Teórica e Experimental de Estrut ura 
+3.11.02.02-6 Dinâmica Estrutural Naval e Oceânica 
+3.11.02.03-4 Síntese Estrutural Naval e Oceânica   
+3.11.03.00-6   Máquinas Marítimas   
+3.11.03.01-4   Análise de Sistemas Propulsores   
+3.11.03.02-2 Controle e Automação de Sistemas Propuls ores 
+3.11.03.03-0 Equipamentos Auxiliares do Sistema Propuls ivo 
+3.11.03.04-9 Motor de Propulsão   
+3.11.04.00-2   Projeto de Navios e de Sistemas Oceâni cos   
+3.11.04.01-0   Projetos de Navios   
+3.11.04.02-9 Projetos de Sistemas Oceânicos Fixos e Se mi-Fixos 
+3.11.04.03-7 Projetos de Embarcações Não-Convencionai s   
+3.11.05.00-9   Tecnologia de Construção Naval e de Sistemas Oceânicas   
+3.11.05.01-7 Métodos de Fabricação de Navios e Sist emas Oceânicos 
+3.11.05.02-5 Soldagem de Estruturas Navais e Oceânic os 3.11.05.03-3 
+Custos de Construção Naval   
+3.11.05.04-1   Normatização e Certificação de Quali dade de Navios   
+3.12.00.00-1  Engenharia Aeroespacial   
+3.12.01.00-8   Aerodinâmica  3.12.01.01-6   Aerodinâmica de Aeronaves Espaciais   
+3.12.01.02-4   Aerodinâmica dos Processos Geofísicos  e Interplanetarios   
+3.12.02.00-4  Dinâmica de Vôo  
+3.12.02.01-2  Trajetorias e Orbitas  
+3.12.02.02-0  Estabilidade e Controle  
+3.12.03.00 -0 Estruturas Aeroespaciais  
+3.12.03.01-9  Aeroelasticidade  
+3.12.03.02-7  Fadiga  
+3.12.03.03-5   Projeto de Estruturas Aeroespaciais   
+3.12.04.00-7 Materiais e Processos para Engenharia Ae ronáutica e Aeroespacial 
+3.12.05.00-3 Propulsão Aeroespacial   
+3.12.05.01-1 Combustão e Escoamento com Reações Quím icas 
+3.12.05.02-0 Propulsão de Foguetes   
+3.12.05.03-8 Máquinas de Fluxo 
+3.12.05.04-6 Motores Alternativos   
+3.12.06.00-0   Sistemas Aeroespaciais   
+3.12.06.01-8 Aviões 
+3.12.06.02-6 Foguetes 
+3.12.06.03-4 Helicópteros 
+3.12.06.04-2 Hovercraft   
+3.12.06.05-0   Satélites e Outros Dispositivos Aeroe spaciais   
+3.12.06.06-9 Normatização e Certificação de Qualida de de Aeronaves e Componentes 
+3.12.06.07-7 Manutenção de Sistemas Aeroespaciais  
+3.13.00.00-6  Engenharia Biomédica   
+3.13.01.00-2   Bioengenharia   
+3.13.01.01-0 Processamento de Sinais Biológicos 
+3.13.01.02-9 Modelagem de Fenomenos Biológicos 
+3.13.01.03-7 Modelagem de Sistemas Biológicos   
+3.13.02.00-9   Engenharia Médica   
+3.13.02.01-7 Biomateriais e Materiais Biocompatíveis  3.13.02.02-
+5 Transdutores para Aplicações Biomédicas 3.13.02.03- 3 
+Instrumentação Odontológica e Médico-Hospitalar 3.1 3.02.04-1 
+Tecnologia de Próteses   
+4.00.00.00-1 Ciências da Saúde 
+4.01.00.00-6 Medicina   
+4.01.01.00-2  Clínica Médica  
+4.01.01.01-0  Angiologia  
+4.01.01.02-9  Dermatologia  
+4.01.01.03-7   Alergologia e Imunologia Clínica  
+4.01.01.04-5  Cancerologia  
+4.01.01.05-3  Hematologia  
+4.01.01.06-1  Endocrinologia  
+4.01.01.07-0  Neurologia  
+4.01.01.08-8  Pediatria  
+4.01.01.09-6   Doenças Infecciosas e Parasitárias  
+4.01.01.10-0  Cardiologia  
+4.01.01.11-8  Gastroenterologia  
+4.01.01.12-6  Pneumologia  
+4.01.01.13-4  Nefrologia  
+4.01.01.14-2  Reumatologia  
+4.01.01.15-0  Ginecologia e Obstetrícia  
+4.01.01.16-9  Fisiatria  
+4.01.01.17-7  Oftalmologia  
+4.01.01.18-6  Ortopedia   
+4.01.02.00-9  Cirurgia  
+4.01.02.01-7   Cirurgia Plástica e Restauradora  
+4.01.02.02-5  Cirurgia Otorrinolaringológica  
+4.01.02.03-3  Cirurgia Oftalmológica  
+4.01.02.04-1  Cirurgia Cardiovascular  
+4.01.02.05-0  Cirurgia Toráxica  
+4.01.02.06-8  Cirurgia Gastroenterologia  
+4.01.02.07-6  Cirurgia Pediátrica  4.01.02.08-4  Neurocirurgia  
+4.01.02.09-2  Cirurgia Urológica  
+4.01.02.10-6  Cirurgia Proctológica  
+4.01.02.11-4  Cirurgia Ortopédica  
+4.01.02.12-2  Cirurgia Traumatológica  
+4.01.02.13-0  Anestesiologia  
+4.01.02.14-9  Cirurgia Experimental  
+4.01.03.00-5  Saúde Materno-Infantil  
+4.01.04.00-1  Psiquiatria  
+4.01.05.00-8   Anatomia Patológica e Patologia Clínic a  
+4.01.06.00-4  Radiologia Médica  
+4.01.07.00-0   Medicina Legal e Deontologia  
+4.02.00.00-0  Odontologia  
+4.02.01.00 -7 Clínica Odontológica  
+4.02.02.00-3  Cirurgia Buco-Maxilo-Facial  
+4.02.03.00-0  Ortodontia  
+4.02.04.00-6  Odontopediatria  
+4.02.05.00-2  Periodontia  
+4.02.06.00-9  Endodontia  
+4.02.07.00-5  Radiologia Odontológica  
+4.02.08.00-1   Odontologia Social e Preventiva  
+4.02.09.00-8  Materiais Odontológicos  
+4.03.00.00-5  Farmácia  
+4.03.01.00 -1 Farmacotecnia  
+4.03.02.00-8  Farmacognosia  
+4.03.03.00-4  Análise Toxicológica  
+4.03.04.00-0   Análise e Controle e Medicamentos  
+4.03.05.00-7  Bromatologia  
+4.04.00.00-0  Enfermagem  
+4.04.01.00 -6 Enfermagem Médico -Cirúrgica  
+4.04.02.00-2  Enfermagem Obstétrica  
+4.04.03.00-9  Enfermagem Pediátrica  
+4.04.04.00-5  Enfermagem Psiquiátrica  
+4.04.05.00-1   Enfermagem de Doenças Contagiosas  
+4.04.06.00-8   Enfermagem de Saúde Pública  
+4.05.00.00-4  Nutrição  
+4.05.01.00 -0 Bioquímica da Nutrição  
+4.05.02.00-7  Dietética  
+4.05.03.00-3   Análise Nutricional de População  
+4.05.04.00-0   Desnutrição e Desenvolvimento Fisiol ógico  
+4.06.00.00-9  Saúde Coletiva  
+4.06.01.00 -5 Epidemiologia  
+4.06.02.00-1  Saúde Publica  
+4.06.03.00-8  Medicina Preventiva  
+4.07.00.00-3  Fonoaudiologia  
+4.08.00.00-8  Fisioterapia e Terapia Ocupacional  
+4.09.00.00-2  Educação Física  
+5.00.00.00-4  Ciências Agrárias  
+5.01.00.00 -9 Agronomia  
+5.01.01.00 -5 Ciência do Solo   
+5.01.01.01-3   Genese, Morfologia e Classificação d os Solos   
+5.01.01.02-1  Física do Solo  
+5.01.01.03-0  Química do Solo   
+5.01.01.04-8  Microbiologia e Bioquímica do Solo  
+5.01.01.05-6  Fertilidade do Solo e Adubação  
+5.01.01.06-4  Manejo e Conservação do Solo   
+5.01.02.00-1  Fitossanidade  
+5.01.02.01-0  Fitopatologia  
+5.01.02.02-8  Entomologia Agrícola  
+5.01.02.03-6  Parasitologia Agrícola  
+5.01.02.04-4  Microbiologia Agrícola  
+5.01.02.05-2  Defesa Fitossanitária  5.01.03.00-8   Fitotecnia   
+5.01.03.01-6 Manejo e Tratos Culturais 
+5.01.03.02-4 Mecanização Agrícola   
+5.01.03.03-2 Produção e Beneficiamento de Sementes 
+5.01.03.04-0 Produção de Mudas   
+5.01.03.05-9 Melhoramento Vegetal 
+5.01.03.06-7 Fisiologia de Plantas Cultivadas 
+5.01.03.07-5 Matologia   
+5.01.04.00-4   Floricultura, Parques e Jardins   
+5.01.04.01-2 Floricultura 
+5.01.04.02-0 Parques e Jardins   
+5.01.04.03-9   Arborização de Vias Públicas   
+5.01.05.00-0   Agrometeorologia   
+5.01.06.00-7   Extensão Rural   
+5.02.00.00-3  Recursos Florestais e Engenharia Flor estal   
+5.02.01.00-0   Silvicultura   
+5.02.01.01-8   Dendrologia   
+5.02.01.02-6   Florestamento e Reflorestamento   
+5.02.01.03-4   Genética e Melhoramento Florestal   
+5.02.01.04-2   Sementes Florestais   
+5.02.01.05-0   Nutrição Florestal   
+5.02.01.06-9   Fisiologia Florestal   
+5.02.01.07-7   Solos Florestais   
+5.02.01.08-5   Proteção Florestal   
+5.02.02.00-6   Manejo Florestal   
+5.02.02.01-4   Economia Florestal   
+5.02.02.02-2   Politica e Legislação Florestal   
+5.02.02.03-0   Administração Florestal   
+5.02.02.04-9   Dendrometria e Inventário Florestal   
+5.02.02.05-7   Fotointerpretação Florestal   
+5.02.02.06-5   Ordenamento Florestal   
+5.02.03.00-2   Técnicas e Operações Florestais   
+5.02.03.01-0   Exploração Florestal   
+5.02.03.02-9   Mecanização Florestal   
+5.02.04.00-9   Tecnologia e Utilização de Produtos F lorestais   
+5.02.04.01-7 Anatomia e Identificação de Produtos Flo restais 
+5.02.04.02-5 Propriedades Físico-Mecânicas da Madeir a 
+5.02.04.03-3 Relações Água-Madeira e Secagem 5.02.04 .04-1 
+Tratamento da Madeira   
+5.02.04.05-0 Processamento Mecânico da Madeira 
+5.02.04.06-8 Química da Madeira   
+5.02.04.07-6 Resinas de Madeiras 5.02.04.08-
+4 Tecnologia de Celulose e Papel 5.02.04.09-2 
+Tecnologia de Chapas   
+5.02.05.00-5   Conservação da Natureza   
+5.02.05.01-3   Hidrologia Florestal   
+5.02.05.02-1 Conservação de Áreas Silvestres 
+5.02.05.03-0 Conservação de Bacias Hidrográficas 
+5.02.05.04-8 Recuperação de Áreas Degradadas   
+5.02.06.00-1   Energia de Biomassa Florestal   
+5.03.00.00-8  Engenharia Agrícola   
+5.03.01.00-4 Máquinas e Implementos Agrícolas 
+5.03.02.00-0 Engenharia de Água e Solo   
+5.03.02.01-9 Irrigação e Drenagem 
+5.03.02.02-7 Conservação de Solo e Água   
+5.03.03.00-7   Engenharia de Processamento de Produtos  Agrícolas   
+5.03.03.01-5 Pré-Processamento de Produtos Agrícolas 
+5.03.03.02-3 Armazenamento de Produtos Agrícolas 
+5.03.03.03-1 Transferência de Produtos Agrícolas   
+5.03.04.00-3   Construções Rurais e Ambiência   
+5.03.04.01-1   Assentamento Rural   
+5.03.04.02-0   Engenharia de Construções Rurais  5.03.04.03-8   Saneamento Rural   
+5.03.05.00-0   Energização Rural   
+5.04.00.00-2  Zootecnia   
+5.04.01.00-9 Ecologia dos Animais Domésticos e Etolog ia 
+5.04.02.00-5 Genética e Melhoramento dos Animais Do mésticos 
+5.04.03.00-1 Nutrição e Alimentação Animal   
+5.04.03.01-0 Exigências Nutricionais dos Animais 
+5.04.03.02-8 Avaliação de Alimentos para Animais 
+5.04.03.03-6 Conservação de Alimentos para Animais   
+5.04.04.00-8   Pastagem e Forragicultura   
+5.04.04.01-6 Avaliação, Produção e Conservação de For ragens 
+5.04.04.02-4 Manejo e Conservação de Pastagens 5.04. 04.03-2 
+Fisiologia de Plantas Forrageiras   
+5.04.04.04-0 Melhoramento de Plantas Forrageiras e Pr odução de Sementes 
+5.04.04.05-9 Toxicologia e Plantas Tóxicas   
+5.04.05.00-4   Produção Animal   
+5.04.05.01-2 Criação de Animais 
+5.04.05.02-0 Manejo de Animais   
+5.04.05.03-9   Instalações para Produção Animal   
+5.05.00.00-7  Medicina Veterinária   
+5.05.01.00-3   Clínica e Cirurgia Animal   
+5.05.01.01-1 Anestesiologia Animal 5.05.01.02-0 
+Técnica Cirúrgica Animal 5.05.01.03-8 Radiologia 
+de Animais 5.05.01.04-6 Farmacologia e 
+Terapêutica Animal 5.05.01.05-4 Obstetrícia 
+Animal   
+5.05.01.06-2 Clínica Veterinária 
+5.05.01.07-0 Clínica Cirúrgica Animal 
+5.05.01.08-9 Toxicologia Animal   
+5.05.02.00-0   Medicina Veterinária Preventiva   
+5.05.02.01-8   Epidemiologia Animal   
+5.05.02.02-6 Saneamento Aplicado à Saúde do Homem 
+5.05.02.03-4 Doenças Infecciosas de Animais 5.05.02. 04-
+2 Doenças Parasitárias de Animais 5.05.02.05-0 Saúde 
+Animal (Programas Sanitários)   
+5.05.03.00-6   Patologia Animal   
+5.05.03.01-4   Patologia Aviária   
+5.05.03.02-2   Anatomia Patologia Animal   
+5.05.03.03-0   Patologia Clínica Animal   
+5.05.04.00-2   Reprodução Animal   
+5.05.04.01-0 Ginecologia e Andrologia Animal 
+5.05.04.02-9 Inseminação Artificial Animal 
+5.05.04.03-7 Fisiopatologia da Reprodução Animal   
+5.05.05.00-9   Inspeção de Produtos de Origem Animal   
+5.06.00.00-1  Recursos Pesqueiros e Engenharia de P esca   
+5.06.01.00-8   Recursos Pesqueiros Marinhos   
+5.06.01.01-6   Fatores Abióticos do Mar   
+5.06.01.02-4 Avaliação de Estoques Pesqueiros Marinhos  
+5.06.01.03-2 Exploração Pesqueira Marinha   
+5.06.01.04-0   Manejo e Conservação de Recursos Pes queiros Marinhos   
+5.06.02.00-4   Recursos Pesqueiros de Águas Interior es   
+5.06.02.01-2   Fatores Abióticos de Águas Interiores   
+5.06.02.02-0 Avaliação de Estoques Pesqueiros de Águas  Interiores 
+5.06.02.03-9 Explotação Pesqueira de Águas Interiores   
+5.06.02.04-7   Manejo e Conservação de Recursos Pes queiros de Águas Interiores   
+5.06.03.00-0   Aqüicultura   
+5.06.03.01-9   Maricultura   
+5.06.03.02-7   Carcinocultura   
+5.06.03.03-5   Ostreicultura   
+5.06.03.04-3   Piscicultura   
+5.06.04.00-7   Engenharia de Pesca   
+5.07.00.00-6  Ciência e Tecnologia de Alimentos   5.07.01.00-2   Ciência de Alimentos   
+5.07.01.01-0   Valor Nutritivo de Alimentos   
+5.07.01.02-9 Química, Física, Físico-Química e Bioq uímica dos Alim. e das Mat.-Primas Alimentares 
+5.07.01.03-7 Microbiologia de Alimentos   
+5.07.01.04-5   Fisiologia Pós-Colheita   
+5.07.01.05-3 Toxicidade e Resíduos de Pesticidas em  Alimentos 
+5.07.01.06-1 Avaliação e Controle de Qualidade de Ali mentos 
+5.07.01.07-0 Padrões, Legislação e Fiscalização de Al imentos   
+5.07.02.00-9   Tecnologia de Alimentos   
+5.07.02.01-7 Tecnologia de Produtos de Origem Animal  
+5.07.02.02-5 Tecnologia de Produtos de Origem Vegeta l 
+5.07.02.03-3 Tecnologia das Bebidas   
+5.07.02.04-1 Tecnologia de Alimentos Dietéticos e Nu tricionais 
+5.07.02.05-0 Aproveitamento de Subprodutos   
+5.07.02.06-8   Embalagens de Produtos Alimentares   
+5.07.03.00-5   Engenharia de Alimentos   
+5.07.03.01-3 Instalações Industriais de Produção de Alimentos 
+5.07.03.02-1 Armazenamento de Alimentos  
+6.00.00.00-7  Ciências Sociais Aplicadas   
+6.01.00.00-1  Direito   
+6.01.01.00-8   Teoria do Direito   
+6.01.01.01-6 Teoria Geral do Direito 
+6.01.01.02-4 Teoria Geral do Processo 
+6.01.01.03-2 Teoria do Estado 
+6.01.01.04-0 História do Direito 
+6.01.01.05-9 Filosofia do Direito 
+6.01.01.06-7 Lógica Jurídica 6.01.01.07-
+5 Sociologia Jurídica 6.01.01.08-3 
+Antropologia Jurídica   
+6.01.02.00-4   Direito Público   
+6.01.02.01-2   Direito Tributário   
+6.01.02.02-0   Direito Penal   
+6.01.02.03-9   Direito Processual Penal   
+6.01.02.04-7   Direito Processual Civil   
+6.01.02.05-5   Direito Constitucional   
+6.01.02.06-3   Direito Administrativo   
+6.01.02.07-1   Direito Internacional Público   
+6.01.03.00-0   Direito Privado   
+6.01.03.01-9 Direito Civil 
+6.01.03.02-7 Direito Comercial 
+6.01.03.03-5 Direito do Trabalho   
+6.01.03.04-3   Direito Internacional Privado   
+6.01.04.00-7   Direitos Especiais   
+6.02.00.00-6  Administração   
+6.02.01.00-2   Administração de Empresas   
+6.02.01.01-0 Administração da Produção 
+6.02.01.02-9 Administração Financeira 
+6.02.01.03-7 Mercadologia   
+6.02.01.04-5   Negócios Internacionais   
+6.02.01.05-3   Administração de Recursos Humanos   
+6.02.02.00-9   Administração Pública   
+6.02.02.01-7 Contabilidade e Financas Públicas 
+6.02.02.02-5 Organizações Públicas   
+6.02.02.03-3 Política e Planejamento Governamentais 
+6.02.02.04-1 Administração de Pessoal   
+6.02.03.00-5 Administração de Setores Específicos 
+6.02.04.00-1 Ciências Contábeis  
+6.03.00.00-0  Economia   
+6.03.01.00-7   Teoria Econômica   
+6.03.01.01-5 Economia Geral 6.03.01.02-
+3 Teoria Geral da Economia   
+6.03.01.03-1   História do Pensamento Econômico  6.03.01.04-0   História Econômica   
+6.03.01.05-8   Sistemas Econômicos   
+6.03.02.00-3   Métodos Quantitativos em Economia   
+6.03.02.01-1 Métodos e Modelos Matemáticos, Economé tricos e Estatísticos 
+6.03.02.02-0 Estatística Sócio-Econômica   
+6.03.02.03-8   Contabilidade Nacional   
+6.03.02.04-6   Economia Matemática   
+6.03.03.00-0   Economia Monetária e Fiscal   
+6.03.03.01-8   Teoria Monetária e Financeira   
+6.03.03.02-6 Instituições Monetárias e Financeiras do Brasil 
+6.03.03.03-4 Financas Públicas Internas   
+6.03.03.04-2   Política Fiscal do Brasil   
+6.03.04.00-6   Crescimento, Flutuações e Planejament o Econômico   
+6.03.04.01-4 Crescimento e Desenvolvimento Econômico  
+6.03.04.02-2 Teoria e Política de Planejamento Econôm ico 
+6.03.04.03-0 Flutuações Cíclicas e Projeções Econômic as 
+6.03.04.04-9 Inflação   
+6.03.05.00-2   Economia Internacional   
+6.03.05.01-0   Teoria do Comércio Internacional   
+6.03.05.02-9 Relações do Comércio; Política Comerci al; Integração Econômica 
+6.03.05.03-7 Balanço de Pagamentos; Financas Internac ionais   
+6.03.05.04-5   Investimentos Internacionais e Ajuda  Externa   
+6.03.06.00-9   Economia dos Recursos Humanos   
+6.03.06.01-7 Treinamento e Alocação de Mão-de-Obra;  Oferta de Mão-de-Obra e Força de Trabalho 
+6.03.06.02-5 Mercado de Trabalho; Política do Govern o   
+6.03.06.03-3 Sindicatos, Dissídios Coletivos, Relaçõ es de Emprego (Empregador/Empregado) 
+6.03.06.04-1 Capital Humano   
+6.03.06.05-0   Demografia Econômica   
+6.03.07.00-5   Economia Industrial   
+6.03.07.01-3   Organização Industrial e Estudos Indu striais   
+6.03.07.02-1   Mudança Tecnologica   
+6.03.08.00-1   Economia do Bem-Estar Social   
+6.03.08.01-0 Economia dos Programas de Bem-Estar Social 
+6.03.08.02-8 Economia do Consumidor   
+6.03.09.00-8   Economia Regional e Urbana   
+6.03.09.01-6   Economia Regional   
+6.03.09.02-4   Economia Urbana   
+6.03.09.03-2   Renda e Tributação   
+6.03.10.00-6   Economias Agrária e dos Recursos Nat urais   
+6.03.10.01-4   Economia Agrária   
+6.03.10.02-2   Economia dos Recursos Naturais   
+6.04.00.00-5  Arquitetura e Urbanismo   
+6.04.01.00-1  Fundamentos de Arquitetura e Urbanismo  
+6.04.01.01-0  História da Arquitetura e Urbanismo  
+6.04.01.02-8  Teoria da Arquitetura   
+6.04.01.03-6 História do Urbanismo 
+6.04.01.04-4 Teoria do Urbanismo   
+6.04.02.00-8   Projeto de Arquitetuta e Urbanismo   
+6.04.02.01-6 Planejamento e Projetos da Edificação 
+6.04.02.02-4 Planejamento e Projeto do Espaço Urbano 
+6.04.02.03-2 Planejamento e Projeto do Equipamento   
+6.04.03.00-4   Tecnologia de Arquitetura e Urbanism o   
+6.04.03.01-2   Adequação Ambiental   
+6.04.04.00-0   Paisagismo   
+6.04.04.01-9   Desenvolvimento Histórico do Paisagis mo   
+6.04.04.02-7 Conceituação de Paisagismo e Metodologi a do Paisagismo 
+6.04.04.03-5 Estudos de Organização do Espaço Exterio r   
+6.04.04.04-3   Projetos de Espaços Livres Urbanos   
+6.05.00.00-0  Planejamento Urbano e Regional   
+6.05.01.00-6   Fundamentos do Planejamento Urbano e Regional   
+6.05.01.01-4 Teoria do Planejamento Urbano e Region al 
+6.05.01.02-2 Teoria da Urbanização  6.05.01.03-0  Política Urbana  
+6.05.01.04-9  História Urbana  
+6.05.02.00-2  Métodos e Técnicas do Planejamento Urbano e Regional  
+6.05.02.01-0  Informação, Cadastro e Mapeamento   
+6.05.02.02-9 Técnica de Previsão Urbana e Regional 6 .05.02.03-7 
+Técnicas de Análise e Avaliação Urbana e Regional   
+6.05.02.04-5   Técnicas de Planejamento e Projeto Urb anos e Regionais   
+6.05.03.00-9   Serviços Urbanos e Regionais   
+6.05.03.01-7 Administração Municipal e Urbana 
+6.05.03.02-5 Estudos da Habitação   
+6.05.03.03-3 Aspectos Sociais do Planejamento Urbano e  Regional 6.05.03.04-
+1 Aspectos Econômicos do Planejamento Urbano e Regio nal 6.05.03.05-0 
+Aspectos Físico-Ambientais do Planejamento Urbano e Re gional 6.05.03.06-8 
+Serviços Comunitários   
+6.05.03.07-6 Infra-Estruturas Urbanas e Regionais 
+6.05.03.08-4 Transporte e Tráfego Urbano e Regional  
+6.05.03.09-2 Legislação Urbana e Regional  
+6.06.00.00-4  Demografia   
+6.06.01.00-0  Distribuição Espacial  
+6.06.01.01-9  Distribuição Espacial Geral  
+6.06.01.02-7  Distribuição Espacial Urbana  
+6.06.01.03-5  Distribuição Espacial Rural   
+6.06.02.00-7  Tendência Populacional  
+6.06.02.01-5  Tendências Passadas  
+6.06.02.02-3  Taxas e Estimativas Correntes  
+6.06.02.03-1  Projeções   
+6.06.03.00-3   Componentes da Dinâmica Demográfica   
+6.06.03.01-1  Fecundidade  
+6.06.03.02-0  Mortalidade  
+6.06.03.03-8  Migração  
+6.06.04.00-0  Nupcialidade e Família  
+6.06.04.01-8  Casamento e Divórcio  
+6.06.04.02-6  Família e Reprodução  
+6.06.05.00-6  Demografia Histórica  
+6.06.05.01-4  Distribuição Espacial  
+6.06.05.02-2  Natalidade, Mortalidade, Migração  
+6.06.05.03-0  Nupcialidade e Família   
+6.06.05.04-9   Métodos e Técnicas de Demografia His tórica   
+6.06.06.00-2   Política Pública e População   
+6.06.06.01-0   Política Populacional   
+6.06.06.02-9 Políticas de Redistribuição de População  
+6.06.06.03-7 Políticas de Planejamento Familiar   
+6.06.07.00-9   Fontes de Dados Demográficos   
+6.07.00.00-9  Ciência da Informação   
+6.07.01.00-5   Teoria da Informação   
+6.07.01.01-3 Teoria Geral da Informação 
+6.07.01.02-1 Processos da Comunicação 
+6.07.01.03-0 Representação da Informação   
+6.07.02.00-1   Biblioteconomia   
+6.07.02.01-0 Teoria da Classificação 6.07.02.02-8 
+Métodos Quantitativos. Bibliometria   
+6.07.02.03-6 Técnicas de Recuperação de Informação 
+6.07.02.04-4 Processos de Disseminação da Informação   
+6.07.03.00-8   Arquivologia   
+6.07.03.01-6   Organização de Arquivos   
+6.08.00.00-3  Museologia   
+6.09.00.00-8  Comunicação   
+6.09.01.00-4 Teoria da Comunicação 
+6.09.02.00-0 Jornalismo e Editoração   
+6.09.02.01-9 Teoria e Ética do Jornalismo 
+6.09.02.02-7 Organização Editorial de Jornais 
+6.09.02.03-5 Organização Comercial de Jornais  6.09.02.04-3   Jornalismo Especializado (Comunitário , Rural, Empresarial, Científico)   
+6.09.03.00-7   Rádio e Televisão   
+6.09.03.01-5   Radiodifusão   
+6.09.03.02-3   Videodifusão   
+6.09.04.00-3   Relações Públicas e Propaganda   
+6.09.05.00-0   Comunicação Visual   
+6.10.00.00-0  Serviço Social   
+6.10.01.00-7 Fundamentos do Serviço Social 
+6.10.02.00-3 Serviço Social Aplicado   
+6.10.02.01-1 Serviço Social do Trabalho 
+6.10.02.02-0 Serviço Social da Educação 
+6.10.02.03-8 Serviço Social do Menor 
+6.10.02.04-6 Serviço Social da Saúde 
+6.10.02.05-4 Serviço Social da Habitação   
+6.11.00.00-5  Economia Doméstica   
+6.12.00.00-0  Desenho Industrial   
+6.12.01.00-6 Programação Visual 
+6.12.02.00-2 Desenho de Produto  
+6.13.00.00-4  Turismo   
+7.00.00.00-0  Ciências Humanas   
+7.01.00.00-4  Filosofia   
+7.01.01.00-0 História da Filosofia 
+7.01.02.00-7 Metafísica 7.01.03.00-
+3 Lógica   
+7.01.04.00-0 Ética 7.01.05.00-
+6 Epistemologia   
+7.01.06.00-2   Filosofia Brasileira   
+7.02.00.00-9  Sociologia   
+7.02.01.00-5   Fundamentos da Sociologia   
+7.02.01.01-3 Teoria Sociológica 
+7.02.01.02-1 História da Sociologia   
+7.02.02.00-1 Sociologia do Conhecimento 
+7.02.03.00-8 Sociologia do Desenvolvimento 
+7.02.04.00-4 Sociologia Urbana   
+7.02.05.00-0 Sociologia Rural 
+7.02.06.00-7 Sociologia da Saúde   
+7.02.07.00-3   Outras Sociologias Específicas   
+7.03.00.00-3  Antropologia   
+7.03.01.00-0 Teoria Antropológica 
+7.03.02.00-6 Etnologia Indígena 
+7.03.03.00-2 Antropologia Urbana 
+7.03.04.00-9 Antropologia Rural   
+7.03.05.00-5   Antropologia das Populações Afro-Bras ileiras   
+7.04.00.00-8  Arqueologia   
+7.04.01.00-4 Teoria e Método em Arqueologia 
+7.04.02.00-0 Arqueologia Pré-Histórica 
+7.04.03.00-7 Arqueologia Histórica  
+7.05.00.00-2  História   
+7.05.01.00-9 Teoria e Filosofia da História 
+7.05.02.00-5 História Antiga e Medieval 7.05.03.00-
+1 História Moderna e Contemporânea 7.05.04.00-8 
+História da América   
+7.05.04.01-6 História dos Estados Unidos 
+7.05.04.02-4 História Latino-Americana   
+7.05.05.00-4   História do Brasil   
+7.05.05.01-2 História do Brasil Colônia 
+7.05.05.02-0 História do Brasil Império 
+7.05.05.03-9 História do Brasil República 
+7.05.05.04-7 História Regional do Brasil   
+7.05.06.00-0   História das Ciências   
+7.06.00.00-7  Geografia   
+7.06.01.00-3   Geografia Humana  7.06.01.01-1 Geografia da População 
+7.06.01.02-0 Geografia Agrária 
+7.06.01.03-8 Geografia Urbana 
+7.06.01.04-6 Geografia Econômica 
+7.06.01.05-4 Geografia Política   
+7.06.02.00-0   Geografia Regional   
+7.06.02.01-8 Teoria do Desenvolvimento Regional 
+7.06.02.02-6 Regionalização   
+7.06.02.03-4   Análise Regional   
+7.07.00.00-1  Psicologia   
+7.07.01.00-8   Fundamentos e Medidas da Psicologia   
+7.07.01.01-6   História, Teorias e Sistemas em Psicol ogia   
+7.07.01.02-4   Metodologia, Instrumentação e Equipam ento em Psicologia   
+7.07.01.03-2 Construção e Validade de Testes, Escalas  e Outras Medidas Psicológicas 7.07.01.04-0 
+Técnicas de Processamento Estatístico, Matemático e Computacional em Psicologia   
+7.07.02.00-4   Psicologia Experimental   
+7.07.02.01-2   Processos Perceptuais e Motores   
+7.07.02.02-0 Processos de Aprendizagem, Memória e Mot ivação 
+7.07.02.03-9 Processos Cognitivos e Atencionais   
+7.07.02.04-7   Estados Subjetivos e Emoção   
+7.07.03.00-0   Psicologia Fisiológica   
+7.07.03.01-9 Neurologia, Eletrofisiologia e Comporta mento 
+7.07.03.02-7 Processos Psico-Fisiológicos   
+7.07.03.03-5 Estimulação Elétrica e com Drogas; Compo rtamento 
+7.07.03.04-3 Psicobiologia   
+7.07.04.00-7   Psicologia Comparativa   
+7.07.04.01-5 Estudos Naturalísticos do Comportamento  Animal 
+7.07.04.02-3 Mecanismos Instintivos e Processos Socia is em Animais   
+7.07.05.00-3   Psicologia Social   
+7.07.05.01-1   Relações Interpessoais   
+7.07.05.02-0 Processos Grupais e de Comunicação 
+7.07.05.03-8 Papéis e Estruturas Sociais; Indivíduo   
+7.07.06.00-0   Psicologia Cognitiva   
+7.07.07.00-6   Psicologia do Desenvolvimento Humano   
+7.07.07.01-4 Processos Perceptuais e Cognitivos; Dese nvolvimento 
+7.07.07.02-2 Desenvolvimento Social e da Personalidad e  
+7.07.08.00-2   Psicologia do Ensino e da Aprendizage m   
+7.07.08.01-0 Planejamento Institucional 7.07.08.02-9  
+Programação de Condições de Ensino 7.07.08.03-7 
+Treinamento de Pessoal   
+7.07.08.04-5 Aprendizagem e Desempenho Acadêmicos 
+7.07.08.05-3 Ensino e Aprendizagem na Sala de Aula   
+7.07.09.00-9   Psicologia do Trabalho e Organizacio nal   
+7.07.09.01-7   Análise Institucional   
+7.07.09.02-5 Recrutamento e Seleção de Pessoal 
+7.07.09.03-3 Treinamento e Avaliação 7.07.09.04-1 
+Fatores Humanos no Trabalho   
+7.07.09.05-0   Planejamento Ambiental e Comportamen to Humano   
+7.07.10.00-7   Tratamento e Prevenção Psicológica   
+7.07.10.01-5   Intervenção Terapêutica   
+7.07.10.02-3 Programas de Atendimento Comunitário 
+7.07.10.03-1 Treinamento e Reabilitação 7.07.10.04- 0 
+Desvios da Conduta   
+7.07.10.05-8 Distúrbios da Linguagem 
+7.07.10.06-6 Distúrbios Psicossomáticos  
+7.08.00.00-6  Educação   
+7.08.01.00-2   Fundamentos da Educação   
+7.08.01.01-0 Filosofia da Educação 
+7.08.01.02-9 História da Educação 
+7.08.01.03-7 Sociologia da Educação 
+7.08.01.04-5 Antropologia Educacional 
+7.08.01.05-3 Economia da Educação  7.08.01.06-1   Psicologia Educacional   
+7.08.02.00-9   Administração Educacional   
+7.08.02.01-7 Administração de Sistemas Educacionais 
+7.08.02.02-5 Administração de Unidades Educativas   
+7.08.03.00-5   Planejamento e Avaliação Educacional   
+7.08.03.01-3 Política Educacional 
+7.08.03.02-1 Planejamento Educacional   
+7.08.03.03-0   Avaliação de Sistemas, Instituições, Pl anos e Programas Educacionais   
+7.08.04.00-1   Ensino-Aprendizagem   
+7.08.04.01-0  Teorias da Instrução  
+7.08.04.02-8   Métodos e Técnicas de Ensino  
+7.08.04.03-6  Tecnologia Educacional  
+7.08.04.04-4  Avaliação da Aprendizagem  
+7.08.05.00 -8 Currículo   
+7.08.05.01-6 Teoria Geral de Planejamento e Desenvol vimento Curricular 
+7.08.05.02-4 Currículos Específicos para Níveis e T ipos de Educação   
+7.08.06.00-4  Orientação e Aconselhamento  
+7.08.06.01-2  Orientação Educacional  
+7.08.06.02-0  Orientação Vocacional   
+7.08.07.00-0   Tópicos Específicos de Educação   
+7.08.07.01-9  Educação de Adultos  
+7.08.07.02-7  Educação Permanente  
+7.08.07.03-5  Educação Rural   
+7.08.07.04-3  Educação em Periferias Urbanas  
+7.08.07.05-1  Educação Especial  
+7.08.07.06-0  Educação Pré-Escolar  
+7.08.07.07-8  Ensino Profissionalizante   
+7.09.00.00-0  Ciência Política   
+7.09.01.00-7  Teoria Política  
+7.09.01.01-5  Teoria Política Clássica  
+7.09.01.02-3  Teoria Política Medieval  
+7.09.01.03-1  Teoria Política Moderna  
+7.09.01.04-0  Teoria Política Contemporânea   
+7.09.02.00-3   Estado e Governo   
+7.09.02.01-1 Estrutura e Transformação do Estado 
+7.09.02.02-0 Sistemas Governamentais Comparados 
+7.09.02.03-8 Relações Intergovernamentais 
+7.09.02.04-6 Estudos do Poder Local   
+7.09.02.05-4   Instituições Governamentais Específi cas   
+7.09.03.00-0   Comportamento Político   
+7.09.03.01-8 Estudos Eleitorais e Partidos Políticos 
+7.09.03.02-6 Atitude e Ideologias Políticas 7.09.03.0 3-
+4 Conflitos e Coalizões Políticas 7.09.03.04-2 
+Comportamento Legislativo 7.09.03.05-0 Classes 
+Sociais e Grupos de Interesse   
+7.09.04.00-6   Políticas Públicas   
+7.09.04.01-4 Análise do Processo Decisório 
+7.09.04.02-2 Análise Institucional 7.09.04.03-
+0 Técnicas de Antecipação   
+7.09.05.00-2   Política Internacional   
+7.09.05.01-0 Política Externa do Brasil 
+7.09.05.02-9 Organizações Internacionais   
+7.09.05.03-7 Integração Internacional, Conflito, Gu erra e Paz 
+7.09.05.04-5 Relações Internacionais, Bilaterais e M ultilaterais  
+7.10.00.00-3  Teologia   
+7.10.01.00-0 História da Teologia 
+7.10.02.00-6 Teologia Moral 
+7.10.03.00-2 Teologia Sistemática 
+7.10.04.00-9 Teologia Pastoral  
+8.00.00.00-2  Lingüística, Letras e Artes   
+8.01.00.00-7  Lingüística   
+8.01.01.00-3   Teoria e Análise Lingüística  8.01.02.00-0   Fisiologia da Linguagem   
+8.01.03.00 -6 Lingüística Histórica  
+8.01.04.00-2  Sociolingüística e Dialetologia  
+8.01.05.00-9  Psicolingüística  
+8.01.06.00-5  Lingüística Aplicada  
+8.02.00.00-1  Letras  
+8.02.01.00 -8 Língua Portuguesa  
+8.02.02.00-4  Línguas Estrangeiras Modernas  
+8.02.03.00-0  Línguas Clássicas  
+8.02.04.00-7  Línguas Indígenas  
+8.02.05.00-3  Teoria Literária  
+8.02.06.00-0  Literatura Brasileira  
+8.02.07.00-6  Outras Literaturas Vernáculas  
+8.02.08.00-2   Literaturas Estrangeiras Modernas  
+8.02.09.00 -9 Literaturas Clássicas  
+8.02.10.00-7  Literatura Comparada  
+8.03.00.00-6  Artes  
+8.03.01.00-2   Fundamentos e Crítica das Artes  
+8.03.01.01-0  Teoria da Arte  
+8.03.01.02-9  História da Arte  
+8.03.01.03-7  Crítica da Arte  
+8.03.02.00-9  Artes Plásticas  
+8.03.02.01-7  Pintura  
+8.03.02.02-5  Desenho  
+8.03.02.03-3  Gravura  
+8.03.02.04-1  Escultura  
+8.03.02.05-0  Cerâmica  
+8.03.02.06-8  Tecelagem  
+8.03.03.00-5  Música  
+8.03.03.01-3  Regência  
+8.03.03.02-1  Instrumentação Musical  
+8.03.03.03-0  Composição Musical  
+8.03.03.04-8  Canto  
+8.03.04.00-1  Dança  
+8.03.04.01-0  Execução da Dança  
+8.03.04.02-8  Coreografia  
+8.03.05.00-8  Teatro  
+8.03.05.01-6  Dramaturgia  
+8.03.05.02-4  Direção Teatral  
+8.03.05.03-2  Cenografia  
+8.03.05.04-0  Interpretação Teatral  
+8.03.06.00-4  Ópera  
+8.03.07.00-0  Fotografia  
+8.03.08.00-7  Cinema  
+8.03.08.01-5   Administração e Produção de Filmes   
+8.03.08.02-3   Roteiro e Direção 
+Cinematográficos   
+8.03.08.03-1  Técnicas de Registro e Processamento de Filmes  
+8.03.08.04-0   Interpretação Cinematográfica  
+8.03.09.00-3   Artes do Vídeo  
+8.03.10.00-1   Educação Artística  
+ 
