@@ -3,30 +3,18 @@ Na camada base inferior do HTML temos "GP01 PESQUISAR" contendo os processos: [M
 Na camada intermediária do HTML temos "GP02 DESENVOLVER" contendo os processos: [Delimitar Escopos, Implementar Gerenciamentos, Estruturar Plataformas]; 
 Na camada superior topo do HTML temos "GP03 INOVAR" contendo os processos: [Desenvolver Tecnologias, Gerar Negócios, Avaliar Impactos];
 Por sua vez cada uma dessas três camadas de Grupos de Processsos se divide em mais 03 camadas que representam  Processos.
-GP01 PESQUISAR se divide em três processos representados por entidade heterogêneas e suas relações:
-  P001: Mapear Necessidades [Dores, Desejos, Desafios)]; 
-  P002: Organizar Conhecimentos [Temas, Tópicos, Assuntos]; 
-  P003: Analisar Competências, contendo as entidades: [Atitudes, Experiências, Habilidades]; 
-GP02 DESENVOLVER se divide em: 
-  P004: Delimitar Escopos [Papeis, Tempo, Orçamentos];
-  P005: Implementar Gerenciamentos [Projetos, Processos, Programas]; 
-  P006: Estruturar Plataformas [Ensaios, Equipamentos, Ambientes];
-GP03 Inovar se divide em:
-  P007: Desenvolver Tecnologias [Aplicação, Solução, Produto/Serviço]; 
-  P008: Gerar Negócios [Modelos, Protótipos, Empreendimentos]; 
-  P009: Avaliar Impactos [Indicadores, Evidências, Mensuração]; 
-A lógica que organiza a precedência entre nós que representam as entidades é a lógica de causa e consequência se dá partindo da base inferior onde devem ser explicitadas as necessidades a ser atendidas e vai subindo mediante o avanço das pesquisas até chegar a camada superior com a predição de impactos desejados e a efetiva medição de impactos realizados. 
-Por exemplo, neste caso do programa de pesquisa onde tratamos da necessidades de alinhar pesquisas e desenvolvimento em imunologia, imunopatologia, bioprospecção, química medicinal, nanotecnologia, dinâmica molecular, aplicadas às plataformas, produtos e serviços priorizados na Matriz do CEIS, devemos ter uma forma de avaliar continuamente mediante a evolução das várias pesquisas quais são os melhore candidatos e quais as melhores rotas tecnológicas a adotar para prosseguir, sempre baseando em dados ojetivos dos ensaios realizados, seguindo sucessivamente a cada subcamada e camadas até chegar aos níveis superiores. Compondo um processo de acúmulo de dados científicos que respaldam a pesquisa como um todo, mediante à contribuição para responder as questões científicas a cada etapa, que são respondidas pela avaliação comparativa dos dados dos ensaios usando técnicas da análise de redes complexas a cada fase da pesquisas, mantendo o grafo como a visão sistêmica de ponta a ponta. Considerando a pesquisa descrita nas perguntas acima forneça uma lista de técnicas, e para cada técnica uma lista de ensaios necessários para gerar os dados necessários para tomada de decisão a cada etapa da pesquisa completa, na perspectiva da Pesquisa Translacional, detalhando pela fase In-Silico, incluindo análises de Dinâmica Molecular, e as demais abordagens já tratadas nas perguntas e respostas anteriores desta conversa, estabeleça para cada fase de decisão as opções entre as diversas técnicas do estado da arte atual e dentro de cada técnica as opções de ensaios diferentes que devem se complementar para responder as questões da pesquisa científica a cada fase.
 Então de baixo para cima no HTML temos que renderizar o grafo segmentando comunidades e/ou entidades nas seguintes camadas, organizadas visualmente de cima para baixo assim:
 GP03 Inovar se divide em:
-  P009: Avaliar Impactos [Indicadores, Evidências, Mensuração];
-  P008: Gerar Negócios [Modelos, Protótipos, Empreendimentos]; 
+  {"id": "P009"}, {"nome": "Avaliar Impactos"}, {"entidades": ["Mensuração", "Indicadores", "Evidências"]};
+  "P008": "Gerar Negócios", [Modelos, Protótipos, Empreendimentos]; 
   P007: Desenvolver Tecnologias [Aplicação, Solução, Produto/Serviço]; 
 GP02 DESENVOLVER se divide em: 
   P006: Estruturar Plataformas [Ensaios, Equipamentos, Ambientes];
-  P005: Implementar Gerenciamentos [Projetos, Processos, Programas]; 
+  P005: Implementar Gerenciamentos [Processos, Projetos, Programas]; 
   P004: Delimitar Escopos [Papeis, Tempo, Orçamentos];
 GP01 PESQUISAR se divide em três processos representados por entidade heterogêneas e suas relações:
   P003: Analisar Competências, contendo as entidades: [Atitudes, Experiências, Habilidades];  
   P002: Organizar Conhecimentos [Temas, Tópicos, Assuntos]; 
   P001: Mapear Necessidades [Dores, Desejos, Desafios]; 
+A lógica que organiza a precedência entre nós que representam as entidades é a lógica de causa e consequência se dá partindo da base inferior onde devem ser explicitadas as necessidades a ser atendidas e vai subindo mediante o avanço das pesquisas até chegar a camada superior com a predição de impactos desejados e a efetiva medição de impactos realizados. 
+Por exemplo, neste caso do programa de pesquisa onde tratamos da necessidades de alinhar pesquisas e desenvolvimento em saúde aplicadas às plataformas, produtos e serviços priorizados na Matriz do CEIS, devemos ter uma forma de avaliar continuamente mediante a evolução das várias pesquisas quais são os melhore candidatos e quais as melhores rotas tecnológicas a adotar para prosseguir, sempre baseando em dados ojetivos dos ensaios realizados, seguindo sucessivamente a cada subcamada e camadas até chegar aos níveis superiores. Compondo um processo de acúmulo de dados científicos que respaldam a pesquisa como um todo, mediante à contribuição para responder as questões científicas a cada etapa, que são respondidas pela avaliação comparativa dos dados dos ensaios usando técnicas da análise de redes complexas a cada fase da pesquisas, mantendo o grafo como a visão sistêmica de ponta a ponta. Considerando a pesquisa descrita nas perguntas acima forneça uma lista de técnicas, e para cada técnica uma lista de ensaios necessários para gerar os dados necessários para tomada de decisão a cada etapa da pesquisa completa, na perspectiva da Pesquisa Translacional, detalhando pela fase In-Silico, incluindo análises de Dinâmica Molecular, e as demais abordagens já tratadas nas perguntas e respostas anteriores desta conversa, estabeleça para cada fase de decisão as opções entre as diversas técnicas do estado da arte atual e dentro de cada técnica as opções de ensaios diferentes que devem se complementar para responder as questões da pesquisa científica a cada fase.
