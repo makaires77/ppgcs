@@ -137,6 +137,9 @@ ppgcs
     │   │   ├── docentes_nomes.csv
     │   │   └── indicadores_quadrienio_17-20.csv
     │   └── veiculos.csv
+    ├── in_pdf
+    │   ├── cnpq_tabela-areas-conhecimento.pdf
+    │   └── Relatório_Autoavaliação_Produtividade Docente_V3.pdf
     ├── in_json
     │   ├── 642.files
     │   │   ├── 642.advise.json

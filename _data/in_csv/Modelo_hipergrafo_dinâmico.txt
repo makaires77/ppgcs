@@ -1,3 +1,16 @@
+Qual ciência classifica as diversas áreas da ciência atualmente?
+
+Do que trata a área que pesquisa Plantas da Caatinga para identificar substâncias e compósitos com potencial para servirem de insumos para novos ou melhoramentos em Desenho Racional de Fármacos?
+
+Do que se trata a Análise do potencial Zeta na pesquisa em nanotecnologias?
+
+Do que trata a área de imunologia e imunopatologia atualmente?
+
+Do que trata a área de pesquisa em Engenharia de Proteínas no contexto de desenvolvimento de novos insumos para pesquisa, fármacos e medicamentos?
+
+
+Como essa técnica pode ser utilizada em pesquisa que inicia com prospecção de plantas da caatinga, seguida por triagem de compósitos virtuais visando identificar novos candidatos para terapias do Câncer, utilizando análise de redes, com arcabouço teórico na teoria dos grafos?
+
 Como poderia ser montada uma série de marcos (milestones), composta pelo encadeamento de todos os experimentos de ponta a ponta da pesquisa, contendo indicadores para medir o potencial de sucesso da nova droga considerando tanto os dados obtidos em cada fase como uma inferêncai do potencial dos experimentos que virão a frente? Tratando isso como um problema em graph machine learning que compara os resultados entre os dados de todos experimentos disponíveis em cada ensaio.
 
 Como enriquecer essa análise utilizando conhecimentos sobre imunologia e imunopatologia visando triar melhores candidatos para agravos e produtos previamente priorizados na Matriz de Produtos da Política de Desenvolvimento do Complexo Econômico e Industrial da Saúde?
