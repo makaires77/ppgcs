@@ -1,0 +1,17 @@
+beautifulsoup4
+gensim
+networkx
+nltk
+numpy
+pandas
+py2neo
+PyPDF2
+python-dotenv
+scikit-learn
+sentence-transformers
+tika
+transformers
+xformers
+torch
+spacy
+flask

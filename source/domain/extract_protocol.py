@@ -180,18 +180,18 @@ class SaudeGovDataExtractor:
                 # Efetuar requisições e downloads
                 try:
                     response = requests.get(link)
-
                     if response.status_code == 200:
-                        # Verifica o tipo de conteúdo para determinar a extensão
-                        content_type = response.headers.get('content-type')
-                        if 'html' in content_type:
-                            filename += '.html'
-                        elif 'pdf' in content_type:
-                            filename += '.pdf'
-                        else:
-                            print(f"Tipo de conteúdo desconhecido: {content_type}")
-                            erros.append(link)
-                            continue  # Pula para o próximo link
+                        # Verifica o tipo de conteúdo para determinar a extensão (somente se ainda não houver)
+                        if not os.path.splitext(filename)[1]:
+                            content_type = response.headers.get('content-type')
+                            if 'html' in content_type:
+                                filename += '.html'
+                            elif 'pdf' in content_type:
+                                filename += '.pdf'
+                            else:
+                                print(f"Tipo de conteúdo desconhecido: {content_type}")
+                                erros.append(link)
+                                continue  # Pula para o próximo link
 
                         with open(filename, 'wb') as f:
                             f.write(response.content)
