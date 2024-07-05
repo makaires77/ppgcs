@@ -78,7 +78,7 @@ class CompetenceExtraction:
                 try:
                     ano_trabalho = int(ano3.group(1))
                 except:
-                    ano_trabalho = '????'
+                    ano_trabalho = '0000'
         palavras_chave_area = re.search(padrao_palavras_chave_area, texto)
         try:
             palavras_trabalho = palavras_chave_area.group(1).strip()
