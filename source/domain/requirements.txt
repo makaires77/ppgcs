@@ -1,6 +1,7 @@
 beautifulsoup4
+flask
+gitpython
 gensim
-networkx
 nltk
 numpy
 pandas
@@ -9,9 +10,9 @@ PyPDF2
 python-dotenv
 scikit-learn
 sentence-transformers
+selenium
 tika
 transformers
 xformers
 torch
 spacy
-flask
