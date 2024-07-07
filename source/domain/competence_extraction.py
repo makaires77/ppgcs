@@ -5,6 +5,7 @@ import spacy
 import xformers
 import numpy as np
 import plotly.graph_objects as go
+from unidecode import unidecode
 from transformers import AutoModel
 # from tqdm.notebook import tqdm # Importando tqdm do notebook
 from tqdm.autonotebook import tqdm, trange
@@ -37,7 +38,7 @@ class CompetenceExtraction:
     def __init__(self, curricula_file, model_name="distiluse-base-multilingual-cased-v2"):
         self.curricula_file = curricula_file
         self.nlp_pt = spacy.load("pt_core_news_lg")  # Modelo SpaCy para português
-        self.nlp_en = spacy.load("en_core_web_sm")  # Modelo SpaCy para inglês
+        self.nlp_en = spacy.load("en_core_web_sm")   # Modelo SpaCy para inglês
         self.model = SentenceTransformer(model_name)
 
     def load_curricula(self):
@@ -95,6 +96,7 @@ class CompetenceExtraction:
             tipo_trabalho = ''
         try:
             instituicao = texto.split('. ')[1]
+            # print(f"Restante de dados: {texto.split('. ')[0:]}")
         except:
             print(f'Instituicao do trabalho não encontrada em: {texto}')
             instituicao = ''
@@ -129,64 +131,165 @@ class CompetenceExtraction:
 
     def extract_competences(self, researcher_data):
         competences = []
+        
+        padrao_titulo = r"[Tt]ítulo\s*:\s*(.*?)\.\s*"
+        padrao_ano = r"[Aa]no\s*(?:de\s+)?[Oo]btenção\s*:\s*(\d+)\s*."
+        padrao_ano2 = r"[Aa]no\s*(?:de\s+)?[Ff]inalização\s*:\s*(\d+)\s*."
+        padrao_ano3 = r"\b(\d{4})\b"
+        padrao_palavras_chave_area = r"[Pp]alavras-chave\s*:\s*(.*?)\s*(?::|\.)\s*(.*)"
+
+        def extract(texto):
+            titulo = re.search(padrao_titulo, texto)
+            
+            try:
+                titulo.group(1).strip().title()
+                titulo_trabalho = titulo.group(1).strip().title()
+                try:
+                    info2_trabalho = titulo.group(2).strip().title()
+                except:
+                    info2_trabalho = ''
+            except: 
+                titulo_trabalho = texto.split('. ')[0].title()
+                try:
+                    info2_trabalho = texto.split('. ')[1].title()
+                except:
+                    info2_trabalho = ''
+            ano = re.search(padrao_ano, texto)
+            ano2 = re.search(padrao_ano2, texto)
+            ano3 = re.search(padrao_ano3, texto)
+            # print(ano)
+            # print(ano2)
+            # print(ano3)
+            try:
+                ano_trabalho = int(ano.group(1))
+            except:
+                try:
+                    ano_trabalho = int(ano2.group(1))
+                except:
+                    try:
+                        ano_trabalho = int(ano3.group(1))
+                    except:
+                        ano_trabalho = '----'
+            return ano_trabalho, titulo_trabalho.title(), info2_trabalho.title()
 
         # Extrair de áreas de atuação
         for area in researcher_data.get("Áreas", {}).values():
-            area = area.replace(":","").replace("Subárea ","").strip()
-            competences.append('  Atuação: '+area.title())
+            area = area.replace(":","").replace("Subárea ","").replace(".","").replace("/","|").strip()
+            competences.append('AtuaçãoPrf: '+area.title())
 
         # Extrair de formações acadêmicas
+        verbose=False
+        if verbose:
+            print(f"\n{'-'*125}")
         for formacao in researcher_data.get("Formação", {}).get("Acadêmica", []):
-            dados_trabalho = self.extrair_info_trabalho(formacao["Descrição"])
-            competences.append(' Formação: '+dados_trabalho.title())
+            if verbose:
+                print(f"Dict   Formações: {formacao}")
+            ano_formacao = formacao["Ano"]
+            if '-' not in ano_formacao:
+                ano_formacao = str(ano_formacao)+' - hoje'
+            if 'interr' in ano_formacao:
+                ano_interrupcao = formacao["Descrição"].split(':')[-1].strip()
+                ano_formacao = f"{str(ano_formacao.split(' ')[0])} - {ano_interrupcao}"
+            descr_formacao = formacao["Descrição"]
+            competences.append(f"FormaçãoAc: {ano_formacao} | {descr_formacao.title()}")
 
         # Extrair de projetos
+        print()
         for tipo_projeto in ["ProjetosPesquisa", "ProjetosExtensão", "ProjetosDesenvolvimento"]:
             for projeto in researcher_data.get(tipo_projeto, []):
-                titulo_projeto = projeto["titulo_projeto"]
+                # print(f' Chaves: {projeto.keys()}')
+                # print(f'Valores: {projeto.values()}')
+                tipo=None
+                if 'Pesquisa' in tipo_projeto:
+                    tipo = 'Psq'
+                elif 'Extensão' in tipo_projeto:
+                    tipo = 'Ext'
+                elif 'Desenvolvimento' in tipo_projeto:
+                    tipo = 'Dsv'
                 descricao_projeto = projeto["descricao"]
-                competences.append('  Projeto:'+titulo_projeto.title()+' '+descricao_projeto.title())
+                periodo_projeto = projeto["chave"].replace("Atual","hoje")
+                titulo_projeto = projeto["titulo_projeto"]
+                competences.append(f'Projeto{tipo}: {periodo_projeto} | {titulo_projeto} | {descricao_projeto.title()}')
 
         # Extrair de produções bibliográficas (artigos, resumos, etc.)
         for tipo_producao, producoes in researcher_data.get("Produções", {}).items():
             if isinstance(producoes, list):  # Artigos completos
-                for publicacao in producoes:                 
-                    competences.append('Publicação: '+publicacao["titulo"].title())
+                for publicacao in producoes:
+                    # print(f'Dados publicação: {publicacao}')
+                    if publicacao['fator_impacto_jcr']:
+                        competences.append(f"Publicação: {publicacao['ano']} | {float(publicacao['fator_impacto_jcr']):06.2f} | {publicacao['titulo'].title()}")
+                    else:
+                        competences.append(f"Publicação: {publicacao['ano']} | {'-':5} | {publicacao['titulo'].title()}")
             # elif isinstance(producoes, dict):  # palestra e apresentações em eventos
             #     for item in producoes.values():                  
             #         competences.append(item)
 
         # Extrair de orientações (se houver)
         orientacoes = researcher_data.get("Orientações", {})
+        # print(f'Dicionário orientações: {orientacoes}')
         if isinstance(orientacoes, dict):
             for tipo_orientacao, detalhes in orientacoes.items():
+                if verbose:
+                    print(tipo_orientacao)
+                    if isinstance(detalhes, dict):
+                        print([x.detalhes.keys() for x in orientacoes.values()])
+                    else:
+                        print(f"List  Orientação: {detalhes}")
+                if 'conclu' in tipo_orientacao:
+                    tipo = 'Con'
+                else:
+                    tipo = 'And'
                 for detalhe in detalhes:
                     doutorados = detalhe.get('Tese de doutorado')
                     if doutorados:
-                        for i in doutorados.values():
-                            competences.append('OrientDout: '+i.title())
+                        for doc in doutorados.values():
+                            ano_fim, nome_aluno, titulo_orientacao = extract(doc)
+                            competences.append(f'OriDout{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+                    
                     mestrados = detalhe.get('Dissertação de mestrado')
                     if mestrados:
-                        for i in mestrados.values():
-                            competences.append('OrientMest: '+i.title())
+                        for mes in mestrados.values():
+                            ano_fim, nome_aluno, titulo_orientacao = extract(mes)
+                            competences.append(f'OriMest{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+                    
                     especializacoes = detalhe.get('Monografia de conclusão de curso de aperfeiçoamento/especialização')
                     if especializacoes:
-                        for i in especializacoes.values():
-                            competences.append('OrientEspe: '+i.title())
+                        for esp in especializacoes.values():
+                            ano_fim, nome_aluno, titulo_orientacao = extract(esp)
+                            competences.append(f'OriEspe{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+                    
                     graduacoes = detalhe.get('Trabalho de conclusão de curso de graduação')
                     if graduacoes:
-                        for i in graduacoes.values():
-                            competences.append('OrientGrad: '+i.title())
+                        for grd in graduacoes.values():
+                            ano_fim, nome_aluno, titulo_orientacao = extract(grd)
+                            competences.append(f'OriGrad{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+                    
                     iniciacoes = detalhe.get('Iniciação científica')
                     if iniciacoes:
-                        for i in iniciacoes.values():
-                            competences.append('OrientInic: '+i.title())
-        elif isinstance(orientacoes, list):
-            for orientacao in orientacoes:
-                print(f'Dados da Orientação: {orientacao}')
-                titulo_orientacao = orientacao.get("titulo", "")
-                descricao_orientacao = orientacao.get("descricao", "")
-                competences.append('Orientação: '+titulo_orientacao.title()+' '+descricao_orientacao.title())
+                        for ini in iniciacoes.values():
+                            ano_fim, nome_aluno, titulo_orientacao = extract(ini)
+                            competences.append(f'OriInic{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+
+                    postdocs = detalhe.get('Supervisão de pós-doutorado')
+                    if postdocs:
+                        for pos in postdocs.values():
+                            ano_fim, nome_aluno, titulo_orientacao = extract(pos)
+                            competences.append(f'SupPosD{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+
+                    postdocs = detalhe.get('Orientações de outra natureza')
+                    if postdocs:
+                        for pos in postdocs.values():
+                            ano_fim, nome_aluno, titulo_orientacao = extract(pos)
+                            competences.append(f'OutNatu{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+
+                            
+        # elif isinstance(orientacoes, list):
+        #     print('Lista de orientações')
+        #     for orientacao in orientacoes:
+        #         print(f'Dados da Orientação: {orientacao}')
+        #         titulo_orientacao = orientacao.get("titulo", "")
+        #         descricao_orientacao = orientacao.get("descricao", "")
+        #         competences.append('Orientação: '+titulo_orientacao.title()+' '+descricao_orientacao.title())
 
         # Extrair de atuação profissional
         # for atuacao in researcher_data.get("Atuação Profissional", []):
@@ -202,16 +305,40 @@ class CompetenceExtraction:
         return competences
 
     def preprocess_competences(self, competences):
+        """
+        Pré-processa uma lista de competências, removendo stop words, lematizando e eliminando termos duplicados consecutivos (ignorando maiúsculas e minúsculas).
+
+        Args:
+            competences (list): Uma lista de strings representando as competências.
+
+        Returns:
+            list: Uma lista de strings contendo as competências pré-processadas.
+        """
+
         processed_competences = []
         for competence in competences:
-            if competence:  # Ignorar competências vazias
+            if competence:
                 doc = self.nlp_en(competence) if competence.isascii() else self.nlp_pt(competence)
-                processed_competences.append(" ".join([token.lemma_ for token in doc if not token.is_stop]))
+
+                palavras_processadas = []
+                eliminar = ['descrição','situação',':']
+                ultima_palavra = None
+                for token in doc:
+                    if not token.is_stop:
+                        palavra_atual = token.lemma_.lower().strip()  # Converte para minúsculas
+                        if palavra_atual != ultima_palavra  and palavra_atual not in eliminar:
+                            palavras_processadas.append(palavra_atual.strip())
+                        ultima_palavra = palavra_atual.strip()
+
+                processed_competences.append(" ".join(palavras_processadas))
         return processed_competences
        
     def vectorize_competences(self, competences):
-        model = SentenceTransformer(self.model_name)  # Carregar o modelo aqui
-        model.enable_xformers_memory_efficient_attention()  # Habilitar o xFormers
+        model = self.model  # Carregar o modelo aqui
+        try:
+            model.enable_xformers_memory_efficient_attention()  # Habilitar o xFormers
+        except:
+            pass
         competence_vectors = model.encode(competences)
         return competence_vectors
 
@@ -230,8 +357,8 @@ class EmbeddingModelEvaluator:
         for label, pairs in validation_data.items():
             for pair in pairs:
                 embeddings = model.encode(pair)
-                similarity = util.cos_sim(embeddings[0], embeddings[1]).item()
                 # embeddings = torch.from_numpy(embeddings).cpu()  # Converte para tensor e move para a CPU
+                similarity = util.cos_sim(embeddings[0], embeddings[1]).item()
                 if label == 'similar':
                     similar_scores.append(similarity)
                 else:
