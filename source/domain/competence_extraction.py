@@ -7,7 +7,6 @@ import numpy as np
 import plotly.graph_objects as go
 from unidecode import unidecode
 from transformers import AutoModel
-# from tqdm.notebook import tqdm # Importando tqdm do notebook
 from tqdm.autonotebook import tqdm, trange
 from tqdm import TqdmExperimentalWarning
 from sklearn.metrics.pairwise import cosine_similarity
@@ -95,7 +94,7 @@ class CompetenceExtraction:
             print(f'Tipo do trabalho não encontrado em: {texto}')
             tipo_trabalho = ''
         try:
-            instituicao = texto.split('. ')[1]
+            instituicao = texto.split('. ')[1].strip().title()
             # print(f"Restante de dados: {texto.split('. ')[0:]}")
         except:
             print(f'Instituicao do trabalho não encontrada em: {texto}')
@@ -142,18 +141,17 @@ class CompetenceExtraction:
             titulo = re.search(padrao_titulo, texto)
             
             try:
-                titulo.group(1).strip().title()
-                titulo_trabalho = titulo.group(1).strip().title()
+                info1 = titulo.group(1).strip().title()
                 try:
-                    info2_trabalho = titulo.group(2).strip().title()
+                    info2 = titulo.group(2).strip().title()
                 except:
-                    info2_trabalho = ''
+                    info2 = ''
             except: 
-                titulo_trabalho = texto.split('. ')[0].title()
+                info1 = texto.split('. ')[0].strip().title()
                 try:
-                    info2_trabalho = texto.split('. ')[1].title()
+                    info2 = texto.split('. ')[1].strip().title()
                 except:
-                    info2_trabalho = ''
+                    info2 = ''
             ano = re.search(padrao_ano, texto)
             ano2 = re.search(padrao_ano2, texto)
             ano3 = re.search(padrao_ano3, texto)
@@ -170,7 +168,7 @@ class CompetenceExtraction:
                         ano_trabalho = int(ano3.group(1))
                     except:
                         ano_trabalho = '----'
-            return ano_trabalho, titulo_trabalho.title(), info2_trabalho.title()
+            return ano_trabalho, info1, info2
 
         # Extrair de áreas de atuação
         for area in researcher_data.get("Áreas", {}).values():
@@ -182,7 +180,13 @@ class CompetenceExtraction:
         if verbose:
             print(f"\n{'-'*125}")
         for formacao in researcher_data.get("Formação", {}).get("Acadêmica", []):
+            instituicao_formacao = formacao['Descrição'].split('.')[1].strip().title()
+            if '(' in instituicao_formacao:
+                instituicao_formacao = formacao['Descrição'].split('.')[2].strip().title()
+            # print(f"     Instituição: {instituicao_formacao}")
             if verbose:
+                print(f" Chaves Formação: {formacao.keys()}")
+                print(f"Valores Formação: {formacao.values()}")                
                 print(f"Dict   Formações: {formacao}")
             ano_formacao = formacao["Ano"]
             if '-' not in ano_formacao:
@@ -190,11 +194,10 @@ class CompetenceExtraction:
             if 'interr' in ano_formacao:
                 ano_interrupcao = formacao["Descrição"].split(':')[-1].strip()
                 ano_formacao = f"{str(ano_formacao.split(' ')[0])} - {ano_interrupcao}"
-            descr_formacao = formacao["Descrição"]
-            competences.append(f"FormaçãoAc: {ano_formacao} | {descr_formacao.title()}")
+            descr_formacao = formacao["Descrição"].strip().title()
+            competences.append(f"FormaçãoAc: {ano_formacao} | {instituicao_formacao} | {descr_formacao}")
 
         # Extrair de projetos
-        print()
         for tipo_projeto in ["ProjetosPesquisa", "ProjetosExtensão", "ProjetosDesenvolvimento"]:
             for projeto in researcher_data.get(tipo_projeto, []):
                 # print(f' Chaves: {projeto.keys()}')
@@ -244,43 +247,43 @@ class CompetenceExtraction:
                     if doutorados:
                         for doc in doutorados.values():
                             ano_fim, nome_aluno, titulo_orientacao = extract(doc)
-                            competences.append(f'OriDout{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+                            competences.append(f'OriDout{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
                     
                     mestrados = detalhe.get('Dissertação de mestrado')
                     if mestrados:
                         for mes in mestrados.values():
                             ano_fim, nome_aluno, titulo_orientacao = extract(mes)
-                            competences.append(f'OriMest{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+                            competences.append(f'OriMest{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
                     
                     especializacoes = detalhe.get('Monografia de conclusão de curso de aperfeiçoamento/especialização')
                     if especializacoes:
                         for esp in especializacoes.values():
                             ano_fim, nome_aluno, titulo_orientacao = extract(esp)
-                            competences.append(f'OriEspe{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+                            competences.append(f'OriEspe{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
                     
                     graduacoes = detalhe.get('Trabalho de conclusão de curso de graduação')
                     if graduacoes:
                         for grd in graduacoes.values():
                             ano_fim, nome_aluno, titulo_orientacao = extract(grd)
-                            competences.append(f'OriGrad{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+                            competences.append(f'OriGrad{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
                     
                     iniciacoes = detalhe.get('Iniciação científica')
                     if iniciacoes:
                         for ini in iniciacoes.values():
                             ano_fim, nome_aluno, titulo_orientacao = extract(ini)
-                            competences.append(f'OriInic{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+                            competences.append(f'OriInic{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
 
                     postdocs = detalhe.get('Supervisão de pós-doutorado')
                     if postdocs:
                         for pos in postdocs.values():
                             ano_fim, nome_aluno, titulo_orientacao = extract(pos)
-                            competences.append(f'SupPosD{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+                            competences.append(f'SupPosD{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
 
                     postdocs = detalhe.get('Orientações de outra natureza')
                     if postdocs:
                         for pos in postdocs.values():
                             ano_fim, nome_aluno, titulo_orientacao = extract(pos)
-                            competences.append(f'OutNatu{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split()):42s} | {titulo_orientacao.title()}')
+                            competences.append(f'OutNatu{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
 
                             
         # elif isinstance(orientacoes, list):
@@ -347,7 +350,7 @@ class EmbeddingModelEvaluator:
         self.curricula_file = curricula_file
         self.model_names = model_names
         self.competence_extractor = CompetenceExtraction(curricula_file)
-        self.curricula_data = self.competence_extractor.load_curricula()
+        self.curricula_data = self.competence_extractor.load_curricula() # carregar lista de dicionários
         self.gpu_manager = GPUMemoryManager()  # Instanciar o gerenciador de memória da GPU
 
     def evaluate_intrinsic(self, model, validation_data):  # Remove o parâmetro device
@@ -371,32 +374,58 @@ class EmbeddingModelEvaluator:
             'dissimilar_scores': dissimilar_scores
         }
 
+    def extrair_areas(self, areas_dict):
+        lista_grdareas = []
+        lista_areas = []
+        lista_subareas = []
+        # Expressão regular corrigida para extrair as áreas
+        pattern = r'Grande área:\s*(.*?)\s*/\s*Área:\s*(.*?)\s*(?:/ Subárea:\s*(.*?)\s*)?\.'
+
+        for _, valor in areas_dict.items():
+            match = re.search(pattern, valor)
+            if match:
+                areas = {
+                    'Grande Área': match.group(1).strip() if match.group(1) else None , 
+                    'Área': match.group(2).strip() if match.group(2) else None ,
+                    'Subárea': match.group(3).strip() if match.group(3) else None  
+                }
+                lista_grdareas.append(areas.get('Grande Área'))
+                lista_areas.append(areas.get('Área'))
+                lista_subareas.append(areas.get('Subárea'))
+
+        return {'Grande Áreas': lista_grdareas, 'Áreas': lista_areas, 'Subáreas': lista_subareas}
+
     def prepare_data_for_classification(self, model, device="gpu"):
         X = []
         y = []
         valid_areas = set()
+        all_embeddings = []  # Criando a lista para armazenar os embeddings
 
         # Primeira passagem para identificar áreas válidas
         for researcher_data in self.curricula_data:
-            area = researcher_data.get('area_de_pesquisa', 'desconhecido')
-            if area != 'desconhecido':
-                valid_areas.add(area)
+            all_areas_list = self.extrair_areas(researcher_data.get('Áreas', {}))  # Obtém lista de áreas
+            # print(f"Lista áreas: {all_areas_list}") # DEBUG
+            for area in all_areas_list.get('Áreas'):
+                if area and area != 'desconhecido':
+                    valid_areas.add(area)
 
         # Segunda passagem para preparar os dados
         for researcher_data in self.curricula_data:
             competences = self.competence_extractor.extract_competences(researcher_data)
             processed_competences = self.competence_extractor.preprocess_competences(competences)
-            area = researcher_data.get('area_de_pesquisa', 'desconhecido')
-            
-            print(f"Área de pesquisa: {area}")
-            print(f"Competências       extraídas: {competences}")
-            print(f"Competências pré-processadas: {processed_competences}")
-            
-            if area in valid_areas and processed_competences:
-                embeddings = model.encode(processed_competences, device=device) # Passando device para encode
-                mean_embedding = np.mean(embeddings, axis=0)
-                X.append(torch.from_numpy(mean_embedding).to(device))
-                y.append(area)
+            areas_list = self.extrair_areas(researcher_data.get('Áreas', {}))  # Obtém lista de áreas
+
+            for area in all_areas_list.get('Áreas'):
+                print(f"Área de pesquisa: {area}")
+                print(f"Competências extraídas: {competences}")
+                print(f"Compet. pré-processadas: {processed_competences}")
+
+                if area in valid_areas and processed_competences:
+                    embeddings = model.encode(processed_competences, convert_to_tensor=True, device=device)
+                    all_embeddings.extend(embeddings)  # Acumula os embeddings
+                    mean_embedding = torch.mean(embeddings, dim=0)  # Calcula a média na GPU
+                    X.append(mean_embedding.cpu().numpy())  # Move para CPU e converte para NumPy
+                    y.append(area)
 
         return X, y
 
@@ -411,17 +440,17 @@ class EmbeddingModelEvaluator:
             classifier_name: Nome do classificador a ser usado na avaliação extrínseca.
                                 Opções: "LogisticRegression", "MultinomialNB", "SVC", "RandomForestClassifier".
         """
+        # Defina device aqui
+        if torch.cuda.is_available():
+            device = torch.device("cuda:0")
+        else:
+            device = torch.device("cpu")
+            print("CUDA não disponível, usando CPU.")
         results = {}
+
         for model_name in self.model_names:
             print(f"\nAvaliando modelo: {model_name}")
-            model = SentenceTransformer(model_name)
-
-            if torch.cuda.is_available():
-                device = torch.device("cuda:0")  
-            else:
-                device = torch.device("cpu")
-
-            model.to(device)  # Move o modelo para o dispositivo escolhido
+            model = SentenceTransformer(model_name, device=device).half() # carrega o modelo ja no dispostivo
 
             # Avaliação intrínseca
             intrinsic_results = self.evaluate_intrinsic(model, validation_data)
@@ -454,13 +483,15 @@ class EmbeddingModelEvaluator:
                 else:
                     raise ValueError(f"Classificador inválido: {classifier_name}")
 
-                # Mover os dados para o dispositivo correto (GPU ou CPU)
-                X_train = torch.stack(X_train).to(device)
-                X_test = torch.stack(X_test).to(device)
+                # Converter os tensores para arrays NumPy e mover para CPU se ainda não estiverem nela
+                # X_train = X_train.cpu().numpy()
+                # X_test = X_test.cpu().numpy()
 
+                # Treinamento e avaliação do classificador
                 classifier.fit(X_train, y_train)
                 y_pred = classifier.predict(X_test)
 
+                # Cálculo das métricas
                 accuracy = accuracy_score(y_test, y_pred)
                 precision = precision_score(y_test, y_pred, average='weighted')
                 recall = recall_score(y_test, y_pred, average='weighted')
@@ -477,6 +508,7 @@ class EmbeddingModelEvaluator:
                 print(f"Precisão: {precision:.4f}")
                 print(f"Recall: {recall:.4f}")
                 print(f"F1-Score: {f1:.4f}")
+
             else:
                 print(f"Não há exemplos suficientes para divisão em treinamento e teste. Pulando modelo {model_name}.")
                 results[model_name].update({'accuracy': None, 'precision': None, 'recall': None, 'f1_score': None})
@@ -484,6 +516,7 @@ class EmbeddingModelEvaluator:
             print('-' * 125)
             print()
         return results
+
 
     def evaluate_models_cross_validation(self, model, classifier_name="LogisticRegression", num_folds=5):
         """Avalia os modelos de embedding usando validação cruzada com diferentes classificadores."""
@@ -579,133 +612,3 @@ class PlotlyResultVisualizer:
             yaxis_title='Acurácia',
         )
         fig.show()
-
-    # def evaluate_models(self, validation_data, use_cross_validation=True):
-    #     """Avalia os modelos de embedding usando métricas intrínsecas e extrínsecas."""
-    #     results = {}
-    #     print('-' * 125)
-    #     for model_name in self.model_names:
-    #         print(f"Avaliando modelo: {model_name}")
-    #         model = SentenceTransformer(model_name)
-    #         model.to(torch.device("cpu"))  # Usa explicitamente a CPU
-
-    #         # Avaliação intrínseca
-    #         intrinsic_results = self.evaluate_intrinsic(model, validation_data)
-    #         results[model_name] = intrinsic_results
-
-    #         # Avaliação extrínseca (classificação de áreas de pesquisa ou validação cruzada)
-    #         if use_cross_validation:
-    #             X, y = self.prepare_data_for_classification(model)
-    #             if len(set(y)) < 2:
-    #                 print(f"Não há classes suficientes para validação cruzada. Pulando modelo {model_name}.")
-    #                 results[model_name].update({'accuracy': None, 'mean_accuracy': None, 'std_accuracy': None})
-    #             else:
-    #                 cross_val_results = self.evaluate_models_cross_validation(model)
-    #                 results[model_name].update(cross_val_results)
-    #                 print(f"Acurácia média (validação cruzada): {cross_val_results['mean_accuracy']:.4f} +/- {cross_val_results['std_accuracy']:.4f}")
-    #         else:
-    #             X, y = self.prepare_data_for_classification(model)
-    #             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    #             classifier = LogisticRegression()
-    #             classifier.fit(X_train, y_train)
-    #             accuracy = classifier.score(X_test, y_test)
-    #             results[model_name]['accuracy'] = accuracy
-    #             print(f"Acurácia na classificação de áreas de pesquisa: {accuracy:.4f}")
-
-    #         # Impressão dos resultados
-    #         print(f"Similaridade média (competências semelhantes): {intrinsic_results['mean_similar_score']:.4f}")
-    #         print(f"Similaridade média (competências   distintas): {intrinsic_results['mean_dissimilar_score']:.4f}")
-
-    #         if use_cross_validation and results[model_name]['accuracy'] is not None:
-    #             print(f"Acurácia média (validação cruzada): {results[model_name]['mean_accuracy']:.4f} +/- {results[model_name]['std_accuracy']:.4f}")
-    #         elif not use_cross_validation:
-    #             print(f"Acurácia na classificação de áreas de pesquisa: {results[model_name]['accuracy']:.4f}")
-
-    #         print('-' * 125)
-        
-    #     # Verifica se algum modelo possui resultados válidos
-    #     if not any(scores['accuracy'] is not None for scores in results.values()):
-    #         print("Nenhum modelo possui resultados válidos para comparação.")
-    #         return {}  # Retorna um dicionário vazio para indicar que não há resultados
-
-    #     return results
-
-    # def evaluate_models_cross_validation(self, model, num_folds=5):
-    #     """Avalia os modelos de embedding usando validação cruzada.
-        
-    #         Este método recebe o modelo a ser avaliado e o número de folds da validação cruzada (padrão: 5).
-    #         Prepara os dados para classificação usando prepare_data_for_classification.
-    #         Verifica se há pelo menos duas classes nos dados. Se não houver, imprime um aviso e retorna um valor padrão para indicar erro.
-    #         Realiza a validação cruzada usando cross_val_score com o classificador de Regressão Logística e a métrica de acurácia.
-    #         Retorna um dicionário com a acurácia média e o desvio padrão da validação cruzada.        
-    #     """
-    #     X, y = self.prepare_data_for_classification(model)
-
-    #     # Verifica se há dados suficientes para a validação cruzada
-    #     if len(set(y)) < 2:
-    #         print(f"Não há classes suficientes para validação cruzada. Pulando modelo {model}.")
-    #         return {'accuracy': None}  # Ou algum valor padrão para indicar erro
-
-    #     # Validação cruzada com Regressão Logística
-    #     classifier = LogisticRegression()
-    #     scores = cross_val_score(classifier, X, y, cv=num_folds, scoring='accuracy')
-    #     mean_accuracy = np.mean(scores)
-    #     std_accuracy = np.std(scores)
-
-    #     return {
-    #         'mean_accuracy': mean_accuracy,
-    #         'std_accuracy': std_accuracy
-    #     }
-
-    # def evaluate_intrinsic(self, model, validation_data):
-    #     similar_scores = []
-    #     dissimilar_scores = []
-
-    #     for label, pairs in validation_data.items():
-    #         for pair in pairs:
-    #             # embeddings = torch.from_numpy(model.encode(pair)).cpu()  # Converte para tensor PyTorch
-    #             embeddings = model.encode(pair)  # Remove .cpu()
-    #             similarity = util.cos_sim(embeddings[0], embeddings[1]).item()
-    #             if label == 'similar':
-    #                 similar_scores.append(similarity)
-    #             else:
-    #                 dissimilar_scores.append(similarity)
-
-    #     return {
-    #         'mean_similar_score': np.mean(similar_scores),
-    #         'mean_dissimilar_score': np.mean(dissimilar_scores),
-    #         'similar_scores': similar_scores,
-    #         'dissimilar_scores': dissimilar_scores
-    #     }
-
-    # def prepare_data_for_classification(self, model, device="cpu"):  # Adiciona o parâmetro 'device'
-    #     X = []
-    #     y = []
-
-    #     valid_areas = set()  # Conjunto para armazenar áreas de pesquisa válidas  
-
-    #     # Primeira passagem para identificar áreas válidas
-    #     for researcher_data in self.curricula_data:
-    #         area = researcher_data.get('area_de_pesquisa', 'desconhecido')
-    #         if area != 'desconhecido':
-    #             valid_areas.add(area)
-
-    #     # Segunda passagem para preparar os dados
-    #     for researcher_data in self.curricula_data:
-    #         competences = self.competence_extractor.extract_competences(researcher_data)
-    #         processed_competences = self.competence_extractor.preprocess_competences(competences)
-
-    #         # Verificar se o pesquisador tem uma área de pesquisa válida
-    #         area = researcher_data.get('area_de_pesquisa', 'desconhecido')
-    #         if area in valid_areas and processed_competences:  # Verifica se a área é válida e se há competências
-    #             # Aumento de dados
-    #             aug = naw.SynonymAug(aug_src='wordnet')
-    #             augmented_competences = [aug.augment(c) for c in processed_competences]
-
-    #             # Sem aumento de dados
-    #             embeddings = model.encode(augmented_competences)
-    #             mean_embedding = np.mean(embeddings, axis=0) 
-    #             X.append(torch.from_numpy(mean_embedding))
-    #             y.append(area)
-
-    #     return X, y
