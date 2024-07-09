@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "CurrentNotebook (Nsight Systems)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "C:\\Users\\marco\\ppgcs\\source\\domain\\01_Prototipo_GrafoConhecimento.ipynb",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "preLaunchTask": "Set-ExecutionPolicy"
+        }
+    ]
+}

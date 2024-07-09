@@ -1,10 +1,6 @@
 {
     "go.toolsEnvVars": {
         "GOPATH": "/home/marcos/go"
-<<<<<<< HEAD
-    }
-=======
     },
     "cSpell.enabled": false
->>>>>>> c51253137853d9681efc37ff1382c4b6f7ed1174
 }

@@ -1,22 +1,30 @@
 import re
+import time
 import json
 import torch
 import spacy
+import pynvml
+import psutil
+import cpuinfo
 import xformers
 import numpy as np
 import plotly.graph_objects as go
 from unidecode import unidecode
 from transformers import AutoModel
-from tqdm.autonotebook import tqdm, trange
+# from tqdm.autonotebook import tqdm, trange
 from tqdm import TqdmExperimentalWarning
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
+from tqdm.notebook import tqdm
+from sentence_transformers import SentenceTransformer, util
 from sklearn.svm import SVC
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import KFold
+from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
-from sentence_transformers import SentenceTransformer, util
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, silhouette_score
+from sklearn.cluster import KMeans  # ou outro algoritmo de agrupamento
 
 import warnings
 warnings.filterwarnings("ignore", category=TqdmExperimentalWarning)
@@ -32,6 +40,233 @@ class GPUMemoryManager:
         for tensor in tensors:
             if tensor is not None and tensor.device.type == "cuda":
                 tensor.cpu()
+
+class HardwareEvaluator:
+    def __init__(self):
+        self.gpu_available = torch.cuda.is_available()
+        self.gpu_properties = torch.cuda.get_device_properties(0) if self.gpu_available else None
+        self.cpu_info = cpuinfo.get_cpu_info()
+        self.cpu_freq = psutil.cpu_freq()
+        self.ram_info = psutil.virtual_memory()
+
+    def print_hardware_info(self):
+        print("Informações de Hardware:")
+        if self.gpu_available:
+            print(f"  GPU: {self.gpu_properties.name}")
+            print(f"    Núcleos CUDA: {self.gpu_properties.multi_processor_count}")
+            print(f"    Compute Capability: {self.gpu_properties.major}.{self.gpu_properties.minor}")
+            print(f"    Memória Total: {self.gpu_properties.total_memory / 1024**3:.2f} GB")
+        else:
+            print("  GPU: Não disponível")
+
+        print(f"  CPU: {self.cpu_info['brand_raw']}")
+        print(f"    Núcleos Físicos: {psutil.cpu_count(logical=False)}")
+        print(f"    Núcleos Lógicos: {psutil.cpu_count(logical=True)}")
+        print(f"    Frequência Máxima: {self.cpu_freq.max:.2f} GHz")
+        print(f"    RAM Total: {self.ram_info.total / 1024**3:.2f} GB")
+
+    def get_cpu_parallel_capacity(self):
+        """Retorna o número de núcleos lógicos da CPU, que representam a capacidade teórica de processamento paralelo."""
+        return psutil.cpu_count(logical=True)
+
+    def get_gpu_parallel_capacity(self):
+        """Retorna o número de núcleos CUDA da GPU, que representam a capacidade teórica de processamento paralelo."""
+        if self.gpu_available:
+            return self.gpu_properties.multi_processor_count * self.gpu_properties.max_threads_per_multi_processor
+        else:
+            return 0  # GPU não disponível
+
+    def get_gpu_clock_rate(self):
+        """Retorna o clock rate da GPU em MHz."""
+        if self.gpu_available:
+            pynvml.nvmlInit()
+            handle = pynvml.nvmlDeviceGetHandleByIndex(0)  # Obtém o handle da primeira GPU
+            clock_rate = pynvml.nvmlDeviceGetClockInfo(handle, pynvml.NVML_CLOCK_SM)  # Clock rate dos núcleos CUDA
+            pynvml.nvmlShutdown()
+            return clock_rate
+        else:
+            return 0  # GPU não disponível
+
+    def check_pytorch_gpu_compatibility(self):
+        """Verifica a compatibilidade entre PyTorch e GPU e recomenda uma versão compatível do PyTorch."""
+        if not self.gpu_available:
+            print("CUDA não está disponível. Não é possível verificar a compatibilidade com a GPU.")
+            return
+
+        # Obtém as informações da GPU
+        pynvml.nvmlInit()
+        handle = pynvml.nvmlDeviceGetHandleByIndex(0)
+        gpu_compute_capability = f"{pynvml.nvmlDeviceGetCudaComputeCapability(handle)[0]}.{pynvml.nvmlDeviceGetCudaComputeCapability(handle)[1]}"
+        pynvml.nvmlShutdown()
+
+        # Dicionário de compatibilidade PyTorch-GPU (atualizado)
+        compatibility_dict = {
+            "3.0": "0.3.0",  # Versão mínima do PyTorch para cada compute capability
+            "3.5": "0.4.0",
+            "3.7": "1.0.0",
+            "5.0": "1.2.0",
+            "5.2": "1.3.0",
+            "6.0": "1.4.0",
+            "6.1": "1.5.0",
+            "7.0": "1.6.0",
+            "7.5": "1.7.0",
+            "8.0": "1.8.0",
+            "8.6": "1.9.0",
+            "8.9": "1.12.0",  # Incluindo compute capability 8.9 (Ada Lovelace)
+            "9.0": "1.13.0",  # Incluindo compute capability 9.0 (Hopper)
+            "10.0": "2.0.0", # Incluindo compute capability 10.0 (Blackwell)
+        }
+
+        # Verifica a compatibilidade
+        if gpu_compute_capability not in compatibility_dict:
+            print(f"Aviso: A versão do PyTorch ({torch.__version__}) pode não ter sido testada com a sua GPU ({self.gpu_properties.name}, compute capability {gpu_compute_capability}).")
+        else:
+            min_pytorch_version = compatibility_dict[gpu_compute_capability]
+            if torch.__version__ < min_pytorch_version:
+                print(f"Aviso: A versão do PyTorch ({torch.__version__}) pode não ser totalmente compatível com a sua GPU ({self.gpu_properties.name}, compute capability {gpu_compute_capability}).")
+                print(f"Sugestão: Instale o PyTorch versão {min_pytorch_version} ou superior.")
+            else:
+                print("PyTorch e GPU são compatíveis.")
+
+    def check_gpu_memory_health(self):
+        """Verifica a saúde da memória da GPU, pulando setores com erro."""
+        if not self.gpu_available:
+            print("CUDA não está disponível. Não é possível verificar a saúde da memória da GPU.")
+            return
+
+        try:
+            pynvml.nvmlInit()
+            handle = pynvml.nvmlDeviceGetHandleByIndex(0)
+
+            # Verifica se a GPU suporta ECC
+            ecc_mode = pynvml.nvmlDeviceGetEccMode(handle)
+            if ecc_mode == pynvml.NVML_FEATURE_DISABLED:
+                print("Aviso: A GPU não possui ECC (Error Correcting Code) habilitado. A detecção de erros de memória pode ser limitada.")
+
+            # Obtém o tamanho da memória da GPU
+            memory_info = pynvml.nvmlDeviceGetMemoryInfo(handle)
+            total_memory = memory_info.total
+
+            # Listas para armazenar resultados
+            addresses = []
+            error_counts = []
+
+            # Verifica cada setor da memória
+            with tqdm(total=total_memory, desc="Verificando memória da GPU", unit='B', unit_scale=True, unit_divisor=1024) as pbar:
+                for i in range(0, total_memory, 4096):  # Verifica em blocos de 4 KB
+                    try:
+                        pynvml.nvmlDeviceValidateMemory(handle, i, 4096)  # Verifica o bloco de memória
+                        error_counts.append(0)  # Nenhum erro
+                    except pynvml.NVMLError as e:
+                        if e.value == pynvml.NVML_ERROR_CORRUPTED_MEM:
+                            print(f"Erro de memória detectado no endereço {hex(i)}")
+                            error_counts.append(1)  # Um erro
+                        else:
+                            print(f"Erro ao verificar a memória: {e}")
+                            error_counts.append(-1)  # Erro desconhecido
+                    addresses.append(i)
+                    pbar.update(4096)
+
+            # Plota os resultados
+            plt.figure(figsize=(12, 6))
+            plt.plot(addresses, error_counts, marker='o', linestyle='-', color='blue')
+            plt.xlabel("Endereço de Memória (bytes)")
+            plt.ylabel("Contagem de Erros")
+            plt.title("Verificação da Memória da GPU")
+            plt.grid(axis='y', linestyle='--')
+            plt.show()
+
+        except pynvml.NVMLError as e:
+            print(f"Erro ao verificar a saúde da memória da GPU: {e}")
+
+        finally:
+            pynvml.nvmlShutdown()
+
+class ProcessingCapacityEstimator:
+    def __init__(self, hardware_evaluator):
+        self.hardware = hardware_evaluator
+
+    def estimate_cpu_throughput(self, num_samples):
+        # Estimativa simplificada com base no número de núcleos lógicos
+        return num_samples // psutil.cpu_count(logical=True)  # Divisão simples para uma estimativa básica
+
+    def estimate_cpu_parallel_throughput(self, num_samples, thread_overhead=0.1):
+        """Estima o throughput teórico da CPU em operações paralelas por segundo.
+
+        Args:
+            num_samples: Número de amostras a serem processadas.
+            thread_overhead: Overhead estimado por thread (0 a 1).
+
+        Returns:
+            Throughput estimado em operações por segundo.
+        """
+        num_cores = self.hardware.get_cpu_parallel_capacity()
+        effective_cores = num_cores * (1 - thread_overhead)
+        return effective_cores * self.hardware.cpu_freq.max * 1e9  # Acessando cpu_freq através de self.hardware
+
+
+    def estimate_gpu_parallel_throughput(self, num_operations):
+        """Estima o throughput teórico da GPU em operações paralelas por segundo.
+
+        Args:
+            num_operations: Número de operações a serem realizadas.
+
+        Returns:
+            Throughput estimado em operações por segundo.
+        """
+        if self.hardware.gpu_available:
+            # Estimativa simplificada com base no número de núcleos CUDA e clock da GPU
+            return self.hardware.get_gpu_parallel_capacity() * self.hardware.get_gpu_clock_rate()
+        else:
+            return 0  # GPU não disponível
+
+    def estimate_gpu_throughput(self, model_size, batch_size):
+        # Estimativa simplificada com base na memória da GPU e tamanho do modelo
+        if self.hardware.gpu_available:
+            max_batch_size = self.hardware.gpu_properties.total_memory // model_size
+            if batch_size > max_batch_size:
+                print("Aviso: O tamanho do lote excede a capacidade da GPU.")
+            return max_batch_size  # Retorna o tamanho máximo do lote possível
+        else:
+            return 0  # GPU não disponível
+
+    def interpret_processing_capacity(self, model, sentences, model_sizes=[1024**2 * x for x in [100, 200, 500, 1000]]):
+        """Interpreta a capacidade de processamento e estima o tamanho máximo do modelo.
+
+        Args:
+            model_sizes (list): Lista de tamanhos de modelo em bytes para os quais a estimativa será feita.
+
+        """
+        print("\nInterpretação da Capacidade de Processamento:")
+
+        if self.hardware.gpu_available:
+            print("GPU:")
+            for model_size in model_sizes:
+                max_batch_size = self.hardware.gpu_properties.total_memory // model_size
+                print(f"  - Modelo de {model_size / 1024**2:.0f} MB: Lote máximo de {max_batch_size} amostras")
+        else:
+            print("  GPU: Não disponível")
+
+        print("CPU:")
+        cpu_time = self.hardware.benchmark_model(model, sentences, 'cpu')  # Benchmark na CPU
+        for model_size in model_sizes:
+            estimated_time = model_size / self.estimate_cpu_parallel_throughput(model_size)
+            print(f"  - Modelo de {model_size / 1024**2:.0f} MB: Tempo estimado de processamento: {estimated_time:.4f} segundos por amostra (benchmark: {cpu_time:.4f} s/amostra)")
+
+        if self.hardware.gpu_available:
+            print("GPU:")
+            gpu_time = self.hardware.benchmark_model(model, sentences, 'cuda')  # Benchmark na GPU
+            for model_size in model_sizes:
+                estimated_time = model_size / self.estimate_gpu_parallel_throughput(model_size)
+                print(f"  - Modelo de {model_size / 1024**2:.0f} MB: Tempo estimado de processamento: {estimated_time:.4f} segundos por amostra (benchmark: {gpu_time:.4f} s/amostra)")
+
+        print("\nRecomendações:")
+        if self.hardware.gpu_available:
+            print("  - Utilize a GPU para acelerar o processamento, se possível.")
+            print("  - Ajuste o tamanho do lote de acordo com a memória disponível da GPU e o tamanho do modelo.")
+        else:
+            print("  - Considere usar uma máquina com GPU para acelerar o processamento.")
+            print("  - Otimize o código para melhor desempenho na CPU.")
 
 class CompetenceExtraction:
     def __init__(self, curricula_file, model_name="distiluse-base-multilingual-cased-v2"):
@@ -353,6 +588,46 @@ class EmbeddingModelEvaluator:
         self.curricula_data = self.competence_extractor.load_curricula() # carregar lista de dicionários
         self.gpu_manager = GPUMemoryManager()  # Instanciar o gerenciador de memória da GPU
 
+    def benchmark_data_transfer(self, model, sizes, device):
+        """Mede o tempo de transferência de dados entre CPU e GPU para um modelo."""
+        results = {}
+        for size in sizes:
+            data_cpu = torch.randn(size, model.get_sentence_embedding_dimension())  # Dados com dimensão do embedding
+            data_gpu = torch.randn(size, model.get_sentence_embedding_dimension()).to(device)
+
+            # CPU para GPU
+            start_time = time.time()
+            data_gpu.copy_(data_cpu)
+            torch.cuda.synchronize()
+            cpu_to_gpu_time = time.time() - start_time
+
+            # GPU para CPU
+            start_time = time.time()
+            data_cpu.copy_(data_gpu)
+            gpu_to_cpu_time = time.time() - start_time
+
+            results[size] = {
+                'cpu_to_gpu': cpu_to_gpu_time,
+                'gpu_to_cpu': gpu_to_cpu_time,
+            }
+        return results
+
+    def benchmark_model(self, model, sentences, device, batch_size=32):
+        """Mede o tempo de processamento do modelo (CPU ou GPU) em lotes."""
+        
+        # Dividir as sentenças em lotes
+        batches = [sentences[i:i+batch_size] for i in range(0, len(sentences), batch_size)]
+
+        start_time = time.time()
+        for batch in batches:
+            with torch.no_grad():
+                model.encode(batch, convert_to_tensor=True, device=device)
+        end_time = time.time()
+
+        total_time = end_time - start_time
+        total_samples = len(sentences) * num_repetitions  # Corrigido o cálculo do número total de amostras
+        return total_time / total_samples  # Tempo médio por amostra
+
     def evaluate_intrinsic(self, model, validation_data):  # Remove o parâmetro device
         similar_scores = []
         dissimilar_scores = []
@@ -400,6 +675,7 @@ class EmbeddingModelEvaluator:
         y = []
         valid_areas = set()
         all_embeddings = []  # Criando a lista para armazenar os embeddings
+        MAX_LENGTH = 128
 
         # Primeira passagem para identificar áreas válidas
         for researcher_data in self.curricula_data:
@@ -413,21 +689,94 @@ class EmbeddingModelEvaluator:
         for researcher_data in self.curricula_data:
             competences = self.competence_extractor.extract_competences(researcher_data)
             processed_competences = self.competence_extractor.preprocess_competences(competences)
+            processed_competences = [comp[:MAX_LENGTH] for comp in processed_competences]  # Limitar o comprimento das frases
             areas_list = self.extrair_areas(researcher_data.get('Áreas', {}))  # Obtém lista de áreas
 
             for area in all_areas_list.get('Áreas'):
                 print(f"Área de pesquisa: {area}")
-                print(f"Competências extraídas: {competences}")
-                print(f"Compet. pré-processadas: {processed_competences}")
+                # print(f"Competências extraídas: {competences}")
+                print(f"Compet.pré-processadas: {processed_competences}")
 
                 if area in valid_areas and processed_competences:
-                    embeddings = model.encode(processed_competences, convert_to_tensor=True, device=device)
+                    embeddings = model.encode(processed_competences, convert_to_tensor=True)
                     all_embeddings.extend(embeddings)  # Acumula os embeddings
                     mean_embedding = torch.mean(embeddings, dim=0)  # Calcula a média na GPU
-                    X.append(mean_embedding.cpu().numpy())  # Move para CPU e converte para NumPy
+                    X.append(mean_embedding)  # Move para CPU e converte para NumPy
                     y.append(area)
 
         return X, y
+
+    def prepare_area_classification(self, model, device="gpu"):
+        X = []
+        y = []  # Substituído por um dicionário de áreas e similaridades
+        valid_areas = set()
+        all_embeddings = []
+        area_embeddings = {}  # Dicionário para armazenar os embeddings das áreas
+
+        if device == "gpu":
+            if torch.cuda.is_available():
+                device = torch.device("cuda")
+            else:
+                device = torch.device("cpu")
+                print("CUDA não disponível, usando CPU.")
+        else:
+            device = torch.device("cpu")
+
+        # Carregar embeddings das áreas (treinados previamente)
+        area_embeddings = np.load("area_embeddings.npy", allow_pickle=True).item()  # Carrega o dicionário de embeddings
+
+        # Primeira passagem para identificar áreas válidas
+        for researcher_data in self.curricula_data:
+            areas_list = extrair_areas(researcher_data.get('Áreas', {}))
+            for areas in areas_list:
+                area = areas.get('Área')
+                if area and area != 'desconhecido':
+                    valid_areas.add(area)
+
+        # Segunda passagem para preparar os dados
+        for researcher_data in self.curricula_data:
+            competences = self.competence_extractor.extract_competences(researcher_data)
+            processed_competences = self.competence_extractor.preprocess_competences(competences)
+            areas_list = extrair_areas(researcher_data.get('Áreas', {}))
+
+            for areas in areas_list:
+                area = areas.get('Área')
+
+                if area in valid_areas and processed_competences:
+                    embeddings = model.encode(processed_competences, convert_to_tensor=True, device=device)
+                    all_embeddings.extend(embeddings)
+                    mean_embedding = torch.mean(embeddings, dim=0).cpu().numpy()  # Calcula a média na GPU e move para CPU
+
+                    # Calcular similaridade com as áreas de pesquisa
+                    similarities = cosine_similarity([mean_embedding], list(area_embeddings.values()))[0]
+                    y.append({area: sim for area, sim in zip(area_embeddings.keys(), similarities)})
+
+        # Agrupar áreas de pesquisa
+        area_names = list(area_embeddings.keys())
+        kmeans = KMeans(n_clusters=5)  # Defina o número de clusters desejado
+        kmeans.fit(list(area_embeddings.values()))
+        area_clusters = kmeans.labels_
+
+        # Associar pesquisadores aos clusters
+        for i, similarities in enumerate(y):
+            for area, sim in similarities.items():
+                cluster = area_clusters[area_names.index(area)]
+                X.append(all_embeddings[i].cpu().numpy())  # Move o embedding para CPU e converte para NumPy
+                y[i] = cluster  # Substitui o nome da área pelo ID do cluster
+
+        return X, y
+
+    def evaluate_embeddings(self, X, y, metric=cosine_similarity):
+        """Avalia a qualidade dos embeddings em relação às áreas de pesquisa."""
+        scores = []
+        for i, area in enumerate(y):
+            # Calcular a similaridade entre o embedding da área e os embeddings de suas competências
+            area_idx = [j for j, a in enumerate(y) if a == area]  # Índices das competências da mesma área
+            competence_embeddings = [X[j] for j in area_idx]
+            similarities = metric([X[i]], competence_embeddings)  # Similaridade entre área e suas competências
+            scores.append(np.mean(similarities))  # Média das similaridades
+
+        return np.mean(scores)  # Média geral das similaridades
 
     def evaluate_models(self, validation_data, use_cross_validation=True, classifier_name="LogisticRegression"):
         """
@@ -493,9 +842,9 @@ class EmbeddingModelEvaluator:
 
                 # Cálculo das métricas
                 accuracy = accuracy_score(y_test, y_pred)
-                precision = precision_score(y_test, y_pred, average='weighted')
-                recall = recall_score(y_test, y_pred, average='weighted')
-                f1 = f1_score(y_test, y_pred, average='weighted')
+                precision = precision_score(y_test, y_pred, average='weighted', zero_division=0)  # Adicionando zero_division=0
+                recall = recall_score(y_test, y_pred, average='weighted', zero_division=0)  # Adicionando zero_division=0
+                f1 = f1_score(y_test, y_pred, average='weighted', zero_division=0)  # Adicionando zero_division=0
 
                 results[model_name].update({
                     'accuracy': accuracy,
@@ -504,9 +853,9 @@ class EmbeddingModelEvaluator:
                     'f1_score': f1
                 })
 
-                print(f"Acurácia: {accuracy:.4f}")
+                print(f"\nAcurácia: {accuracy:.4f}")
                 print(f"Precisão: {precision:.4f}")
-                print(f"Recall: {recall:.4f}")
+                print(f"  Recall: {recall:.4f}")
                 print(f"F1-Score: {f1:.4f}")
 
             else:
