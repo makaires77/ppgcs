@@ -1,0 +1,6 @@
+encode_competences_kernel.cu
+setup.py
+encode_competences.egg-info/PKG-INFO
+encode_competences.egg-info/SOURCES.txt
+encode_competences.egg-info/dependency_links.txt
+encode_competences.egg-info/top_level.txt

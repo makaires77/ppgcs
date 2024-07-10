@@ -2,5 +2,12 @@
     "go.toolsEnvVars": {
         "GOPATH": "/home/marcos/go"
     },
-    "cSpell.enabled": false
+    "cSpell.enabled": false,
+    "files.associations": {
+        "format": "cpp",
+        "list": "cpp",
+        "vector": "cpp",
+        "xstring": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

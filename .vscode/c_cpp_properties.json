@@ -3,7 +3,9 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.3\\include",
+                "C:\\Users\\marco\\anaconda3\\Lib\\site-packages\\sentence_transformers"
             ],
             "defines": [
                 "_DEBUG",
