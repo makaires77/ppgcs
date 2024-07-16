@@ -7,7 +7,10 @@
       "name": "x86-Debug",
       "includePath": [
         "${env.INCLUDE}",
-        "${workspaceRoot}\\**"
+        "C:\\Users\\marco\\ppgcs\\**",
+        "C:\\Users\\marco\\anaconda3\\envs\\pytorch_env\\Lib\\site-packages\\torch\\include",
+        "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.2\\include",
+        "C:\\marco\\sentencepiece\\src"
       ],
       "defines": [
         "WIN32",
@@ -15,7 +18,11 @@
         "UNICODE",
         "_UNICODE"
       ],
+      "compilerPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
       "intelliSenseMode": "windows-msvc-x86"
     }
-  ]
+  ],
+  "version": 4
 }
