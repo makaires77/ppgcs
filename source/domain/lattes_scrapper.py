@@ -4992,8 +4992,59 @@ class ArticlesCounter:
         # Mostrar a tabela pivot ordenada pela soma de pontos decrescente
         return pivot_table_pontos_sorted
 
+    def apurar_jcr_periodo(self, dict_list, ano_inicio, ano_final):
+        # Mapeamento de pontos por cada Estrato Qualis
+        mapeamento_pontos = {
+            'A1': 90,
+            'A2': 80,
+            'A3': 60,
+            'A4': 40,
+            'B1': 20,
+            'B2': 15,
+            'B3': 10,
+            'B4': 5,
+            'C': 0,
+            'NA': 0
+        }
+        import pandas as pd
+        lista_pubqualis = []
+        for dic in dict_list:
+            autor = dic.get('Identificação',{}).get('Nome',{})
+            artigos = dic.get('Produções', {}).get('Artigos completos publicados em periódicos', {})
+            for i in artigos:
+                ano = i.get('ano',{})
+                qualis = i.get('Qualis',{})
+                lista_pubqualis.append((ano, autor, qualis))
 
-                    
+        # Criar um DataFrame a partir da lista_pubqualis
+        df_qualis_autores_anos = pd.DataFrame(lista_pubqualis, columns=['Ano','Autor', 'Qualis'])
+        df_qualis_autores_anos
+
+        # Criar uma tabela pivot com base no DataFrame df_qualis_autores_anos
+        pivot_table = df_qualis_autores_anos.pivot_table(index='Autor', columns='Ano', values='Qualis', aggfunc=lambda x: ', '.join(x))
+
+        # Selecionar as colunas (anos) que estão dentro do intervalo de anos
+        anos_interesse = [Ano for Ano in pivot_table.columns if Ano and ano_inicio <= int(Ano) <= ano_final]
+
+        # Filtrar a tabela pivot pelos anos de interesse
+        pivot_table_filtrada = pivot_table[anos_interesse]
+
+        # Mostrar a tabela pivot filtrada
+        pivot_table_filtrada
+
+        # Aplicar o mapeamento de pontos à tabela pivot filtrada apenas para valores do tipo str
+        pivot_table_pontos = pivot_table_filtrada.applymap(lambda x: sum(mapeamento_pontos[q] for q in x.split(', ') if q in mapeamento_pontos) if isinstance(x, str) else 0)
+
+        # Adicionar uma coluna final com a soma dos pontos no período
+        pivot_table_pontos['Soma de Pontos'] = pivot_table_pontos.sum(axis=1)
+
+        # Ordenar a tabela pivot pela soma de pontos de forma decrescente
+        pivot_table_pontos_sorted = pivot_table_pontos.sort_values(by='Soma de Pontos', ascending=False)
+
+        # Mostrar a tabela pivot ordenada pela soma de pontos decrescente
+        return pivot_table_pontos_sorted
+    
+    
                     ## Trecho extrair página única com vários currículos, sem paginar (extrair_elementos_sem_paginacao)
                     # linhas = i.text.split('\n\n')
                     # # if verbose:

@@ -1,72 +1,42 @@
-2024-05-15 21:40:03,979 - ERROR - Tentativa de extrair currÃ­culo de Alice Paula Di Sabatino Guimaraes em scrape_retry() falhou: Message:        Erro ao realizar a extraÃ§Ã£o para Alice Paula Di Sabatino Guimaraes: Message: disconnected: not connected to DevTools
-  (failed to check if window was closed: disconnected: not connected to DevTools)
-  (Session info: chrome=124.0.6367.207)
-Stacktrace:
-#0 0x622e84a8ecb3 <unknown>
-#1 0x622e8477d4a7 <unknown>
-#2 0x622e84763c60 <unknown>
-#3 0x622e84763b43 <unknown>
-#4 0x622e8477f822 <unknown>
-#5 0x622e8480859c <unknown>
-#6 0x622e847ea1b3 <unknown>
-#7 0x622e847bb24a <unknown>
-#8 0x622e847bbc1e <unknown>
-#9 0x622e84a52fdb <unknown>
-#10 0x622e84a56f2b <unknown>
-#11 0x622e84a3f0f1 <unknown>
-#12 0x622e84a57a92 <unknown>
-#13 0x622e84a23faf <unknown>
-#14 0x622e84a7de08 <unknown>
-#15 0x622e84a7dfe0 <unknown>
-#16 0x622e84a8de04 <unknown>
-#17 0x778e96894ac3 <unknown>
+2024-07-17 10:01:31,493 - INFO - Currículo não encontrado: Ana Claudia De Araújo Teixeira
+2024-07-17 10:03:24,829 - INFO - Currículo não encontrado: Carla Freire Celedônio Fernandes
+2024-07-17 10:08:25,431 - INFO - Currículo não encontrado: Ivana Cristina De Holanda Cunha Barrêto
+2024-07-17 10:09:26,913 - INFO - Currículo não encontrado: João Hermínio Martins Da Silva
+2024-07-17 10:09:28,338 - INFO - Currículo não encontrado: José Luis Passos Cordeiro
+2024-07-17 10:13:10,844 - ERROR - Tentativa de extrair currículo de Maximiliano Ponte em scrape_retry() falhou: Message:        Erro ao realizar a extração para Maximiliano Ponte: Message: 
 
 . Tentando novamente...
-2024-05-15 21:40:05,005 - ERROR - Tentativa de extrair currÃ­culo de Alice Paula Di Sabatino Guimaraes em scrape_retry() falhou: Message:        Erro ao realizar a extraÃ§Ã£o para Alice Paula Di Sabatino Guimaraes: Message: disconnected: not connected to DevTools
-  (failed to check if window was closed: disconnected: not connected to DevTools)
-  (Session info: chrome=124.0.6367.207)
-Stacktrace:
-#0 0x622e84a8ecb3 <unknown>
-#1 0x622e8477d4a7 <unknown>
-#2 0x622e84763c60 <unknown>
-#3 0x622e84763b43 <unknown>
-#4 0x622e8477f822 <unknown>
-#5 0x622e8480859c <unknown>
-#6 0x622e847ea1b3 <unknown>
-#7 0x622e847bb24a <unknown>
-#8 0x622e847bbc1e <unknown>
-#9 0x622e84a52fdb <unknown>
-#10 0x622e84a56f2b <unknown>
-#11 0x622e84a3f0f1 <unknown>
-#12 0x622e84a57a92 <unknown>
-#13 0x622e84a23faf <unknown>
-#14 0x622e84a7de08 <unknown>
-#15 0x622e84a7dfe0 <unknown>
-#16 0x622e84a8de04 <unknown>
-#17 0x778e96894ac3 <unknown>
-
-. Tentando novamente...
-2024-05-15 21:40:06,029 - ERROR - Tentativa de extrair currÃ­culo de Alice Paula Di Sabatino Guimaraes em scrape_retry() falhou: Message:        Erro ao realizar a extraÃ§Ã£o para Alice Paula Di Sabatino Guimaraes: Message: disconnected: not connected to DevTools
-  (failed to check if window was closed: disconnected: not connected to DevTools)
-  (Session info: chrome=124.0.6367.207)
-Stacktrace:
-#0 0x622e84a8ecb3 <unknown>
-#1 0x622e8477d4a7 <unknown>
-#2 0x622e84763c60 <unknown>
-#3 0x622e84763b43 <unknown>
-#4 0x622e8477f822 <unknown>
-#5 0x622e8480859c <unknown>
-#6 0x622e847ea1b3 <unknown>
-#7 0x622e847bb24a <unknown>
-#8 0x622e847bbc1e <unknown>
-#9 0x622e84a52fdb <unknown>
-#10 0x622e84a56f2b <unknown>
-#11 0x622e84a3f0f1 <unknown>
-#12 0x622e84a57a92 <unknown>
-#13 0x622e84a23faf <unknown>
-#14 0x622e84a7de08 <unknown>
-#15 0x622e84a7dfe0 <unknown>
-#16 0x622e84a8de04 <unknown>
-#17 0x778e96894ac3 <unknown>
-
-. Tentando novamente...
+2024-07-17 10:17:05,905 - INFO - Currículo não encontrado: Venúcia Bruna Magalhães Pereira
+2024-07-17 10:17:09,443 - INFO - Currículo não encontrado: Ana Carolina Matias
+2024-07-17 10:17:12,697 - INFO - Currículo não encontrado: Geraldo Rodrigues
+2024-07-17 10:17:14,276 - INFO - Currículo não encontrado: Elaine Siva Nascimento
+2024-07-17 10:17:37,434 - INFO - Currículo não encontrado: Christiane França Martins
+2024-07-17 10:17:55,846 - INFO - Currículo não encontrado: Clarissa Perdigão
+2024-07-17 10:17:57,760 - INFO - Currículo não encontrado: Allysson Alian De Farias
+2024-07-17 10:17:59,619 - INFO - Currículo não encontrado: Júlio Cesar Martins
+2024-07-17 10:35:10,532 - INFO - Currículo não encontrado: Ana Claudia De Araújo Teixeira
+2024-07-17 10:35:12,271 - INFO - Currículo não encontrado: Carla Freire Celedônio Fernandes
+2024-07-17 10:35:15,167 - INFO - Currículo não encontrado: Ivana Cristina De Holanda Cunha Barrêto
+2024-07-17 10:35:17,176 - INFO - Currículo não encontrado: João Hermínio Martins Da Silva
+2024-07-17 10:35:18,590 - INFO - Currículo não encontrado: José Luis Passos Cordeiro
+2024-07-17 10:35:20,452 - INFO - Currículo não encontrado: Venúcia Bruna Magalhães Pereira
+2024-07-17 10:35:23,982 - INFO - Currículo não encontrado: Ana Carolina Matias
+2024-07-17 10:35:27,254 - INFO - Currículo não encontrado: Geraldo Rodrigues
+2024-07-17 10:35:30,034 - INFO - Currículo não encontrado: Elaine Siva Nascimento
+2024-07-17 10:35:57,328 - INFO - Currículo não encontrado: Christiane França Martins
+2024-07-17 10:35:59,040 - INFO - Currículo não encontrado: Clarissa Perdigão
+2024-07-17 10:36:01,157 - INFO - Currículo não encontrado: Allysson Alian De Farias
+2024-07-17 10:36:04,558 - INFO - Currículo não encontrado: Júlio Cesar Martins
+2024-07-17 10:36:58,936 - INFO - Currículo não encontrado: Ana Claudia De Araújo Teixeira
+2024-07-17 10:37:00,664 - INFO - Currículo não encontrado: Carla Freire Celedônio Fernandes
+2024-07-17 10:37:03,170 - INFO - Currículo não encontrado: Ivana Cristina De Holanda Cunha Barrêto
+2024-07-17 10:37:04,806 - INFO - Currículo não encontrado: João Hermínio Martins Da Silva
+2024-07-17 10:37:06,641 - INFO - Currículo não encontrado: José Luis Passos Cordeiro
+2024-07-17 10:37:08,619 - INFO - Currículo não encontrado: Venúcia Bruna Magalhães Pereira
+2024-07-17 10:37:11,621 - INFO - Currículo não encontrado: Ana Carolina Matias
+2024-07-17 10:37:14,726 - INFO - Currículo não encontrado: Geraldo Rodrigues
+2024-07-17 10:37:18,357 - INFO - Currículo não encontrado: Elaine Siva Nascimento
+2024-07-17 10:37:45,383 - INFO - Currículo não encontrado: Christiane França Martins
+2024-07-17 10:37:47,067 - INFO - Currículo não encontrado: Clarissa Perdigão
+2024-07-17 10:37:49,218 - INFO - Currículo não encontrado: Allysson Alian De Farias
+2024-07-17 10:37:51,076 - INFO - Currículo não encontrado: Júlio Cesar Martins
