@@ -110,6 +110,10 @@ class IPCAData:
             print(f"Erro ao processar dados: {e}")
         return None
 
+    def obter_relatorios_remuneracao(self):
+
+        return df_remuneracoes
+
     def obter_dados_ipca(self):
         """
         Exemplo: https://apisidra.ibge.gov.br/values/<id_1>/<val_1>/<id_2>/<val_2>/...
