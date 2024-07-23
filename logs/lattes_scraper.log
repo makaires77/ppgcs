@@ -1,1 +1,44 @@
-2024-06-15 16:49:37,556 - INFO - CurrÃ­culo nÃ£o encontrado: Elisabeth Amaral de Moraes
+2024-07-23 12:35:56,340 - ERROR - Erro inesperado ao buscar: name 'StaleException' is not defined
+2024-07-23 12:36:28,849 - INFO - Currículo não encontrado: Ana Claudia De Araújo Teixeira
+2024-07-23 12:38:28,629 - INFO - Currículo não encontrado: Carla Freire Celedônio Fernandes
+2024-07-23 12:43:25,846 - INFO - Currículo não encontrado: Ivana Cristina De Holanda Cunha Barrêto
+2024-07-23 12:44:26,995 - INFO - Currículo não encontrado: João Hermínio Martins Da Silva
+2024-07-23 12:44:28,756 - INFO - Currículo não encontrado: José Luis Passos Cordeiro
+2024-07-23 12:45:02,476 - ERROR - Tentativa de extrair currículo de Luiz Odorico Monteiro De Andrade em scrape_retry() falhou: Message:        Erro ao realizar a extração para Luiz Odorico Monteiro De Andrade: Message: 
+
+. Tentando novamente...
+2024-07-23 12:46:59,644 - INFO - Currículo não encontrado: Márcio Flávio Moura De Araújo 
+2024-07-23 12:51:02,784 - INFO - Currículo não encontrado: Venúcia Bruna Magalhães Pereira
+2024-07-23 12:51:24,738 - INFO - Currículo não encontrado: Ana Carolina Matias
+2024-07-23 12:51:28,048 - INFO - Currículo não encontrado: Geraldo Rodrigues
+2024-07-23 12:51:30,071 - INFO - Currículo não encontrado: Elaine Siva Nascimento
+2024-07-23 12:51:59,625 - INFO - Currículo não encontrado: Christiane França Martins
+2024-07-23 12:52:17,741 - INFO - Currículo não encontrado: Clarissa Perdigão
+2024-07-23 12:52:20,117 - INFO - Currículo não encontrado: Allysson Alian De Farias
+2024-07-23 12:52:22,088 - INFO - Currículo não encontrado: Júlio Cesar Martins
+2024-07-23 12:53:36,345 - INFO - Currículo não encontrado: Manuel Alves Dos Santos Júnior
+2024-07-23 12:54:48,871 - INFO - Currículo não encontrado: Fátima De Cássia Evangelista De Oliveira
+2024-07-23 12:54:51,865 - INFO - Currículo não encontrado: Hélcio Silva Dos Santos
+2024-07-23 12:55:42,831 - INFO - Currículo não encontrado: Conceição Da Silva Martins Rebouças
+2024-07-23 12:56:52,136 - INFO - Currículo não encontrado: Isaac Moura Araújo
+2024-07-23 12:56:53,891 - INFO - Currículo não encontrado: Débora Gaspar
+2024-07-23 12:58:17,733 - INFO - Currículo não encontrado: Ana Claudia De Araújo Teixeira
+2024-07-23 12:58:19,735 - INFO - Currículo não encontrado: Carla Freire Celedônio Fernandes
+2024-07-23 12:58:21,843 - INFO - Currículo não encontrado: Ivana Cristina De Holanda Cunha Barrêto
+2024-07-23 12:58:23,748 - INFO - Currículo não encontrado: João Hermínio Martins Da Silva
+2024-07-23 12:58:26,311 - INFO - Currículo não encontrado: José Luis Passos Cordeiro
+2024-07-23 12:58:28,385 - INFO - Currículo não encontrado: Márcio Flávio Moura De Araújo 
+2024-07-23 12:58:30,441 - INFO - Currículo não encontrado: Venúcia Bruna Magalhães Pereira
+2024-07-23 12:58:33,659 - INFO - Currículo não encontrado: Ana Carolina Matias
+2024-07-23 12:58:36,952 - INFO - Currículo não encontrado: Geraldo Rodrigues
+2024-07-23 12:58:38,896 - INFO - Currículo não encontrado: Elaine Siva Nascimento
+2024-07-23 12:59:01,513 - INFO - Currículo não encontrado: Christiane França Martins
+2024-07-23 12:59:03,363 - INFO - Currículo não encontrado: Clarissa Perdigão
+2024-07-23 12:59:05,498 - INFO - Currículo não encontrado: Allysson Alian De Farias
+2024-07-23 12:59:07,572 - INFO - Currículo não encontrado: Júlio Cesar Martins
+2024-07-23 13:00:03,837 - INFO - Currículo não encontrado: Manuel Alves Dos Santos Júnior
+2024-07-23 13:00:05,883 - INFO - Currículo não encontrado: Fátima De Cássia Evangelista De Oliveira
+2024-07-23 13:00:07,734 - INFO - Currículo não encontrado: Hélcio Silva Dos Santos
+2024-07-23 13:00:09,446 - INFO - Currículo não encontrado: Conceição Da Silva Martins Rebouças
+2024-07-23 13:00:11,568 - INFO - Currículo não encontrado: Isaac Moura Araújo
+2024-07-23 13:00:13,496 - INFO - Currículo não encontrado: Débora Gaspar
