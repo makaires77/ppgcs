@@ -1,6 +1,242 @@
 [
     {
         "Identificação": {
+            "Nome": "Alice Paula Di Sabatino Guimarães",
+            "ID Lattes": "8793885517658468",
+            "Última atualização": "05/06/2023"
+        },
+        "Idiomas": [
+            {
+                "Idioma": "Inglês",
+                "Proficiência": "Compreende Bem, Lê Bem."
+            },
+            {
+                "Idioma": "Espanhol",
+                "Proficiência": "Compreende Razoavelmente, Fala Razoavelmente, Lê Razoavelmente."
+            }
+        ],
+        "Formação": {
+            "Acadêmica": [
+                {
+                    "Ano": "2019 - 2021",
+                    "Descrição": "Mestrado profissional em Saúde Pública. Fundação Oswaldo Cruz, FIOCRUZ, Brasil. Título: Caderno Eletrônico de Laboratório como instrumento de sinergia, inovação e susten-tabilidade científica, Ano de Obtenção: 2021. Orientador: Laís Silveira Costa. Coorientador: Renata Almeida de Souza. Grande área: Ciências da Saúde"
+                },
+                {
+                    "Ano": "2007 - 2009",
+                    "Descrição": "Especialização em Gestão e Tecnologia da Qualidade.  (Carga Horária: 374h). Centro Federal de Educação Tecnológica de Minas Gerais, CEFET/MG, Brasil. Título: Redução do índice de atraso das análises físico-químicas na Hipolabor Farmacêutica - Estudo de Caso. Orientador: André Luiz Gomes."
+                },
+                {
+                    "Ano": "2001 - 2004",
+                    "Descrição": "Graduação em Ciências Biológicas. Pontifícia Universidade Católica de Minas Gerais, PUC Minas, Brasil. Bolsista do(a): Pontifícia Universiade Católica de Minas Gerais, PUC/MG, Brasil."
+                }
+            ],
+            "Pos-Doc": [],
+            "Complementar": [
+                {
+                    "Ano": "2018 - 2018",
+                    "Descrição": "Gestão de indicadores para Unidades de saúde.  (Carga horária: 8h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil."
+                },
+                {
+                    "Ano": "2018 - 2018",
+                    "Descrição": "Boas Práticas na Pesquisa.  (Carga horária: 16h). Fundação Oswaldo Cruz - Unidade Rondônia, FIOCRUZ RO, Brasil."
+                },
+                {
+                    "Ano": "2018 - 2018",
+                    "Descrição": "Gestão de NSP - Núcleo de Segurança do Paciente.  (Carga horária: 8h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil."
+                },
+                {
+                    "Ano": "2010 - 2010",
+                    "Descrição": "Boas Práticas de Laboratório.  (Carga horária: 16h). Centro de Educação Profissional, CEP, Brasil."
+                },
+                {
+                    "Ano": "2009 - 2009",
+                    "Descrição": "Transporte aéreo de Substâncias Infecciosas. Lufthansa Cargo, LUFTHANSA, Brasil."
+                },
+                {
+                    "Ano": "2009 - 2009",
+                    "Descrição": "Atualização de auditores internos.  (Carga horária: 8h). Qualieng, QUALIENG, Brasil."
+                },
+                {
+                    "Ano": "2009 - 2009",
+                    "Descrição": "Interpretação e Aplicação da ISO 17025 e ISO 15189.  (Carga horária: 24h). Rede Metrológica de Minas Gerais, RMMG, Brasil."
+                },
+                {
+                    "Ano": "2008 - 2008",
+                    "Descrição": "Preparação para banca examinadora do PMQ 2008. Instituto Qualidade Minas, IQM, Brasil."
+                },
+                {
+                    "Ano": "2008 - 2008",
+                    "Descrição": "Implantação das Boas Práticas de Laboratório.  (Carga horária: 16h). HGB Consultoria, HGB, Brasil."
+                },
+                {
+                    "Ano": "2007 - 2007",
+                    "Descrição": "Introdução a Boas Práticas de Laboratório.  (Carga horária: 24h). Centro de Pesquisa René Rachou - Fiocruz, CPQRR, Brasil."
+                },
+                {
+                    "Ano": "2007 - 2007",
+                    "Descrição": "Formação de Auditores Internos da Qualidade.  (Carga horária: 20h). Q&P Tecnologia em Qualidade, Q%P, Brasil."
+                },
+                {
+                    "Ano": "2007 - 2007",
+                    "Descrição": "Transporte aéreo de Substâncias Infecciosas. Lufthansa Cargo, LUFTHANSA, Brasil."
+                },
+                {
+                    "Ano": "2007 - 2007",
+                    "Descrição": "Medição, calibração e verificação em balanças.  (Carga horária: 24h). Rede Metrológica de Minas Gerais, RMMG, Brasil."
+                },
+                {
+                    "Ano": "2006 - 2006",
+                    "Descrição": "Gestão documental.  (Carga horária: 8h). Centro de Pesquisa René Rachou - Fiocruz, CPQRR, Brasil."
+                },
+                {
+                    "Ano": "2006 - 2006",
+                    "Descrição": "Gestão Documental.  (Carga horária: 8h). Centro de Pesquisa René Rachou - Fiocruz, CPQRR, Brasil."
+                }
+            ]
+        },
+        "Atuação Profissional": [
+            {
+                "Instituição": "FUNDAÇÃO OSWALDO CRUZ/CENTRO DE PESQUISAS RENÉ RACHOU, FIOCRUZ/CPQRR, Brasil.",
+                "Ano": "2014 - 2015",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Bolsista, Enquadramento Funcional: Apoio Técnico, Carga horária: 40, Regime: Dedicação exclusiva. Bolsista no Projeto Eliminar a Dengue: Desafio Brasil"
+            },
+            {
+                "Instituição": "FUNDAÇÃO OSWALDO CRUZ/CENTRO DE PESQUISAS RENÉ RACHOU, FIOCRUZ/CPQRR, Brasil.",
+                "Ano": "2014 - 2014",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Bolsista, Enquadramento Funcional: Apoio Técnico, Carga horária: 40, Regime: Dedicação exclusiva. Bolsista Fundep no projeto Eliminar a Dengue: Desafio Brasil"
+            },
+            {
+                "Instituição": "FUNDAÇÃO OSWALDO CRUZ/CENTRO DE PESQUISAS RENÉ RACHOU, FIOCRUZ/CPQRR, Brasil.",
+                "Ano": "2006 - 2014",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Bolsista, Enquadramento Funcional: Assistente de Projetos de Pesquisa, Carga horária: 20"
+            },
+            {
+                "Instituição": "FUNDAÇÃO OSWALDO CRUZ/CENTRO DE PESQUISAS RENÉ RACHOU, FIOCRUZ/CPQRR, Brasil.",
+                "Ano": "2006 - 2014",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Bolsista, Enquadramento Funcional: Técnico Biologia Molecular e de Qualidade, Carga horária: 20"
+            },
+            {
+                "Instituição": "FUNDAÇÃO OSWALDO CRUZ/CENTRO DE PESQUISAS RENÉ RACHOU, FIOCRUZ/CPQRR, Brasil.",
+                "Ano": "2005 - 2006",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Bolsista, Enquadramento Funcional: Assistente de pesquisa, Carga horária: 40 Atividades relacionadas a biologia molecular, como PCR, sequenciamento, expressão de proteínas em sistema procarioto, etc."
+            },
+            {
+                "Instituição": "Fundação Oswaldo Cruz - Unidade Rondônia, FIOCRUZ RO, Brasil.",
+                "Ano": "2015 - Atual",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Servidor Público, Enquadramento Funcional: Tecnologista em Saúde Pública, Carga horária: 40"
+            },
+            {
+                "Instituição": "Fundação Oswaldo Cruz - Unidade Rondônia, FIOCRUZ RO, Brasil.",
+                "Ano": "07/2016 - 12/2016",
+                "Descrição": "",
+                "Outras informações": "Conselhos, Comissões e Consultoria, Fundação Oswaldo Cruz - Unidade Rondônia. Cargo ou função Membro da Comissão de Concurso da Fiocruz Rondônia."
+            }
+        ],
+        "Linhas de Pesquisa": [],
+        "Áreas": {
+            "1.": "Grande área: Ciências Sociais Aplicadas / Área: Administração.",
+            "2.": "Grande área: Ciências Biológicas / Área: Bioquímica / Subárea: Biologia Molecular.",
+            "3.": "Grande área: Ciências Biológicas / Área: Biologia Geral."
+        },
+        "Produções": {
+            "Artigos completos publicados em periódicos": [
+                {
+                    "ano": "2021",
+                    "fator_impacto_jcr": "",
+                    "ISSN": "20452322",
+                    "titulo": "SARS-CoV-2 genomic surveillance in Rondônia, Brazilian Western Amazon",
+                    "revista": "Scientific Reports",
+                    "autores": "BOTELHO-SOUZA, LUAN FELIPO2021BOTELHO-SOUZA, LUAN FELIPO ; NOGUEIRA-LIMA, FELIPE SOUZA ; ROCA, TÁRCIO PEIXOTO ; NAVECA, FELIPE GOMES ; DE OLIVERIA DOS SANTOS, ALCIONE ; MAIA, ADRIANA CRISTINA SALVADOR ; DA SILVA, CICILEIA CORREIA ; DE MELO MENDONÇA, ALINE LINHARES FERREIRA ; LUGTENBURG, CELINA APARECIDA BERTONI ; AZZI, CAMILA FLÁVIA GOMES ; FONTES, JULIANA LOCA FURTADO ; CAVALCANTE, SUELEN ; DE CÁSSIA PONTELLO RAMPAZZO, RITA ; SANTOS, CAIO HENRIQUE NEMETH ;DI SABATINO GUIMARÃES, ALICE PAULA; MÁXIMO, FERNANDO RODRIGUES ; VILLALOBOS-SALCEDO, JUAN MIGUEL ; VIEIRA, DEUSILENE SOUZA . ",
+                    "data_issn": "20452322",
+                    "DOI": "http://dx.doi.org/10.1038/s41598-021-83203-2"
+                },
+                {
+                    "ano": "2021",
+                    "fator_impacto_jcr": "",
+                    "ISSN": "12019712",
+                    "titulo": "Development of a quantitative one-step multiplex RT-qPCR assay for the detection of SARS-CoV-2 in a biological matrix",
+                    "revista": "INTERNATIONAL JOURNAL OF INFECTIOUS DISEASES",
+                    "autores": "QUEIROZ, JACKSON ALVES DA SILVA2021QUEIROZ, JACKSON ALVES DA SILVA ; RAMPAZZO, RITA DE CÁSSIA PONTELLO ; FILHO, EDIVÁ BASÍLIO DA SILVA ; OLIVEIRA, GABRIELLA SGORLON ; OLIVEIRA, SUYANE DA COSTA ; SOUZA, LUAN FELIPO BOTELHO ; PEREIRA, SORAYA DOS SANTOS ; RODRIGUES, MORENO MAGALHÃES DE SOUZA ; MAIA, ADRIANA CRISTINA SALVADOR ; DA SILVA, CICILEIA CORREIA ; MENDONÇA, ALINE LINHARES FERREIRA DE MELO ; LUGTENBURG, CELINA APARECIDA BERTONI ; AGUIAR, FRANCISCO DE ASSIS ARAÚJO ; RODRIGUES, ROSIANE DE SOUZA SOARES ; SANTOS, CAIO HENRIQUE NEMETH ;GUIMARÃES, ALICE PAULA DI SABATINO; MÁXIMO, FERNANDO RODRIGUES ; SANTOS, ALCIONE DE OLIVEIRA DOS ; KRIEGER, MARCO AURÉLIO ; SALCEDO, JUAN MIGUEL VILLALOBOS ; DALL?ACQUA, DEUSILENE SOUZA VIEIRA . ",
+                    "data_issn": "12019712",
+                    "DOI": "http://dx.doi.org/10.1016/j.ijid.2021.01.001"
+                }
+            ],
+            "Resumos publicados em anais de congressos": {
+                "1.": "LOBO, G. A. ; AKSENEN, C. F. ; GUIMARAES, B. N. ; SOUSA, T. C. ; COSTA, T. O. ; OLIVEIRA, T. F. ; BEZERRA, J. M. M. ; JERONIMO, P. M. C. ;GUIMARÃES, A. P. S.; DIAS, F. B. S. . Variantes de Preocupação da COVID-19: estudo sobre o perfil dos portadores da variante Delta no estado do Ceará, Brasil.. In: 57º Congresso da Sociedade Brasileira de Medicina Tropical (MEDTROP 2022), 2022, Belém. 57º Congresso da Sociedade Brasileira de Medicina Tropical, 2022.",
+                "2.": "GUIMARÃES, A. P. S.; Silva, E. T. ; Souza, E.N. ; Stegun, FW ; MEDEIROS, J. F. . Turning Internet of Things into Smart Labs. In: 35th SQA Annual Meeting and Quality College, 2019, Atlanta. 35th SQA Annual Meeting and Quality College, 2019.",
+                "3.": "CARVALHO, L. H. ; SOUSA, T. N. ; CERAVOLO, I. P. ;GUIMARÃES, A. P. S.; FONTES, C. J. F. ; BRITO, C. F. A. . Análise da variabilidade genética do gene codificador da região II da proteína do Plasmodium vivax que se liga ao antígeno Duffy. In: XIV Jornada de Iniciação Científica, III Jornada do Programa de Vocação Científica (IC Júnior), I Jornada de Pós-Graduação, 2006, Belo Horizonte. XIV Jornada de Iniciação Científica, III Jornada do Programa de Vocação Científica (IC Júnior), I Jornada de Pós-Graduação, 2006.",
+                "4.": "RODRIGUES, F. G. ; OLIVEIRA, S. B. ;GUIMARÃES, A. P. S.; LORENA, M. J. ; BRITO, C. F. A. ; MOREIRA, L. A. . Obtenção de mosquitos Aedes fluviatilis transgênicos para bloqueio da malária aviária. In: XIV Jornada de Iniciação Científica, III Jornada do Programa de Vocação Científica (IC Júnior), I Jornada de Pós-Graduação, 2006, Belo Horizonte. XIV Jornada de Iniciação Científica, III Jornada do Programa de Vocação Científica (IC Júnior), I Jornada de Pós-Graduação, 2006.",
+                "5.": "RODRIGUES, F. G. ; OLIVEIRA, S. B. ;GUIMARÃES, A. P. S.; LORENA, M. J. ; BRITO, C. F. A. ; MOREIRA, L. A. . Construção gênica para obtenção de mosquitos bloqueadores da infecção pelo Plasmodium. In: XLII Congresso da Sociedade Brasileira de Medicina Tropical, 2006. XLII Congresso da Sociedade Brasileira de Medicina Tropical, 2006. v. v.39."
+            },
+            "Apresentações de Trabalho": {
+                "1.": "GUIMARÃES, A. P. S.; MEDEIROS, J. F. ; Silva, E. T. ; Souza, E.N. . Turning the Internet of Things into Smart Labs. 2019. (Apresentação de Trabalho/Congresso).",
+                "2.": "GUIMARÃES, A. P. S.. Redução do índice de atraso das análises físico-químicas na Hipolabor Farmacêutica. 2008. (Apresentação de Trabalho/Seminário)."
+            },
+            "Outras produções bibliográficas": {
+                "1.": "SIQUEIRA, M. A. M. T. ; MIYAJIMA, F. ;GUIMARÃES, A. P. S.; NAVECA, F. G. ; CAMPOS, T. L. ; RESENDE, P. C. ; VOLOTAO, E. M. ; MOTTA, F. C. . Vigilância Genômica aplicada às Doenças Infecciosas e Virais.\n\t\t\t\t\t\t\tBrasília:\n\t\t\t\t\t\t\t\t\tUNASUS,  2023 (Curso de Qualificação à distância - EAD)."
+            },
+            "Entrevistas, mesas redondas, programas e comentários na mídia": {
+                "1.": "GUIMARÃES, A. P. S.. Práticas Laboratoriais. 2019. (Curso de curta duração ministrado/Extensão).",
+                "2.": "GUIMARÃES, A. P. S.. 3º Curso de Biossegurança. 2015. (Curso de curta duração ministrado/Outra)."
+            }
+        },
+        "ProjetosPesquisa": [
+            {
+                "chave": "2019 - Atual",
+                "titulo_projeto": "SiMoNi: transformando a Internet das Coisas - IoT - em laboratórios inteligentes",
+                "descricao": "Descrição: O projeto de automação de laboratório, batizado de SiMoNi - Sistema de Monitoramento, é uma ferramenta online e inteligente capaz de monitorar, armazenar, gerir e controlar parâmetros em laboratórios como pressão, temperatura, umidade, acesso. Baseado no conceito de Internet das Coisas - IoT, onde objetos são conectados uns aos outros e aos usuários por meio da internet, o SiMoNi é composto por uma plataforma aberta, on line, com hardware livre, microcontroladores e sensores. Estes sensores enviam dados à plataforma e estes dados são armazenados, convertidos em informações em tempo real. Estas informações fomentam decisões para o usuário ou o próprio sistema tomar..Situação: Em andamento; Natureza: Pesquisa.Integrantes: Alice Paula Di Sabatino Guimarães - Integrante / Ednaldo Teixeira da Silva - Integrante / Felipe Weisshaupt Stegun - Integrante / Jansen Fernandes de Medeiros - Coordenador."
+            },
+            {
+                "chave": "2012 - 2014",
+                "titulo_projeto": "Utilização da bactéria Wolbachia para bloqueio de dengue em mosquitos Aedes aegypti",
+                "descricao": "Descrição: Programa Eliminar a Dengue- Desafio Brasil. Gerente de Projetos. Coordenação de ensaios de diagnóstico de Wolbachia por qPCR. Elaboração de relatórios técnicos. Planejamento e controle orçamentário. Preparação, submissão e apresentação dos documentos regulatórios e éticos. Acompanhamento de cronograma do projeto e suas alterações..Situação: Concluído; Natureza: Pesquisa.Integrantes: Alice Paula Di Sabatino Guimarães - Integrante / Luciano Andrade Moreira - Coordenador."
+            }
+        ],
+        "ProjetosExtensão": [],
+        "ProjetosDesenvolvimento": [
+            {
+                "chave": "2022 - Atual",
+                "titulo_projeto": "Monitoramento e Controle de Cadeias de Frios com Internet das Coisas",
+                "descricao": "Descrição: O SiMoNi é um sistema capaz de monitorar, armazenar e gerir parâmetros como temperatura e energia, que por meio de sensores, conecta objetos uns aos outros e aos usuários por meio da web. Com coleta e disponibilidade em tempo real, transformamos dados em informações e eventos não desejados em alertas imediatos, sendo um eficiente gerenciador que reduz perdas e oferece confiabilidade aos processos. Validamos um protótipo escalável de consumo de energia e estamos aprimorando sensor de temperatura..Situação: Em andamento; Natureza: Desenvolvimento.Integrantes: Alice Paula Di Sabatino Guimarães - Integrante / Ednaldo Teixeira da Silva - Integrante / Elieber Nascimento de Souza - Coordenador."
+            },
+            {
+                "chave": "2021 - Atual",
+                "titulo_projeto": "Gestão estratégica com Internet das Coisas",
+                "descricao": "Situação: Em andamento; Natureza: Desenvolvimento.Integrantes: Alice Paula Di Sabatino Guimarães - Coordenador / Ednaldo Teixeira da Silva - Integrante / Elieber Nascimento de Souza - Integrante."
+            }
+        ],
+        "ProjetosOutros": [],
+        "Bancas": {
+            "Concurso público": {
+                "1.": "GUIMARÃES, A. P. S.. Membro titular da banca examinadora da prova prática do concurso de técnico em Laboratório de Biologia Celular e Molecular. 2017. Fundação Oswaldo Cruz."
+            },
+            "Outras participações": {
+                "1.": "GUIMARÃES, A. P. S.. Examinadora do Prêmio SESI de Qualidade no Trabalho - Etapa Estadual. 2008. Serviço Social da Indústria.",
+                "2.": "GUIMARÃES, A. P. S.. Examinadora do Prêmio Mineiro de Qualidade. 2008. Instituto Qualidade Minas."
+            }
+        },
+        "Orientações": {},
+        "JCR2": [
+            {
+                "doi": "http://dx.doi.org/10.1038/s41598-021-83203-2",
+                "impact-factor": "4.6",
+                "original_title": "Scientific Reports (2045-2322)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1016/j.ijid.2021.01.001",
+                "impact-factor": "4.6",
+                "original_title": "Scientific Reports (2045-2322)"
+            }
+        ]
+    },
+    {
+        "Identificação": {
             "Nome": "Cecili Barrozo Mendes",
             "ID Lattes": "3339883916812154",
             "Última atualização": "19/06/2024"
@@ -356,5 +592,61 @@
                 "original_title": "Marine Biology (1432-1793)"
             }
         ]
+    },
+    {
+        "Identificação": {
+            "Nome": "Lucas de Carvalho Rocha Lima",
+            "ID Lattes": "2321467625610009",
+            "Última atualização": "24/08/2016"
+        },
+        "Idiomas": [
+            {
+                "Idioma": "Inglês",
+                "Proficiência": "Compreende Bem, Fala Bem, Lê Bem, Escreve Bem."
+            }
+        ],
+        "Formação": {
+            "Acadêmica": [
+                {
+                    "Ano": "2013 - 2015",
+                    "Descrição": "Graduação em Geografia. Universidade Cruzeiro do Sul, UNICSUL, Brasil. Título: PIRATARIA E O MEIO TÉCNICO-CIENTÍFICO-INFORMACIONAL. Orientador: Dra. Vivian Fiori. Bolsista do(a): Universidade Cruzeiro do Sul, UNICSUL, Brasil."
+                }
+            ],
+            "Pos-Doc": [],
+            "Complementar": [
+                {
+                    "Ano": "2015 - 2015",
+                    "Descrição": "Extensão universitária em TKT - Teaching Knowledge Test. University of Cambridge, CAM, Inglaterra."
+                }
+            ]
+        },
+        "Atuação Profissional": [],
+        "Linhas de Pesquisa": [],
+        "Áreas": {
+            "1.": "Grande área: Lingüística, Letras e Artes / Área: Letras / Subárea: Professor de Inglês.",
+            "2.": "Grande área: Ciências Humanas / Área: Geografia / Subárea: Professor de Geografia."
+        },
+        "Produções": {
+            "": [],
+            "Apresentações de Trabalho": {
+                "1.": "LIMA, L. C. R.. Arte na Escola. 2013. (Apresentação de Trabalho/Simpósio).",
+                "2.": "LIMA, L. C. R.. Discutindo os Desafios da Alfabetização. 2013. (Apresentação de Trabalho/Simpósio)."
+            }
+        },
+        "ProjetosPesquisa": [],
+        "ProjetosExtensão": [],
+        "ProjetosDesenvolvimento": [],
+        "ProjetosOutros": [],
+        "Bancas": {},
+        "Orientações": {
+            "Orientações e supervisões em andamento": [
+                {
+                    "Orientações de outra natureza": {
+                        "1.": "Dra. Vivian Fiori. O ensino superior público e privado e o território brasileiro.. Início: 2013. Orientação de outra natureza. Universidade Cruzeiro do Sul. (Orientador)."
+                    }
+                }
+            ]
+        },
+        "JCR2": []
     }
 ]
