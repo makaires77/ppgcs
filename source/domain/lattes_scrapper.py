@@ -2337,16 +2337,18 @@ class LattesScraper:
     def avaliar_remanescentes(self, lista_busca, dict_list_docents, filename='temp_dict_list.json'):
         print(f'{len(lista_busca)} currículos a buscar no total')
         print(f'{len(dict_list_docents)} currículos já extraídos')
+        
         total_extraidos = 0
         total_nao_extraidos = 0
-
+        self.driver.quit()
+        
         ## Lista para armazenar nomes extraídos com sucesso
         nomes_extraidos = []
 
         jfm = JSONFileManager()
-        # Carregar arquivo dict_list_temp.json
-        pathfilename = os.path.join(self.find_repo_root(), '_data','in_csv', filename)
-        dict_list_docents, formatted_creation_date, formatted_modification_date, time_count, unit = jfm.load_from_json(pathfilename)
+        ## Carregar arquivo dict_list_temp.json
+        # pathfilename = os.path.join(self.find_repo_root(), '_data','in_csv', filename)
+        # dict_list_docents, formatted_creation_date, formatted_modification_date, time_count, unit = jfm.load_from_json(pathfilename)
         lista_restante = lista_busca[:]
 
         for i in dict_list_docents:
@@ -2357,7 +2359,7 @@ class LattesScraper:
             ## Verificar se o nome ou uma forma similar já foi extraído
             for nome_original in lista_restante:
                 nome_original_normalizado = self.normalizar_nome(nome_original)
-                if nome_original_normalizado == nome_normalizado:
+                if nome_original_normalizado == nome_normalizado or nome_original_normalizado in nome_normalizado:
                     lista_restante.remove(nome_original)
                     encontrado = True
                     break
