@@ -4781,6 +4781,18 @@ class ArticlesCounter:
         diferenca_dias = (data_atual - data_atualizacao).days if data_atualizacao else None
         return diferenca_dias
 
+    # Função para normalizar os nomes
+    def normalizar_nome(self, nome):
+        """Normaliza um nome, removendo acentos e caracteres especiais, convertendo para minúsculas e padronizando espaços."""
+
+        # Remove acentos e caracteres especiais
+        nome_sem_acentos = unidecode(nome)
+
+        # Converte para minúsculas e remove espaços extras
+        nome_normalizado = nome_sem_acentos.lower().strip().replace("  ", " ")
+
+        return nome_normalizado
+
     def extrair_data_atualizacao(self, dict_list):
         ids_lattes_grupo=[]
         nomes_curriculos=[]
@@ -5058,6 +5070,108 @@ class ArticlesCounter:
             df['Somatório'] = df['Somatório'].astype(str)
 
         return df
+
+    # Função para apurar pontos de publicações
+    def apurar_jcr_publicacoes(self, dict_list, keylevel_one, keylevel_two, data_measure, class_mapping, year_ini, year_end):
+        # Dicionário para armazenar os resultados
+        dict_points = {}
+
+        # Expressão regular para extrair valores numéricos da chave (corrigida)
+        pattern = re.compile(r'(\d+)p \((?:(.*?) < )?JCR (<= |> )(\d+(?:\.\d+)?)\)')
+
+        # Converter as chaves do dicionário de mapeamento de pontuação para o formato desejado
+        class_mapping_parsed = {}
+        for key, value in class_mapping.items():
+            match = pattern.match(key)
+            if match:
+                pontos = int(match.group(1))
+                if match.group(2) is None:  # Caso "JCR > x"
+                    limites = (float(match.group(4)), float('inf'))
+                else:  # Caso "x < JCR <= y"
+                    limites = (float(match.group(2)), float(match.group(4)))
+                class_mapping_parsed[key] = (pontos, limites)
+                # print(pontos, limites)
+            else:  # Caso "0p (sem JCR)"
+                pass
+                # class_mapping_parsed[key] = (0, (0.0, 0.0))  # Pontos 0 e limites (0.0, 0.0)
+
+        for curriculum in dict_list:  # Iterar sobre os currículos
+            id_lattes = curriculum.get('Identificação', {}).get('ID Lattes')
+            name = curriculum.get('Identificação', {}).get('Nome')
+
+            # Inicializar dicionário para o pesquisador atual
+            dict_points[name] = {
+                'Total Pontos': 0,
+                **{k: [0, 0] for k in class_mapping_parsed.keys()}
+            }
+
+            try:
+                publicacoes = curriculum[keylevel_one][keylevel_two]
+                for publicacao in publicacoes:
+                    try:
+                        ano_public = int(publicacao.get('ano'))
+                    except:
+                        ano_public = 2021                    
+                        # print(f'Problema com o ano da publicação: {publicacao}')
+
+                    # Filtrar para apurar somente publicações dentro do período em análise
+                    if ano_public >= year_ini and ano_public <= year_end:
+                        for jcr_value in publicacao[data_measure]:
+                            try:
+                                jcr_value = float(jcr_value.strip('.'))
+                                # print(jcr_value)
+                            except:
+                                jcr_value = 0.0
+
+                            for faixa, (pontos, (faixa_min, faixa_max)) in class_mapping_parsed.items():
+                                if faixa_min < jcr_value <= faixa_max:
+                                    dict_points[name][faixa][0] += 1
+                                    dict_points[name][faixa][1] += 1
+                                    dict_points[name]['Total Pontos'] += pontos
+                                    break
+
+            except (KeyError, TypeError) as e:
+                dict_points[name]['Total Pontos'] += 0
+                # print(e)
+                # print(f"Aviso: Chave '{keylevel_one}' ou '{keylevel_two}' não encontrada no currículo de {name} (ID Lattes: {id_lattes})")
+
+        # Criar DataFrame e renomear colunas
+        df_resultado = pd.DataFrame(dict_points).T
+
+        # Separar quantidade e soma de pontos
+        df_qtd = df_resultado[[col for col in df_resultado.columns if isinstance(df_resultado[col][0], list)]].applymap(lambda x: x[0])
+        df_soma = df_resultado[[col for col in df_resultado.columns if isinstance(df_resultado[col][0], list)]].applymap(lambda x: x[1])
+
+        # Renomear colunas
+        df_qtd = df_qtd.rename(columns={col: f"Quantidade_{col}" for col in df_qtd.columns})
+        df_soma = df_soma.rename(columns={col: f"Soma_{col}" for col in df_soma.columns})
+
+        # Concatenar DataFrames
+        df_resultado = pd.concat([df_qtd, df_soma, df_resultado['Total Pontos']], axis=1)
+
+        # Remover tudo após 6p ou 8p nos rótulos das colunas
+        df_resultado = df_resultado.rename(columns=lambda x: re.sub(r'(0p|6p|8p).*', r'\1', x))
+
+        return dict_points, df_resultado  # Retornar o dicionário com os resultados
+
+    def apurar_jcr_orientadores(self, df_resultado, lista_orientadores):
+        # scraper = LattesScraper()
+        orient_norm = [self.normalizar_nome(x) for x in lista_orientadores]
+
+        # Normalizar os nomes no DataFrame
+        df_resultado.index = df_resultado.index.map(self.normalizar_nome)
+
+        # Normalizar os nomes na lista de filtro
+        orient_norm = [self.normalizar_nome(nome) for nome in lista_orientadores]
+
+        # Filtrar o DataFrame pelos nomes na lista (usando nomes normalizados)
+        df_orientadores = df_resultado.loc[orient_norm]
+
+        # Ordenar o DataFrame filtrado pela coluna "Total Pontos" em ordem decrescente
+        df_orientadores = df_orientadores.sort_values(by='Total Pontos', ascending=False)
+
+        # retornar o DataFrame filtrado
+        return df_orientadores
 
     def apurar_orientacoes(self, dict_list_docents, ano_inicio, ano_final):
         """
