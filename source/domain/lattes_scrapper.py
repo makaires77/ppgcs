@@ -5186,6 +5186,7 @@ class ArticlesCounter:
 
         return df
 
+    ## Formato de saía correto, porém está repetindo dados de diferentes tipos de orientação indevidamente
     def apurar_orientacoes_old(self, dict_list_docents, ano_inicio, ano_final):
         """
         Gera uma tabela com a pontuação de orientações concluídas por ano para cada orientador,
@@ -5273,20 +5274,20 @@ class ArticlesCounter:
             if orientacoes:
                 for tipo_dict in orientacoes:  # Itera sobre a lista de dicionários de tipos de orientação
                     for tipo, dados_orientacao in tipo_dict.items():  # Itera sobre os tipos de orientação e seus dados
-                        print(f"Tipo: {tipo}")  # DEBUG
-                        print(f"Dados da orientação: {dados_orientacao}")  # DEBUG
+                        # print(f"Tipo: {tipo}")  # DEBUG
+                        # print(f"Dados da orientação: {dados_orientacao}")  # DEBUG
 
                         if tipo == pontos_ic[0]:  # Filtrar pelo tipo de orientação específico
                             for _, orientacao in dados_orientacao.items():
                                 ano_match = re.search(r'\b(\d{4})\b', orientacao)
                                 if ano_match:
                                     ano = int(ano_match.group(1))
-                                    print(f"Ano: {ano}")  # DEBUG
+                                    # print(f"Ano: {ano}")  # DEBUG
                                     if ano_inicio <= ano <= ano_final:
                                         orientador_match = re.search(r'Orientador:\s*(.*)', orientacao)
                                         if orientador_match:
                                             orientador = orientador_match.group(1).strip().strip('.')
-                                            print(f"Orientador: {orientador}")  # DEBUG
+                                            # print(f"Orientador: {orientador}")  # DEBUG
 
                                             if orientador not in orientacoes_por_orientador:
                                                 orientacoes_por_orientador[orientador] = {ano: 0 for ano in anos_intervalo}
@@ -5310,6 +5311,91 @@ class ArticlesCounter:
         # print(f"DataFrame final: \n{df}")  # DEBUG
 
         return df
+
+    def apurar_orientacoes_new(self, dict_list_docents, ano_inicio, ano_final, orientadores_filtro=None):
+        """
+        Gera uma tabela com a pontuação de orientações concluídas por ano para cada orientador,
+        considerando um valor por orientação e filtrando por intervalo de anos, incluindo o ano de início e fim.
+
+        Args:
+            dict_list_docents: Lista de dicionários contendo dados de docentes.
+            tipos: Dicionário com os tipos de orientação e seus respectivos pesos.
+            ano_inicio: Ano inicial do intervalo a ser considerado (inclusive).
+            ano_final: Ano final do intervalo a ser considerado (inclusive).
+            orientadores_filtro: Lista opcional de nomes de orientadores para filtrar os resultados.
+
+        Returns:
+            DataFrame: Tabela com orientadores como índices, anos como colunas em ordem crescente,
+                colunas de somatório por tipo de orientação e uma coluna de somatório total.
+        """
+        tipos = {'Iniciação científica': 1,
+                'Trabalho de conclusão de curso de graduação': 1,
+                'Dissertação de mestrado': 2,
+                'Tese de doutorado': 2}
+
+        siglas = {'Iniciação científica': 'IC',
+                'Trabalho de conclusão de curso de graduação': 'Grad',
+                'Dissertação de mestrado': 'Mest',
+                'Tese de doutorado': 'Dout'}
+
+        dfs_por_tipo = {}  # Dicionário para armazenar DataFrames por tipo de orientação
+
+        # Verificar se os anos existem como colunas no DataFrame
+        anos_existentes = set()
+        anos_intervalo = set(range(ano_inicio, ano_final + 1))
+
+        for tipo_orientacao, pontos_orientacao in tipos.items():
+            df_tipo = self.gerar_tabela_pontuacao_old(dict_list_docents, pontos_orientacao, ano_inicio, ano_final)
+            sigla = siglas.get(tipo_orientacao, tipo_orientacao)  # Se não houver sigla, usa o nome completo
+            df_tipo = df_tipo.rename(columns={'Somatório': f'Pts_Orient_{sigla}'})  # Renomeia a coluna 'Somatório' para incluir a sigla
+            dfs_por_tipo[tipo_orientacao] = df_tipo
+            anos_existentes.update(df_tipo.columns)
+
+        anos_a_somar = sorted(list(anos_existentes.intersection(anos_intervalo)))
+
+        # Combinar DataFrames de todos os tipos de orientação
+        df = pd.concat(dfs_por_tipo.values(), axis=1)
+
+        # Calcular somatório por tipo de orientação ANTES da multiplicação e da conversão de anos
+        for tipo_orientacao, sigla in siglas.items():
+            colunas_tipo = [col for col in df.columns if str(col).startswith(f'Pts_Orient_{sigla}_')]  # Converter colunas para string antes do filtro
+            if colunas_tipo:
+                df[f'Pts_Orient_{sigla}'] = df[colunas_tipo].sum(axis=1)
+
+        # Calcular somatório total DEPOIS de calcular somatório por tipo de orientação (considerando todas as colunas, mesmo as de string)
+        if anos_a_somar:
+            df.insert(0, 'Somatório_Total', df.select_dtypes(include=['number']).sum(axis=1))  # Soma apenas colunas numéricas
+            df['Somatório_Total'] = df['Somatório_Total'].astype(str)
+
+        # Reorganizar as colunas do DataFrame (corrigido)
+        nova_ordem_colunas = ['Somatório_Total']
+        for sigla in siglas.values():
+            nova_ordem_colunas.append(f'Pts_Orient_{sigla}')
+        # Adicionar colunas de anos (sem repetição)
+        nova_ordem_colunas.extend(sorted(set(anos_a_somar)))  # Corrigido aqui
+
+        # Reindexar o DataFrame com a nova ordem de colunas
+        df = df.reindex(columns=nova_ordem_colunas)
+
+        # Converter colunas de anos para inteiro para ordenação correta, somente se ainda não foram convertidas e se forem numéricas
+        if not colunas_convertidas:
+            df.columns = [int(col.split('_')[-1]) if isinstance(col, str) and col.split('_')[-1].isnumeric() else col for col in df.columns]
+            colunas_convertidas = True
+
+        # Filtrar linhas de subtotais e total geral (ANTES da transposição)
+        linhas_a_manter = df.index[df.index.str.startswith('Pts_Orient_') | (df.index == 'Somatório_Total')]
+        df_filtrado = df.loc[linhas_a_manter]
+
+        # Transpor o DataFrame DEPOIS da filtragem
+        tabela_pivot = df_filtrado.T
+
+        # Converter índices de volta para string para a filtragem
+        tabela_pivot.index = tabela_pivot.index.astype(str)
+
+        # Renomear as colunas para remover o prefixo "Pts_Orient_"
+        tabela_filtrada = tabela_pivot.rename(columns=lambda x: x.replace('Pts_Orient_', ''))
+
+        return tabela_filtrada, tabela_pivot
 
     def apurar_orientacoes(self, dict_list_docents, ano_inicio, ano_final):
         tipos = {'Iniciação científica': 1,
@@ -5366,13 +5452,32 @@ class ArticlesCounter:
 
         # Converter índices de volta para string para a filtragem
         tabela_pivot.index = tabela_pivot.index.astype(str)    
-        print(tabela_pivot.index)
+        # print(tabela_pivot.index)
 
         # Filtrar linhas de subtotais e total geral
         linhas_a_manter = [index for index in tabela_pivot.index if index.startswith('Pts_Orient_') or index == 'Somatório_Total']
         tabela_filtrada = tabela_pivot.loc[linhas_a_manter]
 
         return tabela_filtrada.T, tabela_pivot.T
+
+    def apurar_orientacoes_orientadores(self, df_resultado, lista_orientadores):
+        # scraper = LattesScraper()
+        orient_norm = [self.normalizar_nome(x) for x in lista_orientadores]
+
+        # Normalizar os nomes no DataFrame
+        df_resultado.index = df_resultado.index.map(self.normalizar_nome)
+
+        # Normalizar os nomes na lista de filtro
+        orient_norm = [self.normalizar_nome(nome) for nome in lista_orientadores]
+
+        # Filtrar o DataFrame pelos nomes na lista (usando nomes normalizados)
+        df_orientadores = df_resultado.loc[orient_norm]
+
+        # Ordenar o DataFrame filtrado pela coluna "Total Pontos" em ordem decrescente
+        df_orientadores = df_orientadores.sort_values(by='Total Pontos', ascending=False)
+
+        # retornar o DataFrame filtrado
+        return df_orientadores
 
     def apurar_orientacoes_ic(self, dict_list_docents, pontos_ic, ano_inicio, ano_final):
         """
