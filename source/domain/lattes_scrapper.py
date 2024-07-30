@@ -3444,7 +3444,60 @@ class HTMLParser:
                     self.estrutura["Produções"][subsec_name] = ocorrencias
 
         return self.estrutura["Produções"]
+
     
+    def process_patentes(self):
+        self.estrutura["Patentes e registros"]={}
+        secoes = self.soup.find_all('div', class_='title-wrapper')
+        for secao in secoes:
+            titulo_h1 = secao.find('h1')
+            if titulo_h1 and 'Patentes e registros' in titulo_h1.get_text(strip=True):
+                data_cell = secao.find('div', class_='layout-cell layout-cell-12 data-cell')
+                subsecoes = data_cell.find_all('div', class_='inst_back')
+                geral={}
+                for subsecao in subsecoes:
+                    if subsecao:
+                        subsec_name = subsecao.get_text(strip=True)
+                        # print(subsec_name)
+                    ## Extrair cada banca
+                    divs_cita_artigos = data_cell.find_all("div", class_="cita-artigos", recursive=False)
+                    for div_cita_artigos in divs_cita_artigos:
+                        ocorrencias = {}
+                        subsecao = div_cita_artigos.find('b')
+                        if subsecao:
+                            subsec_name = subsecao.get_text(strip=True)
+                            # print(subsec_name)
+                        # Encontrar todos os elementos irmãos seguintes de div_cita_artigos
+                        next_siblings = div_cita_artigos.find_next_siblings("div")
+
+                        # Listas para armazenar os divs encontrados
+                        divs_indices = []
+                        divs_ocorrencias = []
+
+                        # Iterar sobre os elementos irmãos
+                        for sibling in next_siblings:
+                            # Verificar se o irmão tem a classe "cita-artigos"
+                            if 'cita-artigos' in sibling.get('class', []):
+                                # Encontramos o marcador para parar, sair do loop
+                                break
+                            # Verificar as outras classes e adicionar aos arrays correspondentes
+                            if 'layout-cell layout-cell-1 text-align-right' in " ".join(sibling.get('class', [])):
+                                divs_indices.append(sibling)
+                            elif 'layout-cell layout-cell-11' in " ".join(sibling.get('class', [])):
+                                divs_ocorrencias.append(sibling)
+                        
+                        if len(divs_indices) == len(divs_ocorrencias):
+                            # Itera sobre o intervalo do comprimento de uma das listas
+                            for i in range(len(divs_indices)):
+                                # Usa o texto ou outro identificador único dos elementos como chave e valor
+                                chave = divs_indices[i].get_text(strip=True).replace('\t','').replace('\n',' ')
+                                valor = divs_ocorrencias[i].get_text(strip=True).replace('\t','').replace('\n',' ')
+
+                                # Adiciona o par chave-valor ao dicionário
+                                ocorrencias[chave] = valor
+                        # geral.append(ocorrencias)
+                        self.estrutura["Patentes e registros"][subsec_name] = ocorrencias
+
     def process_bancas(self):
         self.estrutura["Bancas"]={}
         secoes = self.soup.find_all('div', class_='title-wrapper')
@@ -3588,11 +3641,14 @@ class HTMLParser:
         self.process_projetos_extensao()        # Ok!
         self.process_projetos_desenvolvimento() # Ok!
         self.process_projetos_outros()          # Ok!      
+        ## PRODUTOS TECNOLÓGICOS
+        SELF.process_patentes()                 # FALTA TESTAR
         ## EDUCAÇÃO
         self.process_bancas()                   # Ok!
         self.process_orientacoes()              # Ok!
 
         # TO-DO-LATER em Produções extraindo vazio
+        # "Inovação"
         # "Citações": {},                           
         # "Resumos publicados em anais de congressos (artigos)": {} 
 
@@ -5025,6 +5081,236 @@ class ArticlesCounter:
         # Mostrar a tabela pivot ordenada pela soma de pontos decrescente
         return pivot_table_pontos_sorted
 
+    def obter_ano_por_doi(self, doi):
+        """Obtém o ano de publicação de um artigo a partir do DOI.
+
+        Args:
+            doi: O DOI do artigo.
+
+        Returns:
+            int: O ano de publicação, ou None se não encontrado.
+        """
+        try:
+            url = f"http://dx.doi.org/{doi}"
+            response = requests.get(url)
+            response.raise_for_status()  # Verifica se a requisição foi bem-sucedida
+
+            soup = BeautifulSoup(response.content, 'html.parser')
+
+            # Procura o ano na página (adapte o seletor CSS para o site específico)
+            ano_elemento = soup.select_one('meta[name="citation_date"]')  # Exemplo para Springer
+            if ano_elemento:
+                return int(ano_elemento['content'].split('/')[0])  # Extrai o ano
+
+            # Se não encontrar, tenta outros seletores ou sites (Crossref, etc.)
+            # ...
+
+        except requests.exceptions.RequestException as e:
+            print(f"Erro ao obter ano por DOI: {e}")
+
+    def nome_para_iniciais(self, nome):
+        """Converte um nome completo em iniciais em maiúsculas, mantendo preposições e conjunções em minúsculas.
+
+        Args:
+            nome: O nome completo a ser convertido.
+
+        Returns:
+            str: O nome convertido em iniciais.
+        """
+        palavras = nome.split()
+        iniciais = ""
+        for palavra in palavras:
+            if palavra.lower() not in ["de", "da", "do", "dos", "das", "e", "o", "a"]:
+                iniciais += palavra[0].upper() + ". "
+            else:
+                iniciais += palavra.lower() + " "
+        return iniciais.strip()
+
+    def nome_iniciais_maiusculas(self, nome):
+        """Converte um nome completo para maiúsculas, mantendo preposições e conjunções em minúsculas.
+
+        Args:
+            nome: O nome completo a ser convertido.
+
+        Returns:
+            str: O nome convertido com as primeiras letras em maiúsculas.
+        """
+        palavras = nome.split()
+        nome_formatado = ""
+        for palavra in palavras:
+            if palavra.lower() not in ["de", "da", "do", "dos", "das", "e", "o", "a"]:
+                nome_formatado += palavra.capitalize() + " "
+            else:
+                nome_formatado += palavra.lower() + " "
+        return nome_formatado.strip()
+
+    def calcular_pontuacoes(self, dict_list_docents, ano_inicio, ano_final, orientadores_filtro=None):
+        """Calcula as pontuações de produção e orientação para cada docente e retorna um DataFrame.
+
+        Args:
+            dict_list_docents: Lista de dicionários contendo dados dos docentes.
+            ano_inicio: Ano inicial do período de análise.
+            ano_final: Ano final do período de análise.
+
+        Returns:
+            DataFrame: Tabela com todos os docentes, ordenada pela pontuação total.
+            DataFrame: Tabela filtrada apenas com os docentes da lista de orientadores, ordenada pela pontuação total.
+         """
+        pontuacoes = {}
+        for docente in dict_list_docents:
+            nome = docente['Identificação']['Nome']
+            pontuacoes[nome] = {
+                'Somatório_Pontos': 0,
+                'Pnt_Public.Artigos': 0,
+                'Pnt_Livros/Capítulos': 0,
+                'Pnt_Public.Congresso': 0,
+                'Pnt_Orientações': 0,
+                'Pnt_Software_Patente':0,
+            }
+
+            # Cálculo de pontuação para artigos
+            artigos = docente.get('Produções', {}).get('Artigos completos publicados em periódicos')
+            if artigos:
+                qte_jcr_faltante = 0
+                qte_jcr_inferior = 0
+                qte_jcr_superior = 0
+                for artigo in artigos:
+                    try:
+                        ano_artigo = artigo.get('ano')
+                        if not ano_artigo or ano_artigo == '':  # Verifica se o ano está vazio ou não é um número
+                            doi = artigo.get('DOI')
+                            if doi:
+                                ano_artigo = self.obter_ano_por_doi(doi)  # Consulta o ano pelo DOI
+                                if ano_artigo is None:
+                                    ano_artigo = ano_inicio  # Usa o ano inicial se não encontrar o ano
+                        if ano_inicio <= int(ano_artigo) <= ano_final:
+                            try:
+                                impacto = float(artigo.get('fator_impacto_jcr', 0.0))  # Usar 0.0 se o fator de impacto não for encontrado
+                                if impacto >= 1.1:
+                                    qte_jcr_superior += 1
+                                elif impacto >= 0.5:
+                                    qte_jcr_inferior += 1
+                            except:
+                                qte_jcr_faltante += 1
+                    except Exception as e:
+                        print(f'Erro ao extrair artigo: {e}')
+                        print(f'Artigo com problema: {artigo}')
+
+                pontuacoes[nome]['Pnt_Artigos'] = qte_jcr_superior * 8 + qte_jcr_inferior * 6
+
+            # Subdicionários do dicionário de produções
+            livros_publicados = docente.get('Produções', {}).get('Livros publicados/organizados ou edições')
+            capitulos_livros = docente.get('Produções', {}).get('Capítulos de livros publicados')
+            produtos = docente.get('Produções', {}).get('Produtos tecnológicos')
+            
+            ignore=False
+            eh_software =False
+            qte_software = 0
+            qte_patentes = 0
+            qte_produtos = 0
+
+            ignorar = ['curso','plano','protocolo','revisão','teste']
+            software = ['aplicativo','software']
+
+            if produtos:
+                qte_software = 0
+                qte_patentes = 0
+                for _, valor in produtos.items():
+                    ano_match = re.search(r'\b(\d{4})\b', valor)
+                    if ano_match and ano_inicio <= int(ano_match.group(1)) <= ano_final:
+                        valor_lower = valor.lower()  # Converte para minúsculas apenas uma vez
+
+                        # Verifica se o valor deve ser ignorado
+                        if any(i in valor_lower for i in ignorar):
+                            continue  # Pula para a próxima iteração se for ignorado
+
+                        # Classifica como software ou patente
+                        if any(i in valor_lower for i in software):
+                            # print(f'Software: {valor}')
+                            qte_software += 1
+                        else:
+                            # print(f'Patente: {valor}')
+                            qte_patentes += 1
+
+            pontuacoes[nome]['Pnt_Software_Patente'] = qte_software * 2 + qte_patentes * 3
+
+            qte_livros = 0
+            qte_capitulos = 0
+
+            # Cálculo de pontuação para livros e capítulos (COM FILTRO POR ANO)
+            if livros_publicados:
+                for livro in livros_publicados:
+                    ano_match = re.search(r'\b(\d{4})\b', livro)
+                    if ano_match and ano_inicio <= int(ano_match.group(1)) <= ano_final:
+                        qte_livros += 1
+            
+            if capitulos_livros:
+                for capitulo in capitulos_livros:
+                    ano_match = re.search(r'\b(\d{4})\b', capitulo)
+                    if ano_match and ano_inicio <= int(ano_match.group(1)) <= ano_final:
+                        qte_capitulos += 1
+
+            pontuacoes[nome]['Pnt_Livros/Capítulos'] = qte_livros * 3 + qte_capitulos * 2
+
+            # Cálculo de pontuação para trabalhos em congressos
+            trabalho_congresso = docente.get('Produções', {}).get('Trabalhos completos publicados em anais de congressos')
+            if trabalho_congresso:
+                qte_trabcongresso = 0
+                for _, valor in trabalho_congresso.items():
+                    ano_match = re.search(r'\b(\d{4})\b', valor)
+                    if ano_match and ano_inicio <= int(ano_match.group(1)) <= ano_final:
+                        qte_trabcongresso += 1
+                pontuacoes[nome]['Pnt_Public.Congressos'] = min(qte_trabcongresso, 5) * 2  # Limitar a 10 pontos
+            else:
+                pontuacoes[nome]['Pnt_Public.Congressos'] = 0  # Define a pontuação como 0 se não houver trabalhos
+
+            # Cálculo de pontuação para orientações
+            concluidas = docente.get('Orientações', {}).get('Orientações e supervisões concluídas')
+            if concluidas:
+                for tipo_dict in concluidas:
+                    for tipo, dados in tipo_dict.items():
+                        for _, orientacao in dados.items():
+                            ano_match = re.search(r'\b(\d{4})\b', orientacao)
+                            if ano_match and ano_inicio <= int(ano_match.group(1)) <= ano_final:
+                                if tipo == 'Iniciação científica':
+                                    pontuacoes[nome]['Pnt_Orientações'] += 1
+                                elif tipo in ['Trabalho de conclusão de curso de graduação', 'Monografia de conclusão de curso de aperfeiçoamento/especialização']:
+                                    pontuacoes[nome]['Pnt_Orientações'] += 1
+                                    if pontuacoes[nome]['Pnt_Orientações'] > 10:
+                                        pontuacoes[nome]['Pnt_Orientações'] = 10  # Limitar a 10 pontos
+                                elif tipo == 'Dissertação de mestrado':
+                                    pontuacoes[nome]['Pnt_Orientações'] += 2
+                                elif tipo == 'Tese de doutorado':
+                                    pontuacoes[nome]['Pnt_Orientações'] += 2
+
+            # Somar todos os subtotais para obter o total
+            pontuacoes[nome]['Somatório_Pontos'] = sum(pontuacoes[nome].values())
+
+        # Criar DataFrame a partir do dicionário
+        df_pontuacoes = pd.DataFrame(pontuacoes).T
+
+        # Reordenar colunas para que o Total fique em primeiro lugar
+        df_pontuacoes = df_pontuacoes[['Somatório_Pontos', 'Pnt_Artigos', 'Pnt_Orientações', 'Pnt_Public.Congressos', 'Pnt_Livros/Capítulos', 'Pnt_Software_Patente']]
+
+        # Ordenar o DataFrame em ordem decrescente pelo total de pontos
+        df_pontuacoes_ordenado = df_pontuacoes.sort_values(by='Somatório_Pontos', ascending=False)
+
+        # Normalizar os nomes dos orientadores no DataFrame
+        df_pontuacoes_ordenado.index = df_pontuacoes_ordenado.index.map(self.normalizar_nome)
+
+        # Filtrar por orientadores, se a lista for fornecida
+        if orientadores_filtro:
+            orientadores_filtro_norm = [self.normalizar_nome(nome) for nome in orientadores_filtro]
+            df_filtrado = df_pontuacoes_ordenado.loc[df_pontuacoes_ordenado.index.isin(orientadores_filtro_norm)]
+        else:
+            df_filtrado = df_pontuacoes_ordenado.copy()  # Se não houver filtro, retorna o DataFrame completo
+
+        # Converter nomes para iniciais no DataFrame geral
+        df_pontuacoes_ordenado.index = df_pontuacoes_ordenado.index.map(self.nome_iniciais_maiusculas)
+        df_filtrado.index = df_filtrado.index.map(self.nome_iniciais_maiusculas)
+
+        return df_pontuacoes_ordenado, df_filtrado
+
     # Função para apurar pontos de publicações (correção completa)
     def apurar_jcr_publicacoes(self, dict_list, keylevel_one, keylevel_two, data_measure, class_mapping, year_ini, year_end):
         # Dicionário para armazenar os resultados
@@ -5121,6 +5407,7 @@ class ArticlesCounter:
         # retornar o DataFrame filtrado
         return df_orientadores
 
+    ## Formato de dataframes de saída correto, porém está repetindo dados de diferentes tipos de orientação indevidamente
     def gerar_tabela_pontuacao_old(self, dict_list_docents, pontos_ic, ano_inicio, ano_final):
         """
         Gera uma tabela com a pontuação de orientações concluídas por ano para cada orientador,
@@ -5186,7 +5473,7 @@ class ArticlesCounter:
 
         return df
 
-    ## Formato de saía correto, porém está repetindo dados de diferentes tipos de orientação indevidamente
+    ## Formato de dataframes de saída correto, porém está repetindo dados de diferentes tipos de orientação indevidamente
     def apurar_orientacoes_old(self, dict_list_docents, ano_inicio, ano_final):
         """
         Gera uma tabela com a pontuação de orientações concluídas por ano para cada orientador,
@@ -5260,6 +5547,146 @@ class ArticlesCounter:
 
         return tabela_filtrada.T, tabela_pivot.T
 
+    def gerar_tabela_pontuacao_new(self, dict_list_docents, pontos_ic, ano_inicio, ano_final):
+        orientacoes_por_orientador = {}
+        anos_intervalo = list(range(ano_inicio, ano_final + 1))
+
+        for docente in dict_list_docents:
+            nome_orientador = docente.get('Identificação', {}).get('Nome')
+            orientacoes = docente.get('Orientações', {}).get('Orientações e supervisões concluídas', [])
+
+            if orientacoes:
+                for tipo_dict in orientacoes:  # Itera sobre a lista de dicionários de tipos de orientação
+                    tipo = list(tipo_dict.keys())[0]  # Extrai a chave (tipo de orientação) do dicionário
+                    dados_orientacao = tipo_dict.get(tipo, {})  # Obtém os dados da orientação para o tipo específico
+
+                    if tipo == pontos_ic[0]:  # Filtrar pelo tipo de orientação específico
+                        for _, orientacao in dados_orientacao.items():
+                            ano_match = re.search(r'\b(\d{4})\b', orientacao)
+                            if ano_match:
+                                ano = int(ano_match.group(1))
+                                if ano_inicio <= ano <= ano_final:
+                                    orientador_match = re.search(r'Orientador:\s*(.*)', orientacao)
+                                    if orientador_match:
+                                        orientador = orientador_match.group(1).strip().strip('.')
+                                    else:
+                                        try:
+                                            orientador = nome_orientador
+                                        except:
+                                            print(f"Aviso: Não foi possível extrair o nome do orientador da orientação: {orientacao}")
+
+                                    if orientador not in orientacoes_por_orientador:
+                                        orientacoes_por_orientador[orientador] = {ano: 0 for ano in anos_intervalo}
+
+                                    orientacoes_por_orientador[orientador][ano] += 1
+
+        # Criar DataFrame a partir do dicionário, preenchendo anos faltantes com zero
+        df = pd.DataFrame(orientacoes_por_orientador).fillna(0).T  # Transpor o DataFrame
+
+        # Garantir que todas as colunas (anos) estejam presentes
+        for ano in anos_intervalo:
+            if ano not in df.columns:
+                df[ano] = 0
+
+        # Multiplicar valores por pontos_ic SOMENTE NAS COLUNAS NUMÉRICAS
+        for col in df.select_dtypes(include=['number']).columns:
+            df[col] = df[col] * pontos_ic[1]
+
+        return df
+
+    def apurar_orientacoes_new(self, dict_list_docents, ano_inicio, ano_final, orientadores_filtro=None):
+        """
+        Gera uma tabela com a pontuação de orientações concluídas por ano para cada orientador,
+        considerando um valor por orientação e filtrando por intervalo de anos, incluindo o ano de início e fim.
+
+        Args:
+            dict_list_docents: Lista de dicionários contendo dados de docentes.
+            ano_inicio: Ano inicial do intervalo a ser considerado (inclusive).
+            ano_final: Ano final do intervalo a ser considerado (inclusive).
+            orientadores_filtro: Lista opcional de nomes de orientadores para filtrar os resultados.
+
+        Returns:
+            DataFrame: Tabela com orientadores como colunas, tipos de orientação e somatório total como linhas.
+            DataFrame: Tabela com orientadores como índices, anos como colunas, e valores de orientações por tipo e ano.
+        """
+        tipos = {
+            'Iniciação científica': 1,
+            'Trabalho de conclusão de curso de graduação': 1,
+            'Dissertação de mestrado': 2,
+            'Tese de doutorado': 2
+        }
+
+        siglas = {
+            'Iniciação científica': 'IC',
+            'Trabalho de conclusão de curso de graduação': 'Grad',
+            'Dissertação de mestrado': 'Mest',
+            'Tese de doutorado': 'Dout'
+        }
+
+        dfs_por_tipo = {}
+        colunas_convertidas = False
+        anos_existentes = set()
+        anos_intervalo = set(range(ano_inicio, ano_final + 1))
+
+        for tipo_orientacao, pontos_orientacao in tipos.items():
+            df_tipo = self.gerar_tabela_pontuacao_new(dict_list_docents, (tipo_orientacao, pontos_orientacao), ano_inicio, ano_final)
+            sigla = siglas.get(tipo_orientacao, tipo_orientacao)
+            df_tipo = df_tipo.rename(columns={c: f'Pts_Orient_{sigla}_{c}' for c in df_tipo.columns})
+            # print(df_tipo.columns)
+            # Calcular somatório por tipo de orientação
+            df_tipo[f'Pts_Orient_{sigla}'] = df_tipo.sum(axis=1)
+            dfs_por_tipo[f'Pts_Orient_{sigla}'] = df_tipo
+            anos_existentes.update(df_tipo.columns)
+
+        # Combinar DataFrames de todos os tipos de orientação
+        df = pd.concat(dfs_por_tipo.values(), axis=1)
+
+        # Normalizar os nomes dos orientadores no DataFrame
+        df.index = df.index.map(self.normalizar_nome)
+
+        # Filtrar por orientadores, se a lista for fornecida
+        if orientadores_filtro:
+            orientadores_filtro = [self.normalizar_nome(nome) for nome in orientadores_filtro]
+            df = df.reindex(orientadores_filtro, fill_value=0)  # Reindexar e preencher com 0
+
+        # Converter colunas de anos para inteiro para ordenação correta, somente se ainda não foram convertidas e se forem numéricas
+        if not colunas_convertidas:
+            df.columns = [int(col.split('_')[-1]) if isinstance(col, str) and col.split('_')[-1].isnumeric() else col for col in df.columns]
+            colunas_convertidas = True
+
+        # Calcular anos a somar após a conversão para numérico
+        anos_a_somar = [col for col in df.columns if isinstance(col, int) and ano_inicio <= col <= ano_final]
+        # print(anos_a_somar)
+
+        # Calcular somatório total DEPOIS de calcular somatório por tipo de orientação (considerando apenas colunas numéricas)
+        if anos_a_somar:
+            df.insert(0, 'Somatório_Total', df.select_dtypes(include=['number']).sum(axis=1))  # Soma apenas colunas numéricas
+            df['Somatório_Total'] = df['Somatório_Total'].astype(str)
+
+        # Agrupar por nome do orientador e somar os valores das colunas de anos
+        df_agrupado = df.groupby(df.index).sum()
+        # print(df_agrupado.columns)
+
+        # Converter colunas de anos para inteiro para ordenação correta
+        df_agrupado.columns = [int(col) if str(col).isdigit() else col for col in df_agrupado.columns]
+
+        # Filtrar colunas de subtotais e total geral DEPOIS de converter colunas para inteiro
+        colunas_a_manter = [col for col in df_agrupado.columns if (isinstance(col, str) and col.startswith('Pts_Orient_')) or col == 'Somatório_Total']
+        # print(colunas_a_manter)
+        df_filtrado = df_agrupado[colunas_a_manter]
+
+        # Transpor o DataFrame DEPOIS de agrupar E filtrar
+        tabela_filtrada = df_filtrado.T
+
+        # Renomear as colunas para remover o prefixo "Pts_Orient_"
+        tabela_filtrada = tabela_filtrada.rename(columns=lambda x: x.replace('Pts_Orient_', ''))
+
+        # Renomear a linha do somatório total
+        tabela_filtrada = tabela_filtrada.rename(index={'Somatório_Total': 'Soma_Total_Geral'})
+
+        return tabela_filtrada.T, df_agrupado
+
+
     def gerar_tabela_pontuacao(self, dict_list_docents, pontos_ic, ano_inicio, ano_final):
         orientacoes_por_orientador = {}
         anos_intervalo = list(range(ano_inicio, ano_final + 1))
@@ -5311,91 +5738,6 @@ class ArticlesCounter:
         # print(f"DataFrame final: \n{df}")  # DEBUG
 
         return df
-
-    def apurar_orientacoes_new(self, dict_list_docents, ano_inicio, ano_final, orientadores_filtro=None):
-        """
-        Gera uma tabela com a pontuação de orientações concluídas por ano para cada orientador,
-        considerando um valor por orientação e filtrando por intervalo de anos, incluindo o ano de início e fim.
-
-        Args:
-            dict_list_docents: Lista de dicionários contendo dados de docentes.
-            tipos: Dicionário com os tipos de orientação e seus respectivos pesos.
-            ano_inicio: Ano inicial do intervalo a ser considerado (inclusive).
-            ano_final: Ano final do intervalo a ser considerado (inclusive).
-            orientadores_filtro: Lista opcional de nomes de orientadores para filtrar os resultados.
-
-        Returns:
-            DataFrame: Tabela com orientadores como índices, anos como colunas em ordem crescente,
-                colunas de somatório por tipo de orientação e uma coluna de somatório total.
-        """
-        tipos = {'Iniciação científica': 1,
-                'Trabalho de conclusão de curso de graduação': 1,
-                'Dissertação de mestrado': 2,
-                'Tese de doutorado': 2}
-
-        siglas = {'Iniciação científica': 'IC',
-                'Trabalho de conclusão de curso de graduação': 'Grad',
-                'Dissertação de mestrado': 'Mest',
-                'Tese de doutorado': 'Dout'}
-
-        dfs_por_tipo = {}  # Dicionário para armazenar DataFrames por tipo de orientação
-
-        # Verificar se os anos existem como colunas no DataFrame
-        anos_existentes = set()
-        anos_intervalo = set(range(ano_inicio, ano_final + 1))
-
-        for tipo_orientacao, pontos_orientacao in tipos.items():
-            df_tipo = self.gerar_tabela_pontuacao_old(dict_list_docents, pontos_orientacao, ano_inicio, ano_final)
-            sigla = siglas.get(tipo_orientacao, tipo_orientacao)  # Se não houver sigla, usa o nome completo
-            df_tipo = df_tipo.rename(columns={'Somatório': f'Pts_Orient_{sigla}'})  # Renomeia a coluna 'Somatório' para incluir a sigla
-            dfs_por_tipo[tipo_orientacao] = df_tipo
-            anos_existentes.update(df_tipo.columns)
-
-        anos_a_somar = sorted(list(anos_existentes.intersection(anos_intervalo)))
-
-        # Combinar DataFrames de todos os tipos de orientação
-        df = pd.concat(dfs_por_tipo.values(), axis=1)
-
-        # Calcular somatório por tipo de orientação ANTES da multiplicação e da conversão de anos
-        for tipo_orientacao, sigla in siglas.items():
-            colunas_tipo = [col for col in df.columns if str(col).startswith(f'Pts_Orient_{sigla}_')]  # Converter colunas para string antes do filtro
-            if colunas_tipo:
-                df[f'Pts_Orient_{sigla}'] = df[colunas_tipo].sum(axis=1)
-
-        # Calcular somatório total DEPOIS de calcular somatório por tipo de orientação (considerando todas as colunas, mesmo as de string)
-        if anos_a_somar:
-            df.insert(0, 'Somatório_Total', df.select_dtypes(include=['number']).sum(axis=1))  # Soma apenas colunas numéricas
-            df['Somatório_Total'] = df['Somatório_Total'].astype(str)
-
-        # Reorganizar as colunas do DataFrame (corrigido)
-        nova_ordem_colunas = ['Somatório_Total']
-        for sigla in siglas.values():
-            nova_ordem_colunas.append(f'Pts_Orient_{sigla}')
-        # Adicionar colunas de anos (sem repetição)
-        nova_ordem_colunas.extend(sorted(set(anos_a_somar)))  # Corrigido aqui
-
-        # Reindexar o DataFrame com a nova ordem de colunas
-        df = df.reindex(columns=nova_ordem_colunas)
-
-        # Converter colunas de anos para inteiro para ordenação correta, somente se ainda não foram convertidas e se forem numéricas
-        if not colunas_convertidas:
-            df.columns = [int(col.split('_')[-1]) if isinstance(col, str) and col.split('_')[-1].isnumeric() else col for col in df.columns]
-            colunas_convertidas = True
-
-        # Filtrar linhas de subtotais e total geral (ANTES da transposição)
-        linhas_a_manter = df.index[df.index.str.startswith('Pts_Orient_') | (df.index == 'Somatório_Total')]
-        df_filtrado = df.loc[linhas_a_manter]
-
-        # Transpor o DataFrame DEPOIS da filtragem
-        tabela_pivot = df_filtrado.T
-
-        # Converter índices de volta para string para a filtragem
-        tabela_pivot.index = tabela_pivot.index.astype(str)
-
-        # Renomear as colunas para remover o prefixo "Pts_Orient_"
-        tabela_filtrada = tabela_pivot.rename(columns=lambda x: x.replace('Pts_Orient_', ''))
-
-        return tabela_filtrada, tabela_pivot
 
     def apurar_orientacoes(self, dict_list_docents, ano_inicio, ano_final):
         tipos = {'Iniciação científica': 1,
