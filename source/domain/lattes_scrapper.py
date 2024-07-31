@@ -3445,59 +3445,6 @@ class HTMLParser:
 
         return self.estrutura["Produções"]
 
-    
-    def process_patentes(self):
-        self.estrutura["Patentes e registros"]={}
-        secoes = self.soup.find_all('div', class_='title-wrapper')
-        for secao in secoes:
-            titulo_h1 = secao.find('h1')
-            if titulo_h1 and 'Patentes e registros' in titulo_h1.get_text(strip=True):
-                data_cell = secao.find('div', class_='layout-cell layout-cell-12 data-cell')
-                subsecoes = data_cell.find_all('div', class_='inst_back')
-                geral={}
-                for subsecao in subsecoes:
-                    if subsecao:
-                        subsec_name = subsecao.get_text(strip=True)
-                        # print(subsec_name)
-                    ## Extrair cada banca
-                    divs_cita_artigos = data_cell.find_all("div", class_="cita-artigos", recursive=False)
-                    for div_cita_artigos in divs_cita_artigos:
-                        ocorrencias = {}
-                        subsecao = div_cita_artigos.find('b')
-                        if subsecao:
-                            subsec_name = subsecao.get_text(strip=True)
-                            # print(subsec_name)
-                        # Encontrar todos os elementos irmãos seguintes de div_cita_artigos
-                        next_siblings = div_cita_artigos.find_next_siblings("div")
-
-                        # Listas para armazenar os divs encontrados
-                        divs_indices = []
-                        divs_ocorrencias = []
-
-                        # Iterar sobre os elementos irmãos
-                        for sibling in next_siblings:
-                            # Verificar se o irmão tem a classe "cita-artigos"
-                            if 'cita-artigos' in sibling.get('class', []):
-                                # Encontramos o marcador para parar, sair do loop
-                                break
-                            # Verificar as outras classes e adicionar aos arrays correspondentes
-                            if 'layout-cell layout-cell-1 text-align-right' in " ".join(sibling.get('class', [])):
-                                divs_indices.append(sibling)
-                            elif 'layout-cell layout-cell-11' in " ".join(sibling.get('class', [])):
-                                divs_ocorrencias.append(sibling)
-                        
-                        if len(divs_indices) == len(divs_ocorrencias):
-                            # Itera sobre o intervalo do comprimento de uma das listas
-                            for i in range(len(divs_indices)):
-                                # Usa o texto ou outro identificador único dos elementos como chave e valor
-                                chave = divs_indices[i].get_text(strip=True).replace('\t','').replace('\n',' ')
-                                valor = divs_ocorrencias[i].get_text(strip=True).replace('\t','').replace('\n',' ')
-
-                                # Adiciona o par chave-valor ao dicionário
-                                ocorrencias[chave] = valor
-                        # geral.append(ocorrencias)
-                        self.estrutura["Patentes e registros"][subsec_name] = ocorrencias
-
     def process_bancas(self):
         self.estrutura["Bancas"]={}
         secoes = self.soup.find_all('div', class_='title-wrapper')
@@ -3515,10 +3462,10 @@ class HTMLParser:
                     divs_cita_artigos = data_cell.find_all("div", class_="cita-artigos", recursive=False)
                     for div_cita_artigos in divs_cita_artigos:
                         ocorrencias = {}
-                        subsecao = div_cita_artigos.find('b')
-                        if subsecao:
-                            subsec_name = subsecao.get_text(strip=True)
-                            # print(subsec_name)
+                        subsubsecao = div_cita_artigos.find('b')
+                        if subsubsecao:
+                            subsubsecao_name = subsubsecao.get_text(strip=True)
+                            # print(f'      Subseção: {subsubsecao_name}')
                         # Encontrar todos os elementos irmãos seguintes de div_cita_artigos
                         next_siblings = div_cita_artigos.find_next_siblings("div")
 
@@ -3549,6 +3496,46 @@ class HTMLParser:
                                 ocorrencias[chave] = valor
                         # geral.append(ocorrencias)
                         self.estrutura["Bancas"][subsec_name] = ocorrencias
+
+    def process_patentes(self):
+        self.estrutura["Patentes e registros"] = {}
+        secoes = self.soup.find_all('div', class_='title-wrapper')
+        for secao in secoes:
+            titulo_h1 = secao.find('h1')
+            if titulo_h1 and 'Patentes e registros' in titulo_h1.get_text(strip=True):
+                data_cell = secao.find('div', class_='layout-cell layout-cell-12 data-cell')
+
+                # Encontrar todas as subseções (Patente e Marca registrada)
+                subsecoes = data_cell.find_all('div', class_='inst_back')
+
+                for subsecao in subsecoes:
+                    if subsecao:
+                        nome_subsecao = subsecao.get_text(strip=True)
+                        self.estrutura["Patentes e registros"][nome_subsecao] = {}
+
+                        # Encontrar os itens de cada subseção
+                        itens_subsecao = subsecao.find_next_siblings('div', class_='layout-cell layout-cell-11')
+                        for i, item in enumerate(itens_subsecao, start=1):
+                            nome_ocorrencia = str(i)
+
+                            # Extrair informações do item (ano, título, autores, etc.)
+                            texto_item = item.get_text(strip=True).replace('\t', '').replace('\n', ' ')
+                            ano_match = re.search(r'\b(\d{4})\b', texto_item)
+                            ano = int(ano_match.group(1)) if ano_match else None
+
+                            # Criar um dicionário para armazenar as informações da patente
+                            patente_info = {
+                                'ano': ano,
+                                'texto': texto_item
+                            }
+
+                            # Extrair autores
+                            autores_elemento = item.find_all('a', class_='tooltip')
+                            autores = [autor.get_text(strip=True) for autor in autores_elemento]
+                            patente_info['autores'] = autores
+
+                            # Adicionar as informações da patente diretamente ao dicionário da subseção
+                            self.estrutura["Patentes e registros"][nome_subsecao][nome_ocorrencia] = patente_info
 
     def process_orientacoes(self):
         self.estrutura["Orientações"]={}
@@ -3642,7 +3629,7 @@ class HTMLParser:
         self.process_projetos_desenvolvimento() # Ok!
         self.process_projetos_outros()          # Ok!      
         ## PRODUTOS TECNOLÓGICOS
-        SELF.process_patentes()                 # FALTA TESTAR
+        self.process_patentes()                 # FALTA TESTAR
         ## EDUCAÇÃO
         self.process_bancas()                   # Ok!
         self.process_orientacoes()              # Ok!
@@ -5165,7 +5152,8 @@ class ArticlesCounter:
                 'Pnt_Livros/Capítulos': 0,
                 'Pnt_Public.Congresso': 0,
                 'Pnt_Orientações': 0,
-                'Pnt_Software_Patente':0,
+                'Pnt_Patentes':0,
+                'Pnt_Software':0,
             }
 
             # Cálculo de pontuação para artigos
@@ -5198,46 +5186,44 @@ class ArticlesCounter:
 
                 pontuacoes[nome]['Pnt_Artigos'] = qte_jcr_superior * 8 + qte_jcr_inferior * 6
 
-            # Subdicionários do dicionário de produções
+            # Subdicionários dos dicionários de produções, orientações e patentes
             livros_publicados = docente.get('Produções', {}).get('Livros publicados/organizados ou edições')
             capitulos_livros = docente.get('Produções', {}).get('Capítulos de livros publicados')
-            produtos = docente.get('Produções', {}).get('Produtos tecnológicos')
-            
-            ignore=False
-            eh_software =False
-            qte_software = 0
-            qte_patentes = 0
-            qte_produtos = 0
+           
+            # Cálculo de pontuação para patentes e softwares
+            patentes = docente.get('Patentes e registros', {}).get('Patente')
+            softwares = docente.get('Patentes e registros', {}).get('Programa de computador')
+            marcas = docente.get('Patentes e registros', {}).get('Marca registrada')
 
-            ignorar = ['curso','plano','protocolo','revisão','teste']
-            software = ['aplicativo','software']
+            if patentes:
+                qte_patentes_concedidas = 0
+                qte_patentes_depositadas = 0
+                for patente in patentes.values():
+                    texto = patente.get('texto')
+                    ano_deposito = patente.get('ano')
 
-            if produtos:
+                    # Encontrar todas as datas no formato dd/mm/aaaa
+                    datas_encontradas = re.findall(r'\d{2}/\d{2}/\d{4}', texto)
+                    if datas_encontradas:
+                        ano_concessao = int(datas_encontradas[-1].split('/')[-1])  # Pegar o ano da última data
+                        if ano_inicio <= ano_concessao <= ano_final:
+                            qte_patentes_concedidas += 1
+                    elif ano_deposito and ano_inicio <= ano_deposito <= ano_final:  # Se não houver concessão, usa o ano de depósito
+                        qte_patentes_depositadas += 1
+                
+                pontuacoes[nome]['Pnt_Patentes'] = qte_patentes_concedidas * 4 + qte_patentes_depositadas * 3
+
+            if softwares:
                 qte_software = 0
-                qte_patentes = 0
-                for _, valor in produtos.items():
-                    ano_match = re.search(r'\b(\d{4})\b', valor)
-                    if ano_match and ano_inicio <= int(ano_match.group(1)) <= ano_final:
-                        valor_lower = valor.lower()  # Converte para minúsculas apenas uma vez
-
-                        # Verifica se o valor deve ser ignorado
-                        if any(i in valor_lower for i in ignorar):
-                            continue  # Pula para a próxima iteração se for ignorado
-
-                        # Classifica como software ou patente
-                        if any(i in valor_lower for i in software):
-                            # print(f'Software: {valor}')
-                            qte_software += 1
-                        else:
-                            # print(f'Patente: {valor}')
-                            qte_patentes += 1
-
-            pontuacoes[nome]['Pnt_Software_Patente'] = qte_software * 2 + qte_patentes * 3
-
-            qte_livros = 0
-            qte_capitulos = 0
+                for software in softwares.values():
+                    ano = software.get('ano')
+                    if ano and ano_inicio <= int(ano) <= ano_final:
+                        qte_software += 1
+                pontuacoes[nome]['Pnt_Software'] = qte_software * 2  # Adiciona a pontuação de software
 
             # Cálculo de pontuação para livros e capítulos (COM FILTRO POR ANO)
+            qte_livros = 0
+            qte_capitulos = 0
             if livros_publicados:
                 for livro in livros_publicados:
                     ano_match = re.search(r'\b(\d{4})\b', livro)
@@ -5290,7 +5276,7 @@ class ArticlesCounter:
         df_pontuacoes = pd.DataFrame(pontuacoes).T
 
         # Reordenar colunas para que o Total fique em primeiro lugar
-        df_pontuacoes = df_pontuacoes[['Somatório_Pontos', 'Pnt_Artigos', 'Pnt_Orientações', 'Pnt_Public.Congressos', 'Pnt_Livros/Capítulos', 'Pnt_Software_Patente']]
+        df_pontuacoes = df_pontuacoes[['Somatório_Pontos', 'Pnt_Artigos', 'Pnt_Orientações', 'Pnt_Public.Congressos', 'Pnt_Livros/Capítulos', 'Pnt_Patentes', 'Pnt_Software']]
 
         # Ordenar o DataFrame em ordem decrescente pelo total de pontos
         df_pontuacoes_ordenado = df_pontuacoes.sort_values(by='Somatório_Pontos', ascending=False)
