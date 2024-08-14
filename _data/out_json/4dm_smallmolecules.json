@@ -61,7 +61,6 @@
       { "id": "DiseasePathophysiologyA", "label": "Disease Pathophysiology (A)" },
       { "id": "ProcessChemistry", "label": "Process chemistry" },
       { "id": "NonGMPSUPPLYEarlyCMC", "label": "Non-GMP supply & early CMC" },
-    
       { "id": "InVivoPharmacologySafety", "label": "In vivo pharmacology & safety" },
       { "id": "AnimalModels2", "label": "Animal models" },
       { "id": "RegulatoryStrategy", "label": "Regulatory strategy" },
@@ -221,5 +220,3 @@
         { "from": "Commercialization2", "to": "PatientAccess2" }
       ]
     }
-    
-    
