@@ -1,2 +1,2 @@
-2024-08-07 06:13:28,944 - ERROR - Erro inesperado ao buscar: cannot access local variable 'intLTotReg' where it is not associated with a value
-2024-08-07 06:17:21,770 - ERROR - Erro inesperado ao buscar: cannot access local variable 'intLTotReg' where it is not associated with a value
+2024-08-12 08:27:44,323 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-08-12 08:32:42,182 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
