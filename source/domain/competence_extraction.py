@@ -511,6 +511,10 @@ class ProcessingCapacityEstimator:
         """
         print("\nInterpretação da Capacidade de Processamento:")
 
+        # Verificação de tipo para garantir que 'model' seja um objeto SentenceTransformer
+        if not isinstance(model, SentenceTransformer):
+            raise TypeError("O argumento 'model' deve ser um objeto SentenceTransformer.")
+
         if self.hardware.gpu_available:
             print("GPU:")
             for model_size in model_sizes:
@@ -884,23 +888,26 @@ class EmbeddingModelEvaluator:
             }
         return results
 
-    def benchmark_model(self, model, sentences, device, batch_size=32):
+    def benchmark_model(self, model, sentences, device, batch_size=16):  # Reduzido o batch_size padrão para 16
         """Mede o tempo de processamento do modelo (CPU ou GPU) em lotes."""
-        
+
+        # Mova o modelo para o dispositivo desejado
+        model.to(device) 
+
         # Dividir as sentenças em lotes
         batches = [sentences[i:i+batch_size] for i in range(0, len(sentences), batch_size)]
 
         start_time = time.time()
         for batch in batches:
             with torch.no_grad():
-                model.encode(batch, convert_to_tensor=True, device=device)
+                model.encode(batch, convert_to_tensor=True)
         end_time = time.time()
 
         total_time = end_time - start_time
-        total_samples = len(sentences) * num_repetitions  # Corrigido o cálculo do número total de amostras
-        return total_time / total_samples  # Tempo médio por amostra
+        total_samples = len(sentences) * num_repetitions  # Cálculo do número total de amostras
+        return total_time / total_samples # Tempo médio por amostra
 
-    def evaluate_intrinsic(self, model, validation_data):  # Remove o parâmetro device
+    def evaluate_intrinsic(self, model, validation_data):
         similar_scores = []
         dissimilar_scores = []
 
@@ -964,8 +971,8 @@ class EmbeddingModelEvaluator:
             processed_competences = [comp[:MAX_LENGTH] for comp in processed_competences]  # Limitar o comprimento das frases
             areas_list = self.extrair_areas(researcher_data.get('Áreas', {}))  # Obtém lista de áreas
 
+            print(f"Área de pesquisa: {area}")
             for area in all_areas_list.get('Áreas'):
-                print(f"Área de pesquisa: {area}")
                 # print(f"Competências extraídas: {competences}")
                 print(f"Compet.pré-processadas: {processed_competences}")
 
@@ -1059,7 +1066,7 @@ class EmbeddingModelEvaluator:
             use_cross_validation: Se True, usa validação cruzada para avaliação extrínseca.
                                 Caso contrário, usa divisão em treinamento e teste.
             classifier_name: Nome do classificador a ser usado na avaliação extrínseca.
-                                Opções: "LogisticRegression", "MultinomialNB", "SVC", "RandomForestClassifier".
+                            Opções: "LogisticRegression", "MultinomialNB", "SVC", "RandomForestClassifier".
         """
         # Defina device aqui
         if torch.cuda.is_available():
@@ -1078,16 +1085,16 @@ class EmbeddingModelEvaluator:
             results[model_name] = intrinsic_results
 
             # Avaliação extrínseca
-            X, y = self.prepare_data_for_classification(model, device)
+            X, y = self.prepare_data_for_classification(model, device)  # Passar 'model' em vez de 'model_name'
             if use_cross_validation:
                 if len(set(y)) < 2:
-                    print(f"Não há classes suficientes para validação cruzada. Pulando modelo {model_name}.")
+                    print(f"Não há classes suficientes para validação cruzada. Pulando modelo {model}.") # Corrigido para usar 'model'
                     results[model_name].update({'accuracy': None, 'mean_accuracy': None, 'std_accuracy': None})
                 else:
                     cross_val_results = self.evaluate_models_cross_validation(model, classifier_name)
                     results[model_name].update(cross_val_results)
                     print(f"Acurácia média (validação cruzada): {cross_val_results['mean_accuracy']:.4f} +/- {cross_val_results['std_accuracy']:.4f}")
-            
+
             # Verifica se há exemplos suficientes para a divisão em treinamento e teste
             elif len(X) >= 2:
                 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -1114,9 +1121,9 @@ class EmbeddingModelEvaluator:
 
                 # Cálculo das métricas
                 accuracy = accuracy_score(y_test, y_pred)
-                precision = precision_score(y_test, y_pred, average='weighted', zero_division=0)  # Adicionando zero_division=0
-                recall = recall_score(y_test, y_pred, average='weighted', zero_division=0)  # Adicionando zero_division=0
-                f1 = f1_score(y_test, y_pred, average='weighted', zero_division=0)  # Adicionando zero_division=0
+                precision = precision_score(y_test, y_pred, average='weighted', zero_division=0)  
+                recall = recall_score(y_test, y_pred, average='weighted', zero_division=0)  
+                f1 = f1_score(y_test, y_pred, average='weighted', zero_division=0) 
 
                 results[model_name].update({
                     'accuracy': accuracy,
@@ -1131,13 +1138,12 @@ class EmbeddingModelEvaluator:
                 print(f"F1-Score: {f1:.4f}")
 
             else:
-                print(f"Não há exemplos suficientes para divisão em treinamento e teste. Pulando modelo {model_name}.")
+                print(f"Não há exemplos suficientes para divisão em treinamento e teste. Pulando modelo {model}.") # Corrigido para usar 'model'
                 results[model_name].update({'accuracy': None, 'precision': None, 'recall': None, 'f1_score': None})
 
             print('-' * 125)
             print()
         return results
-
 
     def evaluate_models_cross_validation(self, model, classifier_name="LogisticRegression", num_folds=5):
         """Avalia os modelos de embedding usando validação cruzada com diferentes classificadores."""
@@ -1145,7 +1151,9 @@ class EmbeddingModelEvaluator:
 
         # Verifica se há classes suficientes para a validação cruzada
         if len(set(y)) < 2:
-            print(f"Não há classes suficientes para validação cruzada. Pulando modelo {model}.")
+            # Lida com o caso em que 'model' pode ser uma string ou um objeto SentenceTransformer
+            model_identifier = model if isinstance(model, str) else model.__class__.__name__ 
+            print(f"Não há classes suficientes para validação cruzada. Pulando modelo {model_identifier}.")
             return {'accuracy': None}  # Ou algum valor padrão para indicar erro
 
         # Escolha do classificador
