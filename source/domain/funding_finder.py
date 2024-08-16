@@ -209,7 +209,7 @@ class FundingFinder:
                 login_button = driver.find_element(By.NAME, "Submit")
                 login_button.click()
             except Exception as e:
-                print(f"  Erro ao clicar no login {e.msg}")
+                print(f"  Erro ao clicar no login {e}")
             
             # Aguardar elemento específico só disponível após o login bem-sucedido: link de logout.
             WebDriverWait(driver, 10).until(
@@ -217,8 +217,8 @@ class FundingFinder:
             )
             print("Login realizado com sucesso.")
         except Exception as e:
-            self.logger.error("  Erro após clicar no login: %s", e.msg)
-            print(f"  Descrição: {e.msg}")
+            self.logger.error("  Erro após clicar no login: %s", e)
+            print(f"  Descrição: {e}")
             driver.close()
             return
     
@@ -232,7 +232,7 @@ class FundingFinder:
             # print("Acessada página de busca avançada")
         except Exception as e:
             print("Não foi possível acessar a busca avançada")
-            print(f"Erro: {e.msg}")
+            print(f"Erro: {e}")
 
     # Acionar checkboxes de fomento em pesquisa e inovação elegíveis para o Ceará
     def _filter_pdi_ceara(self, driver):
