@@ -1,10 +1,11 @@
 import pandas as pd, numpy as np
 import xml.etree.ElementTree as ET
 import os, sys, json, time, html, requests, logging
-import urllib.request, urllib.parse, urllib.error
+import platform, urllib.error, urllib.request, urllib.parse
 
 from tqdm import tqdm
 from io import BytesIO
+from pathlib import Path
 from pprint import pprint
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -63,23 +64,52 @@ class FundingFinder:
         absolute_path = os.path.abspath(path_five_levels_up)
         return absolute_path
 
+    def find_repo_root(path='.', depth=10):
+        ''' 
+        Busca o arquivo .git e retorna string com a pasta raiz do repositório.
+        '''
+        # Prevenir recursão infinita limitando a profundidade
+        if depth < 0:
+            return None
+        path = Path(path).absolute()
+        if (path / '.git').is_dir():
+            return path
+        
+        # Usar FundingFinder.find_repo_root de forma recursiva para buscar arquivo .git
+        return FundingFinder.find_repo_root(path.parent, depth-1)
+
     def _setup_driver(self):
+        '''
+        Gera o objeto driver para manipular o acesso ao Navegador, usando Google Chrome
+        '''
+        # print(f'Conectando com o servidor do CNPq...')
         chrome_options = Options()
         # chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--window-size=900,700")
-        chrome_options.add_argument("--window-position=0,0")
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("--no-sandbox")
 
-        # Habilitar logs para diagnóstico
-        filepath = os.path.join(self.base_repo_dir,'chromedriver','chromedriver.log')
-        service = ChromeService(log_path=filepath)
-        driver = webdriver.Chrome(service=service, options=chrome_options)
-        driver.set_page_load_timeout(60)  #timeout carregar página
+        driver_path = None
+        try:
+            # Caminho para o chromedriver no sistema local
+            if platform.system() == "Windows":
+                driver_path=FundingFinder.find_repo_root(os.getcwd())/'chromedriver'/'chromedriver.exe'
+            else:
+                driver_path=FundingFinder.find_repo_root(os.getcwd())/'chromedriver'/'chromedriver'
+        except Exception as e:
+            print("Não foi possível estabelecer uma conexão, verifique o chromedriver")
+            print(e)
+        
+        # print(driver_path)
+        service = ChromeService(driver_path)
+        driver = webdriver.Chrome(service=service)
+        driver.set_page_load_timeout(10)  # timeout carregar página
+        driver.set_window_position(-20, -10)
+        driver.set_window_size(900, 900) # Largura (necessariamente no máximo 900 para gerar BuscaAvançada), Altura
+
         return driver
 
     def _ler_apikeys(self):
-        # Obter caminho absoluto para a pasta home do usuário
+        # Obter caminho absoluto para a pasta home do usuário linux ou windows
         home_dir = os.path.expanduser("~")
 
         # Criar caminho completo para o arquivo secrets.json
@@ -88,41 +118,45 @@ class FundingFinder:
         # Verificar se o arquivo existe
         if os.path.exists(secrets_file_path):
             # Abra o arquivo secrets.json para leitura
-            with open(secrets_file_path, 'r') as secrets_file:
+            with open(secrets_file_path, 'r', encoding='utf-8') as secrets_file:
                 secrets = json.load(secrets_file)
                 return secrets
         else:
-            print("O arquivo secrets.json não foi encontrado na pasta home.")
+            print(f"Credenciais não disponíveis em: {home_dir}.")
 
     def clicar_botao_avancado(self, driver):
         '''
-        Seletor precisa e eficiente por ID único "details-button".
-        Seletor por classe: .secondary-button.small-link
-        Seletor por texto: button:contains("Avançado")
+        Busca de várias formas o botão 'Avançado' que indica que o usuário já está logado.
+            Seletor preciso por ID único "details-button".
+            Seletor por classe: .secondary-button.small-link
+            Seletor por texto: button:contains("Avançado")
         '''
-        tempo_maximo_espera = 45 
+        tempo_maximo_espera = 2 
         # Tentativa 1: Buscar diretamente botão 'Avançado'
         try:
-            print("Buscando botão avançado para entrar por http...")
+            # print("  Buscando botão 'Avançado' por ID...")
             btn_avancado = WebDriverWait(driver, tempo_maximo_espera).until(
                 EC.element_to_be_clickable((By.ID, "details-button")) 
             )
             btn_avancado.click()
-
         except TimeoutException:
-            print("Botão 'Avançado' não encontrado diretamente. Procurando iframe...")
-            # Tentativa 2: Busca do Botão Dentro de um iframe (Ajuste Se Necessário)
+            # print("  Buscando botão 'Avançado' em iframe...")
+            # Tentativa 2: Busca do Botão Dentro de um iframe (Ajustar quando necessário por mudança na página)
             try:
-                print("Procurar botão 'Avançado' pelo texto no XPath...")
+                # print("  Buscando botão 'Avançado' por XPath...")
                 btn_avancado = driver.find_element(
                     By.XPATH, "//*[contains(text(), 'Avançado')]")
                 btn_avancado.click() 
             except (TimeoutException, NoSuchElementException):
-                # Último Recurso:  JavaScript ou ação do usuário
-                driver.execute_script("arguments[0].click();", btn_avancado)
-
-                # driver.execute_script("window.scrollTo(0, posição_y_do_botão);")
-                # btn_avancado.send_keys(Keys.ENTER) 
+                try:
+                    # Último Recurso:  JavaScript ou ação do usuário
+                    btn_avancado =  WebDriverWait(driver, tempo_maximo_espera).until(
+                        EC.element_to_be_clickable((By.CSS_SELECTOR, ".secondary-button.small-link")))
+                    driver.execute_script("arguments[0].click();", btn_avancado)
+                    # driver.execute_script("window.scrollTo(0, posição_y_do_botão);")
+                    # btn_avancado.send_keys(Keys.ENTER)
+                except (TimeoutException, NoSuchElementException):
+                    return
 
     def _login(self, driver):
         # Verificar se já está logado.
@@ -132,53 +166,61 @@ class FundingFinder:
             print("não foi possível alcançar a página verifique sua conexão.")
             return
         try:
-            # Tenta encontrar o link de logout só presente se logado.
-            logout_link = WebDriverWait(driver, 5).until(
+            # Tentar primeiro encontrar o link de logout, se presente está logado.
+            logout_link = WebDriverWait(driver, 2).until(
                 EC.presence_of_element_located((
                     By.CSS_SELECTOR, "a[href*='logout']"))
                 )
             # print("Usuário já está logado.")
             return  # Se o link de logout for encontrado, retorna cedo.
         except TimeoutException:
-            print("Tentando logar no servidor...")
-            # Tratar erros de certificado SSL.
+            # print("Tentando logar no servidor...")
             try:
                 self.clicar_botao_avancado(driver)
-                WebDriverWait(driver, 5).until(
+                WebDriverWait(driver, 2).until(
                     EC.visibility_of_element_located((
                         By.CSS_SELECTOR, "#final-paragraph #proceed-link"))
                 )
                 link_prosseguir = driver.find_element(
                     By.CSS_SELECTOR, "#final-paragraph #proceed-link")
                 link_prosseguir.click()
-            except (NoSuchElementException, TimeoutException):
+            except NoSuchElementException:
+                # TO-DO: Tratar erros de certificado SSL.
                 print("Erro ao lidar com certificado SSL.")
                 return
-            # Se o link de logout não for encontrado, prosseguir com o login.
-            print("Efetuando login...")
-
+            except TimeoutException:
+                pass
+            
+        # Se o link de logout não for encontrado, prosseguir com o login.
         try:
+            print(f"Inserindo credenciais de acesso...")
             driver.get(self.base_url)
             keys = self._ler_apikeys()
-            WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.ID, "j_username"))
-            )
-            username_field = driver.find_element(By.ID, 'j_username')
-            username_field.send_keys(keys['username'])
+            try:
+                WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.ID, "j_username"))
+                )
+                username_field = driver.find_element(By.ID, "j_username")
+                username_field.send_keys(keys["username"])
 
-            password_field = driver.find_element(By.ID, 'j_password')
-            password_field.send_keys(keys['password'])
+                password_field = driver.find_element(By.ID, "j_password")
+                password_field.send_keys(keys["password"])
 
-            login_button = driver.find_element(By.NAME, 'Submit')
-            login_button.click()
-
-            # Aguardar elemento específico só disponível após o login bem-sucedido.
+                login_button = driver.find_element(By.NAME, "Submit")
+                login_button.click()
+            except Exception as e:
+                print(f"  Erro ao clicar no login {e.msg}")
+            
+            # Aguardar elemento específico só disponível após o login bem-sucedido: link de logout.
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, "a[href*='logout']"))
             )
             print("Login realizado com sucesso.")
         except Exception as e:
-            self.logger.error("Erro ao tentar fazer login: %s", e.msg)
+            self.logger.error("  Erro após clicar no login: %s", e.msg)
+            print(f"  Descrição: {e.msg}")
+            driver.close()
+            return
     
     def _navigate_to_search_page(self, driver):
         try:
@@ -189,8 +231,8 @@ class FundingFinder:
             link_busca_avancada.click()
             # print("Acessada página de busca avançada")
         except Exception as e:
-            print("Erro ao acessar página de busca avançada")
-            print(e.msg)
+            print("Não foi possível acessar a busca avançada")
+            print(f"Erro: {e.msg}")
 
     # Acionar checkboxes de fomento em pesquisa e inovação elegíveis para o Ceará
     def _filter_pdi_ceara(self, driver):
@@ -405,11 +447,14 @@ class FundingFinder:
         env = Environment(loader=FileSystemLoader(template_folder))
         template = env.get_template('template_fioce.html')
         html_output = template.render(dados=df) # Renderizar template com os dados
+        # html_output = html_output.replace('\u2192', '&rarr;') # Substituir caracteres não utf8 que causariam problemas
+       
         # Salvar o relatório gerado em um arquivo HTML
         report_name = self.set_report_date(nome_base)
         filepath = os.path.join(base_repo_dir,'source', 'visualizations',
                                 report_name)
-        with open(filepath, 'w') as f:
+        
+        with open(filepath, 'w', encoding='utf-8') as f:
             f.write(html_output)
         print(f"Relatório montado disponível em {filepath}")
 

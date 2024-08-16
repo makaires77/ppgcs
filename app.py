@@ -98,7 +98,7 @@ def i9c_gp02():
 def i9c_gp03():
     return render_template('i9c_gp03.html', show_render_button=True)
 
-@app.route('/i9c_gp')
+@app.route('/i9c_gp') # nome da rota e da função igual para simplificar
 def i9c_gp():
     # Verificar se a solicitação é AJAX para desabilitar breadcrumb
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
@@ -127,6 +127,11 @@ def grafo_interativo():
 def graph_revistas_capes():
     # Renderizar link para report no breadcrumb
     return render_template('graph_revistas_capes.html', show_render_button=True)
+
+@app.route('/fomento_geral')  # nome da rota e da função igual para simplificar
+def fomento_geral():
+    # Renderizar link para report no breadcrumb
+    return render_template('relatorio_fomento.html', show_render_button=True)
 
 @app.route('/graph_hierarquico')
 def graph_hierarquico():
