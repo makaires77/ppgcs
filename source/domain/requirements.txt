@@ -1,3 +1,4 @@
+altair
 beautifulsoup4
 flask
 gitpython
