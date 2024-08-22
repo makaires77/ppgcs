@@ -983,7 +983,13 @@ class EmbeddingModelEvaluator:
                     X.append(mean_embedding)  # Move para CPU e converte para NumPy
                     y.append(area)
 
-        return X, y
+        # Mover o modelo para o dispositivo desejado (se disponível)
+        if device == "gpu" and torch.cuda.is_available():
+            model.to('cuda')
+        elif device == "cpu":
+            model.to('cpu')
+
+        return model, X, y # Retornar o modelo junto com os dados
 
     def prepare_area_classification(self, model, device="gpu"):
         X = []
