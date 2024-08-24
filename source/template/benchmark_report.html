@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Relatório de Benchmarking de Modelos de Embedding</title>
+</head>
+<body>
+    <h1>Resultados do Benchmarking</h1>
+
+    {% for model_name, metrics in benchmark_results.items() %}
+    <h2>Modelo: {{ model_name }}</h2>
+    <p>Tempo de execução: 
+    {% if metrics['Tempo de execução'] is number %}
+        {{ metrics['Tempo de execução'] | format("%.2f") }} 
+    {% else %}
+        {{ metrics['Tempo de execução'] }} (unable to format)
+    {% endif %}
+    segundos</p>
+    <h3>Resultados de Clustering</h3>
+    <ul>
+        {% for algorithm, score in metrics['Resultados de clustering'].items() %}
+        <li>{{ algorithm }}: 
+        {% if score is number %}
+            {{ score | float | format("%.3f") }} 
+        {% else %}
+            {{ score }} (unable to format)
+        {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% if model_name == best_model %}
+    <p style="color: green;">Este é o melhor modelo!</p>
+    {% endif %}
+
+    <hr>
+    {% endfor %}
+
+</body>
+</html>

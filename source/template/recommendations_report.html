@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Recomendações para {{ entity_type }} {{ entity_id }}</title>
+</head>
+<body>
+    <h1>Recomendações para {{ entity_type }} {{ entity_id }}</h1>
+
+    {% for recommendation in recommendations %}
+    <h2>{{ recommendation.titulo_edital }}</h2>
+    <p>ID do Edital: {{ recommendation.id_edital }}</p>
+    <p>Área Temática: {{ recommendation.area_tematica }}</p>
+    <p>Similaridade: {{ recommendation.similarity | float | format("%.3f") }}</p>
+    <hr>
+    {% endfor %}
+</body>
+</html>
