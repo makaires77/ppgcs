@@ -1,0 +1,20 @@
+Requirement already satisfied: httpx in /home/mak/miniconda3/envs/rapids-24.08/lib/python3.11/site-packages (0.13.3)
+Requirement already satisfied: certifi in /home/mak/miniconda3/envs/rapids-24.08/lib/python3.11/site-packages (from httpx) (2024.8.30)
+Requirement already satisfied: hstspreload in /home/mak/miniconda3/envs/rapids-24.08/lib/python3.11/site-packages (from httpx) (2024.8.1)
+Requirement already satisfied: sniffio in /home/mak/miniconda3/envs/rapids-24.08/lib/python3.11/site-packages (from httpx) (1.3.1)
+Requirement already satisfied: chardet==3.* in /home/mak/miniconda3/envs/rapids-24.08/lib/python3.11/site-packages (from httpx) (3.0.4)
+Collecting idna==2.* (from httpx)
+  Using cached idna-2.10-py2.py3-none-any.whl.metadata (9.1 kB)
+Requirement already satisfied: rfc3986<2,>=1.3 in /home/mak/miniconda3/envs/rapids-24.08/lib/python3.11/site-packages (from httpx) (1.5.0)
+Requirement already satisfied: httpcore==0.9.* in /home/mak/miniconda3/envs/rapids-24.08/lib/python3.11/site-packages (from httpx) (0.9.1)
+Requirement already satisfied: h11<0.10,>=0.8 in /home/mak/miniconda3/envs/rapids-24.08/lib/python3.11/site-packages (from httpcore==0.9.*->httpx) (0.9.0)
+Requirement already satisfied: h2==3.* in /home/mak/miniconda3/envs/rapids-24.08/lib/python3.11/site-packages (from httpcore==0.9.*->httpx) (3.2.0)
+Requirement already satisfied: hyperframe<6,>=5.2.0 in /home/mak/miniconda3/envs/rapids-24.08/lib/python3.11/site-packages (from h2==3.*->httpcore==0.9.*->httpx) (5.2.0)
+Requirement already satisfied: hpack<4,>=3.0 in /home/mak/miniconda3/envs/rapids-24.08/lib/python3.11/site-packages (from h2==3.*->httpcore==0.9.*->httpx) (3.0.0)
+Using cached idna-2.10-py2.py3-none-any.whl (58 kB)
+Installing collected packages: idna
+  Attempting uninstall: idna
+    Found existing installation: idna 3.8
+    Uninstalling idna-3.8:
+      Successfully uninstalled idna-3.8
+Successfully installed idna-2.10

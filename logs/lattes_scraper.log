@@ -1,2 +1,11 @@
-2024-08-12 08:27:44,323 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
-2024-08-12 08:32:42,182 - ERROR - Erro inesperado ao buscar: local variable 'intLTotReg' referenced before assignment
+2024-09-25 05:29:00,207 - ERROR - Tentativa de extrair currículo de ivana cristina de holanda cunha barreto em scrape_retry() falhou: Message:        Erro ao realizar a extração para ivana cristina de holanda cunha barreto: Message: 
+
+. Tentando novamente...
+2024-09-25 05:35:05,611 - ERROR - Tentativa de extrair currículo de roberto nicolete em scrape_retry() falhou: Message:        Erro ao realizar a extração para roberto nicolete: Message: 
+
+. Tentando novamente...
+2024-09-25 05:38:44,898 - ERROR - Erro inesperado ao buscar: cannot access local variable 'intLTotReg' where it is not associated with a value
+2024-09-25 05:40:16,194 - ERROR - Tentativa de extrair currículo de allysson allan de farias em scrape_retry() falhou: Message:        Erro ao realizar a extração para allysson allan de farias: Message: 
+
+. Tentando novamente...
+2024-09-25 05:43:43,103 - ERROR - Erro inesperado ao buscar: cannot access local variable 'intLTotReg' where it is not associated with a value
