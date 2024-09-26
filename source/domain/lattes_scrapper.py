@@ -1378,7 +1378,7 @@ class LattesScraper:
 
         return dados_resultados
 
-    def extrair_parametros_paginacao(pagina_atual):
+    def extrair_parametros_paginacao(self, pagina_atual):
         """
         Extrai os parâmetros de paginação a partir da página HTML atual.
 
@@ -1415,7 +1415,7 @@ class LattesScraper:
             "pagina_seguinte": pagina_seguinte,
         }
 
-    def extrair_resultados(pagina_html):
+    def extrair_resultados(self, pagina_html):
         """
         Extrai os dados dos resultados de pesquisa presentes na página HTML.
 
@@ -1959,8 +1959,9 @@ class LattesScraper:
                         if match:
                             tooltip_data["impact-factor"] = match.group(1)
                             tooltip_data["original_title"] = original_title.split('<br />')[0].strip()
-                            # Se necessário adicionar mais dados ao tooltip_data, acrescentar aqui
-                            break  # Saíndo do loop após sucesso na captura dos dados
+                            # Adicionar mais dados ao tooltip_data como valores de citações WoS e Scopus
+                            break  # Sair do loop após sucesso na captura dos dados
+
                 tooltip_data_list.append(tooltip_data)
             print(f'       {len(tooltip_data_list):>003} artigos extraídos')
         except TimeoutException:
@@ -4906,54 +4907,6 @@ class ArticlesCounter:
                                        })
         return dtf_atualizado
 
-    # def contar_qualis(self, dict_list, ano_inicio, ano_final):
-    #         lista_pubqualis = []
-    #         for dic in dict_list:
-    #             autor = dic.get('Identificação',{}).get('Nome',{})
-    #             artigos = dic.get('Produções', {}).get('Artigos completos publicados em periódicos', {})
-    #             current_year = datetime.now().year
-    #             for i in artigos:
-    #                 ano = i.get('ano') 
-    #                 if not ano or pd.isna(ano):
-    #                     ano = current_year
-    #                 else:
-    #                     try:
-    #                         ano = int(ano)
-    #                     except ValueError:
-    #                         ano = current_year
-
-    #                 # Garantindo conversão para string
-    #                 ano = str(ano)
-
-    #                 qualis = i.get('Qualis',{})
-    #                 lista_pubqualis.append((ano, autor, qualis))
-
-    #         # **Print total count without year filter**
-    #         total_count = len(lista_pubqualis)
-    #         print(f'Total de publicações (sem filtro de ano): {total_count}')
-
-    #         # **Filter dataframe based on year range**
-    #         df_qualis_autores_anos = pd.DataFrame(lista_pubqualis, columns=['Ano','Autor', 'Qualis'])
-    #         df_filtered = df_qualis_autores_anos[(df_qualis_autores_anos['Ano'].astype(int) >= ano_inicio) & (df_qualis_autores_anos['Ano'].astype(int) <= ano_final)]
-
-    #         # **Calculate and print minimum and maximum years (filtered)**
-    #         try:
-    #             minimo = np.nanmin(df_filtered['Ano'])
-    #         except ValueError:
-    #             minimo = None
-    #         print(f'Mínimo (filtro ano {ano_inicio}-{ano_final}): {minimo}')
-
-    #         maximo = np.nanmax(df_filtered['Ano'])
-    #         print(f'Máximo (filtro ano {ano_inicio}-{ano_final}): {maximo}')
-
-    #         # Imprimir a contagem de publicações com o intervalo válido
-    #         print(f'Contagem de Publicações por Qualis Periódicos no período {minimo} a {maximo}')
-
-    #         # Contar as ocorrências de cada combinação de Autor e Qualis
-    #         pivot_table = df_qualis_autores_anos.pivot_table(index='Autor', columns='Qualis', aggfunc='size', fill_value=0)
-        
-    #         return pivot_table
-
     def contar_qualis(self, dict_list, ano_inicio, ano_final):
             lista_pubqualis = []
             for dic in dict_list:
@@ -5131,6 +5084,195 @@ class ArticlesCounter:
                 nome_formatado += palavra.lower() + " "
         return nome_formatado.strip()
 
+    def buscar_palavras_chave_scielo(self, palavras_chave):
+        """
+        Busca trabalhos relacionados a uma lista de palavras-chave na SciELO.
+
+        Args:
+            palavras_chave (list): Uma lista de palavras-chave para a busca.
+
+        Returns:
+            list: Uma lista de tuplas (título, link) dos artigos encontrados.
+        """
+
+        # URL de busca da SciELO
+        url_busca = "https://search.scielo.org/?"
+
+        # https://search.scielo.org/?
+        # q=Alzheimer+Diag*
+        # &lang=en
+        # &count=50
+        # &from=0
+        # &output=site
+        # &sort=
+        # &format=summary
+        # &fb=
+        # &page=1
+
+        # Construir a query com as palavras-chave
+        query = "+".join([f'"{palavra}"' for palavra in palavras_chave])
+        params = {
+            "q": query,
+            "lang": "en",   # Remover a restrição de idioma
+            "count": 100,    # Número de resultados por página
+            "from": 0,
+            "output": "site"
+        }
+
+        print(f"Query montada: {params}")
+
+        # Definir headers com um User-Agent
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3' 
+        }
+
+        # Fazer a requisição HTTP com headers
+        response = requests.get(url_busca, params=params, headers=headers)
+
+        # Extrair os títulos e links dos artigos
+        soup = BeautifulSoup(response.content, 'html.parser')
+        resultados = soup.find_all('div', class_='result')
+        print(f"Resultados na base Scielo: {resultados}")
+        artigos = []
+        try:
+            for resultado in resultados:
+                titulo = resultado.find('a', class_='doc-title').text.strip()
+                link = resultado.find('a', class_='doc-title')['href']
+                artigos.append((titulo, link))
+        except Exception as e:
+            print(f"Erro ao tentar recuperar resultados:")
+            print(e)
+        return artigos
+
+    def verificar_scielo_por_titulo_ano(self, titulo, ano):
+        """
+        Verifica se um artigo está indexado na SciELO usando web scraping (busca por título e ano).
+
+        Args:
+            titulo (str): O título do artigo.
+            ano (int): O ano de publicação do artigo.
+
+        Returns:
+            bool: True se o artigo for encontrado na SciELO, False caso contrário.
+        """
+
+        # URL de busca da SciELO
+        search_url = "https://search.scielo.org/?"
+        query_params = {
+            "q": titulo,
+            # "lang": "pt",  # Para filtrar por linguagem, conforme necessário
+            "count": 10,    # Número de resultados a serem buscados (ajuste conforme necessário)
+            "from": 0,
+            "output": "site"
+        }
+
+        # Definir headers e user-agent
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3' 
+        }
+
+        try:
+            # Incluir os headers na requisição
+            response = requests.get(search_url, params=query_params, headers=headers)
+            response.raise_for_status()  # Lançar exceção se houver erro na requisição
+
+            # Analisar os resultados da busca usando expressões regulares
+            resultados = re.findall(r'<div class="result">.*?<a class="doc-title".*?>(.*?)</a>.*?<span class="doc-year">(.*?)</span>', response.text, re.DOTALL)
+            for titulo_encontrado, ano_encontrado in resultados:
+                if titulo_encontrado.lower().strip() == titulo.lower() and ano_encontrado.strip() == str(ano):
+                    return True
+
+        except requests.exceptions.RequestException as e:
+            print(f"Erro na requisição à SciELO: {e}")
+
+        return False
+
+    def verificar_indexacao(self, doi=None, titulo=None, ano=None):
+        """
+        Verifica se um artigo está indexado nas bases de dados PubMed e SciELO.
+        Adiciona validação do DOI com o título usando similaridade de Jaccard.
+
+        Args:
+            doi (str, optional): O DOI do artigo.
+            titulo (str, optional): O título do artigo.
+            ano (int, optional): O ano de publicação do artigo.
+
+        Returns:
+            tuple: Uma tupla com dois booleanos (PubMed, SciELO) indicando se o artigo está indexado em cada base de dados.
+        """
+
+        pubmed_indexado = False
+        scielo_indexado = False
+        doi_valido = True  # Assume que o DOI é válido por padrão
+
+        if doi:
+            # Verificar PubMed via Entrez
+            pubmed_url = f"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term={doi}&retmode=json"
+            pubmed_response = requests.get(pubmed_url)
+            pubmed_data = pubmed_response.json()
+            # print(f"Dados PubMed\nDOI: {doi}\nQte resultados: {pubmed_data['esearchresult']['count']}")
+            pubmed_indexado = pubmed_data['esearchresult']['count'] != '0'
+
+        ## Fazer busca por dados detalhados usando API Crossref
+        #     try:
+        #         cr = Crossref()
+        #         trabalho = cr.works(ids=doi)["message"]
+        #         titulo_doi = trabalho['title'][0]
+        #         print(f"Título: {titulo_doi}")
+        #         print(f"\nDados Crossref")
+        #         for i,j in trabalho.items():
+        #             print(f"{i}: {j}")
+
+        #         # Calcular a similaridade de Jaccard
+        #         conjunto_titulo = set(titulo.lower().split())
+        #         # print(conjunto_titulo)
+        #         conjunto_titulo_doi = set(titulo_doi.lower().split())
+        #         # print(conjunto_titulo_doi)
+        #         intersecao = conjunto_titulo.intersection(conjunto_titulo_doi)
+        #         uniao = conjunto_titulo.union(conjunto_titulo_doi)
+        #         jaccard_similarity = len(intersecao) / len(uniao)
+
+        #         doi_valido = jaccard_similarity > 0.9
+        #         print(f"DOI corresponde ao título informado: {doi_valido}")
+
+        #     except Exception as e:
+        #         print(f"O Título informado não corresponde ao título do artigo do DOI informado")
+        #         print(e)
+        #         doi_valido = False  # Se houver erro ao obter o título, assume que o DOI não é válido
+
+        #     # Verificar SciELO via Crossref (indiretamente)
+        #     if doi_valido:
+        #         try:
+        #             if "link" in trabalho:
+        #                 for link in trabalho["link"]:
+        #                     if "scielo" in link["URL"]:
+        #                         scielo_indexado = True
+        #                         break
+        #         except:
+        #             pass # Se não encontrar via Crossref, assumir não indexado na SciELO
+
+        elif titulo and ano:
+            # Verificar PubMed via Entrez
+            pubmed_url = f"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term={titulo}[Title]+AND+{ano}[Publication Date]&retmode=json"
+            pubmed_response = requests.get(pubmed_url)
+            pubmed_data = pubmed_response.json()
+            pubmed_indexado = pubmed_data['esearchresult']['count'] != '0'
+        else:
+            print('Verificar se o DOI, ou o título e o ano da publicação foram inseridas corretamente')
+
+        if titulo and ano:
+            # Verificar SciELO por título e ano
+            scielo_indexado = self.verificar_scielo_por_titulo_ano(titulo, ano)
+        else:
+            print(f"Títlulo ou ano do arquivo indisponível impedindo buscar indexação na base scielo")
+
+        # Invalidar resultados se o DOI não for válido
+        if not doi_valido:
+            pubmed_indexado = False
+            scielo_indexado = False
+
+        return pubmed_indexado, scielo_indexado
+
     def calcular_pontuacoes(self, dict_list_docents, ano_inicio, ano_final, orientadores_filtro=None):
         """Calcula as pontuações de produção e orientação para cada docente e retorna um DataFrame.
 
@@ -5144,7 +5286,9 @@ class ArticlesCounter:
             DataFrame: Tabela filtrada apenas com os docentes da lista de orientadores, ordenada pela pontuação total.
          """
         pontuacoes = {}
-        for docente in dict_list_docents:
+        for m,docente in enumerate(dict_list_docents):
+            clear_output(wait=True)
+            print(f"Calculando pontuações no período {ano_inicio} a {ano_final} docente {m+1}/{len(dict_list_docents)}")
             nome = docente['Identificação']['Nome']
             pontuacoes[nome] = {
                 'Somatório_Pontos': 0,
@@ -5154,6 +5298,8 @@ class ArticlesCounter:
                 'Pnt_Orientações': 0,
                 'Pnt_Patentes':0,
                 'Pnt_Software':0,
+                'Pnt_PubMed': 0,
+                'Pnt_Scielo': 0,
             }
 
             # Cálculo de pontuação para artigos
@@ -5162,7 +5308,12 @@ class ArticlesCounter:
                 qte_jcr_faltante = 0
                 qte_jcr_inferior = 0
                 qte_jcr_superior = 0
-                for artigo in artigos:
+                qte_index_pubmed = 0
+                qte_index_scielo = 0
+                is_pubmed = False
+                is_scielo = False
+
+                for n, artigo in enumerate(artigos):
                     try:
                         ano_artigo = artigo.get('ano')
                         if not ano_artigo or ano_artigo == '':  # Verifica se o ano está vazio ou não é um número
@@ -5171,8 +5322,23 @@ class ArticlesCounter:
                                 ano_artigo = self.obter_ano_por_doi(doi)  # Consulta o ano pelo DOI
                                 if ano_artigo is None:
                                     ano_artigo = ano_inicio  # Usa o ano inicial se não encontrar o ano
+
                         if ano_inicio <= int(ano_artigo) <= ano_final:
                             try:
+                                # Cálculo de pontuações por indexação no PubMed e Scielo
+                                doi = artigo.get('DOI')
+                                titulo_artigo = artigo.get('titulo')
+                                is_pubmed, is_scielo = self.verificar_indexacao(doi, titulo_artigo, ano_artigo)
+                                if is_pubmed:
+                                    qte_index_pubmed += 1
+                                if is_scielo:
+                                    qte_index_scielo += 1
+                                print(f"Artigo {n+1:2} [ PubMed: {is_pubmed} | Scielo: {is_scielo} ] Acumulado Indexados: ({qte_index_pubmed} Pubmed | {qte_index_scielo} Scielo)")
+                            except Exception as e:
+                                print('Não foi possível consultar Scielo ou PubMed')
+                                print(e)
+                            try:
+                                # Cálculo de pontuações por faixa de fator de impacto
                                 impacto = float(artigo.get('fator_impacto_jcr', 0.0))  # Usar 0.0 se o fator de impacto não for encontrado
                                 if impacto >= 1.1:
                                     qte_jcr_superior += 1
@@ -5185,7 +5351,14 @@ class ArticlesCounter:
                         print(f'Artigo com problema: {artigo}')
 
                 pontuacoes[nome]['Pnt_Artigos'] = qte_jcr_superior * 8 + qte_jcr_inferior * 6
+                pontuacoes[nome]['Pnt_PubMed'] = qte_index_pubmed * 2
+                pontuacoes[nome]['Pnt_Scielo'] = qte_index_scielo * 1
 
+            else:
+                pontuacoes[nome]['Pnt_Artigos'] = 0
+                pontuacoes[nome]['Pnt_PubMed'] = 0
+                pontuacoes[nome]['Pnt_Scielo'] = 0
+                
             # Subdicionários dos dicionários de produções, orientações e patentes
             livros_publicados = docente.get('Produções', {}).get('Livros publicados/organizados ou edições')
             capitulos_livros = docente.get('Produções', {}).get('Capítulos de livros publicados')
