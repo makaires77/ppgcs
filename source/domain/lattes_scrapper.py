@@ -3538,7 +3538,7 @@ class HTMLParser:
                             # Adicionar as informações da patente diretamente ao dicionário da subseção
                             self.estrutura["Patentes e registros"][nome_subsecao][nome_ocorrencia] = patente_info
 
-    def process_orientacoes(self):
+    def process_orientacoes_old(self):
         self.estrutura["Orientações"]={}
         secoes = self.soup.find_all('div', class_='title-wrapper')
         for secao in secoes:
@@ -3562,6 +3562,7 @@ class HTMLParser:
                         if subsubsecao:
                             subsubsecao_name = subsubsecao.get_text(strip=True)
                             # print(f'      Subseção: {subsubsecao_name}')
+                        
                         # Encontrar todos os elementos irmãos seguintes de div_cita_artigos
                         next_siblings = div_cita_artigos.find_next_siblings("div")
 
@@ -3587,6 +3588,73 @@ class HTMLParser:
                                 # Usa o texto ou outro identificador único dos elementos como chave e valor
                                 chave = divs_indices[i].get_text(strip=True).replace('\t','').replace('\n',' ')
                                 valor = divs_ocorrencias[i].get_text(strip=True).replace('\t','').replace('\n',' ')
+
+                                # Adiciona o par chave-valor ao dicionário
+                                ocorrencias[chave] = valor
+
+                        self.estrutura["Orientações"][subsec_name].append({subsubsecao_name: ocorrencias})
+
+    def process_orientacoes(self):
+        self.estrutura["Orientações"] = {}
+        secoes = self.soup.find_all('div', class_='title-wrapper')
+        for secao in secoes:
+            titulo_h1 = secao.find('h1')
+            if titulo_h1 and 'Orientações' in titulo_h1.get_text(strip=True):
+                data_cell = secao.find('div', class_='layout-cell layout-cell-12 data-cell')
+                subsecoes = data_cell.find_all('div', class_='inst_back')
+
+                # Dicionário para rastrear subseções já processadas
+                subsecoes_processadas = set()
+
+                for subsecao in subsecoes:
+                    ocorrencias = {}
+                    if subsecao:
+                        subsec_name = subsecao.get_text(strip=True)
+
+                        # Verifica se a subseção já foi processada
+                        if subsec_name in subsecoes_processadas:
+                            continue  # Pula para a próxima subseção se já foi processada
+
+                        if subsec_name not in self.estrutura["Orientações"]:
+                            self.estrutura["Orientações"][subsec_name] = []
+
+                        # Marca a subseção como processada
+                        subsecoes_processadas.add(subsec_name)
+
+                    ## Extrair cada tipo de orientação
+                    divs_cita_artigos = data_cell.find_all("div", class_="cita-artigos", recursive=False)
+                    for div_cita_artigos in divs_cita_artigos:
+                        ocorrencias = {}
+                        subsubsecao = div_cita_artigos.find('b')
+                        if subsubsecao:
+                            subsubsecao_name = subsubsecao.get_text(strip=True)
+
+                        # Encontrar todos os elementos irmãos seguintes de div_cita_artigos
+                        next_siblings = div_cita_artigos.find_next_siblings("div")
+
+                        # Listas para armazenar os divs encontrados
+                        divs_indices = []
+                        divs_ocorrencias = []
+
+                        # Iterar sobre os elementos irmãos
+                        for sibling in next_siblings:
+                            # Verificar se o irmão tem a classe "cita-artigos" ou "inst_back"
+                            if 'cita-artigos' in sibling.get('class', []) or 'inst_back' in sibling.get('class', []):
+                                # Encontramos o marcador para parar, sair do loop
+                                break
+
+                            # Verificar as outras classes e adicionar aos arrays correspondentes
+                            if 'layout-cell layout-cell-1 text-align-right' in " ".join(sibling.get('class', [])):
+                                divs_indices.append(sibling)
+                            elif 'layout-cell layout-cell-11' in " ".join(sibling.get('class', [])):
+                                divs_ocorrencias.append(sibling)
+
+                        if len(divs_indices) == len(divs_ocorrencias):
+                            # Itera sobre o intervalo do comprimento de uma das listas
+                            for i in range(len(divs_indices)):
+                                # Usa o texto ou outro identificador único dos elementos como chave e valor
+                                chave = divs_indices[i].get_text(strip=True).replace('\t', '').replace('\n', ' ')
+                                valor = divs_ocorrencias[i].get_text(strip=True).replace('\t', '').replace('\n', ' ')
 
                                 # Adiciona o par chave-valor ao dicionário
                                 ocorrencias[chave] = valor
