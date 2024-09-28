@@ -5,7 +5,7 @@ import seaborn as sns
 import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
-import codecs, unicodedata, string, sqlite3, asyncio, nltk
+import codecs, unicodedata, string, sqlite3, asyncio, nltk, openpyxl
 import os, re, bs4, sys, csv, time, json, h5py, pytz, glob, stat, shutil, psutil, pdfkit
 import warnings, platform, requests, urllib, difflib, subprocess, torch, logging, traceback
 
@@ -526,297 +526,6 @@ class LattesScraper:
                 graph.create(projeto_node)
                 rel = Relationship(pessoa_node, "PARTICIPA", projeto_node)
                 graph.create(rel)
-
-    ## Funções auxiliares da extração de artigos e orientações
-    def contar_artigos(self, dict_list_docents):
-        ## Contagem de artigos para simples confererência
-        print(f'{len(dict_list_docents)} dicionários montados')
-        qte_artigos=0
-        qte_titulos=0
-        for k,i in enumerate(dict_list_docents):
-            try:
-                qte_jcr = len(i.get('Produções').get('Artigos completos publicados em periódicos'))
-            except:
-                qte_jcr = 0
-            try:
-                qte_jcr2 = len(i['JCR2'])
-            except:
-                qte_jcr2 = 0
-            qte_artigos+=qte_jcr
-            qte_titulos+=qte_jcr2
-            status=qte_jcr2-qte_jcr
-            print(f"{k:>2}C {qte_jcr:>03}A {qte_jcr2:>03}T Dif:{status:>03} {i.get('Identificação').get('name')} ")
-        print(f'\nTotal de artigos em todos períodos: {qte_artigos}')
-        print(f'Total de títulos em todos períodos: {qte_titulos}')    
-        return qte_artigos, qte_titulos
-
-    def buscar_qualis(self, lista_dados_autor):
-        for dados_autor in lista_dados_autor:
-            for categoria, artigos in dados_autor['Produções'].items():
-                if categoria == 'Artigos completos publicados em periódicos':
-                    for artigo in artigos:
-                        issn_artigo = artigo['ISSN'].replace('-','')
-                        qualis = self.encontrar_qualis_por_issn(issn_artigo)
-                        print(f'{issn_artigo:8} | {qualis}')
-                        if qualis:
-                            artigo['Qualis'] = qualis
-                        else:
-                            artigo['Qualis'] = 'NA'
-
-    def encontrar_qualis_por_issn(self, issn):
-        qualis = self.dados_planilha[self.dados_planilha['ISSN'].str.replace('-','') == issn]['Estrato'].tolist()
-        if qualis:
-            return qualis[0]
-        else:
-            return None
-
-    # Usar unicodedata para remover acentos
-    def remover_acentos_unicodedata(self, texto):
-        texto_sem_acentos = ''.join(c for c in unicodedata.normalize('NFD', texto)
-                                    if unicodedata.category(c) != 'Mn')
-        return texto_sem_acentos
-
-    # Usar unicode para remover acentos
-    def remover_acentos(self, texto):
-        return unidecode(texto)
-
-    def substituir_abreviaturas(self, texto):
-        padrao = re.compile(r"\bDr\.")
-        return padrao.sub(lambda m: m.group().replace(".", ""), texto)
-
-    def substituir_iniciais(self, texto):
-        padrao = re.compile(r"\b[A-Z]\.")  # Expressão regular para qualquer letra maiúscula seguida de ponto
-        return padrao.sub(lambda m: m.group()[:-1], texto)  # Remove o ponto da inicial
-
-    # Define a função para verificar se a string contém un dos termos da lista de detecção (case insensitive)
-    def contem_fiocruz(self, instituicao):
-        termos = ['fiocruz', 'fundação oswaldo cruz']
-        for termo in termos:
-            if termo.lower() in instituicao.lower():
-                return 'interno'
-        return 'externo'
-
-    def organizar_orientacoes_geral(self, dict_list_docents):
-        tipos = []
-        orientacoes_set = set()
-        orientacoes_lista = []
-
-        ano = None
-        papel = None
-        orientando = None
-        instituicao = ''
-
-        for curriculo in dict_list_docents:
-            nome = curriculo.get('Identificação').get('Nome')
-            orientacoes_curriculo = curriculo.get('Orientações')
-            if orientacoes_curriculo:
-                for secao in orientacoes_curriculo: # Itera sobre as seções principais
-                    for subsecao in secao['subsecoes']:
-                        subsec_name = subsecao['nome']
-                        if 'concluídas' in subsec_name:
-                            status = 'concluídas'
-                        else:
-                            status = 'em andamento'
-                        for orientacao in subsecao['orientacoes']:
-                            tipo = orientacao['tipo']
-                            detalhes = orientacao['detalhes']
-
-                            detalhes = self.substituir_iniciais(detalhes)
-                            detalhes = self.substituir_abreviaturas(detalhes)
-                            if tipo == 'Supervisão de pós-doutorado':
-                                orientando = detalhes.split('. ')[0].title()
-                                ano = detalhes.split('. ')[1].replace('Início: ', '')
-                                papel = 'supervisor'
-                            else:
-                                orientando = detalhes.split('. ')[0].title()
-                                titulo = detalhes.split('. ')[1]
-                                ano = detalhes.split('. ')[2].replace('Início: ', '')
-                                try:
-                                    hifens = len(detalhes.split('. ')[-2].split('-'))
-                                    inst = detalhes.split('. ')[-2].split('-')[-1].strip()
-                                    if len(inst) == 2:
-                                        instituicao = detalhes.split('. ')[-3].split('-')[1].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
-                                    elif len(inst) == 4:
-                                        instituicao = detalhes.split('. ')[-2].split('-')[-1].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
-                                    # elif len(inst) != 2 and hifens > 1:
-                                    #   instituicao = detalhes.split('. ')[-2].split('-')[-1].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
-                                    else:
-                                        instituicao = detalhes.split('. ')[-2].split('-')[-1].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
-                                except:
-                                    instituicao = detalhes.split('. ')[-2].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
-                                papel = detalhes.split('. ')[-1].split(':')[0].strip().replace('(', '').replace(').', '').replace(')', '')
-
-                            if len(ano) != 4:
-                                resultado = re.search(r"\d{4}", detalhes)
-                                if resultado:
-                                    ano = resultado.group().strip()
-
-                            if tipo not in tipos:
-                                tipos.append(tipo)
-
-                            padrao = re.compile(r" Associação| Avaliação Dos| Síndrome Da| Prevalência| Atendimento| Avaliação Da| Avaliação| Atenção| Uso Farmacológico| Assinaturas| : ?Estratégias| Construção| Caracterização| Efeitos")
-
-                            if len(orientando.split(' ')) > 5:
-                                orientando = padrao.sub("", orientando)
-
-                            # Verifica se a instituição foi extraída corretamente, se não, atribui 'Não Informada'
-                            if not instituicao:
-                                instituicao = 'Não Informada'
-
-                            # Cria uma tupla com as informações da orientação
-                            orientacao_info = (nome, papel, ano, orientando, instituicao, tipo, status)
-
-                            # Adiciona a orientação à lista apenas se for única
-                            if orientacao_info not in orientacoes_set:
-                                orientacoes_set.add(orientacao_info)
-                                orientacoes_lista.append({
-                                    'Docente': nome,
-                                    'papel': papel,
-                                    'ano': ano,
-                                    'orientando': orientando,
-                                    'instituicao': instituicao,
-                                    'tipo': tipo,
-                                    'status': status
-                                })
-
-        # Converte o conjunto de orientações de volta para uma lista
-        orientacoes_lista = list({'Docente': nome, 'papel': papel, 'ano': ano, 'orientando': orientando, 'instituicao': instituicao, 'tipo': tipo, 'status': status}
-            for (nome, papel, ano, orientando, instituicao, tipo, status) in orientacoes_set
-        )
-
-        return orientacoes_lista
-
-    def criar_dataframe_contagens(self, orientacoes_lista, ano_inicio, ano_final, tipos_aceitaveis):
-        # Cria um DataFrame a partir da lista de orientações
-        df_orientacoes = pd.DataFrame(orientacoes_lista)
-
-        # Filter the DataFrame based on 'Ano' and 'Tipo', criando uma cópia explícita
-        df_orientacoes_filtrado = df_orientacoes[
-            (df_orientacoes['ano'].astype(int) >= ano_inicio) &
-            (df_orientacoes['ano'].astype(int) <= ano_final) &
-            (df_orientacoes['tipo'].isin(tipos_aceitaveis))
-        ].copy()
-
-        # Cria a coluna 'Interno Fiocruz' usando .loc para evitar o SettingWithCopyWarning
-        df_orientacoes_filtrado.loc[:, 'Interno Fiocruz'] = df_orientacoes_filtrado['instituicao'].astype(str).apply(self.contem_fiocruz)
-
-        # Calcula o total de orientações 'interno', incluindo a coluna 'status'
-        total_interno = df_orientacoes_filtrado[df_orientacoes_filtrado['Interno Fiocruz'] == 'interno'].groupby(['Docente', 'status']).size().reset_index(name='Interno Fiocruz')
-
-        # Calcula o total de orientações 'externo', incluindo a coluna 'status'
-        total_externo = df_orientacoes_filtrado[df_orientacoes_filtrado['Interno Fiocruz'] == 'externo'].groupby(['Docente', 'status']).size().reset_index(name='Externo à Fiocruz')
-
-        # Faz o merge dos resultados usando um outer join, incluindo a coluna 'status'
-        resultado_final = total_interno.merge(total_externo, on=['Docente', 'status'], how='outer')
-
-        # Ordena o DataFrame
-        resultado_final = resultado_final.sort_values('Docente')
-
-        # Preenche os valores ausentes com zero
-        resultado_final = resultado_final.fillna(0)
-
-        # Redefine o índice para ter 'Docente' como uma coluna
-        resultado_final = resultado_final.reset_index()
-
-        # Reordena as colunas
-        cols = ['Docente', 'status', 'Interno Fiocruz', 'Externo à Fiocruz']
-        resultado_final = resultado_final[cols]
-
-        return resultado_final
-
-    # Gerar o relatório de orientações em HTML
-    def generate_html_report(self, orientacoes_lista):
-        # Cria a estrutura da tabela HTML, incluindo os novos cabeçalhos
-        html_content = """
-        <!DOCTYPE html>
-        <html>
-        <head>
-        <style>
-        table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        }
-
-        td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-        }
-
-        tr:nth-child(even) {
-        background-color: #dddddd;
-        }
-        </style>
-        </head>
-        <body> 
-
-
-        <h2>Relatório de Orientações Concluídas</h2>
-
-        <table>
-        <tr>
-            <th>Docente</th>
-            <th>Papel</th>
-            <th>Ano</th>
-            <th>Orientando</th>
-            <th>Instituição</th>
-            <th>Tipo de Orientação</th> 
-            <th>Status</th>            
-        </tr>
-        """
-
-        # Iterar sobre a lista de dicionários e extrai as informações relevantes
-        for orientacao in orientacoes_lista:
-            docente = orientacao.get('Docente', '')
-            papel = orientacao.get('papel', '')
-            ano = orientacao.get('ano', '')
-            orientando = orientacao.get('orientando', '')
-            instituicao = orientacao.get('instituicao', '')
-            tipo = orientacao.get('tipo', '')       
-            status = orientacao.get('status', '')   
-
-            # Popula a tabela HTML com os dados extraídos, incluindo as novas células
-            html_content += f"""
-            <tr>
-                <td>{docente}</td>
-                <td>{papel}</td>
-                <td>{ano}</td>
-                <td>{orientando}</td>
-                <td>{instituicao}</td>
-                <td>{tipo}</td>          
-                <td>{status}</td>        
-            </tr>
-            """
-
-        # Fechar a tabela HTML
-        html_content += """
-        </table>
-
-        </body>
-        </html>
-        """
-
-        # try:
-        #     # Tenta importar a biblioteca pdfkit
-        #     import pdfkit
-
-        #     # Converte o conteúdo HTML para PDF usando pdfkit
-        #     pdfkit.from_string(html_content, 'relatorio_orientacoes.pdf')
-
-        #     # Imprime uma mensagem de sucesso
-        #     print("Relatório em PDF gerado com sucesso: relatorio_orientacoes.pdf")
-
-        # except ImportError:
-        #     # Lidar com o caso em que pdfkit não está instalado
-        #     print("Erro: A biblioteca pdfkit não está instalada. Instale-a usando o comando 'pip install pdfkit' para gerar o relatório em PDF.")
-        
-        return html_content
-
-    # Gerar o relatório de orientações em PDF
-    def generate_pdf_report(self, html_content):
-        pdfkit.from_string(html_content, 'relatorio_orientacoes.pdf')
-        print("Relatório em PDF gerado com sucesso: relatorio_orientacoes.pdf")
 
     def retry(self, func, expected_ex_type=Exception, limit=0, wait_ms=500,
               wait_increase_ratio=2, on_exhaust="throw"):
@@ -5062,6 +4771,456 @@ class DiscentCollaborationCounter:
 class ArticlesCounter:
     def __init__(self, dict_list):
         self.data_list = dict_list
+
+    def contar_artigos(self, dict_list):
+        ## Contagem de artigos para simples confererência
+        print(f'{len(dict_list)} dicionários montados')
+        qte_artigos=0
+        qte_titulos=0
+        for k,i in enumerate(dict_list):
+            try:
+                qte_jcr = len(i.get('Produções').get('Artigos completos publicados em periódicos'))
+            except:
+                qte_jcr = 0
+            try:
+                qte_jcr2 = len(i['JCR2'])
+            except:
+                qte_jcr2 = 0
+            qte_artigos+=qte_jcr
+            qte_titulos+=qte_jcr2
+            status=qte_jcr2-qte_jcr
+            print(f"{k:>2}C {qte_jcr:>03}A {qte_jcr2:>03}T Dif:{status:>03} {i.get('Identificação').get('name')} ")
+        print(f'\nTotal de artigos em todos períodos: {qte_artigos}')
+        print(f'Total de títulos em todos períodos: {qte_titulos}')    
+        return qte_artigos, qte_titulos
+
+
+    ## Funções auxiliares da extração de artigos e orientações
+    def buscar_qualis(self, lista_dados_autor):
+        for dados_autor in lista_dados_autor:
+            for categoria, artigos in dados_autor['Produções'].items():
+                if categoria == 'Artigos completos publicados em periódicos':
+                    for artigo in artigos:
+                        issn_artigo = artigo['ISSN'].replace('-','')
+                        qualis = self.encontrar_qualis_por_issn(issn_artigo)
+                        print(f'{issn_artigo:8} | {qualis}')
+                        if qualis:
+                            artigo['Qualis'] = qualis
+                        else:
+                            artigo['Qualis'] = 'NA'
+
+    def encontrar_qualis_por_issn(self, issn):
+        qualis = self.dados_planilha[self.dados_planilha['ISSN'].str.replace('-','') == issn]['Estrato'].tolist()
+        if qualis:
+            return qualis[0]
+        else:
+            return None
+
+    # Usar unicodedata para remover acentos
+    def remover_acentos_unicodedata(self, texto):
+        texto_sem_acentos = ''.join(c for c in unicodedata.normalize('NFD', texto)
+                                    if unicodedata.category(c) != 'Mn')
+        return texto_sem_acentos
+
+    # Usar unicode para remover acentos
+    def remover_acentos(self, texto):
+        return unidecode(texto)
+
+    def substituir_abreviaturas(self, texto):
+        padrao = re.compile(r"\bDr\.")
+        return padrao.sub(lambda m: m.group().replace(".", ""), texto)
+
+    def substituir_iniciais(self, texto):
+        padrao = re.compile(r"\b[A-Z]\.")  # Expressão regular para qualquer letra maiúscula seguida de ponto
+        return padrao.sub(lambda m: m.group()[:-1], texto)  # Remove o ponto da inicial
+
+    # Define a função para verificar se a string contém un dos termos da lista de detecção (case insensitive)
+    def contem_fiocruz(self, instituicao):
+        termos = ['fiocruz', 'fundação oswaldo cruz']
+        for termo in termos:
+            if termo.lower() in instituicao.lower():
+                return 'interno'
+        return 'externo'
+
+    def organizar_orientacoes_geral(self, dict_list_docents):
+        tipos = []
+        orientacoes_set = set()
+        orientacoes_lista = []
+
+        ano = None
+        papel = None
+        orientando = None
+        instituicao = ''
+
+        for curriculo in dict_list_docents:
+            nome = curriculo.get('Identificação').get('Nome')
+            orientacoes_curriculo = curriculo.get('Orientações')
+            if orientacoes_curriculo:
+                for secao in orientacoes_curriculo: # Itera sobre as seções principais
+                    for subsecao in secao['subsecoes']:
+                        subsec_name = subsecao['nome']
+                        if 'concluídas' in subsec_name:
+                            status = 'concluídas'
+                        else:
+                            status = 'em andamento'
+                        for orientacao in subsecao['orientacoes']:
+                            tipo = orientacao['tipo']
+                            detalhes = orientacao['detalhes']
+
+                            detalhes = self.substituir_iniciais(detalhes)
+                            detalhes = self.substituir_abreviaturas(detalhes)
+                            if tipo == 'Supervisão de pós-doutorado':
+                                orientando = detalhes.split('. ')[0].title()
+                                ano = detalhes.split('. ')[1].replace('Início: ', '')
+                                papel = 'supervisor'
+                            else:
+                                orientando = detalhes.split('. ')[0].title()
+                                titulo = detalhes.split('. ')[1]
+                                ano = detalhes.split('. ')[2].replace('Início: ', '')
+                                try:
+                                    hifens = len(detalhes.split('. ')[-2].split('-'))
+                                    inst = detalhes.split('. ')[-2].split('-')[-1].strip()
+                                    if len(inst) == 2:
+                                        instituicao = detalhes.split('. ')[-3].split('-')[1].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
+                                    elif len(inst) == 4:
+                                        instituicao = detalhes.split('. ')[-2].split('-')[-1].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
+                                    # elif len(inst) != 2 and hifens > 1:
+                                    #   instituicao = detalhes.split('. ')[-2].split('-')[-1].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
+                                    else:
+                                        instituicao = detalhes.split('. ')[-2].split('-')[-1].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
+                                except:
+                                    instituicao = detalhes.split('. ')[-2].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
+                                papel = detalhes.split('. ')[-1].split(':')[0].strip().replace('(', '').replace(').', '').replace(')', '')
+
+                            if len(ano) != 4:
+                                resultado = re.search(r"\d{4}", detalhes)
+                                if resultado:
+                                    ano = resultado.group().strip()
+
+                            if tipo not in tipos:
+                                tipos.append(tipo)
+
+                            padrao = re.compile(r" Associação| Avaliação Dos| Síndrome Da| Prevalência| Atendimento| Avaliação Da| Avaliação| Atenção| Uso Farmacológico| Assinaturas| : ?Estratégias| Construção| Caracterização| Efeitos")
+
+                            if len(orientando.split(' ')) > 5:
+                                orientando = padrao.sub("", orientando)
+
+                            # Verifica se a instituição foi extraída corretamente, se não, atribui 'Não Informada'
+                            if not instituicao:
+                                instituicao = 'Não Informada'
+
+                            # Cria uma tupla com as informações da orientação
+                            orientacao_info = (nome, ano, papel, tipo, orientando, instituicao, status)
+
+                            # Adiciona a orientação à lista apenas se for única
+                            if orientacao_info not in orientacoes_set:
+                                orientacoes_set.add(orientacao_info)
+                                orientacoes_lista.append({
+                                    'Docente': nome,
+                                    'ano': ano,
+                                    'papel': papel,
+                                    'tipo': tipo,
+                                    'orientando': orientando,
+                                    'instituicao': instituicao,
+                                    'status': status
+                                })
+
+        # Converte o conjunto de orientações de volta para uma lista
+        orientacoes_lista = list({'Docente': nome, 'ano': ano, 'papel': papel, 'tipo': tipo, 'orientando': orientando, 'instituicao': instituicao, 'status': status}
+            for (nome, ano, papel, tipo, orientando, instituicao, status) in orientacoes_set
+        )
+
+        # Ordena a lista de orientações
+        orientacoes_lista = sorted(orientacoes_lista, key=lambda x: (x['Docente'], x['papel'], x['status'], x['tipo'], x['ano']))
+
+        return orientacoes_lista
+
+    def criar_dataframe_contagens(self, orientacoes_lista, ano_inicio, ano_final, tipos_aceitaveis):
+        # Cria um DataFrame a partir da lista de orientações
+        df_orientacoes = pd.DataFrame(orientacoes_lista)
+
+        # Filter the DataFrame based on 'Ano' and 'Tipo', criando uma cópia explícita
+        df_orientacoes_filtrado = df_orientacoes[
+            (df_orientacoes['ano'].astype(int) >= ano_inicio) &
+            (df_orientacoes['ano'].astype(int) <= ano_final) &
+            (df_orientacoes['tipo'].isin(tipos_aceitaveis))
+        ].copy()
+
+        # Cria a coluna 'Interno Fiocruz' usando .loc para evitar o SettingWithCopyWarning
+        df_orientacoes_filtrado.loc[:, 'Interno Fiocruz'] = df_orientacoes_filtrado['instituicao'].astype(str).apply(self.contem_fiocruz)
+
+        # Calcula o total de orientações 'interno', incluindo a coluna 'status'
+        total_interno = df_orientacoes_filtrado[df_orientacoes_filtrado['Interno Fiocruz'] == 'interno'].groupby(['Docente', 'status']).size().reset_index(name='Interno Fiocruz')
+
+        # Calcula o total de orientações 'externo', incluindo a coluna 'status'
+        total_externo = df_orientacoes_filtrado[df_orientacoes_filtrado['Interno Fiocruz'] == 'externo'].groupby(['Docente', 'status']).size().reset_index(name='Externo à Fiocruz')
+
+        # Faz o merge dos resultados usando um outer join, incluindo a coluna 'status'
+        resultado_final = total_interno.merge(total_externo, on=['Docente', 'status'], how='outer')
+
+        # Ordena o DataFrame
+        resultado_final = resultado_final.sort_values('Docente')
+
+        # Preenche os valores ausentes com zero
+        resultado_final = resultado_final.fillna(0)
+
+        # Redefine o índice para ter 'Docente' como uma coluna
+        resultado_final = resultado_final.reset_index()
+
+        # Reordena as colunas
+        cols = ['Docente', 'status', 'Interno Fiocruz', 'Externo à Fiocruz']
+        resultado_final = resultado_final[cols]
+
+        filepath = os.path.join(LattesScraper.find_repo_root(),'_data','in_xls','contagens_orientacoes.xlsx')
+
+        # Salvar o DataFrame em uma planilha Excel
+        resultado_final.to_excel(filepath, index=False)
+
+        return resultado_final
+
+    def listar_orientacoes_docente(self, orientacoes_lista, lista_docentes, lista_tipos, lista_status):
+        # Filtrar a lista de orientações com base na lista de docentes
+        orientacoes_docente = [
+            orientacao
+            for orientacao in orientacoes_lista
+            if self.remover_acentos(orientacao['Docente']).lower() in [docente.lower() for docente in lista_docentes]
+        ]
+
+        # Criar uma lista para armazenar os dados das orientações filtradas
+        dados_orientacoes = []
+
+        # Iterar sobre as orientações do docente
+        for orientacao in orientacoes_docente:
+            if orientacao.get('tipo') in lista_tipos and orientacao.get('status') in lista_status:
+                dados_orientacoes.append({
+                    'Ano': orientacao.get('ano'),
+                    'Tipo de Orientação': orientacao.get('tipo'),
+                    'Instituição': orientacao.get('instituicao').split(',')[0],
+                    'Orientando': orientacao.get('orientando'),
+                    'Status': orientacao.get('status')
+                })
+
+        # Criar um DataFrame a partir dos dados das orientações filtradas
+        df_orientacoes = pd.DataFrame(dados_orientacoes)
+        print(df_orientacoes.keys())
+        df_orientacoes.sort_values(by=['Status','Tipo de Orientação', 'Ano'])
+
+        # Adicionar informações de resumo ao DataFrame
+        df_orientacoes.loc['Total', :] = ''  # Adiciona uma linha vazia para o total
+        df_orientacoes.loc['Total', 'Ano'] = len(orientacoes_docente)  # Total de orientações do docente
+        df_orientacoes.loc['Total', 'Tipo de Orientação'] = f"Sendo {len(df_orientacoes) - 1} em {' e '.join(lista_tipos)}"
+
+        return df_orientacoes
+
+    # Gerar o relatório de orientações em HTML
+    def generate_html_report(self, orientacoes_lista):
+        # Cria a estrutura da tabela HTML, incluindo os novos cabeçalhos
+
+        # Encontra o ano inicial e final
+        anos = [int(orientacao.get('ano', '')) for orientacao in orientacoes_lista if orientacao.get('ano', '')]
+        ano_inicial = min(anos) if anos else ''
+        ano_final = max(anos) if anos else ''
+        
+        html_content = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color:  
+        #dddddd;
+        }
+
+        th {
+            cursor: pointer; /* Indica que o cabeçalho é clicável */
+        }
+
+        th.sorted-asc::after {
+            content: " ▲"; /* Adiciona um triângulo para cima */
+        }
+
+        th.sorted-desc::after {
+            content: " ▼"; /* Adiciona um triângulo para baixo */
+        }
+        </style>
+        </head>
+        <body>
+
+        <h2>Relatório de Quantitativo de Orientações Concluídas/Andamento dos servidores Fiocruz Ceará</h2>
+        """
+        ano_inicial = 2019
+        ano_final = 2024
+
+        # Adiciona a informação do período usando f-string fora das aspas triplas
+        html_content += f"<h2>Período de {ano_inicial} até {ano_final}</h2>\n\n"
+
+        # Continua a construção da tabela HTML
+        html_content += """
+        <table>
+        <tr>
+            <th>Docente</th>
+            <th>Papel</th>
+            <th>Ano</th>
+            <th>Orientando</th>
+            <th>Instituição</th>
+            <th>Tipo de Orientação</th> 
+            <th>Status</th>               
+        </tr>
+        """
+
+        # Iterar sobre a lista de dicionários e extrai as informações relevantes
+        for orientacao in orientacoes_lista:
+            docente = orientacao.get('Docente', '')
+            papel = orientacao.get('papel', '')
+            ano = orientacao.get('ano', '')
+            orientando = orientacao.get('orientando', '')
+            instituicao = orientacao.get('instituicao', '')
+            tipo = orientacao.get('tipo', '')       
+            status = orientacao.get('status', '')   
+
+            # Popula a tabela HTML com os dados extraídos, incluindo as novas células
+            html_content += f"""
+            <tr>
+                <td>{docente}</td>
+                <td>{papel}</td>
+                <td>{ano}</td>
+                <td>{orientando}</td>
+                <td>{instituicao}</td>
+                <td>{tipo}</td>          
+                <td>{status}</td>        
+            </tr>
+            """
+        # Adiciona as duas linhas de total
+        html_content += """
+        <tr id="total-row-andamento">
+            <td colspan="5">Total em andamento</td>
+            <td id="total-em-andamento"></td>
+            <td></td> 
+        </tr>
+        <tr id="total-row-concluidas">
+            <td colspan="5">Total concluídas</td>
+            <td></td>
+            <td id="total-concluidas"></td>
+        </tr>
+        </table>
+
+        <script>
+        // Ffunção ordenar valores por rótulo de coluna
+        function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.querySelector("table");  
+        // Seleciona a tabela
+        switching = true;
+        // Define a direção inicial como ascendente
+        dir = "asc"; 
+        // Loop até que nenhuma troca seja necessária
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            // Loop por todas as linhas da tabela (exceto a primeira, que contém os cabeçalhos)
+            for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            // Obtém as duas células a serem comparadas
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            // Verifica se as células devem ser trocadas
+            if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch= true;
+                break;
+                }
+            } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+                }
+            }
+            }
+            if (shouldSwitch)  
+        {
+            // Se uma troca for necessária, faz a troca e marca que uma troca foi feita
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount ++;      
+            } else {
+            // Se nenhuma troca foi feita e a direção é ascendente, define a direção como descendente e reinicia o loop externo
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+            }
+        }
+
+        // Remove a classe de ordenação de todos os cabeçalhos
+        var headers = table.querySelectorAll("th");
+        headers.forEach(function(header) {
+            header.classList.remove("sorted-asc", "sorted-desc");
+        });
+
+        // Adiciona a classe de ordenação apropriada ao cabeçalho clicado
+        var clickedHeader = headers[n];
+        clickedHeader.classList.add(dir === "asc" ? "sorted-asc" : "sorted-desc");
+        }
+
+        // Função para calcular e exibir os totais
+        function calculateTotals() {
+        var table = document.querySelector("table");
+        var rows = table.rows;
+        var totalEmAndamento = 0;
+        var totalConcluidas = 0;
+
+        for (var i = 1; i < rows.length - 1; i++) { // Exclui a linha de cabeçalho e a linha de total
+            var statusCell = rows[i].getElementsByTagName("TD")[6]; // Coluna de status
+            if (statusCell.innerHTML.toLowerCase() === "em andamento") {
+            totalEmAndamento++;
+            } else if (statusCell.innerHTML.toLowerCase() === "concluídas") {
+            totalConcluidas++;
+            }
+        }
+
+        document.getElementById("total-em-andamento").innerHTML = totalEmAndamento;
+        document.getElementById("total-concluidas").innerHTML = totalConcluidas;
+        }
+
+        // Chama a função para calcular os totais quando a página carrega
+        window.onload = calculateTotals;
+        </script>
+        </body>
+        </html>
+        """
+
+        # try:
+        #     # Tenta importar a biblioteca pdfkit
+        #     import pdfkit
+
+        #     # Converte o conteúdo HTML para PDF usando pdfkit
+        #     pdfkit.from_string(html_content, 'relatorio_orientacoes.pdf')
+
+        #     # Imprime uma mensagem de sucesso
+        #     print("Relatório em PDF gerado com sucesso: relatorio_orientacoes.pdf")
+
+        # except ImportError:
+        #     # Lidar com o caso em que pdfkit não está instalado
+        #     print("Erro: A biblioteca pdfkit não está instalada. Instale-a usando o comando 'pip install pdfkit' para gerar o relatório em PDF.")
+        
+        return html_content
+
+    # Gerar o relatório de orientações em PDF
+    def generate_pdf_report(self, html_content):
+        pdfkit.from_string(html_content, 'relatorio_orientacoes.pdf')
+        print("Relatório em PDF gerado com sucesso: relatorio_orientacoes.pdf")
 
     def imprimir_chaves_recursivo(self, dados, nivel=1, prefixo="", nivel1_filtro=None):
         if isinstance(dados, dict):
