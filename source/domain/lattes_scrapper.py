@@ -6,7 +6,7 @@ import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
 import codecs, unicodedata, string, sqlite3, asyncio, nltk
-import os, re, bs4, sys, csv, time, json, h5py, pytz, glob, stat, shutil, psutil
+import os, re, bs4, sys, csv, time, json, h5py, pytz, glob, stat, shutil, psutil, pdfkit
 import warnings, platform, requests, urllib, difflib, subprocess, torch, logging, traceback
 
 from PIL import Image
@@ -372,86 +372,6 @@ class LattesScraper:
     def configure_logging(self):
         logging.basicConfig(filename='logs/lattes_scraper.log', level=logging.INFO, filemode='w', format='%(asctime)s - %(levelname)s - %(message)s')
 
-    def strfdelta(self, tdelta, fmt='{H:02}h {M:02}m {S:02}s', inputtype='timedelta'):
-        if inputtype == 'timedelta':
-            remainder = int(tdelta.total_seconds())
-        else:
-            conversion_factors = {'s': 1, 'm': 60, 'h': 3600, 'd': 86400, 'w': 604800}
-            remainder = int(tdelta) * conversion_factors[inputtype]
-        f = Formatter()
-        desired_fields = [field_tuple[1] for field_tuple in f.parse(fmt)]
-        possible_fields = ('W', 'D', 'H', 'M', 'S')
-        constants = {'W': 604800, 'D': 86400, 'H': 3600, 'M': 60, 'S': 1}
-        values = {}
-        for field in possible_fields:
-            if field in desired_fields and field in constants:
-                values[field], remainder = divmod(remainder, constants[field])
-        return f.format(fmt, **values)
-    
-    def tempo(self, start, end):
-        t = end - start
-        tempo = timedelta(
-            weeks=t // (3600 * 24 * 7),
-            days=t // (3600 * 24) % 7,
-            hours=t // 3600 % 24,
-            minutes=t // 60 % 60,
-            seconds=t % 60
-        )
-        fmt = '{H:02}:{M:02}:{S:02}'
-        return self.strfdelta(tempo, fmt=fmt, inputtype='timedelta')
-
-    # Função para salvar a lista de dicionários em um arquivo .json
-    def save_to_json(self, data, file_path):
-        with open(file_path, 'w', encoding='utf-8') as file:
-            json.dump(data, file, ensure_ascii=False, indent=4)
-
-    # Função para normalizar os nomes
-    def normalizar_nome(self, nome):
-        """Normaliza um nome, removendo acentos e caracteres especiais, convertendo para minúsculas e padronizando espaços."""
-
-        # Remove acentos e caracteres especiais
-        nome_sem_acentos = unidecode(nome)
-
-        # Converte para minúsculas e remove espaços extras
-        nome_normalizado = nome_sem_acentos.lower().strip().replace("  ", " ")
-
-        return nome_normalizado
-
-    def scrape_and_persist(self, data):
-        self._scrape(data)
-        self._persist(data)
-
-    def _persist(self, data):
-        # Conectar ao banco de dados Neo4j
-        graph = Graph(self.neo4j_uri, auth=(self.neo4j_user, self.neo4j_password))
-
-        # Percorrer os dados e persistir no Neo4j
-        for pessoa in data:
-            # Criar nó para a pessoa
-            pessoa_node = Node("Pessoa", nome=pessoa["Identificação"]["Nome"])
-            graph.create(pessoa_node)
-
-            # Criar nós para idiomas e relacionamentos com a pessoa
-            for idioma in pessoa["Idiomas"]:
-                idioma_node = Node("Idioma", nome=idioma["Idioma"])
-                graph.create(idioma_node)
-                rel = Relationship(pessoa_node, "FALA", idioma_node)
-                graph.create(rel)
-
-            # Criar nós para formações e relacionamentos com a pessoa
-            for formacao in pessoa["Formação"]["Acadêmica"]:
-                formacao_node = Node("Formacao", ano=formacao["Ano"], descricao=formacao["Descrição"])
-                graph.create(formacao_node)
-                rel = Relationship(pessoa_node, "FORMOU", formacao_node)
-                graph.create(rel)
-
-            # Criar nós para projetos de pesquisa e relacionamentos com a pessoa
-            for projeto in pessoa["ProjetosPesquisa"]:
-                projeto_node = Node("ProjetoPesquisa", titulo=projeto["titulo_projeto"], descricao=projeto["descricao"])
-                graph.create(projeto_node)
-                rel = Relationship(pessoa_node, "PARTICIPA", projeto_node)
-                graph.create(rel)
-
     @staticmethod
     def find_repo_root(path='.', depth=10):
         ''' 
@@ -527,6 +447,377 @@ class LattesScraper:
         driver.mouse = webdriver.ActionChains(driver)
         return driver
 
+    def strfdelta(self, tdelta, fmt='{H:02}h {M:02}m {S:02}s', inputtype='timedelta'):
+        if inputtype == 'timedelta':
+            remainder = int(tdelta.total_seconds())
+        else:
+            conversion_factors = {'s': 1, 'm': 60, 'h': 3600, 'd': 86400, 'w': 604800}
+            remainder = int(tdelta) * conversion_factors[inputtype]
+        f = Formatter()
+        desired_fields = [field_tuple[1] for field_tuple in f.parse(fmt)]
+        possible_fields = ('W', 'D', 'H', 'M', 'S')
+        constants = {'W': 604800, 'D': 86400, 'H': 3600, 'M': 60, 'S': 1}
+        values = {}
+        for field in possible_fields:
+            if field in desired_fields and field in constants:
+                values[field], remainder = divmod(remainder, constants[field])
+        return f.format(fmt, **values)
+    
+    def tempo(self, start, end):
+        t = end - start
+        tempo = timedelta(
+            weeks=t // (3600 * 24 * 7),
+            days=t // (3600 * 24) % 7,
+            hours=t // 3600 % 24,
+            minutes=t // 60 % 60,
+            seconds=t % 60
+        )
+        fmt = '{H:02}:{M:02}:{S:02}'
+        return self.strfdelta(tempo, fmt=fmt, inputtype='timedelta')
+
+    # Salvar a lista de dicionários em um arquivo .json
+    def save_to_json(self, data, file_path):
+        with open(file_path, 'w', encoding='utf-8') as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
+
+    # Normalizar os nomes de autores
+    def normalizar_nome(self, nome):
+        """Normaliza um nome, removendo acentos e caracteres especiais, convertendo para minúsculas e padronizando espaços."""
+
+        # Remover acentos e caracteres especiais
+        nome_sem_acentos = unidecode(nome)
+
+        # Converter para minúsculas e remove espaços extras
+        nome_normalizado = nome_sem_acentos.lower().strip().replace("  ", " ")
+
+        return nome_normalizado
+
+    def scrape_and_persist(self, data):
+        self._scrape(data)
+        self._persist(data)
+
+    def _persist(self, data):
+        # Conectar ao banco de dados Neo4j
+        graph = Graph(self.neo4j_uri, auth=(self.neo4j_user, self.neo4j_password))
+
+        # Percorrer os dados e persistir no Neo4j
+        for pessoa in data:
+            # Criar nó para a pessoa
+            pessoa_node = Node("Pessoa", nome=pessoa["Identificação"]["Nome"])
+            graph.create(pessoa_node)
+
+            # Criar nós para idiomas e relacionamentos com a pessoa
+            for idioma in pessoa["Idiomas"]:
+                idioma_node = Node("Idioma", nome=idioma["Idioma"])
+                graph.create(idioma_node)
+                rel = Relationship(pessoa_node, "FALA", idioma_node)
+                graph.create(rel)
+
+            # Criar nós para formações e relacionamentos com a pessoa
+            for formacao in pessoa["Formação"]["Acadêmica"]:
+                formacao_node = Node("Formacao", ano=formacao["Ano"], descricao=formacao["Descrição"])
+                graph.create(formacao_node)
+                rel = Relationship(pessoa_node, "FORMOU", formacao_node)
+                graph.create(rel)
+
+            # Criar nós para projetos de pesquisa e relacionamentos com a pessoa
+            for projeto in pessoa["ProjetosPesquisa"]:
+                projeto_node = Node("ProjetoPesquisa", titulo=projeto["titulo_projeto"], descricao=projeto["descricao"])
+                graph.create(projeto_node)
+                rel = Relationship(pessoa_node, "PARTICIPA", projeto_node)
+                graph.create(rel)
+
+    ## Funções auxiliares da extração de artigos e orientações
+    def contar_artigos(self, dict_list_docents):
+        ## Contagem de artigos para simples confererência
+        print(f'{len(dict_list_docents)} dicionários montados')
+        qte_artigos=0
+        qte_titulos=0
+        for k,i in enumerate(dict_list_docents):
+            try:
+                qte_jcr = len(i.get('Produções').get('Artigos completos publicados em periódicos'))
+            except:
+                qte_jcr = 0
+            try:
+                qte_jcr2 = len(i['JCR2'])
+            except:
+                qte_jcr2 = 0
+            qte_artigos+=qte_jcr
+            qte_titulos+=qte_jcr2
+            status=qte_jcr2-qte_jcr
+            print(f"{k:>2}C {qte_jcr:>03}A {qte_jcr2:>03}T Dif:{status:>03} {i.get('Identificação').get('name')} ")
+        print(f'\nTotal de artigos em todos períodos: {qte_artigos}')
+        print(f'Total de títulos em todos períodos: {qte_titulos}')    
+        return qte_artigos, qte_titulos
+
+    def buscar_qualis(self, lista_dados_autor):
+        for dados_autor in lista_dados_autor:
+            for categoria, artigos in dados_autor['Produções'].items():
+                if categoria == 'Artigos completos publicados em periódicos':
+                    for artigo in artigos:
+                        issn_artigo = artigo['ISSN'].replace('-','')
+                        qualis = self.encontrar_qualis_por_issn(issn_artigo)
+                        print(f'{issn_artigo:8} | {qualis}')
+                        if qualis:
+                            artigo['Qualis'] = qualis
+                        else:
+                            artigo['Qualis'] = 'NA'
+
+    def encontrar_qualis_por_issn(self, issn):
+        qualis = self.dados_planilha[self.dados_planilha['ISSN'].str.replace('-','') == issn]['Estrato'].tolist()
+        if qualis:
+            return qualis[0]
+        else:
+            return None
+
+    # Usar unicodedata para remover acentos
+    def remover_acentos_unicodedata(self, texto):
+        texto_sem_acentos = ''.join(c for c in unicodedata.normalize('NFD', texto)
+                                    if unicodedata.category(c) != 'Mn')
+        return texto_sem_acentos
+
+    # Usar unicode para remover acentos
+    def remover_acentos(self, texto):
+        return unidecode(texto)
+
+    def substituir_abreviaturas(self, texto):
+        padrao = re.compile(r"\bDr\.")
+        return padrao.sub(lambda m: m.group().replace(".", ""), texto)
+
+    def substituir_iniciais(self, texto):
+        padrao = re.compile(r"\b[A-Z]\.")  # Expressão regular para qualquer letra maiúscula seguida de ponto
+        return padrao.sub(lambda m: m.group()[:-1], texto)  # Remove o ponto da inicial
+
+    # Define a função para verificar se a string contém un dos termos da lista de detecção (case insensitive)
+    def contem_fiocruz(self, instituicao):
+        termos = ['fiocruz', 'fundação oswaldo cruz']
+        for termo in termos:
+            if termo.lower() in instituicao.lower():
+                return 'interno'
+        return 'externo'
+
+    def organizar_orientacoes_geral(self, dict_list_docents):
+        tipos = []
+        orientacoes_set = set()
+        orientacoes_lista = []
+
+        ano = None
+        papel = None
+        orientando = None
+        instituicao = ''
+
+        for curriculo in dict_list_docents:
+            nome = curriculo.get('Identificação').get('Nome')
+            orientacoes_curriculo = curriculo.get('Orientações')
+            if orientacoes_curriculo:
+                for secao in orientacoes_curriculo: # Itera sobre as seções principais
+                    for subsecao in secao['subsecoes']:
+                        subsec_name = subsecao['nome']
+                        if 'concluídas' in subsec_name:
+                            status = 'concluídas'
+                        else:
+                            status = 'em andamento'
+                        for orientacao in subsecao['orientacoes']:
+                            tipo = orientacao['tipo']
+                            detalhes = orientacao['detalhes']
+
+                            detalhes = self.substituir_iniciais(detalhes)
+                            detalhes = self.substituir_abreviaturas(detalhes)
+                            if tipo == 'Supervisão de pós-doutorado':
+                                orientando = detalhes.split('. ')[0].title()
+                                ano = detalhes.split('. ')[1].replace('Início: ', '')
+                                papel = 'supervisor'
+                            else:
+                                orientando = detalhes.split('. ')[0].title()
+                                titulo = detalhes.split('. ')[1]
+                                ano = detalhes.split('. ')[2].replace('Início: ', '')
+                                try:
+                                    hifens = len(detalhes.split('. ')[-2].split('-'))
+                                    inst = detalhes.split('. ')[-2].split('-')[-1].strip()
+                                    if len(inst) == 2:
+                                        instituicao = detalhes.split('. ')[-3].split('-')[1].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
+                                    elif len(inst) == 4:
+                                        instituicao = detalhes.split('. ')[-2].split('-')[-1].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
+                                    # elif len(inst) != 2 and hifens > 1:
+                                    #   instituicao = detalhes.split('. ')[-2].split('-')[-1].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
+                                    else:
+                                        instituicao = detalhes.split('. ')[-2].split('-')[-1].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
+                                except:
+                                    instituicao = detalhes.split('. ')[-2].strip().replace('Ã¡', 'á').replace('Ã§Ã£', 'çã').replace('(', '').replace(').', '').replace(')', '')
+                                papel = detalhes.split('. ')[-1].split(':')[0].strip().replace('(', '').replace(').', '').replace(')', '')
+
+                            if len(ano) != 4:
+                                resultado = re.search(r"\d{4}", detalhes)
+                                if resultado:
+                                    ano = resultado.group().strip()
+
+                            if tipo not in tipos:
+                                tipos.append(tipo)
+
+                            padrao = re.compile(r" Associação| Avaliação Dos| Síndrome Da| Prevalência| Atendimento| Avaliação Da| Avaliação| Atenção| Uso Farmacológico| Assinaturas| : ?Estratégias| Construção| Caracterização| Efeitos")
+
+                            if len(orientando.split(' ')) > 5:
+                                orientando = padrao.sub("", orientando)
+
+                            # Verifica se a instituição foi extraída corretamente, se não, atribui 'Não Informada'
+                            if not instituicao:
+                                instituicao = 'Não Informada'
+
+                            # Cria uma tupla com as informações da orientação
+                            orientacao_info = (nome, papel, ano, orientando, instituicao, tipo, status)
+
+                            # Adiciona a orientação à lista apenas se for única
+                            if orientacao_info not in orientacoes_set:
+                                orientacoes_set.add(orientacao_info)
+                                orientacoes_lista.append({
+                                    'Docente': nome,
+                                    'papel': papel,
+                                    'ano': ano,
+                                    'orientando': orientando,
+                                    'instituicao': instituicao,
+                                    'tipo': tipo,
+                                    'status': status
+                                })
+
+        # Converte o conjunto de orientações de volta para uma lista
+        orientacoes_lista = list({'Docente': nome, 'papel': papel, 'ano': ano, 'orientando': orientando, 'instituicao': instituicao, 'tipo': tipo, 'status': status}
+            for (nome, papel, ano, orientando, instituicao, tipo, status) in orientacoes_set
+        )
+
+        return orientacoes_lista
+
+    def criar_dataframe_contagens(self, orientacoes_lista, ano_inicio, ano_final, tipos_aceitaveis):
+        # Cria um DataFrame a partir da lista de orientações
+        df_orientacoes = pd.DataFrame(orientacoes_lista)
+
+        # Filter the DataFrame based on 'Ano' and 'Tipo', criando uma cópia explícita
+        df_orientacoes_filtrado = df_orientacoes[
+            (df_orientacoes['ano'].astype(int) >= ano_inicio) &
+            (df_orientacoes['ano'].astype(int) <= ano_final) &
+            (df_orientacoes['tipo'].isin(tipos_aceitaveis))
+        ].copy()
+
+        # Cria a coluna 'Interno Fiocruz' usando .loc para evitar o SettingWithCopyWarning
+        df_orientacoes_filtrado.loc[:, 'Interno Fiocruz'] = df_orientacoes_filtrado['instituicao'].astype(str).apply(self.contem_fiocruz)
+
+        # Calcula o total de orientações 'interno', incluindo a coluna 'status'
+        total_interno = df_orientacoes_filtrado[df_orientacoes_filtrado['Interno Fiocruz'] == 'interno'].groupby(['Docente', 'status']).size().reset_index(name='Interno Fiocruz')
+
+        # Calcula o total de orientações 'externo', incluindo a coluna 'status'
+        total_externo = df_orientacoes_filtrado[df_orientacoes_filtrado['Interno Fiocruz'] == 'externo'].groupby(['Docente', 'status']).size().reset_index(name='Externo à Fiocruz')
+
+        # Faz o merge dos resultados usando um outer join, incluindo a coluna 'status'
+        resultado_final = total_interno.merge(total_externo, on=['Docente', 'status'], how='outer')
+
+        # Ordena o DataFrame
+        resultado_final = resultado_final.sort_values('Docente')
+
+        # Preenche os valores ausentes com zero
+        resultado_final = resultado_final.fillna(0)
+
+        # Redefine o índice para ter 'Docente' como uma coluna
+        resultado_final = resultado_final.reset_index()
+
+        # Reordena as colunas
+        cols = ['Docente', 'status', 'Interno Fiocruz', 'Externo à Fiocruz']
+        resultado_final = resultado_final[cols]
+
+        return resultado_final
+
+    # Gerar o relatório de orientações em HTML
+    def generate_html_report(self, orientacoes_lista):
+        # Cria a estrutura da tabela HTML, incluindo os novos cabeçalhos
+        html_content = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+        </style>
+        </head>
+        <body> 
+
+
+        <h2>Relatório de Orientações Concluídas</h2>
+
+        <table>
+        <tr>
+            <th>Docente</th>
+            <th>Papel</th>
+            <th>Ano</th>
+            <th>Orientando</th>
+            <th>Instituição</th>
+            <th>Tipo de Orientação</th> 
+            <th>Status</th>            
+        </tr>
+        """
+
+        # Iterar sobre a lista de dicionários e extrai as informações relevantes
+        for orientacao in orientacoes_lista:
+            docente = orientacao.get('Docente', '')
+            papel = orientacao.get('papel', '')
+            ano = orientacao.get('ano', '')
+            orientando = orientacao.get('orientando', '')
+            instituicao = orientacao.get('instituicao', '')
+            tipo = orientacao.get('tipo', '')       
+            status = orientacao.get('status', '')   
+
+            # Popula a tabela HTML com os dados extraídos, incluindo as novas células
+            html_content += f"""
+            <tr>
+                <td>{docente}</td>
+                <td>{papel}</td>
+                <td>{ano}</td>
+                <td>{orientando}</td>
+                <td>{instituicao}</td>
+                <td>{tipo}</td>          
+                <td>{status}</td>        
+            </tr>
+            """
+
+        # Fechar a tabela HTML
+        html_content += """
+        </table>
+
+        </body>
+        </html>
+        """
+
+        # try:
+        #     # Tenta importar a biblioteca pdfkit
+        #     import pdfkit
+
+        #     # Converte o conteúdo HTML para PDF usando pdfkit
+        #     pdfkit.from_string(html_content, 'relatorio_orientacoes.pdf')
+
+        #     # Imprime uma mensagem de sucesso
+        #     print("Relatório em PDF gerado com sucesso: relatorio_orientacoes.pdf")
+
+        # except ImportError:
+        #     # Lidar com o caso em que pdfkit não está instalado
+        #     print("Erro: A biblioteca pdfkit não está instalada. Instale-a usando o comando 'pip install pdfkit' para gerar o relatório em PDF.")
+        
+        return html_content
+
+    # Gerar o relatório de orientações em PDF
+    def generate_pdf_report(self, html_content):
+        pdfkit.from_string(html_content, 'relatorio_orientacoes.pdf')
+        print("Relatório em PDF gerado com sucesso: relatorio_orientacoes.pdf")
+
     def retry(self, func, expected_ex_type=Exception, limit=0, wait_ms=500,
               wait_increase_ratio=2, on_exhaust="throw"):
         attempt = 1
@@ -573,7 +864,7 @@ class LattesScraper:
         data_dict = {k: v[0] for k, v in params.items()}
         return data_dict
 
-    # Usar só em caso onde a busca for somente na basde de doutores, pois carrega página de busca com check 'demais pesquisadores' desabilitado
+    # Usar só em caso onde a busca for somente na base de doutores, pois carrega página de busca com check 'demais pesquisadores' desabilitado
     def new_search(self):
         try:
             WebDriverWait(self.driver, self.delay).until(
@@ -590,7 +881,7 @@ class LattesScraper:
         self.driver.get(url_busca) # acessa a url de busca do CNPQ
 
     def switch_to_new_window(self):
-        # Espera até que uma nova janela seja aberta
+        # Esperar até que uma nova janela seja aberta
         WebDriverWait(self.driver, self.delay).until(EC.number_of_windows_to_be(2))
         original_window = self.driver.current_window_handle
         new_window = [window for window in self.driver.window_handles if window != original_window][0]
@@ -598,17 +889,17 @@ class LattesScraper:
         return original_window
 
     def switch_back_to_original_window(self):
-        # Armazena o handle da janela original (primeira aba aberta)
+        # Armazenar o handle da janela original (primeira aba aberta)
         original_window = self.driver.window_handles[0]
 
-        # Verifica se existem mais de uma aba aberta
+        # Verificar se existem mais de uma aba aberta
         if len(self.driver.window_handles) > 1:
             # Muda o foco para a última aba aberta
             self.driver.switch_to.window(self.driver.window_handles[-1])
             # Fecha a última aba
             self.driver.close()
 
-        # Volta o foco para a janela original
+        # Voltar o foco para a janela original
         self.driver.switch_to.window(original_window)
 
     def close_all_other_tabs(self, wait_time=1):
@@ -621,9 +912,9 @@ class LattesScraper:
         self.driver.switch_to.window(original_window)
 
     def close_current_tab(self):
-        # Muda para a aba que deseja fechar
+        # Mudar para a aba que deseja fechar
         self.driver.switch_to.window(self.driver.window_handles[-1])
-        # Envia a combinação de teclas para fechar a aba
+        # Enviar a combinação de teclas para fechar a aba
         try:
             print("Tentando fechar aba corrente com Ctrl+w...")
             self.driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + 'w')
@@ -631,10 +922,10 @@ class LattesScraper:
             print("Tentando fechar aba corrente com Ctrl+F4...")
             self.driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.F4)
 
-        # Aguarde um momento para o fechamento da aba
+        # Aguardar um momento para o fechamento da aba
         time.sleep(1)
 
-        # Opcional: volte para a aba principal se necessário
+        # Opcional: voltar para a aba principal se necessário
         if len(self.driver.window_handles) > 1:
             self.driver.switch_to.window(self.driver.window_handles[0])
         else:
@@ -657,7 +948,7 @@ class LattesScraper:
             'id_lattes': None,
             'data_atualizacao': None
         }
-        # Extrai o nome
+        # Extrair o nome
         nome = soup.find('h2', class_='nome')
         if nome:
             dados_extraidos['nome'] = nome.text.strip()
@@ -3537,149 +3828,44 @@ class HTMLParser:
 
                             # Adicionar as informações da patente diretamente ao dicionário da subseção
                             self.estrutura["Patentes e registros"][nome_subsecao][nome_ocorrencia] = patente_info
-
-    def process_orientacoes_old(self):
-        self.estrutura["Orientações"]={}
-        secoes = self.soup.find_all('div', class_='title-wrapper')
-        for secao in secoes:
-            titulo_h1 = secao.find('h1')
-            if titulo_h1 and 'Orientações' in titulo_h1.get_text(strip=True):
-                data_cell = secao.find('div', class_='layout-cell layout-cell-12 data-cell')
-                subsecoes = data_cell.find_all('div', class_='inst_back')
-                for subsecao in subsecoes:
-                    ocorrencias = {}
-                    if subsecao:
-                        subsec_name = subsecao.get_text(strip=True)
-                        # print(f'Seção: {subsec_name}')
-                        if subsec_name not in self.estrutura["Orientações"]:                       
-                            self.estrutura["Orientações"][subsec_name] = []
-                    
-                    ## Extrair cada tipo de orientação
-                    divs_cita_artigos = data_cell.find_all("div", class_="cita-artigos", recursive=False)
-                    for div_cita_artigos in divs_cita_artigos:
-                        ocorrencias = {}
-                        subsubsecao = div_cita_artigos.find('b')
-                        if subsubsecao:
-                            subsubsecao_name = subsubsecao.get_text(strip=True)
-                            # print(f'      Subseção: {subsubsecao_name}')
-                        
-                        # Encontrar todos os elementos irmãos seguintes de div_cita_artigos
-                        next_siblings = div_cita_artigos.find_next_siblings("div")
-
-                        # Listas para armazenar os divs encontrados
-                        divs_indices = []
-                        divs_ocorrencias = []
-
-                        # Iterar sobre os elementos irmãos
-                        for sibling in next_siblings:
-                            # Verificar se o irmão tem a classe "cita-artigos" ou "inst_back"
-                            if 'cita-artigos' in sibling.get('class', []) or 'inst_back' in sibling.get('class', []):
-                                # Encontramos o marcador para parar, sair do loop
-                                break
-                            # Verificar as outras classes e adicionar aos arrays correspondentes
-                            if 'layout-cell layout-cell-1 text-align-right' in " ".join(sibling.get('class', [])):
-                                divs_indices.append(sibling)
-                            elif 'layout-cell layout-cell-11' in " ".join(sibling.get('class', [])):
-                                divs_ocorrencias.append(sibling)
-                        
-                        if len(divs_indices) == len(divs_ocorrencias):
-                            # Itera sobre o intervalo do comprimento de uma das listas
-                            for i in range(len(divs_indices)):
-                                # Usa o texto ou outro identificador único dos elementos como chave e valor
-                                chave = divs_indices[i].get_text(strip=True).replace('\t','').replace('\n',' ')
-                                valor = divs_ocorrencias[i].get_text(strip=True).replace('\t','').replace('\n',' ')
-
-                                # Adiciona o par chave-valor ao dicionário
-                                ocorrencias[chave] = valor
-
-                        self.estrutura["Orientações"][subsec_name].append({subsubsecao_name: ocorrencias})
-
+    
     def process_orientacoes(self):
-        self.estrutura["Orientações"] = {}
+        self.estrutura["Orientações"] = [] 
+
         secoes = self.soup.find_all('div', class_='title-wrapper')
         for secao in secoes:
             titulo_h1 = secao.find('h1')
             if titulo_h1 and 'Orientações' in titulo_h1.get_text(strip=True):
                 data_cell = secao.find('div', class_='layout-cell layout-cell-12 data-cell')
-                subsecoes = data_cell.find_all('div', class_='inst_back')
 
-                # Dicionário para rastrear subseções já processadas
-                subsecoes_processadas = set()
+                secao_atual = {"nome": titulo_h1.get_text(strip=True), "subsecoes": []}
+                subsecao_atual = None
+                tipo_orientacao = None
 
-                for subsecao in subsecoes:
-                    ocorrencias = {}
-                    if subsecao:
-                        subsec_name = subsecao.get_text(strip=True)
+                for elemento in data_cell.children:
+                    if isinstance(elemento, str):  # Ignora elementos de texto como quebras de linha
+                        continue
 
-                        # Verifica se a subseção já foi processada
-                        if subsec_name in subsecoes_processadas:
-                            continue  # Pula para a próxima subseção se já foi processada
+                    if elemento.name == 'div' and 'inst_back' in elemento.get('class', []):
+                        # Início de uma nova subseção
+                        if subsecao_atual:  # Se já existe uma subseção em andamento, adiciona à seção atual
+                            secao_atual["subsecoes"].append(subsecao_atual)
+                        subsecao_atual = {"nome": elemento.get_text(strip=True), "orientacoes": []}
+                        tipo_orientacao = None  # Reinicia o tipo de orientação para a nova subseção
+                    elif elemento.name == 'div' and 'cita-artigos' in elemento.get('class', []):
+                        # Tipo de orientação
+                        tipo_orientacao = elemento.find('b').get_text(strip=True)
+                    elif elemento.name == 'div' and 'layout-cell layout-cell-11' in " ".join(elemento.get('class', [])):
+                        # Dados da orientação
+                        if subsecao_atual and tipo_orientacao:
+                            orientacao = elemento.get_text(strip=True).replace('\t', '').replace('\n', ' ')
+                            subsecao_atual["orientacoes"].append({"tipo": tipo_orientacao, "detalhes": orientacao})
 
-                        if subsec_name not in self.estrutura["Orientações"]:
-                            self.estrutura["Orientações"][subsec_name] = []
+                # Adiciona a última subseção à seção atual
+                if subsecao_atual:
+                    secao_atual["subsecoes"].append(subsecao_atual)
 
-                        # Marca a subseção como processada
-                        subsecoes_processadas.add(subsec_name)
-
-                    ## Extrair cada tipo de orientação
-                    divs_cita_artigos = data_cell.find_all("div", class_="cita-artigos", recursive=False)
-                    for div_cita_artigos in divs_cita_artigos:
-                        ocorrencias = {}
-                        subsubsecao = div_cita_artigos.find('b')
-                        if subsubsecao:
-                            subsubsecao_name = subsubsecao.get_text(strip=True)
-
-                        # Encontrar todos os elementos irmãos seguintes de div_cita_artigos
-                        next_siblings = div_cita_artigos.find_next_siblings("div")
-
-                        # Listas para armazenar os divs encontrados
-                        divs_indices = []
-                        divs_ocorrencias = []
-
-                        # Iterar sobre os elementos irmãos
-                        for sibling in next_siblings:
-                            # Verificar se o irmão tem a classe "cita-artigos" ou "inst_back"
-                            if 'cita-artigos' in sibling.get('class', []) or 'inst_back' in sibling.get('class', []):
-                                # Encontramos o marcador para parar, sair do loop
-                                break
-
-                            # Verificar as outras classes e adicionar aos arrays correspondentes
-                            if 'layout-cell layout-cell-1 text-align-right' in " ".join(sibling.get('class', [])):
-                                divs_indices.append(sibling)
-                            elif 'layout-cell layout-cell-11' in " ".join(sibling.get('class', [])):
-                                divs_ocorrencias.append(sibling)
-
-                        if len(divs_indices) == len(divs_ocorrencias):
-                            # Itera sobre o intervalo do comprimento de uma das listas
-                            for i in range(len(divs_indices)):
-                                # Usa o texto ou outro identificador único dos elementos como chave e valor
-                                chave = divs_indices[i].get_text(strip=True).replace('\t', '').replace('\n', ' ')
-                                valor = divs_ocorrencias[i].get_text(strip=True).replace('\t', '').replace('\n', ' ')
-
-                                # Adiciona o par chave-valor ao dicionário
-                                ocorrencias[chave] = valor
-
-                        self.estrutura["Orientações"][subsec_name].append({subsubsecao_name: ocorrencias})
-
-    def buscar_qualis(self, lista_dados_autor):
-        for dados_autor in lista_dados_autor:
-            for categoria, artigos in dados_autor['Produções'].items():
-                if categoria == 'Artigos completos publicados em periódicos':
-                    for artigo in artigos:
-                        issn_artigo = artigo['ISSN'].replace('-','')
-                        qualis = self.encontrar_qualis_por_issn(issn_artigo)
-                        print(f'{issn_artigo:8} | {qualis}')
-                        if qualis:
-                            artigo['Qualis'] = qualis
-                        else:
-                            artigo['Qualis'] = 'NA'
-
-    def encontrar_qualis_por_issn(self, issn):
-        qualis = self.dados_planilha[self.dados_planilha['ISSN'].str.replace('-','') == issn]['Estrato'].tolist()
-        if qualis:
-            return qualis[0]
-        else:
-            return None
+                self.estrutura["Orientações"].append(secao_atual)
 
     def process_all(self):
         ## IDENTIFICAÇÃO/FORMAÇÃO
@@ -4596,7 +4782,6 @@ class DiscentCollaborationCounter:
 
         return sobrenome_iniciais.strip()
 
-
     def similares(self, lista_autores, lista_grupo, limite_jarowinkler, distancia_levenshtein):
         """Função para aplicar padronização no nome de autor da lista de pesquisadores e buscar similaridade na lista de coautores
         Recebe: Lista de pesquisadores do grupo em análise gerada pela lista de nomes dos coautores das publicações em análise
@@ -4730,7 +4915,6 @@ class DiscentCollaborationCounter:
 
             if iniciais_nome(i[0]) == iniciais_nome(i[1]) and len(i[0]) < len(i[1]):
                 trocar.append(i)
-
         
         lista_extra = [
                         # ('ALBUQUERQUE, Adriano B', 'ALBUQUERQUE, Adriano Bessa'),
@@ -4785,7 +4969,6 @@ class DiscentCollaborationCounter:
         
         return trocar
 
-
     def extrair_variantes(self, df_dadosgrupo):
         ''' Utiliza campo de Nome em Citações do currículo como filtro para obter variantes do nome de cada membro
         Recebe: Dataframe com os dados brutos do grupo de pesquisa agrupados; lista de nomes de pesquisadores de interesse
@@ -4808,7 +4991,6 @@ class DiscentCollaborationCounter:
                 trocar.append((padrao_origem, padrao_destino))
         
         return trocar
-
 
     def inferir_variantes(self, nome):
         ''' Quebra um nome inicialmente por vírgula para achar sobrenomes, e depois por ' ' para achar nomes
@@ -4835,7 +5017,6 @@ class DiscentCollaborationCounter:
         trocar.append(nome, iniciais_nome(nome))
         
         return trocar
-
 
     def comparar_nomes(self, nome1,nome2):
         ''' Compara dois nomes por seus sobrenomes e iniciais do primeiro nome
@@ -5038,7 +5219,7 @@ class ArticlesCounter:
         return pivot_table_filtrada
 
     def apurar_pontos_periodo(self, dict_list, ano_inicio, ano_final):
-        # Mapeamento de pontos por cada Estrato Qualis
+        # Mapeamento de pontos por cada Estrato Qualis para PPGCS
         mapeamento_pontos = {
             'A1': 90,
             'A2': 80,
