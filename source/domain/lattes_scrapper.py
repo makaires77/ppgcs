@@ -5013,14 +5013,22 @@ class ArticlesCounter:
         return df_orientacoes
 
     # Gerar o relatório de orientações em HTML
-    def generate_html_report(self, orientacoes_lista):
-        # Cria a estrutura da tabela HTML, incluindo os novos cabeçalhos
+    def generate_html_report(self, orientacoes_lista, ano_inicial=None, ano_final=None, tipos_orientacao=None):
 
-        # Encontra o ano inicial e final
+        # Filtrar a lista de orientações com base nos parâmetros de entrada de período e tipos
+        if ano_inicial and ano_final:
+            orientacoes_lista = [o for o in orientacoes_lista if ano_inicial <= int(o.get('ano', 0)) <= ano_final]
+        if tipos_orientacao:
+            orientacoes_lista = [o for o in orientacoes_lista if o.get('tipo') in tipos_orientacao]
+
+        # Encontrar o ano inicial e final pelos máximos e mínimos da coluna ano
         anos = [int(orientacao.get('ano', '')) for orientacao in orientacoes_lista if orientacao.get('ano', '')]
-        ano_inicial = min(anos) if anos else ''
-        ano_final = max(anos) if anos else ''
+        if not ano_inicial:
+            ano_inicial = min(anos) if anos else ''
+        if not ano_final:
+            ano_final = max(anos) if anos else ''
         
+        # Criar a estrutura da tabela HTML, incluindo os novos cabeçalhos
         html_content = """
         <!DOCTYPE html>
         <html>
@@ -5058,17 +5066,15 @@ class ArticlesCounter:
         </head>
         <body>
 
-        <h2>Relatório de Quantitativo de Orientações Concluídas/Andamento dos servidores Fiocruz Ceará</h2>
+        <h2>Relatório das Orientações Concluídas/Em_andamento dos servidores Fiocruz Ceará</h2>
         """
-        ano_inicial = 2019
-        ano_final = 2024
+        # Adicionar a informação do período usando f-string fora das aspas triplas
+        html_content += f"<h2>Período: {ano_inicial} - {ano_final}</h2>\n\n"
 
-        # Adiciona a informação do período usando f-string fora das aspas triplas
-        html_content += f"<h2>Período de {ano_inicial} até {ano_final}</h2>\n\n"
-
-        # Continua a construção da tabela HTML
+        # Continuar a construção da tabela HTML com <tbody>
         html_content += """
         <table>
+        <thead>
         <tr>
             <th>Docente</th>
             <th>Papel</th>
@@ -5078,6 +5084,8 @@ class ArticlesCounter:
             <th>Tipo de Orientação</th> 
             <th>Status</th>               
         </tr>
+        </thead>
+        <tbody>
         """
 
         # Iterar sobre a lista de dicionários e extrai as informações relevantes
@@ -5090,7 +5098,7 @@ class ArticlesCounter:
             tipo = orientacao.get('tipo', '')       
             status = orientacao.get('status', '')   
 
-            # Popula a tabela HTML com os dados extraídos, incluindo as novas células
+            # Popula a tabela HTML com os dados extraídos
             html_content += f"""
             <tr>
                 <td>{docente}</td>
@@ -5098,108 +5106,177 @@ class ArticlesCounter:
                 <td>{ano}</td>
                 <td>{orientando}</td>
                 <td>{instituicao}</td>
-                <td>{tipo}</td>          
-                <td>{status}</td>        
+                <td>{tipo}</td>
+                <td>{status}</td>
             </tr>
             """
-        # Adiciona as duas linhas de total
+
+        # Fechar a tag <tbody> e adicionar as linhas de total
         html_content += """
-        <tr id="total-row-andamento">
-            <td colspan="5">Total em andamento</td>
-            <td id="total-em-andamento"></td>
-            <td></td> 
-        </tr>
-        <tr id="total-row-concluidas">
-            <td colspan="5">Total concluídas</td>
-            <td></td>
-            <td id="total-concluidas"></td>
-        </tr>
-        </table>
-
-        <script>
-        // Ffunção ordenar valores por rótulo de coluna
-        function sortTable(n) {
-        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        table = document.querySelector("table");  
-        // Seleciona a tabela
-        switching = true;
-        // Define a direção inicial como ascendente
-        dir = "asc"; 
-        // Loop até que nenhuma troca seja necessária
-        while (switching) {
-            switching = false;
-            rows = table.rows;
-            // Loop por todas as linhas da tabela (exceto a primeira, que contém os cabeçalhos)
-            for (i = 1; i < (rows.length - 1); i++) {
-            shouldSwitch = false;
-            // Obtém as duas células a serem comparadas
-            x = rows[i].getElementsByTagName("TD")[n];
-            y = rows[i + 1].getElementsByTagName("TD")[n];
-            // Verifica se as células devem ser trocadas
-            if (dir == "asc") {
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                shouldSwitch= true;
-                break;
-                }
-            } else if (dir == "desc") {
-                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                shouldSwitch = true;
-                break;
-                }
-            }
-            }
-            if (shouldSwitch)  
-        {
-            // Se uma troca for necessária, faz a troca e marca que uma troca foi feita
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-            switchcount ++;      
-            } else {
-            // Se nenhuma troca foi feita e a direção é ascendente, define a direção como descendente e reinicia o loop externo
-            if (switchcount == 0 && dir == "asc") {
-                dir = "desc";
-                switching = true;
-            }
-            }
-        }
-
-        // Remove a classe de ordenação de todos os cabeçalhos
-        var headers = table.querySelectorAll("th");
-        headers.forEach(function(header) {
-            header.classList.remove("sorted-asc", "sorted-desc");
-        });
-
-        // Adiciona a classe de ordenação apropriada ao cabeçalho clicado
-        var clickedHeader = headers[n];
-        clickedHeader.classList.add(dir === "asc" ? "sorted-asc" : "sorted-desc");
-        }
-
-        // Função para calcular e exibir os totais
-        function calculateTotals() {
-        var table = document.querySelector("table");
-        var rows = table.rows;
-        var totalEmAndamento = 0;
-        var totalConcluidas = 0;
-
-        for (var i = 1; i < rows.length - 1; i++) { // Exclui a linha de cabeçalho e a linha de total
-            var statusCell = rows[i].getElementsByTagName("TD")[6]; // Coluna de status
-            if (statusCell.innerHTML.toLowerCase() === "em andamento") {
-            totalEmAndamento++;
-            } else if (statusCell.innerHTML.toLowerCase() === "concluídas") {
-            totalConcluidas++;
-            }
-        }
-
-        document.getElementById("total-em-andamento").innerHTML = totalEmAndamento;
-        document.getElementById("total-concluidas").innerHTML = totalConcluidas;
-        }
-
-        // Chama a função para calcular os totais quando a página carrega
-        window.onload = calculateTotals;
-        </script>
-        </body>
-        </html>
+            </tbody>
         """
+
+        # Adicionar as duas linhas de total GERAL no final da tabela
+        html_content += """
+            <tr id="total-row-andamento">
+                <td colspan="5">Total em andamento</td>
+                <td id="total-em-andamento"></td>
+                <td></td> 
+            </tr>
+            <tr id="total-row-concluidas">
+                <td colspan="5">Total concluídas</td>
+                <td></td>
+                <td id="total-concluidas"></td>
+            </tr>
+            </table>
+
+            <script>
+            // Ordenar valores por rótulo de coluna
+            function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.querySelector("table"); 
+            // Seleciona a tabela
+            switching = true;
+            // Definir a direção inicial como ascendente
+            dir = "asc"; 
+            // Loop até que nenhuma troca seja necessária
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                // Loop por todas as linhas da tabela (exceto a primeira, que contém os cabeçalhos)
+                for (i = 1; i < (rows.length - 2); i++) { // Exclui as duas últimas linhas de total geral
+                shouldSwitch = false;
+                // Obtém as duas células a serem comparadas
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                // Verifica se as células devem ser trocadas
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    shouldSwitch= true;
+                    break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                    }
+                }
+                }
+                if (shouldSwitch) {
+                // Se uma troca for necessária, faz a troca e marca que uma troca foi feita
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount ++;      
+                } else {
+                // Se nenhuma troca foi feita e a direção é ascendente, define a direção como descendente e reinicia o loop externo
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+                }
+            }
+
+            // Remover a classe de ordenação de todos os cabeçalhos
+            var headers = table.querySelectorAll("th");
+            headers.forEach(function(header) {
+                header.classList.remove("sorted-asc", "sorted-desc");
+            });
+
+            // Adicionar a classe de ordenação apropriada ao cabeçalho clicado
+            var clickedHeader = headers[n];
+            clickedHeader.classList.add(dir === "asc" ? "sorted-asc" : "sorted-desc");
+            }
+
+            // Calcular e exibir os totais (com verificações e mensagens de erro)
+            function calculateTotals() {
+                var table = document.querySelector("table");
+                var rows = table.rows;
+                var tableBody = table.querySelector("tbody"); 
+
+                if (!tableBody) {
+                    console.error("Erro: Elemento <tbody> não encontrado na tabela.");
+                    return;
+                }
+
+                // Dicionários para armazenar os totais por tipo e status
+                var totals = {
+                    'concluídas': {},
+                    'em andamento': {}
+                };
+
+                // Loop para calcular os totais
+                for (var i = 1; i < rows.length - 2; i++) {  // Exclui as duas últimas linhas de total geral
+                    var tipoCell = rows[i].getElementsByTagName("TD")[5]; // Coluna de tipo de orientação
+                    var statusCell = rows[i].getElementsByTagName("TD")[6]; // Coluna de status
+
+                    // Ignora as linhas de total geral
+                    if (tipoCell === undefined || statusCell === undefined) {
+                        continue;
+                    }
+
+                    var tipo = tipoCell.innerHTML;
+                    var status = statusCell.innerHTML.toLowerCase();
+
+                    // Inicializa o total para o tipo e status, se necessário
+                    if (!totals[status][tipo]) {
+                        totals[status][tipo] = 0;
+                    }
+
+                    // Incrementa o total
+                    totals[status][tipo]++;
+                }
+
+                // Encontra o índice da primeira linha de total geral
+                var totalGeralRowIndex = Array.from(tableBody.children).findIndex(row => row.id === "total-row-andamento");
+
+                // Se não encontrar as linhas de total geral, insere no final do tbody
+                if (totalGeralRowIndex === -1) {
+                    totalGeralRowIndex = tableBody.rows.length;
+                }
+
+                // Adiciona as novas linhas de total, primeiro as concluídas
+                for (var tipo in totals['concluídas']) {
+                    var newRow = tableBody.insertRow(tableBody.rows.length - 2); // Insere ANTES das duas últimas linhas
+                    newRow.classList.add("total-row");
+                    var cell1 = newRow.insertCell(0);
+                    cell1.colSpan = 5;
+                    cell1.innerHTML = "Total " + tipo + " (concluídas)";
+                    var cell2 = newRow.insertCell(1);
+                    cell2.innerHTML = totals['concluídas'][tipo];
+                    var cell3 = newRow.insertCell(2);
+                }
+
+                // Adiciona as linhas de total em andamento
+                for (var tipo in totals['em andamento']) {
+                    var newRow = tableBody.insertRow(tableBody.rows.length - 2); // Insere ANTES das duas últimas linhas
+                    newRow.classList.add("total-row");
+                    var cell1 = newRow.insertCell(0);
+                    cell1.colSpan = 5;
+                    cell1.innerHTML = "Total " + tipo + " (em andamento)";
+                    var cell2 = newRow.insertCell(1);
+                    cell2.innerHTML = totals['em andamento'][tipo];
+                    var cell3 = newRow.insertCell(2);
+                }
+
+                // Atualiza os totais gerais
+                var totalGeralAndamento = Object.values(totals['em andamento']).reduce((a, b) => a + b, 0);
+                var totalGeralConcluidas = Object.values(totals['concluídas']).reduce((a, b) => a + b, 0);
+
+                document.getElementById("total-em-andamento").innerHTML = totalGeralAndamento;
+                document.getElementById("total-concluidas").innerHTML = totalGeralConcluidas;
+
+                if (Object.keys(totals['concluídas']).length === 0 && Object.keys(totals['em andamento']).length === 0) {
+                    console.warn("Nenhuma orientação encontrada para calcular os totais.");
+                }
+            }
+
+            // Chamar a função para calcular os totais quando a página carrega
+            window.onload = calculateTotals;
+            </script>
+
+            </body>
+            </html>
+            """
 
         # try:
         #     # Tenta importar a biblioteca pdfkit

@@ -76,6 +76,11 @@ def fiocruz_ce_report():
     # Renderizar link para report no breadcrumb
     return render_template('report_fiocruz_ce.html', show_render_button=True)
 
+@app.route('/orientacoes_report')
+def orientacoes_report():
+    # Renderizar link para report no breadcrumb
+    return render_template('relatorio_orientacoes.html', show_render_button=True)
+
 @app.route('/i9c_gp_nobc')
 def i9c_gp_nobc():
     # Renderizar na região dinâmica sem breadcrumb, apontando para o html em templates
@@ -118,6 +123,11 @@ def i9c_mp():
 
 ## Abrir Grafos no HTML
 # Carregar pelo link do breadcum
+@app.route('/relatorio_orientacoes.html')
+def relatorio_orientacoes():
+    # Renderizar link para report no breadcrumb
+    return render_template('relatorio_orientacoes.html')
+
 @app.route('/grafo_interativo.html')
 def grafo_interativo():
     # Renderizar link para report no breadcrumb
