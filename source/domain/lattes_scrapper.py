@@ -5062,6 +5062,11 @@ class ArticlesCounter:
         th.sorted-desc::after {
             content: " ▼"; /* Adiciona um triângulo para baixo */
         }
+
+        #total-row-concluidas, #total-row-andamento { /* Seleciona as linhas de totais gerais */
+            font-weight: bold; 
+        }        
+
         </style>
         </head>
         <body>
@@ -5118,16 +5123,6 @@ class ArticlesCounter:
 
         # Adicionar as duas linhas de total GERAL no final da tabela
         html_content += """
-            <tr id="total-row-andamento">
-                <td colspan="5">Total em andamento</td>
-                <td id="total-em-andamento"></td>
-                <td></td> 
-            </tr>
-            <tr id="total-row-concluidas">
-                <td colspan="5">Total concluídas</td>
-                <td></td>
-                <td id="total-concluidas"></td>
-            </tr>
             </table>
 
             <script>
@@ -5205,7 +5200,7 @@ class ArticlesCounter:
                 };
 
                 // Loop para calcular os totais
-                for (var i = 1; i < rows.length - 2; i++) {  // Exclui as duas últimas linhas de total geral
+                for (var i = 1; i < rows.length; i++) { 
                     var tipoCell = rows[i].getElementsByTagName("TD")[5]; // Coluna de tipo de orientação
                     var statusCell = rows[i].getElementsByTagName("TD")[6]; // Coluna de status
 
@@ -5226,37 +5221,62 @@ class ArticlesCounter:
                     totals[status][tipo]++;
                 }
 
-                // Encontra o índice da primeira linha de total geral
-                var totalGeralRowIndex = Array.from(tableBody.children).findIndex(row => row.id === "total-row-andamento");
-
-                // Se não encontrar as linhas de total geral, insere no final do tbody
-                if (totalGeralRowIndex === -1) {
-                    totalGeralRowIndex = tableBody.rows.length;
-                }
+                // Remove as linhas de total existentes, se houver (incluindo as de total geral)
+                var existingTotalRows = table.querySelectorAll("tr.total-row");
+                existingTotalRows.forEach(function(row) {
+                    row.remove();
+                });
 
                 // Adiciona as novas linhas de total, primeiro as concluídas
                 for (var tipo in totals['concluídas']) {
-                    var newRow = tableBody.insertRow(tableBody.rows.length - 2); // Insere ANTES das duas últimas linhas
+                    var newRow = tableBody.insertRow();
                     newRow.classList.add("total-row");
-                    var cell1 = newRow.insertCell(0);
-                    cell1.colSpan = 5;
+
+                    var cell1 = newRow.insertCell(0); 
+                    cell1.colSpan = 5; 
                     cell1.innerHTML = "Total " + tipo + " (concluídas)";
-                    var cell2 = newRow.insertCell(1);
-                    cell2.innerHTML = totals['concluídas'][tipo];
-                    var cell3 = newRow.insertCell(2);
+
+                    var cell2 = newRow.insertCell(1); // Nova célula para o subtotal (vazia)
+
+                    var cell3 = newRow.insertCell(2); // Total geral 
+                    cell3.innerHTML = totals['concluídas'][tipo]; // Insere o valor na última coluna
                 }
 
                 // Adiciona as linhas de total em andamento
                 for (var tipo in totals['em andamento']) {
-                    var newRow = tableBody.insertRow(tableBody.rows.length - 2); // Insere ANTES das duas últimas linhas
+                    var newRow = tableBody.insertRow(); 
                     newRow.classList.add("total-row");
+
                     var cell1 = newRow.insertCell(0);
-                    cell1.colSpan = 5;
+                    cell1.colSpan = 5; 
                     cell1.innerHTML = "Total " + tipo + " (em andamento)";
-                    var cell2 = newRow.insertCell(1);
-                    cell2.innerHTML = totals['em andamento'][tipo];
-                    var cell3 = newRow.insertCell(2);
+
+                    var cell2 = newRow.insertCell(1); // Nova célula para o subtotal (vazia)
+
+                    var cell3 = newRow.insertCell(2); // Total geral
+                    cell3.innerHTML = totals['em andamento'][tipo]; // Insere o valor na última coluna
                 }
+
+                // Adiciona as duas linhas de total GERAL no final da tabela
+                var newRowConcluidas = tableBody.insertRow();
+                newRowConcluidas.id = "total-row-concluidas";
+                newRowConcluidas.classList.add("total-row");
+                var cellConcluidas1 = newRowConcluidas.insertCell(0);
+                cellConcluidas1.colSpan = 5;
+                cellConcluidas1.innerHTML = "Total de Orientações Concluídas";
+                var cellConcluidas2 = newRowConcluidas.insertCell(1);
+                cellConcluidas2.id = "total-concluidas";
+                var cellConcluidas3 = newRowConcluidas.insertCell(2);
+
+                var newRowAndamento = tableBody.insertRow();
+                newRowAndamento.id = "total-row-andamento";
+                newRowAndamento.classList.add("total-row");
+                var cellAndamento1 = newRowAndamento.insertCell(0);
+                cellAndamento1.colSpan = 5;
+                cellAndamento1.innerHTML = "Total de Orientações Em andamento";
+                var cellAndamento2 = newRowAndamento.insertCell(1);
+                cellAndamento2.id = "total-em-andamento";
+                var cellAndamento3 = newRowAndamento.insertCell(2);
 
                 // Atualiza os totais gerais
                 var totalGeralAndamento = Object.values(totals['em andamento']).reduce((a, b) => a + b, 0);

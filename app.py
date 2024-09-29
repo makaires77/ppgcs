@@ -122,6 +122,7 @@ def i9c_mp():
         return render_template('innomap_macroprocesses.html')
 
 ## Abrir Grafos no HTML
+# Manter nome da rota e da função igual ao nome do arquivo para simplificar
 # Carregar pelo link do breadcum
 @app.route('/relatorio_orientacoes.html')
 def relatorio_orientacoes():
@@ -138,8 +139,8 @@ def graph_revistas_capes():
     # Renderizar link para report no breadcrumb
     return render_template('graph_revistas_capes.html', show_render_button=True)
 
-@app.route('/fomento_geral')  # nome da rota e da função igual para simplificar
-def fomento_geral():
+@app.route('/relatorio_fomento')
+def relatorio_fomento():
     # Renderizar link para report no breadcrumb
     return render_template('relatorio_fomento.html', show_render_button=True)
 

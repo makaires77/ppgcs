@@ -64,7 +64,34 @@ class ChromeDriverManager:
 
     def get_chrome_version(self):
         try:
-            if platform.system() == "Windows":
+            if platform.system() == "Linux":  # Adaptando para WSL
+                # # Encontra o caminho completo do Chrome no WSL
+                # chrome_path = subprocess.run(["which", "google-chrome-stable"], 
+                #                             capture_output=True, text=True).stdout.strip()
+                # print(f"Caminho do Chrome detectado: {chrome_path}") # Adicione esta linha para depuração
+
+                # command = f"{chrome_path} --version"
+                # Usa o comando 'which' para encontrar o caminho do Chrome no WSL
+                chrome_path_output = subprocess.run(["which", "google-chrome-stable"], 
+                                                    capture_output=True, text=True)
+                chrome_path_output.check_returncode()  # Verifica se o comando foi executado com sucesso
+
+                chrome_path = chrome_path_output.stdout.strip()
+                print(f"Caminho do Chrome detectado: {chrome_path}") 
+
+                # Usa o caminho encontrado para obter a versão
+                command = f"{chrome_path} --version" 
+                result = subprocess.run(command, shell=True, capture_output=True, text=True)
+                result.check_returncode()
+
+                if result.stdout:
+                    version_parts = result.stdout.strip().split()
+                    if version_parts:
+                        version = [part for part in version_parts if '.' in part][0].split('.')[0]
+                        return version
+
+                raise subprocess.CalledProcessError(returncode=1, cmd=command)             
+            elif platform.system() == "Windows":
                 command = "reg query \"HKEY_CURRENT_USER\\Software\\Google\\Chrome\\BLBeacon\" /v version"
             elif platform.system() == "Darwin":
                 command = "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --version"
@@ -136,37 +163,70 @@ class ChromeDriverManager:
         return self.find_repo_root(path.parent, depth-1)
 
     def install_google_chrome(self):
-        os_platform = platform.system().lower()
-        try:
-            if os_platform == 'windows':
-                print("Installing Google Chrome on Windows...")
-                subprocess.run(["choco", "install", "googlechrome"], check=True)
-            elif os_platform == 'darwin':
-                print("Installing Google Chrome on macOS...")
-                subprocess.run(["brew", "install", "--cask", "google-chrome"], check=True)
-            else:
-                print("Updating package list and installing Google Chrome on Linux...")
-                chrome_pkg = "google-chrome-stable_current_amd64.deb"
-                wget_command = ["wget", f"https://dl.google.com/linux/direct/{chrome_pkg}"]
-                update_command = ["sudo", "apt-get", "update"]
-                install_command = ["sudo", "apt-get", "install", "-y", f"./{chrome_pkg}"]
-                fix_command = ["sudo", "apt", "--fix-broken", "install", "-y"]
-                sudo_password = getpass.getpass("Enter your sudo password: ")
-                # Executing commands
-                subprocess.run(wget_command, check=True)
-                subprocess.run(update_command, input=sudo_password, text=True, check=True)
-                try:
-                    subprocess.run(install_command, input=sudo_password, text=True, check=True)
-                except subprocess.CalledProcessError:
-                    print("Attempting to fix broken dependencies...")
-                    subprocess.run(fix_command, input=sudo_password, text=True, check=True)
-                    # Retry installation after fixing
-                    subprocess.run(install_command, input=sudo_password, text=True, check=True)
-                # Clean up the downloaded package
-                os.remove(chrome_pkg)
-                self.remove_deb_files("google-chrome-stable_current_amd64.deb")
-        except subprocess.CalledProcessError as e:
-            print(f"Failed to install Google Chrome: {e}")
+            os_platform = platform.system().lower()
+            try:
+                if os_platform == 'windows':
+                    print("Instalando o Google Chrome no Windows...")
+                    subprocess.run(["choco", "install", "googlechrome"], check=True)
+                elif os_platform == 'darwin':
+                    print("Instalando o Google Chrome no macOS...")
+                    subprocess.run(["brew", "install", "--cask", "google-chrome"], check=True)
+                else:
+                    print("Atualizando a lista de pacotes e instalando o Google Chrome no Linux...")
+                    chrome_pkg = "google-chrome-stable_current_amd64.deb"
+                    wget_command = ["wget", f"https://dl.google.com/linux/direct/{chrome_pkg}"]
+                    update_command = ["sudo", "apt-get", "update"]
+                    install_command = ["sudo", "apt-get", "install", "-y", f"./{chrome_pkg}"]
+                    fix_command = ["sudo", "apt", "--fix-broken", "install", "-y"]
+                    sudo_password = getpass.getpass("Digite sua senha de sudo: ")
+
+                    # Executando comandos com tratamento de erros e logs
+                    print("Baixando o pacote do Chrome...")
+                    subprocess.run(wget_command, check=True)
+
+                    print("Atualizando a lista de pacotes...")
+                    try:
+                        # Inclui a confirmação 'Y\n' no input para o comando 'sudo apt-get update'
+                        update_process = subprocess.run(update_command, input=sudo_password + '\nY\n', text=True, capture_output=True, timeout=60)  
+
+                        if update_process.returncode != 0:
+                            # Tratamento de erro aprimorado para a atualização da lista de pacotes
+                            error_message = f"Erro ao atualizar a lista de pacotes: {update_process.stderr.decode()}"
+                            raise subprocess.CalledProcessError(returncode=update_process.returncode, 
+                                                            cmd=update_command, 
+                                                            stderr=error_message)
+
+                        install_process = subprocess.run(install_command, input=sudo_password, text=True, capture_output=True)
+                        if install_process.returncode != 0:
+                            raise subprocess.CalledProcessError(returncode=install_process.returncode,
+                                                            cmd=install_command,
+                                                            stderr=install_process.stderr)
+                    except subprocess.CalledProcessError as e:
+                        print(f"Erro ao instalar o Google Chrome: {e}")
+                        if e.stderr:
+                            print(f"Detalhes do erro: {e.stderr}") 
+                        fix_process = subprocess.run(fix_command, input=sudo_password, text=True, capture_output=True)
+                        if fix_process.returncode != 0:
+                            raise subprocess.CalledProcessError(returncode=fix_process.returncode,
+                                                            cmd=fix_command,
+                                                            stderr=fix_process.stderr)
+                        # Tenta reinstalar após corrigir as dependências
+                        print("Reinstalando o Chrome...")
+                        subprocess.run(install_command, input=sudo_password, text=True, check=True)
+
+                    except subprocess.TimeoutExpired:
+                        print("Erro: Tempo limite excedido durante a atualização da lista de pacotes.")
+
+                    finally:
+                        print("Removendo o pacote baixado...")
+                        if os.path.exists(chrome_pkg):
+                            os.remove(chrome_pkg)
+                        self.remove_deb_files("google-chrome-stable_current_amd64.deb")
+
+            except subprocess.CalledProcessError as e:
+                print(f"Erro ao instalar o Google Chrome: {e}")
+                if e.stderr:
+                    print(f"Detalhes do erro: {e.stderr}")  
 
     def remove_deb_files(self, deb_file_name):
         # Remove os arquivos .deb e suas versões numeradas na pasta corrente
@@ -253,7 +313,15 @@ class ChromeDriverManager:
         gcversion = self.get_chrome_version()
         cdversion = self.get_chromedriver_version()
         if gcversion != cdversion:
-            print(f"Versões {gcversion} Chrome e {cdversion} Chromedriver estão incompatíveis\natualizar antes de continuar...")
-            self.update_chromedriver()
+            print(f"Versões {gcversion} Chrome e {cdversion} Chromedriver estão incompatíveis")
+            print("Atualizando o Chrome...")  # Adicione esta linha para indicar que a atualização do Chrome está sendo iniciada
+            self.install_google_chrome()
+
+            # Verifica a versão do Chrome após a atualização
+            new_gcversion = self.get_chrome_version()
+            if new_gcversion != gcversion:
+                print(f"Chrome atualizado com sucesso para a versão {new_gcversion}")
+            else:
+                print("Falha ao atualizar o Chrome. Verifique os logs para mais detalhes.")
         else:
             print(f"Versões {gcversion} Chrome e {cdversion} Chromedriver estão compatíveis")
