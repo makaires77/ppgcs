@@ -1,0 +1,106 @@
+PMID- 29271559
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20190405
+LR  - 20240314
+IS  - 1752-8062 (Electronic)
+IS  - 1752-8054 (Print)
+IS  - 1752-8054 (Linking)
+VI  - 11
+IP  - 2
+DP  - 2018 Mar
+TI  - Application of a Dynamic Map for Learning, Communicating, Navigating, and 
+      Improving Therapeutic Development.
+PG  - 166-174
+LID - 10.1111/cts.12531 [doi]
+AB  - Drug discovery and development is commonly schematized as a "pipeline," and, 
+      although appreciated by drug developers to be a useful oversimplification, this 
+      cartology may perpetuate inaccurate notions of straightforwardness and is of 
+      minimal utility for process engineering to improve efficiency. To create a more 
+      granular schema, a group of drug developers, researchers, patient advocates, and 
+      regulators developed a crowdsourced atlas of the steps involved in translating 
+      basic discoveries into health interventions, annotated with the steps that are 
+      particularly prone to difficulty or failure. This Drug Discovery, Development, 
+      and Deployment Map (4DM), provides a network view of the process, which will be 
+      useful for communication and education to those new to the field, orientation and 
+      navigation of individual projects, and prioritization of technology development 
+      and re-engineering endeavors to improve efficiency and effectiveness. The 4DM is 
+      freely available for utilization, modification, and further development by 
+      stakeholders across the translational ecosystem.
+CI  - © 2017 The Authors. Clinical and Translational Science published by Wiley 
+      Periodicals, Inc. on behalf of American Society for Clinical Pharmacology and 
+      Therapeutics.
+FAU - Wagner, John A
+AU  - Wagner JA
+AD  - Takeda Pharmaceuticals International Co., Cambridge, Massachusetts, USA.
+FAU - Dahlem, Andrew M
+AU  - Dahlem AM
+AD  - Lilly Research Laboratories, Eli Lilly and Company, Indianapolis, Indiana, USA.
+FAU - Hudson, Lynn D
+AU  - Hudson LD
+AD  - Critical Path Institute, Tucson, Arizona, USA.
+FAU - Terry, Sharon F
+AU  - Terry SF
+AD  - Genetic Alliance, Washington, DC, USA.
+FAU - Altman, Russ B
+AU  - Altman RB
+AD  - Stanford University, Stanford, California, USA.
+FAU - Gilliland, C Taylor
+AU  - Gilliland CT
+AD  - National Center for Advancing Translational Sciences, National Institutes of 
+      Health, Bethesda, Maryland, USA.
+FAU - DeFeo, Christopher
+AU  - DeFeo C
+AD  - Bethesda, Maryland, USA.
+FAU - Austin, Christopher P
+AU  - Austin CP
+AD  - National Center for Advancing Translational Sciences, National Institutes of 
+      Health, Bethesda, Maryland, USA.
+LA  - eng
+PT  - Journal Article
+DEP - 20171222
+PL  - United States
+TA  - Clin Transl Sci
+JT  - Clinical and translational science
+JID - 101474067
+RN  - 0 (Neuropeptide Y)
+RN  - 0 (Pyrazoles)
+RN  - 0 (Pyrimidines)
+RN  - 10K52CIC1Z (dorsomorphin)
+SB  - IM
+MH  - Biomedical Technology/methods
+MH  - Clinical Trials as Topic
+MH  - Communication
+MH  - Drug Development/*methods
+MH  - Drug Discovery/*methods
+MH  - Humans
+MH  - *Intersectoral Collaboration
+MH  - Learning
+MH  - Myositis Ossificans/drug therapy
+MH  - National Academies of Science, Engineering, and Medicine, U.S., Health and 
+      Medicine Division
+MH  - Neuropeptide Y/antagonists & inhibitors/metabolism
+MH  - Obesity/drug therapy/metabolism
+MH  - Polycystic Kidney, Autosomal Dominant/drug therapy
+MH  - Pyrazoles/therapeutic use
+MH  - Pyrimidines/therapeutic use
+MH  - *Research Design
+MH  - Translational Research, Biomedical/*methods
+MH  - United States
+MH  - United States Food and Drug Administration
+PMC - PMC5866991
+EDAT- 2017/12/23 06:00
+MHDA- 2019/04/06 06:00
+PMCR- 2018/03/01
+CRDT- 2017/12/23 06:00
+PHST- 2017/10/03 00:00 [received]
+PHST- 2017/11/14 00:00 [accepted]
+PHST- 2017/12/23 06:00 [pubmed]
+PHST- 2019/04/06 06:00 [medline]
+PHST- 2017/12/23 06:00 [entrez]
+PHST- 2018/03/01 00:00 [pmc-release]
+AID - CTS12531 [pii]
+AID - 10.1111/cts.12531 [doi]
+PST - ppublish
+SO  - Clin Transl Sci. 2018 Mar;11(2):166-174. doi: 10.1111/cts.12531. Epub 2017 Dec 
+      22.
