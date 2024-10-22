@@ -1,0 +1,134 @@
+[
+    {
+        "ALGORITMO": "Logistic Regression",
+        "CLASSE DE MÉTODO": "Métodos Lineares",
+        "TIPOS DE APRENDIZADO": "Aprendizado Supervisionado Clássico",
+        "DESCRIÇÃO": "Algoritmo simples que modela uma relação linear entre as entradas e uma variável de saída categórica (0 ou 1).",
+        "CASOS DE USO": ["Predição de risco ao crédito", "Predição de rotatividade de consumidores"],
+        "VANTAGENS": ["Facilmente interpretável e explicável", "Menos sujeito ao sobreajuste quando usada a regularização", "Aplicável para predições multi-classe"],
+        "DESVANTAGENS": ["Assume a linearidade entre entradas e saídas", "Pode apresentar sobreajuste com poucos dados de alta dimensionalidade"],
+        "CITAÇÃO": "Cox, D.R. (1958). The regression analysis of binary sequences. Journal of the Royal Statistical Society: Series B (Methodological), 20(2), 215-242.",
+        "FONTE": "Cox1958"
+    },
+    {
+        "ALGORITMO": "Ridge Regression",
+        "CLASSE DE MÉTODO": "Métodos Lineares",
+        "TIPOS DE APRENDIZADO": "Aprendizado Supervisionado Clássico",
+        "DESCRIÇÃO": "Parte da família de regressão, penaliza características que apresentam baixa predição, tornando seus coeficientes próximos a zero. Aplicável para classificação ou para regressão.",
+        "CASOS DE USO": ["Predição de manutenção para máquinas", "Predição de vendas"],
+        "VANTAGENS": ["Facilmente interpretável e explicável", "Menos sujeito ao sobreajuste", "Aplicável para dados de alta dimensionalidade"],
+        "DESVANTAGENS": ["Todos preditores são mantidos no modelo final", "Não permite seleção de características"],
+        "CITAÇÃO": "Hoerl, A.E., & Kennard, R.W. (1970). Ridge regression: Biased estimation for nonorthogonal problems. Technometrics, 12(1), 55-67.",
+        "FONTE": "Hoerl e Kennard 1970"
+    },
+    {
+        "ALGORITMO": "Lasso Regression",
+        "CLASSE DE MÉTODO": "Métodos Lineares",
+        "TIPOS DE APRENDIZADO": "Aprendizado Supervisionado Clássico",
+        "DESCRIÇÃO": "Parte da família de regressão, penaliza características que apresentam baixa predição, tornando seus coeficientes próximos a zero. Aplicável para classificação ou para regressão.",
+        "CASOS DE USO": ["Predição de preços de imóveis", "Predição de desfechos clínicos com base em dados de saúde"],
+        "VANTAGENS": ["Menos sujeito ao sobreajuste", "Aplicável para dados de alta dimensionalidade", "Não necessita de seleção de características"],
+        "DESVANTAGENS": ["Pode levar a baixa interpretabilidade uma vez que pode manter variáveis altamente correlacionadas"],
+        "CITAÇÃO": "Tibshirani, R. (1996). Regression shrinkage and selection via the lasso. Journal of the Royal Statistical Society: Series B (Methodological), 58(1), 267-288.",
+        "FONTE": "Tibshirani1996"
+    },
+    {
+        "ALGORITMO": "Decision Tree",
+        "CLASSE DE MÉTODO": "Métodos por Árvores de Decisão",
+        "TIPOS DE APRENDIZADO": "Aprendizado Supervisionado Clássico",
+        "DESCRIÇÃO": "Os métodos de Árvore de Decisão criam regras de decisão sobre os recursos para produzir uma predição. Pode ser usado para classificação e regressão.",
+        "CASOS DE USO": ["Predição rotatividade de clientes", "Predição de preços de imóveis", "Predição de doenças"],
+        "VANTAGENS": ["Facilmente explicável e interpretável", "Pode lidar com variáveis ausentes"],
+        "DESVANTAGENS": ["Propenso a sobreajuste", "Sensível a outliers"],
+        "CITAÇÃO": "Quinlan, J.R. (1986). Induction of decision trees. Machine learning, 1(1), 81-106.",
+        "FONTE": "Quinlan1986"
+    },
+    {
+        "ALGORITMO": "Random Forests",
+        "CLASSE DE MÉTODO": "Métodos por Árvores de Decisão",        
+        "TIPOS DE APRENDIZADO": "Aprendizado Supervisionado Clássico",
+        "DESCRIÇÃO": "Um método de aprendizado conjunto que combina a saída de várias árvores de decisão.",
+        "CASOS DE USO": ["Modelagem de pontuação de crédito", "Predição de preços de imóveis"],
+        "VANTAGENS": ["Reduz o sobreajuste", "Maior precisão em comparação com outros modelos"],
+        "DESVANTAGENS": ["Complexidade de treinamento pode ser alta", "Não é facilmente interpretável"],
+        "CITAÇÃO": "Breiman, L. (2001). Random forests. Machine learning, 45(1), 5-32.",
+        "FONTE": "Breiman2001"
+    },
+    {
+        "ALGORITMO": "Gradient Boosting",
+        "CLASSE DE MÉTODO": "Métodos por Árvores de Decisão",        
+        "TIPOS DE APRENDIZADO": "Aprendizado Supervisionado Clássico",
+        "DESCRIÇÃO": "Gradient Boosting Regression usa boosting para fazer modelos preditivos de um conjunto de árvores de decisão preditivas avançados.",
+        "CASOS DE USO": ["Predição de emissões de carros", "Predição do valor da tarifa de carros"],
+        "VANTAGENS": ["Melhor precisão em comparação com outros métodos de regressão", "Pode lidar com multicolinearidade", "Pode lidar com variáveis ausentes"],
+        "DESVANTAGENS": ["Sensível a outliers e, portanto, pode causar overfitting", "Computacionalmente caro e tem alta complexidade"],
+        "CITAÇÃO": "",
+        "FONTE": "Friedman2001"
+    },
+    {
+        "ALGORITMO": "XGBoost",
+        "CLASSE DE MÉTODO": "Métodos por Árvores de Decisão",        
+        "TIPOS DE APRENDIZADO": "Aprendizado Supervisionado Clássico",
+        "DESCRIÇÃO": "Gradient Boosting algorithm that is efficient & flexible. Can be used for both classification and regression tasks.",
+        "CASOS DE USO": ["Previsão de rotatividade", "Processamento de sinistros em seguros"],
+        "VANTAGENS": ["Fornece resultados precisos", "Captura relacionamentos não lineares"],
+        "DESVANTAGENS": ["O ajuste de hiperparâmetros pode ser complexo", "Não funciona bem em conjuntos de dados esparsos"],
+        "CITAÇÃO": "",
+        "FONTE": "Chen2016"
+    },
+    {
+        "ALGORITMO": "LightGBM Regressor",
+        "CLASSE DE MÉTODO": "Métodos por Árvores de Decisão",        
+        "TIPOS DE APRENDIZADO": "Aprendizado Supervisionado Clássico",
+        "DESCRIÇÃO": "Um tipo de Gradient Boosting que foi concebido para ser mais computacionalmente eficiente do que suas implementações anteriores.",
+        "CASOS DE USO": ["Predição de duração de vôos", "Predição dos níveis de colesterol com base em dados de saúde"],
+        "VANTAGENS": ["Pode lidar com grandes quantidades de dados", "Velocidade no treinamento", "Baixo uso de memória em comparação com implementações anteriores"],
+        "DESVANTAGENS": ["O ajuste de hiperparâmetros pode ser mais complexo", "Pode sobreajustar devido às divisões dos ramos e alta sensibilidade"],
+        "CITAÇÃO": "",
+        "FONTE": "Ke2017"
+    },
+    {
+        "ALGORITMO": "Apriori algorithm",
+        "CLASSE DE MÉTODO": "Métodos de associação",
+        "TIPOS DE APRENDIZADO": "Aprendizado Não-Supervisionado Clássico",
+        "DESCRIÇÃO": "Abordagem baseada em regras que identifica o conjunto de itens mais frequente em um determinado conjunto de dados com o conhecimento prévio das propriedades do conjunto de itens e suas associações com base na confiança e suporte.",
+        "CASOS DE USO": ["Colocações de produtos", "Abordagem exaustiva ao encontrar todas as regras", "Otimização da promoção"],
+        "VANTAGENS": ["Resultados são intuitivos e interpretáveis", "Abordagem exaustiva enquanto encontra todas as regras baseadas em confiança e suporte"],
+        "DESVANTAGENS": ["Gera muitos conjuntos de itens desinteressantes", "Computacionalmente é com uso intensivo de memória", "Resulta em muitos conjuntos de itens sobrepostos"],
+        "CITAÇÃO": "Agrawal, Rakesh, and Ramakrishnan Srikant. 'Fast algorithms for mining association rules.' In Proc. 20th int. conf. very large data bases, VLDB, vol. 1215, pp. 487-499. 1994.",
+        "FONTE": "Agrawal et al 1994"
+    },
+    {
+        "ALGORITMO": "K-Means",
+        "CLASSE DE MÉTODO": "Métodos por Agrupamento",
+        "TIPOS DE APRENDIZADO": "Aprendizado Não-Supervisionado Clássico",
+        "DESCRIÇÃO": "Método de agrupamento que determina um número K de clusters baseados em distâncias euclidianas.",
+        "CASOS DE USO": ["Segmentação de clientes", "Sistemas de recomendação"],
+        "VANTAGENS": ["Escalona bem para grandes conjuntos de dados", "Fácil de implementar e interpretar resultados"],
+        "DESVANTAGENS": ["Requer o número esperado de grupos a priori", "Tem problemas com tamanhos de grupos e de densidades"],
+        "CITAÇÃO": "",
+        "FONTE": "MacQueen1967"
+    },
+    {
+        "ALGORITMO": "Gaussian Mixture Models",
+        "CLASSE DE MÉTODO": "Métodos por Agrupamento",
+        "TIPOS DE APRENDIZADO": "Aprendizado Não-Supervisionado Clássico",
+        "DESCRIÇÃO": "Um modelo probabilístico para modelar grupos normalmente distribuídos em uma base de dados.",
+        "CASOS DE USO": ["Segmentação de clientes", "Sistemas de recomendação"],
+        "VANTAGENS": ["Calcula a probabilidade para uma observação pertencer a um grupo", "Identifica grupos sobrepostos resultando em resultados mais precisos que os de K-Means"],
+        "DESVANTAGENS": ["Requer ajuste complexo", "Requer ajustar a quantidade de grupos sobrepostos ou grupos"],
+        "CITAÇÃO": "Reynolds, Douglas A. 'Gaussian mixture models.' Encyclopedia of Biometrics (2009): 659-663.",
+        "FONTE": "Reynolds2009"
+    },
+    {
+        "ALGORITMO": "Hierarchical Clustering",
+        "CLASSE DE MÉTODO": "Métodos por Agrupamento",        
+        "TIPOS DE APRENDIZADO": "Aprendizado Não-Supervisionado Clássico",
+        "DESCRIÇÃO": "Abordagem de baixo para cima onde cada ponto de dados é tratado como seu próprio grupo, então os dois grupos mais próximos são fundidos iterativamente.",
+        "CASOS DE USO": ["Detecção de fraude", "Agrupamento de documentos baseado em similaridade"],
+        "VANTAGENS": ["Não há necessidade de especificar a quantidade de grupos", "Interpretação de resultados é bastante intuitiva"],
+        "DESVANTAGENS": ["Nem sempre resulta em um agrupamento ótimo", "Não utilizável em grandes bases de dados devido à elevada complexidade"],
+        "CITAÇÃO": "Murtagh, Fionn, and Pierre Legendre. 'Ward's hierarchical agglomerative clustering method: which algorithms implement Ward's criterion?.' Journal of classification 31 (2014): 274-295.",
+        "FONTE": "Murtagh2014"
+    }
+]
