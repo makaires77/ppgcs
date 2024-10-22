@@ -5474,6 +5474,55 @@ class ArticlesCounter:
         # Mostrar a tabela pivot filtrada
         return pivot_table_filtrada
 
+    def apurar_publicacoes_periodo(self, dict_list, ano_inicio, ano_final):
+        # Mapeamento de pontos por cada Estrato Qualis para PPGCS
+        mapeamento_pontos = {
+            'A1': 1,
+            'A2': 1,
+            'A3': 1,
+            'A4': 1,
+            'B1': 1,
+            'B2': 1,
+            'B3': 1,
+            'B4': 1,
+            'C': 1,
+            'NA': 1
+        }
+        import pandas as pd
+        lista_pubqualis = []
+        for dic in dict_list:
+            autor = dic.get('Identificação',{}).get('Nome',{})
+            artigos = dic.get('Produções', {}).get('Artigos completos publicados em periódicos', {})
+            for i in artigos:
+                ano = i.get('ano',{})
+                qualis = i.get('Qualis',{})
+                lista_pubqualis.append((ano, autor, qualis))
+
+        # Criar um DataFrame a partir da lista_pubqualis
+        df_qualis_autores_anos = pd.DataFrame(lista_pubqualis, columns=['Ano','Autor', 'Qualis'])
+        # df_qualis_autores_anos
+
+        # Criar uma tabela pivot com base no DataFrame df_qualis_autores_anos
+        pivot_table = df_qualis_autores_anos.pivot_table(index='Autor', columns='Ano', values='Qualis', aggfunc=lambda x: ', '.join(x))
+
+        # Selecionar as colunas (anos) que estão dentro do intervalo de anos
+        anos_interesse = [Ano for Ano in pivot_table.columns if Ano and ano_inicio <= int(Ano) <= ano_final]
+
+        # Filtrar a tabela pivot pelos anos de interesse
+        pivot_table_filtrada = pivot_table[anos_interesse]
+
+        # Aplicar o mapeamento de pontos à tabela pivot filtrada apenas para valores do tipo str
+        pivot_table_qte = pivot_table_filtrada.applymap(lambda x: sum(mapeamento_pontos[q] for q in x.split(', ') if q in mapeamento_pontos) if isinstance(x, str) else 0)
+
+        # Adicionar uma coluna final com a soma dos pontos no período
+        pivot_table_qte['Contagem'] = pivot_table_qte.sum(axis=1)
+
+        # Ordenar a tabela pivot pela soma de pontos de forma decrescente
+        pivot_table_qte_sorted = pivot_table_qte.sort_values(by='Contagem', ascending=False)
+
+        # Mostrar a tabela pivot ordenada pela soma de pontos decrescente
+        return pivot_table_qte_sorted
+    
     def apurar_pontos_periodo(self, dict_list, ano_inicio, ano_final):
         # Mapeamento de pontos por cada Estrato Qualis para PPGCS
         mapeamento_pontos = {
@@ -5500,7 +5549,7 @@ class ArticlesCounter:
 
         # Criar um DataFrame a partir da lista_pubqualis
         df_qualis_autores_anos = pd.DataFrame(lista_pubqualis, columns=['Ano','Autor', 'Qualis'])
-        df_qualis_autores_anos
+        # df_qualis_autores_anos
 
         # Criar uma tabela pivot com base no DataFrame df_qualis_autores_anos
         pivot_table = df_qualis_autores_anos.pivot_table(index='Autor', columns='Ano', values='Qualis', aggfunc=lambda x: ', '.join(x))
@@ -5510,9 +5559,6 @@ class ArticlesCounter:
 
         # Filtrar a tabela pivot pelos anos de interesse
         pivot_table_filtrada = pivot_table[anos_interesse]
-
-        # Mostrar a tabela pivot filtrada
-        pivot_table_filtrada
 
         # Aplicar o mapeamento de pontos à tabela pivot filtrada apenas para valores do tipo str
         pivot_table_pontos = pivot_table_filtrada.applymap(lambda x: sum(mapeamento_pontos[q] for q in x.split(', ') if q in mapeamento_pontos) if isinstance(x, str) else 0)
