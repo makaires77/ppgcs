@@ -1,0 +1,83 @@
+[
+    {
+        "ALGORITMO": "Recurrent Neural Network (RNN)",
+        "TIPOS DE APRENDIZADO": "Aprendizado Supervisionado com Deep Learning",
+        "DESCRIÇÃO": "Redes neurais recorrentes são usadas para dados sequenciais, como séries temporais e processamento de linguagem natural.",
+        "CASOS DE USO": ["Análise de séries temporais", "Modelagem de linguagem natural", "Tradução automática"],
+        "VANTAGENS": ["Capaz de lidar com dados sequenciais", "Usado em diversas aplicações de processamento de linguagem natural"],
+        "DESVANTAGENS": ["Dificuldade em treinar devido ao problema do gradiente desvanecente", "Requer muitos dados de treinamento"],
+        "FONTE": "Rumelhart1986"
+    },
+    {
+        "ALGORITMO": "Convolutional Neural Network (CNN)",
+        "TIPOS DE APRENDIZADO": "Aprendizado Supervisionado com Deep Learning",
+        "DESCRIÇÃO": "Redes neurais convolucionais são usadas principalmente para processamento de imagens, reconhecimento de objetos e segmentação de imagens.",
+        "CASOS DE USO": ["Reconhecimento de imagens", "Segmentação de imagens médicas", "Detecção de objetos em veículos autônomos"],
+        "VANTAGENS": ["Alta precisão em tarefas de visão computacional", "Capaz de lidar com grandes volumes de dados de imagem"],
+        "DESVANTAGENS": ["Requer muitos dados de treinamento", "Computacionalmente intensivo"],
+        "FONTE": "LeCun1989"
+    },
+    {
+        "ALGORITMO": "Autoencoders",
+        "TIPOS DE APRENDIZADO": "Aprendizado Não-Supervisionado com Deep Learning",
+        "DESCRIÇÃO": "Autoencoders são redes neurais que aprendem a codificar e decodificar dados, sendo usados para redução de dimensionalidade e aprendizado de características.",
+        "CASOS DE USO": ["Redução de dimensionalidade", "Detecção de anomalias", "Aprendizado de características"],
+        "VANTAGENS": ["Capaz de aprender representações eficientes dos dados", "Usado em diversas aplicações de aprendizado não-supervisionado"],
+        "DESVANTAGENS": ["Requer ajuste cuidadoso dos hiperparâmetros", "Pode não ser eficaz em todos os tipos de dados"],
+        "FONTE": "Hinton2006"
+    },    
+    {
+        "ALGORITMO": "End-to-End Training of DNNs in the Fourier Domain",
+        "TIPOS DE APRENDIZADO": "Aprendizado Supervisionado com Deep Learning",
+        "DESCRIÇÃO": "Treinamento de redes neurais profundas diretamente no domínio da Fourier para melhorar a eficiência e a precisão em tarefas específicas.",
+        "CASOS DE USO": ["Análise de imagens médicas", "Reconhecimento de fala", "Previsão de séries temporais"],
+        "VANTAGENS": ["Alta eficiência", "Melhor desempenho em tarefas específicas"],
+        "DESVANTAGENS": ["Requer ajuste cuidadoso dos hiperparâmetros", "Pode ser desafiador para implementações práticas"],
+        "FONTE": "Mathieu2013"
+    },
+    {
+        "ALGORITMO": "Generative Adversarial Networks (GANs)",
+        "TIPOS DE APRENDIZADO": "Aprendizado Não-Supervisionado com Deep Learning",
+        "DESCRIÇÃO": "Redes adversariais generativas são usadas para gerar novos dados semelhantes aos dados de treinamento, como imagens e textos.",
+        "CASOS DE USO": ["Geração de imagens", "Síntese de texto", "Aumento de dados"],
+        "VANTAGENS": ["Capaz de gerar dados realistas", "Usado em diversas aplicações criativas"],
+        "DESVANTAGENS": ["Difícil de treinar e estabilizar", "Pode gerar dados que não são realistas"],
+        "FONTE": "Goodfellow2014"
+    },
+    {
+        "ALGORITMO": "Fourier Neural Networks (FNN)",
+        "TIPOS DE APRENDIZADO": "Aprendizado Supervisionado com Deep Learning",
+        "DESCRIÇÃO": "Redes neurais que utilizam Transformadas de Fourier para decompor sinais em suas frequências constituintes, melhorando a precisão em certas tarefas.",
+        "CASOS DE USO": ["Processamento de sinais", "Reconhecimento de padrões", "Análise de séries temporais"],
+        "VANTAGENS": ["Melhor precisão", "Capaz de lidar com grandes volumes de dados de sinal"],
+        "DESVANTAGENS": ["Computacionalmente intensivo", "Requer muitos dados de treinamento"],
+        "FONTE": "Rippel2015"
+    },    
+    {
+        "ALGORITMO": "Fourier Transform Autoencoders",
+        "TIPOS DE APRENDIZADO": "Aprendizado Não-Supervisionado com Deep Learning",
+        "DESCRIÇÃO": "Autoencoders que utilizam Transformadas de Fourier para aprender representações eficientes de dados não-supervisionados.",
+        "CASOS DE USO": ["Redução de dimensionalidade", "Detecção de anomalias", "Compressão de dados"],
+        "VANTAGENS": ["Capaz de aprender representações eficientes", "Melhor desempenho em tarefas não-supervisionadas"],
+        "DESVANTAGENS": ["Requer ajuste cuidadoso dos hiperparâmetros", "Pode não ser eficaz em todos os tipos de dados"],
+        "FONTE": "Zhu2017"
+    },
+    {
+        "ALGORITMO": "Redes de Kolmogorov-Arnold (KANs)",
+        "TIPOS DE APRENDIZAGEM": "Aprendizado Supervisionado com Deep Learning",
+        "DESCRIÇÃO": "Inspirado no teorema de representação de Kolmogorov-Arnold, os KANs usam funções de ativação aprendíveis em arestas em vez de funções de ativação fixas em nós, proporcionando melhor precisão e interpretabilidade em comparação com MLPs.",
+        "CASOS DE USO": ["Aproximação de função universal", "Resolução de equações diferenciais parciais", "Aprendizado contínuo"],
+        "VANTAGENS": ["Maior precisão e interpretabilidade", "Sem pesos lineares, apenas funções baseadas em spline"],
+        "DESVANTAGENS": ["Requer ajuste cuidadoso de hiperparâmetros", "Pode ser computacionalmente intensivo"],
+        "FONTE": "Liu2024"
+    },
+    {
+        "ALGORITMO": "Graph Kolmogorov-Arnold Networks (GKANs)",
+        "TIPOS DE APRENDIZAGEM": "Aprendizado Supervisionado com Deep Learning",
+        "DESCRIÇÃO": "GKANs estendem os princípios de KANs para dados estruturados em grafos, usando funções baseadas em splines aprendíveis entre camadas em vez de arquitetura convolucional fixa.",
+        "CASOS DE USO": ["Tarefas de aprendizagem baseadas em grafos", "Análise de rede", "Processamento de sinal de grafos"],
+        "VANTAGENS": ["Mais flexível e poderoso que GCNs tradicionais", "Melhor tratamento de dados estruturados em grafos"],
+        "DESVANTAGENS": ["Complexo de implementar e treinar", "Requer grandes quantidades de dados"],
+        "FONTE": "Kiamari2024"
+    }
+]
