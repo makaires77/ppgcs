@@ -57,6 +57,240 @@ from selenium.common.exceptions import (
 warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
+import pandas as pd
+import plotly.express as px
+import plotly.express.colors as px_colors
+import plotly.graph_objects as go
+
+class PlotProduction:
+    def __init__(self, df):
+        """
+        Inicializa a classe com o DataFrame de entrada.
+
+        Args:
+            df (pd.DataFrame): DataFrame com a estrutura especificada na pergunta.
+                               Os índices são os nomes dos pesquisadores e as colunas são os anos.
+        """
+        self.df = df
+        self.df = self.df.reset_index()
+        self.df = self.df.rename(columns={'index': 'Autor'})
+        self.df['Autor'] = self.df['Autor'].astype(str)
+
+    def preparar_dados(self):
+        """
+        Prepara os dados para plotagem, anonimizando os pesquisadores e reestruturando o DataFrame.
+        """
+
+        # Cria uma nova coluna 'ID' com IDs anônimos para os pesquisadores
+        self.df['ID'] = 'p' + (self.df.index + 1).astype(str)
+
+        try:
+            # Remove a coluna 'Pesquisador' original
+            self.df.drop('Autor', axis=1, inplace=True)
+
+            # Remove a coluna 'Pesquisador' original
+            self.df.drop('Contagem', axis=1, inplace=True)        
+        except:
+            pass
+        
+        # Reestrutura o DataFrame para o formato longo
+        self.df = self.df.melt(id_vars='ID', value_vars=self.df.columns[:-1],
+                                 var_name='Ano', value_name='Quantidade')
+
+        return self.df
+
+    def plotar_linhas(self):
+        """
+        Plota o gráfico de linhas com Plotly Express.
+        """
+
+        df_longo = self.preparar_dados()
+
+        fig = px.line(df_longo, x='Ano', y='Quantidade', color='ID',
+              title='Produção de artigos por ano, segmentada por autor',
+              width=800, height=900)
+
+        # Ajustando o eixo x para mostrar todos os anos
+        fig.update_xaxes(type='category')
+
+        # Adicionando marcadores manualmente
+        fig.update_traces(mode='lines+markers')
+
+        fig.show()
+        
+    def ajustar_posicao_rotulos(self, df_longo, df_anotacoes):
+        """
+        Calcula a posição correta dos rótulos no eixo y para o modo 'overlay'.
+        """
+
+        # Agrupa df_longo por 'Ano' e 'ID' e calcula a soma acumulada de 'Quantidade'
+        df_longo['Soma Acumulada'] = df_longo.groupby(['Ano', 'ID'])['Quantidade'].cumsum()
+
+        # Calcula a posição y dos rótulos adicionando um pequeno deslocamento à soma acumulada
+        df_longo['Posicao Rotulo'] = df_longo['Soma Acumulada'] - df_longo['Quantidade'] / 2
+
+        # Retorna as posições y dos rótulos
+        return df_longo['Posicao Rotulo']
+
+    def plotar_barras_empilhadas(self, barmode='group'):
+        """
+        Plota o gráfico de barras empilhadas com Plotly Express, incluindo anotações com a
+        quantidade total de artigos e a contagem de pesquisadores por ano.
+        """
+
+        df_longo = self.preparar_dados()
+
+        # Converte a coluna 'Ano' para str
+        df_longo['Ano'] = df_longo['Ano'].astype(str)
+
+        # # Normaliza os valores de 'Quantidade' para o intervalo [0, 1]
+        # df_longo['Quantidade_normalizada'] = (df_longo['Quantidade'] - df_longo['Quantidade'].min()) / (df_longo['Quantidade'].max() - df_longo['Quantidade'].min())
+
+        # Calcula a quantidade total de artigos por ano
+        total_artigos_ano = df_longo.groupby('Ano')['Quantidade'].sum().reset_index(name='Total Artigos')
+
+        # Calcula a contagem de pesquisadores que publicaram por ano
+        contagem_pesquisadores_ano = df_longo.groupby('Ano')['ID'].nunique().reset_index(name='Pesquisadores')
+
+        # Junta as informações em um novo DataFrame
+        df_anotacoes = pd.merge(contagem_pesquisadores_ano, total_artigos_ano, on='Ano')
+
+        # Apura quantidades totais e formata as anotações
+        df_anotacoes['Anotacao'] = df_anotacoes.apply(lambda row: f"{row['Total Artigos']}", axis=1)
+
+        fig = px.bar(df_longo, 
+                     x='Ano', 
+                     y='Quantidade',
+                     color='Quantidade',
+                     title='Publicações de Artigos por Ano',
+                     color_continuous_scale=px.colors.sequential.Greens,
+                     barmode=barmode,
+                     width=800, height=600)
+
+        # Ajustando o eixo x para mostrar todos os anos
+        fig.update_xaxes(type='category')
+        
+        # Remove a legenda
+        fig.update_layout(showlegend=False)
+
+        # Adiciona as anotações
+        anos = df_longo['Ano'].unique()
+        y = df_anotacoes['Total Artigos']
+        text = df_anotacoes['Anotacao']
+
+        for i, ano in enumerate(anos):
+            fig.add_annotation(x=i, y=y[i], text=text[i], showarrow=False, font=dict(size=14), yshift=10)
+
+        fig.show()
+
+    def plotar_barras_periodo(self, ano_inicio=None, ano_fim=None, barmode='stack'):
+        """
+        Plota o gráfico de barras com Plotly Express, incluindo anotações com a
+        quantidade total de artigos e a contagem de pesquisadores por ano.
+        """
+        df_longo = self.preparar_dados()
+
+        # Converte a coluna 'Ano' para string
+        df_longo['Ano'] = df_longo['Ano'].astype(str)
+
+        # Remove caracteres não numéricos da coluna 'Ano'
+        df_longo['Ano'] = df_longo['Ano'].str.replace('[^0-9]', '', regex=True)
+
+        # Converte a coluna 'Ano' para inteiro
+        df_longo['Ano'] = pd.to_numeric(df_longo['Ano'])
+
+        # Filtrando os dados por ano
+        if ano_inicio:
+            df_longo = df_longo[df_longo['Ano'].astype(int) >= int(ano_inicio)] # Correção aqui
+        if ano_fim:
+            df_longo = df_longo[df_longo['Ano'].astype(int) <= int(ano_fim)]   # Correção aqui
+
+        fig = px.bar(df_longo, x='Ano', 
+                     y='Quantidade', 
+                     color='Quantidade',
+                     title='Produção de artigos por ano, segmentada por autor',
+                     color_continuous_scale=px.colors.sequential.Greens, 
+                     barmode='group',
+                     width=800, height=600)
+
+        # Ajustando o eixo x para mostrar todos os anos
+        fig.update_xaxes(type='category')
+
+        fig.show()
+
+    def plotar_barras(self, barmode='stack'): # Corrigido: indentação alinhada com outras funções
+        """
+        Plota o gráfico de barras com Plotly Express, incluindo anotações com a
+        quantidade total de artigos e a contagem de pesquisadores por ano.
+        """
+
+        df_longo = self.preparar_dados()
+
+        # Converte a coluna 'Ano' para str
+        df_longo['Ano'] = df_longo['Ano'].astype(str)
+
+        # Calcula a quantidade total de artigos por ano
+        total_artigos_ano = df_longo.groupby('Ano')['Quantidade'].sum().reset_index(name='Total Artigos')
+
+        # Calcula a contagem de pesquisadores que publicaram por ano
+        contagem_pesquisadores_ano = df_longo.groupby('Ano')['ID'].nunique().reset_index(name='Pesquisadores')
+
+        # Junta as informações em um novo DataFrame
+        df_anotacoes = pd.merge(contagem_pesquisadores_ano, total_artigos_ano, on='Ano')
+
+        # Apura quantidades totais e formata as anotações
+        df_anotacoes['Anotacao'] = df_anotacoes.apply(lambda row: f"{row['Total Artigos']}", axis=1)
+
+        fig = px.bar(df_longo, 
+                     x='Ano', 
+                     y='Quantidade', 
+                     color='Quantidade',
+                     title='Produção de artigos por ano, segmentada por autor',
+                     color_continuous_scale=px.colors.sequential.Greens, 
+                     width=800, height=600,
+                     barmode=barmode)
+
+        # Ajustando o eixo x para mostrar todos os anos
+        fig.update_xaxes(type='category')
+        
+        # Remove a legenda
+        fig.update_layout(showlegend=False)
+        
+        # Adiciona as anotações
+        anos = df_longo['Ano'].unique()
+        y_max = df_longo.groupby('Ano')['Quantidade'].max().tolist()  # Calcula o valor máximo de Quantidade para cada ano
+        text = df_anotacoes['Anotacao']
+
+        for i, ano in enumerate(anos):
+            fig.add_annotation(x=i, y=y_max[i], text=text[i], showarrow=False, font=dict(size=14), yshift=10)
+
+        fig.show()
+
+    def plotar_boxplot(self):
+        """
+        Plota o gráfico de boxplot com Plotly Express para cada ano.
+        """
+
+        df_longo = self.preparar_dados()
+
+        # Converte a coluna 'Ano' para str
+        df_longo['Ano'] = df_longo['Ano'].astype(str)
+
+        fig = px.box(df_longo, 
+                     x='Ano', 
+                     y='Quantidade',
+                     title='Distribuição da produção de artigos por ano',
+                     width=800, height=600)
+
+        # Ajustando o eixo x para mostrar todos os anos
+        fig.update_xaxes(type='category')
+        
+        # Remove a legenda
+        fig.update_layout(showlegend=False)
+
+        fig.show()
+
+
 class JSONFileManager:
     def list_json(self, folder):
         # Criar uma lista para armazenar os nomes dos arquivos JSON
