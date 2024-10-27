@@ -1,0 +1,531 @@
+[
+    {
+        "id_levantamento": "ID",
+        "hora_inicio": "Hora de in\u00edcio",
+        "hora_conclusao": "Hora de conclus\u00e3o",
+        "email": "E-mail",
+        "nome_vazio": "Nome",
+        "ultima_modificacao": "Hora da \u00faltima modifica\u00e7\u00e3o",
+        "consentimento_livre": "TERMO DE CONSENTIMENTO LIVRE E ESCLARECIDO\n\nEu, Antonio Marcos Aires Barbosa, CPF n\u00ba 748.581.143-68, analista de gest\u00e3o em sa\u00fade da Funda\u00e7\u00e3o Oswaldo Cruz (FIOCRUZ CEAR\u00c1) convido a participar da pe...",
+        "questoes_interesse": "Qual, ou quais, as\u00a0principais QUEST\u00d5ES CIENT\u00cdFICAS* norteadoras das suas pesquisas, que est\u00e3o relacionadas ao enfrentamento dos desafios em sa\u00fade, estudados nas\u00a0pesquisas nas quais voc\u00ea atua na Fi...",
+        "palavras_chave": [
+            "Quais as principais PALAVRAS-CHAVE\u00a0que podem melhor associar seus temas centrais de pesquisa com OPORTUNIDADES DE FOMENTO que voc\u00ea deseja que sejam monitoradas?"
+        ],
+        "competencias_possuidas": [
+            "Quais as principais COMPET\u00caNCIAS CIENT\u00cdFICAS E TECNOL\u00d3GICAS* dominadas pelo(s) grupo(s)\u00a0de pesquisa no qual voc\u00ea atua, que podem contribuir melhor para\u00a0implementar a Estrat\u00e9gia Nacional de Desenvo..."
+        ],
+        "competencias_desenvolver": [
+            "Em sua vis\u00e3o, quais compet\u00eancias cient\u00edficas e tecnol\u00f3gicas precisam ser\u00a0melhor desenvolvidas e\u00a0exploradas\u00a0na Fiocruz Cear\u00e1 para ampliar o desempenho e impacto positivo das atividades de pesquisa,..."
+        ],
+        "intencao_desenvolvimento": "Na sua pesquisa, voc\u00ea tem objetivo de avan\u00e7ar em etapas de\u00a0desenvolvimento tecnol\u00f3gico? Em caso positivo,\u00a0quais as principais atividades executadas? Quais, na sua vis\u00e3o, s\u00e3o os principais\u00a0desafios...",
+        "trl_diagnosticos": "Tecnologia para\u00a0Insumo Diagn\u00f3stico",
+        "trl_pesquisa": "Tecnologia para\u00a0Insumo para Pesquisa",
+        "trl_terapias": "Tecnologia para\u00a0Insumo Terap\u00eautico",
+        "trl_servicos": "Tecnologia para\u00a0Servi\u00e7o em sa\u00fade",
+        "trl_social": "Tecnologia Social",
+        "trl_digital": "Tecnologia Digital",
+        "ceis_conhecimento_blocos": "Blocos",
+        "ceis_conhecimento_desafios": "Desafios",
+        "ceis_conhecimento_plataformas": "Plataformas",
+        "ceis_conhecimento_produtos": "Produtos",
+        "ceis_interesse_desafios": "Para alinhar pesquisas com o desenvolvimento do CEIS, indique em quais Desafios\u00a0suas pesquisas guardam rela\u00e7\u00e3o mais pr\u00f3xima\u00a0(atualmente, ou no futuro).",
+        "ceis_interesse_produtos_emergencias": [
+            "Para alinhar com a\u00a0Prepara\u00e7\u00e3o do Sistema de Sa\u00fade para Emerg\u00eancias Sanit\u00e1rias\u00a0(Bloco 01\u00a0da Matriz desenvolvimento do CEIS), indique quais\u00a0Produtos\u00a0podem ser\u00a0de alguma forma suportados por algum as..."
+        ],
+        "ceis_interesse_produtos_agravos": [
+            "Para alinhar com as\u00a0Doen\u00e7as e Agravos Cr\u00edticos para o SUS\u00a0(Bloco 02\u00a0da Matriz desenvolvimento do CEIS), indique quais\u00a0Produtos\u00a0podem ser\u00a0de alguma forma suportados por algum aspecto das suas pesqu..."
+        ],
+        "ceis_interesse_produtos_sugeridos": [
+            "Mesmo que n\u00e3o associado com os desafios e produtos acima listados, de qual maneira voc\u00ea enxerga que\u00a0sua pesquisa pode contribuir para boa execu\u00e7\u00e3o da Estrat\u00e9gia Nacional de Desenvolvimento do Comp..."
+        ],
+        "tempo_percentual_buscas": "Atividades de buscar dados (levantar fontes, buscar, ordenar resultados)",
+        "tempo_percentual_analises": "Atividades de ler e analisar\u00a0dados (refletir sobre os dados, comparar com literatura)",
+        "tempo_percentual_debates": "Atividades de debates\u00a0em grupo e constru\u00e7\u00f5es coletivas",
+        "tempo_percentual_redacao": "Atividades de redigir textos",
+        "tempo_percentual_reunioes": "Reuni\u00f5es de trabalho (presenciais ou remotas)",
+        "tempo_percentual_comunicacao": "Atendendo comunica\u00e7\u00f5es do trabalho (e-mails, Whatzapp, telefonemas etc.)",
+        "nivel_satisfacao": "Avalie seu atual grau de satisfa\u00e7\u00e3o quanto aos processos de suporte \u00e0 pesquisa na Fiocruz Cear\u00e1, onde 1 estrela \u00e9 o pior n\u00edvel de satisfa\u00e7\u00e3o e 5 estrelas \u00e9 o melhor n\u00edvel de satisfa\u00e7\u00e3o",
+        "nome_pesquisador": "Caso deseje se identificar, informe aqui seu nome completo (ou conforme est\u00e1 no seu Curr\u00edculo Lattes, caso no Lattes voc\u00ea n\u00e3o use seu nome completo) para incluirmos seu curr\u00edculo em busca de oport..."
+    },
+    {
+        "id_levantamento": "1",
+        "hora_inicio": "2024-06-24 14:49:42",
+        "hora_conclusao": "2024-06-24 15:00:39",
+        "email": "anonymous",
+        "nome_vazio": "",
+        "ultima_modificacao": "",
+        "consentimento_livre": "Aceito participar deste levantamento",
+        "questoes_interesse": "tratamentos mais efetivos para doen\u00e7as infecciosas e c\u00e2ncer; vacinas; terapias otimizadas baseadas em nanotecnologia ",
+        "palavras_chave": [
+            "nanotecnologia, nanosseguran\u00e7a, doen\u00e7as negligenciadas, c\u00e2ncer, terapia combinada, vacinas"
+        ],
+        "competencias_possuidas": [
+            "combina\u00e7\u00e3o farmacol\u00f3gica, cultura celular, modelos experimentais, vacinas, nanotecnologia, imunofarmacologia"
+        ],
+        "competencias_desenvolver": [
+            ""
+        ],
+        "intencao_desenvolvimento": "sim...nosso grupo precisa de apoio para co-desenvolvimento e/ou transfer\u00eancia de tecnologia",
+        "trl_diagnosticos": "",
+        "trl_pesquisa": "TRL1-TRL3",
+        "trl_terapias": "Pronto a Transferir",
+        "trl_servicos": "",
+        "trl_social": "",
+        "trl_digital": "",
+        "ceis_conhecimento_blocos": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_conhecimento_desafios": "Conhe\u00e7o a maior parte",
+        "ceis_conhecimento_plataformas": "Conhe\u00e7o a maior parte",
+        "ceis_conhecimento_produtos": "Conhe\u00e7o a maior parte",
+        "ceis_interesse_desafios": "D01. PREPARA\u00c7\u00c3O PARA RESPOSTA A EMERG\u00caNCIAS EM SA\u00daDE E PROTE\u00c7\u00c3O PARA DOEN\u00c7AS IMUNOPREVEN\u00cdVEIS;D06. TECNOLOGIAS PARA SISTEMAS DE SA\u00daDE (SUS);D07. DOEN\u00c7AS E POPULA\u00c7\u00d5ES NEGLIGENCIADAS;D08. C\u00c2NCERES COM MAIOR INCID\u00caNCIA;D13. OUTRAS DOEN\u00c7AS CR\u00d4NICAS N\u00c3O TRANSMISS\u00cdVEIS;",
+        "ceis_interesse_produtos_emergencias": [
+            "Vacinas do PNI que demandem atualiza\u00e7\u00e3o tecnol\u00f3gica;Vacina Leishmanioses;Vacinas combinadas;Vacina associada a formas farmac\u00eauticas n\u00e3o invasivas;Testes diagn\u00f3sticos moleculares, por imunoensaio, r\u00e1pidos de ant\u00edgeno ou anticorpo, point-of-care, autoteste e outros testes diagn\u00f3sticos in vitro;IFA antimicrobianos;"
+        ],
+        "ceis_interesse_produtos_agravos": [
+            "    Medicamentos negligenciados e Novos esquemas terap\u00eauticos para otimiza\u00e7\u00e3o do tratamento de Tuberculose, Doen\u00e7a de Chagas, Hansen\u00edase, Esquistossomose, Leishmaniose, Mal\u00e1ria e demais doen\u00e7as elencadas pelo CIEDDS;Medicamentos e novos esquemas terap\u00eauticos demandados pelo SUS para tratamento de HIV/AIDS e Hepatites virais;Testes diagn\u00f3stico moleculares, por imunoensaio, r\u00e1pidos de ant\u00edgeno ou anticorpo, point-of-care, autoteste e outros testes diagn\u00f3stico in vitro;Produtos de Terapia G\u00eanica;"
+        ],
+        "ceis_interesse_produtos_sugeridos": [
+            ""
+        ],
+        "tempo_percentual_buscas": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_analises": "De 20 a 40% do tempo\u00a0\u00a0(~2h/dia)",
+        "tempo_percentual_debates": "De 40 a\u00a060% do tempo \u00a0(~4h/dia)",
+        "tempo_percentual_redacao": "De 20 a 40% do tempo\u00a0\u00a0(~2h/dia)",
+        "tempo_percentual_reunioes": "De 60 a\u00a080% do tempo \u00a0(~6h/dia)",
+        "tempo_percentual_comunicacao": "De 80 a\u00a0100% do tempo \u00a0(~8h/dia)",
+        "nivel_satisfacao": "4",
+        "nome_pesquisador": "Roberto Nicolete"
+    },
+    {
+        "id_levantamento": "2",
+        "hora_inicio": "2024-09-10 12:12:24",
+        "hora_conclusao": "2024-09-10 13:00:46",
+        "email": "anonymous",
+        "nome_vazio": "",
+        "ultima_modificacao": "",
+        "consentimento_livre": "Aceito participar deste levantamento",
+        "questoes_interesse": "Avalia\u00e7\u00e3o dos atributos da Aten\u00e7\u00e3o Prim\u00e1ria \u00e0 Sa\u00fade; \nPesquisas epidemiol\u00f3gicas sobre doen\u00e7as cr\u00f4nicas n\u00e3o transmiss\u00edveis, como diabetes mellitus;\nPesquisa cl\u00ednica na Estrat\u00e9gia Sa\u00fade da Fam\u00edlia;\nDesenvolvimento e valida\u00e7\u00e3o de tecnologias (aplicativos, v\u00eddeos) voltados para a Estrat\u00e9gia Sa\u00fade da Fam\u00edlia.",
+        "palavras_chave": [
+            "Aten\u00e7\u00e3o Prim\u00e1ria \u00e0 Sa\u00fade",
+            "Estrat\u00e9gia Sa\u00fade da Fam\u00edlia",
+            "Pesquisa Cl\u00ednica",
+            "Ensaios cl\u00ednicos",
+            "Diabetes Mellitus",
+            "Tecnologias em sa\u00fade"
+        ],
+        "competencias_possuidas": [
+            "Compet\u00eancias cient\u00edficas: ",
+            "1. Epidemiologia (Conhecimento, Habilidade e An\u00e1lise de riscos/fatores associados a doen\u00e7as) como pano de fundo para os desenhos de pesquisa.",
+            "2. Bioestat\u00edstica ",
+            "3. Pesquisa Cl\u00ednica (Ensaios Cl\u00ednicos controlados e randomizados)",
+            "",
+            "Compet\u00eancias Tecnol\u00f3gicas:",
+            "1. Tecnologia de Comunica\u00e7\u00e3o e Informa\u00e7\u00e3o (TIC). ",
+            "2. Modelagem",
+            "3. \u00c9tica em Pesquisa e Sa\u00fade."
+        ],
+        "competencias_desenvolver": [
+            "Pesquisa Cl\u00ednica (Ensaios Cl\u00ednicos controlados e randomizados) - constru\u00e7\u00e3o de um centro de pesquisa.",
+            "Tecnologia de Comunica\u00e7\u00e3o e Informa\u00e7\u00e3o (TIC). ",
+            "\u00c9tica em Pesquisa e Sa\u00fade."
+        ],
+        "intencao_desenvolvimento": "Sim. \nAvan\u00e7ar em desenvolvimento de pesquisa cl\u00ednica;\nTIC (aplicativos).",
+        "trl_diagnosticos": "Concep\u00e7\u00e3o de Estudos",
+        "trl_pesquisa": "Concep\u00e7\u00e3o de Estudos",
+        "trl_terapias": "TRL1-TRL3",
+        "trl_servicos": "TRL7-TRL9",
+        "trl_social": "Concep\u00e7\u00e3o de Estudos",
+        "trl_digital": "",
+        "ceis_conhecimento_blocos": "N\u00e3o desejo ou n\u00e3o posso opinar",
+        "ceis_conhecimento_desafios": "Conhe\u00e7o a maior parte",
+        "ceis_conhecimento_plataformas": "N\u00e3o desejo ou n\u00e3o posso opinar",
+        "ceis_conhecimento_produtos": "Conhe\u00e7o a maior parte",
+        "ceis_interesse_desafios": "D04. VULNERABILIDADE TECNOL\u00d3GICA E ECON\u00d4MICA PARA ACESSO EM SA\u00daDE;D06. TECNOLOGIAS PARA SISTEMAS DE SA\u00daDE (SUS);D07. DOEN\u00c7AS E POPULA\u00c7\u00d5ES NEGLIGENCIADAS;D09. DOEN\u00c7AS CARDIOVASCULARES;D10. DIABETES;",
+        "ceis_interesse_produtos_emergencias": [
+            "Fitoter\u00e1picos e produtos da biodiversidade apoiados pelo SUS;"
+        ],
+        "ceis_interesse_produtos_agravos": [
+            "Medicamentos e novos esquemas terap\u00eauticos demandados pelo SUS para tratamento de HIV/AIDS e Hepatites virais;"
+        ],
+        "ceis_interesse_produtos_sugeridos": [
+            "Produ\u00e7\u00e3o e distribui\u00e7\u00e3o em larga escala de fitoter\u00e1picos j\u00e1 comprovados em ensaios cl\u00ednicos, controlados e randomizados, para o controle metab\u00f3lico de pessoas que vivem com diabetes mellitus (c\u00farcuma, passiflora, canela e gengibre)",
+            "Comprova\u00e7\u00e3o do uso da Doxiciclina como profilaxia p\u00f3s exposi\u00e7\u00e3o (DOXY-PEP) na preven\u00e7\u00e3o das principais infec\u00e7\u00f5es sexualmente transmiss\u00edveis bacterianas (s\u00edfilis, clam\u00eddia e gonorreia). "
+        ],
+        "tempo_percentual_buscas": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_analises": "De 20 a 40% do tempo\u00a0\u00a0(~2h/dia)",
+        "tempo_percentual_debates": "De 40 a\u00a060% do tempo \u00a0(~4h/dia)",
+        "tempo_percentual_redacao": "De 20 a 40% do tempo\u00a0\u00a0(~2h/dia)",
+        "tempo_percentual_reunioes": "De 40 a\u00a060% do tempo \u00a0(~4h/dia)",
+        "tempo_percentual_comunicacao": "De 40 a\u00a060% do tempo \u00a0(~4h/dia)",
+        "nivel_satisfacao": "4",
+        "nome_pesquisador": "Roberto Wagner J\u00fanior Freire de Freitas"
+    },
+    {
+        "id_levantamento": "3",
+        "hora_inicio": "2024-09-10 13:16:29",
+        "hora_conclusao": "2024-09-10 14:31:21",
+        "email": "anonymous",
+        "nome_vazio": "",
+        "ultima_modificacao": "",
+        "consentimento_livre": "Aceito participar deste levantamento",
+        "questoes_interesse": "Ocorr\u00eancia de bact\u00e9rias super resistentes e associa\u00e7\u00e3o com polui\u00e7\u00e3o ambiental por agrot\u00f3xicos; contamina\u00e7\u00e3o por metais pesados atrav\u00e9s da cadeia alimentar e associa\u00e7\u00e3o com risco de c\u00e2ncer; fatores extr\u00ednsecos que contribuem para a incid\u00eancia de dist\u00farbios metais.",
+        "palavras_chave": [
+            "ci\u00eancias \u00f4micas, processamento de dados, an\u00e1lise de vias biol\u00f3gicas, metabol\u00f4mica, metagen\u00f4mica, desenvolvimento de m\u00e9todos diagn\u00f3sticos e progn\u00f3sticos de doen\u00e7as"
+        ],
+        "competencias_possuidas": [
+            "No Programa de Desenvolvimento e Inova\u00e7\u00e3o Local, podemos contribuir com a tecnologia de desenvolvimento de m\u00e9todos anal\u00edticos, processamento de dados, uso da intelig\u00eancia artificial e aprendizados de m\u00e1quina para a detec\u00e7\u00e3o precoce de doen\u00e7as.",
+            "No Programa para Amplia\u00e7\u00e3o e Moderniza\u00e7\u00e3o da Infraestrutura do CEIS, pretendemos montar uma plataforma com an\u00e1lises multi\u00f4micas que permita o uso, treinamento e a dissemina\u00e7\u00e3o dessa tecnologia no estado do Cear\u00e1."
+        ],
+        "competencias_desenvolver": [
+            "Precisamos comprar equipamentos que permitam as an\u00e1lises multi\u00f4micas (principalmente metabol\u00f4mica e metagen\u00f4mica) e investir em computadores mais potentes, capazes de processar grande quantidade de dados. "
+        ],
+        "intencao_desenvolvimento": "Sim. Inserido no bloco de servi\u00e7os do CEIS, podemos desenvolver m\u00e9todos anal\u00edticos de mol\u00e9culas para diagn\u00f3stico e progn\u00f3stico de doen\u00e7as, em especial dist\u00farbios mentais, doen\u00e7as decorrentes de emerg\u00eancias sanit\u00e1rias (polui\u00e7\u00e3o ambiental, aquecimento global), doen\u00e7as cr\u00f4nicas, doen\u00e7as relacionadas ao envelhecimento (metab\u00f3licas, etc).",
+        "trl_diagnosticos": "TRL1-TRL3",
+        "trl_pesquisa": "Concep\u00e7\u00e3o de Estudos",
+        "trl_terapias": "Concep\u00e7\u00e3o de Estudos",
+        "trl_servicos": "Concep\u00e7\u00e3o de Estudos",
+        "trl_social": "Concep\u00e7\u00e3o de Estudos",
+        "trl_digital": "",
+        "ceis_conhecimento_blocos": "Conhe\u00e7o Totalmente",
+        "ceis_conhecimento_desafios": "Conhe\u00e7o a maior parte",
+        "ceis_conhecimento_plataformas": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_conhecimento_produtos": "Conhe\u00e7o a maior parte",
+        "ceis_interesse_desafios": "D06. TECNOLOGIAS PARA SISTEMAS DE SA\u00daDE (SUS);D11. DOEN\u00c7AS ASSOCIADAS AO ENVELHECIMENTO DA POPULA\u00c7\u00c3O;D13. OUTRAS DOEN\u00c7AS CR\u00d4NICAS N\u00c3O TRANSMISS\u00cdVEIS;",
+        "ceis_interesse_produtos_emergencias": [
+            "Testes diagn\u00f3sticos moleculares, por imunoensaio, r\u00e1pidos de ant\u00edgeno ou anticorpo, point-of-care, autoteste e outros testes diagn\u00f3sticos in vitro;"
+        ],
+        "ceis_interesse_produtos_agravos": [
+            "Testes diagn\u00f3sticos moleculares e de anatomia patol\u00f3gica;"
+        ],
+        "ceis_interesse_produtos_sugeridos": [
+            "No uso de aprendizagem de m\u00e1quina e estat\u00edstica para processamento e interpreta\u00e7\u00e3o de dados."
+        ],
+        "tempo_percentual_buscas": "De 20 a 40% do tempo\u00a0\u00a0(~2h/dia)",
+        "tempo_percentual_analises": "De 60 a\u00a080% do tempo \u00a0(~6h/dia)",
+        "tempo_percentual_debates": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_redacao": "De 80 a\u00a0100% do tempo \u00a0(~8h/dia)",
+        "tempo_percentual_reunioes": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_comunicacao": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "nivel_satisfacao": "3",
+        "nome_pesquisador": "Margareth Gallo"
+    },
+    {
+        "id_levantamento": "4",
+        "hora_inicio": "2024-09-14 20:19:52",
+        "hora_conclusao": "2024-09-14 21:14:56",
+        "email": "anonymous",
+        "nome_vazio": "",
+        "ultima_modificacao": "",
+        "consentimento_livre": "Aceito participar deste levantamento",
+        "questoes_interesse": "Quais as limita\u00e7\u00f5es relacionadas ao diagn\u00f3stico e tratamento de doen\u00e7as de import\u00e2ncia humana, especialmente doen\u00e7as negligenciadas?",
+        "palavras_chave": [
+            "Doen\u00e7as Tropicais Negligenciadas, ofidismo, leishmaniose, arboviroses, doen\u00e7as neurodegenetrativas, cancer "
+        ],
+        "competencias_possuidas": [
+            "Desenvolvimento de insumos biol\u00f3gicos para aplica\u00e7\u00e3o em diagn\u00f3stico ou terap\u00eautica"
+        ],
+        "competencias_desenvolver": [
+            "Para ampliar o desempenho e impacto positivo das atividades de PDI na Fiocruz Cear\u00e1 \u00e9 importante o mapeamento das linhas e projetos de pesquisa e desenvolvimento, bem como as compet\u00eancias instaladas nos grupos de pesquisa vigentes da Fiocruz Cear\u00e1, consolidar o ambiente multiusu\u00e1rio dos laborat\u00f3rios, fortalecer a Qualidade e implanta\u00e7\u00e3o de BPL, al\u00e9m das a\u00e7\u00f5es voltadas a integridade de dados. Ainda, estimular a integra\u00e7\u00e3o das equipes, estabelecer o conceito e estrat\u00e9gias para implantacao e operacionaliza\u00e7\u00e3o de munic\u00edpio laborat\u00f3rio. "
+        ],
+        "intencao_desenvolvimento": "Sim. Sele\u00e7\u00e3o e caracteriza\u00e7\u00e3o in vitro e in vivo de insumos biol\u00f3gicos. Desafios: mentorias relacionadas ao ambiente de Inova\u00e7\u00e3o, al\u00e9m de aproxima\u00e7\u00e3o com \u00e1rea de registro de novos dispositivos de diagn\u00f3stico e medicamentos biol\u00f3gicos. ",
+        "trl_diagnosticos": "TRL1-TRL3",
+        "trl_pesquisa": "TRL1-TRL3",
+        "trl_terapias": "TRL4-TRL6",
+        "trl_servicos": "Concep\u00e7\u00e3o de Estudos",
+        "trl_social": "Concep\u00e7\u00e3o de Estudos",
+        "trl_digital": "",
+        "ceis_conhecimento_blocos": "Conhe\u00e7o a maior parte",
+        "ceis_conhecimento_desafios": "Conhe\u00e7o a maior parte",
+        "ceis_conhecimento_plataformas": "Conhe\u00e7o a maior parte",
+        "ceis_conhecimento_produtos": "Conhe\u00e7o a maior parte",
+        "ceis_interesse_desafios": "D02. MODERNIZA\u00c7\u00c3O DAS TECNOLOGIAS PRODUTIVAS DE SOROS IMUNOPROTETORES;D07. DOEN\u00c7AS E POPULA\u00c7\u00d5ES NEGLIGENCIADAS;",
+        "ceis_interesse_produtos_emergencias": [
+            "Testes diagn\u00f3sticos moleculares, por imunoensaio, r\u00e1pidos de ant\u00edgeno ou anticorpo, point-of-care, autoteste e outros testes diagn\u00f3sticos in vitro;IFA de base qu\u00edmica ou biotecnol\u00f3gica de medicamentos demandados pelo SUS que apresentem depend\u00eancia externa de insumos cr\u00edticos da cadeia produtiva para todos os desafios em sa\u00fade definidos nesta matriz;Radiof\u00e1rmacos e produtos de medicina nuclear;"
+        ],
+        "ceis_interesse_produtos_agravos": [
+            "    Medicamentos negligenciados e Novos esquemas terap\u00eauticos para otimiza\u00e7\u00e3o do tratamento de Tuberculose, Doen\u00e7a de Chagas, Hansen\u00edase, Esquistossomose, Leishmaniose, Mal\u00e1ria e demais doen\u00e7as elencadas pelo CIEDDS;Medicamentos e novos esquemas terap\u00eauticos demandados pelo SUS para tratamento de HIV/AIDS e Hepatites virais;Testes diagn\u00f3stico moleculares, por imunoensaio, r\u00e1pidos de ant\u00edgeno ou anticorpo, point-of-care, autoteste e outros testes diagn\u00f3stico in vitro;Medicamentos e IFA utilizados pelo SUS que apresentem depend\u00eancia externa de insumos cr\u00edticos da cadeia produtiva;"
+        ],
+        "ceis_interesse_produtos_sugeridos": [
+            "J\u00e1 associado "
+        ],
+        "tempo_percentual_buscas": "",
+        "tempo_percentual_analises": "",
+        "tempo_percentual_debates": "",
+        "tempo_percentual_redacao": "",
+        "tempo_percentual_reunioes": "",
+        "tempo_percentual_comunicacao": "",
+        "nivel_satisfacao": "",
+        "nome_pesquisador": "Carla Freire Celedonio Fernandes"
+    },
+    {
+        "id_levantamento": "5",
+        "hora_inicio": "2024-09-27 08:47:39",
+        "hora_conclusao": "2024-09-27 09:09:37",
+        "email": "anonymous",
+        "nome_vazio": "",
+        "ultima_modificacao": "",
+        "consentimento_livre": "Aceito participar deste levantamento",
+        "questoes_interesse": "Quais os  impactos que os sistemas agroalimentares hegem\u00f4nicos atuais causam na sa\u00fade e bem viver da popula\u00e7\u00e3o brasileira e quais os desdobramentos no SUS?\nQue benef\u00edcios e potencialidades podem ser desenvolvidas ao associarmos o campo da Sa\u00fade Coletiva com a Agroecologia e quais os desdobramentos no SUS?\nQue tecnologias/solu\u00e7\u00f5es inovadoras e coerentes encontramos nos territ\u00f3rios, realizadas pelas popula\u00e7\u00f5es do campo, floresta, \u00e1guas e \u00e1reas vulnerabilizadas que podem contribuir com o enfrentamento \u00e0 crise ecol\u00f3gica atual - sanit\u00e1ria, ambiental, social, pol\u00edtica, cultural etc e com o SUS?",
+        "palavras_chave": [
+            "sa\u00fade coletiva, agrot\u00f3xicos, agroecologia, sa\u00fade popular, povos e comunidades tradicionais, povos ind\u00edgenas, emerg\u00eancia clim\u00e1tica, sa\u00fade popular, plantas medicinais e fitoter\u00e1picos."
+        ],
+        "competencias_possuidas": [
+            "M\u00e9todos participativos de pesquisa, pesquisas qualitativas, an\u00e1lises territoriais participativas, educa\u00e7\u00e3o popular."
+        ],
+        "competencias_desenvolver": [
+            "Valoriza\u00e7\u00e3o e equidade de todos os m\u00e9todos de pesquisa, e de todas as \u00e1reas de conhecimento."
+        ],
+        "intencao_desenvolvimento": "Porque as tecnologias e solu\u00e7\u00f5es com as que trabalho s\u00e3o oriundas e produzidas conjuntamente com a popula\u00e7\u00e3o.\nContudo tenho interesse no desenvolvimento de jogos e experimentos para utiliz\u00e1-los em atividades de campo com crian\u00e7as, jovens e adultos. ",
+        "trl_diagnosticos": "N\u00e3o trabalho com esse tipo",
+        "trl_pesquisa": "N\u00e3o trabalho com esse tipo",
+        "trl_terapias": "N\u00e3o trabalho com esse tipo",
+        "trl_servicos": "N\u00e3o trabalho com esse tipo",
+        "trl_social": "N\u00e3o trabalho com esse tipo",
+        "trl_digital": "N\u00e3o trabalho com esse tipo",
+        "ceis_conhecimento_blocos": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_conhecimento_desafios": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_conhecimento_plataformas": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_conhecimento_produtos": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_interesse_desafios": "D05. ALTERNATIVAS TECNOL\u00d3GICAS PARA DESENVOLVIMENTO SUSTENT\u00c1VEL E QU\u00cdMICA VERDE;D07. DOEN\u00c7AS E POPULA\u00c7\u00d5ES NEGLIGENCIADAS;D04. VULNERABILIDADE TECNOL\u00d3GICA E ECON\u00d4MICA PARA ACESSO EM SA\u00daDE;",
+        "ceis_interesse_produtos_emergencias": [
+            "Fitoter\u00e1picos e produtos da biodiversidade apoiados pelo SUS;"
+        ],
+        "ceis_interesse_produtos_agravos": [
+            "Produtos e nutrac\u00eauticos para popula\u00e7\u00e3o pedi\u00e1trica ou vulner\u00e1vel;Produtos e formula\u00e7\u00f5es para tratamento da popula\u00e7\u00e3o pedi\u00e1trica;Desenvolvimento e produ\u00e7\u00e3o local de tecnologias de informa\u00e7\u00e3o e conectividade para melhoria da qualidade de vida da popula\u00e7\u00e3o idosa;"
+        ],
+        "ceis_interesse_produtos_sugeridos": [
+            "S\u00e3o pesquisas que podem direcionar a produ\u00e7\u00e3o de tecnologias inovadoras, com mais assertividade nas demandas das popula\u00e7\u00f5es em condi\u00e7\u00f5es de vulnerabilidade."
+        ],
+        "tempo_percentual_buscas": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_analises": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_debates": "De 20 a 40% do tempo\u00a0\u00a0(~2h/dia)",
+        "tempo_percentual_redacao": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_reunioes": "De 40 a\u00a060% do tempo \u00a0(~4h/dia)",
+        "tempo_percentual_comunicacao": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "nivel_satisfacao": "5",
+        "nome_pesquisador": "Fernanda Savicki de Almeida"
+    },
+    {
+        "id_levantamento": "6",
+        "hora_inicio": "2024-09-27 11:47:39",
+        "hora_conclusao": "2024-09-27 11:57:33",
+        "email": "anonymous",
+        "nome_vazio": "",
+        "ultima_modificacao": "",
+        "consentimento_livre": "Aceito participar deste levantamento",
+        "questoes_interesse": "As rela\u00e7\u00f5es entre a sa\u00fade mental e a aten\u00e7\u00e3o prim\u00e1ria\nDesigualdades na mortalidade por suic\u00eddios entre diferentes grupos.\nSa\u00fade Mental de popula\u00e7\u00f5es vulner\u00e1veis",
+        "palavras_chave": [
+            "Sa\u00fade Mental",
+            "Aten\u00e7\u00e3o primaria",
+            "Suic\u00eddio ",
+            "Popula\u00e7\u00f5es vulneraveis"
+        ],
+        "competencias_possuidas": [
+            "N\u00e3o sei responder."
+        ],
+        "competencias_desenvolver": [
+            "Utiliza\u00e7\u00e3o e cruzamento de grandes bancos de dados (big data)"
+        ],
+        "intencao_desenvolvimento": "N\u00e3o.",
+        "trl_diagnosticos": "N\u00e3o trabalho com esse tipo",
+        "trl_pesquisa": "N\u00e3o trabalho com esse tipo",
+        "trl_terapias": "N\u00e3o trabalho com esse tipo",
+        "trl_servicos": "Concep\u00e7\u00e3o de Estudos",
+        "trl_social": "Concep\u00e7\u00e3o de Estudos",
+        "trl_digital": "N\u00e3o trabalho com esse tipo",
+        "ceis_conhecimento_blocos": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_conhecimento_desafios": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_conhecimento_plataformas": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_conhecimento_produtos": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_interesse_desafios": "D04. VULNERABILIDADE TECNOL\u00d3GICA E ECON\u00d4MICA PARA ACESSO EM SA\u00daDE;D06. TECNOLOGIAS PARA SISTEMAS DE SA\u00daDE (SUS);D07. DOEN\u00c7AS E POPULA\u00c7\u00d5ES NEGLIGENCIADAS;D13. OUTRAS DOEN\u00c7AS CR\u00d4NICAS N\u00c3O TRANSMISS\u00cdVEIS;",
+        "ceis_interesse_produtos_emergencias": [
+            "N\u00c3O ENCONTREI PRODUTO ALGUM NA LISTA ACIMA QUE CORRESPONDA COM MINHAS PESQUISAS ATUAIS E NO FUTURO PR\u00d3XIMO;"
+        ],
+        "ceis_interesse_produtos_agravos": [
+            "N\u00c3O ENCONTREI AGRAVO ALGUM NA LISTA ACIMA\u00a0QUE CORRESPONDA COM MINHAS PESQUISAS ATUAIS E NO FUTURO PR\u00d3XIMO;"
+        ],
+        "ceis_interesse_produtos_sugeridos": [
+            "N\u00e3o sei responder."
+        ],
+        "tempo_percentual_buscas": "N\u00e3o consigo estimar",
+        "tempo_percentual_analises": "N\u00e3o consigo estimar",
+        "tempo_percentual_debates": "N\u00e3o consigo estimar",
+        "tempo_percentual_redacao": "N\u00e3o consigo estimar",
+        "tempo_percentual_reunioes": "N\u00e3o consigo estimar",
+        "tempo_percentual_comunicacao": "N\u00e3o consigo estimar",
+        "nivel_satisfacao": "3",
+        "nome_pesquisador": "N\u00e3o desejo."
+    },
+    {
+        "id_levantamento": "7",
+        "hora_inicio": "2024-09-27 12:07:42",
+        "hora_conclusao": "2024-09-27 12:33:28",
+        "email": "anonymous",
+        "nome_vazio": "",
+        "ultima_modificacao": "",
+        "consentimento_livre": "Aceito participar deste levantamento",
+        "questoes_interesse": "Como melhorar a efetividade das pol\u00edticas p\u00fablicas de sa\u00fade no enfrentamento ao feminicidio e viol\u00eancia dom\u00e9stica? \nComo ampliar a equidade de genero e ra\u00e7a na \u00e1rea cient\u00edfica? \nQue avan\u00e7os as a\u00e7\u00f5es afirmativas vem alcan\u00e7ando para ampliar o acesso aos cursos e atividades da Fiocruz Cear\u00e1 ?",
+        "palavras_chave": [
+            "Diversidade, equidade nas ciencias, G\u00eanero e ra\u00e7a, a\u00e7\u00f5es afirmativas, viol\u00eancia de g\u00eanero e feminicidio, interseccionalidade. "
+        ],
+        "competencias_possuidas": [
+            "Competencias tecnicas e teoricas que contribuem com a aplica\u00e7\u00e3o da Interseccionalidade. Compromisso institucional com uma Institui\u00e7\u00e3o p\u00fablica mais diversa e inclusiva. Habilidade de constru\u00e7\u00e3o e amplia\u00e7\u00e3o de redes de pesquisa. "
+        ],
+        "competencias_desenvolver": [
+            "Integra\u00e7\u00e3o entre as \u00e1reas. Defini\u00e7\u00e3o de objetivos comuns "
+        ],
+        "intencao_desenvolvimento": "N\u00e3o. As pesquisas nas \u00e1reas das ci\u00eancias humanas e sociais precisam tamb\u00e9m ser colocadas como estrat\u00e9gicas. Penso que o CEIS precisa estimular esse olhar para a contribui\u00e7\u00e3o efetiva a sociedade,  aos usu\u00e1rios do sus, popula\u00e7\u00e3o de modo geral",
+        "trl_diagnosticos": "N\u00e3o trabalho com esse tipo",
+        "trl_pesquisa": "N\u00e3o trabalho com esse tipo",
+        "trl_terapias": "N\u00e3o trabalho com esse tipo",
+        "trl_servicos": "Concep\u00e7\u00e3o de Estudos",
+        "trl_social": "Concep\u00e7\u00e3o de Estudos",
+        "trl_digital": "N\u00e3o trabalho com esse tipo",
+        "ceis_conhecimento_blocos": "Desconhe\u00e7o a maior parte",
+        "ceis_conhecimento_desafios": "Desconhe\u00e7o a maior parte",
+        "ceis_conhecimento_plataformas": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_conhecimento_produtos": "Desconhe\u00e7o a maior parte",
+        "ceis_interesse_desafios": "D07. DOEN\u00c7AS E POPULA\u00c7\u00d5ES NEGLIGENCIADAS;",
+        "ceis_interesse_produtos_emergencias": [
+            "N\u00c3O ENCONTREI PRODUTO ALGUM NA LISTA ACIMA QUE CORRESPONDA COM MINHAS PESQUISAS ATUAIS E NO FUTURO PR\u00d3XIMO;"
+        ],
+        "ceis_interesse_produtos_agravos": [
+            "N\u00c3O ENCONTREI AGRAVO ALGUM NA LISTA ACIMA\u00a0QUE CORRESPONDA COM MINHAS PESQUISAS ATUAIS E NO FUTURO PR\u00d3XIMO;"
+        ],
+        "ceis_interesse_produtos_sugeridos": [
+            "Contribuir para um olhar ampliado para as popula\u00e7\u00f5es vulnerabilizadas que mais precisam de acesso ao sus "
+        ],
+        "tempo_percentual_buscas": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_analises": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_debates": "De 20 a 40% do tempo\u00a0\u00a0(~2h/dia)",
+        "tempo_percentual_redacao": "De 40 a\u00a060% do tempo \u00a0(~4h/dia)",
+        "tempo_percentual_reunioes": "De 40 a\u00a060% do tempo \u00a0(~4h/dia)",
+        "tempo_percentual_comunicacao": "De 60 a\u00a080% do tempo \u00a0(~6h/dia)",
+        "nivel_satisfacao": "3",
+        "nome_pesquisador": ""
+    },
+    {
+        "id_levantamento": "8",
+        "hora_inicio": "2024-10-02 15:21:28",
+        "hora_conclusao": "2024-10-02 15:38:41",
+        "email": "anonymous",
+        "nome_vazio": "",
+        "ultima_modificacao": "",
+        "consentimento_livre": "Aceito participar deste levantamento",
+        "questoes_interesse": "Quais os principais desafios na APS? Que interven\u00e7\u00f5es podem ser realizadas para melhoria de processos, servi\u00e7os e pr\u00e1ticas na APS? Como est\u00e3o sendo desenvolvidos os processos de educa\u00e7\u00e3o permanente em sa\u00fade no SUS?",
+        "palavras_chave": [
+            "Aten\u00e7\u00e3o prim\u00e1ria \u00e0 sa\u00fade. Ensino na sa\u00fade. Educa\u00e7\u00e3o na sa\u00fade. Avalia\u00e7\u00e3o de servi\u00e7os de sa\u00fade."
+        ],
+        "competencias_possuidas": [
+            "Desenvolvimento de estudos metodol\u00f3gicos."
+        ],
+        "competencias_desenvolver": [
+            "Desenvolvimento de estudos que avaliem tecnologias em sa\u00fade."
+        ],
+        "intencao_desenvolvimento": "Atuo em desenvolvimento de produtos t\u00e9cnicos e tecnologicos para o SUS (e n\u00e3o para o CEIS), pois oriento alunos de mestrado e doutorado que devem trazer retorno a sua realidade do servi\u00e7o ou do seu territ\u00f3rio de trabalho.",
+        "trl_diagnosticos": "N\u00e3o trabalho com esse tipo",
+        "trl_pesquisa": "N\u00e3o trabalho com esse tipo",
+        "trl_terapias": "N\u00e3o trabalho com esse tipo",
+        "trl_servicos": "Concep\u00e7\u00e3o de Estudos",
+        "trl_social": "Concep\u00e7\u00e3o de Estudos",
+        "trl_digital": "N\u00e3o trabalho com esse tipo",
+        "ceis_conhecimento_blocos": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_conhecimento_desafios": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_conhecimento_plataformas": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_conhecimento_produtos": "Ainda n\u00e3o conhe\u00e7o",
+        "ceis_interesse_desafios": "D06. TECNOLOGIAS PARA SISTEMAS DE SA\u00daDE (SUS);",
+        "ceis_interesse_produtos_emergencias": [
+            "N\u00c3O ENCONTREI PRODUTO ALGUM NA LISTA ACIMA QUE CORRESPONDA COM MINHAS PESQUISAS ATUAIS E NO FUTURO PR\u00d3XIMO;"
+        ],
+        "ceis_interesse_produtos_agravos": [
+            "N\u00c3O ENCONTREI AGRAVO ALGUM NA LISTA ACIMA\u00a0QUE CORRESPONDA COM MINHAS PESQUISAS ATUAIS E NO FUTURO PR\u00d3XIMO;"
+        ],
+        "ceis_interesse_produtos_sugeridos": [
+            "n\u00e3o consigo enxergar"
+        ],
+        "tempo_percentual_buscas": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_analises": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_debates": "",
+        "tempo_percentual_redacao": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_reunioes": "De 20 a 40% do tempo\u00a0\u00a0(~2h/dia)",
+        "tempo_percentual_comunicacao": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "nivel_satisfacao": "4",
+        "nome_pesquisador": "Sharm\u00eania de Ara\u00fajo Soares Nuto"
+    },
+    {
+        "id_levantamento": "9",
+        "hora_inicio": "2024-10-15 10:22:28",
+        "hora_conclusao": "2024-10-15 15:13:33",
+        "email": "anonymous",
+        "nome_vazio": "",
+        "ultima_modificacao": "",
+        "consentimento_livre": "Aceito participar deste levantamento",
+        "questoes_interesse": "As principais quest\u00f5es cient\u00edficas que norteiam minhas pesquisas na Fiocruz Cear\u00e1, relacionadas ao enfrentamento dos desafios em sa\u00fade, envolvem:\n\nVigil\u00e2ncia e detec\u00e7\u00e3o molecular de pat\u00f3genos: Como podemos aprimorar a detec\u00e7\u00e3o precoce e precisa de pat\u00f3genos em diferentes matrizes, como amostras cl\u00ednicas e \u00e1guas residuais, para antecipar surtos e contribuir para o controle de doen\u00e7as infecciosas?\n\nImpacto das tecnologias de sequenciamento de nova gera\u00e7\u00e3o (NGS): Como o uso de NGS pode revolucionar o diagn\u00f3stico de doen\u00e7as, permitindo a identifica\u00e7\u00e3o r\u00e1pida e precisa de agentes patog\u00eanicos, e qual sua aplicabilidade no contexto do SUS, especialmente em \u00e1reas vulner\u00e1veis?\n\nSa\u00fade da mulher e diagn\u00f3stico do HPV: Como testes moleculares para detec\u00e7\u00e3o de HPV podem ser otimizados para a preven\u00e7\u00e3o e diagn\u00f3stico precoce de c\u00e2ncer cervical, e qual a relev\u00e2ncia dessa abordagem na sa\u00fade p\u00fablica considerando as diretrizes atuais do Minist\u00e9rio da Sa\u00fade?\n\nEssas quest\u00f5es s\u00e3o centrais para o desenvolvimento de solu\u00e7\u00f5es que melhorem a vigil\u00e2ncia epidemiol\u00f3gica e o acesso ao diagn\u00f3stico no Brasil.",
+        "palavras_chave": [
+            "As principais palavras-chave que podem associar meus temas de pesquisa com oportunidades de fomento que desejo monitorar s\u00e3o:",
+            "",
+            "Sequenciamento de nova gera\u00e7\u00e3o (NGS)",
+            "Epidemiologia molecular",
+            "Vigil\u00e2ncia translacional",
+            "Detec\u00e7\u00e3o molecular de pat\u00f3genos",
+            "Sa\u00fade da mulher",
+            "HPV",
+            "Amostras cl\u00ednicas",
+            "\u00c1guas residuais",
+            "Preven\u00e7\u00e3o e diagn\u00f3stico de ISTs",
+            "Inova\u00e7\u00e3o em sa\u00fade p\u00fablica",
+            "Tecnologias diagn\u00f3sticas para o SUS",
+            "Sa\u00fade p\u00fablica e vigil\u00e2ncia epidemiol\u00f3gica",
+            ""
+        ],
+        "competencias_possuidas": [
+            "As principais compet\u00eancias cient\u00edficas e tecnol\u00f3gicas do grupo de pesquisa em que atuo, que podem contribuir para a implementa\u00e7\u00e3o da Estrat\u00e9gia Nacional de Desenvolvimento do Complexo Econ\u00f4mico-Industrial da Sa\u00fade (CEIS), incluem:",
+            "",
+            "Sequenciamento de Nova Gera\u00e7\u00e3o (NGS): Alta capacidade t\u00e9cnica e infraestrutura para realizar o sequenciamento gen\u00f4mico de pat\u00f3genos, com foco em identificar e caracterizar rapidamente microrganismos em amostras cl\u00ednicas e ambientais.",
+            "",
+            "Desenvolvimento de Testes Moleculares: Expertise no desenvolvimento e valida\u00e7\u00e3o de testes de diagn\u00f3stico molecular, promovendo avan\u00e7os no diagn\u00f3stico precoce e personalizado.",
+            "",
+            "Epidemiologia Molecular e Vigil\u00e2ncia Translacional: Habilidade para utilizar ferramentas moleculares avan\u00e7adas em programas de vigil\u00e2ncia epidemiol\u00f3gica, permitindo o monitoramento de surtos e a identifica\u00e7\u00e3o de padr\u00f5es de transmiss\u00e3o em tempo real, o que fortalece a resposta do sistema de sa\u00fade.",
+            "",
+            "Inova\u00e7\u00e3o em Sa\u00fade P\u00fablica: Capacidade de criar solu\u00e7\u00f5es tecnol\u00f3gicas inovadoras voltadas para a sa\u00fade p\u00fablica, com foco na integra\u00e7\u00e3o de novas tecnologias de diagn\u00f3stico no SUS, visando ampliar o acesso \u00e0 sa\u00fade e otimizar a efici\u00eancia dos servi\u00e7os.",
+            "",
+            "An\u00e1lise de Dados Gen\u00f4micos e Bioinform\u00e1tica: Compet\u00eancia em an\u00e1lise de grandes volumes de dados gerados por sequenciamento, utilizando ferramentas de bioinform\u00e1tica para interpretar varia\u00e7\u00f5es gen\u00f4micas e suas implica\u00e7\u00f5es para a sa\u00fade p\u00fablica.",
+            "",
+            "Trabalho Multidisciplinar e Parcerias Interinstitucionais: Expertise em colaborar com diversos setores, como sa\u00fade p\u00fablica, biotecnologia e academia, facilitando a tradu\u00e7\u00e3o de pesquisas em pol\u00edticas e produtos que fortale\u00e7am o Complexo da Sa\u00fade."
+        ],
+        "competencias_desenvolver": [
+            "Na minha vis\u00e3o, as compet\u00eancias cient\u00edficas e tecnol\u00f3gicas que precisam ser melhor desenvolvidas e exploradas na Fiocruz Cear\u00e1 para ampliar o desempenho e impacto positivo das atividades de pesquisa, desenvolvimento e inova\u00e7\u00e3o em tecnologias para a sa\u00fade incluem:",
+            "",
+            "- Capacita\u00e7\u00e3o Avan\u00e7ada em Bioinform\u00e1tica e Intelig\u00eancia Artificial: \u00c9 crucial investir em forma\u00e7\u00e3o e amplia\u00e7\u00e3o de compet\u00eancias em an\u00e1lise de dados complexos, como os gerados por sequenciamento gen\u00f4mico, e em intelig\u00eancia artificial aplicada \u00e0 sa\u00fade. Isso permitiria n\u00e3o apenas interpretar melhor os dados gerados, mas tamb\u00e9m criar modelos preditivos e solu\u00e7\u00f5es baseadas em machine learning para a vigil\u00e2ncia epidemiol\u00f3gica e o desenvolvimento de novas ferramentas diagn\u00f3sticas.",
+            "- Interdisciplinaridade e Integra\u00e7\u00e3o de Conhecimento: Desenvolver mais projetos e equipes de pesquisa interdisciplinares, promovendo a integra\u00e7\u00e3o entre biologia, engenharia, ci\u00eancia de dados e sa\u00fade p\u00fablica. Essa abordagem colaborativa pode gerar solu\u00e7\u00f5es mais inovadoras e eficazes para os desafios complexos da sa\u00fade."
+        ],
+        "intencao_desenvolvimento": "",
+        "trl_diagnosticos": "Concep\u00e7\u00e3o de Estudos",
+        "trl_pesquisa": "Concep\u00e7\u00e3o de Estudos",
+        "trl_terapias": "N\u00e3o trabalho com esse tipo",
+        "trl_servicos": "TRL1-TRL3",
+        "trl_social": "N\u00e3o trabalho com esse tipo",
+        "trl_digital": "TRL4-TRL6",
+        "ceis_conhecimento_blocos": "Conhe\u00e7o a maior parte",
+        "ceis_conhecimento_desafios": "Conhe\u00e7o a maior parte",
+        "ceis_conhecimento_plataformas": "Conhe\u00e7o a maior parte",
+        "ceis_conhecimento_produtos": "Conhe\u00e7o a maior parte",
+        "ceis_interesse_desafios": "D01. PREPARA\u00c7\u00c3O PARA RESPOSTA A EMERG\u00caNCIAS EM SA\u00daDE E PROTE\u00c7\u00c3O PARA DOEN\u00c7AS IMUNOPREVEN\u00cdVEIS;D11. DOEN\u00c7AS ASSOCIADAS AO ENVELHECIMENTO DA POPULA\u00c7\u00c3O;D07. DOEN\u00c7AS E POPULA\u00c7\u00d5ES NEGLIGENCIADAS;D06. TECNOLOGIAS PARA SISTEMAS DE SA\u00daDE (SUS);",
+        "ceis_interesse_produtos_emergencias": [
+            "Vacinas do PNI que demandem atualiza\u00e7\u00e3o tecnol\u00f3gica;Vacina contra Dengue;Testes diagn\u00f3sticos moleculares, por imunoensaio, r\u00e1pidos de ant\u00edgeno ou anticorpo, point-of-care, autoteste e outros testes diagn\u00f3sticos in vitro;Kit de extra\u00e7\u00e3o de \u00e1cidos nucl\u00e9icos;"
+        ],
+        "ceis_interesse_produtos_agravos": [
+            "Plataforma de RT-PCR para diagn\u00f3stico de arboviroses, multiplex ou isolada;Testes diagn\u00f3stico moleculares, por imunoensaio, r\u00e1pidos de ant\u00edgeno ou anticorpo, point-of-care, autoteste e outros testes diagn\u00f3stico in vitro;Kit de extra\u00e7\u00e3o de \u00e1cidos nucl\u00e9icos;Kit de autocoleta para detec\u00e7\u00e3o de HPV por biologia molecular;Teste point-of-care para o c\u00e2ncer de colo de \u00fatero;Testes diagn\u00f3stico in vitro;"
+        ],
+        "ceis_interesse_produtos_sugeridos": [
+            ""
+        ],
+        "tempo_percentual_buscas": "N\u00e3o consigo estimar",
+        "tempo_percentual_analises": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_debates": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_redacao": "",
+        "tempo_percentual_reunioes": "At\u00e9 20% do tempo (~1,5h/dia)",
+        "tempo_percentual_comunicacao": "De 20 a 40% do tempo\u00a0\u00a0(~2h/dia)",
+        "nivel_satisfacao": "2",
+        "nome_pesquisador": ""
+    }
+]
