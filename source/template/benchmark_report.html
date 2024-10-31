@@ -10,7 +10,7 @@
     <h2>Modelo: {{ model_name }}</h2>
     <p>Tempo de execução: 
     {% if metrics['Tempo de execução'] is number %}
-        {{ metrics['Tempo de execução'] | format("%.2f") }} 
+    {{ "{:.2f}".format(metrics['Tempo de execução']) }} 
     {% else %}
         {{ metrics['Tempo de execução'] }} (unable to format)
     {% endif %}
@@ -20,7 +20,7 @@
         {% for algorithm, score in metrics['Resultados de clustering'].items() %}
         <li>{{ algorithm }}: 
         {% if score is number %}
-            {{ score | float | format("%.3f") }} 
+            {{ "{:.3f}".format(score) }} 
         {% else %}
             {{ score }} (unable to format)
         {% endif %}

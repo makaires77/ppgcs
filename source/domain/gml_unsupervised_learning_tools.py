@@ -4,6 +4,7 @@ import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.cluster import KMeans, DBSCAN, HDBSCAN
 from sklearn.metrics import silhouette_score
+import traceback
 
 from funding_analyser import BRPreprocessor, ENPreprocessor
 
@@ -110,32 +111,32 @@ class EmbeddingEvaluator:
         """
         Generates an HTML report with the benchmarking results and the choice of the best model.
         """
-        results = self.run_benchmark()
-        print(f"\nResultados para gerar relatório: {results}")
-
-        # Imprimir resultados do benchmarking
-        for model_name, metrics in results.items():
-            print(f"Modelo: {model_name}")
-            print(f"  Tempo de execução: {metrics['Tempo de execução']:.2f} segundos")
-            print("  Resultados de clustering:")
-            for algorithm, score in metrics['Resultados de clustering'].items():
-                print(f"    {algorithm}: {score:.3f}")
-            print("\n")
-
-        # Escolher o melhor modelo
-        best_model = max(results, key=lambda x: sum(results[x]['Resultados de clustering'].values()) / results[x]['Tempo de execução'])
-
-        print(f"Melhor modelo: {best_model}\n")
-
-        # Visualizar os resultados de clustering (opcional)
-        for model_name, metrics in results.items():
-            plt.bar(metrics['Resultados de clustering'].keys(), metrics['Resultados de clustering'].values())
-            plt.title(f'Resultados de Clustering para o Modelo {model_name}')
-            plt.xlabel('Algoritmo de Clustering')
-            plt.ylabel('Silhouette Score')
-            plt.show()
-
         try:
+            results = self.run_benchmark()
+            print(f"\nResultados para gerar relatório: {results}")
+
+            # Imprimir resultados do benchmarking
+            for model_name, metrics in results.items():
+                print(f"\nModelo: {model_name}")
+                print(f"  Tempo de execução: {metrics['Tempo de execução']} segundos")
+                print("  Resultados de clustering:")
+                for algorithm, score in metrics['Resultados de clustering'].items():
+                    print(f"    {algorithm}: {score:.3f}")
+                print("\n")
+
+            # Escolher o melhor modelo
+            best_model = max(results, key=lambda x: sum(results[x]['Resultados de clustering'].values()) / results[x]['Tempo de execução'])
+
+            print(f"Melhor modelo: {best_model}\n")
+
+            # Visualizar os resultados de clustering (opcional)
+            for model_name, metrics in results.items():
+                plt.bar(metrics['Resultados de clustering'].keys(), metrics['Resultados de clustering'].values())
+                plt.title(f'Resultados de Clustering para o Modelo {model_name}')
+                plt.xlabel('Algoritmo de Clustering')
+                plt.ylabel('Silhouette Score')
+                plt.show()
+
             # Render the template with the provided data
             report_content = self.template.render(
                 benchmark_results=results,
@@ -147,10 +148,10 @@ class EmbeddingEvaluator:
                 f.write(report_content)
 
             print("Relatório de benchmarking gerado com sucesso: benchmark_report.html")
+
         except Exception as e:
-            print('Erro ao gerar relatório HTML com Jinja2')
-            print(e)
-        
+            print(f'Erro ao gerar relatório HTML com Jinja2: {e}')
+            traceback.print_exc()  # Imprime o traceback completo do erro
 
 class DataPreprocessor:
     def __init__(self, 

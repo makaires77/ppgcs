@@ -25,7 +25,6 @@ from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 from nltk.corpus import stopwords
 from collections import Counter
-from googletrans import Translator
 from wordcloud import WordCloud
 from langdetect import detect
 from tqdm.notebook import tqdm
