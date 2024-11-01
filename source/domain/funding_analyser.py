@@ -45,10 +45,10 @@ class FundingEmbeddingGenerator:
         
         # Carregar o modelo na GPU
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        # if self.device == 'cuda':
-        #     print(f"Carregando modelo {model_name} na GPU...")
-        # else:
-        #     print(f"GPU indisponível, usando apenas CPU...")
+        if self.device == 'cuda':
+            print(f"Carregando modelo {model_name} na GPU...")
+        else:
+            print(f"GPU indisponível, usando apenas CPU...")
         self.model_st.to(self.device)
 
     def create_embedding_column(self, use_cudf=True):

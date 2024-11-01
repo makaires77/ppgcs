@@ -1,16 +1,277 @@
+
 import os, ast, logging, time, cudf, jinja2
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
+import traceback
+import torch
+import time
+import gc
+
+from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.cluster import KMeans, DBSCAN, HDBSCAN
-from sklearn.metrics import silhouette_score
-import traceback
+from sklearn.model_selection import StratifiedKFold
+from git import Repo
 
 from funding_analyser import BRPreprocessor, ENPreprocessor
+
+class EmbeedingsMulticriteriaAnalysis:
+
+    def __init__(self, data, model_names, models, algorithms=[KMeans, DBSCAN, HDBSCAN], pesos=None, n_rodadas=10, n_splits=5):
+        """
+        Autor: Marcos Aires (Nov.2024)
+        Inicializa a classe com os embeddings, algoritmos de clustering, pesos para cada critério,
+        número de rodadas e número de splits para validação cruzada.
+
+        Args:
+            embeddings: Os embeddings a serem avaliados.
+            algorithms: Uma lista de classes de algoritmos de clustering a serem usados.
+            pesos: Um dicionário com os pesos para cada critério.
+                   As chaves devem ser 'silhouette', 'calinski_harabasz', 'davies_bouldin' e 'tempo'.
+                   Se None, todos os critérios terão o mesmo peso.
+            n_rodadas: Número de rodadas para calcular a média e o desvio padrão das métricas.
+            n_splits: Número de splits para validação cruzada.
+        """
+        self.data = data
+        self.model_names = model_names
+        self.models = models
+        self.embeddings = {}  # Armazena os embeddings gerados por cada modelo
+        self.algorithms = algorithms
+        self.n_rodadas = n_rodadas
+        self.n_splits = n_splits
+        self.generate_embeddings()  # Adicione esta linha
+        self.resultados = self.evaluate_clustering()  # Chama o método e armazena o resultado
+
+        # Define os pesos dos critérios
+        if pesos is None:
+            self.pesos = {
+                'silhouette': 0.25,
+                'calinski_harabasz': 0.25,
+                'davies_bouldin': 0.25,
+                'tempo': 0.25
+            }
+        else:
+            self.pesos = pesos
+
+    def create_embedding_column(self, use_cudf=True):
+        """
+        Creates the 'texto_para_embedding' column in the df_fomento dataframe 
+        by combining selected data and applying preprocessing.
+
+        Args:
+            use_cudf: Whether to use cuDF for DataFrame operations (default: True)
+
+        Returns:
+            The updated dataframe with the 'texto_para_embedding' column.
+        """
+
+        # Informar caminho para arquivo CSV usando raiz do repositório Git como referência
+        repo = Repo(search_parent_directories=True)
+        root_folder = repo.working_tree_dir
+        folder_data_output = os.path.join(root_folder, '_data', 'out_json')
+        filename = 'df_fomento_geral.csv'
+        pathfilename = os.path.join(folder_data_output, filename)
+
+        if use_cudf:
+            try:
+                import cudf
+                df_fomento = cudf.read_csv(pathfilename, header=0)
+            except ImportError:
+                print("cuDF não está disponível. Usando Pandas.")
+                df_fomento = pd.read_csv(pathfilename, header=0)
+        else:
+            df_fomento = pd.read_csv(pathfilename, header=0)
+
+        def convert_to_dict(text):
+            try:
+                return ast.literal_eval(text)
+            except ValueError:
+                return None
+
+        df_fomento['lista_de_projetos'] = df_fomento['lista_de_projetos'].apply(convert_to_dict)
+        df_fomento = df_fomento.dropna(subset=['lista_de_projetos']).reset_index(drop=True)
+
+        # -------------------------------------------------------------------------------------
+        # Início da criação da coluna 'texto_para_embedding'
+        # -------------------------------------------------------------------------------------
+
+        # Combinar as colunas 'titulo', 'resumo' e 'palavras_chave' em uma única coluna 'texto_para_embedding'
+        if use_cudf:
+            df_fomento['texto_para_embedding'] = df_fomento['titulo'] + ' ' + \
+                                                df_fomento['resumo'] + ' ' + \
+                                                df_fomento['palavras_chave']
+        else:
+            df_fomento['texto_para_embedding'] = df_fomento['titulo'].astype(str) + ' ' + \
+                                                df_fomento['resumo'].astype(str) + ' ' + \
+                                                df_fomento['palavras_chave'].astype(str)
+
+        # Pré-processamento do texto
+        def preprocess_text(text, language='portuguese'):
+            if language == 'portuguese':
+                preprocessor = BRPreprocessor()
+            elif language == 'english':
+                preprocessor = ENPreprocessor()
+            else:
+                raise ValueError("Idioma não suportado.")
+            return preprocessor.preprocess(text)
+
+        df_fomento['texto_para_embedding'] = df_fomento['texto_para_embedding'].apply(preprocess_text)
+
+        # -------------------------------------------------------------------------------------
+        # Fim da criação da coluna 'texto_para_embedding'
+        # -------------------------------------------------------------------------------------
+
+        return df_fomento
+
+    def generate_embeddings(self):
+        """
+        Gera embeddings para os textos usando os modelos especificados.
+        """
+        for model_name, model in zip(self.model_names, self.models):
+            try:
+                print(f"Gerando embeddings para o modelo {model_name}...")
+                # sentences = self.data['texto_para_embedding'].to_arrow().to_pylist()
+                sentences = self.data['texto_para_embedding'].tolist() #tentativa de simplificação
+
+                # Limpa a memória da GPU
+                gc.collect()
+                torch.cuda.empty_cache()
+
+                if torch.cuda.is_available():
+                    device = torch.device('cuda')
+                    print(f"Usando GPU para gerar embeddings para o modelo {model_name}.")
+                else:
+                    device = torch.device('cpu')
+                    print(f"GPU não disponível. Usando CPU para gerar embeddings para o modelo {model_name}.")
+
+                inicio = time.time()
+                embeddings = model.encode(sentences, convert_to_tensor=True, device=device)
+                fim = time.time()
+
+                self.embeddings[model_name] = embeddings.cpu().numpy()
+            except Exception as e:
+                print(f"Erro ao gerar embeddings para o modelo {model_name}: {e}")
+
+    def evaluate_clustering(self):
+        """
+        Autor: Marcos Aires (Nov.2024)
+        Avalia o desempenho dos embeddings em tarefas de clustering
+        usando diferentes algoritmos, múltiplas rodadas e validação cruzada,
+        e mede o tempo de execução de cada algoritmo.
+        """
+        resultados = {}
+        for model_name, embeddings in self.embeddings.items():
+            print(f"Iniciando avaliação de clustering para modelo: {model_name}")
+            resultados[model_name] = {}
+            for algorithm in self.algorithms:
+                resultados[model_name][algorithm.__name__] = {"medias": [], "desvios": [], "tempo": []}
+                resultados_algoritmo = []
+                tempos_execucao = []
+                for _ in range(self.n_rodadas):
+                    skf = StratifiedKFold(n_splits=self.n_splits, shuffle=True)
+                    resultados_split = []
+                    for train_index, test_index in skf.split(embeddings, np.zeros(len(embeddings))):
+                        X_train, X_test = embeddings[train_index], embeddings[test_index]
+                        clustering_model = algorithm()
+
+                        # Mede o tempo de execução do algoritmo
+                        inicio = time.time()
+                        cluster_labels = clustering_model.fit_predict(X_train)
+                        fim = time.time()
+                        tempo_execucao = fim - inicio
+                        tempos_execucao.append(tempo_execucao)
+
+                        # Avalia apenas nos dados de teste
+                        try:
+                            silhouette_avg = silhouette_score(X_test, cluster_labels[test_index])
+                            calinski_harabasz = calinski_harabasz_score(X_test, cluster_labels[test_index])
+                            davies_bouldin = davies_bouldin_score(X_test, cluster_labels[test_index])
+
+                            resultados_split.append({
+                                "silhouette": silhouette_avg,
+                                "calinski_harabasz": calinski_harabasz,
+                                "davies_bouldin": davies_bouldin
+                            })
+                        except ValueError:
+                            print(f"Erro ao calcular métricas para {algorithm.__name__} com modelo {model_name}. Pulando esta iteração.")
+
+                    resultados_algoritmo.append(resultados_split)
+
+                # Calcula a média e o desvio padrão das métricas
+                resultados_algoritmo = np.array(resultados_algoritmo)
+                medias = np.mean(resultados_algoritmo, axis=0)
+                desvios = np.std(resultados_algoritmo, axis=0)
+
+                resultados[model_name][algorithm.__name__] = {
+                    "medias": medias,
+                    "desvios": desvios,
+                    "tempo": np.mean(tempos_execucao)  # Adiciona o tempo médio de execução
+                }
+        return resultados
+
+    def adicionar_tempo_execucao(self, model_name, algorithm, tempo):
+        """
+        Autor: Marcos Aires (Nov.2024)
+        Adiciona o tempo de execução para um algoritmo específico.
+
+        Args:
+            algoritmo: Nome do algoritmo de clustering.
+            tempo: Tempo de execução em segundos.
+        """
+        self.resultados[model_name][algorithm]["tempo"] = tempo
+
+    def calcular_pontuacao_multicriterio(self):
+        """
+        Autor: Marcos Aires (Nov.2024)
+        Calcula a pontuação multicritério para cada algoritmo, combinando as métricas com os pesos.
+        """
+        pontuacoes = {}
+        for model_name, model_results in self.resultados.items():
+            pontuacoes[model_name] = {}
+            max_valor = 0
+            for algoritmo, resultados in model_results.items():
+                medias = resultados["medias"]
+                pontuacao = 0
+                for i, metrica in enumerate(['silhouette', 'calinski_harabasz', 'davies_bouldin']):
+                    valor = medias[i]
+                    # Normaliza as métricas para ficarem na mesma escala (0 a 1)
+                    if metrica == "silhouette":
+                        valor_normalizado = (valor + 1) / 2  # Silhouette varia de -1 a 1
+                    elif metrica == "davies_bouldin":
+                        valor_normalizado = 1 / (valor + 1e-6)  # Davies-Bouldin é menor quanto melhor
+                    elif metrica == "calinski_harabasz":
+                        max_valor = np.max([resultados["medias"][i] for model_results in self.resultados.values() for resultados in model_results.values()])
+                        valor_normalizado = valor / max_valor
+                    # else:  # Calinski-Harabasz
+                    #     # Correção: Calcular o máximo entre todos os modelos
+                    #     max_valor = np.max([r["medias"][i] for model_results in self.resultados.values() for r in model_results.values()])  
+                    #     valor_normalizado = valor / max_valor
+                    pontuacao += self.pesos[metrica] * valor_normalizado
+
+                # Adiciona o tempo de execução à pontuação
+                tempo_execucao = resultados["tempo"]
+                tempo_normalizado = 1 / (tempo_execucao + 1e-6)  # Tempo é menor quanto melhor
+                pontuacao += self.pesos["tempo"] * tempo_normalizado
+
+                pontuacoes[model_name][algoritmo] = pontuacao
+        return pontuacoes
+
+    def escolher_melhor_modelo(self):
+        """
+        Escolhe o modelo com a maior pontuação multicritério.
+        """
+        print("Resultados:", self.resultados)
+        pontuacoes = self.calcular_pontuacao_multicriterio()
+        print("Pontuações:", pontuacoes)  # Adicione este print
+        melhor_modelo = max(pontuacoes, key=lambda model_name: max(pontuacoes[model_name].values()))
+        return melhor_modelo
+
 
 class EmbeddingEvaluator:
     def __init__(self, model_names, models, data):
         """
+        Autor: Marcos Aires (Nov.2024)
         Initializes the class for benchmarking embedding models.
 
         Args:
@@ -30,9 +291,9 @@ class EmbeddingEvaluator:
         self.template_env = jinja2.Environment(loader=self.template_loader)
         self.template = self.template_env.get_template("benchmark_report.html")
 
-
     def generate_embeddings(self, model):
         """
+        Autor: Marcos Aires (Nov.2024)
         Generates embeddings for the texts using the specified model.
 
         Args:
@@ -43,7 +304,16 @@ class EmbeddingEvaluator:
         """
         try:
             sentences = self.data['texto_para_embedding'].to_arrow().to_pylist()
-            embeddings = model.encode(sentences, convert_to_tensor=True, device=model.device)
+            
+            # Tenta usar a GPU se disponível
+            if torch.cuda.is_available():
+                device = torch.device('cuda')
+                print("Usando GPU para gerar embeddings.")
+            else:
+                device = torch.device('cpu')
+                print("GPU não disponível. Usando CPU para gerar embeddings.")
+
+            embeddings = model.encode(sentences, convert_to_tensor=True, device=device)
         except Exception as e:
             print(f"Erro ao gerar embeedings: {e}")
             return None
@@ -51,6 +321,7 @@ class EmbeddingEvaluator:
 
     def evaluate_clustering(self, embeddings, algorithms=[KMeans, DBSCAN, HDBSCAN]):
         """
+        Autor: Marcos Aires (Nov.2024)
         Evaluates the performance of embeddings in clustering tasks using different algorithms.
 
         Args:
@@ -64,12 +335,23 @@ class EmbeddingEvaluator:
         for algorithm in algorithms:
             clustering_model = algorithm() 
             cluster_labels = clustering_model.fit_predict(embeddings)
+            
+            # Calculate the metrics
             silhouette_avg = silhouette_score(embeddings, cluster_labels)
-            results[algorithm.__name__] = silhouette_avg
+            calinski_harabasz = calinski_harabasz_score(embeddings, cluster_labels)
+            davies_bouldin = davies_bouldin_score(embeddings, cluster_labels)
+            
+            # Store the results
+            results[algorithm.__name__] = {
+                "silhouette": silhouette_avg,
+                "calinski_harabasz": calinski_harabasz,
+                "davies_bouldin": davies_bouldin
+            }
         return results
 
     def run_benchmark(self):
         """
+        Autor: Marcos Aires (Nov.2024)
         Executes benchmarking of the embedding models.
 
         Returns:
@@ -109,6 +391,7 @@ class EmbeddingEvaluator:
 
     def generate_report(self):
         """
+        Autor: Marcos Aires (Nov.2024)
         Generates an HTML report with the benchmarking results and the choice of the best model.
         """
         try:
@@ -272,4 +555,3 @@ class DataPreprocessor:
         preprocessed_editais = self.preprocess_dataframe(editais_df, 'texto_do_edital')        # Substitua 'texto_do_edital' pelo nome da coluna relevante no seu dataframe de editais
 
         return preprocessed_curriculos, preprocessed_produtos, preprocessed_editais
-
