@@ -9,3 +9,4 @@
 # Documentation here: https://yarnpkg.com/features/zero-installs
 !.yarn/cache
 #.pnp.*
+cuda-repo-ubuntu2404-12-6-local_12.6.2-560.35.03-1_amd64.deb

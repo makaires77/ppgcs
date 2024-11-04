@@ -3,9 +3,7 @@ import gc
 import ast
 import time
 import cudf
-import nltk
 import torch
-import spacy
 import string
 import jinja2
 import logging
@@ -16,33 +14,26 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import contextualSpellCheck
 
 from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.cluster import KMeans, DBSCAN, HDBSCAN
 from sklearn.model_selection import StratifiedKFold
 
-from transformers.tokenization_utils_base import TruncationStrategy
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-from transformers import pipeline, TranslationPipeline
-from sentence_transformers import SentenceTransformer
-
-from spacy.tokens import Doc, Token
-from spacy.language import Language
-from sklearn.decomposition import PCA
-from sklearn.manifold import TSNE
-from nltk.corpus import stopwords
-from collections import Counter
-from wordcloud import WordCloud
-from tqdm.notebook import tqdm
-from langdetect import detect
 from tqdm.auto import tqdm
 from git import Repo
+tqdm.pandas()
+
+# from transformers.tokenization_utils_base import TruncationStrategy
+# from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+# from transformers import pipeline, TranslationPipeline
+# from sentence_transformers import SentenceTransformer
+# from sklearn.decomposition import PCA
+# from sklearn.manifold import TSNE
+# from langdetect import detect
+# import contextualSpellCheck
 
 from gml_funding_preprocessor import ENPreprocessor, BRPreprocessor
-
-tqdm.pandas()
 
 # Configurar o logging (opcional)
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -106,7 +97,7 @@ class EmbeddingsMulticriteriaAnalysis:
         # Informar caminho para arquivo CSV usando raiz do repositório Git como referência
         repo = Repo(search_parent_directories=True)
         root_folder = repo.working_tree_dir
-        folder_data_output = os.path.join(root_folder, '_data', 'out_json')
+        folder_data_output = os.path.join(root_folder, '_data', 'out_json') # type: ignore
         filename = 'df_fomento_geral.csv'
         pathfilename = os.path.join(folder_data_output, filename)
         pdf = pd.read_csv(pathfilename, header=0)

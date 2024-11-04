@@ -3,9 +3,11 @@ import nltk
 import spacy
 import string
 import logging
-import contextualSpellCheck
+
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from nltk.corpus import stopwords
+
+import contextualSpellCheck
 from langdetect import detect
 
 # Configurar o logging (opcional)

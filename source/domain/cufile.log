@@ -40,3 +40,5 @@
  01-11-2024 09:10:13:670 [pid=58611 tid=58802] ERROR  0:58 NUMA not available
  01-11-2024 09:10:13:670 [pid=58611 tid=58804] ERROR  0:58 NUMA not available
  01-11-2024 09:10:13:670 [pid=58611 tid=58803] ERROR  0:58 NUMA not available
+ 02-11-2024 05:57:27:577 [pid=313665 tid=313665] NOTICE  cufio-drv:727 running in compatible mode
+ 02-11-2024 05:57:28:223 [pid=313665 tid=313665] ERROR  cufio-fs:79 mount option not found in mount table data device: /dev/nvme0n1p3

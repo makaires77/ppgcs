@@ -12,8 +12,8 @@ python-dotenv
 scikit-learn
 sentence-transformers
 selenium
-tika
 transformers
 xformers
 torch
-spacy
+# spacy
+# tika
