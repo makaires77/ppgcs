@@ -69,7 +69,8 @@ class EmbeddingsMulticriteriaAnalysis:
         self.en_preprocessor = ENPreprocessor()  # Criar instância do pré-processador para inglês
         self.br_preprocessor = BRPreprocessor()  # Criar instância do pré-processador para português
         self.data = self.create_embedding_column()  # Carregar o dataframe com as linhas do arquivo de fomento
-        self.generate_embeddings_batch()
+        # self.generate_embeddings_batch()
+        self.generate_embeddings()
         self.resultados = self.evaluate_clustering()
 
         # Define os pesos dos critérios
@@ -204,9 +205,9 @@ class EmbeddingsMulticriteriaAnalysis:
                 inicio = time.time()
 
                 # Pré-processar cada texto de acordo com o idioma, em lotes
-                batch_size = 64  # Defina o tamanho do lote
+                batch_size = 128  # Defina o tamanho do lote
                 processed_sentences = []
-                for i in tqdm(range(0, len(sentences), batch_size), desc="Processando sentenças", unit=f"batch_size {batch_size}"):
+                for i in tqdm(range(0, len(sentences), batch_size), desc="Processando sentenças", unit=f"(batch_size {batch_size}) batch"):
                     batch = sentences[i: i + batch_size]
                     for sentence in batch:
                         idioma = self.en_preprocessor.detect_language(sentence)  # Detectar o idioma
