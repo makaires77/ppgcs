@@ -1,3 +1,4 @@
+import logging
 import jinja2
 import os
 
@@ -56,3 +57,67 @@ class BenchmarkReportGenerator:
             logging.error(f"Erro ao renderizar o template Jinja: {e}")
         except Exception as e:
             logging.error(f"Erro inesperado ao gerar o relatório: {e}")
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+from collections import Counter
+from sklearn.manifold import TSNE
+from sklearn.decomposition import PCA
+
+
+# Classe para gerar os gráficos da análise exploratória de dados de editais de fomento
+class ExploratoryDataAnalyzer:
+    def __init__(self):
+        pass
+
+    def analyze_and_visualize(self, all_words, embeddings):
+        """
+        Performs exploratory data analysis and visualization on the preprocessed text and embeddings.
+
+        Args:
+            all_words: A list of lists containing the preprocessed words from the text data.
+            embeddings: The embeddings generated from the preprocessed text.
+        """
+
+        # 1. Word Frequency Analysis
+        word_counts = Counter(word for words in all_words for word in words)
+        top_words = word_counts.most_common(20)
+
+        # Plot bar chart of top words
+        plt.figure(figsize=(12, 6))
+        plt.bar(*zip(*top_words))
+        plt.title('Palavras Mais Frequentes (sem Stopwords e com Lematização)')
+        plt.xlabel('Palavra')
+        plt.ylabel('Frequência')
+        plt.xticks(rotation=45)
+        plt.show()
+
+        # Create and display word cloud
+        wordcloud = WordCloud(width=800, height=400, background_color='white').generate_from_frequencies(word_counts)
+        plt.figure(figsize=(10, 5))
+        plt.imshow(wordcloud, interpolation='bilinear')
+        plt.axis('off')
+        plt.show()
+
+        # 2. Visualization of embeddings in 2D using PCA
+        pca = PCA(n_components=2)
+        embeddings_2d = pca.fit_transform(embeddings)
+
+        plt.figure(figsize=(10, 6))
+        plt.scatter(embeddings_2d[:, 0], embeddings_2d[:, 1])
+        plt.title('Visualização dos Embeddings (PCA)')
+        plt.xlabel('Componente Principal 1')
+        plt.ylabel('Componente Principal 2')
+        plt.show()
+
+        # 3. Visualization of embeddings in 2D using t-SNE
+        tsne = TSNE(n_components=2, perplexity=30, learning_rate=200)
+        embeddings_2d = tsne.fit_transform(embeddings)
+
+        plt.figure(figsize=(10, 6))
+        plt.scatter(embeddings_2d[:, 0], embeddings_2d[:, 1])
+        plt.title('Visualização dos Embeddings (t-SNE)')
+        plt.xlabel('Dimensão 1')
+        plt.ylabel('Dimensão 2')
+        plt.show()

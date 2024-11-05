@@ -8,7 +8,9 @@ import spacy
 import string
 import logging
 import warnings
+import langdetect
 import unicodedata
+import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -65,7 +67,7 @@ class FundingEmbeddingGenerator:
         # Informar caminho para arquivo CSV usando raiz do repositório Git como referência
         repo = Repo(search_parent_directories=True)
         root_folder = repo.working_tree_dir
-        folder_data_output = os.path.join(root_folder, '_data', 'out_json')
+        folder_data_output = os.path.join(str(root_folder), '_data', 'out_json')
         filename = 'df_fomento_geral.csv'
         pathfilename = os.path.join(folder_data_output, filename)
         pdf = pd.read_csv(pathfilename, header=0)
@@ -129,7 +131,7 @@ class FundingEmbeddingGenerator:
 
         return embeddings
 
-    def generate_embeddings_bath(self, df, batch_size=32):  # Adicione o parâmetro batch_size
+    def generate_embeddings_batch(self, df, batch_size=32):  # Adicione o parâmetro batch_size
         """
         Generates embeddings for the 'texto_para_embedding' column in the dataframe, processing in batches.
 

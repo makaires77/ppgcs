@@ -3,6 +3,8 @@ import gc
 import ast
 import time
 import cudf
+import cuml.metrics
+
 import torch
 import string
 import jinja2
@@ -15,10 +17,24 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.cluster import KMeans, DBSCAN, HDBSCAN
+from transformers import AutoModel
+from huggingface_hub import hf_hub_download
+from sentence_transformers import SentenceTransformer
+
 from sklearn.model_selection import StratifiedKFold
+from sklearn.metrics import accuracy_score
+from sklearn.metrics.pairwise import cosine_similarity
+# from sklearn.metrics import silhouette_score
+from sklearn.metrics import calinski_harabasz_score, davies_bouldin_score
+
+# Avaliação de clustering somente rodam em CPU
+# from sklearn.cluster import KMeans, DBSCAN, HDBSCAN
+
+# Avaliação de clustering para rodar em GPU
+import cuml
+import cupy as cp
+from cuml.cluster import KMeans, DBSCAN, HDBSCAN
+from cuml.metrics.cluster import silhouette_score
 
 from tqdm.auto import tqdm
 from git import Repo
@@ -27,14 +43,14 @@ tqdm.pandas()
 from gml_funding_preprocessor import ENPreprocessor, BRPreprocessor
 
 # Configurar o logging (opcional)
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 warnings.filterwarnings("ignore", category=FutureWarning or UserWarning)
 warnings.filterwarnings("ignore", message="Using the model-agnostic default `max_length`")
 
 
 class EmbeddingsMulticriteriaAnalysis:
 
-    def __init__(self, model_names, models, algorithms=[KMeans, DBSCAN, HDBSCAN], pesos=None, n_rodadas=10, n_splits=5):
+    def __init__(self, model_names, models, algorithms=[KMeans, DBSCAN, HDBSCAN], pesos=None, n_rodadas=1, n_splits=5):
         """
         Autor Marcos Aires (Nov.2024)
         Inicializa a classe com os embeddings, algoritmos de clustering, pesos para cada critério,
@@ -53,16 +69,21 @@ class EmbeddingsMulticriteriaAnalysis:
         """
         self.model_names = model_names
         self.models = models
-        self.embeddings = {}  # Armazena os embeddings gerados por cada modelo
+        self.embeddings = {}  # Para armazenar os embeddings gerados por cada modelo
         self.algorithms = algorithms
         self.n_rodadas = n_rodadas
         self.n_splits = n_splits
         self.en_preprocessor = ENPreprocessor()  # Criar instância do pré-processador para inglês
         self.br_preprocessor = BRPreprocessor()  # Criar instância do pré-processador para português
         self.data = self.create_embedding_column()  # Carregar dataframe arquivo de fomento
+        
+        self.show_models_info() # Exibir dados de cada modelo
+
         # self.generate_embeddings()
         self.generate_embeddings_batch()
-        # self.generate_embeddings_optimzed
+        # self.generate_embeddings_batch_no_grad()
+        # self.generate_embeddings_optimzed()
+        
         self.resultados = self.evaluate_clustering()
 
         # Define os pesos dos critérios
@@ -75,6 +96,28 @@ class EmbeddingsMulticriteriaAnalysis:
             }
         else:
             self.pesos = pesos
+
+
+    def show_models_info(self):
+        """
+        Exibe informações sobre os modelos pré-treinados, 
+        como o número de features, tipo, tamanho e outras características.
+        """
+        from huggingface_hub import hf_hub_download
+        import os
+
+        print()
+        print("-"*75)
+        for model in self.models:
+            try:
+                # Obter informações do modelo
+                print(f"{type(model.model_card_data.keys())}")
+                print(f"{model.get('base_model')}")
+                print(f"Comprimento Máximo: {model.get_max_seq_length()}")
+                print(f"Número de features: {model.get_sentence_embedding_dimension()}")
+                print("-"*75)
+            except Exception as e:
+                pass
 
     def create_embedding_column(self, use_cudf=True):
         """
@@ -143,7 +186,7 @@ class EmbeddingsMulticriteriaAnalysis:
         idioma_predominante = max(set(idiomas), key=idiomas.count)
         return idioma_predominante
 
-    ## Tentativa de carregar modelo e dados para GPU dando erro
+    ## Tentativa de carregar também modelo e dados para GPU dando erro
     # def generate_embeddings(self):
     #     """
     #     Gera embeddings para os textos usando os modelos especificados, processando em lotes.
@@ -174,7 +217,7 @@ class EmbeddingsMulticriteriaAnalysis:
 
     #             batch_size = 128  # Defina o tamanho do lote
     #             embeddings_list = []
-    #             for i in tqdm(range(0, len(sentences), batch_size), desc="Processando sentenças", unit=f"(batch_size {batch_size}) batch"):
+    #             for i in tqdm(range(0, len(sentences), batch_size), desc="Processando sentenças", unit=f"batch (batch_size {batch_size})"):
     #                 batch = sentences[i: i + batch_size]
     #                 processed_sentences = []
     #                 for sentence in batch:
@@ -203,13 +246,15 @@ class EmbeddingsMulticriteriaAnalysis:
     #         except Exception as e:
     #             print(f"Erro ao gerar embeddings com modelo {model_name}: {e}")
 
-    def generate_embeddings_batch(self):
+
+    ## funcionando antes da otimização de uso da VRAM
+    def generate_embeddings(self):
         """
-        Gera embeddings para os textos usando os modelos especificados, processando em lotes.
+        Gera embeddings para os textos usando os modelos especificados.
         """
         for model_name, model in zip(self.model_names, self.models):
             try:
-                sentences = self.data['texto_para_embedding'].to_arrow().to_pylist()
+                sentences = self.data['texto_para_embedding'].to_arrow().to_pylist()   # type: ignore
 
                 # Limpa a memória da GPU
                 gc.collect()
@@ -217,7 +262,55 @@ class EmbeddingsMulticriteriaAnalysis:
 
                 if torch.cuda.is_available():
                     device = torch.device('cuda')
-                    print(f"Gerando embeedings em GPU com modelo {model_name}.")
+                    print(f"\nGerando embeedings em GPU com modelo {model_name}.")
+                else:
+                    device = torch.device('cpu')
+                    print(f"GPU não disponível. Gerando embeedings em CPU com modelo {model_name}.")
+
+                inicio = time.time()
+                
+                # Pré-processar cada texto de acordo com o idioma
+                processed_sentences = []
+                for sentence in tqdm(sentences, desc="Processando sentenças", unit="sentença"):
+                    idioma = self.en_preprocessor.detect_language(sentence)  # Detectar o idioma
+                    if idioma == 'en':
+                        processed_sentence = self.en_preprocessor.preprocess_text(sentence)
+                    elif idioma == 'pt':
+                        processed_sentence = self.br_preprocessor.preprocess_text(sentence)
+                    else:
+                        # Tratar caso o idioma não seja detectado ou suportado
+                        processed_sentence = sentence  # Ou aplicar um pré-processamento padrão
+                    processed_sentences.append(processed_sentence)
+
+                embeddings = model.encode(processed_sentences, convert_to_tensor=True, device=device)
+                self.embeddings[model_name] = embeddings.cpu().numpy()
+
+                # Calcula o tempo de execução em segundos
+                fim = time.time()
+                tempo_execucao_segundos = fim - inicio
+                horas, resto = divmod(tempo_execucao_segundos, 3600)
+                minutos, segundos = divmod(resto, 60)
+                print(f"Tempo de execução: {int(horas):02d}:{int(minutos):02d}:{int(segundos):02d} para modelo {model_name}\n")
+
+            except Exception as e:
+                print(f"    Erro ao gerar embeddings com modelo {model_name}: {e}")
+
+    def generate_embeddings_batch(self):
+        """
+        Gera embeddings para os textos usando os modelos especificados, processando em lotes.
+        """
+        for model_name, model in zip(self.model_names, self.models):
+            try:
+                sentences = self.data['texto_para_embedding'].to_arrow().to_pylist() # type: ignore
+
+                # Limpa a memória da GPU antes de cada lote
+                gc.collect()
+                torch.cuda.empty_cache()
+
+                if torch.cuda.is_available():
+                    device = torch.device('cuda')
+                    model = model.to(device)  # Transferir o modelo para a GPU (nem todos modelos)
+                    print(f"\nGerando embeedings em GPU com modelo {model_name}.")
                 else:
                     device = torch.device('cpu')
                     print(f"GPU não disponível. Gerando embeedings em CPU com modelo {model_name}.")
@@ -227,7 +320,7 @@ class EmbeddingsMulticriteriaAnalysis:
                 # Pré-processar cada texto de acordo com o idioma, em lotes
                 batch_size = 512  # Defina o tamanho do lote
                 processed_sentences = []
-                for i in tqdm(range(0, len(sentences), batch_size), desc="Processando sentenças", unit=f"(batch_size {batch_size}) batch"):
+                for i in tqdm(range(0, len(sentences), batch_size), desc="Processando sentenças", unit=f"batch (batch_size {batch_size})"):
                     batch = sentences[i: i + batch_size]
                     for sentence in batch:
                         idioma = self.en_preprocessor.detect_language(sentence)  # Detectar o idioma
@@ -244,13 +337,255 @@ class EmbeddingsMulticriteriaAnalysis:
                     embeddings = model.encode(processed_sentences, convert_to_tensor=True, device=device, batch_size=batch_size)
                     processed_sentences = []  # Limpar a lista para o próximo lote
 
-                fim = time.time()
+                    # Limpar a memória da GPU após cada lote
+                    gc.collect()
+                    torch.cuda.empty_cache()
 
                 self.embeddings[model_name] = embeddings.cpu().numpy()
+
+                # Calcula o tempo de execução em segundos
+                fim = time.time()
+                tempo_execucao_segundos = fim - inicio
+                horas, resto = divmod(tempo_execucao_segundos, 3600)
+                minutos, segundos = divmod(resto, 60)
+                print(f"Tempo de execução: {int(horas):02d}:{int(minutos):02d}:{int(segundos):02d} para modelo {model_name}\n")
+
             except Exception as e:
                 print(f"Erro ao gerar embeddings com modelo {model_name}: {e}")
 
+
+    def generate_embeddings_batch_no_grad(self):
+        """
+        Gera embeddings para os textos usando os modelos especificados, 
+        processando em lotes e otimizando o uso da VRAM.
+        """
+        for model_name, model in zip(self.model_names, self.models):
+            try:
+                sentences = self.data['texto_para_embedding'].to_arrow().to_pylist() # type: ignore
+
+                # Limpa a memória da GPU
+                gc.collect()
+                torch.cuda.empty_cache()
+
+                if torch.cuda.is_available():
+                    device = torch.device('cuda')
+                    model = model.to(device)  # Transferir modelo para GPU (quando possível)
+                    print(f"\nGerando embeddings em GPU com modelo {model_name}")
+                else:
+                    device = torch.device('cpu')
+                    print(f"GPU não disponível. Gerando embeddings em CPU com modelo {model_name}")
+
+                inicio = time.time()
+
+                batch_size = 1024  # Aumentar o batch_size (ajuste conforme a VRAM disponível)
+                num_batches = len(sentences) // batch_size + (len(sentences) % batch_size > 0)
+
+                # Pré-alocar o tensor de embeddings na GPU
+                embeddings = torch.empty((len(sentences), model.get_sentence_embedding_dimension()), 
+                                        dtype=torch.float32, device=device)
+
+                with torch.no_grad():  # Desabilitar o cálculo de gradientes
+                    for i in tqdm(range(num_batches), desc="Processando sentenças", unit=f"batch (batch_size {batch_size})"):
+                        start_idx = i * batch_size
+                        end_idx = min((i + 1) * batch_size, len(sentences))
+                        batch = sentences[start_idx:end_idx]
+
+                        processed_sentences = []
+                        for sentence in batch:
+                            idioma = self.en_preprocessor.detect_language(sentence)  # Detectar o idioma
+                            if idioma == 'en':
+                                processed_sentence = self.en_preprocessor.preprocess_text(sentence)
+                            elif idioma == 'pt':
+                                processed_sentence = self.br_preprocessor.preprocess_text(sentence)
+                            else:
+                                # Tratar caso o idioma não seja detectado ou suportado
+                                processed_sentence = sentence  # Ou aplicar um pré-processamento padrão
+                            processed_sentences.append(processed_sentence)
+
+                        # Gerar embeddings em lote e armazenar no tensor pré-alocado
+                        embeddings[start_idx:end_idx] = model.encode(
+                            processed_sentences, convert_to_tensor=True, device=device, batch_size=batch_size
+                        )
+
+                # Manter os embeddings na GPU (se possível)
+                # self.embeddings[model_name] = embeddings  
+                
+                # OU Transferir para CPU, apenas se necessário
+                self.embeddings[model_name] = embeddings.cpu().numpy()  
+
+                # Calcula o tempo de execução em segundos
+                fim = time.time()
+                tempo_execucao_segundos = fim - inicio
+                horas, resto = divmod(tempo_execucao_segundos, 3600)
+                minutos, segundos = divmod(resto, 60)
+                print(f"Tempo de execução: {int(horas):02d}:{int(minutos):02d}:{int(segundos):02d} para modelo {model_name}\n")
+
+            except Exception as e:
+                print(f"Erro ao gerar embeddings com modelo {model_name}: {e}")
+
+
+    ## Otimizado
+    def generate_embeddings_optimzed(self):
+        """
+        Gera embeddings para os textos usando os modelos especificados, processando em lotes.
+        """
+        for model_name, model in zip(self.model_names, self.models):
+            try:
+                sentences = self.data['texto_para_embedding'].to_arrow().to_pylist() #type: ignore
+
+                # Imprimir informações sobre o uso da memória
+                print(f"Uso de memória da GPU antes da limpeza: {torch.cuda.memory_allocated() / 1024**2:.2f} MB")
+
+                # Limpa a memória da GPU
+                gc.collect()
+                torch.cuda.empty_cache()
+
+                print(f"Uso de memória da GPU após a limpeza: {torch.cuda.memory_allocated() / 1024**2:.2f} MB")
+
+                if torch.cuda.is_available():
+                    device = torch.device('cuda')
+                    print(f"\nGerando embeddings em GPU com modelo {model_name}")
+                else:
+                    device = torch.device('cpu')
+                    print(f"GPU não disponível. Gerando embeddings em CPU com modelo {model_name}")
+
+                inicio = time.time()
+
+                # Instanciar os pré-processadores dentro da função
+                en_preprocessor = ENPreprocessor()
+                br_preprocessor = BRPreprocessor()
+
+                # Detectar o idioma predominante (apenas uma vez)
+                idioma_predominante = self.detect_predominant_language(sentences)
+
+                batch_size = 128  # Defina o tamanho do lote
+                embeddings_list = []
+                for i in tqdm(range(0, len(sentences), batch_size), desc="Processando sentenças", unit=f"batch (batch_size {batch_size})"):
+                    batch = sentences[i: i + batch_size]
+                    processed_sentences = []
+                    for sentence in batch:
+                        if idioma_predominante == 'en':
+                            processed_sentence = en_preprocessor.preprocess_text(sentence)
+                        elif idioma_predominante == 'pt':
+                            processed_sentence = br_preprocessor.preprocess_text(sentence)
+                        else:
+                            processed_sentence = sentence  # Ou aplicar um pré-processamento padrão
+                        processed_sentences.append(processed_sentence)
+
+                    # Gerar embeddings em lote
+                    print(f"Gerando embeddings para o lote {i // batch_size + 1} de {len(sentences) // batch_size + 1}")
+                    embeddings_batch = model.encode(processed_sentences, convert_to_tensor=True, device=device, batch_size=batch_size)
+
+                    # Imprimir informações sobre os embeddings gerados
+                    print(f"Tamanho do lote de embeddings: {embeddings_batch.shape}")
+                    print(f"Dispositivo dos embeddings: {embeddings_batch.device}")
+
+                    embeddings_list.append(embeddings_batch)
+
+                    # Imprimir informações sobre o uso da memória
+                    print(f"Uso de memória da GPU após o lote {i // batch_size + 1}: {torch.cuda.memory_allocated() / 1024**2:.2f} MB")
+
+                # Concatenar os embeddings de todos os lotes
+                embeddings = torch.cat(embeddings_list, dim=0)
+                self.embeddings[model_name] = embeddings.cpu().numpy()
+
+                # Calcula o tempo de execução em segundos
+                fim = time.time()
+                tempo_execucao_segundos = fim - inicio
+                horas, resto = divmod(tempo_execucao_segundos, 3600)
+                minutos, segundos = divmod(resto, 60)
+                print(f"Tempo de execução: {int(horas):02d}:{int(minutos):02d}:{int(segundos):02d} para modelo {model_name}\n")
+
+                # Limpar o cache da GPU
+                gc.collect()
+                torch.cuda.empty_cache()
+                print(f"Memória em uso na GPU após limpeza final: {torch.cuda.memory_allocated() / 1024**2:.2f} MB")
+
+            except Exception as e:
+                print(f"Erro ao gerar embeddings com modelo {model_name}: {e}")
+
+
     def evaluate_clustering(self):
+        """
+        Avalia o desempenho dos embeddings em tarefas de clustering
+        usando diferentes algoritmos do cuML, múltiplas rodadas e 
+        validação cruzada, e mede o tempo de execução de cada algoritmo.
+        """
+        print("Iniciando avaliação de clustering com cuML...")
+
+        resultados = {}
+        for model_name, embeddings in self.embeddings.items():
+            print(f"Avaliando modelo: {model_name}")
+            resultados[model_name] = {}
+
+            # Converter os embeddings para arrays do CuPy
+            embeddings_cp = cp.array(embeddings)  
+
+            for algorithm in self.algorithms:
+                resultados[model_name][algorithm.__name__] = {"medias": [], "desvios": [], "tempo": []}
+                resultados_algoritmo = []
+                tempos_execucao = []
+
+                for _ in range(self.n_rodadas):
+                    skf = StratifiedKFold(n_splits=self.n_splits, shuffle=True)
+                    resultados_split = []
+
+                    # Usar embeddings_cp (array do CuPy) no StratifiedKFold
+                    for train_index, test_index in skf.split(embeddings_cp, np.zeros(len(embeddings_cp))):  
+                        X_train, X_test = embeddings_cp[train_index], embeddings_cp[test_index]
+                        
+                        # Inicializar o modelo de clustering do cuML
+                        if algorithm.__name__ == "KMeans":
+                            clustering_model = cuml.KMeans(n_clusters=8)  # Ajustar o número de clusters
+                        elif algorithm.__name__ == "DBSCAN":
+                            clustering_model = cuml.DBSCAN(eps=0.5, min_samples=5)  # Ajustar os parâmetros
+                        elif algorithm.__name__ == "HDBSCAN":
+                            clustering_model = cuml.HDBSCAN(min_cluster_size=5)  # Ajustar os parâmetros
+
+                        # Mede o tempo de execução do algoritmo
+                        inicio = time.time()
+                        cluster_labels = clustering_model.fit_predict(X_train)
+                        fim = time.time()
+                        tempo_execucao = fim - inicio
+                        tempos_execucao.append(tempo_execucao)
+
+                        # Avalia apenas nos dados de teste
+                        try:
+                            # Converter para arrays do CuPy para as métricas do cuML
+                            X_test_cp = cp.array(X_test)
+                            cluster_labels_cp = cp.array(cluster_labels)
+
+                            # accuracy_score = accuracy_score(y_true, y_pred)
+                            silhouette_avg = silhouette_score(X_test_cp, cluster_labels_cp)
+                            calinski_harabasz = calinski_harabasz_score(X_test_cp.get(), cluster_labels_cp.get())
+                            davies_bouldin = davies_bouldin_score(X_test_cp.get(), cluster_labels_cp.get())
+
+                            resultados_split.append({
+                                "silhouette": silhouette_avg,
+                                "calinski_harabasz": calinski_harabasz,
+                                "davies_bouldin": davies_bouldin
+                            })
+                        # except ValueError:
+                        except Exception as e:
+                            print(f"Erro ao calcular métricas: {e}")
+                            print(f"{algorithm.__name__}, modelo {model_name}. Pulando esta iteração.")
+
+                    resultados_algoritmo.append(resultados_split)
+
+                # Calcula a média e o desvio padrão das métricas
+                resultados_algoritmo = cp.array(resultados_algoritmo)  # Usar CuPy para calcular a média e o desvio padrão
+                medias = cp.mean(resultados_algoritmo, axis=0)
+                desvios = cp.std(resultados_algoritmo, axis=0)
+
+                resultados[model_name][algorithm.__name__] = {
+                    "medias": medias.tolist(),  # Converter de volta para lista para compatibilidade
+                    "desvios": desvios.tolist(),  # Converter de volta para lista para compatibilidade
+                    "tempo": np.mean(tempos_execucao)  # Adiciona o tempo médio de execução
+                }
+
+        return resultados
+
+    def evaluate_clustering_cpu(self):
         """
         Avalia o desempenho dos embeddings em tarefas de clustering
         usando diferentes algoritmos, múltiplas rodadas e validação cruzada,
@@ -465,136 +800,6 @@ class EmbeddingsMulticriteriaAnalysis:
         except Exception as e:
             print(f"Erro ao gerar os gráficos do relatório: {e}")
             traceback.print_exc()
-
-    ## Otimizado
-    def generate_embeddings_optimzed(self):
-        """
-        Gera embeddings para os textos usando os modelos especificados, processando em lotes.
-        """
-        for model_name, model in zip(self.model_names, self.models):
-            try:
-                sentences = self.data['texto_para_embedding'].to_arrow().to_pylist()
-
-                # Imprimir informações sobre o uso da memória
-                print(f"Uso de memória da GPU antes da limpeza: {torch.cuda.memory_allocated() / 1024**2:.2f} MB")
-
-                # Limpa a memória da GPU
-                gc.collect()
-                torch.cuda.empty_cache()
-
-                print(f"Uso de memória da GPU após a limpeza: {torch.cuda.memory_allocated() / 1024**2:.2f} MB")
-
-                if torch.cuda.is_available():
-                    device = torch.device('cuda')
-                    print(f"Gerando embeddings em GPU com modelo {model_name}")
-                else:
-                    device = torch.device('cpu')
-                    print(f"GPU não disponível. Gerando embeddings em CPU com modelo {model_name}")
-
-                inicio = time.time()
-
-                # Instanciar os pré-processadores dentro da função
-                en_preprocessor = ENPreprocessor()
-                br_preprocessor = BRPreprocessor()
-
-                # Detectar o idioma predominante (apenas uma vez)
-                idioma_predominante = self.detect_predominant_language(sentences)
-
-                batch_size = 128  # Defina o tamanho do lote
-                embeddings_list = []
-                for i in tqdm(range(0, len(sentences), batch_size), desc="Processando sentenças", unit=f"(batch_size {batch_size}) batch"):
-                    batch = sentences[i: i + batch_size]
-                    processed_sentences = []
-                    for sentence in batch:
-                        if idioma_predominante == 'en':
-                            processed_sentence = en_preprocessor.preprocess_text(sentence)
-                        elif idioma_predominante == 'pt':
-                            processed_sentence = br_preprocessor.preprocess_text(sentence)
-                        else:
-                            processed_sentence = sentence  # Ou aplicar um pré-processamento padrão
-                        processed_sentences.append(processed_sentence)
-
-                    # Gerar embeddings em lote
-                    print(f"Gerando embeddings para o lote {i // batch_size + 1} de {len(sentences) // batch_size + 1}")
-                    embeddings_batch = model.encode(processed_sentences, convert_to_tensor=True, device=device, batch_size=batch_size)
-
-                    # Imprimir informações sobre os embeddings gerados
-                    print(f"Tamanho do lote de embeddings: {embeddings_batch.shape}")
-                    print(f"Dispositivo dos embeddings: {embeddings_batch.device}")
-
-                    embeddings_list.append(embeddings_batch)
-
-                    # Imprimir informações sobre o uso da memória
-                    print(f"Uso de memória da GPU após o lote {i // batch_size + 1}: {torch.cuda.memory_allocated() / 1024**2:.2f} MB")
-
-                fim = time.time()
-
-                # Concatenar os embeddings de todos os lotes
-                embeddings = torch.cat(embeddings_list, dim=0)
-                self.embeddings[model_name] = embeddings.cpu().numpy()
-
-                print(f"{fim-inicio} segundos")
-
-                # Limpar o cache da GPU
-                gc.collect()
-                torch.cuda.empty_cache()
-
-                print(f"Uso de memória da GPU após a limpeza final: {torch.cuda.memory_allocated() / 1024**2:.2f} MB")
-
-            except Exception as e:
-                print(f"Erro ao gerar embeddings com modelo {model_name}: {e}")
-
-    ## funcionando antes da otimização de uso da VRAM
-    def generate_embeddings(self):
-        """
-        Gera embeddings para os textos usando os modelos especificados.
-        """
-        for model_name, model in zip(self.model_names, self.models):
-            try:
-                sentences = self.data['texto_para_embedding'].to_arrow().to_pylist()  
-
-                # Limpa a memória da GPU
-                gc.collect()
-                torch.cuda.empty_cache()
-
-                if torch.cuda.is_available():
-                    device = torch.device('cuda')
-                    print(f"Gerando embeedings em GPU com modelo {model_name}.")
-                else:
-                    device = torch.device('cpu')
-                    print(f"GPU não disponível. Gerando embeedings em CPU com modelo {model_name}.")
-
-                inicio = time.time()
-                
-                # Pré-processar cada texto de acordo com o idioma
-                processed_sentences = []
-                for sentence in tqdm(sentences, desc="Processando sentenças", unit="sentença"):
-                    idioma = self.en_preprocessor.detect_language(sentence)  # Detectar o idioma
-                    if idioma == 'en':
-                        processed_sentence = self.en_preprocessor.preprocess_text(sentence)
-                    elif idioma == 'pt':
-                        processed_sentence = self.br_preprocessor.preprocess_text(sentence)
-                    else:
-                        # Tratar caso o idioma não seja detectado ou suportado
-                        processed_sentence = sentence  # Ou aplicar um pré-processamento padrão
-                    processed_sentences.append(processed_sentence)
-
-                embeddings = model.encode(processed_sentences, convert_to_tensor=True, device=device)
-                fim = time.time()
-
-                # Calcula o tempo de execução em segundos
-                tempo_execucao_segundos = fim - inicio
-
-                # Converte o tempo de execução para horas, minutos e segundos
-                horas, resto = divmod(tempo_execucao_segundos, 3600)
-                minutos, segundos = divmod(resto, 60)
-
-                # Imprime o tempo de execução no formato hh:mm:ss
-                print(f"Tempo de execução: {int(horas):02d}:{int(minutos):02d}:{int(segundos):02d}")
-
-                self.embeddings[model_name] = embeddings.cpu().numpy()
-            except Exception as e:
-                print(f"    Erro ao gerar embeddings com modelo {model_name}: {e}")
 
     ## antes da otimização
     # def evaluate_clustering(self):
