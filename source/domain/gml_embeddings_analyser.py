@@ -2,9 +2,6 @@ import os
 import gc
 import ast
 import time
-import cudf
-import cuml.metrics
-
 import torch
 import string
 import jinja2
@@ -12,7 +9,6 @@ import logging
 import warnings
 import traceback
 import unicodedata
-import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -27,14 +23,18 @@ from sklearn.metrics.pairwise import cosine_similarity
 # from sklearn.metrics import silhouette_score
 from sklearn.metrics import calinski_harabasz_score, davies_bouldin_score
 
-# Avaliação de clustering somente rodam em CPU
+## Para avaliar clustering com algoritmos somente em CPU
 # from sklearn.cluster import KMeans, DBSCAN, HDBSCAN
 
-# Avaliação de clustering para rodar em GPU
+## Para avaliar clustering com algoritmos que rodam em GPU
 import cuml
+import cudf
 import cupy as cp
+import numpy as np
+import cuml.metrics
 from cuml.cluster import KMeans, DBSCAN, HDBSCAN
 from cuml.metrics.cluster import silhouette_score
+from sklearn.metrics import calinski_harabasz_score, davies_bouldin_score
 
 from tqdm.auto import tqdm
 from git import Repo
@@ -50,7 +50,7 @@ warnings.filterwarnings("ignore", message="Using the model-agnostic default `max
 
 class EmbeddingsMulticriteriaAnalysis:
 
-    def __init__(self, model_names, models, algorithms=[KMeans, DBSCAN, HDBSCAN], pesos=None, n_rodadas=1, n_splits=5):
+    def __init__(self, model_names, models, algorithms=[KMeans, DBSCAN, HDBSCAN], pesos=None, n_rodadas=3, n_splits=5):
         """
         Autor Marcos Aires (Nov.2024)
         Inicializa a classe com os embeddings, algoritmos de clustering, pesos para cada critério,
@@ -97,43 +97,82 @@ class EmbeddingsMulticriteriaAnalysis:
         else:
             self.pesos = pesos
 
-
     def show_models_info(self):
         """
-        Exibe informações sobre os modelos pré-treinados, 
-        como o número de features, tipo, tamanho e outras características.
+        Exibe informações sobre os modelos pré-treinados, extraindo 
+        dados do ModelCardData e tratando exceções.
         """
-        from huggingface_hub import hf_hub_download
-        import os
 
-        print()
-        print("-"*75)
+        print("\n" + "-"*80)
         for model in self.models:
             try:
+                # Listar os atributos disponíveis
+                print("Atributos disponíveis no modelo:")
+                for attr, value in vars(model_card_data).items():
+                    print(f"  - {attr}: {value}")
+
                 # Obter informações do modelo
-                print(f"{type(model.model_card_data.keys())}")
-                print(f"{model.get('base_model')}")
-                print(f"Comprimento Máximo: {model.get_max_seq_length()}")
-                print(f"Número de features: {model.get_sentence_embedding_dimension()}")
-                print("-"*75)
+                model_card_data = model.model_card_data
+                print(f"    Modelo de Base: {model_card_data.base_model}")
+
+                try:
+                    # Obter a quantidade de features
+                    num_features = model.get_sentence_embedding_dimension()
+                    if num_features:
+                        print(f"Número de features: {num_features}")
+                except:
+                    pass
+
+                try:
+                    # Verificar se o atributo model_max_length existe
+                    if hasattr(model_card_data, 'model_max_length'):
+                        print(f"Comprimento Máximo: {model_card_data.model_max_length}")
+                    else:
+                        pass
+                        # print(f"Comprimento Máximo: Informação não disponível")
+                    print(f"Número de features: {model_card_data.output_dimensionality}")
+                except:
+                    pass
+
+                try:
+                    # Extrair qte de features, tipo e tamanho do modelo
+                    if hasattr(model_card_data, 'model_type'):
+                        model_type = model_card_data.get('model_type', 'Tipo não encontrado')
+                        print(f"    Tipo de Modelo: {model_type}")
+                    if hasattr(model_card_data, 'model_size'):
+                        model_size = model_card_data.get('model_size', 'Tamanho não encontrado') 
+                        print(f" Tamanho do Modelo: {model_size}")
+                    if hasattr(model_card_data, 'license'):
+                        license = model_card_data.get('license', 'Licença não encontrada') 
+                        if license is not None:
+                            print(f"   Tipo de Licença: {license}")
+                    if hasattr(model_card_data, 'train_datasets'):
+                        datasets = f"{', '.join([d['name'] for d in model_card_data.train_datasets])}"
+                        if datasets:
+                            print(f"Datasets de Treino: {datasets}")
+                except:
+                    pass
+                print("-"*80)
+
             except Exception as e:
-                pass
+                # print(f"Erro ao obter informações do modelo: {e}")
+                print("-"*80)
 
     def create_embedding_column(self, use_cudf=True):
         """
-        Creates the 'texto_para_embedding' column in the df_fomento dataframe by combining selected data and applying preprocessing.
+        Cria a coluna 'texto_para_embedding' no dataframe df_fomento combinando dados selecionados e aplicando pré-processamento.
 
-        Args:
-            use_cudf: Whether to use cuDF for DataFrame operations (default: True)
+        Argumentos:
+        use_cudf: Se deve usar cuDF para operações DataFrame (padrão: True)
 
-        Returns:
-            The updated dataframe with the 'texto_para_embedding' column.
+        Retorna:
+        O dataframe atualizado com a coluna 'texto_para_embedding'.
         """
 
         # Informar caminho para arquivo CSV usando raiz do repositório Git como referência
         repo = Repo(search_parent_directories=True)
         root_folder = repo.working_tree_dir
-        folder_data_output = os.path.join(root_folder, '_data', 'out_json') # type: ignore
+        folder_data_output = os.path.join(str(root_folder), '_data', 'out_json')
         filename = 'df_fomento_geral.csv'
         pathfilename = os.path.join(folder_data_output, filename)
         pdf = pd.read_csv(pathfilename, header=0)
@@ -161,7 +200,7 @@ class EmbeddingsMulticriteriaAnalysis:
         cols_details = ['elegibilidade','descricao','valorfinanciado','datalimite']
         cols_moreinf = ['formasolicitacao']
 
-        # Aplciar função de suporte para cada linha do dataframe de editais
+        # Aplicar função de suporte para cada linha do dataframe de editais
         pdf['texto_para_embedding'] = pdf.apply(
             lambda row: generate_embedding_text_helper(
                 row,
@@ -185,67 +224,6 @@ class EmbeddingsMulticriteriaAnalysis:
         idiomas = [en_preprocessor.detect_language(sentence) for sentence in sentences]
         idioma_predominante = max(set(idiomas), key=idiomas.count)
         return idioma_predominante
-
-    ## Tentativa de carregar também modelo e dados para GPU dando erro
-    # def generate_embeddings(self):
-    #     """
-    #     Gera embeddings para os textos usando os modelos especificados, processando em lotes.
-    #     """
-    #     for model_name, model in zip(self.model_names, self.models):
-    #         try:
-    #             sentences = self.data['texto_para_embedding'].to_arrow().to_pylist()
-
-    #             # Limpa a memória da GPU
-    #             gc.collect()
-    #             torch.cuda.empty_cache()
-
-    #             if torch.cuda.is_available():
-    #                 device = torch.device('cuda')
-    #                 print(f"Gerando embeedings em GPU com modelo {model_name}.")
-    #             else:
-    #                 device = torch.device('cpu')
-    #                 print(f"GPU não disponível. Gerando embeedings em CPU com modelo {model_name}.")
-
-    #             inicio = time.time()
-
-    #             # Instanciar os pré-processadores dentro da função
-    #             en_preprocessor = ENPreprocessor()
-    #             br_preprocessor = BRPreprocessor()
-
-    #             # Detectar o idioma predominante (apenas uma vez)
-    #             idioma_predominante = self.detect_predominant_language(sentences)
-
-    #             batch_size = 128  # Defina o tamanho do lote
-    #             embeddings_list = []
-    #             for i in tqdm(range(0, len(sentences), batch_size), desc="Processando sentenças", unit=f"batch (batch_size {batch_size})"):
-    #                 batch = sentences[i: i + batch_size]
-    #                 processed_sentences = []
-    #                 for sentence in batch:
-    #                     if idioma_predominante == 'en':
-    #                         processed_sentence = en_preprocessor.preprocess_text(sentence)
-    #                     elif idioma_predominante == 'pt':
-    #                         processed_sentence = br_preprocessor.preprocess_text(sentence)
-    #                     else:
-    #                         processed_sentence = sentence  # Ou aplicar um pré-processamento padrão
-    #                     processed_sentences.append(processed_sentence)
-
-    #                 # Gerar embeddings em lote
-    #                 embeddings_batch = model.encode(processed_sentences, convert_to_tensor=True, device=device, batch_size=batch_size)
-    #                 embeddings_list.append(embeddings_batch)
-
-    #             fim = time.time()
-
-    #             # Concatenar os embeddings de todos os lotes
-    #             embeddings = torch.cat(embeddings_list, dim=0)
-    #             self.embeddings[model_name] = embeddings.cpu().numpy()
-
-    #             # Limpar o cache da GPU
-    #             gc.collect()
-    #             torch.cuda.empty_cache()
-
-    #         except Exception as e:
-    #             print(f"Erro ao gerar embeddings com modelo {model_name}: {e}")
-
 
     ## funcionando antes da otimização de uso da VRAM
     def generate_embeddings(self):
@@ -341,7 +319,11 @@ class EmbeddingsMulticriteriaAnalysis:
                     gc.collect()
                     torch.cuda.empty_cache()
 
-                self.embeddings[model_name] = embeddings.cpu().numpy()
+                # Manter os embeddings na GPU (se possível para operações posteriores)
+                # self.embeddings[model_name] = embeddings  
+                
+                # OU Transferir para CPU, apenas se necessário
+                self.embeddings[model_name] = embeddings.cpu().numpy()  
 
                 # Calcula o tempo de execução em segundos
                 fim = time.time()
@@ -424,7 +406,7 @@ class EmbeddingsMulticriteriaAnalysis:
                 print(f"Erro ao gerar embeddings com modelo {model_name}: {e}")
 
 
-    ## Otimizado
+    ## Otimizado com processamento em lote na GPU e detecção de idioma predominante
     def generate_embeddings_optimzed(self):
         """
         Gera embeddings para os textos usando os modelos especificados, processando em lotes.
@@ -458,7 +440,7 @@ class EmbeddingsMulticriteriaAnalysis:
                 # Detectar o idioma predominante (apenas uma vez)
                 idioma_predominante = self.detect_predominant_language(sentences)
 
-                batch_size = 128  # Defina o tamanho do lote
+                batch_size = 128  # Definir o tamanho do lote de acordo com tamanhos e capacidades
                 embeddings_list = []
                 for i in tqdm(range(0, len(sentences), batch_size), desc="Processando sentenças", unit=f"batch (batch_size {batch_size})"):
                     batch = sentences[i: i + batch_size]
@@ -487,7 +469,12 @@ class EmbeddingsMulticriteriaAnalysis:
 
                 # Concatenar os embeddings de todos os lotes
                 embeddings = torch.cat(embeddings_list, dim=0)
-                self.embeddings[model_name] = embeddings.cpu().numpy()
+
+                # Manter os embeddings na GPU (se possível)
+                # self.embeddings[model_name] = embeddings  
+                
+                # OU Transferir para CPU, apenas se necessário
+                self.embeddings[model_name] = embeddings.cpu().numpy()  
 
                 # Calcula o tempo de execução em segundos
                 fim = time.time()
@@ -504,12 +491,19 @@ class EmbeddingsMulticriteriaAnalysis:
             except Exception as e:
                 print(f"Erro ao gerar embeddings com modelo {model_name}: {e}")
 
+    import time
+    import cupy as cp
+    import numpy as np
+    from cuml.metrics.cluster import silhouette_score
+    from sklearn.metrics import calinski_harabasz_score, davies_bouldin_score
+
 
     def evaluate_clustering(self):
         """
         Avalia o desempenho dos embeddings em tarefas de clustering
         usando diferentes algoritmos do cuML, múltiplas rodadas e 
         validação cruzada, e mede o tempo de execução de cada algoritmo.
+        Usa métricas do cuML e scikit-learn conforme a disponibilidade.
         """
         print("Iniciando avaliação de clustering com cuML...")
 
@@ -519,69 +513,135 @@ class EmbeddingsMulticriteriaAnalysis:
             resultados[model_name] = {}
 
             # Converter os embeddings para arrays do CuPy
-            embeddings_cp = cp.array(embeddings)  
+            embeddings_cp = cp.array(embeddings)
 
             for algorithm in self.algorithms:
-                resultados[model_name][algorithm.__name__] = {"medias": [], "desvios": [], "tempo": []}
+                resultados[model_name][
+                    algorithm.__name__] = {"medias": [], "desvios": [], "tempo": []}
                 resultados_algoritmo = []
                 tempos_execucao = []
 
-                for _ in range(self.n_rodadas):
+                for rodada in range(self.n_rodadas):
                     skf = StratifiedKFold(n_splits=self.n_splits, shuffle=True)
                     resultados_split = []
 
-                    # Usar embeddings_cp (array do CuPy) no StratifiedKFold
-                    for train_index, test_index in skf.split(embeddings_cp, np.zeros(len(embeddings_cp))):  
+                    # loop skf.split para fora do loop das rodadas para evitar erro no loop
+                    splits = list(skf.split(embeddings_cp.get(), cp.zeros(len(embeddings_cp)).get()))
+
+                    for train_index, test_index in splits:
                         X_train, X_test = embeddings_cp[train_index], embeddings_cp[test_index]
-                        
-                        # Inicializar o modelo de clustering do cuML
-                        if algorithm.__name__ == "KMeans":
-                            clustering_model = cuml.KMeans(n_clusters=8)  # Ajustar o número de clusters
-                        elif algorithm.__name__ == "DBSCAN":
-                            clustering_model = cuml.DBSCAN(eps=0.5, min_samples=5)  # Ajustar os parâmetros
-                        elif algorithm.__name__ == "HDBSCAN":
-                            clustering_model = cuml.HDBSCAN(min_cluster_size=5)  # Ajustar os parâmetros
 
-                        # Mede o tempo de execução do algoritmo
-                        inicio = time.time()
-                        cluster_labels = clustering_model.fit_predict(X_train)
-                        fim = time.time()
-                        tempo_execucao = fim - inicio
-                        tempos_execucao.append(tempo_execucao)
-
-                        # Avalia apenas nos dados de teste
                         try:
-                            # Converter para arrays do CuPy para as métricas do cuML
-                            X_test_cp = cp.array(X_test)
-                            cluster_labels_cp = cp.array(cluster_labels)
+                            # Verificar se há mais de uma amostra
+                            if len(X_test) > 1:
+                                # Imprimir informações de debug sobre os dados
+                                print(
+                                    f"  Rodada {rodada + 1}, Split {len(resultados_split) + 1}:"
+                                )
+                                print(f"    Tamanho de X_train: {X_train.shape}")
+                                print(f"    Tamanho de X_test: {X_test.shape}")
 
-                            # accuracy_score = accuracy_score(y_true, y_pred)
-                            silhouette_avg = silhouette_score(X_test_cp, cluster_labels_cp)
-                            calinski_harabasz = calinski_harabasz_score(X_test_cp.get(), cluster_labels_cp.get())
-                            davies_bouldin = davies_bouldin_score(X_test_cp.get(), cluster_labels_cp.get())
+                                # Inicializar o modelo de clustering do cuML
+                                if algorithm.__name__ == "KMeans":
+                                    clustering_model = cuml.KMeans(
+                                        n_clusters=8)  # Ajustar o número de clusters
+                                elif algorithm.__name__ == "DBSCAN":
+                                    clustering_model = cuml.DBSCAN(
+                                        eps=0.5,
+                                        min_samples=5)  # Ajustar os parâmetros
+                                elif algorithm.__name__ == "HDBSCAN":
+                                    clustering_model = cuml.HDBSCAN(
+                                        min_cluster_size=5)  # Ajustar os parâmetros
 
-                            resultados_split.append({
-                                "silhouette": silhouette_avg,
-                                "calinski_harabasz": calinski_harabasz,
-                                "davies_bouldin": davies_bouldin
-                            })
-                        # except ValueError:
+                                # Medir o tempo de execução do algoritmo
+                                inicio = time.time()
+                                cluster_labels = clustering_model.fit_predict(
+                                    X_test)
+                                fim = time.time()
+                                tempo_execucao = fim - inicio
+                                tempos_execucao.append(tempo_execucao)
+
+                                # Imprimir informações de debug sobre os rótulos dos clusters
+                                print(
+                                    f"    Tamanho de cluster_labels: {cluster_labels.shape}"
+                                )
+
+                                # Avaliar apenas nos dados de teste
+
+                                # Converter para arrays do CuPy para a métrica silhouette_score do cuML
+                                X_test_cp = cp.array(X_test)
+                                cluster_labels_cp = cp.array(cluster_labels)
+
+                                # Imprimir informações de debug sobre os dados convertidos
+                                print(
+                                    f"    Tamanho de X_test_cp: {X_test_cp.shape}"
+                                )
+                                print(
+                                    f"    Tamanho de cluster_labels_cp: {cluster_labels_cp.shape}"
+                                )
+
+                                # Calcular silhouette_score com cuML
+                                silhouette_avg = silhouette_score(
+                                    X_test_cp, cluster_labels_cp)
+
+                                # Converter para arrays do NumPy para as métricas do scikit-learn
+                                X_test_np = X_test_cp.get()
+                                cluster_labels_np = cluster_labels_cp.get()
+
+                                # Calcular calinski_harabasz e davies_bouldin com scikit-learn
+                                calinski_harabasz = calinski_harabasz_score(
+                                    X_test_np, cluster_labels_np)
+                                davies_bouldin = davies_bouldin_score(
+                                    X_test_np, cluster_labels_np)
+
+                                resultados_split.append({
+                                    "silhouette": silhouette_avg,
+                                    "calinski_harabasz": calinski_harabasz,
+                                    "davies_bouldin": davies_bouldin
+                                })
+
+                            else:
+                                print(
+                                    "      Ignorando split com menos de 2 amostras."
+                                )
+
                         except Exception as e:
-                            print(f"Erro ao calcular métricas: {e}")
-                            print(f"{algorithm.__name__}, modelo {model_name}. Pulando esta iteração.")
+                            print(f"    Erro ao calcular métricas: {e}")
+                            print(
+                                f"    {algorithm.__name__}, modelo {model_name}, rodada {rodada + 1}, split {len(resultados_split) + 1}. Pulando esta iteração."
+                            )
 
                     resultados_algoritmo.append(resultados_split)
 
                 # Calcula a média e o desvio padrão das métricas
-                resultados_algoritmo = cp.array(resultados_algoritmo)  # Usar CuPy para calcular a média e o desvio padrão
-                medias = cp.mean(resultados_algoritmo, axis=0)
-                desvios = cp.std(resultados_algoritmo, axis=0)
+                if resultados_algoritmo and resultados_algoritmo[0]:  # Verificar lista não vazia
+                    
+                    # Extrai os valores de cada métrica em listas separadas
+                    silhouette_values = [[split['silhouette'] for split in rodada] for rodada in resultados_algoritmo]
+                    calinski_harabasz_values = [[split['calinski_harabasz'] for split in rodada] for rodada in resultados_algoritmo]
+                    davies_bouldin_values = [[split['davies_bouldin'] for split in rodada] for rodada in resultados_algoritmo]
 
-                resultados[model_name][algorithm.__name__] = {
-                    "medias": medias.tolist(),  # Converter de volta para lista para compatibilidade
-                    "desvios": desvios.tolist(),  # Converter de volta para lista para compatibilidade
-                    "tempo": np.mean(tempos_execucao)  # Adiciona o tempo médio de execução
-                }
+                    # Calcula a média e o desvio padrão de cada métrica
+                    medias = {
+                        "silhouette": np.mean(silhouette_values, axis=0).tolist(),
+                        "calinski_harabasz": np.mean(calinski_harabasz_values, axis=0).tolist(),
+                        "davies_bouldin": np.mean(davies_bouldin_values, axis=0).tolist()
+                    }
+                    desvios = {
+                        "silhouette": np.std(silhouette_values, axis=0).tolist(),
+                        "calinski_harabasz": np.std(calinski_harabasz_values, axis=0).tolist(),
+                        "davies_bouldin": np.std(davies_bouldin_values, axis=0).tolist()
+                    }
+
+                    resultados[model_name][algorithm.__name__] = {
+                        "medias": medias,
+                        "desvios": desvios,
+                        "tempo": np.mean(tempos_execucao)
+                    }
+                else:
+                    print(
+                        f"    Nenhum resultado para {algorithm.__name__}, modelo {model_name}. Pulando."
+                    )
 
         return resultados
 
