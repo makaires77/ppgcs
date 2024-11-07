@@ -521,12 +521,12 @@ class EmbeddingsMulticriteriaAnalysis:
                 resultados_algoritmo = []
                 tempos_execucao = []
 
-                for rodada in range(self.n_rodadas):
-                    skf = StratifiedKFold(n_splits=self.n_splits, shuffle=True)
-                    resultados_split = []
+                # loop skf.split para fora do loop das rodadas para evitar erro no loop
+                skf = StratifiedKFold(n_splits=self.n_splits, shuffle=True)
+                splits = list(skf.split(embeddings_cp.get(), cp.zeros(len(embeddings_cp)).get()))
 
-                    # loop skf.split para fora do loop das rodadas para evitar erro no loop
-                    splits = list(skf.split(embeddings_cp.get(), cp.zeros(len(embeddings_cp)).get()))
+                for rodada in range(self.n_rodadas):
+                    resultados_split = []
 
                     for train_index, test_index in splits:
                         X_train, X_test = embeddings_cp[train_index], embeddings_cp[test_index]
