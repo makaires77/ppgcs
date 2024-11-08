@@ -1,6 +1,8 @@
 from gml_embeddings_analyser import EmbeddingsMulticriteriaAnalysis
 from sentence_transformers import SentenceTransformer
 
+## Análise multicritério da qualidade de clustering com diferentes modelos de embeedings
+
 # Definir os nomes de modelo do SentenceTransformer a serem comparados
 model_names = [
     'paraphrase-multilingual-MiniLM-L12-v2',
@@ -17,4 +19,5 @@ analise = EmbeddingsMulticriteriaAnalysis(
 resultados = analise.evaluate_clustering()
 
 # Imprimir os resultados (opcional)
-print(resultados)
+for i in resultados:
+    print(i)
