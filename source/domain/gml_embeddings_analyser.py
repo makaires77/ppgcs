@@ -831,15 +831,15 @@ class EmbeddingsMulticriteriaAnalysis:
                         # Normalização corrigida para Davies-Bouldin
                         valor_normalizado = 1 - (valor / (max(medias[2] for model_results in resultados.values() for resultados_algoritmo in model_results.values()) + 1e-6))
                     elif metrica == "calinski_harabasz":
-                        valor_normalizado = valor / max_valor_calinski  # Calinski-Harabasz é quanto maior melhor
-                    pontuacao += pesos[metrica] * valor_normalizado  # Usa os pesos passados como argumento
+                        valor_normalizado = valor / max_valor_calinski  #Calinski-Harabasz maior melhor
+                    pontuacao += pesos[metrica] * valor_normalizado  # pesos passados como argumento
 
                 # Adiciona o tempo de execução à pontuação
                 # Normalização corrigida para Tempo de Execução
                 tempo_normalizado = 1 - (tempo_medio / (max(resultados_algoritmo['tempo'] for model_results in resultados.values() for resultados_algoritmo in model_results.values()) + 1e-6))
-                pontuacao += pesos["tempo"] * tempo_normalizado  # Usa os pesos passados como argumento
+                pontuacao += pesos["tempo"] * tempo_normalizado  # pesos passados como argumento
 
-                pontuacoes[model_name][algoritmo] = pontuacao
+                pontuacoes[model_name][algoritmo] = np.round(pontuacao,4)
 
         return pontuacoes
 
@@ -860,10 +860,20 @@ class EmbeddingsMulticriteriaAnalysis:
         # Calcula a pontuação média para cada modelo
         pontuacoes_modelos = {}
         for model_name, model_pontuacoes in pontuacoes.items():
-            pontuacoes_modelos[model_name] = np.mean(list(model_pontuacoes.values()))
+            
+            # Calcula a médias de pontuações
+            media = np.mean(list(model_pontuacoes.values()))
+            
+            # Truncar a média após a quarta casa decimal
+            media_truncada = "{:.4f}".format(media)
+            
+            pontuacoes_modelos[model_name] = media_truncada
 
         # Seleciona o modelo com a maior pontuação média
         melhor_modelo = max(pontuacoes_modelos, key=pontuacoes_modelos.get) # type: ignore
+        print('Pontuações médias ponderadas por cada modelo e algoritmo')
+        for i,j in pontuacoes_modelos.items():
+            print(f"  {i}: {j}")
 
         return melhor_modelo
 
@@ -883,14 +893,16 @@ class EmbeddingsMulticriteriaAnalysis:
         for i, metric_name in enumerate(metrics):
             # Loop pelos algoritmos
             for j, algorithm_name in enumerate(algorithms):
+                
                 # Obter os valores da métrica para cada modelo
                 model_values = {}
                 for model_name, model_results in resultados.items():
+                    
                     # Obter os valores da métrica para cada split
                     metric_values = [result[metric_name] for result in model_results[algorithm_name]['resultados']]
                     model_values[model_name] = np.mean(metric_values)  # Calcular a média dos splits
 
-                # Adicionar um gráfico de barras para a métrica e algoritmo, especificando a posição do subplot
+                # Adicionar gráfico de barras para métrica e algoritmo com subplots
                 for k, model_name in enumerate(model_values.keys()):
                     fig.add_trace(go.Bar(
                         x=[algorithm_name],
@@ -956,12 +968,72 @@ class EmbeddingsMulticriteriaAnalysis:
 
         return df_report
 
+
     def generate_report_charts(self, df_report):
         """
-        Generates charts for the benchmarking report.
+        Autor: Marcos Aires (Nov.2024)
+        Gera gráficos para o relatório de benchmarking usando Plotly.
 
         Args:
-        df_report: The dataframe containing the report data.
+            df_report: O dataframe contendo os dados do relatório.
+        """
+        try:
+            metrics = ['Silhouette', 'Calinski-Harabasz', 'Davies-Bouldin', 'Tempo (s)']
+            criterio = ['(Maior melhor)', '(Maior melhor)', '(Menor melhor)', '(Menor melhor)']
+            algorithms = df_report['Algoritmo'].unique()
+            modelos = df_report['Modelo'].unique()
+
+            # Ajustar o número de subplots de acordo com o número de métricas
+            fig = make_subplots(rows=1, cols=len(metrics), subplot_titles=metrics, horizontal_spacing=0.15)
+
+            # Cores para os modelos
+            colors = ['blue', 'green', 'yellow', 'orange']
+
+            # Loop pelas métricas
+            for i, metric_name in enumerate(metrics):
+                # Loop pelos algoritmos
+                for j, algorithm_name in enumerate(algorithms):
+                    # Obter os valores da métrica para cada modelo
+                    for k, modelo in enumerate(modelos):
+                        df_filtered = df_report[(df_report['Modelo'] == modelo) & (df_report['Algoritmo'] == algorithm_name)]
+                        valor = df_filtered[metric_name].values[0]
+
+                        # Gráfico de barras para métrica e algoritmo em subplots
+                        fig.add_trace(go.Bar(
+                            x=[algorithm_name],
+                            y=[valor],
+                            name=modelo,  # Usar o nome do modelo na legenda
+                            showlegend=i == 0 and j == 0,  # Exibe a legenda apenas no primeiro subplot
+                            legendgroup=modelo,  # Agrupa as barras por modelo
+                            offsetgroup=k,  # Define o offset para agrupar as barras por modelo
+                            marker_color=colors[k]  # Cores para os modelos
+                        ), row=1, col=i+1)  # Especificar a linha e coluna do subplot
+
+            # Configura o layout do gráfico
+            fig.update_layout(
+                title="Comparação da qualidade de clustering com embeddings gerados em cada um dos modelos",
+                height=600,
+                width=1600
+            )
+
+            # Ajustar os títulos dos eixos
+            for i, metric_name in enumerate(metrics):
+                fig.update_xaxes(title_text="Algoritmo", row=1, col=i+1)
+                fig.update_yaxes(title_text=f"{metric_name}", row=1, col=i+1)
+
+            fig.show()
+
+        except Exception as e:
+            print(f"Erro ao gerar os gráficos do relatório: {e}")
+            traceback.print_exc()
+
+
+    def generate_seaborn_report_charts(self, df_report):
+        """
+        Gera gráficos para o relatório de benchmarking utilizando bilbioteca Seaborn.
+
+        Args:
+        df_report: O dataframe contendo os dados do relatório.
         """
         df_report = self.transform_df_report(df_report.copy())
         try:
@@ -972,33 +1044,33 @@ class EmbeddingsMulticriteriaAnalysis:
             # Gráfico de barras para Silhouette Score
             plt.figure(figsize=(12, 6))
             sns.barplot(x="Modelo", y="Silhouette", hue="Algoritmo", data=df_report)
-            plt.title("Silhouette Score")
+            plt.title("Silhouette Score (Maior melhor)")
             plt.ylabel("Silhouette Score")
-            plt.xticks(rotation=45)
+            plt.xticks(rotation=0)
             plt.show()
 
             # Gráfico de barras para Calinski-Harabasz Index
             plt.figure(figsize=(12, 6))
             sns.barplot(x="Modelo", y="Calinski-Harabasz", hue="Algoritmo", data=df_report)
-            plt.title("Calinski-Harabasz Index")
+            plt.title("Calinski-Harabasz Index (Maior melhor)")
             plt.ylabel("Calinski-Harabasz Index")
-            plt.xticks(rotation=45)
+            plt.xticks(rotation=0)
             plt.show()
 
             # Gráfico de barras para Davies-Bouldin Index
             plt.figure(figsize=(12, 6))
             sns.barplot(x="Modelo", y="Davies-Bouldin", hue="Algoritmo", data=df_report)
-            plt.title("Davies-Bouldin Index")
+            plt.title("Davies-Bouldin Index (Menor melhor)")
             plt.ylabel("Davies-Bouldin Index")
-            plt.xticks(rotation=45)
+            plt.xticks(rotation=0)
             plt.show()
 
             # Gráfico de barras para Tempo de Execução
             plt.figure(figsize=(12, 6))
             sns.barplot(x="Modelo", y="Tempo (s)", hue="Algoritmo", data=df_report)
-            plt.title("Tempo de Execução (s)")
+            plt.title("Tempo de Execução (s) (Menor melhor)")
             plt.ylabel("Tempo (s)")
-            plt.xticks(rotation=45)
+            plt.xticks(rotation=0)
             plt.show()
 
         except Exception as e:
