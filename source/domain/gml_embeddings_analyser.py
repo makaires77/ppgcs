@@ -1,6 +1,7 @@
 import os
 import gc
 import ast
+import json
 import time
 import torch
 import string
@@ -12,8 +13,11 @@ import unicodedata
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 
 from transformers import AutoModel
+from plotly.subplots import make_subplots
+from plotly.subplots import make_subplots
 from huggingface_hub import hf_hub_download
 from sentence_transformers import SentenceTransformer
 
@@ -21,19 +25,21 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score
 from sklearn.metrics.pairwise import cosine_similarity
 
-## Para avaliar clustering com algoritmos somente em CPU
-# from sklearn.cluster import KMeans, DBSCAN, HDBSCAN
-# from sklearn.metrics import silhouette_score
-
 ## Para avaliar clustering com algoritmos que rodam em GPU
 import cuml
 import cudf
 import cupy as cp
 import numpy as np
 import cuml.metrics
+from sklearn.model_selection import KFold
 from cuml.cluster import KMeans, DBSCAN, HDBSCAN
 from cuml.metrics.cluster import silhouette_score
 from sklearn.metrics import calinski_harabasz_score, davies_bouldin_score
+
+## Para avaliar clustering com algoritmos somente em CPU
+# from sklearn.cluster import KMeans, DBSCAN, HDBSCAN
+# from sklearn.metrics import silhouette_score
+# from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score
 
 from tqdm.auto import tqdm
 from git import Repo
@@ -554,7 +560,7 @@ class EmbeddingsMulticriteriaAnalysis:
         Autor: Marcos Aires (Nov.2024)
         Carrega os embeddings de um arquivo PyTorch local.
         """
-        # Informar caminho para arquivo CSV usando raiz do repositório Git como referência
+        # Informar caminho para arquivo de embeddings usando raiz do repositório Git como referência
         repo = Repo(search_parent_directories=True)
         root_folder = repo.working_tree_dir
         folder_data_output = os.path.join(str(root_folder), '_embeddings')
@@ -623,6 +629,27 @@ class EmbeddingsMulticriteriaAnalysis:
             print(f"Erro ao carregar os embeddings: {e}")
             return None
 
+    def load_results(self, filename="resultados.json"):
+        """
+        Autor: Marcos Aires (Nov.2024)
+        Carrega os resultados de um arquivo JSON local.
+        """
+        # Informar caminho para arquivo JSON usando raiz do repositório Git como referência
+        repo = Repo(search_parent_directories=True)
+        root_folder = repo.working_tree_dir
+        folder_data_output = os.path.join(str(root_folder), '_embeddings')
+        pathfilename = os.path.join(folder_data_output, filename)
+        
+        # Carregar o dicionário de resultados de arquivo JSON
+        with open(pathfilename, 'r') as f:
+            resultados = json.load(f)
+
+        if not isinstance(resultados, dict):
+            raise TypeError("O arquivo JSON não contém um dicionário.")
+
+        return resultados
+
+
     ## Início da avaliação, refatorar em outra classe posterioremente
     def evaluate_clustering(self, embeddings_dict):
         """
@@ -637,7 +664,7 @@ class EmbeddingsMulticriteriaAnalysis:
                             As chaves são os nomes dos modelos e os valores 
                             são os embeddings correspondentes.
         """
-        print("Iniciando avaliação de clustering com cuML...")
+        print(f"\nIniciando avaliação de clustering com cuML...")
 
         resultados = {}
         for model_name, embeddings in embeddings_dict.items():  # Usar embeddings_dict como entrada
@@ -713,7 +740,62 @@ class EmbeddingsMulticriteriaAnalysis:
         return resultados
 
 
-    def calcular_pontuacao_multicriterio(self, resultados):
+    # def calcular_pontuacao_multicriterio(self, resultados, pesos):  # Adiciona pesos como argumento
+    #     """
+    #     Autor: Marcos Aires (Nov.2024)
+    #     Calcula a pontuação multicritério para cada algoritmo, combinando as métricas com os pesos.
+    #     """
+    #     pontuacoes = {}
+    #     for model_name, model_results in resultados.items():
+    #         pontuacoes[model_name] = {}
+    #         max_valor_calinski = 0  # Inicializa o valor máximo do Calinski-Harabasz
+    #         for algoritmo, resultados_algoritmo in model_results.items():
+    #             # Calcula a media entre as várisa medições
+    #             medias = np.mean([[r['silhouette'], r['calinski_harabasz'], r['davies_bouldin']] for r in resultados_algoritmo['resultados']], axis=0)
+
+    #             # Calcula a média do tempo
+    #             tempo_medio = np.mean(resultados_algoritmo['tempo'])
+
+    #             # Encontra o valor máximo do Calinski-Harabasz entre todos os modelos e algoritmos
+    #             max_valor_calinski = max(max_valor_calinski, medias[1])
+
+    #             # Armazena as médias e o tempo médio no dicionário pontuacoes
+    #             pontuacoes[model_name][algoritmo] = {
+    #                 'medias': medias,
+    #                 'tempo': tempo_medio,
+    #                 'max_calinski': max_valor_calinski  # Armazena o valor máximo do Calinski-Harabasz
+    #             }
+
+    #     # Normaliza as métricas e calcula a pontuação ponderada
+    #     for model_name, model_results in pontuacoes.items():
+    #         for algoritmo, resultados_algoritmo in model_results.items():
+    #             medias = resultados_algoritmo['medias']
+    #             tempo_medio = resultados_algoritmo['tempo']
+    #             max_valor_calinski = resultados_algoritmo['max_calinski']  # Obtém o valor máximo do Calinski-Harabasz
+
+    #             pontuacao = 0
+    #             for i, metrica in enumerate(['silhouette', 'calinski_harabasz', 'davies_bouldin']):
+    #                 valor = medias[i]
+    #                 # Normaliza as métricas para ficarem na mesma escala (0 a 1)
+    #                 if metrica == "silhouette":
+    #                     valor_normalizado = (valor + 1) / 2  # Silhouette varia de -1 a 1
+    #                 elif metrica == "davies_bouldin":
+    #                     # Normalizar Davies-Bouldin
+    #                     valor_normalizado = 1 - (valor / (max(medias[2] for model_results in resultados.values() for resultados_algoritmo in model_results.values()) + 1e-6))
+    #                 elif metrica == "calinski_harabasz":
+    #                     valor_normalizado = valor / max_valor_calinski #Calinski-Harabasz maior melhor
+    #                 pontuacao += pesos[metrica] * valor_normalizado
+
+    #             # Adiciona o tempo de execução à pontuação
+    #             # Normalização corrigida para Tempo de Execução
+    #             tempo_normalizado = 1 - (tempo_medio / (max(resultados_algoritmo['tempo'] for model_results in resultados.values() for resultados_algoritmo in model_results.values()) + 1e-6))
+    #             pontuacao += pesos["tempo"] * tempo_normalizado
+
+    #             pontuacoes[model_name][algoritmo] = pontuacao
+
+    #     return pontuacoes
+
+    def calcular_pontuacao_multicriterio(self, resultados, pesos):  # Adiciona pesos como argumento
         """
         Autor: Marcos Aires (Nov.2024)
         Calcula a pontuação multicritério para cada algoritmo, combinando as métricas com os pesos.
@@ -721,48 +803,70 @@ class EmbeddingsMulticriteriaAnalysis:
         pontuacoes = {}
         for model_name, model_results in resultados.items():
             pontuacoes[model_name] = {}
-            max_valor = 0
-            for algoritmo, resultados in model_results.items():
-                medias = resultados["medias"]
+            max_valor_calinski = 0  # Inicializa o valor máximo do Calinski-Harabasz
+            for algoritmo, resultados_algoritmo in model_results.items():
+                
+                # Extrai as pontuações das métricas
+                pontuacoes_metricas = {metrica: [] for metrica in ['silhouette', 'calinski_harabasz', 'davies_bouldin']}
+                for resultado in resultados_algoritmo['resultados']:
+                    for metrica in pontuacoes_metricas:
+                        pontuacoes_metricas[metrica].append(resultado[metrica])
+                
+                # Calcula as médias das métricas
+                medias = [np.mean(pontuacoes_metricas[metrica]) for metrica in pontuacoes_metricas]
+                
+                # Calcula a média do tempo
+                tempo_medio = np.mean(resultados_algoritmo['tempo'])
+
+                # Encontra o valor máximo do Calinski-Harabasz entre todos os modelos e algoritmos
+                max_valor_calinski = max(max_valor_calinski, medias[1])
+
                 pontuacao = 0
                 for i, metrica in enumerate(['silhouette', 'calinski_harabasz', 'davies_bouldin']):
-                    valor = medias[i]
+                    valor = medias[i]  # Usa as médias calculadas
                     # Normaliza as métricas para ficarem na mesma escala (0 a 1)
                     if metrica == "silhouette":
-                        valor_normalizado = (valor + 1) / 2  # Silhouette varia de -1 a 1, quanto maior melhor qualidade de clustering, clusters mais coesos e separados
+                        valor_normalizado = (valor + 1) / 2  # Silhouette varia de -1 a 1
                     elif metrica == "davies_bouldin":
-                        valor_normalizado = 1 / (valor + 1e-6)  # Davies-Bouldin é quanto menor melhor,  indica clusters mais distintos e compactos
+                        # Normalização corrigida para Davies-Bouldin
+                        valor_normalizado = 1 - (valor / (max(medias[2] for model_results in resultados.values() for resultados_algoritmo in model_results.values()) + 1e-6))
                     elif metrica == "calinski_harabasz":
-                        max_valor = np.max([resultados["medias"][i] for model_results in resultados.values() for resultados in model_results.values()])
-                        valor_normalizado = valor / max_valor # Calinski_Harabasz é quanto maior melhor, sugere uma melhor separação
-                    pontuacao += self.pesos[metrica] * valor_normalizado
+                        valor_normalizado = valor / max_valor_calinski  # Calinski-Harabasz é quanto maior melhor
+                    pontuacao += pesos[metrica] * valor_normalizado  # Usa os pesos passados como argumento
 
                 # Adiciona o tempo de execução à pontuação
-                tempo_execucao = resultados["tempo"]
-                tempo_normalizado = 1 / (tempo_execucao + 1e-6)  # Tempo é quanto menor melhor
-                pontuacao += self.pesos["tempo"] * tempo_normalizado
+                # Normalização corrigida para Tempo de Execução
+                tempo_normalizado = 1 - (tempo_medio / (max(resultados_algoritmo['tempo'] for model_results in resultados.values() for resultados_algoritmo in model_results.values()) + 1e-6))
+                pontuacao += pesos["tempo"] * tempo_normalizado  # Usa os pesos passados como argumento
 
                 pontuacoes[model_name][algoritmo] = pontuacao
-                print(f"Pontuações: {pontuacoes}")
 
         return pontuacoes
 
-
     def escolher_melhor_modelo(self, resultados):
-            """
-            Autor: Marcos Aires (Nov.2024)
-            Escolhe o modelo com a maior pontuação multicritério.
-            """
-            print("Resultados:", resultados)
-            pontuacoes = self.calcular_pontuacao_multicriterio(resultados)
-            print("Pontuações:", pontuacoes)  # Adicione este print
-            melhor_modelo = max(pontuacoes, key=lambda model_name: max(pontuacoes[model_name].values()))
-            return melhor_modelo
+        """
+        Escolhe o modelo com a maior pontuação multicritério.
+        """
+        # Define os pesos para cada métrica (ajuste os valores conforme necessário)
+        pesos = {
+            "silhouette": 0.3,
+            "calinski_harabasz": 0.3,
+            "davies_bouldin": 0.3,
+            "tempo": 0.1
+        }
 
+        pontuacoes = self.calcular_pontuacao_multicriterio(resultados, pesos)
 
-    import numpy as np
-    import plotly.graph_objects as go
-    from plotly.subplots import make_subplots
+        # Calcula a pontuação média para cada modelo
+        pontuacoes_modelos = {}
+        for model_name, model_pontuacoes in pontuacoes.items():
+            pontuacoes_modelos[model_name] = np.mean(list(model_pontuacoes.values()))
+
+        # Seleciona o modelo com a maior pontuação média
+        melhor_modelo = max(pontuacoes_modelos, key=pontuacoes_modelos.get) # type: ignore
+
+        return melhor_modelo
+
 
     def plot_clustering_results_bars(self, resultados):
         """
@@ -795,12 +899,12 @@ class EmbeddingsMulticriteriaAnalysis:
                         showlegend=i == 0 and j == 0,  # Exibe a legenda apenas no primeiro subplot
                         legendgroup=model_name,  # Agrupa as barras por modelo
                         offsetgroup=k,  # Define o offset para agrupar as barras por modelo
-                        marker_color=['blue', 'green'][k]  # Cores para os modelos
+                        marker_color=['blue', 'green', 'yellow'][k]  # Cores para os modelos
                     ), row=1, col=i+1)  # Especificar a linha e coluna do subplot
 
         # Configura o layout do gráfico
         fig.update_layout(
-            title="Comparação do Desempenho dos Modelos",
+            title="Comparação da qualidade de clustering com embeedings gerados em cada um dos modelos",
             height=600,
             width=1200
         )
@@ -835,58 +939,31 @@ class EmbeddingsMulticriteriaAnalysis:
 
         fig.show()
 
-    ## Início da geração de relatórios
-    def generate_report(self, resultados):
+    def transform_df_report(self, df_report):
         """
-        Autor: Marcos Aires (Nov.2024)
-        Generates a report with the benchmarking results.
+        Transforms the df_report DataFrame:
+
+        * Removes the "±" and everything after it from the "Silhouette", "Calinski-Harabasz", and "Davies-Bouldin" columns,
+        keeping only the first value.
+        * Converts the "Silhouette", "Calinski-Harabasz", "Davies-Bouldin", and "Tempo (s)" columns to numeric.
         """
-        try:
-            # 1. Preparar os dados para o relatório
-            report_data = []
-            for model_name, model_results in resultados.items():
-                for algorithm_name, results in model_results.items():
-                    medias = results["medias"]
-                    desvios = results["desvios"]
-                    tempo = results["tempo"]
-                    report_data.append({
-                        "Modelo": model_name,
-                        "Algoritmo": algorithm_name,
-                        "Silhouette": f"{medias[0]:.3f} ± {desvios[0]:.3f}",
-                        "Calinski-Harabasz": f"{medias[1]:.3f} ± {desvios[1]:.3f}",
-                        "Davies-Bouldin": f"{medias[2]:.3f} ± {desvios[2]:.3f}",
-                        "Tempo (s)": f"{tempo:.2f}"
-                    })
 
-            # 2. Criar o dataframe do relatório
-            df_report = pd.DataFrame(report_data)
+        for col in ["Silhouette", "Calinski-Harabasz", "Davies-Bouldin"]:
+            df_report[col] = df_report[col].str.split("±").str[0]
+            df_report[col] = pd.to_numeric(df_report[col])
 
-            # 3. Salvar o relatório em formato CSV
-            # Obter o caminho do diretório do repositório Git
-            repo = Repo(search_parent_directories=True)
-            root_folder = repo.working_tree_dir
-            folder_data_output = os.path.join(str(root_folder), '_reports')
-            os.makedirs(folder_data_output, exist_ok=True)  # Criar a pasta se não existir
-            report_filename = os.path.join(folder_data_output, 'benchmark_report.csv')
-            df_report.to_csv(report_filename, index=False)
+        df_report["Tempo (s)"] = pd.to_numeric(df_report["Tempo (s)"])
 
-            # 4. Gerar os gráficos do relatório
-            self.plot_clustering_results_bars(resultados)
-            self.generate_report_charts(df_report)
-
-        except Exception as e:
-            print(f"Erro ao gerar o relatório: {e}")
-            traceback.print_exc()
-
+        return df_report
 
     def generate_report_charts(self, df_report):
         """
-        Autor: Marcos Aires (Nov.2024)
         Generates charts for the benchmarking report.
 
         Args:
-            df_report: The dataframe containing the report data.
+        df_report: The dataframe containing the report data.
         """
+        df_report = self.transform_df_report(df_report.copy())
         try:
             # 1. Configurar o estilo dos gráficos
             sns.set_theme(style="whitegrid")
@@ -926,4 +1003,53 @@ class EmbeddingsMulticriteriaAnalysis:
 
         except Exception as e:
             print(f"Erro ao gerar os gráficos do relatório: {e}")
+            traceback.print_exc()
+
+    def generate_report(self, resultados):
+        """
+        Autor: Marcos Aires (Nov.2024)
+        Generates a report with the benchmarking results.
+        """
+        try:
+            # 1. Preparar os dados para o relatório
+            report_data = []
+            for model_name, model_results in resultados.items():
+                for algorithm_name, algorithm_results in model_results.items():
+
+                    # Acessa as pontuações das métricas diretamente
+                    pontuacoes_metricas = {metrica: [] for metrica in ['silhouette', 'calinski_harabasz', 'davies_bouldin']}
+                    for resultado in algorithm_results['resultados']:
+                        for metrica in pontuacoes_metricas:
+                            pontuacoes_metricas[metrica].append(resultado[metrica])
+
+                    # Calcula as médias e desvios das métricas
+                    medias = [np.mean(pontuacoes_metricas[metrica]) for metrica in pontuacoes_metricas]
+                    desvios = [np.std(pontuacoes_metricas[metrica]) for metrica in pontuacoes_metricas]
+
+                    tempo = algorithm_results["tempo"]
+                    report_data.append({
+                        "Modelo": model_name,
+                        "Algoritmo": algorithm_name,
+                        "Silhouette": f"{medias[0]:.3f} ± {desvios[0]:.3f}",
+                        "Calinski-Harabasz": f"{medias[1]:.3f} ± {desvios[1]:.3f}",
+                        "Davies-Bouldin": f"{medias[2]:.3f} ± {desvios[2]:.3f}",
+                        "Tempo (s)": f"{tempo:.2f}"
+                    })
+
+            # 2. Criar o dataframe do relatório
+            df_report = pd.DataFrame(report_data)
+
+            # 3. Salvar o relatório em formato CSV
+            # Obter o caminho do diretório do repositório Git
+            folder_data_output = os.path.join(str(os.getcwd()), '_reports')
+            os.makedirs(folder_data_output, exist_ok=True)  # Criar a pasta se não existir
+            report_filename = os.path.join(folder_data_output, 'benchmark_report.csv')
+            df_report.to_csv(report_filename, index=False)
+
+            # 4. Gerar os gráficos do relatório
+            self.plot_clustering_results_bars(resultados)
+            self.generate_report_charts(df_report)
+
+        except Exception as e:
+            print(f"Erro ao gerar o relatório: {e}")
             traceback.print_exc()
