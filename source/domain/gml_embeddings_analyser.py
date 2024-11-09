@@ -729,17 +729,17 @@ class EmbeddingsMulticriteriaAnalysis:
                     valor = medias[i]
                     # Normaliza as métricas para ficarem na mesma escala (0 a 1)
                     if metrica == "silhouette":
-                        valor_normalizado = (valor + 1) / 2  # Silhouette varia de -1 a 1
+                        valor_normalizado = (valor + 1) / 2  # Silhouette varia de -1 a 1, quanto maior melhor qualidade de clustering, clusters mais coesos e separados
                     elif metrica == "davies_bouldin":
-                        valor_normalizado = 1 / (valor + 1e-6)  # Davies-Bouldin é menor quanto melhor
+                        valor_normalizado = 1 / (valor + 1e-6)  # Davies-Bouldin é quanto menor melhor,  indica clusters mais distintos e compactos
                     elif metrica == "calinski_harabasz":
                         max_valor = np.max([resultados["medias"][i] for model_results in resultados.values() for resultados in model_results.values()])
-                        valor_normalizado = valor / max_valor
+                        valor_normalizado = valor / max_valor # Calinski_Harabasz é quanto maior melhor, sugere uma melhor separação
                     pontuacao += self.pesos[metrica] * valor_normalizado
 
                 # Adiciona o tempo de execução à pontuação
                 tempo_execucao = resultados["tempo"]
-                tempo_normalizado = 1 / (tempo_execucao + 1e-6)  # Tempo é menor quanto melhor
+                tempo_normalizado = 1 / (tempo_execucao + 1e-6)  # Tempo é quanto menor melhor
                 pontuacao += self.pesos["tempo"] * tempo_normalizado
 
                 pontuacoes[model_name][algoritmo] = pontuacao
@@ -759,6 +759,81 @@ class EmbeddingsMulticriteriaAnalysis:
             melhor_modelo = max(pontuacoes, key=lambda model_name: max(pontuacoes[model_name].values()))
             return melhor_modelo
 
+
+    import numpy as np
+    import plotly.graph_objects as go
+    from plotly.subplots import make_subplots
+
+    def plot_clustering_results_bars(self, resultados):
+        """
+        Plota os resultados do clustering usando Plotly, exibindo gráficos de barras
+        para comparar o desempenho de cada modelo em cada métrica para cada algoritmo.
+        """
+        metrics = ['silhouette', 'calinski_harabasz', 'davies_bouldin']
+        algorithms = ['KMeans', 'DBSCAN', 'HDBSCAN']
+
+        # Ajustar o número de subplots de acordo com o número de métricas
+        fig = make_subplots(rows=1, cols=len(metrics), subplot_titles=metrics)
+
+        # Loop pelas métricas
+        for i, metric_name in enumerate(metrics):
+            # Loop pelos algoritmos
+            for j, algorithm_name in enumerate(algorithms):
+                # Obter os valores da métrica para cada modelo
+                model_values = {}
+                for model_name, model_results in resultados.items():
+                    # Obter os valores da métrica para cada split
+                    metric_values = [result[metric_name] for result in model_results[algorithm_name]['resultados']]
+                    model_values[model_name] = np.mean(metric_values)  # Calcular a média dos splits
+
+                # Adicionar um gráfico de barras para a métrica e algoritmo, especificando a posição do subplot
+                for k, model_name in enumerate(model_values.keys()):
+                    fig.add_trace(go.Bar(
+                        x=[algorithm_name],
+                        y=[model_values[model_name]],
+                        name=model_name,  # Usar o nome do modelo na legenda
+                        showlegend=i == 0 and j == 0,  # Exibe a legenda apenas no primeiro subplot
+                        legendgroup=model_name,  # Agrupa as barras por modelo
+                        offsetgroup=k,  # Define o offset para agrupar as barras por modelo
+                        marker_color=['blue', 'green'][k]  # Cores para os modelos
+                    ), row=1, col=i+1)  # Especificar a linha e coluna do subplot
+
+        # Configura o layout do gráfico
+        fig.update_layout(
+            title="Comparação do Desempenho dos Modelos",
+            height=600,
+            width=1200
+        )
+
+        # Ajustar os títulos dos eixos
+        for i, metric_name in enumerate(metrics):
+            fig.update_xaxes(title_text="Algoritmo", row=1, col=i+1)
+            fig.update_yaxes(title_text="", row=1, col=i+1)
+
+        # Adicionar anotações para indicar as melhores regiões
+        fig.add_annotation(
+            text="Maior Melhor",
+            x=0.23, y=1,
+            xref="paper", yref="paper",
+            showarrow=True, arrowhead=4,
+            ax=0, ay=30
+        )
+        fig.add_annotation(
+            text="Maior Melhor",
+            x=0.59, y=1,
+            xref="paper", yref="paper",
+            showarrow=True, arrowhead=4,
+            ax=0, ay=30
+        )
+        fig.add_annotation(
+            text="Menor Melhor",
+            x=0.77, y=0.9,
+            xref="paper", yref="paper",
+            showarrow=True, arrowhead=4,
+            ax=0, ay=-30
+        )
+
+        fig.show()
 
     ## Início da geração de relatórios
     def generate_report(self, resultados):
@@ -796,6 +871,7 @@ class EmbeddingsMulticriteriaAnalysis:
             df_report.to_csv(report_filename, index=False)
 
             # 4. Gerar os gráficos do relatório
+            self.plot_clustering_results_bars(resultados)
             self.generate_report_charts(df_report)
 
         except Exception as e:
