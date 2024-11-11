@@ -239,7 +239,7 @@ class BRPreprocessor:
         self.model_tr.to(self.device)
 
         # Carregar o modelo de linguagem em português do Spacy
-        self.nlp_pt = spacy.load("pt_core_news_sm")
+        self.nlp_pt = spacy.load("pt_core_news_lg")
 
         # Adicionar o corretor ortográfico contextual ao pipeline do spaCy (se disponível para português)
         contextualSpellCheck.add_to_pipe(self.nlp_pt)

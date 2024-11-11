@@ -25,7 +25,7 @@ def gerar_resultados_clustering(embeddings_dict, analise):
     
     return resultados
 
-def salvar_resultados():
+def salvar_resultados(resultados):
     """
     Autor: Marcos Aires (Nov.2024)
     Salva os resultados em um arquivo JSON local.
@@ -77,7 +77,8 @@ def load_resultados(filename="resultados.json"):
 # Definir os nomes de modelo do SentenceTransformer a serem comparados
 model_names = [
     'paraphrase-multilingual-MiniLM-L12-v2',
-    'all-MiniLM-L6-v2'
+    'all-MiniLM-L6-v2',
+    'all-mpnet-base-v2'
 ]
 
 # Criar uma instância da classe EmbeddingsMulticriteriaAnalysis
@@ -93,4 +94,4 @@ embeddings_dict = analise.load_embeddings_dict("embeddings_funding.pt")
 resultados = gerar_resultados_clustering(embeddings_dict, analise)
 
 # Salvar os resultados
-salvar_resultados()
+salvar_resultados(resultados)

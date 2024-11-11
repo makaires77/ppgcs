@@ -3,276 +3,276 @@
         "KMeans": {
             "resultados": [
                 {
-                    "silhouette": 0.36944809556007385,
-                    "calinski_harabasz": 9.128763221659874,
-                    "davies_bouldin": 1.392183098581599
+                    "silhouette": 0.4668314754962921,
+                    "calinski_harabasz": 13.790497030892265,
+                    "davies_bouldin": 1.1720085598549983
                 },
                 {
-                    "silhouette": 0.5765888094902039,
-                    "calinski_harabasz": 13.889814757472392,
-                    "davies_bouldin": 1.038760221368719
+                    "silhouette": 0.4135282635688782,
+                    "calinski_harabasz": 11.1970638513124,
+                    "davies_bouldin": 1.2506705025307716
                 },
                 {
-                    "silhouette": 0.42382174730300903,
-                    "calinski_harabasz": 12.838740903106487,
-                    "davies_bouldin": 1.4065865059642524
+                    "silhouette": 0.39959049224853516,
+                    "calinski_harabasz": 6.949847281071569,
+                    "davies_bouldin": 0.8124277095530434
                 },
                 {
-                    "silhouette": 0.39333781599998474,
-                    "calinski_harabasz": 9.440283457465332,
-                    "davies_bouldin": 1.0879816776417903
+                    "silhouette": 0.46025824546813965,
+                    "calinski_harabasz": 12.515201781864729,
+                    "davies_bouldin": 1.8110650990966475
                 },
                 {
-                    "silhouette": 0.4475652277469635,
-                    "calinski_harabasz": 13.135452847306228,
-                    "davies_bouldin": 1.1128031630478814
+                    "silhouette": 0.34982967376708984,
+                    "calinski_harabasz": 9.024278730742356,
+                    "davies_bouldin": 1.4273558820433088
                 }
             ],
-            "tempo": 0.012588214874267579
+            "tempo": 0.013177108764648438
         },
         "DBSCAN": {
             "resultados": [
                 {
-                    "silhouette": 0.321819931268692,
-                    "calinski_harabasz": 15.090530177310887,
-                    "davies_bouldin": 1.0150550175803155
+                    "silhouette": 0.27752548456192017,
+                    "calinski_harabasz": 13.215678578760306,
+                    "davies_bouldin": 1.3196715213538948
                 },
                 {
-                    "silhouette": 0.3629002273082733,
-                    "calinski_harabasz": 15.01800144328273,
-                    "davies_bouldin": 1.3603955652773623
+                    "silhouette": 0.34244051575660706,
+                    "calinski_harabasz": 24.7824212390527,
+                    "davies_bouldin": 0.8928720937502007
                 },
                 {
-                    "silhouette": 0.30377787351608276,
-                    "calinski_harabasz": 12.566249869190711,
-                    "davies_bouldin": 1.0454660416274628
+                    "silhouette": 0.45037829875946045,
+                    "calinski_harabasz": 33.55055916635867,
+                    "davies_bouldin": 0.8965735239449694
                 },
                 {
-                    "silhouette": 0.47120997309684753,
-                    "calinski_harabasz": 37.11870438971799,
-                    "davies_bouldin": 0.8746716010205505
+                    "silhouette": 0.3888019025325775,
+                    "calinski_harabasz": 15.908885843672499,
+                    "davies_bouldin": 1.0565651393043967
                 },
                 {
-                    "silhouette": 0.4005122184753418,
-                    "calinski_harabasz": 17.192192268942744,
-                    "davies_bouldin": 0.9109259535059275
+                    "silhouette": 0.384194940328598,
+                    "calinski_harabasz": 16.897265148003562,
+                    "davies_bouldin": 1.0169442918401137
                 }
             ],
-            "tempo": 0.03151416778564453
+            "tempo": 0.030806875228881835
         },
         "HDBSCAN": {
             "resultados": [
                 {
-                    "silhouette": 0.08112388849258423,
-                    "calinski_harabasz": 3.727802916575142,
-                    "davies_bouldin": 5.008396768435895
+                    "silhouette": 0.27529528737068176,
+                    "calinski_harabasz": 10.871454951433716,
+                    "davies_bouldin": 2.1204494427466605
                 },
                 {
-                    "silhouette": 0.35145628452301025,
-                    "calinski_harabasz": 17.731082951832345,
-                    "davies_bouldin": 2.2170810939113514
+                    "silhouette": 0.34533530473709106,
+                    "calinski_harabasz": 14.95324129007313,
+                    "davies_bouldin": 2.6589634113137297
                 },
                 {
-                    "silhouette": 0.46700912714004517,
-                    "calinski_harabasz": 20.917286120405592,
-                    "davies_bouldin": 2.2078970025967504
+                    "silhouette": 0.33838778734207153,
+                    "calinski_harabasz": 14.66180519381687,
+                    "davies_bouldin": 3.3374871743676393
                 },
                 {
-                    "silhouette": 0.2795657217502594,
-                    "calinski_harabasz": 13.09643110866392,
-                    "davies_bouldin": 2.5134467510105982
+                    "silhouette": 0.36258018016815186,
+                    "calinski_harabasz": 15.17815228846622,
+                    "davies_bouldin": 2.64024199141171
                 },
                 {
-                    "silhouette": 0.3146785497665405,
-                    "calinski_harabasz": 13.737587413456234,
-                    "davies_bouldin": 3.123694839920521
+                    "silhouette": 0.38729339838027954,
+                    "calinski_harabasz": 17.02561225669217,
+                    "davies_bouldin": 1.9137778513127899
                 }
             ],
-            "tempo": 0.018944501876831055
+            "tempo": 0.01914362907409668
         }
     },
     "all-MiniLM-L6-v2": {
         "KMeans": {
             "resultados": [
                 {
-                    "silhouette": 0.5687251091003418,
-                    "calinski_harabasz": 16.096398340594455,
-                    "davies_bouldin": 1.683627919674124
+                    "silhouette": 0.35496798157691956,
+                    "calinski_harabasz": 7.6600003771080445,
+                    "davies_bouldin": 1.9928195686963985
                 },
                 {
-                    "silhouette": 0.5310932397842407,
-                    "calinski_harabasz": 12.243313754884943,
-                    "davies_bouldin": 1.5041806696779907
+                    "silhouette": 0.5154209136962891,
+                    "calinski_harabasz": 12.849213852663432,
+                    "davies_bouldin": 1.5548294833991516
                 },
                 {
-                    "silhouette": 0.40367186069488525,
-                    "calinski_harabasz": 9.375604508301139,
-                    "davies_bouldin": 1.7530805903269604
+                    "silhouette": 0.4610433280467987,
+                    "calinski_harabasz": 10.253716919614062,
+                    "davies_bouldin": 1.7582407451249005
                 },
                 {
-                    "silhouette": 0.367864727973938,
-                    "calinski_harabasz": 8.050833877608303,
-                    "davies_bouldin": 2.0754902541392357
+                    "silhouette": 0.4241664409637451,
+                    "calinski_harabasz": 10.957783215072471,
+                    "davies_bouldin": 1.5944949095612082
                 },
                 {
-                    "silhouette": 0.4317035675048828,
-                    "calinski_harabasz": 9.644029551066527,
-                    "davies_bouldin": 1.7757671665447756
+                    "silhouette": 0.4762185215950012,
+                    "calinski_harabasz": 10.905957767625782,
+                    "davies_bouldin": 1.7866613438072811
                 }
             ],
-            "tempo": 0.005193233489990234
+            "tempo": 0.004082489013671875
         },
         "DBSCAN": {
             "resultados": [
                 {
-                    "silhouette": 0.3446495532989502,
-                    "calinski_harabasz": 14.971211640729464,
-                    "davies_bouldin": 1.0244914241051364
+                    "silhouette": 0.3861524760723114,
+                    "calinski_harabasz": 26.655347675224228,
+                    "davies_bouldin": 0.9879449026453367
                 },
                 {
-                    "silhouette": 0.46197471022605896,
-                    "calinski_harabasz": 31.71660045891539,
-                    "davies_bouldin": 0.9876323089865086
+                    "silhouette": 0.29078787565231323,
+                    "calinski_harabasz": 12.399887213404051,
+                    "davies_bouldin": 1.0362123700241173
                 },
                 {
-                    "silhouette": 0.4486734867095947,
-                    "calinski_harabasz": 14.39153081716427,
-                    "davies_bouldin": 1.010062731975642
+                    "silhouette": 0.3993394374847412,
+                    "calinski_harabasz": 27.410730789116418,
+                    "davies_bouldin": 0.9948976324359139
                 },
                 {
-                    "silhouette": 0.3450596034526825,
-                    "calinski_harabasz": 23.658204271136967,
-                    "davies_bouldin": 0.9912511282118963
+                    "silhouette": 0.46053212881088257,
+                    "calinski_harabasz": 17.495952245497385,
+                    "davies_bouldin": 1.0194464650170456
                 },
                 {
-                    "silhouette": 0.2945430278778076,
-                    "calinski_harabasz": 12.603687875903017,
-                    "davies_bouldin": 1.017487858872755
+                    "silhouette": 0.3225569725036621,
+                    "calinski_harabasz": 22.275213665889087,
+                    "davies_bouldin": 0.9774271014860467
                 }
             ],
-            "tempo": 0.0007359027862548828
+            "tempo": 0.0007600784301757812
         },
         "HDBSCAN": {
             "resultados": [
                 {
-                    "silhouette": 0.38609203696250916,
-                    "calinski_harabasz": 15.550309072463607,
-                    "davies_bouldin": 1.849119169782286
+                    "silhouette": 0.2932801842689514,
+                    "calinski_harabasz": 12.703058490144116,
+                    "davies_bouldin": 2.073811281386266
                 },
                 {
-                    "silhouette": 0.40618765354156494,
-                    "calinski_harabasz": 18.44529154979239,
-                    "davies_bouldin": 1.6469062743666016
+                    "silhouette": 0.3106880187988281,
+                    "calinski_harabasz": 10.821292619509041,
+                    "davies_bouldin": 2.1151194771185904
                 },
                 {
-                    "silhouette": 0.40603163838386536,
-                    "calinski_harabasz": 18.504073407700044,
-                    "davies_bouldin": 1.5733347425423532
+                    "silhouette": 0.3870265781879425,
+                    "calinski_harabasz": 14.040144156171346,
+                    "davies_bouldin": 1.69055628536248
                 },
                 {
-                    "silhouette": 0.44058749079704285,
-                    "calinski_harabasz": 16.562511725148006,
-                    "davies_bouldin": 1.864985924619089
+                    "silhouette": 0.3978269696235657,
+                    "calinski_harabasz": 13.81017286723437,
+                    "davies_bouldin": 1.81741855167125
                 },
                 {
-                    "silhouette": 0.30787357687950134,
-                    "calinski_harabasz": 10.707324776535689,
-                    "davies_bouldin": 1.4798220921527871
+                    "silhouette": 0.3789108395576477,
+                    "calinski_harabasz": 19.64106493751216,
+                    "davies_bouldin": 1.676654130122503
                 }
             ],
-            "tempo": 0.005246496200561524
+            "tempo": 0.0053994178771972655
         }
     },
     "all-mpnet-base-v2": {
         "KMeans": {
             "resultados": [
                 {
-                    "silhouette": 0.4804669916629791,
-                    "calinski_harabasz": 10.979667849944118,
-                    "davies_bouldin": 1.7801389644628194
+                    "silhouette": 0.40116816759109497,
+                    "calinski_harabasz": 8.785983029001281,
+                    "davies_bouldin": 1.8432791418499637
                 },
                 {
-                    "silhouette": 0.39930057525634766,
-                    "calinski_harabasz": 8.928410834278827,
-                    "davies_bouldin": 2.002528953609854
+                    "silhouette": 0.5020749568939209,
+                    "calinski_harabasz": 12.703677826369338,
+                    "davies_bouldin": 1.715162100191634
                 },
                 {
-                    "silhouette": 0.4487563669681549,
-                    "calinski_harabasz": 10.40405051668342,
-                    "davies_bouldin": 1.8713470011592948
+                    "silhouette": 0.5178161263465881,
+                    "calinski_harabasz": 12.69808658479083,
+                    "davies_bouldin": 1.671762287553379
                 },
                 {
-                    "silhouette": 0.528346061706543,
-                    "calinski_harabasz": 14.026803905497792,
-                    "davies_bouldin": 1.7657520719977011
+                    "silhouette": 0.44796910881996155,
+                    "calinski_harabasz": 11.68863651418019,
+                    "davies_bouldin": 1.8316093773645865
                 },
                 {
-                    "silhouette": 0.4437907040119171,
-                    "calinski_harabasz": 10.62576036551963,
-                    "davies_bouldin": 1.9051333448836152
+                    "silhouette": 0.3992094397544861,
+                    "calinski_harabasz": 8.623755573559393,
+                    "davies_bouldin": 1.9984996737083796
                 }
             ],
-            "tempo": 0.005798912048339844
+            "tempo": 0.006101131439208984
         },
         "DBSCAN": {
             "resultados": [
                 {
-                    "silhouette": 0.42487263679504395,
-                    "calinski_harabasz": 15.343935806042023,
-                    "davies_bouldin": 0.9829564996425485
+                    "silhouette": 0.2935440242290497,
+                    "calinski_harabasz": 20.811379814378533,
+                    "davies_bouldin": 0.9644547071122022
                 },
                 {
-                    "silhouette": 0.4658724367618561,
-                    "calinski_harabasz": 16.34382550124042,
-                    "davies_bouldin": 0.9861804218576706
+                    "silhouette": 0.4401606321334839,
+                    "calinski_harabasz": 19.908485542456553,
+                    "davies_bouldin": 0.9882112117507288
                 },
                 {
-                    "silhouette": 0.41399285197257996,
-                    "calinski_harabasz": 19.492051110894806,
-                    "davies_bouldin": 0.985144313517586
+                    "silhouette": 0.281682550907135,
+                    "calinski_harabasz": 19.523649245314974,
+                    "davies_bouldin": 0.9711413973820255
                 },
                 {
-                    "silhouette": 0.3853081464767456,
-                    "calinski_harabasz": 27.278442404915328,
-                    "davies_bouldin": 0.9608305461046283
+                    "silhouette": 0.4340396225452423,
+                    "calinski_harabasz": 31.240039105076416,
+                    "davies_bouldin": 0.9450758287769745
                 },
                 {
-                    "silhouette": 0.3923729360103607,
-                    "calinski_harabasz": 16.850049452764235,
-                    "davies_bouldin": 0.9630388014304438
+                    "silhouette": 0.43851378560066223,
+                    "calinski_harabasz": 20.617261970668867,
+                    "davies_bouldin": 0.9491968391997458
                 }
             ],
-            "tempo": 0.0007878780364990234
+            "tempo": 0.0007889747619628906
         },
         "HDBSCAN": {
             "resultados": [
                 {
-                    "silhouette": 0.36569419503211975,
-                    "calinski_harabasz": 13.203675861712073,
-                    "davies_bouldin": 1.8089380902996552
+                    "silhouette": 0.43781787157058716,
+                    "calinski_harabasz": 16.428110005669033,
+                    "davies_bouldin": 1.6542526326133613
                 },
                 {
-                    "silhouette": 0.3096264898777008,
-                    "calinski_harabasz": 12.81978953521317,
-                    "davies_bouldin": 2.060636705042862
+                    "silhouette": 0.27726253867149353,
+                    "calinski_harabasz": 9.312144668647809,
+                    "davies_bouldin": 1.9547552621942506
                 },
                 {
-                    "silhouette": 0.37072473764419556,
-                    "calinski_harabasz": 13.865273242782145,
-                    "davies_bouldin": 2.159604671050154
+                    "silhouette": 0.43158605694770813,
+                    "calinski_harabasz": 16.88919710813407,
+                    "davies_bouldin": 2.007441260254084
                 },
                 {
-                    "silhouette": 0.435062974691391,
-                    "calinski_harabasz": 15.255573025284543,
-                    "davies_bouldin": 2.118793804487504
+                    "silhouette": 0.33906289935112,
+                    "calinski_harabasz": 13.457327225868594,
+                    "davies_bouldin": 1.8691787473843633
                 },
                 {
-                    "silhouette": 0.4740828275680542,
-                    "calinski_harabasz": 15.155839615027064,
-                    "davies_bouldin": 1.420020961194831
+                    "silhouette": 0.3042687177658081,
+                    "calinski_harabasz": 8.435390599021952,
+                    "davies_bouldin": 1.9541998082990697
                 }
             ],
-            "tempo": 0.004978036880493164
+            "tempo": 0.005095815658569336
         }
     }
 }

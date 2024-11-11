@@ -548,7 +548,7 @@ class CompetenceExtraction:
     def __init__(self, curricula_file, model_name="distiluse-base-multilingual-cased-v2"):
         self.curricula_file = curricula_file
         self.nlp_pt = spacy.load("pt_core_news_lg")  # Modelo SpaCy para português
-        self.nlp_en = spacy.load("en_core_web_sm")   # Modelo SpaCy para inglês
+        self.nlp_en = spacy.load("en_core_web_trf")   # Modelo SpaCy para inglês
         self.model = SentenceTransformer(model_name)
 
     def load_curricula(self):
@@ -888,10 +888,10 @@ class EmbeddingModelEvaluator:
             }
         return results
 
-    def benchmark_model(self, model, sentences, device, batch_size=16):  # Reduzido o batch_size padrão para 16
+    def benchmark_model(self, model, sentences, device, batch_size=16):  # Reduzido o batch_size
         """Mede o tempo de processamento do modelo (CPU ou GPU) em lotes."""
 
-        # Mova o modelo para o dispositivo desejado
+        # Mover o modelo para o dispositivo desejado
         model.to(device) 
 
         # Dividir as sentenças em lotes
@@ -960,7 +960,7 @@ class EmbeddingModelEvaluator:
         for researcher_data in self.curricula_data:
             all_areas_list = self.extrair_areas(researcher_data.get('Áreas', {}))  # Obtém lista de áreas
             # print(f"Lista áreas: {all_areas_list}") # DEBUG
-            for area in all_areas_list.get('Áreas'):
+            for area in all_areas_list.get('Áreas'): # type: ignore
                 if area and area != 'desconhecido':
                     valid_areas.add(area)
 
@@ -972,7 +972,7 @@ class EmbeddingModelEvaluator:
             areas_list = self.extrair_areas(researcher_data.get('Áreas', {}))  # Obtém lista de áreas
 
             print(f"Área de pesquisa: {area}")
-            for area in all_areas_list.get('Áreas'):
+            for area in all_areas_list.get('Áreas'): # type: ignore
                 # print(f"Competências extraídas: {competences}")
                 print(f"Compet.pré-processadas: {processed_competences}")
 
@@ -1012,7 +1012,7 @@ class EmbeddingModelEvaluator:
 
         # Primeira passagem para identificar áreas válidas
         for researcher_data in self.curricula_data:
-            areas_list = extrair_areas(researcher_data.get('Áreas', {}))
+            areas_list = self.extrair_areas(researcher_data.get('Áreas', {}))
             for areas in areas_list:
                 area = areas.get('Área')
                 if area and area != 'desconhecido':
@@ -1022,7 +1022,7 @@ class EmbeddingModelEvaluator:
         for researcher_data in self.curricula_data:
             competences = self.competence_extractor.extract_competences(researcher_data)
             processed_competences = self.competence_extractor.preprocess_competences(competences)
-            areas_list = extrair_areas(researcher_data.get('Áreas', {}))
+            areas_list = self.extrair_areas(researcher_data.get('Áreas', {}))
 
             for areas in areas_list:
                 area = areas.get('Área')
@@ -1033,7 +1033,7 @@ class EmbeddingModelEvaluator:
                     mean_embedding = torch.mean(embeddings, dim=0).cpu().numpy()  # Calcula a média na GPU e move para CPU
 
                     # Calcular similaridade com as áreas de pesquisa
-                    similarities = cosine_similarity([mean_embedding], list(area_embeddings.values()))[0]
+                    similarities = cosine_similarity([mean_embedding], list(area_embeddings.values()))[0] # type: ignore
                     y.append({area: sim for area, sim in zip(area_embeddings.keys(), similarities)})
 
         # Agrupar áreas de pesquisa
@@ -1051,6 +1051,7 @@ class EmbeddingModelEvaluator:
 
         return X, y
 
+
     def evaluate_embeddings(self, X, y, metric=cosine_similarity):
         """Avalia a qualidade dos embeddings em relação às áreas de pesquisa."""
         scores = []
@@ -1062,6 +1063,7 @@ class EmbeddingModelEvaluator:
             scores.append(np.mean(similarities))  # Média das similaridades
 
         return np.mean(scores)  # Média geral das similaridades
+
 
     def evaluate_models(self, validation_data, use_cross_validation=True, classifier_name="LogisticRegression"):
         """
@@ -1084,14 +1086,14 @@ class EmbeddingModelEvaluator:
 
         for model_name in self.model_names:
             print(f"\nAvaliando modelo: {model_name}")
-            model = SentenceTransformer(model_name, device=device).half() # carrega o modelo ja no dispostivo
+            model = SentenceTransformer(model_name, device=device).half() # type: ignore # carrega o modelo ja no dispostivo
 
             # Avaliação intrínseca
             intrinsic_results = self.evaluate_intrinsic(model, validation_data)
             results[model_name] = intrinsic_results
 
             # Avaliação extrínseca
-            X, y = self.prepare_data_for_classification(model, device)  # Passar 'model' em vez de 'model_name'
+            model, X, y = self.prepare_data_for_classification(model)  # Passar 'model' em vez de 'model_name'
             if use_cross_validation:
                 if len(set(y)) < 2:
                     print(f"Não há classes suficientes para validação cruzada. Pulando modelo {model}.") # Corrigido para usar 'model'
@@ -1153,7 +1155,7 @@ class EmbeddingModelEvaluator:
 
     def evaluate_models_cross_validation(self, model, classifier_name="LogisticRegression", num_folds=5):
         """Avalia os modelos de embedding usando validação cruzada com diferentes classificadores."""
-        X, y = self.prepare_data_for_classification(model)
+        model, X, y = self.prepare_data_for_classification(model)
 
         # Verifica se há classes suficientes para a validação cruzada
         if len(set(y)) < 2:

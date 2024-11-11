@@ -568,10 +568,21 @@ class EmbeddingsMulticriteriaAnalysis:
         self.embeddings = torch.load(pathfilename)
 
 
-    def save_embeddings_dict(self, filename="embeddings_dict.pt"):
+    def save_embeddings_dict(self, filename="embeddings_dict.pt", manter_gradientes=True):
         """
         Autor: Marcos Aires (Nov.2024)
         Salva os embeddings gerados em um arquivo PyTorch, um para cada modelo.
+
+        Obs.: a forma de salvar os embeddings define a manutenção do histórico de gradientes e o consumo de memória. O problema é que se for usado apenas torch.tensor(embeddings) se cria uma cópia do tensor embeddings, e essa cópia não compartilha o histórico de gradientes com o tensor original. Isso pode ser problemático se esses embeddings forem para treinar um modelo, pois as atualizações nos gradientes não serão propagadas para o tensor original. Para corrigir o erro e evitar potenciais problemas, deve-se usar os métodos clone().detach() ou clone().detach().requires_grad_(True) para criar uma cópia do tensor que compartilhe o histórico de gradientes, mantendo para futuros treinamentos.  
+        
+        Explicação:
+            clone(): cria uma cópia do tensor, compartilhando os dados subjacentes, mas com um novo histórico de gradientes.
+
+                detach(): remove o tensor do grafo computacional, tornando-o um tensor "folha" sem histórico de gradientes. Isso é útil para economizar memória quando o histórico de gradientes não é mais necessário. É preciso manter o histórico de gradientes para treinar o KGNN, ou outro modelo, usando os embeddings, ou fazer fine-tuning dos embeddings posteriormente.
+
+                requires_grad_(True): define a flag requires_grad do tensor como True, o que significa que o histórico de gradientes será rastreado para esse tensor. E aconselhável remover o histórico de gradientes se for usar os embeddings apenas para inferência, ou se for armazenar os embeddings para uso posterior.
+
+            Ao usar clone().detach() ou clone().detach().requires_grad_(True), garante-se que os embeddings salvos sejam cópias independentes do tensor original, evitando problemas com o histórico de gradientes e o consumo de memória.
         """
         try:
             # Informar caminho para arquivo usando raiz do repositório Git como referência
@@ -584,7 +595,22 @@ class EmbeddingsMulticriteriaAnalysis:
             os.makedirs(folder_data_output, exist_ok=True)
 
             # Salvar o dicionário de embeddings
-            torch.save({model_name: torch.tensor(embeddings) for model_name, embeddings in self.embeddings.items()}, pathfilename)
+            if manter_gradientes:
+                torch.save(
+                    {
+                        model_name: embeddings.clone().detach().requires_grad_(True) 
+                        for model_name, embeddings in self.embeddings.items()
+                    }, 
+                    pathfilename
+                )
+            else:
+                torch.save(
+                    {
+                        model_name: embeddings.clone().detach() 
+                        for model_name, embeddings in self.embeddings.items()
+                    }, 
+                    pathfilename
+                )
 
             # Imprimir o nome do arquivo e o número de modelos
             print(f"Arquivo de embeddings salvo: {filename}")
@@ -737,8 +763,37 @@ class EmbeddingsMulticriteriaAnalysis:
                 resultados[model_name][algorithm.__name__]["resultados"] = resultados_split
                 resultados[model_name][algorithm.__name__]["tempo"] = np.mean(tempos_execucao)
 
+        self.salvar_resultados(resultados)
+        
         return resultados
 
+
+    def salvar_resultados(self, resultados):
+        """
+        Autor: Marcos Aires (Nov.2024)
+        Salva os resultados em um arquivo JSON local.
+        """
+        try:
+            # Informar caminho para arquivo usando raiz do repositório Git como referência
+            repo = Repo(search_parent_directories=True)
+            root_folder = repo.working_tree_dir
+            folder_data_output = os.path.join(str(root_folder), '_embeddings')
+            filename = 'resultados.json'
+            pathfilename = os.path.join(folder_data_output, filename)
+
+            # Criar a pasta _embeddings se ela não existir
+            os.makedirs(folder_data_output, exist_ok=True)
+
+            # Salvar o dicionário de resultados em arquivo JSON
+            with open(pathfilename, 'w') as f:
+                json.dump(resultados, f, indent=4)
+
+            # Imprimir o nome do arquivo e o número de modelos
+            print(f"Arquivo de resultados salvo: {filename}")
+            print(f"Número de modelos avaliados: {len(resultados)}")
+
+        except Exception as e:
+            print(f"Erro ao salvar os resultados: {e}")
 
     # def calcular_pontuacao_multicriterio(self, resultados, pesos):  # Adiciona pesos como argumento
     #     """

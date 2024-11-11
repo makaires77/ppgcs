@@ -27,9 +27,7 @@ import warnings, logging, traceback, csv, string, re
 from PIL import Image
 from io import BytesIO
 from pprint import pprint
-from PyPDF2 import PdfReader
 from string import Formatter
-from neo4j import GraphDatabase
 from nltk.corpus import stopwords
 from urllib3.util.retry import Retry
 from tqdm.notebook import trange, tqdm
@@ -314,8 +312,6 @@ class CNPqTree:
                 pbar.update(1)
 
         return df_linhas
-
-    df_areas = extrair_areas(caminho)
 
 
 class GraphExplore:
