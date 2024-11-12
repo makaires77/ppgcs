@@ -5,22 +5,26 @@ from py2neo import Graph
 from jsonschema import validate
 from sentence_transformers import SentenceTransformer
 
+# Importar a classe CompetenceExtractor
+from competence_extraction import CompetenceExtractor
 
 class KGNN(torch.nn.Module):
 
-    def __init__(self, embedding_model_name, neo4j_uri, neo4j_user, neo4j_password):
+    def __init__(self, embedding_model_name, neo4j_uri, neo4j_user, neo4j_password, curriculae_path):
         super().__init__()
 
-        # Inicializa o modelo de embedding
+        # Inicializar o modelo de embedding
         self.embedding_model = SentenceTransformer(embedding_model_name)
 
-        # Inicializa a conexão com o Neo4j
+        # Inicializar a conexão com o Neo4j
         self.graph = Graph(neo4j_uri, auth=(neo4j_user, neo4j_password))
+
+        # Inicializar o CompetenceExtractor
+        self.competence_extractor = CompetenceExtractor(curriculae_path, embedding_model_name)
 
     def _formatar_propriedades(self, propriedades):
         """
-        Formata as propriedades para a query Cypher, removendo espaços
-        e caracteres inválidos.
+        Formata as propriedades para a query Cypher, removendo espaços e caracteres inválidos.
         """
         propriedades_formatadas = []
         for chave, valor in propriedades.items():
@@ -53,580 +57,285 @@ class KGNN(torch.nn.Module):
                 propriedades[i] = self._corrigir_nome_propriedade(propriedades[i])
         return propriedades
 
+    # ## Refatorar, deixar a tarefa de extrair competência completamente na classe CompetenceExtractor
+    # def criar_subgrafo_curriculo(self, curriculo_dict):
+    #     """
+    #     Cria um subgrafo para um currículo, incluindo suas informações e 
+    #     relacionamentos com outras entidades.
 
-    def _validar_dados(self, curriculo_dict):
-        """
-        Valida os dados do currículo contra o schema JSON.
-        """
-        schema = {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "Identifica\u00e7\u00e3o": {
-                        "type": "object",
-                        "properties": {
-                            "Nome": {
-                                "type": "string"
-                            },
-                            "ID Lattes": {
-                                "type": "string"
-                            },
-                            "\u00daltima atualiza\u00e7\u00e3o": {
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "Nome",
-                            "ID Lattes",
-                            "\u00daltima atualiza\u00e7\u00e3o"
-                        ]
-                    },
-                    "Idiomas": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "Idioma": {
-                                    "type": "string"
-                                },
-                                "Profici\u00eancia": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "Idioma",
-                                "Profici\u00eancia"
-                            ]
-                        }
-                    },
-                    "Forma\u00e7\u00e3o": {
-                        "type": "object",
-                        "properties": {
-                            "Acad\u00eamica": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "Ano": {
-                                            "type": "string"
-                                        },
-                                        "Descri\u00e7\u00e3o": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "required": [
-                                        "Ano",
-                                        "Descri\u00e7\u00e3o"
-                                    ]
-                                }
-                            },
-                            "Pos-Doc": {
-                                "type": "array"
-                            },
-                            "Complementar": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "Ano": {
-                                            "type": "string"
-                                        },
-                                        "Descri\u00e7\u00e3o": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "required": [
-                                        "Ano",
-                                        "Descri\u00e7\u00e3o"
-                                    ]
-                                }
-                            }
-                        },
-                        "required": [
-                            "Acad\u00eamica",
-                            "Pos-Doc",
-                            "Complementar"
-                        ]
-                    },
-                    "Atua\u00e7\u00e3o Profissional": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "Institui\u00e7\u00e3o": {
-                                    "type": "string"
-                                },
-                                "Ano": {
-                                    "type": "string"
-                                },
-                                "Descri\u00e7\u00e3o": {
-                                    "type": "string"
-                                },
-                                "Outras informa\u00e7\u00f5es": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "Institui\u00e7\u00e3o",
-                                "Ano",
-                                "Descri\u00e7\u00e3o",
-                                "Outras informa\u00e7\u00f5es"
-                            ]
-                        }
-                    },
-                    "Linhas de Pesquisa": {
-                        "type": "array"
-                    },
-                    "\u00c1reas": {
-                        "type": "object",
-                        "patternProperties": {
-                            "^[0-9]+\\.$": {
-                                "type": "string"
-                            }
-                        }
-                    },
-                    "Produ\u00e7\u00f5es": {
-                        "type": "object",
-                        "properties": {
-                            "Artigos completos publicados em peri\u00f3dicos": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ano": {
-                                            "type": "string"
-                                        },
-                                        "fator_impacto_jcr": {
-                                            "type": "string"
-                                        },
-                                        "ISSN": {
-                                            "type": "string"
-                                        },
-                                        "titulo": {
-                                            "type": "string"
-                                        },
-                                        "revista": {
-                                            "type": "string"
-                                        },
-                                        "autores": {
-                                            "type": "string"
-                                        },
-                                        "data_issn": {
-                                            "type": "string"
-                                        },
-                                        "DOI": {
-                                            "type": "string"
-                                        },
-                                        "Qualis": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "required": [
-                                        "ano",
-                                        "fator_impacto_jcr",
-                                        "ISSN",
-                                        "titulo",
-                                        "revista",
-                                        "autores",
-                                        "data_issn",
-                                        "DOI",
-                                        "Qualis"
-                                    ]
-                                }
-                            },
-                            "Resumos publicados em anais de congressos": {
-                                "type": "object",
-                                "patternProperties": {
-                                    "^[0-9]+\\.$": {
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "Apresenta\u00e7\u00f5es de Trabalho": {
-                                "type": "object",
-                                "patternProperties": {
-                                    "^[0-9]+\\.$": {
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "Outras produ\u00e7\u00f5es bibliogr\u00e1ficas": {
-                                "type": "object",
-                                "patternProperties": {
-                                    "^[0-9]+\\.$": {
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "Entrevistas, mesas redondas, programas e coment\u00e1rios na m\u00eddia": {
-                                "type": "object",
-                                "patternProperties": {
-                                    "^[0-9]+\\.$": {
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "Demais tipos de produ\u00e7\u00e3o t\u00e9cnica": {
-                                "type": "object",
-                                "patternProperties": {
-                                    "^[0-9]+\\.$": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        },
-                        "required": [
-                            "Artigos completos publicados em peri\u00f3dicos"
-                        ]
-                    },
-                    "ProjetosPesquisa": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "chave": {
-                                    "type": "string"
-                                },
-                                "titulo_projeto": {
-                                    "type": "string"
-                                },
-                                "descricao": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "chave",
-                                "titulo_projeto",
-                                "descricao"
-                            ]
-                        }
-                    },
-                    "ProjetosExtens\u00e3o": {
-                        "type": "array"
-                    },
-                    "ProjetosDesenvolvimento": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "chave": {
-                                    "type": "string"
-                                },
-                                "titulo_projeto": {
-                                    "type": "string"
-                                },
-                                "descricao": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "chave",
-                                "titulo_projeto",
-                                "descricao"
-                            ]
-                        }
-                    },
-                    "ProjetosOutros": {
-                        "type": "array"
-                    },
-                    "Patentes e registros": {
-                        "type": "object"
-                    },
-                    "Bancas": {
-                        "type": "object",
-                        "properties": {
-                            "Participa\u00e7\u00e3o em bancas de trabalhos de conclus\u00e3o": {
-                                "type": "object",
-                                "patternProperties": {
-                                    "^[0-9]+\\.$": {
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "Participa\u00e7\u00e3o em bancas de comiss\u00f5es julgadoras": {
-                                "type": "object",
-                                "patternProperties": {
-                                    "^[0-9]+\\.$": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        },
-                        "required": []
-                    },
-                    "Orienta\u00e7\u00f5es": {
-                        "type": "array"
-                    },
-                    "JCR2": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "doi": {
-                                    "type": [
-                                        "string",
-                                        "null"
-                                    ]
-                                },
-                                "impact-factor": {
-                                    "type": "string"
-                                },
-                                "original_title": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": []
-                        }
-                    }
-                },
-                "required": [
-                    "Identifica\u00e7\u00e3o",
-                    "Idiomas",
-                    "Forma\u00e7\u00e3o",
-                    "Atua\u00e7\u00e3o Profissional",
-                    "Linhas de Pesquisa",
-                    "\u00c1reas",
-                    "Produ\u00e7\u00f5es",
-                    "ProjetosPesquisa",
-                    "ProjetosExtens\u00e3o",
-                    "ProjetosDesenvolvimento",
-                    "ProjetosOutros",
-                    "Patentes e registros",
-                    "Bancas",
-                    "Orienta\u00e7\u00f5es",
-                    "JCR2"
-                ]
-            }
-        }
+    #     Args:
+    #         curriculo_dict: Um dicionário contendo as informações do currículo.
 
-        try:
-            validate(instance=curriculo_dict, schema=schema)
-        except Exception as e:
-            print(f"Erro de validação: {e}")
-            # Tratar o erro de validação (ex: log, interromper a ingestão, etc.)
-            raise  # Lança a exceção para interromper a ingestão
+    #     Returns:
+    #         Um dicionário contendo as informações do subgrafo, com os nós e as arestas.
+    #     """
+    #         # Validação dos dados antes da criação do subgrafo
+    #     # self._validar_dados(curriculo_dict)
+
+    #     subgrafo = {"nos": [], "arestas": []}
+
+    #     # --- Adicionar o nó do currículo ---
+    #     curriculo_id = curriculo_dict['Identificação']['ID Lattes']
+    #     # Remove espaços e caracteres especiais do ID Lattes
+    #     curriculo_id = re.sub(r"[^a-zA-Z0-9_]", "", curriculo_id)        
+    #     subgrafo["nos"].append({"tipo": "Curriculo", "propriedades": curriculo_dict['Identificação']})
+
+    #     # --- Adicionar nós e arestas para os artigos ---
+    #     artigos = curriculo_dict.get('Produções', {}).get('Artigos completos publicados em periódicos', [])
+    #     for artigo in artigos:
+    #         artigo_id = artigo.get('DOI')  # Usando o DOI como ID do artigo
+    #         if artigo_id:
+    #             artigo = self._corrigir_nome_propriedade(artigo)
+    #             subgrafo["nos"].append({"tipo": "Artigo", "propriedades": artigo})
+    #             subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"DOI": artigo_id}, "tipo": "PUBLICOU_ARTIGO"})
+
+    #     # --- Adicionar nós e arestas para as áreas de atuação ---
+    #     areas = curriculo_dict.get('Áreas', {})
+    #     for area_id, area_descricao in areas.items():
+    #         area_props = {}  # Define um dicionário vazio como valor padrão
+    #         if area_id and area_descricao:
+    #             area_props = {"id": area_id, "descricao": area_descricao}
+    #             subgrafo["nos"].append({"tipo": "Area", "propriedades": {"id": area_id, "descricao": area_descricao}})
+    #             area_props = self._corrigir_nome_propriedade(area_props)
+    #             subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"id": area_id}, "tipo": "PESQUISA_AREA"})
+
+    #     # --- Adicionar nós e arestas para a formação acadêmica ---
+    #     formacao = curriculo_dict.get('Formação', {}).get('Acadêmica', [])
+    #     for item in formacao:
+    #         formacao_id = item.get('Descrição')  # Usando a Descrição como ID da formação
+    #         if formacao_id:
+    #             item = self._corrigir_nome_propriedade(item)
+    #             subgrafo["nos"].append({"tipo": "FormacaoAcademica", "propriedades": item})
+    #             subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"Descricao": formacao_id}, "tipo": "POSSUI_FORMACAO"})
+
+    #     # --- Adicionar nós e arestas para o pós-doutorado ---
+    #     posdoc = curriculo_dict.get('Formação', {}).get('Pos-Doc', [])
+    #     for item in posdoc:
+    #         posdoc_id = item.get('Descrição')  # Usando a Descrição como ID do pós-doutorado
+    #         if posdoc_id:
+    #             item = self._corrigir_nome_propriedade(item)
+    #             subgrafo["nos"].append({"tipo": "PosDoutorado", "propriedades": item})
+    #             subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"Descricao": posdoc_id}, "tipo": "POSSUI_POSDOC"})
+
+    #     # --- Adicionar nós e arestas para a formação complementar ---
+    #     formacao_complementar = curriculo_dict.get('Formação', {}).get('Complementar', [])
+    #     for item in formacao_complementar:
+    #         complementar_id = item.get('Descrição')  # Usando a Descrição como ID da formação complementar
+    #         if complementar_id:
+    #             item = self._corrigir_nome_propriedade(item)
+    #             subgrafo["nos"].append({"tipo": "FormacaoComplementar", "propriedades": item})
+    #             subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"Descricao": complementar_id}, "tipo": "POSSUI_COMPLEMENTAR"})
+
+    #     # --- Adicionar nós e arestas para a atuação profissional ---
+    #     atuacao_profissional = curriculo_dict.get('Atuação Profissional', [])
+    #     for item in atuacao_profissional:
+    #         atuacao_id = item.get('Instituição') + " - " + item.get('Ano')  # Usando a Instituição e o Ano como ID da atuação
+    #         if atuacao_id:
+    #             item = self._corrigir_nome_propriedade(item)
+    #             subgrafo["nos"].append({"tipo": "AtuacaoProfissional", "propriedades": item})
+    #             subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"id": atuacao_id}, "tipo": "POSSUI_VINCULO"})
+
+    #     # --- Adicionar nós e arestas para as linhas de pesquisa ---
+    #     linhas_de_pesquisa = curriculo_dict.get('Linhas de Pesquisa', [])
+    #     for item in linhas_de_pesquisa:
+    #         pesquisa_id = item.get('Descrição')  # Usando a Descrição como ID da linha de pesquisa
+    #         if pesquisa_id:
+    #             item = self._corrigir_nome_propriedade(item)
+    #             subgrafo["nos"].append({"tipo": "LinhaPesquisa", "propriedades": item})
+    #             subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"Descricao": pesquisa_id}, "tipo": "PESQUISA_LINHA"})
+
+    #     # --- Adicionar nós e arestas para os idiomas ---
+    #     idiomas = curriculo_dict.get('Idiomas', [])
+    #     for item in idiomas:
+    #         idioma_id = item.get('Idioma')  # Usando o Idioma como ID do idioma
+    #         if idioma_id:
+    #             item = self._corrigir_nome_propriedade(item)
+    #             subgrafo["nos"].append({"tipo": "Idioma", "propriedades": item})
+    #             subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"Idioma": idioma_id}, "tipo": "DOMINA_IDIOMA"})
+
+    #     # Livros publicados/organizados ou edições
+    #     livros = curriculo_dict.get('Produções', {}).get('Livros publicados/organizados ou edições', {})
+    #     for livro_id, livro_descricao in livros.items():
+    #         # Corrige as propriedades antes de adicionar o nó ao subgrafo
+    #         livro_props = {"id": livro_id, "descricao": livro_descricao}
+    #         livro_props = self._corrigir_nome_propriedade(livro_props)            
+    #         subgrafo["nos"].append({"tipo": "Livro", "propriedades": {"id": livro_id, "descricao": livro_descricao}})
+    #         subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"id": livro_id}, "tipo": "PUBLICOU_LIVRO"})
+
+    #     ## Capítulos de livros publicados
+    #     capitulos = curriculo_dict.get('Produções', {}).get('Capítulos de livros publicados', {})
+    #     for capitulo_id, capitulo_descricao in capitulos.items():
+    #         subgrafo["nos"].append({"tipo": "CapituloLivro", "propriedades": {"id": capitulo_id, "descricao": capitulo_descricao}})
+    #         subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"id": capitulo_id}, "tipo": "PUBLICOU_CAPITULO"})
+
+    #     ## Resumos publicados em anais de congressos
+    #     resumos_congressos = curriculo_dict.get('Produções', {}).get('Resumos publicados em anais de congressos', {})
+    #     for resumo_id, resumo_descricao in resumos_congressos.items():
+    #         subgrafo["nos"].append({"tipo": "ResumoCongresso", "propriedades": {"id": resumo_id, "descricao": resumo_descricao}})
+    #         subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": resumo_id}, "tipo": "PUBLICOU_RESUMO_CONGRESSO"})
+
+    #     ## Apresentações de Trabalho
+    #     apresentacoes = curriculo_dict.get('Produções', {}).get('Apresentações de Trabalho', {})
+    #     for apresentacao_id, apresentacao_descricao in apresentacoes.items():
+    #         subgrafo["nos"].append({"tipo": "ApresentacaoTrabalho", "propriedades": {"id": apresentacao_id, "descricao": apresentacao_descricao}})
+    #         subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": apresentacao_id}, "tipo": "APRESENTOU_TRABALHO"})
+
+    #     ## Outras produções bibliográficas
+    #     outras_producoes = curriculo_dict.get('Produções', {}).get('Outras produções bibliográficas', {})
+    #     for producao_id, producao_descricao in outras_producoes.items():
+    #         subgrafo["nos"].append({"tipo": "ProducaoBibliografica", "propriedades": {"id": producao_id, "descricao": producao_descricao}})
+    #         subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": producao_id}, "tipo": "PUBLICOU_PRODUCAO"})
+
+    #     ## Entrevistas, mesas redondas, programas e comentários na mídia
+    #     entrevistas = curriculo_dict.get('Produções', {}).get('Entrevistas, mesas redondas, programas e comentários na mídia', {})
+    #     for entrevista_id, entrevista_descricao in entrevistas.items():
+    #         subgrafo["nos"].append({"tipo": "Entrevista", "propriedades": {"id": entrevista_id, "descricao": entrevista_descricao}})
+    #         subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": entrevista_id}, "tipo": "PARTICIPOU_ENTREVISTA"})
+
+    #     ## Demais tipos de produção técnica
+    #     demais_producoes_tecnicas = curriculo_dict.get('Produções', {}).get('Demais tipos de produção técnica', {})
+    #     for producao_tecnica_id, producao_tecnica_descricao in demais_producoes_tecnicas.items():
+    #         subgrafo["nos"].append({"tipo": "ProducaoTecnica", "propriedades": {"id": producao_tecnica_id, "descricao": producao_tecnica_descricao}})
+    #         subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": producao_tecnica_id}, "tipo": "PRODUZIU_TECNICA"})
+
+    #     # --- Nós e Arestas para os projetos (pesquisa, extensão, etc.) ---
+    #     # Projetos de Pesquisa
+    #     projetos_pesquisa = curriculo_dict.get('ProjetosPesquisa', [])
+    #     for projeto in projetos_pesquisa:
+    #         projeto_id = projeto.get('chave')  # Usando a chave como ID do projeto
+    #         if projeto_id:
+    #             subgrafo["nos"].append({"tipo": "ProjetoPesquisa", "propriedades": projeto})
+    #             subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"chave": projeto_id}, "tipo": "PARTICIPOU_PROJETO_PESQUISA"})
+
+    #     # Projetos de Extensão
+    #     projetos_extensao = curriculo_dict.get('ProjetosExtensão', [])
+    #     for projeto in projetos_extensao:
+    #         projeto_id = projeto.get('chave')  # Usando a chave como ID do projeto
+    #         if projeto_id:
+    #             subgrafo["nos"].append({"tipo": "ProjetoExtensao", "propriedades": projeto})
+    #             subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"chave": projeto_id}, "tipo": "PARTICIPOU_PROJETO_EXTENSAO"})
+
+    #     # Projetos de Desenvolvimento
+    #     projetos_desenvolvimento = curriculo_dict.get('ProjetosDesenvolvimento', [])
+    #     for projeto in projetos_desenvolvimento:
+    #         projeto_id = projeto.get('chave')  # Usando a chave como ID do projeto
+    #         if projeto_id:
+    #             subgrafo["nos"].append({"tipo": "ProjetoDesenvolvimento", "propriedades": projeto})
+    #             subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"chave": projeto_id}, "tipo": "PARTICIPOU_PROJETO_DESENVOLVIMENTO"})
+
+    #     # Projetos Outros
+    #     projetos_outros = curriculo_dict.get('ProjetosOutros', [])
+    #     for projeto in projetos_outros:
+    #         projeto_id = projeto.get('chave')  # Usando a chave como ID do projeto
+    #         if projeto_id:
+    #             subgrafo["nos"].append({"tipo": "ProjetoOutro", "propriedades": projeto})
+    #             subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"chave": projeto_id}, "tipo": "PARTICIPOU_PROJETO_OUTRO"})
+
+    #     # --- Nós e arestas para patentes e registros ---
+    #     patentes = curriculo_dict.get('Patentes e registros', {})
+    #     for patente_id, patente_info in patentes.items():
+    #         patente_info = self._corrigir_nome_propriedade(patente_info)
+    #         # Considerando que cada patente_info é um dicionário com informações da patente
+    #         subgrafo["nos"].append({"tipo": "Patente", "propriedades": patente_info})
+    #         subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": patente_id}, "tipo": "POSSUI_PATENTE"})
+
+    #     # --- Nós e arestas para bancas e Orientações---
+    #     bancas = curriculo_dict.get('Bancas', {})
+        
+    #     # Participação em bancas de trabalhos de conclusão
+    #     bancas_trabalhos = bancas.get('Participação em bancas de trabalhos de conclusão', {})
+    #     for banca_id, banca_info in bancas_trabalhos.items():
+    #         banca_props = {"id": banca_id, "descricao": banca_info}
+    #         banca_props = self._corrigir_nome_propriedade(banca_props)            
+    #         subgrafo["nos"].append({"tipo": "BancaTrabalho", "propriedades": {"id": banca_id, "descricao": banca_info}})
+    #         subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": banca_id}, "tipo": "PARTICIPOU_BANCA_TRABALHO"})
+
+    #     # Participação em bancas de comissões julgadoras
+    #     bancas_comissoes = bancas.get('Participação em bancas de comissões julgadoras', {})
+    #     for banca_id, banca_info in bancas_comissoes.items():
+    #         banca_props = {"id": banca_id, "descricao": banca_info}
+    #         banca_props = self._corrigir_nome_propriedade(banca_props)            
+    #         subgrafo["nos"].append({"tipo": "BancaComissao", "propriedades": {"id": banca_id, "descricao": banca_info}})
+    #         subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": banca_id}, "tipo": "PARTICIPOU_BANCA_COMISSAO"})
+
+    #     # Orientações
+    #     orientacoes = curriculo_dict.get('Orientações', [])
+    #     for orientacao in orientacoes:
+    #         orientacao_id = orientacao.get('nome')  # Usando o nome como ID da orientação
+    #         if orientacao_id:
+    #             orientacao = self._corrigir_nome_propriedade(orientacao)
+    #             subgrafo["nos"].append({"tipo": "Orientacao", "propriedades": orientacao})
+    #             subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"nome": orientacao_id}, "tipo": "ORIENTADOR"})
+
+    #     # --- Nós e arestas para Fator de Impacto JCR---
+    #     # JCR2
+    #     jcr2 = curriculo_dict.get('JCR2', [])
+    #     for item in jcr2:
+    #         jcr2_id = item.get('doi')  # Usando o DOI como ID do JCR2
+    #         if jcr2_id:
+    #             item = self._corrigir_nome_propriedade(item)
+    #             subgrafo["nos"].append({"tipo": "JCR2", "propriedades": item})
+    #             subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"doi": jcr2_id}, "tipo": "POSSUI_JCI"})
+
+    #     return subgrafo
+
 
     def criar_subgrafo_curriculo(self, curriculo_dict):
-        """
-        Cria um subgrafo para um currículo, incluindo suas informações e 
-        relacionamentos com outras entidades.
+            """
+            Cria um subgrafo para um currículo, utilizando a classe CompetenceExtractor 
+            para extrair as informações relevantes e construir os nós e arestas.
 
-        Args:
-            curriculo_dict: Um dicionário contendo as informações do currículo.
+            Args:
+                curriculo_dict: Um dicionário contendo as informações do currículo.
 
-        Returns:
-            Um dicionário contendo as informações do subgrafo, com os nós e as arestas.
-        """
-            # Validação dos dados antes da criação do subgrafo
-        # self._validar_dados(curriculo_dict)
+            Returns:
+                Um dicionário contendo as informações do subgrafo, com os nós e as arestas.
+            """
 
-        subgrafo = {"nos": [], "arestas": []}
+            subgrafo = {"nos": [], "arestas": []}
 
-        # --- Adicionar o nó do currículo ---
-        curriculo_id = curriculo_dict['Identificação']['ID Lattes']
-        # Remove espaços e caracteres especiais do ID Lattes
-        curriculo_id = re.sub(r"[^a-zA-Z0-9_]", "", curriculo_id)        
-        subgrafo["nos"].append({"tipo": "Curriculo", "propriedades": curriculo_dict['Identificação']})
+            # --- Adicionar o nó do currículo ---
+            curriculo_id = curriculo_dict['Identificação']['ID Lattes']
+            # Remove espaços e caracteres especiais do ID Lattes
+            curriculo_id = re.sub(r"[^a-zA-Z0-9_]", "", curriculo_id)        
+            subgrafo["nos"].append({"tipo": "Curriculo", "propriedades": curriculo_dict['Identificação']})
 
-        # --- Adicionar nós e arestas para os artigos ---
-        artigos = curriculo_dict.get('Produções', {}).get('Artigos completos publicados em periódicos', [])
-        for artigo in artigos:
-            artigo_id = artigo.get('DOI')  # Usando o DOI como ID do artigo
-            if artigo_id:
-                artigo = self._corrigir_nome_propriedade(artigo)
-                subgrafo["nos"].append({"tipo": "Artigo", "propriedades": artigo})
-                subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"DOI": artigo_id}, "tipo": "PUBLICOU_ARTIGO"})
+            # --- Extrair competências usando a CompetenceExtractor ---
+            competencias = self.competence_extractor.extract_competences(curriculo_dict)
 
-        # --- Adicionar nós e arestas para as áreas de atuação ---
-        areas = curriculo_dict.get('Áreas', {})
-        for area_id, area_descricao in areas.items():
-            area_props = {}  # Define um dicionário vazio como valor padrão
-            if area_id and area_descricao:
-                area_props = {"id": area_id, "descricao": area_descricao}
-                subgrafo["nos"].append({"tipo": "Area", "propriedades": {"id": area_id, "descricao": area_descricao}})
-                area_props = self._corrigir_nome_propriedade(area_props)
-                subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"id": area_id}, "tipo": "PESQUISA_AREA"})
+            # --- Adicionar nós e arestas para cada tipo de competência ---
+            for competencia in competencias:
+                # Definir tipo de nó e propriedades com base no tipo de competência
+                if competencia.startswith('AtuaçãoPrf:'):
+                    tipo_no = 'AreaAtuacao'
+                    propriedades = {"descricao": competencia.split(': ')[1]}
+                    tipo_aresta = 'ATUACAO_PROFISSIONAL'
+                elif competencia.startswith('FormaçãoAc:'):
+                    tipo_no = 'FormacaoAcademica'
+                    propriedades = {"descricao": competencia.split(': ')[1]}
+                    tipo_aresta = 'POSSUI_FORMACAO'
+                elif competencia.startswith('Projeto'):
+                    tipo_no = 'Projeto'
+                    propriedades = {"descricao": competencia}
+                    tipo_aresta = 'PARTICIPOU_PROJETO'
+                elif competencia.startswith('Publicação:'):
+                    tipo_no = 'Publicacao'
+                    propriedades = {"descricao": competencia}
+                    tipo_aresta = 'PUBLICOU'
+                elif competencia.startswith('Ori'):
+                    tipo_no = 'Orientacao'
+                    propriedades = {"descricao": competencia}
+                    tipo_aresta = 'ORIENTADOR'
+                else:
+                    # Tratar outros tipos de competência, se necessário
+                    continue
 
-        # --- Adicionar nós e arestas para a formação acadêmica ---
-        formacao = curriculo_dict.get('Formação', {}).get('Acadêmica', [])
-        for item in formacao:
-            formacao_id = item.get('Descrição')  # Usando a Descrição como ID da formação
-            if formacao_id:
-                item = self._corrigir_nome_propriedade(item)
-                subgrafo["nos"].append({"tipo": "FormacaoAcademica", "propriedades": item})
-                subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"Descricao": formacao_id}, "tipo": "POSSUI_FORMACAO"})
+                #competencia_id = hashlib.sha256(competencia.encode()).hexdigest()  # Gera um ID único para a competência
+                competencia_id = competencia # Usando a competência como ID 
+                subgrafo["nos"].append({"tipo": tipo_no, "propriedades": propriedades})
+                subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": competencia_id}, "tipo": tipo_aresta})
 
-        # --- Adicionar nós e arestas para o pós-doutorado ---
-        posdoc = curriculo_dict.get('Formação', {}).get('Pos-Doc', [])
-        for item in posdoc:
-            posdoc_id = item.get('Descrição')  # Usando a Descrição como ID do pós-doutorado
-            if posdoc_id:
-                item = self._corrigir_nome_propriedade(item)
-                subgrafo["nos"].append({"tipo": "PosDoutorado", "propriedades": item})
-                subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"Descricao": posdoc_id}, "tipo": "POSSUI_POSDOC"})
-
-        # --- Adicionar nós e arestas para a formação complementar ---
-        formacao_complementar = curriculo_dict.get('Formação', {}).get('Complementar', [])
-        for item in formacao_complementar:
-            complementar_id = item.get('Descrição')  # Usando a Descrição como ID da formação complementar
-            if complementar_id:
-                item = self._corrigir_nome_propriedade(item)
-                subgrafo["nos"].append({"tipo": "FormacaoComplementar", "propriedades": item})
-                subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"Descricao": complementar_id}, "tipo": "POSSUI_COMPLEMENTAR"})
-
-        # --- Adicionar nós e arestas para a atuação profissional ---
-        atuacao_profissional = curriculo_dict.get('Atuação Profissional', [])
-        for item in atuacao_profissional:
-            atuacao_id = item.get('Instituição') + " - " + item.get('Ano')  # Usando a Instituição e o Ano como ID da atuação
-            if atuacao_id:
-                item = self._corrigir_nome_propriedade(item)
-                subgrafo["nos"].append({"tipo": "AtuacaoProfissional", "propriedades": item})
-                subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"id": atuacao_id}, "tipo": "POSSUI_VINCULO"})
-
-        # --- Adicionar nós e arestas para as linhas de pesquisa ---
-        linhas_de_pesquisa = curriculo_dict.get('Linhas de Pesquisa', [])
-        for item in linhas_de_pesquisa:
-            pesquisa_id = item.get('Descrição')  # Usando a Descrição como ID da linha de pesquisa
-            if pesquisa_id:
-                item = self._corrigir_nome_propriedade(item)
-                subgrafo["nos"].append({"tipo": "LinhaPesquisa", "propriedades": item})
-                subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"Descricao": pesquisa_id}, "tipo": "PESQUISA_LINHA"})
-
-        # --- Adicionar nós e arestas para os idiomas ---
-        idiomas = curriculo_dict.get('Idiomas', [])
-        for item in idiomas:
-            idioma_id = item.get('Idioma')  # Usando o Idioma como ID do idioma
-            if idioma_id:
-                item = self._corrigir_nome_propriedade(item)
-                subgrafo["nos"].append({"tipo": "Idioma", "propriedades": item})
-                subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"Idioma": idioma_id}, "tipo": "DOMINA_IDIOMA"})
-
-        # Livros publicados/organizados ou edições
-        livros = curriculo_dict.get('Produções', {}).get('Livros publicados/organizados ou edições', {})
-        for livro_id, livro_descricao in livros.items():
-            # Corrige as propriedades antes de adicionar o nó ao subgrafo
-            livro_props = {"id": livro_id, "descricao": livro_descricao}
-            livro_props = self._corrigir_nome_propriedade(livro_props)            
-            subgrafo["nos"].append({"tipo": "Livro", "propriedades": {"id": livro_id, "descricao": livro_descricao}})
-            subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"id": livro_id}, "tipo": "PUBLICOU_LIVRO"})
-
-        ## Capítulos de livros publicados
-        capitulos = curriculo_dict.get('Produções', {}).get('Capítulos de livros publicados', {})
-        for capitulo_id, capitulo_descricao in capitulos.items():
-            subgrafo["nos"].append({"tipo": "CapituloLivro", "propriedades": {"id": capitulo_id, "descricao": capitulo_descricao}})
-            subgrafo["arestas"].append({"origem": {"IDLattes": curriculo_id}, "destino": {"id": capitulo_id}, "tipo": "PUBLICOU_CAPITULO"})
-
-        ## Resumos publicados em anais de congressos
-        resumos_congressos = curriculo_dict.get('Produções', {}).get('Resumos publicados em anais de congressos', {})
-        for resumo_id, resumo_descricao in resumos_congressos.items():
-            subgrafo["nos"].append({"tipo": "ResumoCongresso", "propriedades": {"id": resumo_id, "descricao": resumo_descricao}})
-            subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": resumo_id}, "tipo": "PUBLICOU_RESUMO_CONGRESSO"})
-
-        ## Apresentações de Trabalho
-        apresentacoes = curriculo_dict.get('Produções', {}).get('Apresentações de Trabalho', {})
-        for apresentacao_id, apresentacao_descricao in apresentacoes.items():
-            subgrafo["nos"].append({"tipo": "ApresentacaoTrabalho", "propriedades": {"id": apresentacao_id, "descricao": apresentacao_descricao}})
-            subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": apresentacao_id}, "tipo": "APRESENTOU_TRABALHO"})
-
-        ## Outras produções bibliográficas
-        outras_producoes = curriculo_dict.get('Produções', {}).get('Outras produções bibliográficas', {})
-        for producao_id, producao_descricao in outras_producoes.items():
-            subgrafo["nos"].append({"tipo": "ProducaoBibliografica", "propriedades": {"id": producao_id, "descricao": producao_descricao}})
-            subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": producao_id}, "tipo": "PUBLICOU_PRODUCAO"})
-
-        ## Entrevistas, mesas redondas, programas e comentários na mídia
-        entrevistas = curriculo_dict.get('Produções', {}).get('Entrevistas, mesas redondas, programas e comentários na mídia', {})
-        for entrevista_id, entrevista_descricao in entrevistas.items():
-            subgrafo["nos"].append({"tipo": "Entrevista", "propriedades": {"id": entrevista_id, "descricao": entrevista_descricao}})
-            subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": entrevista_id}, "tipo": "PARTICIPOU_ENTREVISTA"})
-
-        ## Demais tipos de produção técnica
-        demais_producoes_tecnicas = curriculo_dict.get('Produções', {}).get('Demais tipos de produção técnica', {})
-        for producao_tecnica_id, producao_tecnica_descricao in demais_producoes_tecnicas.items():
-            subgrafo["nos"].append({"tipo": "ProducaoTecnica", "propriedades": {"id": producao_tecnica_id, "descricao": producao_tecnica_descricao}})
-            subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": producao_tecnica_id}, "tipo": "PRODUZIU_TECNICA"})
-
-        # --- Nós e Arestas para os projetos (pesquisa, extensão, etc.) ---
-        # Projetos de Pesquisa
-        projetos_pesquisa = curriculo_dict.get('ProjetosPesquisa', [])
-        for projeto in projetos_pesquisa:
-            projeto_id = projeto.get('chave')  # Usando a chave como ID do projeto
-            if projeto_id:
-                subgrafo["nos"].append({"tipo": "ProjetoPesquisa", "propriedades": projeto})
-                subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"chave": projeto_id}, "tipo": "PARTICIPOU_PROJETO_PESQUISA"})
-
-        # Projetos de Extensão
-        projetos_extensao = curriculo_dict.get('ProjetosExtensão', [])
-        for projeto in projetos_extensao:
-            projeto_id = projeto.get('chave')  # Usando a chave como ID do projeto
-            if projeto_id:
-                subgrafo["nos"].append({"tipo": "ProjetoExtensao", "propriedades": projeto})
-                subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"chave": projeto_id}, "tipo": "PARTICIPOU_PROJETO_EXTENSAO"})
-
-        # Projetos de Desenvolvimento
-        projetos_desenvolvimento = curriculo_dict.get('ProjetosDesenvolvimento', [])
-        for projeto in projetos_desenvolvimento:
-            projeto_id = projeto.get('chave')  # Usando a chave como ID do projeto
-            if projeto_id:
-                subgrafo["nos"].append({"tipo": "ProjetoDesenvolvimento", "propriedades": projeto})
-                subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"chave": projeto_id}, "tipo": "PARTICIPOU_PROJETO_DESENVOLVIMENTO"})
-
-        # Projetos Outros
-        projetos_outros = curriculo_dict.get('ProjetosOutros', [])
-        for projeto in projetos_outros:
-            projeto_id = projeto.get('chave')  # Usando a chave como ID do projeto
-            if projeto_id:
-                subgrafo["nos"].append({"tipo": "ProjetoOutro", "propriedades": projeto})
-                subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"chave": projeto_id}, "tipo": "PARTICIPOU_PROJETO_OUTRO"})
-
-        # --- Nós e arestas para patentes e registros ---
-        patentes = curriculo_dict.get('Patentes e registros', {})
-        for patente_id, patente_info in patentes.items():
-            patente_info = self._corrigir_nome_propriedade(patente_info)
-            # Considerando que cada patente_info é um dicionário com informações da patente
-            subgrafo["nos"].append({"tipo": "Patente", "propriedades": patente_info})
-            subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": patente_id}, "tipo": "POSSUI_PATENTE"})
-
-        # --- Nós e arestas para bancas e Orientações---
-        bancas = curriculo_dict.get('Bancas', {})
-        
-        # Participação em bancas de trabalhos de conclusão
-        bancas_trabalhos = bancas.get('Participação em bancas de trabalhos de conclusão', {})
-        for banca_id, banca_info in bancas_trabalhos.items():
-            banca_props = {"id": banca_id, "descricao": banca_info}
-            banca_props = self._corrigir_nome_propriedade(banca_props)            
-            subgrafo["nos"].append({"tipo": "BancaTrabalho", "propriedades": {"id": banca_id, "descricao": banca_info}})
-            subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": banca_id}, "tipo": "PARTICIPOU_BANCA_TRABALHO"})
-
-        # Participação em bancas de comissões julgadoras
-        bancas_comissoes = bancas.get('Participação em bancas de comissões julgadoras', {})
-        for banca_id, banca_info in bancas_comissoes.items():
-            banca_props = {"id": banca_id, "descricao": banca_info}
-            banca_props = self._corrigir_nome_propriedade(banca_props)            
-            subgrafo["nos"].append({"tipo": "BancaComissao", "propriedades": {"id": banca_id, "descricao": banca_info}})
-            subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"id": banca_id}, "tipo": "PARTICIPOU_BANCA_COMISSAO"})
-
-        # Orientações
-        orientacoes = curriculo_dict.get('Orientações', [])
-        for orientacao in orientacoes:
-            orientacao_id = orientacao.get('nome')  # Usando o nome como ID da orientação
-            if orientacao_id:
-                orientacao = self._corrigir_nome_propriedade(orientacao)
-                subgrafo["nos"].append({"tipo": "Orientacao", "propriedades": orientacao})
-                subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"nome": orientacao_id}, "tipo": "ORIENTADOR"})
-
-        # --- Nós e arestas para Fator de Impacto JCR---
-        # JCR2
-        jcr2 = curriculo_dict.get('JCR2', [])
-        for item in jcr2:
-            jcr2_id = item.get('doi')  # Usando o DOI como ID do JCR2
-            if jcr2_id:
-                item = self._corrigir_nome_propriedade(item)
-                subgrafo["nos"].append({"tipo": "JCR2", "propriedades": item})
-                subgrafo["arestas"].append({"origem": {"ID Lattes": curriculo_id}, "destino": {"doi": jcr2_id}, "tipo": "POSSUI_JCI"})
-
-        return subgrafo
+            return subgrafo
 
 
     def ingerir_subgrafo(self, subgrafo_dict):
@@ -836,11 +545,68 @@ class KGNN(torch.nn.Module):
 
         return torch.stack(embeddings)
 
+    # def obter_embeddings_vizinhos(self, no_embedding, tipo_no, tipo_relacionamento):
+    #     """
+    #     Obtém os embeddings dos vizinhos de um nó através de um tipo de 
+    #     relacionamento, usando a propriedade do nó como identificador único.
 
+    #     Args:
+    #         no_embedding: O embedding do nó.
+    #         tipo_no: O tipo do nó.
+    #         tipo_relacionamento: O tipo de relacionamento.
+
+    #     Returns:
+    #         Uma lista com os embeddings dos vizinhos.
+    #     """
+
+    #     # Determinar a propriedade do nó a ser usada como identificador
+    #     if tipo_no == 'Curriculo':
+    #         propriedade_id = 'IDLattes'
+    #     elif tipo_no == 'Artigo':
+    #         propriedade_id = 'DOI'
+    #     # ... adicione elif para outros tipos de nós com suas respectivas propriedades
+    #     else:
+    #         raise ValueError(f"Tipo de nó inválido: {tipo_no}")
+
+    #     # Construir a consulta Cypher dinamicamente
+    #     query = f"""
+    #         MATCH (n:{tipo_no})-[r:{tipo_relacionamento}]-(m)
+    #         WHERE n.{propriedade_id} = $id
+    #         RETURN m
+    #     """
+
+    #     # Executar a consulta e obter os nós vizinhos
+    #     resultados = self.graph.run(query, id=no_embedding).data()
+    #     vizinhos = []
+    #     for resultado in resultados:
+    #         no_vizinho = resultado['m']
+
+    #         # Extrair texto das propriedades do nó vizinho
+    #         texto_vizinho = ''
+    #         for chave, valor in no_vizinho.items(): # type: ignore
+    #             if isinstance(valor, str):
+    #                 texto_vizinho += valor + ' '
+    #             elif isinstance(valor, list):
+    #                 for item in valor:
+    #                     if isinstance(item, str):
+    #                         texto_vizinho += item + ' '
+    #                     elif isinstance(item, dict):
+    #                         for k, v in item.items():
+    #                             if isinstance(v, str):
+    #                                 texto_vizinho += v + ' '
+
+    #         # Gerar embedding do nó vizinho
+    #         embedding_vizinho = self.embedding_model.encode(texto_vizinho, convert_to_tensor=True)
+    #         vizinhos.append(embedding_vizinho)
+
+    #     return vizinhos
+
+    ## Refatorada novamente para tornar mais reutilizável
     def obter_embeddings_vizinhos(self, no_embedding, tipo_no, tipo_relacionamento):
         """
         Obtém os embeddings dos vizinhos de um nó através de um tipo de 
-        relacionamento, usando a propriedade do nó como identificador único.
+        relacionamento, usando um dicionário para mapear o tipo de nó 
+        para a propriedade de identificação.
 
         Args:
             no_embedding: O embedding do nó.
@@ -851,13 +617,21 @@ class KGNN(torch.nn.Module):
             Uma lista com os embeddings dos vizinhos.
         """
 
-        # Determinar a propriedade do nó a ser usada como identificador
-        if tipo_no == 'Curriculo':
-            propriedade_id = 'IDLattes'
-        elif tipo_no == 'Artigo':
-            propriedade_id = 'DOI'
-        # ... adicione elif para outros tipos de nós com suas respectivas propriedades
-        else:
+        # Dicionário que mapeia o tipo de nó para a propriedade de identificação
+        propriedades_identificacao = {
+            'Curriculo': 'ID Lattes',
+            'Artigo': 'DOI',
+            'AreaAtuacao': 'descricao',
+            'FormacaoAcademica': 'descricao',
+            'Projeto': 'descricao',
+            'Publicacao': 'descricao',
+            'Orientacao': 'descricao',
+            # ... adicione outros tipos de nós aqui ...
+        }
+
+        # Obter a propriedade de identificação do nó
+        propriedade_id = propriedades_identificacao.get(tipo_no)
+        if not propriedade_id:
             raise ValueError(f"Tipo de nó inválido: {tipo_no}")
 
         # Construir a consulta Cypher dinamicamente
@@ -874,30 +648,128 @@ class KGNN(torch.nn.Module):
             no_vizinho = resultado['m']
 
             # Extrair texto das propriedades do nó vizinho
-            texto_vizinho = ''
-            for chave, valor in no_vizinho.items(): # type: ignore
-                if isinstance(valor, str):
-                    texto_vizinho += valor + ' '
-                elif isinstance(valor, list):
-                    for item in valor:
-                        if isinstance(item, str):
-                            texto_vizinho += item + ' '
-                        elif isinstance(item, dict):
-                            for k, v in item.items():
-                                if isinstance(v, str):
-                                    texto_vizinho += v + ' '
+            texto_vizinho = ' '.join([
+                valor if isinstance(valor, str) else ' '.join([
+                    v if isinstance(v, str) else '' for k, v in valor.items()
+                ])
+                for chave, valor in no_vizinho.items() # type: ignore
+            ])
 
             # Gerar embedding do nó vizinho
             embedding_vizinho = self.embedding_model.encode(texto_vizinho, convert_to_tensor=True)
             vizinhos.append(embedding_vizinho)
 
         return vizinhos
-    
+
+
+    ## Refatorar primeira vez para simplificar e deixar responsabilidades na classe 
+    # def agregar_informacoes_vizinhos(self, embeddings, tipos_nos):
+    #     """
+    #     Agrega informações dos vizinhos de cada nó.
+    #     Permite selecionar quais tipos de vizinhos serão usados na agregação.
+
+    #     Args:
+    #         embeddings: Os embeddings dos nós.
+    #         tipos_nos: Uma lista com os tipos dos nós.
+
+    #     Returns:
+    #         Um tensor com os embeddings agregados dos vizinhos.
+    #     """
+
+    #     # --- Flags para selecionar os tipos de vizinhos a serem usados ---
+    #     usar_artigos = True
+    #     usar_areas = True
+    #     usar_formacao_academica = True
+    #     usar_pos_doutorado = True
+    #     usar_formacao_complementar = True
+    #     usar_atuacao_profissional = True
+    #     usar_linhas_de_pesquisa = True
+    #     usar_idiomas = True
+    #     usar_livros = True
+    #     usar_capitulos_livros = True
+    #     usar_resumos_congressos = True
+    #     usar_apresentacoes_trabalho = True
+    #     usar_outras_producoes = True
+    #     usar_entrevistas = True
+    #     usar_producoes_tecnicas = True
+    #     usar_projetos_pesquisa = True
+    #     usar_projetos_extensao = True
+    #     usar_projetos_desenvolvimento = True
+    #     usar_projetos_outros = True
+    #     usar_patentes_e_registros = True
+    #     usar_bancas_trabalho = True
+    #     usar_bancas_comissao = True
+    #     usar_orientacoes = True
+    #     usar_jcr2 = True
+
+    #     embeddings_agregados = []
+    #     for i, no in enumerate(embeddings):
+    #         vizinhos = []
+    #         tipo_no = tipos_nos[i]  # Obter o tipo do nó atual
+
+    #         # Obter os embeddings dos vizinhos de acordo com as flags
+    #         if usar_artigos:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PUBLICOU_ARTIGO')
+    #         if usar_areas:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PESQUISA_AREA')
+    #         if usar_formacao_academica:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'POSSUI_FORMACAO')
+    #         if usar_pos_doutorado:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'POSSUI_POSDOC')
+    #         if usar_formacao_complementar:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'POSSUI_COMPLEMENTAR')
+    #         if usar_atuacao_profissional:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'POSSUI_VINCULO')
+    #         if usar_linhas_de_pesquisa:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PESQUISA_LINHA')
+    #         if usar_idiomas:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'DOMINA_IDIOMA')
+    #         if usar_livros:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PUBLICOU_LIVRO')
+    #         if usar_capitulos_livros:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PUBLICOU_CAPITULO')
+    #         if usar_resumos_congressos:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PUBLICOU_RESUMO_CONGRESSO')
+    #         if usar_apresentacoes_trabalho:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'APRESENTOU_TRABALHO')
+    #         if usar_outras_producoes:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PUBLICOU_PRODUCAO')
+    #         if usar_entrevistas:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_ENTREVISTA')
+    #         if usar_producoes_tecnicas:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PRODUZIU_TECNICA')
+    #         if usar_projetos_pesquisa:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_PROJETO_PESQUISA')
+    #         if usar_projetos_extensao:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_PROJETO_EXTENSAO')
+    #         if usar_projetos_desenvolvimento:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_PROJETO_DESENVOLVIMENTO')
+    #         if usar_projetos_outros:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_PROJETO_OUTRO')
+    #         if usar_patentes_e_registros:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'POSSUI_PATENTE')
+    #         if usar_bancas_trabalho:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_BANCA_TRABALHO')
+    #         if usar_bancas_comissao:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_BANCA_COMISSAO')
+    #         if usar_orientacoes:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'ORIENTADOR')
+    #         if usar_jcr2:
+    #             vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'POSSUI_JCI')
+
+    #         # Agregar embeddings dos vizinhos (usando a média)
+    #         if vizinhos:
+    #             embeddings_agregados.append(torch.mean(torch.stack(vizinhos), dim=0))
+    #         else:
+    #             # Se nó não tiver vizinhos, usar próprio embedding
+    #             embeddings_agregados.append(no)
+
+    #     return torch.stack(embeddings_agregados)
 
     def agregar_informacoes_vizinhos(self, embeddings, tipos_nos):
         """
-        Agrega informações dos vizinhos de cada nó.
-        Permite selecionar quais tipos de vizinhos serão usados na agregação.
+        Agrega informações dos vizinhos de cada nó, considerando a nova estrutura 
+        do subgrafo com base nas competências extraídas.
 
         Args:
             embeddings: Os embeddings dos nós.
@@ -907,86 +779,18 @@ class KGNN(torch.nn.Module):
             Um tensor com os embeddings agregados dos vizinhos.
         """
 
-        # --- Flags para selecionar os tipos de vizinhos a serem usados ---
-        usar_artigos = True
-        usar_areas = True
-        usar_formacao_academica = True
-        usar_pos_doutorado = True
-        usar_formacao_complementar = True
-        usar_atuacao_profissional = True
-        usar_linhas_de_pesquisa = True
-        usar_idiomas = True
-        usar_livros = True
-        usar_capitulos_livros = True
-        usar_resumos_congressos = True
-        usar_apresentacoes_trabalho = True
-        usar_outras_producoes = True
-        usar_entrevistas = True
-        usar_producoes_tecnicas = True
-        usar_projetos_pesquisa = True
-        usar_projetos_extensao = True
-        usar_projetos_desenvolvimento = True
-        usar_projetos_outros = True
-        usar_patentes_e_registros = True
-        usar_bancas_trabalho = True
-        usar_bancas_comissao = True
-        usar_orientacoes = True
-        usar_jcr2 = True
-
         embeddings_agregados = []
         for i, no in enumerate(embeddings):
             vizinhos = []
             tipo_no = tipos_nos[i]  # Obter o tipo do nó atual
 
-            # Obter os embeddings dos vizinhos de acordo com as flags
-            if usar_artigos:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PUBLICOU_ARTIGO')
-            if usar_areas:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PESQUISA_AREA')
-            if usar_formacao_academica:
+            # Obter os embeddings dos vizinhos para os novos tipos de nós
+            if tipo_no == 'Curriculo':
+                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'ATUACAO_PROFISSIONAL')
                 vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'POSSUI_FORMACAO')
-            if usar_pos_doutorado:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'POSSUI_POSDOC')
-            if usar_formacao_complementar:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'POSSUI_COMPLEMENTAR')
-            if usar_atuacao_profissional:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'POSSUI_VINCULO')
-            if usar_linhas_de_pesquisa:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PESQUISA_LINHA')
-            if usar_idiomas:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'DOMINA_IDIOMA')
-            if usar_livros:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PUBLICOU_LIVRO')
-            if usar_capitulos_livros:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PUBLICOU_CAPITULO')
-            if usar_resumos_congressos:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PUBLICOU_RESUMO_CONGRESSO')
-            if usar_apresentacoes_trabalho:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'APRESENTOU_TRABALHO')
-            if usar_outras_producoes:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PUBLICOU_PRODUCAO')
-            if usar_entrevistas:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_ENTREVISTA')
-            if usar_producoes_tecnicas:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PRODUZIU_TECNICA')
-            if usar_projetos_pesquisa:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_PROJETO_PESQUISA')
-            if usar_projetos_extensao:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_PROJETO_EXTENSAO')
-            if usar_projetos_desenvolvimento:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_PROJETO_DESENVOLVIMENTO')
-            if usar_projetos_outros:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_PROJETO_OUTRO')
-            if usar_patentes_e_registros:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'POSSUI_PATENTE')
-            if usar_bancas_trabalho:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_BANCA_TRABALHO')
-            if usar_bancas_comissao:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_BANCA_COMISSAO')
-            if usar_orientacoes:
+                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PARTICIPOU_PROJETO')
+                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'PUBLICOU')
                 vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'ORIENTADOR')
-            if usar_jcr2:
-                vizinhos += self.obter_embeddings_vizinhos(no, tipo_no, 'POSSUI_JCI')
 
             # Agregar embeddings dos vizinhos (usando a média)
             if vizinhos:

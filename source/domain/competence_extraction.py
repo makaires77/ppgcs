@@ -3,15 +3,9 @@ import time
 import json
 import torch
 import spacy
-import pynvml
-import psutil
-import cpuinfo
-import xformers
 import numpy as np
 import plotly.graph_objects as go
 from unidecode import unidecode
-from transformers import AutoModel
-# from tqdm.autonotebook import tqdm, trange
 from tqdm import TqdmExperimentalWarning
 from tqdm.notebook import tqdm
 from sentence_transformers import SentenceTransformer, util
@@ -24,546 +18,140 @@ from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, silhouette_score
-from sklearn.cluster import KMeans  # ou outro algoritmo de agrupamento
+from sklearn.cluster import KMeans  # algoritmo de agrupamento
 
 import warnings
 warnings.filterwarnings("ignore", category=TqdmExperimentalWarning)
-class GPUMemoryManager:
-    def __init__(self):
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+warnings.filterwarnings("ignore", category=FutureWarning)
 
-    def clear_gpu_cache(self):
-        if self.device.type == "cuda":
-            torch.cuda.empty_cache()
+# from tqdm.autonotebook import tqdm, trange
+# import xformers
+# from transformers import AutoModel
 
-    def move_to_cpu(self, tensors):
-        for tensor in tensors:
-            if tensor is not None and tensor.device.type == "cuda":
-                tensor.cpu()
+from gml_memanager import GPUMemoryManager, HardwareEvaluator, ProcessingCapacityEstimator
 
-class HardwareEvaluator:
-    def __init__(self):
-        self.gpu_available = torch.cuda.is_available()  # Verifica a disponibilidade da CUDA no construtor
-        self.gpu_properties = torch.cuda.get_device_properties(0) if self.gpu_available else None
-        self.cpu_info = cpuinfo.get_cpu_info()
-        self.cpu_freq = psutil.cpu_freq()
-        self.ram_info = psutil.virtual_memory()
-
-    def print_hardware_info(self):
-        print("Informações de Hardware:")
-        if self.gpu_available:
-            print(f"  GPU: {self.gpu_properties.name}")
-            print(f"    Tensor Cores: {self.get_tensor_cores()}")
-            print(f"    Núcleos CUDA: {(self.gpu_properties.multi_processor_count * 128) - self.get_tensor_cores()//128}")
-            print(f"    Compute Capability: {self.gpu_properties.major}.{self.gpu_properties.minor}")
-            print(f"    Frequência Máxima: {self.get_gpu_clock_rate()} GHz")
-            print(f"    Memória Total: {self.gpu_properties.total_memory / 1024**3:.2f} GB")
-        else:
-            print("  GPU: Não disponível")
-
-        print(f"  CPU: {self.cpu_info['brand_raw']}")
-        print(f"    Núcleos Físicos: {psutil.cpu_count(logical=False)}")
-        print(f"    Núcleos Lógicos: {psutil.cpu_count(logical=True)}")
-        print(f"    Frequência Máxima: {self.cpu_freq.max:.2f} GHz")
-        print(f"    RAM Total: {self.ram_info.total / 1024**3:.2f} GB")
-
-    def get_tensor_cores(self):
-        """Obtém o número de Tensor Cores da GPU.
-
-        Returns:
-            int: Número de Tensor Cores ou 0 se a informação não estiver disponível.
+class CompetenceExtractor:
+    def __init__(self, curriculae_path, model_name="distiluse-base-multilingual-cased-v2"):
         """
-        if self.gpu_available:
-            try:
-                pynvml.nvmlInit()
-                handle = pynvml.nvmlDeviceGetHandleByIndex(0)
-                gpu_name = pynvml.nvmlDeviceGetName(handle)
-                # print(gpu_name)
-
-                # Dicionário com informações de Tensor Cores para GPUs Nvidia modernas (CORRIGIDO)
-                tensor_cores_dict = {
-                    "Quadro RTX 8000": 4608,  # 1152 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "Quadro RTX 6000": 3840,  # 960 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "Quadro RTX 5000": 3072,  # 768 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "Quadro RTX 4000": 2304,  # 576 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "RTX 4090": 512,          # 128 SMs, cada um com 4 Tensor Cores de quarta geração
-                    "A100": 432,              # 108 SMs, cada um com 4 Tensor Cores de terceira geração
-                    "RTX 4080 SUPER": 304,    #  76 SMs, cada um com 4 Tensor Cores de quarta geração
-                    "RTX 4080 12GB": 240,     #  60 SMs, cada um com 4 Tensor Cores de quarta geração
-                    "RTX 4070 Ti": 80,        #  20 SMs, cada um com 4 Tensor Cores de quarta geração
-                    "RTX 4070": 64,           #  16 SMs, cada um com 4 Tensor Cores de quarta geração
-                    "RTX 3090 Ti": 108,       #  84 SMs, cada um com 4 Tensor Cores de terceira geração e 28 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "RTX 3090": 112,          #  82 SMs, cada um com 4 Tensor Cores de terceira geração e 30 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "RTX 3080 Ti": 80,        #  60 SMs, cada um com 4 Tensor Cores de terceira geração e 20 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "RTX 3080 12GB": 68,      #  58 SMs, cada um com 4 Tensor Cores de terceira geração e 10 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "RTX 3080": 80,           #  68 SMs, cada um com 4 Tensor Cores de terceira geração e 12 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "RTX 3070 Ti": 64,        #  48 SMs, cada um com 4 Tensor Cores de terceira geração e 16 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "RTX 3070": 46,           #  46 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "RTX 3060 Ti": 38,        #  38 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "RTX 3060": 28,           #  28 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "RTX A5000": 84,          #  66 SMs, cada um com 4 Tensor Cores de terceira geração e 18 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "RTX A4000": 64,          #  48 SMs, cada um com 4 Tensor Cores de terceira geração e 16 SMs, cada um com 4 Tensor Cores de segunda geração
-                    "RTX A2000": 30,          #  26 SMs, cada um com 4 Tensor Cores de segunda geração e 4 SMs, cada um com 4 Tensor Cores de primeira geração
-                }
-
-                for model, cores in tensor_cores_dict.items():
-                    if model in gpu_name:
-                        return cores
-
-                print(f"Aviso: Número de Tensor Cores desconhecido para a GPU {gpu_name}.")
-                return 0
-
-            except pynvml.NVMLError as error:
-                print(f"Erro ao obter informações da GPU: {error}")
-                return 0
-            finally:
-                pynvml.nvmlShutdown()
-        else:
-            return 0
-
-    def get_cpu_ipc(self):
-        """Obtém o valor de IPC (Instruções Por Ciclo) da CPU.
-
-        Returns:
-            float: Valor de IPC estimado.
-        """
-        try:
-            info = cpuinfo.get_cpu_info()
-            cpu_name = info['brand_raw']
-
-            # Estimativa para processadores Intel
-            if 'Intel' in cpu_name:
-                if 'Core i9' in cpu_name:
-                    return 2.5
-                elif 'Core i7' in cpu_name:
-                    return 2.0
-                elif 'Core i5' in cpu_name:
-                    return 1.5
-                else:
-                    return 1.0
-
-            # Estimativa para processadores AMD Ryzen (aprimorada)
-            if 'Ryzen' in cpu_name:
-                if 'Threadripper' in cpu_name:
-                    return 2.2  # Estimativa para Threadripper
-                elif 'Zen 2' in cpu_name:
-                    return 1.8  # Estimativa para Zen 2
-                elif 'Zen 3' in cpu_name:
-                    return 2.0  # Estimativa para Zen 3
-                elif 'Ryzen 9' in cpu_name:
-                    return 2.1
-                elif 'Ryzen 7' in cpu_name:
-                    return 1.9
-                elif 'Ryzen 5' in cpu_name:
-                    return 1.7
-                else:
-                    return 1.5
-
-            else:
-                return 1.0  # Valor padrão para outras CPUs
-
-        except:
-            return 1.0  # Valor padrão em caso de erro
-
-    def get_cpu_parallel_capacity(self):
-        """Retorna o número de núcleos lógicos da CPU, que representam a capacidade teórica de processamento paralelo."""
-        return psutil.cpu_count(logical=True)
-
-    def get_gpu_performance(self, operation_type="FLOPS"):
-        """Obtém o desempenho da GPU para o tipo de operação especificado.
+        Autor: Marcos Aires (Nov 2024)
+        Extrai competências de pesquisadores a partir de dados de currículos.
 
         Args:
-            operation_type (str): Tipo de operação ("FLOPS", "INT8", etc.).
-
-        Returns:
-            float: Desempenho da GPU em operações por segundo para o tipo especificado.
+            curricula_file (str): Caminho para o arquivo JSON contendo os dados dos currículos.
+            model_name (str): Nome do modelo SentenceTransformer a ser usado.
         """
-        if self.gpu_available:
-            try:
-                pynvml.nvmlInit()
-                handle = pynvml.nvmlDeviceGetHandleByIndex(0)  # Assumindo uma única GPU
-                #info = pynvml.nvmlDeviceGetPerformanceState(handle)  # Removido
-
-                if operation_type == "FLOPS":
-                    return self.get_gpu_max_flops()
-                elif operation_type == "INT8":
-                    # Estimar o desempenho para INT8 (implementar a lógica)
-                    pass
-                else:
-                    raise ValueError("Tipo de operação não suportado")
-
-            except pynvml.NVMLError as error:
-                print(f"Erro ao obter informações da GPU: {error}")
-                return 0
-            finally:
-                pynvml.nvmlShutdown()
-        else:
-            return 0
-
-    ## SEM CONSIDERAR OS TENSOR CORES
-    # def get_gpu_max_flops(self):
-    #     """Obtém o desempenho máximo da GPU em FLOPS.
-
-    #     Returns:
-    #         float: Desempenho máximo da GPU em FLOPS.
-    #     """
-    #     if torch.cuda.is_available():
-    #         pynvml.nvmlInit()
-    #         num_gpus = torch.cuda.device_count()
-    #         max_flops = 0
-    #         for i in range(num_gpus):
-    #             handle = pynvml.nvmlDeviceGetHandleByIndex(i)
-    #             props = torch.cuda.get_device_properties(i)
-    #             clock_rate = pynvml.nvmlDeviceGetMaxClockInfo(handle, pynvml.NVML_CLOCK_SM) # Clock de boost máximo
-    #             max_flops += props.multi_processor_count * clock_rate * 2  # FLOPS FP32
-    #             # Adicionar estimativa de FLOPS para Tensor Cores (se aplicável)
-    #         pynvml.nvmlShutdown()
-    #         return max_flops
-    #     else:
-    #         return 0
-
-    def get_gpu_max_flops(self):
-        """Obtém o desempenho máximo da GPU em FLOPS, incluindo Tensor Cores.
-
-        Returns:
-            float: Desempenho máximo da GPU em FLOPS.
-        """
-        if torch.cuda.is_available():
-            pynvml.nvmlInit()
-            num_gpus = torch.cuda.device_count()
-            max_flops = 0
-            for i in range(num_gpus):
-                handle = pynvml.nvmlDeviceGetHandleByIndex(i)
-                props = torch.cuda.get_device_properties(i)
-                clock_rate = pynvml.nvmlDeviceGetMaxClockInfo(handle, pynvml.NVML_CLOCK_SM)
-
-                # FLOPS FP32
-                max_flops += props.multi_processor_count * clock_rate * 2
-
-                # FLOPS Tensor Cores (FP16) - Estimativa para GPUs Nvidia
-                if props.major >= 7 and props.minor >= 0:  # Verifica se a GPU tem Tensor Cores
-                    max_flops += props.multi_processor_count * clock_rate * 8  # Estimativa para FP16
-
-            pynvml.nvmlShutdown()
-            return max_flops
-        else:
-            return 0
-
-    def estimate_cpu_gpu_overhead(self, model, batch_size, input_data):
-        """Estima o overhead de comunicação entre CPU e GPU.
-
-        Args:
-            model: Modelo a ser executado.
-            batch_size: Tamanho do lote.
-            input_data: Dados de entrada para o modelo.
-
-        Returns:
-            float: Tempo de overhead estimado em segundos.
-        """
-        if self.gpu_available:
-            # Medir o tempo de execução com e sem transferência de dados para a GPU
-            with torch.no_grad():
-                # Tempo com transferência de dados
-                start_time = time.time()
-                input_data = input_data.to('cuda')
-                model.to('cuda')
-                model(input_data)
-                torch.cuda.synchronize()  # Garante que todas as operações na GPU terminaram
-                end_time = time.time()
-                time_with_transfer = end_time - start_time
-
-                # Tempo sem transferência de dados (execução na CPU)
-                start_time = time.time()
-                model.to('cpu')
-                model(input_data.to('cpu'))
-                end_time = time.time()
-                time_without_transfer = end_time - start_time
-
-            return time_with_transfer - time_without_transfer
-        else:
-            return 0
-
-    def measure_real_execution_time(self, model, batch_size, input_data, num_runs=10):
-        """Mede o tempo de execução real de um modelo na GPU.
-
-        Args:
-            model: Modelo a ser executado.
-            batch_size: Tamanho do lote.
-            input_data: Dados de entrada para o modelo.
-            num_runs: Número de execuções para calcular a média.
-
-        Returns:
-            float: Tempo médio de execução em segundos.
-        """
-        if self.gpu_available:
-            model.to('cuda')
-            input_data = input_data.to('cuda')
-            with torch.no_grad():
-                total_time = 0
-                for _ in range(num_runs):
-                    start_time = time.time()
-                    model(input_data)
-                    torch.cuda.synchronize()  # Garante que todas as operações na GPU terminaram
-                    end_time = time.time()
-                    total_time += end_time - start_time
-            return total_time / num_runs
-        else:
-            return 0
-
-    def get_gpu_parallel_capacity(self):
-        """Retorna o número de núcleos CUDA da GPU, que representam a capacidade teórica de processamento paralelo."""
-        if self.gpu_available:
-            return self.gpu_properties.multi_processor_count * self.gpu_properties.max_threads_per_multi_processor
-        else:
-            return 0  # GPU não disponível
-
-    def get_gpu_clock_rate(self):
-        """Retorna o clock rate da GPU em MHz."""
-        if self.gpu_available:
-            pynvml.nvmlInit()
-            handle = pynvml.nvmlDeviceGetHandleByIndex(0)  # Obtém o handle da primeira GPU
-            clock_rate = pynvml.nvmlDeviceGetClockInfo(handle, pynvml.NVML_CLOCK_SM)  # Clock rate dos núcleos CUDA
-            pynvml.nvmlShutdown()
-            return clock_rate
-        else:
-            return 0  # GPU não disponível
-
-    def check_pytorch_gpu_compatibility(self):
-        """Verifica a compatibilidade entre PyTorch e GPU e recomenda uma versão compatível do PyTorch."""
-        if not self.gpu_available:
-            print("CUDA não está disponível. Não é possível verificar a compatibilidade com a GPU.")
-            return
-
-        # Obtém as informações da GPU
-        pynvml.nvmlInit()
-        handle = pynvml.nvmlDeviceGetHandleByIndex(0)
-        gpu_compute_capability = f"{pynvml.nvmlDeviceGetCudaComputeCapability(handle)[0]}.{pynvml.nvmlDeviceGetCudaComputeCapability(handle)[1]}"
-        pynvml.nvmlShutdown()
-
-        # Dicionário de compatibilidade PyTorch-GPU (atualizado)
-        compatibility_dict = {
-            "3.0": "0.3.0",  # Versão mínima do PyTorch para cada compute capability
-            "3.5": "0.4.0",
-            "3.7": "1.0.0",
-            "5.0": "1.2.0",
-            "5.2": "1.3.0",
-            "6.0": "1.4.0",
-            "6.1": "1.5.0",
-            "7.0": "1.6.0",
-            "7.5": "1.7.0",
-            "8.0": "1.8.0",
-            "8.6": "1.9.0",
-            "8.9": "1.12.0",  # Incluindo compute capability 8.9 (Ada Lovelace)
-            "9.0": "1.13.0",  # Incluindo compute capability 9.0 (Hopper)
-            "10.0": "2.0.0", # Incluindo compute capability 10.0 (Blackwell)
-        }
-
-        # Verifica a compatibilidade
-        if gpu_compute_capability not in compatibility_dict:
-            print(f"Aviso: A versão do PyTorch ({torch.__version__}) pode não ter sido testada com a sua GPU ({self.gpu_properties.name}, compute capability {gpu_compute_capability}).")
-        else:
-            min_pytorch_version = compatibility_dict[gpu_compute_capability]
-            if torch.__version__ < min_pytorch_version:
-                print(f"Aviso: A versão do PyTorch ({torch.__version__}) pode não ser totalmente compatível com a sua GPU ({self.gpu_properties.name}, compute capability {gpu_compute_capability}).")
-                print(f"Sugestão: Instale o PyTorch versão {min_pytorch_version} ou superior.")
-            else:
-                print("PyTorch e GPU são compatíveis.")
-
-    def check_gpu_memory_health(self):
-        """Verifica a saúde da memória da GPU, pulando setores com erro."""
-        if not self.gpu_available:
-            print("CUDA não está disponível. Não é possível verificar a saúde da memória da GPU.")
-            return
-
-        try:
-            pynvml.nvmlInit()
-            handle = pynvml.nvmlDeviceGetHandleByIndex(0)
-
-            # Verifica se a GPU suporta ECC
-            ecc_mode = pynvml.nvmlDeviceGetEccMode(handle)
-            if ecc_mode == pynvml.NVML_FEATURE_DISABLED:
-                print("Aviso: A GPU não possui ECC (Error Correcting Code) habilitado. A detecção de erros de memória pode ser limitada.")
-
-            # Obtém o tamanho da memória da GPU
-            memory_info = pynvml.nvmlDeviceGetMemoryInfo(handle)
-            total_memory = memory_info.total
-
-            # Listas para armazenar resultados
-            addresses = []
-            error_counts = []
-
-            # Verifica cada setor da memória
-            with tqdm(total=total_memory, desc="Verificando memória da GPU", unit='B', unit_scale=True, unit_divisor=1024) as pbar:
-                for i in range(0, total_memory, 4096):  # Verifica em blocos de 4 KB
-                    try:
-                        pynvml.nvmlDeviceValidateMemory(handle, i, 4096)  # Verifica o bloco de memória
-                        error_counts.append(0)  # Nenhum erro
-                    except pynvml.NVMLError as e:
-                        if e.value == pynvml.NVML_ERROR_CORRUPTED_MEM:
-                            print(f"Erro de memória detectado no endereço {hex(i)}")
-                            error_counts.append(1)  # Um erro
-                        else:
-                            print(f"Erro ao verificar a memória: {e}")
-                            error_counts.append(-1)  # Erro desconhecido
-                    addresses.append(i)
-                    pbar.update(4096)
-
-            # Plota os resultados
-            plt.figure(figsize=(12, 6))
-            plt.plot(addresses, error_counts, marker='o', linestyle='-', color='blue')
-            plt.xlabel("Endereço de Memória (bytes)")
-            plt.ylabel("Contagem de Erros")
-            plt.title("Verificação da Memória da GPU")
-            plt.grid(axis='y', linestyle='--')
-            plt.show()
-
-            # Exibe resultados da verificação
-            if any(error_counts):  # Verifica se há algum erro
-                num_errors = sum(1 for count in error_counts if count > 0)
-                error_addresses = [hex(addr) for addr, count in zip(addresses, error_counts) if count > 0]
-                print(f"Foram encontrados {num_errors} erros de memória nos seguintes endereços: {', '.join(error_addresses)}")
-            else:
-                print("Nenhum erro de memória encontrado na GPU.")
-
-        except pynvml.NVMLError as e:
-            print(f"Erro ao verificar a saúde da memória da GPU: {e}")
-
-        finally:
-            pynvml.nvmlShutdown()
-
-class ProcessingCapacityEstimator:
-    def __init__(self, hardware_evaluator):
-        self.hardware = hardware_evaluator
-
-    def estimate_cpu_throughput(self, num_samples, instructions_per_sample):
-        """Estima o throughput da CPU em operações por segundo.
-
-        Args:
-            num_samples: Número de amostras a serem processadas.
-            instructions_per_sample: Número médio de instruções por amostra.
-
-        Returns:
-            Throughput estimado em operações por segundo.
-        """
-        clock_speed_ghz = psutil.cpu_freq().current / 1e9  # Frequência em GHz
-        ipc = self.hardware.get_cpu_ipc()  # Instruções por ciclo (IPC)
-        return num_samples * instructions_per_sample / (clock_speed_ghz * ipc)
-
-    def estimate_cpu_parallel_throughput(self, num_samples, instructions_per_sample, thread_overhead=0.1):
-        """Estima o throughput da CPU em operações paralelas por segundo.
-
-        Args:
-            num_samples: Número de amostras a serem processadas.
-            instructions_per_sample: Número médio de instruções por amostra.
-            thread_overhead: Overhead estimado por thread (0 a 1).
-
-        Returns:
-            Throughput estimado em operações por segundo.
-        """
-        num_cores = psutil.cpu_count(logical=True)
-        effective_cores = num_cores * (1 - thread_overhead)
-        single_thread_throughput = self.estimate_cpu_throughput(num_samples, instructions_per_sample)
-        return single_thread_throughput * effective_cores
-
-    def estimate_gpu_parallel_throughput(self, num_operations, operation_type="FLOPS"):
-        """Estima o throughput da GPU em operações paralelas por segundo.
-
-        Args:
-            num_operations: Número de operações a serem realizadas.
-            operation_type: Tipo de operação ("FLOPS", "INT8", etc.).
-
-        Returns:
-            Throughput estimado em operações por segundo.
-        """
-        if self.hardware.gpu_available:
-            gpu_performance = self.hardware.get_gpu_performance(operation_type)  # Obter desempenho específico para o tipo de operação
-            return gpu_performance * num_operations
-        else:
-            return 0
-
-    def estimate_gpu_throughput(self, model, batch_size, input_data):
-        """Estima o throughput da GPU em inferências por segundo.
-
-        Args:
-            model: Modelo a ser executado.
-            batch_size: Tamanho do lote.
-            input_data: Dados de entrada para o modelo.
-
-        Returns:
-            Throughput estimado em inferências por segundo.
-        """
-        if self.hardware.gpu_available:
-            # Medir o tempo de execução real para uma inferência com o modelo, batch_size e input_data
-            start_time = time.time()
-            model.predict(input_data)
-            end_time = time.time()
-            inference_time = end_time - start_time
-            return batch_size / inference_time 
-        else:
-            return 0
-
-    def interpret_processing_capacity(self, model, sentences, model_sizes=[1024**2 * x for x in [100, 200, 500, 1000]]):
-        """Interpreta a capacidade de processamento e estima o tamanho máximo do modelo.
-
-        Args:
-            model_sizes (list): Lista de tamanhos de modelo em bytes para os quais a estimativa será feita.
-
-        """
-        print("\nInterpretação da Capacidade de Processamento:")
-
-        # Verificação de tipo para garantir que 'model' seja um objeto SentenceTransformer
-        if not isinstance(model, SentenceTransformer):
-            raise TypeError("O argumento 'model' deve ser um objeto SentenceTransformer.")
-
-        if self.hardware.gpu_available:
-            print("GPU:")
-            for model_size in model_sizes:
-                max_batch_size = self.hardware.gpu_properties.total_memory // model_size
-                print(f"  - Modelo de {model_size / 1024**2:.0f} MB: Lote máximo de {max_batch_size} amostras")
-        else:
-            print("  GPU: Não disponível")
-
-        print("CPU:")
-        cpu_time = self.hardware.benchmark_model(model, sentences, 'cpu')  # Benchmark na CPU
-        for model_size in model_sizes:
-            estimated_time = model_size / self.estimate_cpu_parallel_throughput(model_size)
-            print(f"  - Modelo de {model_size / 1024**2:.0f} MB: Tempo estimado de processamento: {estimated_time:.4f} segundos por amostra (benchmark: {cpu_time:.4f} s/amostra)")
-
-        if self.hardware.gpu_available:
-            print("GPU:")
-            gpu_time = self.hardware.benchmark_model(model, sentences, 'cuda')  # Benchmark na GPU
-            for model_size in model_sizes:
-                estimated_time = model_size / self.estimate_gpu_parallel_throughput(model_size)
-                print(f"  - Modelo de {model_size / 1024**2:.0f} MB: Tempo estimado de processamento: {estimated_time:.4f} segundos por amostra (benchmark: {gpu_time:.4f} s/amostra)")
-
-        print("\nRecomendações:")
-        if self.hardware.gpu_available:
-            print("  - Utilize a GPU para acelerar o processamento, se possível.")
-            print("  - Ajuste o tamanho do lote de acordo com a memória disponível da GPU e o tamanho do modelo.")
-        else:
-            print("  - Considere usar uma máquina com GPU para acelerar o processamento.")
-            print("  - Otimize o código para melhor desempenho na CPU.")
-
-class CompetenceExtraction:
-    def __init__(self, curricula_file, model_name="distiluse-base-multilingual-cased-v2"):
-        self.curricula_file = curricula_file
-        self.nlp_pt = spacy.load("pt_core_news_lg")  # Modelo SpaCy para português
-        self.nlp_en = spacy.load("en_core_web_trf")   # Modelo SpaCy para inglês
         self.model = SentenceTransformer(model_name)
+        self.curriculae_path = curriculae_path
+        self.nlp_pt = spacy.load("pt_core_news_lg")  # Modelo SpaCy para português
+        self.nlp_en = spacy.load("en_core_web_trf")  # Modelo SpaCy para inglês
+       
 
     def load_curricula(self):
-        with open(self.curricula_file, "r") as f:
+        """
+        Carrega os dados dos currículos do arquivo JSON.
+
+        Returns:
+            list: Lista de dicionários contendo os dados dos currículos.
+        """
+        with open(self.curriculae_path, "r") as f:
             return json.load(f)
 
-    def extrair_info_trabalho(self, texto):
+    # Função para extrair pares de competências versão inicial O(n²)
+    # A função extract_competence_pairs inicialmente possuia dois loops aninhados que iteravam sobre todos os pares de pesquisadores, abordagem com complexidade O(n^2) que pode ser ineficiente para um grande número de pesquisadores. Foi otimizada agrupando os pesquisadores por área de atuação e, em seguida, extraindo os pares de competências dentro de cada grupo. Isso reduziu a complexidade e tornou a extração mais rápida.
+    # def extract_competence_pairs(self, curricula_data):
+    #     similar_pairs = []
+    #     dissimilar_pairs = []
+
+    #     # Exemplo: extrair competências da mesma área (similar)
+    #     for i in range(len(curricula_data)):
+    #         for j in range(i + 1, len(curricula_data)):
+    #             researcher1 = curricula_data[i]
+    #             researcher2 = curricula_data[j]
+    #             if researcher1.get('Áreas') == researcher2.get('Áreas'):  #Ver se área é a mesma
+    #                 competences1 = self.extract_competences(researcher1)
+    #                 competences2 = self.extract_competences(researcher2)
+    #                 for comp1 in competences1:
+    #                     for comp2 in competences2:
+    #                         similar_pairs.append((comp1, comp2))
+
+    #     # Exemplo: extrair competências de áreas diferentes (dissimilar)
+    #     for i in range(len(curricula_data)):
+    #         for j in range(i + 1, len(curricula_data)):
+    #             researcher1 = curricula_data[i]
+    #             researcher2 = curricula_data[j]
+    #             if researcher1.get('Áreas') != researcher2.get('Áreas'):  #Ver se área é diferente
+    #                 competences1 = self.extract_competences(researcher1)
+    #                 competences2 = self.extract_competences(researcher2)
+    #                 for comp1 in competences1:
+    #                     for comp2 in competences2:
+    #                         dissimilar_pairs.append((comp1, comp2))
+
+    #     return {
+    #         'similar': similar_pairs,
+    #         'dissimilar': dissimilar_pairs
+    #     }
+
+    def extract_competence_pairs(self, curricula_data, default_area="Desconhecido"):
         """
-        Extrai título, ano de obtenção e palavras-chave de um texto de trabalho acadêmico.
+        Extrai pares de competências similares e dissimilares dos currículos.
+
+        Args:
+            curricula_data (list): Lista de dicionários contendo os dados dos currículos.
+            default_area (str): Área padrão para currículos sem área definida.
+
+        Returns:
+            dict: Um dicionário contendo duas listas: 'similar' (pares de competências similares)
+                  e 'dissimilar' (pares de competências dissimilares).
+        """
+        similar_pairs = []
+        dissimilar_pairs = []
+        researchers_by_area = {}
+
+        # Agrupa pesquisadores por área
+        for researcher in curricula_data:
+            area = researcher.get('Áreas', default_area)  # Usa área padrão se não definida
+            if area not in researchers_by_area:
+                researchers_by_area[area] = []
+            researchers_by_area[area].append(researcher)
+
+        # Extrai pares de competências similares
+        for area, researchers in researchers_by_area.items():
+            for i in range(len(researchers)):
+                for j in range(i + 1, len(researchers)):
+                    competences1 = self.extract_competences(researchers[i])
+                    competences2 = self.extract_competences(researchers[j])
+                    for comp1 in competences1:
+                        for comp2 in competences2:
+                            similar_pairs.append((comp1, comp2))
+
+        # Extrai pares de competências dissimilares
+        areas = list(researchers_by_area.keys())
+        for i in range(len(areas)):
+            for j in range(i + 1, len(areas)):
+                researchers1 = researchers_by_area[areas[i]]
+                researchers2 = researchers_by_area[areas[j]]
+                for researcher1 in researchers1:
+                    for researcher2 in researchers2:
+                        competences1 = self.extract_competences(researcher1)
+                        competences2 = self.extract_competences(researcher2)
+                        for comp1 in competences1:
+                            for comp2 in competences2:
+                                dissimilar_pairs.append((comp1, comp2))
+
+        return {
+            'similar': similar_pairs,
+            'dissimilar': dissimilar_pairs
+        }
+
+    def extract_info_trabalho(self, texto):
+        """
+        Extrai informações de um texto de trabalho acadêmico.
 
         Args:
             texto (str): O texto do trabalho acadêmico.
 
         Returns:
-            dict: Um dicionário contendo o título, ano de obtenção e palavras-chave, ou None se não encontrar as informações.
+            str: Uma string contendo as informações extraídas ou o texto original em caso de erro.
         """
         padrao_titulo = r"[Tt]ítulo\s*:\s*(.*?)\.\s*"
         padrao_ano = r"[Aa]no\s*(?:de\s+)?[Oo]btenção\s*:\s*(\d+)\s*."
@@ -571,45 +159,49 @@ class CompetenceExtraction:
         padrao_ano3 = r"\b(\d{4})\b"
         padrao_palavras_chave_area = r"[Pp]alavras-chave\s*:\s*(.*?)\s*(?::|\.)\s*(.*)"
 
-        titulo = re.search(padrao_titulo, texto)
         try:
-            titulo.group(1).strip().title()
-            titulo_trabalho = titulo.group(1).strip().title()
-        except: 
+            titulo = re.search(padrao_titulo, texto)
+            titulo_trabalho = titulo.group(1).strip().title() if titulo else ""  # Verificar None
+        except AttributeError: 
+            print(f"Erro: Não foi possível encontrar o título em: {texto}")
             titulo_trabalho = texto.split('. ')[0].title()
-        ano = re.search(padrao_ano, texto)
-        ano2 = re.search(padrao_ano2, texto)
-        ano3 = re.search(padrao_ano3, texto)
+
         try:
-            ano_trabalho = int(ano.group(1))
-        except:
+            ano = re.search(padrao_ano, texto)
+            ano_trabalho = int(ano.group(1)) if ano else '0000'  # Verificar se ano é None
+        except (AttributeError, IndexError, ValueError):  # ValueError lida com erros de conversão
             try:
-                ano_trabalho = int(ano2.group(1))
-            except:
+                ano2 = re.search(padrao_ano2, texto)
+                ano_trabalho = int(ano2.group(1)) if ano2 else '0000'  # Verifica se ano2 é None
+            except (AttributeError, IndexError, ValueError):
                 try:
-                    ano_trabalho = int(ano3.group(1))
-                except:
+                    ano3 = re.search(padrao_ano3, texto)
+                    ano_trabalho = int(ano3.group(1)) if ano3 else '0000'  # Verifica se ano3 é None
+                except (AttributeError, IndexError, ValueError):
+                    print(f"Erro: Não foi possível encontrar o ano em: {texto}")
                     ano_trabalho = '0000'
-        palavras_chave_area = re.search(padrao_palavras_chave_area, texto)
+
         try:
-            palavras_trabalho = palavras_chave_area.group(1).strip()
-        except:
+            palavras_chave_area = re.search(padrao_palavras_chave_area, texto)
+            if palavras_chave_area:  # Verifica se palavras_chave_area é None
+                palavras_trabalho = palavras_chave_area.group(1).strip()
+                area_trabalho = palavras_chave_area.group(2).replace(":","").replace('/ ','|').rstrip(' .').strip()
+            else:
+                palavras_trabalho = ''
+                area_trabalho = ''
+        except (AttributeError, IndexError):
+            print(f"Erro: Não foi possível encontrar palavras-chave ou área em: {texto}")
             palavras_trabalho = ''
-        try:
-            area_trabalho = palavras_chave_area.group(2).replace(":","").replace('/ ','|').rstrip(' .').strip()
-        except:
             area_trabalho = ''
+
         try:
             tipo_trabalho = texto.split('. ')[0]
-        except:
-            print(f'Tipo do trabalho não encontrado em: {texto}')
-            tipo_trabalho = ''
-        try:
             instituicao = texto.split('. ')[1].strip().title()
-            # print(f"Restante de dados: {texto.split('. ')[0:]}")
-        except:
-            print(f'Instituicao do trabalho não encontrada em: {texto}')
+        except IndexError:
+            print(f"Erro: Não foi possível encontrar tipo ou instituição em: {texto}")
+            tipo_trabalho = ''
             instituicao = ''
+
         try:
             dic_trabalho = {
                 "ano_obtencao": ano_trabalho,
@@ -619,11 +211,8 @@ class CompetenceExtraction:
                 "instituição": instituicao,
                 "area_trabalho": area_trabalho,
             }
-            string_trabalho=''
-            for x in dic_trabalho.values():
-                string_trabalho = string_trabalho+' '+str(x)+' |'
-            string_trabalho = string_trabalho.rstrip('|').rstrip(' .').strip()
 
+            ## DEBUG
             # if dic_trabalho:
             #     print("Ano de Obtenção:", dic_trabalho["ano_obtencao"])
             #     print("Título trabalho:", dic_trabalho["titulo"])
@@ -634,86 +223,341 @@ class CompetenceExtraction:
             # else:
             #     print("Não foi possível extrair todas as informações do trabalho.")
 
-            return string_trabalho
+            string_trabalho = ' | '.join([str(x) for x in dic_trabalho.values()])
+            return string_trabalho.rstrip(' .').strip()
         except Exception as e:
-            print(f'Erro {e}')
+            print(f'Erro ao extrair informações do trabalho: {e}')
             return texto 
 
-    def extract_competences(self, researcher_data):
-        competences = []
+    # def extrair_info_trabalho(self, texto):
+    #     """
+    #     Extrai título, ano de obtenção e palavras-chave de um texto de trabalho acadêmico.
+
+    #     Args:
+    #         texto (str): O texto do trabalho acadêmico.
+
+    #     Returns:
+    #         dict: Um dicionário contendo o título, ano de obtenção e palavras-chave, ou None se não encontrar as informações.
+    #     """
+    #     padrao_titulo = r"[Tt]ítulo\s*:\s*(.*?)\.\s*"
+    #     padrao_ano = r"[Aa]no\s*(?:de\s+)?[Oo]btenção\s*:\s*(\d+)\s*."
+    #     padrao_ano2 = r"[Aa]no\s*(?:de\s+)?[Ff]inalização\s*:\s*(\d+)\s*."
+    #     padrao_ano3 = r"\b(\d{4})\b"
+    #     padrao_palavras_chave_area = r"[Pp]alavras-chave\s*:\s*(.*?)\s*(?::|\.)\s*(.*)"
+
+    #     titulo = re.search(padrao_titulo, texto)
+    #     try:
+    #         titulo.group(1).strip().title() # type: ignore
+    #         titulo_trabalho = titulo.group(1).strip().title() # type: ignore
+    #     except: 
+    #         titulo_trabalho = texto.split('. ')[0].title()
+    #     ano = re.search(padrao_ano, texto)
+    #     ano2 = re.search(padrao_ano2, texto)
+    #     ano3 = re.search(padrao_ano3, texto)
+    #     try:
+    #         ano_trabalho = int(ano.group(1)) # type: ignore
+    #     except:
+    #         try:
+    #             ano_trabalho = int(ano2.group(1)) # type: ignore
+    #         except:
+    #             try:
+    #                 ano_trabalho = int(ano3.group(1)) # type: ignore
+    #             except:
+    #                 ano_trabalho = '0000'
+    #     palavras_chave_area = re.search(padrao_palavras_chave_area, texto)
+    #     try:
+    #         palavras_trabalho = palavras_chave_area.group(1).strip() # type: ignore
+    #     except:
+    #         palavras_trabalho = ''
+    #     try:
+    #         area_trabalho = palavras_chave_area.group(2).replace(":","").replace('/ ','|').rstrip(' .').strip() # type: ignore
+    #     except:
+    #         area_trabalho = ''
+    #     try:
+    #         tipo_trabalho = texto.split('. ')[0]
+    #     except:
+    #         print(f'Tipo do trabalho não encontrado em: {texto}')
+    #         tipo_trabalho = ''
+    #     try:
+    #         instituicao = texto.split('. ')[1].strip().title()
+    #         # print(f"Restante de dados: {texto.split('. ')[0:]}")
+    #     except:
+    #         print(f'Instituicao do trabalho não encontrada em: {texto}')
+    #         instituicao = ''
+    #     try:
+    #         dic_trabalho = {
+    #             "ano_obtencao": ano_trabalho,
+    #             "titulo": titulo_trabalho,
+    #             "palavras_chave": palavras_trabalho,
+    #             "tipo_trabalho": tipo_trabalho,
+    #             "instituição": instituicao,
+    #             "area_trabalho": area_trabalho,
+    #         }
+    #         string_trabalho=''
+    #         for x in dic_trabalho.values():
+    #             string_trabalho = string_trabalho+' '+str(x)+' |'
+    #         string_trabalho = string_trabalho.rstrip('|').rstrip(' .').strip()
+
+    #         # if dic_trabalho:
+    #         #     print("Ano de Obtenção:", dic_trabalho["ano_obtencao"])
+    #         #     print("Título trabalho:", dic_trabalho["titulo"])
+    #         #     print(" Palavras-chave:", dic_trabalho["palavras_chave"])
+    #         #     print("  Tipo trabalho:", dic_trabalho["tipo_trabalho"])
+    #         #     print("    Instituição:", dic_trabalho["instituição"])
+    #         #     print("  Área trabalho:", dic_trabalho["area_trabalho"])
+    #         # else:
+    #         #     print("Não foi possível extrair todas as informações do trabalho.")
+
+    #         return string_trabalho
+    #     except Exception as e:
+    #         print(f'Erro {e}')
+    #         return texto 
+
+    ## A função inicialmente fazia extração de todas seções juntas deixando-a longa. Para facilitar legibilidade e manutenção foi quebrada em funções especialistas para cada seção do currículo
+    # def extract_competences(self, researcher_data):
+    #     competences = []
         
-        padrao_titulo = r"[Tt]ítulo\s*:\s*(.*?)\.\s*"
-        padrao_ano = r"[Aa]no\s*(?:de\s+)?[Oo]btenção\s*:\s*(\d+)\s*."
-        padrao_ano2 = r"[Aa]no\s*(?:de\s+)?[Ff]inalização\s*:\s*(\d+)\s*."
-        padrao_ano3 = r"\b(\d{4})\b"
-        padrao_palavras_chave_area = r"[Pp]alavras-chave\s*:\s*(.*?)\s*(?::|\.)\s*(.*)"
+    #     padrao_titulo = r"[Tt]ítulo\s*:\s*(.*?)\.\s*"
+    #     padrao_ano = r"[Aa]no\s*(?:de\s+)?[Oo]btenção\s*:\s*(\d+)\s*."
+    #     padrao_ano2 = r"[Aa]no\s*(?:de\s+)?[Ff]inalização\s*:\s*(\d+)\s*."
+    #     padrao_ano3 = r"\b(\d{4})\b"
+    #     padrao_palavras_chave_area = r"[Pp]alavras-chave\s*:\s*(.*?)\s*(?::|\.)\s*(.*)"
 
-        def extract(texto):
-            titulo = re.search(padrao_titulo, texto)
+    #     def extract(texto):
+    #         titulo = re.search(padrao_titulo, texto)
             
-            try:
-                info1 = titulo.group(1).strip().title()
-                try:
-                    info2 = titulo.group(2).strip().title()
-                except:
-                    info2 = ''
-            except: 
-                info1 = texto.split('. ')[0].strip().title()
-                try:
-                    info2 = texto.split('. ')[1].strip().title()
-                except:
-                    info2 = ''
-            ano = re.search(padrao_ano, texto)
-            ano2 = re.search(padrao_ano2, texto)
-            ano3 = re.search(padrao_ano3, texto)
-            # print(ano)
-            # print(ano2)
-            # print(ano3)
-            try:
-                ano_trabalho = int(ano.group(1))
-            except:
-                try:
-                    ano_trabalho = int(ano2.group(1))
-                except:
-                    try:
-                        ano_trabalho = int(ano3.group(1))
-                    except:
-                        ano_trabalho = '----'
-            return ano_trabalho, info1, info2
+    #         try:
+    #             info1 = titulo.group(1).strip().title() # type: ignore
+    #             try:
+    #                 info2 = titulo.group(2).strip().title() # type: ignore
+    #             except:
+    #                 info2 = ''
+    #         except: 
+    #             info1 = texto.split('. ')[0].strip().title()
+    #             try:
+    #                 info2 = texto.split('. ')[1].strip().title()
+    #             except:
+    #                 info2 = ''
+    #         ano = re.search(padrao_ano, texto)
+    #         ano2 = re.search(padrao_ano2, texto)
+    #         ano3 = re.search(padrao_ano3, texto)
+    #         # print(ano)
+    #         # print(ano2)
+    #         # print(ano3)
+    #         try:
+    #             ano_trabalho = int(ano.group(1)) # type: ignore
+    #         except:
+    #             try:
+    #                 ano_trabalho = int(ano2.group(1)) # type: ignore
+    #             except:
+    #                 try:
+    #                     ano_trabalho = int(ano3.group(1)) # type: ignore
+    #                 except:
+    #                     ano_trabalho = '----'
+    #         return ano_trabalho, info1, info2
 
-        # Extrair de áreas de atuação
+    #     # Extrair de áreas de atuação
+    #     for area in researcher_data.get("Áreas", {}).values():
+    #         area = area.replace(":","").replace("Subárea ","").replace(".","").replace("/","|").strip()
+    #         competences.append('AtuaçãoPrf: '+area.title())
+
+    #     # Extrair de formações acadêmicas
+    #     verbose=False
+    #     if verbose:
+    #         print(f"\n{'-'*125}")
+    #     for formacao in researcher_data.get("Formação", {}).get("Acadêmica", []):
+    #         instituicao_formacao = formacao['Descrição'].split('.')[1].strip().title()
+    #         if '(' in instituicao_formacao:
+    #             instituicao_formacao = formacao['Descrição'].split('.')[2].strip().title()
+    #         # print(f"     Instituição: {instituicao_formacao}")
+    #         if verbose:
+    #             print(f" Chaves Formação: {formacao.keys()}")
+    #             print(f"Valores Formação: {formacao.values()}")                
+    #             print(f"Dict   Formações: {formacao}")
+    #         ano_formacao = formacao["Ano"]
+    #         if '-' not in ano_formacao:
+    #             ano_formacao = str(ano_formacao)+' - hoje'
+    #         if 'interr' in ano_formacao:
+    #             ano_interrupcao = formacao["Descrição"].split(':')[-1].strip()
+    #             ano_formacao = f"{str(ano_formacao.split(' ')[0])} - {ano_interrupcao}"
+    #         descr_formacao = formacao["Descrição"].strip().title()
+    #         competences.append(f"FormaçãoAc: {ano_formacao} | {instituicao_formacao} | {descr_formacao}")
+
+    #     # Extrair de projetos
+    #     for tipo_projeto in ["ProjetosPesquisa", "ProjetosExtensão", "ProjetosDesenvolvimento"]:
+    #         for projeto in researcher_data.get(tipo_projeto, []):
+    #             # print(f' Chaves: {projeto.keys()}')
+    #             # print(f'Valores: {projeto.values()}')
+    #             tipo=None
+    #             if 'Pesquisa' in tipo_projeto:
+    #                 tipo = 'Psq'
+    #             elif 'Extensão' in tipo_projeto:
+    #                 tipo = 'Ext'
+    #             elif 'Desenvolvimento' in tipo_projeto:
+    #                 tipo = 'Dsv'
+    #             descricao_projeto = projeto["descricao"]
+    #             periodo_projeto = projeto["chave"].replace("Atual","hoje")
+    #             titulo_projeto = projeto["titulo_projeto"]
+    #             competences.append(f'Projeto{tipo}: {periodo_projeto} | {titulo_projeto} | {descricao_projeto.title()}')
+
+    #     # Extrair de produções bibliográficas (artigos, resumos, etc.)
+    #     for tipo_producao, producoes in researcher_data.get("Produções", {}).items():
+    #         if isinstance(producoes, list):  # Artigos completos
+    #             for publicacao in producoes:
+    #                 # print(f'Dados publicação: {publicacao}')
+    #                 if publicacao['fator_impacto_jcr']:
+    #                     competences.append(f"Publicação: {publicacao['ano']} | {float(publicacao['fator_impacto_jcr']):06.2f} | {publicacao['titulo'].title()}")
+    #                 else:
+    #                     competences.append(f"Publicação: {publicacao['ano']} | {'000.00':^6} | {publicacao['titulo'].title()}")
+    #         # elif isinstance(producoes, dict):  # palestra e apresentações em eventos
+    #         #     for item in producoes.values():                  
+    #         #         competences.append(item)
+
+    #     # Extrair de orientações (se houver)
+    #     orientacoes = researcher_data.get("Orientações", {})
+    #     # print(f'Dicionário orientações: {orientacoes}')
+    #     if isinstance(orientacoes, dict):
+    #         for tipo_orientacao, detalhes in orientacoes.items():
+    #             if verbose:
+    #                 print(tipo_orientacao)
+    #                 if isinstance(detalhes, dict):
+    #                     print([x.detalhes.keys() for x in orientacoes.values()])
+    #                 else:
+    #                     print(f"List  Orientação: {detalhes}")
+    #             if 'conclu' in tipo_orientacao:
+    #                 tipo = 'Con'
+    #             else:
+    #                 tipo = 'And'
+    #             for detalhe in detalhes:
+    #                 doutorados = detalhe.get('Tese de doutorado')
+    #                 if doutorados:
+    #                     for doc in doutorados.values():
+    #                         ano_fim, nome_aluno, titulo_orientacao = extract(doc)
+    #                         competences.append(f'OriDout{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
+                    
+    #                 mestrados = detalhe.get('Dissertação de mestrado')
+    #                 if mestrados:
+    #                     for mes in mestrados.values():
+    #                         ano_fim, nome_aluno, titulo_orientacao = extract(mes)
+    #                         competences.append(f'OriMest{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
+                    
+    #                 especializacoes = detalhe.get('Monografia de conclusão de curso de aperfeiçoamento/especialização')
+    #                 if especializacoes:
+    #                     for esp in especializacoes.values():
+    #                         ano_fim, nome_aluno, titulo_orientacao = extract(esp)
+    #                         competences.append(f'OriEspe{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
+                    
+    #                 graduacoes = detalhe.get('Trabalho de conclusão de curso de graduação')
+    #                 if graduacoes:
+    #                     for grd in graduacoes.values():
+    #                         ano_fim, nome_aluno, titulo_orientacao = extract(grd)
+    #                         competences.append(f'OriGrad{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
+                    
+    #                 iniciacoes = detalhe.get('Iniciação científica')
+    #                 if iniciacoes:
+    #                     for ini in iniciacoes.values():
+    #                         ano_fim, nome_aluno, titulo_orientacao = extract(ini)
+    #                         competences.append(f'OriInic{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
+
+    #                 postdocs = detalhe.get('Supervisão de pós-doutorado')
+    #                 if postdocs:
+    #                     for pos in postdocs.values():
+    #                         ano_fim, nome_aluno, titulo_orientacao = extract(pos)
+    #                         competences.append(f'SupPosD{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
+
+    #                 postdocs = detalhe.get('Orientações de outra natureza')
+    #                 if postdocs:
+    #                     for pos in postdocs.values():
+    #                         ano_fim, nome_aluno, titulo_orientacao = extract(pos)
+    #                         competences.append(f'OutNatu{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
+
+    #     ## DEBUG                    
+    #     # elif isinstance(orientacoes, list):
+    #     #     print('Lista de orientações')
+    #     #     for orientacao in orientacoes:
+    #     #         print(f'Dados da Orientação: {orientacao}')
+    #     #         titulo_orientacao = orientacao.get("titulo", "")
+    #     #         descricao_orientacao = orientacao.get("descricao", "")
+    #     #         competences.append('Orientação: '+titulo_orientacao.title()+' '+descricao_orientacao.title())
+
+    #     # Extrair de atuação profissional
+    #     # for atuacao in researcher_data.get("Atuação Profissional", []):
+    #     #     competences.append(atuacao.get("Instituição", ""))  # Adicionando a instituição
+    #     #     competences.append(atuacao.get("Descrição", ""))
+    #     #     competences.append(atuacao.get("Outras informações", ""))
+        
+    #     # Extrair de bancas
+    #     # for tipo_banca, bancas in researcher_data.get("Bancas", {}).items():
+    #     #     for banca in bancas.values():
+    #     #         competences.append(banca)
+
+    #     return competences
+
+    def extract_competences_from_areas(self, researcher_data):
+        """
+        Extrai competências das áreas de atuação do pesquisador.
+
+        Args:
+            researcher_data (dict): Dicionário contendo os dados do currículo do pesquisador.
+
+        Returns:
+            list: Lista de strings representando as competências extraídas das áreas de atuação.
+        """
+        competences = []
         for area in researcher_data.get("Áreas", {}).values():
             area = area.replace(":","").replace("Subárea ","").replace(".","").replace("/","|").strip()
             competences.append('AtuaçãoPrf: '+area.title())
+        return competences
 
-        # Extrair de formações acadêmicas
-        verbose=False
-        if verbose:
-            print(f"\n{'-'*125}")
+    def extract_competences_from_formacao(self, researcher_data):
+        """
+        Extrai competências da formação acadêmica do pesquisador.
+
+        Args:
+            researcher_data (dict): Dicionário contendo os dados do currículo do pesquisador.
+
+        Returns:
+            list: Lista de strings representando as competências extraídas da formação acadêmica.
+        """
+        competences = []
         for formacao in researcher_data.get("Formação", {}).get("Acadêmica", []):
-            instituicao_formacao = formacao['Descrição'].split('.')[1].strip().title()
-            if '(' in instituicao_formacao:
-                instituicao_formacao = formacao['Descrição'].split('.')[2].strip().title()
-            # print(f"     Instituição: {instituicao_formacao}")
-            if verbose:
-                print(f" Chaves Formação: {formacao.keys()}")
-                print(f"Valores Formação: {formacao.values()}")                
-                print(f"Dict   Formações: {formacao}")
+            try:
+                instituicao_formacao = formacao['Descrição'].split('.')[1].strip().title()
+                if '(' in instituicao_formacao:
+                    instituicao_formacao = formacao['Descrição'].split('.')[2].strip().title()
+            except IndexError:
+                print(f"Erro: Não foi possível extrair a instituição da formação: {formacao['Descrição']}")
+                instituicao_formacao = ""
+
             ano_formacao = formacao["Ano"]
             if '-' not in ano_formacao:
                 ano_formacao = str(ano_formacao)+' - hoje'
             if 'interr' in ano_formacao:
-                ano_interrupcao = formacao["Descrição"].split(':')[-1].strip()
-                ano_formacao = f"{str(ano_formacao.split(' ')[0])} - {ano_interrupcao}"
+                try:
+                    ano_interrupcao = formacao["Descrição"].split(':')[-1].strip()
+                    ano_formacao = f"{str(ano_formacao.split(' ')[0])} - {ano_interrupcao}"
+                except IndexError:
+                    print(f"Erro: Não foi possível extrair o ano de interrupção da formação: {formacao['Descrição']}")
+                    ano_formacao = ""
+
             descr_formacao = formacao["Descrição"].strip().title()
             competences.append(f"FormaçãoAc: {ano_formacao} | {instituicao_formacao} | {descr_formacao}")
+        return competences
 
-        # Extrair de projetos
+    def extract_competences_from_projects(self, researcher_data):
+        """
+        Extrai competências dos projetos do pesquisador.
+
+        Args:
+            researcher_data (dict): Dicionário contendo os dados do currículo do pesquisador.
+
+        Returns:
+            list: Lista de strings representando as competências extraídas dos projetos.
+        """
+        competences = []
         for tipo_projeto in ["ProjetosPesquisa", "ProjetosExtensão", "ProjetosDesenvolvimento"]:
             for projeto in researcher_data.get(tipo_projeto, []):
-                # print(f' Chaves: {projeto.keys()}')
-                # print(f'Valores: {projeto.values()}')
-                tipo=None
+                tipo = None
                 if 'Pesquisa' in tipo_projeto:
                     tipo = 'Psq'
                 elif 'Extensão' in tipo_projeto:
@@ -724,103 +568,158 @@ class CompetenceExtraction:
                 periodo_projeto = projeto["chave"].replace("Atual","hoje")
                 titulo_projeto = projeto["titulo_projeto"]
                 competences.append(f'Projeto{tipo}: {periodo_projeto} | {titulo_projeto} | {descricao_projeto.title()}')
+        return competences
 
-        # Extrair de produções bibliográficas (artigos, resumos, etc.)
+
+    def extract_competences_from_publications(self, researcher_data):
+        """
+        Extrai competências das publicações do pesquisador.
+
+        Args:
+            researcher_data (dict): Dicionário contendo os dados do currículo do pesquisador.
+
+        Returns:
+            list: Lista de strings representando as competências extraídas das publicações.
+        """
+        competences = []
         for tipo_producao, producoes in researcher_data.get("Produções", {}).items():
             if isinstance(producoes, list):  # Artigos completos
                 for publicacao in producoes:
-                    # print(f'Dados publicação: {publicacao}')
-                    if publicacao['fator_impacto_jcr']:
-                        competences.append(f"Publicação: {publicacao['ano']} | {float(publicacao['fator_impacto_jcr']):06.2f} | {publicacao['titulo'].title()}")
-                    else:
-                        competences.append(f"Publicação: {publicacao['ano']} | {'-':5} | {publicacao['titulo'].title()}")
-            # elif isinstance(producoes, dict):  # palestra e apresentações em eventos
-            #     for item in producoes.values():                  
-            #         competences.append(item)
-
-        # Extrair de orientações (se houver)
-        orientacoes = researcher_data.get("Orientações", {})
-        # print(f'Dicionário orientações: {orientacoes}')
-        if isinstance(orientacoes, dict):
-            for tipo_orientacao, detalhes in orientacoes.items():
-                if verbose:
-                    print(tipo_orientacao)
-                    if isinstance(detalhes, dict):
-                        print([x.detalhes.keys() for x in orientacoes.values()])
-                    else:
-                        print(f"List  Orientação: {detalhes}")
-                if 'conclu' in tipo_orientacao:
-                    tipo = 'Con'
-                else:
-                    tipo = 'And'
-                for detalhe in detalhes:
-                    doutorados = detalhe.get('Tese de doutorado')
-                    if doutorados:
-                        for doc in doutorados.values():
-                            ano_fim, nome_aluno, titulo_orientacao = extract(doc)
-                            competences.append(f'OriDout{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
-                    
-                    mestrados = detalhe.get('Dissertação de mestrado')
-                    if mestrados:
-                        for mes in mestrados.values():
-                            ano_fim, nome_aluno, titulo_orientacao = extract(mes)
-                            competences.append(f'OriMest{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
-                    
-                    especializacoes = detalhe.get('Monografia de conclusão de curso de aperfeiçoamento/especialização')
-                    if especializacoes:
-                        for esp in especializacoes.values():
-                            ano_fim, nome_aluno, titulo_orientacao = extract(esp)
-                            competences.append(f'OriEspe{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
-                    
-                    graduacoes = detalhe.get('Trabalho de conclusão de curso de graduação')
-                    if graduacoes:
-                        for grd in graduacoes.values():
-                            ano_fim, nome_aluno, titulo_orientacao = extract(grd)
-                            competences.append(f'OriGrad{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
-                    
-                    iniciacoes = detalhe.get('Iniciação científica')
-                    if iniciacoes:
-                        for ini in iniciacoes.values():
-                            ano_fim, nome_aluno, titulo_orientacao = extract(ini)
-                            competences.append(f'OriInic{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
-
-                    postdocs = detalhe.get('Supervisão de pós-doutorado')
-                    if postdocs:
-                        for pos in postdocs.values():
-                            ano_fim, nome_aluno, titulo_orientacao = extract(pos)
-                            competences.append(f'SupPosD{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
-
-                    postdocs = detalhe.get('Orientações de outra natureza')
-                    if postdocs:
-                        for pos in postdocs.values():
-                            ano_fim, nome_aluno, titulo_orientacao = extract(pos)
-                            competences.append(f'OutNatu{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
-
-                            
-        # elif isinstance(orientacoes, list):
-        #     print('Lista de orientações')
-        #     for orientacao in orientacoes:
-        #         print(f'Dados da Orientação: {orientacao}')
-        #         titulo_orientacao = orientacao.get("titulo", "")
-        #         descricao_orientacao = orientacao.get("descricao", "")
-        #         competences.append('Orientação: '+titulo_orientacao.title()+' '+descricao_orientacao.title())
-
-        # Extrair de atuação profissional
-        # for atuacao in researcher_data.get("Atuação Profissional", []):
-        #     competences.append(atuacao.get("Instituição", ""))  # Adicionando a instituição
-        #     competences.append(atuacao.get("Descrição", ""))
-        #     competences.append(atuacao.get("Outras informações", ""))
-        
-        # Extrair de bancas
-        # for tipo_banca, bancas in researcher_data.get("Bancas", {}).items():
-        #     for banca in bancas.values():
-        #         competences.append(banca)
-
+                    try:
+                        fator_impacto = float(publicacao['fator_impacto_jcr']) if publicacao['fator_impacto_jcr'] else 0.00
+                        competences.append(f"Publicação: {publicacao['ano']} | {fator_impacto:06.2f} | {publicacao['titulo'].title()}")
+                    except (KeyError, ValueError) as e:
+                        print(f"Erro ao extrair dados da publicação: {e}. Dados da publicação: {publicacao}")
         return competences
 
-    def preprocess_competences(self, competences):
+    def extract_competences_from_orientacoes(self, researcher_data):
         """
-        Pré-processa uma lista de competências, removendo stop words, lematizando e eliminando termos duplicados consecutivos (ignorando maiúsculas e minúsculas).
+        Extrai competências das orientações do pesquisador.
+
+        Args:
+            researcher_data (dict): Dicionário contendo os dados do currículo do pesquisador.
+
+        Returns:
+            list: Lista de strings representando as competências extraídas das orientações.
+        """
+        competences = []
+
+        def extract(texto):
+            padrao_titulo = r"[Tt]ítulo\s*:\s*(.*?)\.\s*"
+            padrao_ano = r"[Aa]no\s*(?:de\s+)?[Oo]btenção\s*:\s*(\d+)\s*."
+            padrao_ano2 = r"[Aa]no\s*(?:de\s+)?[Ff]inalização\s*:\s*(\d+)\s*."
+            padrao_ano3 = r"\b(\d{4})\b"
+
+            try:
+                titulo = re.search(padrao_titulo, texto)
+                info1 = titulo.group(1).strip().title() # type: ignore
+                try:
+                    info2 = titulo.group(2).strip().title() # type: ignore
+                except IndexError:
+                    info2 = ''
+            except AttributeError:
+                try:
+                    info1 = texto.split('. ')[0].strip().title()
+                    info2 = texto.split('. ')[1].strip().title()
+                except IndexError:
+                    print(f"Erro: Não foi possível extrair informações do texto: {texto}")
+                    info1 = ""
+                    info2 = ""
+
+            try:
+                ano = re.search(padrao_ano, texto)
+                ano_trabalho = int(ano.group(1)) # type: ignore
+            except (AttributeError, IndexError):
+                try:
+                    ano2 = re.search(padrao_ano2, texto)
+                    ano_trabalho = int(ano2.group(1)) # type: ignore
+                except (AttributeError, IndexError):
+                    try:
+                        ano3 = re.search(padrao_ano3, texto)
+                        ano_trabalho = int(ano3.group(1)) # type: ignore
+                    except (AttributeError, IndexError):
+                        print(f"Erro: Não foi possível extrair o ano do texto: {texto}")
+                        ano_trabalho = '----'
+            return ano_trabalho, info1, info2
+
+        orientacoes = researcher_data.get("Orientações", {})
+        if isinstance(orientacoes, dict):
+            for tipo_orientacao, detalhes in orientacoes.items():
+                tipo = 'Con' if 'conclu' in tipo_orientacao else 'And'
+                for detalhe in detalhes:
+                    for tipo_trabalho, trabalhos in detalhe.items():
+                        if trabalhos:
+                            for trabalho in trabalhos.values():
+                                ano_fim, nome_aluno, titulo_orientacao = extract(trabalho)
+                                tipo_trabalho_abreviado = ''.join([p[0] for p in tipo_trabalho.split() if p[0].isupper()])
+                                competences.append(f'Ori{tipo_trabalho_abreviado}{tipo}: {ano_fim} | {" ".join(unidecode(nome_aluno).title().split())} | {titulo_orientacao.title()}')
+        return competences
+
+
+    def extract_competences(self, researcher_data):
+        """
+        Extrai competências de um pesquisador a partir de seus dados de currículo.
+
+        Args:
+            researcher_data (dict): Dicionário contendo os dados do currículo do pesquisador.
+
+        Returns:
+            list: Lista de strings representando as competências extraídas.
+        """
+        competences = []
+        competences.extend(self.extract_competences_from_areas(researcher_data))
+        competences.extend(self.extract_competences_from_formacao(researcher_data))
+        competences.extend(self.extract_competences_from_projects(researcher_data))
+        competences.extend(self.extract_competences_from_publications(researcher_data))
+        competences.extend(self.extract_competences_from_orientacoes(researcher_data))
+        return competences
+
+    # def preprocess_competences_spacy(self, competences):
+    #         """
+    #         Pré-processa uma lista de competências, removendo stop words, lematizando e eliminando termos duplicados consecutivos (ignorando maiúsculas e minúsculas).
+
+    #         Args:
+    #             competences (list): Uma lista de strings representando as competências.
+
+    #         Returns:
+    #             list: Uma lista de strings contendo as competências pré-processadas.
+    #         """
+
+    #         processed_competences = []
+    #         for competence in competences:
+    #             if competence:
+    #                 doc = self.nlp_en(competence) if competence.isascii() else self.nlp_pt(competence)
+
+    #                 palavras_processadas = []
+    #                 eliminar = ['descrição','situação',':']
+    #                 ultima_palavra = None
+    #                 for token in doc:
+    #                     if token.is_stop or token.lemma_.lower() in eliminar:
+    #                         continue
+                        
+    #                     # Ignora pontuação, espaços em branco e caracteres especiais
+    #                     if token.is_punct or token.is_space or not token.is_alpha:
+    #                         continue
+
+    #                     palavra_atual = token.lemma_.lower().strip()
+    #                     if palavra_atual != ultima_palavra:
+    #                         palavras_processadas.append(palavra_atual)
+    #                     ultima_palavra = palavra_atual
+
+    #                 processed_competences.append(" ".join(palavras_processadas))
+    #         return processed_competences
+
+
+    def preprocess_competences_spacy(self, competences):
+        """
+        Pré-processa uma lista de competências usando o spaCy, 
+        removendo stop words, lematizando e eliminando termos 
+        duplicados consecutivos (ignorando maiúsculas e minúsculas).
+
+        Detecta o idioma (português, espanhol ou alemão), 
+        traduz para inglês usando deep_translator se necessário, 
+        e formata as competências para facilitar a geração de 
+        embeddings com PyTorch.
 
         Args:
             competences (list): Uma lista de strings representando as competências.
@@ -832,21 +731,127 @@ class CompetenceExtraction:
         processed_competences = []
         for competence in competences:
             if competence:
-                doc = self.nlp_en(competence) if competence.isascii() else self.nlp_pt(competence)
+                # Detectar o idioma com langdetect
+                try:
+                    from langdetect import detect
+                    idioma = detect(competence)
+                except:
+                    # Se langdetect falhar, usa isascii() como fallback
+                    idioma = 'en' if competence.isascii() else 'unknown'
 
+                # Traduzir para inglês se o idioma for português, espanhol ou alemão
+                if idioma in ('pt', 'es', 'de'):
+                    from deep_translator import GoogleTranslator
+                    translator = GoogleTranslator(source=idioma, target='en')
+                    try:
+                        competence = translator.translate(competence)
+                    except Exception as e:
+                        print(f"Erro na tradução: {e}")
+                        # Opcional: Manter a competência original em caso de erro na tradução
+                        continue
+
+                # Carregar o modelo do spaCy em inglês
+                nlp = self.nlp_en
+
+                # Processar a competência com o spaCy
+                doc = nlp(competence)
+
+                # Remover stop words e lematiza
                 palavras_processadas = []
-                eliminar = ['descrição','situação',':']
                 ultima_palavra = None
                 for token in doc:
-                    if not token.is_stop:
-                        palavra_atual = token.lemma_.lower().strip()  # Converte para minúsculas
-                        if palavra_atual != ultima_palavra  and palavra_atual not in eliminar:
-                            palavras_processadas.append(palavra_atual.strip())
-                        ultima_palavra = palavra_atual.strip()
+                    if token.is_stop or not token.is_alpha:
+                        continue
+                    palavra_atual = token.lemma_.lower()
+                    if palavra_atual != ultima_palavra:
+                        palavras_processadas.append(palavra_atual)
+                    ultima_palavra = palavra_atual
 
-                processed_competences.append(" ".join(palavras_processadas))
+                # Formatar para PyTorch (exemplo)
+                processed_competence = {
+                    "text": " ".join(palavras_processadas),
+                    "language": "en"  # Agora todas as competências estão em inglês
+                }
+                processed_competences.append(processed_competence)
+
         return processed_competences
-       
+
+
+    def preprocess_competences(self, competences):
+            """
+            Pré-processa uma lista de competências, removendo stop words, 
+            lematizando e eliminando termos duplicados consecutivos 
+            (ignorando maiúsculas e minúsculas).
+            
+            Detecta e converte o idioma para inglês, quando necessário, 
+            e formata as competências para facilitar a geração de embeddings com PyTorch.
+
+            Args:
+                competences (list): Uma lista de strings representando as competências.
+
+            Returns:
+                list: Uma lista de strings contendo as competências pré-processadas.
+            """
+
+            processed_competences = []
+            for competence in competences:
+                if competence:
+                    # Detectar o idioma, com uma primeira aproximação para detectar o idioma inglês, mas para uma detecção mais precisa, é recomendado usar bibliotecas especializadas.
+                    is_english = competence.isascii()
+
+                    # Tokenizar
+                    tokens = competence.lower().split()
+
+                    # Remoção de stop words
+                    stop_words = set()
+                    if is_english:
+                        # Usa stop words em inglês
+                        stop_words = set(["the", "a", "an", "and", "in", "to", "of", "for", "on", "with", "as", "at", "by", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "will", "would", "should", "can", "could", "may", "might", "must", "ought", "i", "me", "my", "mine", "we", "us", "our", "ours", "you", "your", "yours", "he", "him", "his", "she", "her", "hers", "it", "its", "they", "them", "their", "theirs", "what", "which", "who", "whom", "whose", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now"])
+                    else:
+                        # Usa stop words em português
+                        stop_words = set(["de", "a", "o", "que", "e", "do", "da", "em", "um", "para", "com", "não", "uma", "os", "no", "se", "na", "por", "mais", "as", "dos", "como", "mas", "foi", "ao", "ele", "das", "tem", "à", "seu", "sua", "ou", "ser", "quando", "muito", "há", "nos", "já", "está", "eu", "também", "só", "pelo", "pela", "até", "isso", "ela", "entre", "era", "depois", "sem", "mesmo", "aos", "ter", "seus", "quem", "nas", "me", "esse", "eles", "estão", "você", "tinha", "foram", "essa", "num", "nem", "suas", "meu", "às", "minha", "têm", "numa", "pelos", "elas", "havia", "seja", "qual", "será", "nós", "tenho", "lhe", "deles", "essas", "esses", "pelas", "este", "fosse", "dele", "tu", "te", "vocês", "vos", "lhes", "meus", "minhas", "teu", "tua", "teus", "tuas", "nosso", "nossa", "nossos", "nossas", "dela", "delas", "esta", "estes", "estas", "aquele", "aquela", "aqueles", "aquelas", "isto", "aquilo", "estou", "está", "estamos", "estão", "estive", "esteve", "estivemos", "estiveram", "estava", "estávamos", "estavam", "estivera", "estivéramos", "esteja", "estejamos", "estejam", "estivesse", "estivéssemos", "estivessem", "estiver", "estivermos", "estiverem", "hei", "há", "havemos", "hão", "houve", "houvemos", "houveram", "houvera", "houvéramos", "haja", "hajamos", "hajam", "houvesse", "houvéssemos", "houvessem", "houver", "houvermos", "houverem", "houverei", "houverá", "houveremos", "houverão", "houveria", "houveríamos", "houveriam", "sou", "somos", "são", "era", "éramos", "eram", "fui", "foi", "fomos", "foram", "fora", "fôramos", "seja", "sejamos", "sejam", "fosse", "fôssemos", "fossem", "for", "formos", "forem", "serei", "será", "seremos", "serão", "seria", "seríamos", "seriam", "tenho", "tem", "temos", "têm", "tinha", "tínhamos", "tinham", "tive", "teve", "tivemos", "tiveram", "tivera", "tivéramos", "tenha", "tenhamos", "tenham", "tivesse", "tivéssemos", "tivessem", "tiver", "tivermos", "tiverem", "terei", "terá", "teremos", "terão", "teria", "teríamos", "teriam"])
+
+                    tokens = [token for token in tokens if token not in stop_words]
+
+                    # Lematização
+                    if is_english:
+                        # Implementa lematização em inglês (exemplo com nltk)
+                        from nltk.stem import WordNetLemmatizer
+                        lemmatizer = WordNetLemmatizer()
+                        tokens = [lemmatizer.lemmatize(token) for token in tokens]
+                    else:
+                        # Implementa lematização em português
+                        def lematizar(palavra):
+                            # Implemente aqui uma lógica simples de lematização, se necessário
+                            # Exemplo: remoção de sufixos comuns
+                            if palavra.endswith("s"):
+                                palavra = palavra[:-1]
+                            elif palavra.endswith("es"):
+                                palavra = palavra[:-2]
+                            elif palavra.endswith("mente"):
+                                palavra = palavra[:-5]
+                            return palavra
+
+                        tokens = [lematizar(token) for token in tokens]
+
+                    # Eliminação de termos duplicados consecutivos
+                    palavras_processadas = []
+                    ultima_palavra = None
+                    for token in tokens:
+                        if token != ultima_palavra:
+                            palavras_processadas.append(token)
+                        ultima_palavra = token
+
+                    # Formatação para PyTorch (exemplo)
+                    processed_competence = {
+                        "text": " ".join(palavras_processadas),
+                        "language": "en" if is_english else "pt"
+                    }
+                    processed_competences.append(processed_competence)
+
+            return processed_competences
+
+
     def vectorize_competences(self, competences):
         model = self.model  # Carregar o modelo aqui
         try:
@@ -860,7 +865,7 @@ class EmbeddingModelEvaluator:
     def __init__(self, curricula_file, model_names):
         self.curricula_file = curricula_file
         self.model_names = model_names
-        self.competence_extractor = CompetenceExtraction(curricula_file)
+        self.competence_extractor = CompetenceExtractor(curricula_file)
         self.curricula_data = self.competence_extractor.load_curricula() # carregar lista de dicionários
         self.gpu_manager = GPUMemoryManager()  # Instanciar o gerenciador de memória da GPU
 
@@ -904,6 +909,7 @@ class EmbeddingModelEvaluator:
         end_time = time.time()
 
         total_time = end_time - start_time
+        num_repetitions = 3
         total_samples = len(sentences) * num_repetitions  # Cálculo do número total de amostras
         return total_time / total_samples # Tempo médio por amostra
 
@@ -952,15 +958,14 @@ class EmbeddingModelEvaluator:
     def prepare_data_for_classification(self, model, device="gpu"):
         X = []
         y = []
-        valid_areas = set()
         all_embeddings = []  # Criando a lista para armazenar os embeddings
-        MAX_LENGTH = 128
+        MAX_LENGTH = 384
 
-        # Primeira passagem para identificar áreas válidas
+        # Primeira passagem para identificar áreas válidas (CORRIGIDO)
+        valid_areas = set()
         for researcher_data in self.curricula_data:
-            all_areas_list = self.extrair_areas(researcher_data.get('Áreas', {}))  # Obtém lista de áreas
-            # print(f"Lista áreas: {all_areas_list}") # DEBUG
-            for area in all_areas_list.get('Áreas'): # type: ignore
+            all_areas_list = self.extrair_areas(researcher_data.get('Áreas', {}))
+            for area in all_areas_list.get('Áreas'):  # type: ignore
                 if area and area != 'desconhecido':
                     valid_areas.add(area)
 
@@ -968,11 +973,11 @@ class EmbeddingModelEvaluator:
         for researcher_data in self.curricula_data:
             competences = self.competence_extractor.extract_competences(researcher_data)
             processed_competences = self.competence_extractor.preprocess_competences(competences)
-            processed_competences = [comp[:MAX_LENGTH] for comp in processed_competences]  # Limitar o comprimento das frases
+            processed_competences = [comp[:MAX_LENGTH] for comp in processed_competences]
             areas_list = self.extrair_areas(researcher_data.get('Áreas', {}))  # Obtém lista de áreas
 
             print(f"Área de pesquisa: {area}")
-            for area in all_areas_list.get('Áreas'): # type: ignore
+            for area in areas_list.get('Áreas'): # type: ignore
                 # print(f"Competências extraídas: {competences}")
                 print(f"Compet.pré-processadas: {processed_competences}")
 
@@ -1014,7 +1019,13 @@ class EmbeddingModelEvaluator:
         for researcher_data in self.curricula_data:
             areas_list = self.extrair_areas(researcher_data.get('Áreas', {}))
             for areas in areas_list:
-                area = areas.get('Área')
+                if isinstance(areas, dict):
+                    area = areas.get('Área')
+                elif isinstance(areas, str):
+                    area = areas
+                else:
+                    area = None  # Ou algum valor padrão, se necessário
+
                 if area and area != 'desconhecido':
                     valid_areas.add(area)
 
@@ -1025,7 +1036,12 @@ class EmbeddingModelEvaluator:
             areas_list = self.extrair_areas(researcher_data.get('Áreas', {}))
 
             for areas in areas_list:
-                area = areas.get('Área')
+                if isinstance(areas, dict):
+                    area = areas.get('Área')
+                elif isinstance(areas, str):
+                    area = areas
+                else:
+                    area = None  # Ou algum valor padrão, se necessário
 
                 if area in valid_areas and processed_competences:
                     embeddings = model.encode(processed_competences, convert_to_tensor=True, device=device)
@@ -1033,7 +1049,9 @@ class EmbeddingModelEvaluator:
                     mean_embedding = torch.mean(embeddings, dim=0).cpu().numpy()  # Calcula a média na GPU e move para CPU
 
                     # Calcular similaridade com as áreas de pesquisa
-                    similarities = cosine_similarity([mean_embedding], list(area_embeddings.values()))[0] # type: ignore
+                    array_areas = np.array(list(area_embeddings.values()))
+                    similarities = cosine_similarity(mean_embedding, array_areas)[0]
+
                     y.append({area: sim for area, sim in zip(area_embeddings.keys(), similarities)})
 
         # Agrupar áreas de pesquisa
@@ -1046,8 +1064,8 @@ class EmbeddingModelEvaluator:
         for i, similarities in enumerate(y):
             for area, sim in similarities.items():
                 cluster = area_clusters[area_names.index(area)]
-                X.append(all_embeddings[i].cpu().numpy())  # Move o embedding para CPU e converte para NumPy
-                y[i] = cluster  # Substitui o nome da área pelo ID do cluster
+                X.append(all_embeddings[i].cpu().numpy()) # Mover para CPU converter para NumPy
+                y[i] = cluster  # Substituir o nome da área pelo ID do cluster
 
         return X, y
 
@@ -1093,7 +1111,7 @@ class EmbeddingModelEvaluator:
             results[model_name] = intrinsic_results
 
             # Avaliação extrínseca
-            model, X, y = self.prepare_data_for_classification(model)  # Passar 'model' em vez de 'model_name'
+            model, X, y = self.prepare_data_for_classification(model)
             if use_cross_validation:
                 if len(set(y)) < 2:
                     print(f"Não há classes suficientes para validação cruzada. Pulando modelo {model}.") # Corrigido para usar 'model'
@@ -1120,8 +1138,8 @@ class EmbeddingModelEvaluator:
                     raise ValueError(f"Classificador inválido: {classifier_name}")
 
                 # Converter os tensores para arrays NumPy e mover para CPU se ainda não estiverem nela
-                # X_train = X_train.cpu().numpy()
-                # X_test = X_test.cpu().numpy()
+                X_train = [tensor.cpu().numpy() for tensor in X_train]  # Lista de arrays NumPy
+                X_train = np.array(X_train)  # Converte para um único array NumPy multidimensional
 
                 # Treinamento e avaliação do classificador
                 classifier.fit(X_train, y_train)
@@ -1176,6 +1194,9 @@ class EmbeddingModelEvaluator:
         else:
             raise ValueError(f"Classificador inválido: {classifier_name}")
 
+        # Converter X para um array NumPy
+        X = np.array(X)
+        
         scores = cross_val_score(classifier, X, y, cv=num_folds, scoring='accuracy')
         mean_accuracy = np.mean(scores)
         std_accuracy = np.std(scores)
