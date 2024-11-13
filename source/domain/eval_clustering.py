@@ -1,6 +1,7 @@
 import os
 import json
 import GPUtil
+import numpy as np
 
 from gml_embeddings_analyser import EmbeddingsMulticriteriaAnalysis
 from sentence_transformers import SentenceTransformer
@@ -12,13 +13,13 @@ def print_gpu_memory():
     for i, gpu in enumerate(GPUs):
         print(f"GPU {i}: Carga: {gpu.load*100}% | {gpu.name} | memória utilizada: {gpu.memoryUsed}/{gpu.memoryTotal} MB")
 
-@retry(exceptions=Exception, tries=5, delay=1, backoff=2)
+@retry(exceptions=Exception, tries=3, delay=1, backoff=2)
 def gerar_resultados_clustering(embeddings_dict, analise):
     """Gera os resultados do clustering com tentativas de retry."""
     try:
         print(f'\nIniciando tentativas de geração de avaliação...')
         print_gpu_memory()
-        resultados = analise.evaluate_clustering(embeddings_dict)
+        resultados = analise.evaluate_clustering_cpu(embeddings_dict)
     except Exception as e:
         print(f"Erro na função gerar_resultados_clustering: {e}")
         raise  # Re-raise a exceção para que o retry funcione
@@ -52,6 +53,26 @@ def salvar_resultados(resultados):
     except Exception as e:
         print(f"Erro ao salvar os resultados: {e}")
 
+def salvar_resultados_cpu(resultados, filename="resultados_clustering.json"):
+    """
+    Salva os resultados da avaliação de clustering em um arquivo JSON.
+    """
+    try:
+        # Converte os valores float32 para float64
+        for model_name in resultados:
+            for algorithm in resultados[model_name]:
+                for result in resultados[model_name][algorithm]["resultados"]:
+                    for metric in result:
+                        # Correção: Passar a classe np.float32
+                        if np.float32(result[metric]) is np.float32:   
+                            result[metric] = float(result[metric])
+
+        with open(filename, 'w') as f:
+            json.dump(resultados, f, indent=4)
+        print(f"Resultados salvos em: {filename}")
+    except Exception as e:
+        print(f"Erro ao salvar os resultados: {e}")
+
 def load_resultados(filename="resultados.json"):
     """
     Autor: Marcos Aires (Nov.2024)
@@ -76,9 +97,12 @@ def load_resultados(filename="resultados.json"):
 
 # Definir os nomes de modelo do SentenceTransformer a serem comparados
 model_names = [
+    'sentence-transformers/gtr-t5-large',
+    'distiluse-base-multilingual-cased-v2',
     'paraphrase-multilingual-MiniLM-L12-v2',
+    'all-mpnet-base-v2',
+    'all-distilroberta-v1',
     'all-MiniLM-L6-v2',
-    'all-mpnet-base-v2'
 ]
 
 # Criar uma instância da classe EmbeddingsMulticriteriaAnalysis
@@ -94,4 +118,4 @@ embeddings_dict = analise.load_embeddings_dict("embeddings_funding.pt")
 resultados = gerar_resultados_clustering(embeddings_dict, analise)
 
 # Salvar os resultados
-salvar_resultados(resultados)
+salvar_resultados_cpu(resultados)

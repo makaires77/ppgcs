@@ -15,6 +15,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
+from datetime import datetime
+from genericpath import isfile
 from transformers import AutoModel
 from plotly.subplots import make_subplots
 from plotly.subplots import make_subplots
@@ -73,6 +75,7 @@ class EmbeddingsMulticriteriaAnalysis:
         """
         self.model_names = model_names
         self.models = models
+        self.model_stats = {}  # Dicionário para armazenar as estatísticas dos modelos        
         self.embeddings = {}
         self.algorithms = algorithms
         self.n_splits = n_splits
@@ -103,6 +106,127 @@ class EmbeddingsMulticriteriaAnalysis:
         else:
             self.pesos = pesos
 
+    def get_model_size(self, model_name, base_path="~/.cache/huggingface/hub"):
+        """
+        Retorna o tamanho de um modelo em MB.
+        """
+
+        model_folders = {
+            'sentence-transformers/gtr-t5-large': 'models--sentence-transformers--gtr-t5-large',
+            'distiluse-base-multilingual-cased-v2': 'models--sentence-transformers--distiluse-base-multilingual-cased-v2',
+            'all-distilroberta-v1': 'models--sentence-transformers--all-distilroberta-v1',
+            'all-mpnet-base-v2': 'models--sentence-transformers--all-mpnet-base-v2',
+            'paraphrase-multilingual-MiniLM-L12-v2':
+            'models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2',
+            'all-MiniLM-L6-v2': 'models--sentence-transformers--multi-qa-MiniLM-L6-cos-v1',
+        }
+
+        base_path = os.path.expanduser(base_path)
+
+        # Constrói o caminho completo para o modelo
+        model_name = "models--sentence-transformers--" + model_name
+        if "/" in model_name:
+            model_name = model_name.replace("sentence-transformers/", "")
+        model_path = os.path.join(base_path, model_name)
+
+        size_mb = 0
+
+        if os.path.isdir(model_path):
+            total_size = 0
+            for dirpath, dirnames, filenames in os.walk(model_path):
+                for f in filenames:
+                    fp = os.path.join(dirpath, f)
+                    if not os.path.islink(fp):
+                        total_size += os.path.getsize(fp)
+                        size_mb = total_size / (1024 * 1024)
+
+        elif os.path.isfile(model_path):
+            print(f"O caminho {model_path} é um arquivo e não uma pasta")
+        else:
+            print(f"O caminho {model_path} não foi encontrado")
+
+        print(f"Pasta local para o modelo: {model_name}")
+        print(f"Espaço memória necessária: {size_mb:.2f} MB")
+
+
+    def get_models_sizes(self, base_path="~/.cache/huggingface/hub"):
+        """
+        Retorna o tamanho dos modelos na pasta local de cache do hugging face em MB.
+        """        
+        model_names = [
+            'sentence-transformers/gtr-t5-large',
+            'distiluse-base-multilingual-cased-v2',
+            'paraphrase-multilingual-MiniLM-L12-v2',
+            'all-mpnet-base-v2',
+            'all-distilroberta-v1',
+            'all-MiniLM-L6-v2',
+        ]
+
+        model_folders = {
+            'sentence-transformers/gtr-t5-large': 'models--sentence-transformers--gtr-t5-large',
+            'distiluse-base-multilingual-cased-v2': 'models--sentence-transformers--distiluse-base-multilingual-cased-v2',
+            'all-distilroberta-v1': 'models--sentence-transformers--all-distilroberta-v1',
+            'all-mpnet-base-v2': 'models--sentence-transformers--all-mpnet-base-v2',
+            'paraphrase-multilingual-MiniLM-L12-v2':
+            'models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2',
+            'all-MiniLM-L6-v2': 'models--sentence-transformers--multi-qa-MiniLM-L6-cos-v1',
+        }
+
+        base_path = os.path.expanduser(base_path)
+
+        for model_name in model_names:
+            # Adiciona "models--" ao início do nome do modelo
+            model_name = "models--sentence-transformers--" + model_name
+
+            if "/" in model_name:
+                model_name = model_name.replace("sentence-transformers/", "")
+
+            # Constrói o caminho completo para o modelo
+            model_path = os.path.join(base_path, model_name)
+            size_mb = 0
+
+            if os.path.isdir(model_path):
+                total_size = 0
+                for dirpath, dirnames, filenames in os.walk(model_path):
+                    for f in filenames:
+                        fp = os.path.join(dirpath, f)
+                        if not os.path.islink(fp):
+                            total_size += os.path.getsize(fp)
+                            size_mb = total_size / (1024 * 1024)
+
+            elif os.path.isfile(model_path):
+                print(f"O caminho {model_path} é um arquivo e não uma pasta")
+            else:
+                print(f"O caminho {model_path} não foi encontrado")
+
+            print(f"Nome modelo pré-treinado: {model_name}")
+            print(f"Tamanho ocupado em disco: {size_mb:.2f} MB\n")
+
+
+    def get_all_models_with_size(self, base_path="~/.cache/huggingface/hub"):
+        """
+        Acessa as pastas de todos os modelos na pasta base e retorna o tamanho de cada um.
+        """
+        models_with_size = {}
+
+        for model_name in os.listdir(os.path.expanduser(base_path)):
+            model_name = "models--sentence-transformers--" + model_name
+            if "/" in model_name:
+                model_name = model_name.replace("sentence-transformers/", "")
+
+            # Constrói o caminho completo para o modelo
+            model_path = os.path.join(base_path, model_name)
+            if os.path.isdir(model_path):
+                size_mb = self.get_model_size(model_path)
+                models_with_size[model_name] = size_mb
+        
+        # Imprime o resultado
+        for model_name, size_mb in models_with_size.items():
+            print(f"Modelo: {model_name}, Tamanho: {size_mb:.2f} MB")
+
+        return models_with_size
+
+
     def show_models_info(self):
         """
         Autor: Marcos Aires (Nov.2024)
@@ -115,7 +239,7 @@ class EmbeddingsMulticriteriaAnalysis:
             try:
                 # Obter informações do card do modelo
                 model_card_data = model.model_card_data
-                print(f"    Modelo de Base: {model_card_data.base_model}")
+                print(f"Nome modelo base original: {model_card_data.base_model}")
 
                 # try:
                 #     # Listar os atributos disponíveis
@@ -139,16 +263,26 @@ class EmbeddingsMulticriteriaAnalysis:
                         if value:
                             if 'and more' in value:
                                 value = value.replace(', and more','')
-                            print(f"Tarefas aplicáveis: {value}")
+                            print(f"Treinado nas tarefas para: {value}")
                     else:
                         pass
                 except:
                     pass
 
                 try:
-                    # Verificar se o atributo task_name existe
+                    # Consultar o espaço em disco dos arquivos do modelo
+                    model_size = self.get_model_size(model_card_data.base_model)
+                    if model_size:
+                        print(f"Espaço para armazenamento: {model_size}")
+                    else:
+                        pass
+                except:
+                    pass
+
+                try:
+                    # Verificar se o atributo dimensionalidade existe
                     if hasattr(model_card_data, 'output_dimensionality'):
-                        print(f"Número de features: {model_card_data.output_dimensionality}")
+                        print(f"Dimensionalidade vetorial: {model_card_data.output_dimensionality}")
                     else:
                         pass
                 except:
@@ -158,25 +292,21 @@ class EmbeddingsMulticriteriaAnalysis:
                     # Obter a quantidade de features
                     num_features = model.get_sentence_embedding_dimension()
                     if num_features:
-                        print(f"Número de features: {num_features}")
+                        print(f"Número de características: {num_features}")
                 except:
                     pass
 
                 try:
                     # Verificar se o atributo model_max_length existe
                     if hasattr(model_card_data, 'model_max_length'):
-                        print(f"Comprimento Máximo: {model_card_data.model_max_length}")
-                    else:
-                        pass
-                        # print(f"Comprimento Máximo: Informação não disponível")
-                    print(f"Número de features: {model_card_data.output_dimensionality}")
+                        print(f"Maior tamanho de sentença: {model_card_data.model_max_length}")
                 except:
                     pass
 
                 try:
                     # Verificar se o atributo model_name existe
                     if hasattr(model_card_data, 'model'):
-                        print(f"Detalhes da classe: {model_card_data.model}")
+                        print(f"Detalhe módulos do modelo: {model_card_data.model}")
                     else:
                         pass
                 except Exception as e:
@@ -190,7 +320,7 @@ class EmbeddingsMulticriteriaAnalysis:
                     if hasattr(model_card_data, 'train_datasets'):
                         datasets = f"{', '.join([d['name'] for d in model_card_data.train_datasets])}"
                         if datasets:
-                            print(f"Datasets de Treino: {datasets}")
+                            print(f"Datasets para treinamento: {datasets}")
                 except:
                     pass
                 print("-"*115)
@@ -198,6 +328,27 @@ class EmbeddingsMulticriteriaAnalysis:
             except Exception as e:
                 # print(f"Erro ao obter informações do modelo: {e}")
                 print("-"*115)
+
+
+    def exportar_estatisticas_modelos(self, nome_arquivo="estatisticas_modelos.json"):
+        """
+        Exporta as estatísticas dos modelos para um arquivo JSON.
+        """
+
+        # Informar caminho para pasta raiz do repositório Git como referência
+        repo = Repo(search_parent_directories=True)
+        root_folder = repo.working_tree_dir
+        folder_data_output = os.path.join(str(root_folder), '_embeddings')
+
+        # Verificar se a pasta _embeddings existe, senão cria
+        if not os.path.exists(folder_data_output):
+            os.makedirs(folder_data_output)
+
+        pathfilename = os.path.join(folder_data_output, nome_arquivo)        
+
+        with open(pathfilename, 'w') as f:
+            json.dump(self.model_stats, f, indent=4)
+
 
     def create_embedding_column(self, use_cudf=True):
         """
@@ -258,6 +409,7 @@ class EmbeddingsMulticriteriaAnalysis:
 
         return df
 
+
     def detect_predominant_language(self, sentences):
         """
         Autor: Marcos Aires (Nov.2024)
@@ -267,6 +419,7 @@ class EmbeddingsMulticriteriaAnalysis:
         idiomas = [en_preprocessor.detect_language(sentence) for sentence in sentences]
         idioma_predominante = max(set(idiomas), key=idiomas.count)
         return idioma_predominante
+
 
     ## Sem otimização de uso da VRAM da GPU
     def generate_embeddings(self):
@@ -371,12 +524,28 @@ class EmbeddingsMulticriteriaAnalysis:
                 # Armazenar os embeddings no dicionário self.embeddings
                 self.embeddings[model_name] = all_embeddings 
                 
+                # Calcula o tamanho em disco do modelo
+                ## model_path = model.config._name_or_path  # Obtém o caminho do modelo
+
+                size_mb = 0
+                try:
+                    tamanho_modelo_mb = self.get_model_size(model_name)
+                except:
+                    pass
+
                 # Calcula o tempo de execução
                 fim = time.time()
                 tempo_execucao_segundos = fim - inicio
                 horas, resto = divmod(tempo_execucao_segundos, 3600)
                 minutos, segundos = divmod(resto, 60)
-                print(f"Tempo de execução: {int(horas):02d}:{int(minutos):02d}:{int(segundos):02d} para modelo {model_name}\n")
+                tempo_execucao_formatado = f"{int(horas):02d}:{int(minutos):02d}:{int(segundos):02d}"
+                print(f"Tamanho: {tamanho_modelo_mb:.2f} MB e tempo de execução: {tempo_execucao_formatado}")
+
+                # Armazena as estatísticas do modelo
+                self.model_stats[model_name] = {
+                    'tempo_execucao': tempo_execucao_formatado,
+                    'tamanho_mb': tamanho_modelo_mb
+                }
 
             except Exception as e:
                 print(f"Erro ao gerar embeddings com modelo {model_name}: {e}")
@@ -655,7 +824,27 @@ class EmbeddingsMulticriteriaAnalysis:
             print(f"Erro ao carregar os embeddings: {e}")
             return None
 
-    def load_results(self, filename="resultados.json"):
+    def load_statistics(self, filename="estatisticas_modelos.json"):
+        """
+        Autor: Marcos Aires (Nov.2024)
+        Carrega JSON local contendo os tempos de geração de embeddings para cada modelo.
+        """
+        # Informar caminho para arquivo JSON usando raiz do repositório Git como referência
+        repo = Repo(search_parent_directories=True)
+        root_folder = repo.working_tree_dir
+        folder_data_output = os.path.join(str(root_folder), '_embeddings')
+        pathfilename = os.path.join(folder_data_output, filename)
+        
+        # Carregar o dicionário de resultados de arquivo JSON
+        with open(pathfilename, 'r') as f:
+            estatisticas = json.load(f)
+
+        if not isinstance(estatisticas, dict):
+            raise TypeError("O arquivo JSON não contém um dicionário.")
+
+        return estatisticas
+
+    def load_results(self, filename="resultados_clustering.json"):
         """
         Autor: Marcos Aires (Nov.2024)
         Carrega os resultados de um arquivo JSON local.
@@ -675,6 +864,227 @@ class EmbeddingsMulticriteriaAnalysis:
 
         return resultados
 
+    def evaluate_clustering_cpu(self, embeddings_dict):
+        """
+        Autor: Marcos Aires (Nov.2024)
+        Avalia o desempenho dos embeddings em tarefas de clustering
+        usando diferentes algoritmos do scikit-learn e 
+        validação cruzada, e mede o tempo de execução de cada algoritmo.
+        Usa métricas do scikit-learn.
+
+        Args:
+            embeddings_dict: Um dicionário com os embeddings para cada modelo.
+                            As chaves são os nomes dos modelos e os valores 
+                            são os embeddings correspondentes.
+        """
+        print(f"\nIniciando avaliação de clustering com scikit-learn (CPU)...")
+
+        from sklearn.cluster import KMeans, DBSCAN, HDBSCAN
+        from sklearn.model_selection import StratifiedKFold
+        from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score
+
+        resultados = {}
+        for model_name, embeddings in embeddings_dict.items():
+            print(f"Avaliando modelo: {model_name}")
+            resultados[model_name] = {}
+
+            # Converter os embeddings para arrays do NumPy
+            embeddings_np = embeddings.cpu().numpy()
+
+            # Carregar tempos para gerar embeddings para cada modelo
+            tempos_embedding = self.load_statistics()
+
+            for algorithm in self.algorithms:
+                resultados[model_name][algorithm.__name__] = {"resultados": [], "tempo": []}
+
+                estatisticas = tempos_embedding.get(model_name)
+                if estatisticas:
+                    tempos_execucao = estatisticas.get('tempo_execucao')
+                    tempos_execucao = self.tempo_para_horas(tempos_execucao)
+
+                # Instanciação do StratifiedKFold
+                skf = StratifiedKFold(n_splits=self.n_splits, shuffle=True)
+                splits = list(skf.split(embeddings_np, np.zeros(len(embeddings_np))))
+
+                resultados_split = []
+
+                for train_index, test_index in splits:
+                    X_train, X_test = embeddings_np[train_index], embeddings_np[test_index]
+
+                    try:
+                        if len(X_test) > 1:
+                            print(f"  Split {len(resultados_split) + 1}:")
+                            print(f"    Tamanho de X_train: {X_train.shape}")
+                            print(f"    Tamanho de X_test: {X_test.shape}")
+
+                            if algorithm.__name__ == "KMeans":
+                                clustering_model = KMeans(n_clusters=8, random_state=42)
+                            elif algorithm.__name__ == "DBSCAN":
+                                clustering_model = DBSCAN(eps=0.5, min_samples=5)
+                            elif algorithm.__name__ == "HDBSCAN":
+                                clustering_model = HDBSCAN(min_cluster_size=5)
+
+                            cluster_labels = clustering_model.fit_predict(X_test)
+                            print(f"    Tamanho de cluster_labels: {cluster_labels.shape}")
+
+                            # Verifica se cluster_labels contém mais de um valor único
+                            if len(np.unique(cluster_labels)) > 1:
+                                silhouette_avg = silhouette_score(X_test, cluster_labels)
+                                calinski_harabasz = calinski_harabasz_score(X_test, cluster_labels)
+                                davies_bouldin = davies_bouldin_score(X_test, cluster_labels)
+
+                                resultados_split.append({
+                                    "silhouette": silhouette_avg,
+                                    "calinski_harabasz": calinski_harabasz,
+                                    "davies_bouldin": davies_bouldin
+                                })
+                            else:
+                                logging.warning(f"      HDBSCAN, modelo {model_name}, split {len(resultados_split) + 1}. Apenas um cluster encontrado. Pulando esta iteração.")
+
+                        else:
+                            print("      Ignorando split com menos de 2 amostras.")
+
+                    except ValueError as e:
+                        logging.error(f"    Erro ao calcular métricas: ValueError: {e}")
+
+                    except Exception as e:
+                        print(f"    Erro inesperado ao calcular métricas: {e}")
+                        print(f"    {algorithm.__name__}, modelo {model_name}, split {len(resultados_split) + 1}. Pulando esta iteração.")
+
+                resultados[model_name][algorithm.__name__]["resultados"] = resultados_split
+                resultados[model_name][algorithm.__name__]["tempo"] = tempos_execucao
+
+        self.salvar_resultados_cpu(resultados, filename="resultados_clustering.json")
+
+        return resultados
+
+    def tempo_para_horas(self, tempo):
+        """Converte uma string de tempo no formato HH:MM:SS para um float em fração de horas.
+
+        Args:
+            tempo: A string de tempo no formato HH:MM:SS.
+
+        Returns:
+            Um float representando o tempo em fração de horas.
+        """
+        horas, minutos, segundos = map(int, tempo.split(':'))
+        return horas + minutos/60 + segundos/3600
+
+    def identificar_tipos_de_dados(self, data):
+        """
+        Identifica os tipos de dados presentes em uma estrutura de dados.
+        """
+        tipos = set()
+        
+        def percorrer(obj):
+            if isinstance(obj, dict):
+                for k, v in obj.items():
+                    tipos.add(type(v))
+                    percorrer(v)
+            elif isinstance(obj, list):
+                for item in obj:
+                    tipos.add(type(item))
+                    percorrer(item)
+            else:
+                tipos.add(type(obj))
+
+        percorrer(data)
+        return tipos
+
+
+    def salvar_resultados(self, resultados, filename = "resultados_clustering.json"):
+        """
+        Autor: Marcos Aires (Nov.2024)
+        Salva os resultados em um arquivo JSON local.
+        """
+        import numpy as np
+
+        def converter_para_json_serializavel(obj):
+            """
+            Converte um objeto em um formato serializável em JSON.
+            """
+            if isinstance(obj, np.ndarray):
+                return obj.tolist()  # Converte arrays NumPy para listas
+            elif isinstance(obj, (np.float32, np.float64)):
+                return float(obj)  # Converte float32 e float64 para float
+            elif isinstance(obj, (np.int32, np.int64)):
+                return int(obj)  # Converte int32 e int64 para int
+            return obj
+
+        # Converte os valores não serializáveis para serializáveis
+        resultados_serializaveis = json.loads(json.dumps(resultados, default=converter_para_json_serializavel))
+
+        # # Chama a função para identificar os tipos de dados em 'resultados'
+        # tipos_encontrados = self.identificar_tipos_de_dados(resultados)
+
+        # # Imprime os tipos encontrados
+        # print(f"Tipos de dados encontrados em 'resultados': {tipos_encontrados}")   
+
+        try:
+            # Informar caminho para arquivo usando raiz do repositório Git como referência
+            repo = Repo(search_parent_directories=True)
+            root_folder = repo.working_tree_dir
+            folder_data_output = os.path.join(str(root_folder), '_embeddings')
+            pathfilename = os.path.join(folder_data_output, filename)
+
+            # Criar a pasta _embeddings se ela não existir
+            os.makedirs(folder_data_output, exist_ok=True)
+
+            # Salvar o dicionário de resultados em arquivo JSON
+            with open(pathfilename, 'w') as f:
+                json.dump(resultados_serializaveis, f, indent=4)
+
+            # Imprimir o nome do arquivo e o número de modelos
+            print(f"Arquivo de resultados salvo: {filename}")
+            print(f"Número de modelos avaliados: {len(resultados)}")
+
+        except Exception as e:
+            print(f"Erro ao salvar os resultados: {e}")
+
+
+    def salvar_resultados_cpu(self, resultados, filename="resultados_clustering.json"):
+        """
+        Salva os resultados da avaliação de clustering em um arquivo JSON.
+        """
+        try:
+            def converter_para_json_serializavel(obj):
+                """
+                Converte um objeto em um formato serializável em JSON.
+                """
+                if isinstance(obj, np.ndarray):
+                    return obj.tolist()  # Converte arrays NumPy para listas
+                elif isinstance(obj, (np.float32, np.float64)):
+                    return float(obj)  # Converte float32 e float64 para float
+                elif isinstance(obj, (np.int32, np.int64)):
+                    return int(obj)  # Converte int32 e int64 para int
+                return obj
+
+            # Converte os valores não serializáveis para serializáveis
+            resultados_serializaveis = json.loads(json.dumps(resultados, default=converter_para_json_serializavel))
+
+            try:
+                # Informar caminho para arquivo usando raiz do repositório Git como referência
+                repo = Repo(search_parent_directories=True)
+                root_folder = repo.working_tree_dir
+                folder_data_output = os.path.join(str(root_folder), '_embeddings')
+                pathfilename = os.path.join(folder_data_output, filename)
+
+                # Criar a pasta _embeddings se ela não existir
+                os.makedirs(folder_data_output, exist_ok=True)
+
+                # Salvar o dicionário de resultados em arquivo JSON
+                with open(pathfilename, 'w') as f:
+                    json.dump(resultados_serializaveis, f, indent=4)
+
+                # Imprimir o nome do arquivo e o número de modelos
+                print(f"Arquivo de resultados salvo: {filename}")
+                print(f"Número de modelos avaliados: {len(resultados)}")
+
+            except Exception as e:
+                print(f"Erro ao salvar os resultados: {e}")
+
+        except Exception as e:
+            print(f"Erro ao salvar os resultados: {e}")
 
     ## Início da avaliação, refatorar em outra classe posterioremente
     def evaluate_clustering(self, embeddings_dict):
@@ -700,9 +1110,15 @@ class EmbeddingsMulticriteriaAnalysis:
             # Converter os embeddings para arrays do CuPy
             embeddings_cp = cp.array(embeddings.cpu().numpy())  # Converter para NumPy antes de converter para CuPy
 
+            # Carregar tempos para gerar embeeding para cada modelo
+            tempos_embedding = self.load_statistics()
+
             for algorithm in self.algorithms:
                 resultados[model_name][algorithm.__name__] = {"resultados": [], "tempo": []}
-                tempos_execucao = []
+                estatisticas = tempos_embedding.get(model_name)
+                if estatisticas:
+                    tempos_execucao = estatisticas['tempo'].get('tempo_execucao')
+                    tempos_execucao = self.tempo_para_horas(tempos_execucao)
 
                 # Instanciação do StratifiedKFold
                 skf = StratifiedKFold(n_splits=self.n_splits, shuffle=True)
@@ -726,136 +1142,65 @@ class EmbeddingsMulticriteriaAnalysis:
                             elif algorithm.__name__ == "HDBSCAN":
                                 clustering_model = cuml.HDBSCAN(min_cluster_size=5)
 
-                            inicio = time.time()
+                            
                             cluster_labels = clustering_model.fit_predict(X_test)
-                            fim = time.time()
-                            tempo_execucao = fim - inicio
-                            tempos_execucao.append(tempo_execucao)
-
                             print(f"    Tamanho de cluster_labels: {cluster_labels.shape}")
 
-                            X_test_cp = cp.array(X_test)
-                            cluster_labels_cp = cp.array(cluster_labels)
+                            # Verifica se cluster_labels contém mais de um valor único
+                            if len(cp.unique(cluster_labels)) > 1:
 
-                            print(f"    Tamanho de X_test_cp: {X_test_cp.shape}")
-                            print(f"    Tamanho de cluster_labels_cp: {cluster_labels_cp.shape}")
+                                X_test_cp = cp.array(X_test)
+                                cluster_labels_cp = cp.array(cluster_labels)
 
-                            silhouette_avg = silhouette_score(X_test_cp, cluster_labels_cp)
-                            X_test_np = X_test_cp.get()
-                            cluster_labels_np = cluster_labels_cp.get()
+                                print(f"    Tamanho de X_test_cp: {X_test_cp.shape}")
+                                print(f"    Tamanho de cluster_labels_cp: {cluster_labels_cp.shape}")
 
-                            calinski_harabasz = calinski_harabasz_score(X_test_np, cluster_labels_np)
-                            davies_bouldin = davies_bouldin_score(X_test_np, cluster_labels_np)
+                                silhouette_avg = silhouette_score(X_test_cp, cluster_labels_cp)
+                                X_test_np = X_test_cp.get()
+                                cluster_labels_np = cluster_labels_cp.get()
 
-                            resultados_split.append({
-                                "silhouette": silhouette_avg,
-                                "calinski_harabasz": calinski_harabasz,
-                                "davies_bouldin": davies_bouldin
-                            })
+                                calinski_harabasz = calinski_harabasz_score(X_test_np, cluster_labels_np)
+                                davies_bouldin = davies_bouldin_score(X_test_np, cluster_labels_np)
+
+                                resultados_split.append({
+                                    "silhouette": silhouette_avg,
+                                    "calinski_harabasz": calinski_harabasz,
+                                    "davies_bouldin": davies_bouldin
+                                })
+                            else:
+                                logging.warning(f"      HDBSCAN, modelo {model_name}, split {len(resultados_split) + 1}. Apenas um cluster encontrado. Pulando esta iteração.")
 
                         else:
                             print("      Ignorando split com menos de 2 amostras.")
 
+                    except ValueError as e:
+                        logging.error(f"    Erro ao calcular métricas: ValueError: {e}")
+ 
+                    except cp.cuda.memory.OutOfMemoryError:
+                        logging.error(f"    Erro de memória ao calcular métricas: OutOfMemoryError")
+            
                     except Exception as e:
-                        print(f"    Erro ao calcular métricas: {e}")
+                        print(f"    Erro inesperado ao calcular métricas: {e}")
                         print(f"    {algorithm.__name__}, modelo {model_name}, split {len(resultados_split) + 1}. Pulando esta iteração.")
 
                 resultados[model_name][algorithm.__name__]["resultados"] = resultados_split
-                resultados[model_name][algorithm.__name__]["tempo"] = np.mean(tempos_execucao)
+                resultados[model_name][algorithm.__name__]["tempo"] = tempos_execucao
 
         self.salvar_resultados(resultados)
         
         return resultados
 
 
-    def salvar_resultados(self, resultados):
-        """
-        Autor: Marcos Aires (Nov.2024)
-        Salva os resultados em um arquivo JSON local.
-        """
-        try:
-            # Informar caminho para arquivo usando raiz do repositório Git como referência
-            repo = Repo(search_parent_directories=True)
-            root_folder = repo.working_tree_dir
-            folder_data_output = os.path.join(str(root_folder), '_embeddings')
-            filename = 'resultados.json'
-            pathfilename = os.path.join(folder_data_output, filename)
-
-            # Criar a pasta _embeddings se ela não existir
-            os.makedirs(folder_data_output, exist_ok=True)
-
-            # Salvar o dicionário de resultados em arquivo JSON
-            with open(pathfilename, 'w') as f:
-                json.dump(resultados, f, indent=4)
-
-            # Imprimir o nome do arquivo e o número de modelos
-            print(f"Arquivo de resultados salvo: {filename}")
-            print(f"Número de modelos avaliados: {len(resultados)}")
-
-        except Exception as e:
-            print(f"Erro ao salvar os resultados: {e}")
-
-    # def calcular_pontuacao_multicriterio(self, resultados, pesos):  # Adiciona pesos como argumento
-    #     """
-    #     Autor: Marcos Aires (Nov.2024)
-    #     Calcula a pontuação multicritério para cada algoritmo, combinando as métricas com os pesos.
-    #     """
-    #     pontuacoes = {}
-    #     for model_name, model_results in resultados.items():
-    #         pontuacoes[model_name] = {}
-    #         max_valor_calinski = 0  # Inicializa o valor máximo do Calinski-Harabasz
-    #         for algoritmo, resultados_algoritmo in model_results.items():
-    #             # Calcula a media entre as várisa medições
-    #             medias = np.mean([[r['silhouette'], r['calinski_harabasz'], r['davies_bouldin']] for r in resultados_algoritmo['resultados']], axis=0)
-
-    #             # Calcula a média do tempo
-    #             tempo_medio = np.mean(resultados_algoritmo['tempo'])
-
-    #             # Encontra o valor máximo do Calinski-Harabasz entre todos os modelos e algoritmos
-    #             max_valor_calinski = max(max_valor_calinski, medias[1])
-
-    #             # Armazena as médias e o tempo médio no dicionário pontuacoes
-    #             pontuacoes[model_name][algoritmo] = {
-    #                 'medias': medias,
-    #                 'tempo': tempo_medio,
-    #                 'max_calinski': max_valor_calinski  # Armazena o valor máximo do Calinski-Harabasz
-    #             }
-
-    #     # Normaliza as métricas e calcula a pontuação ponderada
-    #     for model_name, model_results in pontuacoes.items():
-    #         for algoritmo, resultados_algoritmo in model_results.items():
-    #             medias = resultados_algoritmo['medias']
-    #             tempo_medio = resultados_algoritmo['tempo']
-    #             max_valor_calinski = resultados_algoritmo['max_calinski']  # Obtém o valor máximo do Calinski-Harabasz
-
-    #             pontuacao = 0
-    #             for i, metrica in enumerate(['silhouette', 'calinski_harabasz', 'davies_bouldin']):
-    #                 valor = medias[i]
-    #                 # Normaliza as métricas para ficarem na mesma escala (0 a 1)
-    #                 if metrica == "silhouette":
-    #                     valor_normalizado = (valor + 1) / 2  # Silhouette varia de -1 a 1
-    #                 elif metrica == "davies_bouldin":
-    #                     # Normalizar Davies-Bouldin
-    #                     valor_normalizado = 1 - (valor / (max(medias[2] for model_results in resultados.values() for resultados_algoritmo in model_results.values()) + 1e-6))
-    #                 elif metrica == "calinski_harabasz":
-    #                     valor_normalizado = valor / max_valor_calinski #Calinski-Harabasz maior melhor
-    #                 pontuacao += pesos[metrica] * valor_normalizado
-
-    #             # Adiciona o tempo de execução à pontuação
-    #             # Normalização corrigida para Tempo de Execução
-    #             tempo_normalizado = 1 - (tempo_medio / (max(resultados_algoritmo['tempo'] for model_results in resultados.values() for resultados_algoritmo in model_results.values()) + 1e-6))
-    #             pontuacao += pesos["tempo"] * tempo_normalizado
-
-    #             pontuacoes[model_name][algoritmo] = pontuacao
-
-    #     return pontuacoes
-
     def calcular_pontuacao_multicriterio(self, resultados, pesos):  # Adiciona pesos como argumento
         """
         Autor: Marcos Aires (Nov.2024)
-        Calcula a pontuação multicritério para cada algoritmo, combinando as métricas com os pesos.
+        Calcula a soma ponderada por pesos para cada algoritmo e métrica.
         """
+        # Carregar tempos para gerar embeeding para cada modelo
+        tempos_embedding = self.load_statistics()
+
         pontuacoes = {}
+
         for model_name, model_results in resultados.items():
             pontuacoes[model_name] = {}
             max_valor_calinski = 0  # Inicializa o valor máximo do Calinski-Harabasz
@@ -870,8 +1215,8 @@ class EmbeddingsMulticriteriaAnalysis:
                 # Calcula as médias das métricas
                 medias = [np.mean(pontuacoes_metricas[metrica]) for metrica in pontuacoes_metricas]
                 
-                # Calcula a média do tempo
-                tempo_medio = np.mean(resultados_algoritmo['tempo'])
+                # Lê o tempo para gerar embeeding de cada modelo
+                tempos = tempos_embedding.get(model_name)
 
                 # Encontra o valor máximo do Calinski-Harabasz entre todos os modelos e algoritmos
                 max_valor_calinski = max(max_valor_calinski, medias[1])
@@ -887,12 +1232,30 @@ class EmbeddingsMulticriteriaAnalysis:
                         valor_normalizado = 1 - (valor / (max(medias[2] for model_results in resultados.values() for resultados_algoritmo in model_results.values()) + 1e-6))
                     elif metrica == "calinski_harabasz":
                         valor_normalizado = valor / max_valor_calinski  #Calinski-Harabasz maior melhor
-                    pontuacao += pesos[metrica] * valor_normalizado  # pesos passados como argumento
+                    
+                    pontuacao += pesos[metrica] * valor_normalizado
 
-                # Adiciona o tempo de execução à pontuação
-                # Normalização corrigida para Tempo de Execução
-                tempo_normalizado = 1 - (tempo_medio / (max(resultados_algoritmo['tempo'] for model_results in resultados.values() for resultados_algoritmo in model_results.values()) + 1e-6))
-                pontuacao += pesos["tempo"] * tempo_normalizado  # pesos passados como argumento
+                if tempos:
+                    # print(model_name)
+                    # print(f"{type(tempos)}: {tempos}")
+                    tempo_str = tempos.get('tempo_execucao')
+                    
+                    # Converte a string de tempo para um objeto datetime
+                    tempo_obj = datetime.strptime(tempo_str, "%H:%M:%S")
+                    
+                    # Calcula o tempo total em segundos
+                    total_segundos = (tempo_obj.hour*3600) + (tempo_obj.minute*60) + tempo_obj.second
+                    
+                    # Converte o total de segundos para float
+                    total_segundos_float = float(total_segundos)
+
+                    # # Adiciona o tempo de execução normalizado entre algoritmos à pontuação
+                    # tempo_normalizado = 1 - (total_segundos_float / (max(resultados_algoritmo['tempo'] 
+                    # for model_results in resultados.values() for resultados_algoritmo in model_results.values()) + 1e-6))
+
+                    # print(tempo_normalizado)
+                    
+                    pontuacao += pesos["tempo"] * total_segundos_float
 
                 pontuacoes[model_name][algoritmo] = np.round(pontuacao,4)
 
@@ -940,6 +1303,7 @@ class EmbeddingsMulticriteriaAnalysis:
         """
         metrics = ['silhouette', 'calinski_harabasz', 'davies_bouldin']
         algorithms = ['KMeans', 'DBSCAN', 'HDBSCAN']
+        colors = ['blue', 'green', 'yellow', 'cyan', 'orange', 'purple']
 
         # Ajustar o número de subplots de acordo com o número de métricas
         fig = make_subplots(rows=1, cols=len(metrics), subplot_titles=metrics)
@@ -966,7 +1330,7 @@ class EmbeddingsMulticriteriaAnalysis:
                         showlegend=i == 0 and j == 0,  # Exibe a legenda apenas no primeiro subplot
                         legendgroup=model_name,  # Agrupa as barras por modelo
                         offsetgroup=k,  # Define o offset para agrupar as barras por modelo
-                        marker_color=['blue', 'green', 'yellow'][k]  # Cores para os modelos
+                        marker_color=colors[k]  # Cores para os modelos
                     ), row=1, col=i+1)  # Especificar a linha e coluna do subplot
 
         # Configura o layout do gráfico
@@ -1042,7 +1406,7 @@ class EmbeddingsMulticriteriaAnalysis:
             fig = make_subplots(rows=1, cols=len(metrics), subplot_titles=metrics, horizontal_spacing=0.15)
 
             # Cores para os modelos
-            colors = ['blue', 'green', 'yellow', 'orange']
+            colors = ['blue', 'green', 'yellow', 'cyan', 'orange', 'purple']
 
             # Loop pelas métricas
             for i, metric_name in enumerate(metrics):

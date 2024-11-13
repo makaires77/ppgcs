@@ -1,0 +1,26 @@
+{
+    "sentence-transformers/gtr-t5-large": {
+        "tempo_execucao": "00:14:55",
+        "tamanho_mb": null
+    },
+    "distiluse-base-multilingual-cased-v2": {
+        "tempo_execucao": "00:14:51",
+        "tamanho_mb": null
+    },
+    "paraphrase-multilingual-MiniLM-L12-v2": {
+        "tempo_execucao": "00:14:51",
+        "tamanho_mb": null
+    },
+    "all-mpnet-base-v2": {
+        "tempo_execucao": "00:14:52",
+        "tamanho_mb": null
+    },
+    "all-distilroberta-v1": {
+        "tempo_execucao": "00:14:52",
+        "tamanho_mb": null
+    },
+    "all-MiniLM-L6-v2": {
+        "tempo_execucao": "00:14:50",
+        "tamanho_mb": null
+    }
+}
