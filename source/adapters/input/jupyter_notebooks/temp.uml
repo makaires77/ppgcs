@@ -1,0 +1,39 @@
+
+@startuml
+skinparam package {
+    BackgroundColor PaleGreen
+    BorderColor DarkGreen
+}
+
+
+package "A" {
+    [EP: Embeedings\nStrategic\nProducts\nData]
+    [CS: Calculate\nCosine\nsimilarity]
+    [PE: Embeedings from\npublications of\ntitles]
+}
+
+node "Construct a\nsemantic\nheterogeneous\nnetwork G" as G
+
+[EP: Embeedings\nStrategic\nProducts\nData] --> G
+[CS: Calculate\nCosine\nsimilarity] --> G
+[PE: Embeedings from\npublications of\ntitles] --> G
+
+package "B" #LightBlue {
+    node "Integrate \nneighborhood \ninformation"
+    node "Graph Neural Network"
+    
+    "Integrate \nneighborhood \ninformation" --> "Graph Neural Network"
+}
+
+G --> "Integrate \nneighborhood \ninformation"
+
+package "C" #Gold {
+    node "Reconstruct the \nnetwork G and \nminimize the error"
+    node "Perform topology- preserving learning"
+    
+    "Reconstruct the \nnetwork G and \nminimize the error" --> "Perform topology- preserving learning"
+}
+
+"Graph Neural Network" --> "Reconstruct the \nnetwork G and \nminimize the error"
+
+@enduml
