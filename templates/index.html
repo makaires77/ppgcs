@@ -8,43 +8,80 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        #language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 10; /* Garante que o seletor fique acima de outros elementos */
+        }
+
+        #language-selector button {
+            background-color: #007bff; /* Cor de fundo do botão */
+            color: white; /* Cor do texto */
+            border: none; /* Remove a borda */
+            padding: 5px 10px; /* Espaçamento interno */
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+            border-radius: 5px; /* Arredonda os cantos */
+            margin-left: 5px; /* Espaçamento entre os botões */
+        }
+
+        /* Estilo para o botão quando o mouse passa por cima */
+        #language-selector button:hover {
+            background-color: #0056b3; /* Cor de fundo mais escura */
+        }
+    </style>
 </head>
 <body>
     {% include 'breadcrumb.html' %}
-    <h4>Detalhamento: 
-        <!-- Renderizar Botões para abrir links para templates HTML -->
-        <a href="#" class="button-style" onclick="loadPage('/i9c_mp_nobc');return false;">Macroprocessos PDI</a> 
-        <a href="#" class="button-style" onclick="loadPage('/i9c_gp01');return false;">Pesquisar</a>  
-        <a href="#" class="button-style" onclick="loadPage('/i9c_gp02');return false;">Desenvolver</a>  
-        <a href="#" class="button-style" onclick="loadPage('/i9c_gp03');return false;">Inovar</a> 
-        <a href="#" class="button-style" onclick="loadPage('/i9c_gp_nobc');return false;">Todas Camadas</a>
-        <!-- Abrir templates HTML do grafo em nova aba do browser-->
+
+    <div id="language-selector">
+        <button onclick="changeLanguage('pt')">Português</button>
+        <button onclick="changeLanguage('en')">English</button>
+    </div>
+    <div id="buttons-pt">
+        <a href="#" class="button-style" onclick="loadPage('/i9c_mp_nobc');return false;">Macroprocessos PDI</a>
+        <a href="#" class="button-style" onclick="loadPage('/i9c_gp_nobc');return false;">Todas Camadas</a>        
+        <a href="#" class="button-style" onclick="loadPage('/i9c_gp01');return false;">Pesquisar</a> 
+        <a href="#" class="button-style" onclick="loadPage('/i9c_gp02');return false;">Desenvolver</a> 
+        <a href="#" class="button-style" onclick="loadPage('/i9c_gp03');return false;">Inovar</a>
         <a href="/grafo_interativo.html" class="button-style" target="_blank">GrafoPDI</a>
-    </h4>
-    <!-- Contêiner principal para o conteúdo dinâmico -->
+    </div>
+
+    <div id="buttons-en" style="display: none;">
+        <a href="#" class="button-style" onclick="loadPage('/i9c_mp_nobc');return false;">PDI Macroprocesses</a>
+        <a href="#" class="button-style" onclick="loadPage('/i9c_gp01');return false;">Search</a> 
+        <a href="#" class="button-style" onclick="loadPage('/i9c_gp02');return false;">Develop</a> 
+        <a href="#" class="button-style" onclick="loadPage('/i9c_gp03');return false;">Innovate</a> 
+        <a href="#" class="button-style" onclick="loadPage('/i9c_gp_nobc');return false;">All Layers</a>
+        <a href="/grafo_interativo.html" class="button-style" target="_blank">PDI Graph</a>
+    </div>
+
     <div id="main-content"></div>
+
     <div id="addNodeForm" style="display: none;">
-        <label for="nodeName">Nome:</label>
+        <label for="nodeName" id="nodeNameLabel">Nome:</label>
         <input type="text" id="nodeName" name="nodeName" required>
-        <!-- Adicione outros campos conforme necessário -->
         <button onclick="saveNewNode()">Salvar</button>
         <button onclick="closeForm()">Cancelar</button>
     </div>
+
+    <label for="jsonFile" id="renderGraphLabel">Escolher Grafo</label>
+    <input type="file" id="jsonFile" accept=".json" style="display: none;">
+    <button id="renderGraphButton">Escolher Grafo</button>
+    <div id="scatterplot"></div>
+
     <script>
-        // Função para carregar conteúdo dinamicamente
         function loadPage(pageUrl) {
             fetch(pageUrl)
                 .then(response => response.text())
                 .then(html => {
                     document.getElementById('main-content').innerHTML = html;
-                    // Adicionar mais lógicas ativar scripts específicos
-
                 }).catch(error => {
                     console.error('Falha ao carregar a página:', error);
                 });
         }
 
-        // Função para mostrar/ocultar o formulário de adicionar nó
         function toggleAddNodeForm() {
             const form = document.getElementById('addNodeForm');
             if (form.style.display === 'none') {
@@ -52,14 +89,28 @@
             } else {
                 form.style.display = 'none';
             }
-        }        
+        }
+
+        function changeLanguage(lang) {
+            if (lang === 'pt') {
+                document.getElementById('buttons-pt').style.display = 'block';
+                document.getElementById('buttons-en').style.display = 'none';
+                document.getElementById('detail-title').textContent = 'Detalhamento:';
+                document.getElementById('nodeNameLabel').textContent = 'Nome:';
+                document.getElementById('renderGraphLabel').textContent = 'Escolher Grafo';
+                document.getElementById('renderGraphButton').textContent = 'Escolher Grafo'; 
+            } else {
+                document.getElementById('buttons-pt').style.display = 'none';
+                document.getElementById('buttons-en').style.display = 'block';
+                document.getElementById('detail-title').textContent = 'Details:';
+                document.getElementById('nodeNameLabel').textContent = 'Name:';
+                document.getElementById('renderGraphLabel').textContent = 'Choose Graph';
+                document.getElementById('renderGraphButton').textContent = 'Choose Graph';
+            }
+        }
     </script>
+
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Botão de Renderização do Grafo -->
-    <label for="jsonFile" id="renderGraph">Escolher Grafo</label>
-    <input type="file" id="jsonFile" accept=".json" style="display: none;">
-    <button id="renderGraph">Escolher Grafo</button>
-    <div id="scatterplot"></div>
 </body>
 </html>

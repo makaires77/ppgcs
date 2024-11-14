@@ -38,7 +38,7 @@ def carregar_arquivo():
         return jsonify({"success": False, "error": "Formato de arquivo inválido"})
         
 # Funcionalidades para carregar templates
-@app.route('/static/favicon.ico')
+@app.route('/static/assets/images/favicon.ico')
 def favicon():
     return send_from_directory('static', 'favicon.ico') 
 
