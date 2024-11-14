@@ -77,9 +77,14 @@ def fiocruz_ce_report():
     return render_template('report_fiocruz_ce.html', show_render_button=True)
 
 @app.route('/orientacoes_report')
-def orientacoes_report():
+def publicacoes_report():
     # Renderizar link para report no breadcrumb
     return render_template('relatorio_orientacoes.html', show_render_button=True)
+
+@app.route('/publicacoes_report')
+def orientacoes_report():
+    # Renderizar link para report no breadcrumb
+    return render_template('relatorio_publicacoes.html', show_render_button=True)
 
 @app.route('/i9c_gp_nobc')
 def i9c_gp_nobc():
