@@ -1,10 +1,18 @@
 import json
+import spacy
 import networkx as nx
 import multiprocessing as mp
-from collections import defaultdict
+
 import torch
 import torch_geometric
+
 from dgl import DGLGraph
+from langdetect import detect
+from unidecode import unidecode
+from collections import defaultdict
+from spacy.matcher import PhraseMatcher
+from deep_translator import GoogleTranslator
+
 
 class PDIGraphBuilder:
     def __init__(self, demandas_path, questoes_path, pesquisadores_path, macroprocessos_path):
@@ -21,19 +29,23 @@ class PDIGraphBuilder:
     def _extract_competencias(self, texto):
         try:
             # Tradução (se necessário)
+            idioma = detect(texto)
             if idioma != 'en':
-                translator = Translator()
-                texto = translator.translate(texto, dest='en').text
+                tradutor = GoogleTranslator(source='auto', target='en').translate(text=texto)
+                texto = tradutor.translate(texto)
 
-            # Normalização e limpeza (em inglês)
+            # Normalizar e limpar (em inglês)
             nlp = spacy.load("en_core_web_sm")
             doc = nlp(texto.lower())
 
-            # Normalização do texto
-            texto = unidecode(texto).lower()  # Remove acentos e converte para minúsculas
+            # Criar um PhraseMatcher
+            matcher = PhraseMatcher(nlp.vocab)
 
-            # Criação de padrões para o Matcher (exemplos)
-            matcher = Matcher(nlp.vocab)
+            # Normalizar texto: remover acentos e converter para minúsculas
+            texto = unidecode(texto).lower()  
+
+            # Criar padrões para o Matcher (exemplos)
+            matcher = PhraseMatcher(nlp.vocab)
             patterns = [
                 [{"POS": "NOUN"}],  # Substantivos
                 [{"POS": "ADJ"}, {"POS": "NOUN"}],  # Adjetivo + Substantivo
@@ -85,8 +97,7 @@ class PDIGraphBuilder:
             self.grafo.add_node(lattes_id, tipo='pesquisador', nome=pesquisador['Identificação']['Nome'])
             for campo in ['Formação', 'Atuação Profissional', 'Linhas de Pesquisa', 'Áreas', 'Produções']:
                 for _, info in pesquisador.get(campo, {}).items():
-                    idioma = detect(info)  # Detectar o idioma do texto
-                    competencias = self._extract_competencias(info, idioma)  # Extrair competências no idioma correto
+                    competencias = self._extract_competencias(info)
                     for competencia in competencias:
                         self.grafo.add_node(competencia, tipo='competencia')
                         self.grafo.add_edge(lattes_id, competencia, tipo='possui_competencia')
@@ -95,6 +106,6 @@ class PDIGraphBuilder:
         nx.write_gml(self.grafo, path)
 
 # Exemplo de uso (após implementar _extract_competencias):
-builder = PDIGraphBuilder("demandas.json", "pesquisadores.json", "macroprocessos.json")
+builder = PDIGraphBuilder("demandas.json", "questoes.json", "pesquisadores.json", "macroprocessos.json")
 builder.build_graph()
 builder.save_graph()
