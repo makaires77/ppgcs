@@ -43,6 +43,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -360,6 +361,7 @@ class JSONFileManager:
         with open(file_path, 'w', encoding='utf-8') as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
 
+
 class attribute_to_be_non_empty:
     """
     An expectation for checking that an attribute of a specific element is not empty,
@@ -522,16 +524,17 @@ class DictToHDF5:
                 # Informações adicionais sobre o conjunto de dados
                 print(" " * (indent + 4) + f"Shape: {value.shape}, Dtype: {value.dtype}")
                 
-                # Visualização do conteúdo do conjunto de dados
-                if value.size < 10:  # imprimir todo o conjunto de dados se ele for pequeno
-                    print(" " * (indent + 4) + f"Data: {value[...]}")
-                else:  # imprimir uma amostra dos dados se o conjunto de dados for grande
-                    sample = value[...]
-                    if value.ndim > 1:
-                        sample = sample[:min(3, value.shape[0]), :min(3, value.shape[1])]
-                    else:
-                        sample = sample[:min(3, value.size)]
-                    print(" " * (indent + 4) + f"Sample Data: {sample}")
+                if value.size:
+                    # Visualização do conteúdo do conjunto de dados
+                    if value.size < 10:  # imprimir todo o conjunto de dados se ele for pequeno
+                        print(" " * (indent + 4) + f"Data: {value[...]}")
+                    else:  # imprimir uma amostra dos dados se o conjunto de dados for grande
+                        sample = value[...]
+                        if value.ndim > 1:
+                            sample = sample[:min(3, value.shape[0]), :min(3, value.shape[1])]
+                        else:
+                            sample = sample[:min(3, value.size)]
+                        print(" " * (indent + 4) + f"Sample Data: {sample}")
 
     @staticmethod
     def print_json_structure(json_file_path: str, indent: int = 0, max_sample_size: int = 10):
@@ -631,6 +634,7 @@ class LattesScraper:
         # options   = Options()
         # options.add_argument("--headless")
         # driver   = webdriver.Chrome(options=options)
+
         driver_path = None
         try:
             # Caminho para o chromedriver no sistema local
@@ -726,9 +730,9 @@ class LattesScraper:
 
         return nome_normalizado
 
-    def scrape_and_persist(self, data):
-        self._scrape(data)
-        self._persist(data)
+    # def scrape_and_persist(self, data):
+    #     self._scrape(data)
+    #     self._persist(data)
 
     def _persist(self, data):
         # Conectar ao banco de dados Neo4j
@@ -786,7 +790,7 @@ class LattesScraper:
         for attempt in range(max_retries):
             try:
                 error_div = self.driver.find_element(By.CSS_SELECTOR, 'resultado')
-                linha1 = error_div.fidChild('li')
+                linha1 = error_div.find_element('li')
                 if 'Stale file handle' in linha1.text:
                     time.sleep(retry_interval)
                 else:
@@ -795,7 +799,7 @@ class LattesScraper:
                 return True
         return False
 
-    def extract_data_from_cvuri(element) -> dict:
+    def extract_data_from_cvuri(self, element) -> dict:
         """
         Extracts data from the cvuri attribute of the given element.
         :param element: WebElement object
@@ -986,26 +990,6 @@ class LattesScraper:
                 experiences.append(experience_info)
         return experiences
 
-    def get_productions(self):
-        logging.debug("Extraindo produções do currículo.")
-        try:
-            productions = {
-                "artigos_completos": self.get_section_productions("ArtigosCompletos"),
-                "livros_publicados": self.get_section_productions("LivrosCapitulos"),
-                "capitulos_de_livros_publicados": self.get_section_productions("LivrosCapitulos"),
-                "trabalhos_completos_em_anais": self.get_section_productions("TrabalhosPublicadosAnaisCongresso"),
-                "apresentacoes_de_trabalho": self.get_section_productions("ApresentacoesTrabalho"),
-                "outras_producoes_bibliograficas": self.get_section_productions("OutrasProducoesBibliograficas"),
-                "assessoria_e_consultoria": self.get_section_productions("AssessoriaConsultoria"),
-                "produtos_tecnologicos": self.get_section_productions("ProdutosTecnologicos"),
-                "trabalhos_tecnicos": self.get_section_productions("TrabalhosTecnicos"),
-                "demais_tipos_de_producao_tecnica": self.get_section_productions("DemaisProducaoTecnica"),
-                "demais_trabalhos": self.get_section_productions("DemaisTrabalhos")
-            }
-            return productions
-        except Exception as e:
-            logging.error("Erro ao extrair produções: %s", e)
-
     def get_section_productions(self, soup, section_name):
         section = soup.find('a', name=section_name)
         if not section:
@@ -1018,6 +1002,27 @@ class LattesScraper:
                 productions_list.append(text)
             current_element = current_element.find_next_sibling()
         return productions_list
+    
+    def get_productions(self, soup):
+        logging.debug("Extraindo produções do currículo.")
+        try:
+            productions = {
+                "artigos_completos": self.get_section_productions(soup, "ArtigosCompletos"),
+                "livros_publicados": self.get_section_productions(soup, "LivrosCapitulos"),
+                "capitulos_de_livros_publicados": self.get_section_productions(soup, "LivrosCapitulos"),
+                "trabalhos_completos_em_anais": self.get_section_productions(soup, "TrabalhosPublicadosAnaisCongresso"),
+                "apresentacoes_de_trabalho": self.get_section_productions(soup, "ApresentacoesTrabalho"),
+                "outras_producoes_bibliograficas": self.get_section_productions(soup, "OutrasProducoesBibliograficas"),
+                "assessoria_e_consultoria": self.get_section_productions(soup, "AssessoriaConsultoria"),
+                "produtos_tecnologicos": self.get_section_productions(soup, "ProdutosTecnologicos"),
+                "trabalhos_tecnicos": self.get_section_productions(soup, "TrabalhosTecnicos"),
+                "demais_tipos_de_producao_tecnica": self.get_section_productions(soup, "DemaisProducaoTecnica"),
+                "demais_trabalhos": self.get_section_productions(soup, "DemaisTrabalhos")
+            }
+            return productions
+        except Exception as e:
+            logging.error("Erro ao extrair produções: %s", e)
+
 
     def get_events(self, soup):
         """Extrai informações de eventos participados."""
@@ -1043,9 +1048,9 @@ class LattesScraper:
                 orientations.append(orientation_info)
         return orientations
 
-    def medir_tempo_resposta(self):
+    def medir_tempo_resposta(self, url_busca):
         try:
-            response = requests.get(self.base_url)
+            response = requests.get(url_busca)
             tempo_resposta = response.elapsed.total_seconds()
             print(f"Tempo de resposta do servidor: {tempo_resposta:.2f} segundos")
         except requests.exceptions.RequestException as e:
@@ -1053,58 +1058,57 @@ class LattesScraper:
 
     def extract_dom_element(self):
         """
-        Extrair elemento com vínculo detectado a partir da página de resultados com qualquer quantidade de resultados
+        Extrair elemento com vínculo detectado a partir da página de resultados.
         """
         try:
-            ## Ler quantidade de resultados apresentados pela busca de nome
+            # Esperar o elemento que indica a quantidade de resultados
             css_qteresultados = ".tit_form > b:nth-child(1)"
             WebDriverWait(self.driver, self.delay).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, css_qteresultados)))                       
+                EC.presence_of_element_located((By.CSS_SELECTOR, css_qteresultados)))
+
+            # Extrair a quantidade de resultados
             soup = BeautifulSoup(self.driver.page_source, 'html.parser')
             div_element = soup.find('div', {'class': 'tit_form'})
             match = re.search(r'<b>(\d+)</b>', str(div_element))
             if match:
                 qte_res = int(match.group(1))
-                # print(f'{qte_res} resultados para {NOME}')
             else:
-                return None, NOME, np.NaN, 'Currículo não encontrado', self.driver
-            if self.is_stale_file_handler_present():
-                raise StaleException
-        except:
-            print('Erro ao obter quantidade de resultados da página HTML')
-            return None        
-        try:
-            # Esperar carregar a lista de resultados na página
-            css_resultados = ".resultado"
-            WebDriverWait(self.driver, self.delay, ignored_exceptions=ignored_exceptions).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
-            resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
-            if self.is_stale_file_handler_present():
-                raise StaleException
-        except:
-            print('Erro ao obter resultados da página HTML')
+                print(f'Resultados não encontrados na busca Lattes')
+                return None
+
+            # Loop para lidar com Stale File Handler
+            for _ in range(5):  # self.max_tentativas define o número máximo de tentativas
+                try:
+                    # Esperar carregar a lista de resultados
+                    css_resultados = ".resultado"
+                    WebDriverWait(self.driver, self.delay).until(
+                        EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
+
+                    # Encontrar os elementos da lista de resultados
+                    resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
+
+                    # Verificar se há erro de Stale File Handler
+                    if self.is_stale_file_handler_present():
+                        raise StaleElementReferenceException
+
+                    return resultados
+
+                except StaleElementReferenceException:
+                    print(f"Erro Stale File Handler detectado. Tentando novamente...")
+                    time.sleep(2)  # Aguarda um tempo antes de tentar novamente
+
+            print(f"Erro Stale File Handler persistiu.")
             return None
-        # soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-        # for page in soup:
-        #     if not page:
-        #         continue
-        #     for page_results in page:
-        #         if not resultados_pagina:
-        #             continue
-        #         for result in page_results:
-        #             if not result:
-        #                 continue
-        #             element = self.get_element_from_link(result)
-        #             if element:
-        #                 results.append(element)
-        #                 break
-        return resultados
+
+        except Exception as e:
+            print(f"Erro ao extrair elemento DOM: {e}")
+            print(f"Conteúdo HTML: {self.driver.page_source}")
+            return None
 
     def get_element_without_pagination(self, NOME, resultados, termos_busca):
         """
-        Extrair o elemento com vínculo de acordo com termos de busca, em páginas de resultados que não precisa paginar
+        Extrair o elemento com vínculo de acordo com termos de busca, em páginas sem paginação
         """
-        width = 7
         limite = 5
         duvidas = []
         qte_res = len(resultados)
@@ -1115,7 +1119,7 @@ class LattesScraper:
             if self.verbose:
                 print(f'       Quantidade de homônimos: {len(linhas):02}')
             if self.is_stale_file_handler_present():
-                raise StaleException
+                raise StaleElementReferenceException
                 # return np.NaN, NOME, np.NaN, 'Stale file handle', self.driver
             for m,linha_multipla in enumerate(linhas):
                 nome_achado = linhas[m].split('\n')[0]
@@ -1159,12 +1163,12 @@ class LattesScraper:
                 # Parar loop de currículos quando um termo já tiver sido achado
                 if force_break_loop:
                     break
-                # ## Caso percorra toda lista e não encontre vínculo adiciona à dúvidas quanto ao nome
-                # if m==(qte_res):
-                #     print(f'       Nenhuma referência à {termo}')
-                #     duvidas.append(NOME)
-                #     # clear_output(wait=True)
-                #     # driver.quit()
+                ## Caso percorra toda lista e não encontre vínculo adiciona à dúvidas quanto ao nome
+                if m==(qte_res):
+                    print(f'       Nenhuma vínculo encontrado para {NOME}')
+                    duvidas.append(NOME)
+                    # clear_output(wait=True)
+                    # driver.quit()
             # Parar loop da div de resultados quando um termo já tiver sido achado
             if force_break_loop:
                 break
@@ -1397,7 +1401,7 @@ class LattesScraper:
             if resultados:
                 count+=len(resultados*10)
             if self.is_stale_file_handler_present():
-                raise StaleException
+                raise StaleElementReferenceException
             # Ler quantidade de resultados apresentados pela busca de nome
             css_qteresultados = ".tit_form > b:nth-child(1)"
             WebDriverWait(self.driver, self.delay).until(
@@ -1435,7 +1439,7 @@ class LattesScraper:
                 # Páginas com até 10 resultados não precisa paginar, avaliar termos e retornar elemento do resultado (OK!)
                 print(f'       {qte_res:>2} currículos homônimos: {NOME}')
                 if self.is_stale_file_handler_present():
-                    raise StaleException
+                    raise StaleElementReferenceException
 
                 # iterar em cada resultado
                 for n,i in enumerate(resultados):
@@ -1514,8 +1518,8 @@ class LattesScraper:
                     # traceback_str = ''.join(traceback.format_tb(e.__traceback__))
                     # print(f'       Na linha: {traceback_str}')
                 if self.is_stale_file_handler_present():
-                    raise StaleException
-        except StaleException as e:
+                    raise StaleElementReferenceException
+        except StaleElementReferenceException as e:
             traceback_str = ''.join(traceback.format_tb(e.__traceback__))
             if self.verbose:
                 print(traceback_str)
@@ -2619,10 +2623,7 @@ class LattesScraper:
             print(f'   {i}')
 
         return lista_restante
-    
-    def save_to_json(self, data, file_path):
-        with open(file_path, 'w', encoding='utf-8') as file:
-            json.dump(data, file, ensure_ascii=False, indent=4)
+
 
 class HTMLParser:
     def __init__(self, html):
@@ -6921,7 +6922,7 @@ class ArticlesCounter:
                     # # if verbose:
                     # #     print(f'qte_lin_result: {len(linhas):02}')
                     # if self.is_stale_file_handler_present():
-                    #     raise StaleException
+                    #     raise StaleElementReferenceException
                     #     # return np.NaN, NOME, np.NaN, 'Stale file handle', self.driver
                     # for m,linha_multipla in enumerate(linhas):
                     #     nome_achado = linhas[m].split('\n')[0]

@@ -15,5 +15,9 @@ selenium
 transformers
 xformers
 torch
+Levenshtein
+pdfkit
+h5py
+xlrd
 # spacy
 # tika

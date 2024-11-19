@@ -1,0 +1,289 @@
+ACOMPANHAMENTO FORÇA DE TRABALHO - 2023,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,
+DADOS FUNCIONAIS ,,,,,,,,,,,,,,,,,,,,DADOS PESSOAIS ,,,,,,
+QUANT,STATUS,MATRÍCULA,NOME_RASCUNHO,NOME,COORDENAÇÃO,ÁREA,CARGO,,VÍNCULO,LOTAÇÃO PROVISÓRIA,INGRESSO_FIOCE,POSSE NA FIOCRUZ,ADICIONAL OCUPACIONAL,EMPRESA/BOLSA/PROGRAMA,GESTOR,ADI,INICIO CONTRATO,FINAL CONTRATO,,EMAIL PESSOAL,GENERO,DATA NASCIMENTO,,FORMAÇÃO,NÍVEL,ENDEREÇO RESIDENCIAL
+1,ATIVO,2242450,Alice Paula Di Sabatino Guimaraes,Alice Paula Di Sabatino Guimaraes,Biotecnologia-GR2 (VIGILÂNCIA GENÔMICA),EPID.TRANSL.VIG.GENÔMICA,Tecnologista em Saúde Pública,Tecnologista em Saúde Pública,SERVIDOR,LOCAL,3/1/2022,15/7/2015,N/I,N/A,Fabio Miyajima ,S,N/A,N/A,alice.guimaraes@fiocruz.br,,Feminino,11/8/1982,Ciências Biológicas,Ciências Biológicas,MESTRADO,
+2,ATIVO,1165347,ANA CLAUDIA DE ARAÚJO TEIXEIRA,Ana Claudia De Araújo Teixeira,Saúde e Ambiente,SAÚDE_E_AMBIENTE,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,17/8/2015,17/8/2015,NÃO,N/A,João Herminio,L,N/A,N/A,ana.claudia@fiocruz.br ,,Feminino,14/7/1964,Farmácia,Farmácia,DOUTORADO,Rua Tiradentes
+3,ATIVO,1014947,ANA CAMILA OLIVEIRA ALVES,Ana Camila Oliveira Alves,Coordenação de Pesquisa e Coleções Biológicas ,IMUNOFARMACOLOGIA,Técnico em Pesquisa e Investigação Biomédica,Técnico em Pesquisa e Investigação Biomédica,SERVIDOR,LOTAÇÃO PROVISÓRIA,26/8/2019,4/12/2019,NÃO,N/A,Gilvan Furtado,S,N/A,N/A,ana.camila@fiocruz.br,camila_alves1@yahoo.com.br,Feminino,18/5/1985,Farmácia,Farmácia,MESTRADO,Avenida ROGACIANO LEITE
+4,ATIVO,626325,ANGELA CHRISTINA DE MORAES OSTRITZ,Angela Christina De Moraes Ostritz,Saúde e Ambiente,SAÚDE_E_AMBIENTE,Enfermeira(o),Enfermeiro,SERVIDOR,CEDIDO,5/6/2017,5/6/2017,NÃO,N/A,Luiz Odorico,S,N/A,N/A,angela.ostritz@fiocruz.br ,angela.ostritz@gmail.com,Feminino,6/1/1955,Enfermagem,Enfermagem,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),Rua Bela Vista
+5,ATIVO,1896774,ADRIANA COSTA BACELO,Adriana Costa Bacelo,Saúde Digital,SAÚDE_DIGITAL,Tecnologista em Saúde Pública,Tecnologista em Saúde Pública,SERVIDOR,LOCAL,1/7/2021,27/10/2011,N/I,N/A,Ivana Cristina Barreto,S,N/A,N/A,adriana.bacelo@fiocruz.br,adribacelo@gmail.com,Feminino,17/11/1973,Nutrição,Nutrição,DOUTORADO,Rua Coronel Lancarte
+6,ATIVO,21819093,ANNA CAROLINA MACHADO MARINHO,Anna Carolina Machado Marinho,Coordenação Geral (QUALIDADE),IMUNOFARMACOLOGIA,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,6/7/2018,12/12/2014,SIM,N/A,Carla Celedonio,L,N/A,N/A,anna.marinho@fiocruz.br ,,Feminino,22/1/1985,Farmácia,Farmácia,MESTRADO,ESTRADA DO FIO
+7,ATIVO,N/I,ANTONIO CARLILE DE HOLANDA LAVOR,Antonio Carlile De Holanda Lavor,Saúde da Família,SAÚDE_DA_FAMÍLIA,Pesquisador em Saúde Pública,Coordenador da Fiocruz CE,COORENAÇÃO GERAL,LOCAL,30/6/2005,30/6/2005,NÃO,N/A,N/I,-,N/A,N/A,carlile.lavor@fiocruz.br,,Masculino,23/8/1940,Medicina,Medicina,DOUTORADO,Rua Gilberto Studart
+8,ATIVO,1683775,ANTONIO MARCOS AIRES BARBOSA,Antonio Marcos Aires Barbosa,Coordenação de Pesquisa e Coleções Biológicas ,ENGPROT_SOLUÇÕES_SAÚDE,Analista de Gestão em Saúde,Analista de Gestão em Saúde,SERVIDOR,LOCAL,7/11/2011,7/11/2011,NÃO,N/A,João Herminio,S,N/A,N/A,marcos.aires@fiocruz.br,,Masculino,11/8/1977,Engenharia de Produção,Engenharia De Produção,MESTRADO,Rua Professor Heribaldo Costa
+9,ATIVO,2904868,ANYA PIMENTEL GOMES FERNANDES VIEIRA MEYER,Anya Pimentel Gomes Fernandes Vieira Meyer,Saúde da Família,SAÚDE_DA_FAMÍLIA,Especialista em C&T Prod. Inov. Saúde Pública,Especialista em C&T Prod. Inov. Saúde Pública,SERVIDOR,LOCAL,5/11/2010,5/11/2010,SIM,N/A,Maximiliano Souza,S,N/A,N/A,anya.vieira@fiocruz.br,,Feminino,23/7/1976,Odontologia,Odontologia,DOUTORADO,Avenida Beira Mar
+10,ATIVO,1913135,BRUNO BEZERRA CARVALHO,Bruno Bezerra Carvalho,Coordenação da Gestão e Desenvolvimento Institucional (COORDENAÇÃO) ,GESTÃO,Analista de Gestão em Saúde,Analista de Gestão em Saúde,SERVIDOR,LOCAL,8/7/2018,19/1/2012,NÃO,N/A,Carla Celedonio,L,N/A,N/A,bruno.carvalho@fiocruz.br,,Masculino,1/5/1979,Rede de Computadores,Rede De Computadores,MESTRADO,ESTRADA DO FIO
+11,ATIVO,2175249,CARLA FREIRE CELEDÔNIO FERNANDES,Carla Freire Celedônio Fernandes,Coordenação Geral,IMUNOFARMACOLOGIA,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,29/6/2018,7/11/2014,SIM,N/A,Mario  Moreira,L,N/A,N/A,carla.celedonio@fiocruz.br,,Feminino,2/5/1978,Farmácia,Farmácia,DOUTORADO,RUA LEDA PORTO FREIRE
+12,ATIVO,1683295,CARLOS JOSE ARAUJO PINHEIRO,Carlos Jose Araujo Pinheiro,"Coordenação de Educação, Informação e Comunicação (SECRETARIA ACADÊMICA)",SAÚDE_DA_FAMÍLIA,Técnico em Saúde Pública,Técnico em Saúde Pública,SERVIDOR,LOCAL,22/4/2019,22/4/2019,NÃO,N/A,Sharmenia Araujo,S,N/A,N/A,carlos.pinheiro@fiocruz.br,,Masculino,19/3/1982,Administração,Administração,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),Avenida Beira Mar
+13,ATIVO,1538475,,Claudia Stutz Zubieta,Biotecnologia-GR2 (VIGILÂNCIA GENÔMICA),EPID.TRANSL.VIG.GENÔMICA,Técnico em Saúde Pública,,SERVIDOR,LOCAL,30/6/2022,27/11/2006,SIM,N/A,Fabio Miyajima ,S,N/A,N/A,claudia.stutz@fiocruz.br,claudia.stutz@gmail.com,Feminino,17/4/1978,,Fisioterapia,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),
+14,ATIVO,1613229,CHARLES CERQUEIRA DE ABREU,Charles Cerqueira De Abreu,Coordenação da Gestão e Desenvolvimento Institucional(ALMOXARIFADO),GESTÃO,Técnico em Saúde Pública,Técnico em Saúde Pública,SERVIDOR,LOCAL,23/9/2020,6/3/2008,SIM,N/A,Bruno Carvalho,S,N/A,N/A,charles.abreu@fiocruz.br,,Masculino,21/4/1968,Tecnólogo em Segurança do Trabalho,Tecnólogo Em Segurança Do Trabalho,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),PRACA 23 DE JUNHO
+15,ATIVO,1993800,CLARICE GOMES E SOUZA DABÉS,Clarice Gomes E Souza Dabés,Coordenação Geral (QUALIDADE),GESTÃO,Analista de Gestão em Saúde,Analista de Gestão em Saúde,SERVIDOR,LOCAL,11/7/2021,4/2/2013,NÃO,N/A,Anna Carolina,S,N/A,N/A,clarice.dabes@fiocruz.br,cladabes@yahoo.com.br,Feminino,4/10/1984,Farmácia,Farmácia,MESTRADO,Rua Luiz Pio Campina
+16,ATIVO,2181594,CLARISSA ROMERO TEIXEIRA,Clarissa Romero Teixeira,Biotecnologia-GR1 (IMUNOPARASITOLOGIA),IMUNOPARASITOLOGIA,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,1/4/2019,9/12/2014,SIM,N/A,Roberto Nicolete,S,N/A,N/A,clarissa.teixeira@fiocruz.br,,Feminino,12/1/1976,Farmácia/Bioquímica,Farmácia/Bioquímica,DOUTORADO,Rua Eduardo Garcia
+17,ATIVO,,,Dayane Alves Costa,Coordenação de Pesquisa e Coleções Biológicas ,IMUNOPARASITOLOGIA,Tecnologista em Saúde Pública,,SERVIDOR,CEDIDO,25/7/2023,25/7/2023,SIM,N/A,João Herminio,S,N/A,N/A,,,Feminino,23/4/1986,,Biomedicina ,DOUTORADO,
+18,ATIVO,1319630,DONAT ALEXANDER DE CHAPEAUROUGE,Donat Alexander De Chapeaurouge,Biotecnologia-GR3 (BIOTECNOLOGIA),ENGPROT_SOLUÇÕES_SAÚDE,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,8/8/2016,15/7/2002,NÃO,N/A,Gilvan Furtado,S,N/A,N/A,donat.alexander@fiocruz.br,,Masculino,10/1/1961,Química,Química,DOUTORADO,Rua Ana Bilhar
+19,ATIVO,2182142,EDUARDO RUBACK DOS SANTOS,Eduardo Ruback Dos Santos,Coordenação Geral,IMUNOFARMACOLOGIA,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,4/8/2020,12/12/2014,SIM,N/A,Luiz Odorico,S,N/A,N/A,eduardo.ruback@fiocruz.br,,Masculino,3/7/1977,Doutorado EM CIÊNCIAS,Doutorado Em Ciências,DOUTORADO,Rua Paisagística
+20,ATIVO,	0445970,EZEQUIEL VALENTIM DE MELO,Ezequiel Valentim De Melo,Coordenação da Gestão e Desenvolvimento Institucional (FINANCEIRO),GESTÃO,Analista de Gestão em Saúde,Analista de Gestão em Saúde,SERVIDOR,LOCAL,3/1/2012,9/6/2008,NÃO,N/A,Bruno Carvalho,S,N/A,N/A,ezequiel.melo@fiocruz.br,,Masculino,2/5/1960,Administração,Administração,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),Avenida Rogaciano Leite
+21,ATIVO,1344058,FaBIO MIYAJIMA,Fabio Miyajima,Biotecnologia-GR2 (VIGILÂNCIA GENÔMICA),EPID.TRANSL.VIG.GENÔMICA,Especialista em C&T Prod. Inov. Saúde Pública,Especialista em C&T Prod. Inov. Saúde Pública,SERVIDOR,LOCAL,12/1/2018,12/1/2018,SIM,N/A,João Herminio,L,N/A,N/A,fabio.miyajima@fiocruz.br,,Masculino,26/6/1974,Odontologia,Odontologia,DOUTORADO,Avenida Engenheiro Leal Lima Verde
+22,ATIVO,,,Fernanda Savicki de Almeida,Saúde e Ambiente,SAÚDE_E_AMBIENTE,Pesquisador em Saúde Pública,,SERVIDOR,LOCAL,01/01/2024,01/01/2014,NÃO,NÃO,Ana Claudia,,,,fernanda.savicki@fiocruz.br,,,,,Ciências com ênfase em Recursos Genéticos Vegetais,DOUTORADO,
+22,ATIVO,2243169,FERNANDO BRAGA STEHLING DIAS,Fernando Braga Stehling Dias,Biotecnologia-GR2 (VIGILÂNCIA GENÔMICA),EPID.TRANSL.VIG.GENÔMICA,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,5/1/2021,16/7/2015,SIM,N/A,Fabio Miyajima ,S,N/A,N/A,fernando.dias@fiocruz.br,fbragasdia@gmail.com,Masculino,8/9/1979,Ciências Biológicas,Ciências Biológicas,DOUTORADO,Rua SILVA JATAHY
+23,ATIVO,1493522,FERNANDO FERREIRA CARNEIRO,Fernando Ferreira Carneiro,Saúde e Ambiente,SAÚDE_E_AMBIENTE,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,2/12/2014,2/12/2014,NÃO,N/A,Ana Claudia,S,N/A,N/A,fernando.carneiro@fiocruz.br,,Masculino,29/6/1973,Pesquisador em Saúde Pública,Pesquisador Em Saúde Pública,DOUTORADO,Rua Andrade Furtado
+24,ATIVO,224946-3,GALBA FREIRE MOITA,Galba Freire Moita,Coordenação de Produção e  Inovação em Saúde ,SAÚDE_DIGITAL,Tecnologista em Saúde Pública,Tecnologista Pleno,SERVIDOR,CEDIDO,1/6/2018,1/6/2018,NÃO,N/A,Luiz Odorico,S,N/A,N/A,galba.moita@fiocruz.br,prgalba@gmail.com,Masculino,22/10/1966,Engenharia,Engenharia,DOUTORADO,Avenida Padre Antonio Tomas
+25,ATIVO,1985736,GIOVANNY AUGUSTO CAMACHO ANTEVERE MAZZAROTTO,Giovanny Augusto Camacho Antevere Mazzarotto,Biotecnologia-GR2 (VIGILÂNCIA GENÔMICA),EPID.TRANSL.VIG.GENÔMICA,Tecnologista em Saúde Pública,Tecnologista em Saúde Pública,SERVIDOR,LOCAL,5/8/2021,18/12/2012,NÃO,N/A,Fabio Miyajima ,S,N/A,N/A,giovanny.mazarotto@fiocruz.br,,Masculino,7/8/1983,Doutorado em Biociências,Doutorado Em Biociências,DOUTORADO,Rua Cajueiro
+27,ATIVO,2184558,GILVAN PESSOA FURTADO,Gilvan Pessoa Furtado,Biotecnologia-GR3 (BIOTECNOLOGIA),ENGPROT_SOLUÇÕES_SAÚDE,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,6/1/2015,6/1/2015,SIM,N/A,João Herminio,L,N/A,N/A,gilvan.furtado@fiocruz.br,,Masculino,20/1/1984,Bioquímica,Bioquímica,DOUTORADO,Rua Professor Otavio Lobo
+28,ATIVO,1350230,IVANA CRISTINA DE HOLANDA CUNHA BARRÊTO,Ivana Cristina De Holanda Cunha Barrêto,Saúde Digital,SAÚDE_DIGITAL,Especialista em C&T Prod. Inov. Saúde Pública,Especialista em C&T Prod. Inov. Saúde Pública,SERVIDOR,LOCAL,18/12/2014,18/12/2014,NÃO,N/A,João Herminio,L,N/A,N/A,ivana.barreto@fiocruz.br ,,Feminino,24/8/1964,Medicina,Medicina,DOUTORADO,"Rua Leonardo Mota,"
+29,ATIVO,1715669,IVANILDO LOPES FARIAS,Ivanildo Lopes Farias,Coordenação da Gestão e Desenvolvimento Institucional (INFRAESTRUTURA / SIMAM),GESTÃO,Tecnologista em Saúde Pública,Tecnologista em Saúde Pública,SERVIDOR,LOCAL,25/9/2017,8/11/2011,NÃO,N/A,Bruno Carvalho,L,N/A,N/A,ivanildo.lopes@fiocruz.br,,Masculino,25/7/1966,Engenharia,Engenharia,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),RUA A
+30,ATIVO,3121258,,Jaime Ribeiro Filho,Coordenação Geral ,SAÚDE_DA_FAMÍLIA,Pesquisador em Saúde Pública,,SERVIDOR,LOCAL,20/6/2022,2/5/2019,NÃO,N/A,João Herminio,S,N/A,N/A,jaime.ribeiro@fiocruz.br,jaimeribeirofilho@gmail.com,Masculino,26/2/1986,,Farmácia,DOUTORADO,
+31,ATIVO,1049924,JOÃO BAPTISTA ESTABILE NETO,João Baptista Estabile Neto,"Coordenação de Educação, Informação e Comunicação (COMUNICAÇÃO)",GESTÃO,Assistente Tecnico de Gestão em Saúde,Assistente Tecnico de Gestão em Saúde,SERVIDOR,LOCAL,20/9/2021,12/11/1996,NÃO,N/A,Sharmenia Araujo,S,N/A,N/A,joao.estabile@fiocruz.br,jbneto386@gmail.com,Masculino,22/6/1968,ENSINO MÉDIO,Ensino Médio,ENSINO MÉDIO,RUA ZEZITO GOMES
+32,ATIVO,1497987,JOÃO HERMÍNIO MARTINS DA SILVA,João Hermínio Martins Da Silva,Coordenação de Pesquisa e Coleções Biológicas ,IMUNOFARMACOLOGIA,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,13/12/2012,13/12/2012,SIM,N/A,Carla Celedonio,L,N/A,N/A,joao.martins@fiocruz.br,,Masculino,15/1/1978,Ciências Biológicas,Ciências Biológicas,DOUTORADO,Rua Ana Bilhar
+33,AFASTADO,1556031,JOSÉ LUIS PASSOS CORDEIRO,José Luis Passos Cordeiro,Saúde e Ambiente,SAÚDE_E_AMBIENTE,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,9/11/2006,09/11//2006,NÃO,N/A,Ana Claudia,S,N/A,N/A,jose.cordeiro@fiocruz.br,,Masculino,31/12/1971,Ciências Biológicas,Ciências Biológicas,DOUTORADO,RUA SANTA CECÍLIA
+34,ATIVO,2838905,KAMILA MATOS ALBUQUERQUE ,Kamila Matos Albuquerque ,Central Analitica - UNADIG,GESTÃO,Tecnologista em Saúde Pública,Tecnologista Pleno,SERVIDOR,CEDIDO,13/5/2020,13/5/2020,NÃO,N/A,Luiz Odorico,S,N/A,N/A,kamila.albuquerque@fiocruz.br,kamilamatosdealbuquerque@gmail.com,Feminino,8/3/1976,Odontologia,Odontologia,MESTRADO,Rua Dr. Gilberto Studart
+35,ATIVO,1902167,LUCIANA COELHO SERAFIM,Luciana Coelho Serafim,Coordenação da Gestão e Desenvolvimento Institucional (PLANEJAMENTO),GESTÃO,Analista de Gestão em Saúde,Analista de Gestão em Saúde,SERVIDOR,LOCAL,14/3/2022,17/11/2011,NÃO,N/A,Patricia Maria Silva,S,N/A,N/A,luciana.serafim@fiocruz.br,lucianaserafim_engenharia@yahoo.com.br,Feminino,19/9/1978,ENGENHARIA DE ALIMENTOS,Engenharia De Alimentos,DOUTORADO,RUA SANTA CECILIA
+36,ATIVO,1359804,LUCIANA PEREIRA LINDENMEYER,Luciana Pereira Lindenmeyer,"Coordenação de Educação, Informação e Comunicação (SECRETARIA ACADÊMICA)",GESTÃO,Analista de Gestão em Saúde,Analista de Gestão em Saúde,SERVIDOR,LOCAL,11/12/2015,26/8/2002,NÃO,N/A,Sharmenia Araujo,S,N/A,N/A,luciana.lindenmeyer@fiocruz.br,,Feminino,12/2/1976,assistente social,Assistente Social,MESTRADO,Rua Santa Cecilia 
+37,ATIVO,2079552,LUCIANA SILVÉRIO ALLELUIA HIGINO DA SILVA,Luciana Silvério Alleluia Higino Da Silva,Coordenação da Gestão e Desenvolvimento Institucional (SGP / ST),GESTÃO,Enfermeira(o),Enfermeira,SERVIDOR,LOTAÇÃO PROVISÓRIA,6/10/2021,6/10/2021,NÃO,N/A,Sergio Reis,S,N/A,N/A,luciana.silverio@fiocruz.br,luciana.alleluia@gmail.com,Feminino,24/3/1975,Enfermagem,Enfermagem,MESTRADO,Rua Francisco Gonçalves
+38,ATIVO,2013979,LUCIANO PINTO ZORZANELLI,Luciano Pinto Zorzanelli,Coordenação da Gestão e Desenvolvimento Institucional (TIC),GESTÃO,Tecnologista em Saúde Pública,Tecnologista em Saúde Pública,SERVIDOR,LOCAL,29/9/2019,8/4/2013,NÃO,N/A,Bruno Carvalho,S,N/A,N/A,luciano.zorzanelli@fiocruz.br,lzorza@gmail.com,Masculino,6/6/1968,Ciência da Computação ,Ciência Da Computação ,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),Rua Urucunema
+39,ATIVO,747225,LUIS FERNANDO PESSOA DE ANDRADE,Luis Fernando Pessoa De Andrade,Coordenação de Produção e  Inovação em Saúde ,SAÚDE_DIGITAL,Analista de Gestão em Saúde,Analista de Gestão em Saúde,SERVIDOR,LOCAL,20/1/2009,18/10/2002,NÃO,N/A,Luiz Odorico,S,N/A,N/A,luis.pessoa@fiocruz.br,,Masculino,26/10/1952,Administração,Administração,MESTRADO,Rua Pascoal de Castro Alves
+40,ATIVO,1350229,LUIZ ODORICO MONTEIRO DE ANDRADE,Luiz Odorico Monteiro De Andrade,Coordenação de Produção e  Inovação em Saúde ,SAÚDE_DIGITAL,Especialista em C&T Prod. Inov. Saúde Pública,Especialista em C&T Prod. Inov. Saúde Pública,SERVIDOR,LOCAL,3/9/2012,27/6/2012,NÃO,N/A,Carla Celedonio,L,N/A,N/A,odorico.monteiro@fiocruz.br,,Masculino,11/8/1961,Medicina,Medicina,DOUTORADO,Rua Leonardo Mota
+41,ATIVO,1985995,MARCELA HELENA GAMBIM FONSECA,Marcela Helena Gambim Fonseca,Central Analitica - UNADIG,IMUNOFARMACOLOGIA,Tecnologista em Saúde Pública,Tecnologista em Saúde Pública,SERVIDOR,LOCAL,7/1/2013,7/1/2013,SIM,N/A,Luiz Odorico,S,N/A,N/A,marcela.gambim@fiocruz.br,,Feminino,24/6/1982,Ciências Biológicas,Ciências Biológicas,DOUTORADO,Rua Fausto Cabral
+42,ATIVO,2180858,MARCELO JORGE LOPES COUTINHO,Marcelo Jorge Lopes Coutinho,Biotecnologia-GR3 (BIOTECNOLOGIA),ENGPROT_SOLUÇÕES_SAÚDE,Técnico em Saúde Pública,Tecnologista em Saúde Pública,SERVIDOR,LOCAL,5/5/2021,8/12/2014,N/I,N/A,Gilvan Furtado,S,N/A,N/A,marcelo.jorge@fiocruz.br,marcelojorgelc@hotmail.com,Masculino,20/12/1987,Medicina Veterinária,Medicina Veterinária,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),Rua terezinha ribeiro Braulino
+43,ATIVO,1952032,MARCOS ROBERTO LOURENZONI,Marcos Roberto Lourenzoni,Biotecnologia-GR3 (BIOTECNOLOGIA),ENGPROT_SOLUÇÕES_SAÚDE,Especialista em C&T Prod. Inov. Saúde Pública,Especialista em C&T Prod. Inov. Saúde Pública,SERVIDOR,LOCAL,14/9/2012,25/6/2012,NÃO,N/A,Gilvan Furtado,S,N/A,N/A,marcos.lourenzoni@fiocruz.br,,Masculino,15/12/1972,Química,Química,DOUTORADO,Rua Leonardo Mota
+44,ATIVO,1806284,MARCIO FLAVIO MOURA DE ARAUJO ,Marcio Flavio Moura De Araujo ,Saúde da Família,SAÚDE_DA_FAMÍLIA,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,26/4/2019,26/4/2019,SIM,N/A,Maximiliano Souza,S,N/A,N/A,marcio.moura@fiocruz.br,,Masculino,20/9/1982,Enfermagem,Enfermagem,DOUTORADO,Rua conselheiro da silva
+45,AFASTADO,1901024,MARGARETH BORGES COUTINHO GALLO,Margareth Borges Coutinho Gallo,Saúde e Ambiente,SAÚDE_E_AMBIENTE,Tecnologista em Saúde Pública,Tecnologista em Saúde Pública,SERVIDOR,LOCAL,1/9/2017,18/11/2011,NÃO,N/A,Ana Claudia,S,N/A,N/A,margareth.gallo@fiocruz.br,,Feminino,10/6/1963,Farmácia,Farmácia,DOUTORADO,RUA DR. RAIMUNDO GUIMARÃES
+46,ATIVO,1188635,MARLOS DE MEDEIROS CHAVES,Marlos De Medeiros Chaves,Biotecnologia-GR1 (IMUNOPARASITOLOGIA),IMUNOFARMACOLOGIA,Tecnologista em Saúde Pública,Tecnologista em Saúde Pública,SERVIDOR,LOCAL,27/2/2015,2/7/2012,SIM,N/A,Roberto Nicolete,S,N/A,N/A,marlos.chaves@fiocruz.br,,Masculino,31/7/1969,Ciências Biológicas,Ciências Biológicas,DOUTORADO,Avenida José Leon
+47,ATIVO,1556258,MAXIMILIANO LOIOLA PONTE DE SOUZA,Maximiliano Loiola Ponte De Souza,Saúde da Família,SAÚDE_DA_FAMÍLIA,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,3/7/2017,22/11/2006,NÃO,N/A,João Herminio,L,N/A,N/A,maximiliano.loiola@fiocruz.br,,Masculino,22/1/1975,Medicina,Medicina,DOUTORADO,RUA henriqueta galeno
+48,ATIVO,464200,NILTON LUIZ COSTA MACHADO,Nilton Luiz Costa Machado,Coordenação da Gestão e Desenvolvimento Institucional (INFRAESTRUTURA / SIMAM),GESTÃO,Assistente Tecnico de Gestão em Saúde,Assistente Tecnico de Gestão em Saúde,SERVIDOR,LOCAL,1/9/2021,5/7/1989,NÃO,N/A,Ivanildo Farias,S,N/A,N/A,N/I,,Masculino,11/2/1962,ENSINO MÉDIO,Ensino Médio,ENSINO MÉDIO,BR 116
+49,ATIVO,1634325,,Patricia Maria Ferreira da Silva,Coordenação da Gestão e Desenvolvimento Institucional (PLANEJAMENTO),GESTÃO,Analista de Gestão em Saúde,,SERVIDOR,LOCAL,1/11/2022,18/6/2008,NÃO,N/A,Bruno Carvalho,L,N/A,N/A,patricia.silva@fiocruz.br,,Feminino,12/7/1970,,Psicologia,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),
+50,ATIVO,2180289,RAPHAEL TREVIZANI ROQUE DE OLIVEIRA,Raphael Trevizani,Biotecnologia-GR2 (VIGILÂNCIA GENÔMICA),EPID.TRANSL.VIG.GENÔMICA,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,25/11/2014,25/11/2014,NÃO,N/A,Fabio Miyajima ,S,N/A,N/A,raphael.trevizani@fiocruz.br,,Masculino,23/8/1984,Tecnologia da Informação e Comunicação,Ciências Biológicas,DOUTORADO,Rua Ana Bilhar
+51,ATIVO,2181469,REGIS BERNARDO BRANDIM GOMES,Regis Bernardo Brandim Gomes,Biotecnologia-GR1 (IMUNOPARASITOLOGIA),IMUNOPARASITOLOGIA,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,1/4/2019,9/12/2014,SIM,N/A,Roberto Nicolete,S,N/A,N/A,regis.gomes@fiocruz.br,,Masculino,12/5/1970,Ciências Biológicas,Ciências Biológicas,DOUTORADO,Rua Eduardo Garcia
+52,ATIVO,1727289,RENATO CALDEIRA DE SOUZA,Renato Caldeira De Souza,Coordenação da Gestão e Desenvolvimento Institucional (COMPRAS),GESTÃO,Assistente Tecnico de Gestão em Saúde,Assistente Tecnico de Gestão em Saúde,SERVIDOR,LOCAL,17/8/2020,6/10/2011,NÃO,N/A,Bruno Carvalho,S,N/A,N/A,renato.souza@fiocruz.br,,Masculino,12/8/1976,Administração,Administração,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),Rua Dr. Francisco Edward Pires
+53,ATIVO,1985557,ROBERTO NICOLETE,Roberto Nicolete,Biotecnologia-GR1 (IMUNOPARASITOLOGIA),IMUNOFARMACOLOGIA,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,19/12/2012,19/12/2012,SIM,N/A,João Herminio,L,N/A,N/A,roberto.nicolete@fiocruz.br,,Masculino,9/12/1978,Farmácia/Bioquímica,Farmácia/Bioquímica,DOUTORADO,Rua da Paz
+54,ATIVO,1581487,ROBERTO WAGNER JUNIOR FREIRE DE FREITAS,Roberto Wagner Junior Freire De Freitas,Saúde da Família,SAÚDE_DA_FAMÍLIA,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,24/11/2014,24/11/2014,SIM,N/A,Maximiliano Souza,S,N/A,N/A,roberto.wagner@fiocruz.br,,Masculino,23/8/1983,Enfermagem,Enfermagem,DOUTORADO,RUA SIGEFREDO PINHEIRO
+55,ATIVO,1437828,RODRIGO CARVALHO NOGUEIRA ,Rodrigo Carvalho Nogueira ,Coordenação da Gestão e Desenvolvimento Institucional (PLANEJAMENTO),EPID.TRANSL.VIG.GENÔMICA,Analista de Gestão em Saúde,Analista de Gestão em Saúde,SERVIDOR,LOCAL,25/8/2014,11/11/2011,NÃO,N/A,Patricia Maria Silva,S,N/A,N/A,rodrigo.nogueira@fiocruz.br,,Masculino,16/8/1971,Odontologia,Odontologia,MESTRADO,Rua Nadir Sabóia
+56,ATIVO,669534,SERGIO DOS SANTOS REIS,Sergio Dos Santos Reis,Coordenação da Gestão e Desenvolvimento Institucional (SGP / ST),GESTÃO,Analista de Gestão em Saúde,Analista de Gestão em Saúde,SERVIDOR,LOCAL,21/9/2021,4/6/2008,NÃO,N/A,Bruno Carvalho,S,N/A,N/A,sergio.reis@fiocruz.br ,,Masculino,18/8/1966,CIÊNCIAS CONTABEIS,Ciências Contabeis,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),Rua Santa Cecilia
+57,EXONERADO,30137403,SANDRO GOMES SOARES ,Sandro Gomes Soares ,Biotecnologia,ENGPROT_SOLUÇÕES_SAÚDE,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,4/6/2019,4/6/2019,NÃO,N/A,N/I,-,N/A,N/A,sandro.soares@fiocruz.br,,Masculino,31/7/1974,Medicina,Medicina,ENSINO SUPERIOR,
+58,ATIVO,1165326,SHARMENIA DE ARAUJO SOARES NUTO,Sharmenia De Araujo Soares Nuto,"Coordenação de Educação, Informação e Comunicação (COORDENAÇÃO)",SAÚDE_DA_FAMÍLIA,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,14/11/2014,14/11/2014,NÃO,N/A,Carla Celedonio,L,N/A,N/A,sharmenia.nuto@fiocruz.br,,Feminino,2/10/1971,Odontologia,Odontologia,DOUTORADO,Rua Olegário Memória 
+59,ATIVO,1992814,VANIRA MATOS PESSOA,Vanira Matos Pessoa,Saúde e Ambiente,SAÚDE_E_AMBIENTE,Pesquisador em Saúde Pública,Pesquisador em Saúde Pública,SERVIDOR,LOCAL,15/1/2013,15/1/2013,NÃO,N/A,Carla Celedonio,S,N/A,N/A,vanira.pessoa@fiocruz.br,,Feminino,15/4/1977,Enfermagem,Enfermagem,DOUTORADO,Rua Andrade Furtado
+60,ATIVO,3121915,VENUCIA BRUNA MAGALHAES PEREIRA,Venúcia Bruna Magalhães Pereira,Biotecnologia-GR3 (BIOTECNOLOGIA),GESTÃO,Técnico em Saúde Pública,Técnico em Saúde Pública,SERVIDOR,LOCAL,22/4/2019,22/4/2019,SIM,N/A,Gilvan Furtado,S,N/A,N/A,venucia.magalhaes@fiocruz.br,,Feminino,27/9/1986,Farmácia,Farmácia,DOUTORADO,Rua jacob
+61,ATIVO,N/A,Eliezio Lessa Dos Santos,Eliezio Lessa Dos Santos,Coordenação da Gestão e Desenvolvimento Institucional (INFRAESTRUTURA),GESTÃO,Técnico de Manutenção Eletrica ,#N/A,TERCEIRIZADO,LOCAL,1/3/2018,N/A,NÃO,COGIC,Ivanildo Farias,N/A,N/A,N/A,eliezio.santos@fiocruz.br,elieziosantos@ig.com.br,Masculino,3/4/1967,Técnico em Telecomunicações,Técnico Em Telecomunicações,TÉCNICO (ENSINO MÉDIO),N/I
+62,ATIVO,N/A,Dann Eliézer Guimarães Martins Barbosa,Dann Eliézer Guimarães Martins Barbosa,Coordenação da Gestão e Desenvolvimento Institucional (TIC),GESTÃO,N/A,#N/A,TERCEIRIZADO,LOCAL,27/4/2018,N/A,NÃO,LIFE,Luciano Zorzanelli,N/A,N/A,N/A,dann.eliezer@fiocruz.br,dann.eliezer@gmail.com,Masculino,26/8/1986,ENSINO MÉDIO,Ensino Médio,ENSINO MÉDIO,
+63,ATIVO,N/A,Mario Italo Coelho Dos Santos,Mario Italo Coelho Dos Santos,Coordenação da Gestão e Desenvolvimento Institucional (TIC),GESTÃO,N/A,#N/A,TERCEIRIZADO,LOCAL,7/7/2021,N/A,NÃO,LIFE,Luciano Zorzanelli,N/A,N/A,N/A,italo.santos@fiocruz.br,,Masculino,6/9/1998,Gestão da Tecnologia da informação,Gestão da Tecnologia da informação,TÉCNICO (ENSINO MÉDIO),
+64,ATIVO,N/A,Fabio Martins Uchoa,Fabio Martins Uchoa,Coordenação da Gestão e Desenvolvimento Institucional (TIC),GESTÃO,N/A,#N/A,TERCEIRIZADO,LOCAL,14/6/2021,N/A,NÃO,LIFE,Luciano Zorzanelli,N/A,N/A,N/A,fabio.uchoa@fiocruz.br,fabiomartins.prod@gmail.com,Masculino,27/6/1987,rede de computadores,Rede de computadores,TÉCNICO (ENSINO MÉDIO),
+65,ATIVO,N/A,GUTEMBERG MONTEIRO REGADAS,Gutemberg Monteiro Regadas,Coordenação da Gestão e Desenvolvimento Institucional (TIC),GESTÃO,N/A,N/A,TERCEIRIZADO,LOCAL,17/1/2022,N/A,NÃO,LIFE,Luciano Zorzanelli,N/A,N/A,N/A,gutemberg.monteiro@fiocruz.br,,Masculino,8/5/1986,Cursando - Análise e Desenvolvimento de Sistemas,Cursando - Análise E Desenvolvimento De Sistemas,ENSINO MÉDIO,"rua lima duarte 549, messejana"
+66,ATIVO,N/A,JESSIEDNA HOLANDA LEMOS,Jessiedna Holanda Lemos,Coordenação Geral (SECRETARIA EXECUTIVA),GESTÃO,Assistente Administrativo,#N/A,TERCEIRIZADO,LOCAL,23/5/2019,N/A,NÃO, IPPP,Carla Celedonio,N/A,N/A,N/A,jessiedna.lemos@fiocruz.br,jessiedna76@gmail.com,Feminino,28/2/1976,,Secretariado Executivo,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),AVENIDA PROFº JOSÉ ARTHUR DE CARVALHO
+67,ATIVO,N/A,PAULO WANDERSON RODRIGUES VIANA,Paulo Wanderson Rodrigues Viana,"Coordenação de Educação, Informação e Comunicação (SECRETARIA ACADÊMICA)",GESTÃO,Assistente de Gestão Pleno III,#N/A,TERCEIRIZADO,LOCAL,5/7/2012,N/A,NÃO, IPPP,Sharmenia Araujo,N/A,N/A,N/A,paulo.wanderson@fiocruz.br,,Masculino,23/10/1980,,Física,ENSINO SUPERIOR,Rua L Loteamento Expedicionário I
+68,ATIVO,N/A,WAGNER ALVES DE SOUZA JÚNIOR,Wagner Alves De Souza Júnior,Coordenação da Gestão e Desenvolvimento Institucional (COMPRAS),GESTÃO,Analista de Gestão Junior I,#N/A,TERCEIRIZADO,LOCAL,19/5/2010,N/A,NÃO, IPPP,Bruno Carvalho,N/A,N/A,N/A,wagner.alves@fiocruz.br,,Masculino,6/2/1969,,Processos Gerenciais ,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),Rua Hermínio Barroso
+69,ATIVO,N/A,AMANDA CACAU DE SOUZA PAIXÃO,Amanda Cacau De Souza Paixão,Coordenação da Gestão e Desenvolvimento Institucional (COMPRAS),GESTÃO,Apoio Logística II,#N/A,TERCEIRIZADO,LOCAL,19/10/2020,N/A,NÃO,OFFICE SERVIÇO TERCEIRIZAÇÃO,Bruno Carvalho,N/A,N/A,N/A,amanda.paixao@fiocruz.br,amandacacaus@hotmail.com,Feminino,30/3/1984,,Administração,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),AvENIDA doutor manoel l. soares
+70,CONTRATO ENCERRADO,N/A,AMANDA SOBREIRA QUINTINO DE CASTRO ,Amanda Sobreira Quintino De Castro ,"Coordenação de Educação, Informação e Comunicação (COMUNICAÇÃO)",GESTÃO,N/A,#N/A,TERCEIRIZADO,LOCAL,5/9/2019,N/A,NÃO,OFFICE SERVIÇO TERCEIRIZAÇÃO,Carlile Lavor,N/A,N/A,N/A,amanda.sobreira@fiocruz.br,,Feminino,24/12/1980,,Jornalismo,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),Rua Monsenhor Tabosa 
+71,ATIVO,N/A,REJANE PEREIRA DA SILVA ,Rejane Pereira Da Silva ,Coordenação da Gestão e Desenvolvimento Institucional (PLANEJAMENTO),GESTÃO,Apoio Logística II,#N/A,TERCEIRIZADO,LOCAL,16/9/2019,N/A,NÃO,OFFICE SERVIÇO TERCEIRIZAÇÃO,Patricia Maria Silva,N/A,N/A,N/A,rejane.pereira@fiocruz.br,rejane_vic3@hotmail.com,Feminino,1/6/1971,,Letras,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),av coronel cicero sá
+72,ATIVO,N/A,VANESSA DO NASCIMENTO ,Vanessa Do Nascimento ,"Coordenação de Educação, Informação e Comunicação (SECRETARIA ACADÊMICA)",GESTÃO,Apoio Logística I,#N/A,TERCEIRIZADO,LOCAL,14/10/2019,N/A,NÃO,OFFICE SERVIÇO TERCEIRIZAÇÃO,Carlos Pinheiro,N/A,N/A,N/A,vanessa.donascimento@fiocruz.br,vanibor25@gmail.com,Feminino,19/6/1990,ENSINO MÉDIO,Ensino Médio,ENSINO MÉDIO,Rua Ezequiel Campina
+73,ATIVO,N/A,Romulo Silva dos Santos,Romulo Silva Dos Santos,Coordenação da Gestão e Desenvolvimento Institucional (INFRAESTRUTURA),GESTÃO,Engenheiro Civil Junior,#N/A,TERCEIRIZADO,LOCAL,13/10/2020,N/A,NÃO,COGIC,Ivanildo Farias,N/A,N/A,N/A,romulo.santos@fiocruz.br,,Masculino,20/7/1980,,Engenheiro Civil,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),Rua Coronel Francisco Bento
+74,ATIVO,N/A,ANTONIA YASMIM DA COSTA SALES,Antonia Yasmim Da Costa Sales,Coordenação da Gestão e Desenvolvimento Institucional (INFRAESTRUTURA),GESTÃO,Técnico de Manutenção Eletrica ,#N/A,TERCEIRIZADO,LOCAL,20/8/2020,N/A,NÃO,COGIC,Ivanildo Farias,N/A,N/A,N/A,yasmim.sales@fiocruz.br,yasmimcostatec@gmail.com,Feminino,1/5/1994,Técnico em Edificação,Técnico Em Edificação,TÉCNICO (ENSINO MÉDIO),Rua Cesário Lange
+75,CONTRATO ENCERRADO,N/A,TANIA CALDEIRA DE SOUZA,Tania Caldeira De Souza,Coordenação da Gestão e Desenvolvimento Institucional (PLANEJAMENTO),GESTÃO,N/A,#N/A,TERCEIRIZADO,LOCAL,16/9/2020,N/A,NÃO,OFFICE SERVIÇO TERCEIRIZAÇÃO,Patricia Maria Silva,N/A,16/9/2020,18/4/2023,tania.caldeira@fiocruz.br,tania.tcsfinancas@gmail.com,Feminino,2/1/1978,,Administração,ENSINO SUPERIOR,rua josé amora sá
+76,ATIVO,N/A,VERA MARTA NEVES AMARANTE RABAY,Vera Marta Neves Amarante Rabay,Coordenação da Gestão e Desenvolvimento Institucional (INFRAESTRUTURA),GESTÃO,Engenheira Eletricista,#N/A,TERCEIRIZADO,LOCAL,4/8/2020,N/A,NÃO,COGIC,Ivanildo Farias,N/A,N/A,N/A,vera.rabay@fiocruz.br,verarabay@gmail.com,Feminino,10/10/1958,,Engenharia Eletrecista ,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),Rua Parsifal Barroso 
+77,ATIVO,N/A,PAULO RAFAEL SILVA SOUSA,Paulo Rafael Silva Sousa,Coordenação da Gestão e Desenvolvimento Institucional (INFRAESTRUTURA),GESTÃO,Técnico em Equipamentos,#N/A,TERCEIRIZADO,LOCAL,12/8/2021,N/A,NÃO,FIOTEC UNADIG,Ivanildo Farias,N/A,N/A,N/A,paulo.rafael@fiocruz.br,paulo.rafael.s.sousa@gmail.com,Masculino,31/8/1993,Cursando - Engenharia,Técnico em Mecatrônica,TÉCNICO (ENSINO MÉDIO),RUA FREI ODILON
+78,CONTRATO ENCERRADO,N/A,SUERDA CRISTINA PEREIRA SILVA,Suerda Cristina Pereira Silva,"Coordenação de Educação, Informação e Comunicação (SECRETARIA ACADÊMICA)",GESTÃO,Assistente Administrativo,#N/A,TERCEIRIZADO,LOCAL,21/10/2019,N/A,NÃO,FIOTEC CLT (Presidência),Carlos Pinheiro,N/A,N/A,N/A,suerda.cristina@fiocruz.br,suerdacris@yahoo.com.br,Feminino,13/4/1974,,Pedagogia,ENSINO SUPERIOR,AVENIDA I
+79,ATIVO,N/A,Amilton Albuquerque Pontes,Amilton Albuquerque Pontes,Bio-Manguinhos,GESTÃO,N/A,#N/A,TERCEIRIZADO,LOCAL,1/4/2019,N/I,NÃO,Bio-Manguinhos,N/A,N/A,N/A,N/A,amiltonpontes@bio.fiocruz.br,amiltonpontes6@gmail.com,Masculino,28/10/1967,,Engenheiro Civil,ENSINO SUPERIOR,AVENIDA I
+80,ATIVO,N/A,ILANA CARNEIRO LISBOA MAGALHÃES,Ilana Carneiro Lisboa Magalhães,Bio-Manguinhos,GESTÃO,N/A,#N/A,TERCEIRIZADO,LOCAL,10/1/2022,N/A,NÃO,Bio-Manguinhos,Anna Carolina,N/A,10/1/2022,5/7/2023,ilana.magalhaes@fiocruz.br,,Feminino,5/11/1993,Ciências Biológicas,Ciências Biológicas,DOUTORADO,
+81,ATIVO,N/A,Carolina Campos de Oliveira,Carolina Campos de Oliveira,"Coordenação de Educação, Informação e Comunicação (COMUNICAÇÃO)",GESTÃO,Jornalista I,,TERCEIRIZADO,LOCAL,19/9/2022,N/I,NÃO,FIOTEC CLT (Presidência),Sharmenia Araujo,N/A,19/9/2022,2/10/2022,carolina.oliveira@fiocruz.br,c4rolinacampos@gmail.com,Feminino,26/6/1978,,Comunicação Social ,ENSINO SUPERIOR,
+82,ATIVO,N/A,,Gabriel Coutinho Gonçalves,Coordenação da Gestão e Desenvolvimento Institucional (PLANEJAMENTO),GESTÃO,Apoio Logistico II,,TERCEIRIZADO,LOCAL,2/6/2023,N/I,NÃO,OFFICE SERVIÇO TERCEIRIZAÇÃO,Patricia Maria Silva,N/A,2/6/2023,N/A,gabriel.goncalves@fiocruz.br,,Masculino,9/3/1990,,Fisioterapia,MESTRADO,
+83,ATIVO,N/A,ELIAN MATIAS DA SILVA,Elian Matias Da Silva,Coordenação da Gestão e Desenvolvimento Institucional (PATRIMÔNIO),GESTÃO,Assistente de Gestão Senior ,#N/A,TERCEIRIZADO,LOCAL,19/7/2021,N/A,NÃO, IPPP,Ezequiel Melo,N/A,19/7/2021,N/I,elian.silva@fiocruz.br,matialelian18@gmail.com,Masculino,18/5/2002,ENSINO MÉDIO,Ensino Médio,ENSINO MÉDIO,"RUA MANOEL FELIPE DA SILVA, "
+84,ATIVO,N/A,GABRIEL DE MOURA MINARINI,Gabriel De Moura Minarini,Coordenação da Gestão e Desenvolvimento Institucional (PATRIMÔNIO),GESTÃO,Assistente de Gestão Senior ,#N/A,TERCEIRIZADO,LOCAL,8/9/2020,N/A,NÃO, IPPP,Ezequiel Melo,N/A,8/9/2020,1/6/2023,gabriel.moura@fiocruz.br,gabrielminarini.tst@gmail.com,Masculino,6/3/1986,Técnico em Segurança do Trabalho,Técnico Em Segurança Do Trabalho,TÉCNICO (ENSINO MÉDIO),"Rua Hungria,91"
+85,CONTRATO ENCERRADO,N/A,ANDREIA VITÓRIA DAMASCENO CALIXTO,Andreia Vitória Damasceno Calixto,Coordenação da Gestão e Desenvolvimento Institucional (SGP / ST),GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,1/2/2022,N/A,NÃO,N/A,Sergio Reis,N/A,1/2/2022,2/3/2022,,calixto.vitoria98@gmail.com,Feminino,24/10/2001,Técnico de Enfermagem,Técnico De Enfermagem,TÉCNICO (ENSINO MÉDIO),Avenida Coronel ednardo weyne
+86,ATIVO,N/A,CAMILA VICTOR VITORINO HOLANDA,Camila Victor Vitorino Holanda,"Coordenação de Educação, Informação e Comunicação (BIBLIOTECA)",GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,1/2/2022,N/A,NÃO,PIEP (FIOTEC),Carlos Pinheiro,N/A,2/2/2022,N/I,camila.holanda@fiocruz.br,camila.victor@gmail.com,Feminino,15/10/1982,BIBLIOTECNONOMIA,Bibliotecnonomia,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),"RUA JOÃO LOBO FILHO,93 APTO 202"
+87,ATIVO,N/A,CAMILLA DO NASCIMENTO CRUZ,Camilla Do Nascimento Cruz,Coordenação da Gestão e Desenvolvimento Institucional (SGP / ST),GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,20/10/2021,N/A,NÃO,FIOTEC,Sergio Reis,N/A,20/10/2021,N/I,camila.nascimento@fiocruz.br,camillanascimentocruzz@gmail.com,Feminino,7/8/1990,Psicologia,Psicologia,ESPECIALIZAÇÃO (PÓS-GRADUAÇÃO),"RUA MONTA CAMBRAIA, BARRA DO CEARÁ"
+88,ATIVO,N/A,CESARINA DE SOUSA MENDES DA COSTA,Cesarina De Sousa Mendes Da Costa,Coordenação da Gestão e Desenvolvimento Institucional (PATRIMÔNIO),GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,7/2/2022,N/A,NÃO,FIOTEC,Ezequiel Melo,N/A,7/2/2022,N/I,lorena.costa@fiocruz.br,lorenasousa07@hotmail.com,Feminino,7/12/1994,ENSINO MEDIO,Técnico em Segurança do Trabalho,TÉCNICO (ENSINO MÉDIO),"Rua Rubéns Mendes 279, Fortaleza-CE"
+89,ATIVO,N/A,CARLOS AUGUSTO GUIMARÃES FONSECA,Carlos Augusto Guimarães Fonseca,Coordenação Geral (SECRETARIA EXECUTIVA),GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,9/8/2021,N/A,NÃO,FIOTEC,João Herminio,N/A,9/8/2021,N/I,carlos.fonseca@fiocruz.br,laudosguto@gmail.com,Masculino,14/1/1982,ADMINISTRAÇÃO,Administração,ENSINO SUPERIOR,"RUA DR. RAIMUNDO GUIMARÃES, 2018 EUSEBIO"
+90,CONTRATO ENCERRADO,N/A,DERICK ROSA DE OLIVEIRA,Derick Rosa De Oliveira,Coordenação da Gestão e Desenvolvimento Institucional (LOGÍSTICA),GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,1/12/2020,N/A,NÃO,FIOTEC,Bruno Carvalho,N/A,1/12/2020,10/4/2023,derick.oliveira@fiocruz.br,derickroliveira1@gmail.com,Masculino,9/9/1980,Técnico em MECANICa INDUSTRIAL,Técnico Em Mecanica Industrial,TÉCNICO (ENSINO MÉDIO),"Rua jose amora sá, 609- coité"
+91,ATIVO,N/A,DERICKY CARVALHO P. SILVA,Derick Carvalho Ribeiro Silva,Coordenação da Gestão e Desenvolvimento Institucional   (ALMOXARIFADO),GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,20/8/2021,N/A,NÃO,FIOTEC,Charles Abreu,N/A,20/8/2021,N/I,,derickycarvalho@hotmail.com,Masculino,23/6/1993,ENSINO MÉDIO,Ensino Médio,ENSINO MÉDIO,Rua Barbalha-Meireles/Fortaleza
+92,CONTRATO ENCERRADO,N/A,EDMILSON SANTANA DE SOUZA,Edmilson Santana De Souza,Coordenação da Gestão e Desenvolvimento Institucional (PATRIMÔNIO),GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,1/12/2020,N/A,NÃO,FIOTEC,Bruno Carvalho,N/A,1/12/2020,10/4/2023,edmilson.santana@fiocruz.br,edmilsonsantanadesouza@hotmail.com,Masculino,13/1/1970,Técnico  em PROCESSOS METARLUGICOS,Técnico  Em Processos Metarlugicos,TÉCNICO (ENSINO MÉDIO),"rua honório abreu,10 mangabeira"
+93,ATIVO,N/A,JANAINA DE OLIVEIRA DA SILVA,Janaina De Oliveira Da Silva,Coordenação da Gestão e Desenvolvimento Institucional (SGP / ST),GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,1/12/2020,N/A,NÃO,FIOTEC,Sergio Reis,N/A,1/12/2020,N/I,janaina.oliveira@fiocruz.br,janainaosilvass@gmail.com,Feminino,11/2/1993,ASSISTENTE SOCIAL,Assistente Social,MESTRADO,"RU MANOEL GOMES,505,CASA11 AMADOR"
+94,CONTRATO ENCERRADO,N/A,LETÍCIA GABRIELE SARAIVA DE FARIAS,Letícia Gabriele Saraiva De Farias,Coordenação da Gestão e Desenvolvimento Institucional (SGP / ST),GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,1/2/2022,N/A,NÃO,N/A,Sergio Reis,N/A,1/2/2022,28/4/2022,,saraivaleticiagabriele@gmail.com,Feminino,4/4/1998,ENFERMAGEM,Enfermagem,ENSINO SUPERIOR,"RUA ZACARIAS GONDIM,171- MONTESE/ FORTALEZA"
+95,CONTRATO ENCERRADO,N/A,PATRICIA FERNANDA ROCHA DIAS,Patricia Fernanda Rocha Dias,Coordenação da Gestão e Desenvolvimento Institucional ,GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,4/10/2021,N/A,NÃO,FIOTEC,Bruno Carvalho,N/A,4/10/2021,10/4/2023,patricia.rocha@fiocruz.br,paty.pfrd@gmail.com,Feminino,21/10/1991,Ciências Biológicas,Ciências Biológicas,MESTRADO,
+96,CONTRATO ENCERRADO,N/A,SUZY ANNE ALVES PINTO,Suzy Anne Alves Pinto,Coordenação da Gestão e Desenvolvimento Institucional (INFRAESTRUTURA),GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,15/7/2021,N/A,NÃO,N/A,Ivanildo Farias,N/A,15/7/2021,1/10/2022,,suzyanneap@gmail.com,Feminino,8/3/1975,ENGENHARIA AGRONOMICA,Engenharia Agronomica,MESTRADO,"RUA SALVADOR CORREIA DE SÁ, 1001 BL4,AP 102"
+97,CONTRATO ENCERRADO,N/A,SARAH SANT'ANNA MARANHÃO,Sarah Sant'Anna Maranhão,Coordenação Geral (QUALIDADE),GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,10/1/2022,N/A,NÃO,COGIC,Anna Carolina,N/A,10/1/2022,30/11/2022,,sarah.santanna.maranhao@gmail.com,Feminino,28/2/1992,Ciências Biológicas,Ciências Biológicas,DOUTORADO,
+98,ATIVO,N/A,,Daniel Pascolino Pinheiro ,Biotecnologia-GR3 (BIOTECNOLOGIA),GESTÃO,N/A,,BOLSISTA,PRESTADOR DE SERVIÇO,31/5/2021,N/A,NÃO,SEPAG/COGEPE,Gilvan Furtado,N/A,31/5/2021,N/I,daniel.pinheiro@fiocruz.br,,Masculino,18/04/21987,,Ciências Biológicas,DOUTORADO,
+99,ATIVO,N/A,,Suelen Carneiro de Medeiros,Coordenação Geral (QUALIDADE),GESTÃO,N/A,,BOLSISTA,PRESTADOR DE SERVIÇO,31/5/2021,N/A,NÃO,SEPAG/COGEPE,Anna Carolina,N/A,31/5/2021,N/I,suelen.medeiros@fiocruz.br,,Feminino,30/10/1986,,Ciências Biológicas,DOUTORADO,
+100,ATIVO,N/A,,Maisa de Sales Costa,"Coordenação de Educação, Informação e Comunicação (SECRETARIA ACADÊMICA)",GESTÃO,N/A,#N/A,BOLSISTA,PRESTADOR DE SERVIÇO,1/12/2021,N/A,NÃO,PIEP,Carlos Pinheiro,N/A,1/12/2021,1/12/2022,maisa.costa@fiocruz.br,maisasallescosta@gmail.com,Feminino,14/2/1995,,Assistente Social,ENSINO SUPERIOR,
+101,ATIVO,N/A,,Isabela Cristina da Paixão Minarini,Coordenação Geral (SECRETARIA EXECUTIVA),GESTÃO,N/A,,BOLSISTA,PRESTADOR DE SERVIÇO,25/5/2022,N/A,NÃO,FIOTEC,Carla Celedonio,N/A,25/5/2022,25/5/2023,isabela.minarini@fiocruz.br,isabelaminarini4@gmail.com,Feminino,17/10/1986,,Ensino Médio,ENSINO MÉDIO,
+102,ATIVO,N/A,,Adelaide Souza da Silva Rodrigues ,"Coordenação de Educação, Informação e Comunicação (SECRETARIA ACADÊMICA)",GESTÃO,N/A,,BOLSISTA,PRESTADOR DE SERVIÇO,4/8/2022,N/I,NÃO,FIOTEC,Sharmenia Araujo,N/A,4/8/2022,4/8/2023,,adelaiderod@hotmail.com ,Feminino,2/7/1969,,Enfermagem,MESTRADO,
+103,ATIVO,N/A,,Cecilia Katia Ferreira Santos,Coordenação da Gestão e Desenvolvimento Institucional (FINANCEIRO),GESTÃO,N/A,,BOLSISTA,PRESTADOR DE SERVIÇO,14/10/2022,N/I,NÃO,FIOTEC,Ezequiel Melo,N/A,14/10/2022,14/10/2023,cecilia.santos@fiocruz.br,ceciliakfsantos@gmail.com,Feminino,3/2/1991,,Ensino Médio,ENSINO MÉDIO,
+104,ATIVO,N/A,,Gustavo Souza Pinto,Coordenação Geral ( EPSJV/FIOCRUZ),GESTÃO,N/A,,BOLSISTA,PRESTADOR DE SERVIÇO,7/11/2022,N/I,NÃO,FIOTEC/PIDI,-,N/A,N/I,N/I,gustavo.souza@fiocruz.br,,Masculino,26/10/1981,,Administração,ENSINO SUPERIOR,
+105,ATIVO,N/A,Mauricio Fraga Van Tiburg,Mauricio Fraga Van Tiburg,Coordenação de Pesquisa e Coleções Biológicas ,,N/A,,BOLSISTA,PRESTADOR DE SERVIÇO,31/5/2021,N/I,NÃO,SEPAG/COGEPE,-,N/A,31/5/2021,N/I,mauricio.tilburg@fiocruz.br,,Masculino,24/6/1974,,Medicina Veterinária,DOUTORADO,
+106,ATIVO,N/A,Flora Viana Elizeu da Silva,Flora Viana Elizeu da Silva,Saúde e Ambiente,SAÚDE_E_AMBIENTE,N/A,,BOLSISTA,PRESTADOR DE SERVIÇO,1/6/2021,N/I,NÃO,SEPAG/COGEPE,Ana Claudia,N/A,1/6/2021,N/I,flora.viana@fiocruz.br,,Feminino,11/6/1990,,Ciências Ambientais,ENSINO SUPERIOR,
+107,ATIVO,N/A,,Francisco Eder de Moura Lopes,Coordenação de Pesquisa e Coleções Biológicas ,,N/A,,BOLSISTA,PRESTADOR DE SERVIÇO,27/5/2021,N/I,NÃO,SEPAG/COGEPE,Fabio Miyajima ,N/A,17/5/2021,N/I,eder.lopes@fiocruz.br,,Masculino,12/11/1993,,Biotcenologia,DOUTORADO,
+108,ATIVO,N/A,,Jamille Mara Mendes Bezerra,Coordenação de Pesquisa e Coleções Biológicas ,,N/A,,BOLSISTA,PRESTADOR DE SERVIÇO,31/5/2021,N/I,NÃO,SEPAG/COGEPE,Fabio Miyajima ,N/A,31/5/2021,5/7/2023,jamille.bezerra@fiocruz.br,,Feminino,15/7/1993,,Biomedicina ,ENSINO SUPERIOR,
+109,ATIVO,N/A,,Darlyson Tavares Guimarães ,Coordenação de Pesquisa e Coleções Biológicas ,,N/A,,BOLSISTA,PRESTADOR DE SERVIÇO,28/9/2022,N/I,NÃO,SEPAG/COGEPE,João Herminio,N/A,28/9/2022,N/I,darlyson.guimaraes@fiocruz.br,,Masculino,16/7/1993,,,ENSINO SUPERIOR,
+110,ATIVO,N/A,,Ticiane Cavalcante de Souza,Coordenação de Pesquisa e Coleções Biológicas ,,N/A,,BOLSISTA,PRESTADOR DE SERVIÇO,5/7/2023,N/I,NÃO,SEPAG/COGEPE,Fabio Miyajima ,N/A,5/7/2023,N/I,ticiane.souza@fiocruz.br,,Feminino,22/7/1988,,,DOUTORADO,
+111,ATIVO,N/A,,Maria Eduarda Guedes Onofre ,Coordenação de Pesquisa e Coleções Biológicas ,,N/A,,ESTÁGIO PEC,LOCAL,15/8/2021,N/I,SIM,PEC,João Herminio,N/A,6/4/2023,5/10/2023,maria.onofre@fiocruz.br,mareduguedes@gmail.com,Feminino,19/11/2002,,Biotcenologia,ENSINO MÉDIO,
+112,ATIVO,N/A,,Francisco Leandro Fernandes Sampaio,Saúde Digital,SAÚDE_DIGITAL,N/A,,ESTÁGIO PEC,LOCAL,1/11/2022,N/I,NÃO,PEC,Adriana Bacelo,N/A,6/4/2023,5/10/2023,francisco.sampaio@fiocruz.br,leandro.fernandes@aluno.uece.br,Masculino,9/3/1998,,Nutrição,ENSINO MÉDIO,
+113,ATIVO,42241,,Adriana Carvalho De Albuquerque,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+114,ATIVO,N/A,,Alberto Davi Gomes Tavares ,,,,,UNADIG,LOCAL,,,,LIFE,,,,,,,,,,,,
+115,ATIVO,42266,,Ana Carolina Matias Dinelly Pinto,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+116,ATIVO,42532,,Bárbara Cibelle Soares Farias Quintela ,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+117,ATIVO,43083,,Carliane Melo Alves Melgarejo,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+118,ATIVO,42202,,Clarissa Perdigao Mello Ferraz,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+119,ATIVO,42383,,Eric Ribeiro Da Silva,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+120,ATIVO,42550,,Fatima Daiana Dias Barroso ,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+121,ATIVO,42859,,Fatima De Cássia Evangelista De Oliveira,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+122,ATIVO,N/A,,Fernanda Montenegro De Carvalho Araujo ,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+123,ATIVO,43091,,Geiciane Silva Maia,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+124,ATIVO,42575,,Germana Silva Vasconcelos,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+125,ATIVO,43053,,Helen Paula Silva Da Costa ,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+126,ATIVO,43054,,Igor De Sá Carneiro,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+127,ATIVO,42531,,Júlio César Martins Ximenes,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+128,ATIVO,43164,,Katia Danielle Loiola Barbosa,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+129,ATIVO,42559,,Larisse Tavares Lucetti ,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+130,ATIVO,42204,,Maria Claudia Dos Santos Luciano,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+131,ATIVO,42858,,Maria Francilene Souza Silva,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+132,ATIVO,45453,,Maria Lucila Do Nascimento ,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+133,ATIVO,42857,,Max Moreira Lizano Garcia,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+134,ATIVO,44435,,Mayara Ferreira De Oliveira,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+135,ATIVO,42382,,Odirene Braga Chaves Dos Santos,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+136,ATIVO,42293,,Ondina Maria Chagas Canuto,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+137,ATIVO,42387,,Paulo Andre Sousa Da Silva,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+138,ATIVO,42576,,Pedro Afonso De Oliveira Martins,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+139,ATIVO,43124,,Rosangela Ferreira Da Silva ,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+140,ATIVO,42496,,Vanessa Pio Almeida,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+141,ATIVO,42276,,Victor De Lima Pinheiro,,,,,UNADIG,LOCAL,,,,,,,,,,,,,,,,
+142,ATIVO,,,Ademir da Conceição Araujo,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+143,ATIVO,,,Albertina Bezerra  Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+144,ATIVO,,,Albio Pereira Cruz,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+145,ATIVO,,,Alexandro Procopio Sousa,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+146,ATIVO,,,Almir Marques de Lima,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+147,ATIVO,,,Alvaro Luis  Barbosa de  Oliveira,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+148,ATIVO,,,Ana Carolina Sales Vital,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+149,ATIVO,,,Ana Cristina Ricardo da Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+150,ATIVO,,,Anderson dos Santos Dias,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+151,ATIVO,,,Antonia Angela Alves Lima,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+152,ATIVO,,,Antonia Beatriz Lucio Nunes,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+153,ATIVO,,,Antoniel Martins  Felix,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+154,ATIVO,,,Antoniele Martins  Felix,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+155,ATIVO,,,Antonio Cleiton Pereira Bezerra,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+156,ATIVO,,,Antonio Lucilanio Silva de Oliveira,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+157,ATIVO,,,Antonio Mauro Rodrigues dos Santos,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+158,ATIVO,,,Antonio Ramos da Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+159,ATIVO,,,Antonio Valdo Souza Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+160,ATIVO,,,Arides Souza  Lima,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+161,ATIVO,,,Ariemily da Silva Lima,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+162,ATIVO,,,Arthur Silva Assuncao,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+163,ATIVO,,, Breno Soares da Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+164,ATIVO,,,Bruno Henrique Ribeiro da Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+165,ATIVO,,,Bruno Marques Santiago,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+166,ATIVO,,,Carla Dariane Freitas Abreu,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+167,ATIVO,,,Carla Michelle de Sousa  Vieira,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+168,ATIVO,,,Carlos Silva de Lima,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+169,ATIVO,,,Carlos Wilker Castelo Lobo,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+170,ATIVO,,,Carolina Oliveira de Menezes,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+171,ATIVO,,,Carolina Ramos  Ferreira,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+172,ATIVO,,,Cassia da  Silva Feitosa,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+173,ATIVO,,,Claudemir Menezes  Mariano,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+174,ATIVO,,,Claudenir Gomes  Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+175,ATIVO,,,Cleiton Melo dos Santos,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+176,ATIVO,,,Davi felipe Cavalcante Mendes,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+177,ATIVO,,,Douglas Mateus Bezerra  Fernandes,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+178,ATIVO,,,Ednardo Ventura da Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+179,ATIVO,,,Edilardo Reinaldo Vitorino,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+180,ATIVO,,,Edson Cavalcante  Chagas,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+181,ATIVO,,,Edson de Luna Pereira,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+182,ATIVO,,,Eduardo Melo dos  Santos,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+183,ATIVO,,,Elivaldo dos Santos,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+184,ATIVO,,,Elizeu da Silva Freitas,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+185,ATIVO,,,Eliziano Anastacio da Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+186,ATIVO,,,Emanuel Oliveira dos Santos,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+187,ATIVO,,,Eugenio Andre Nunes,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+188,ATIVO,,,Felipe de Sousa  Araujo,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+189,ATIVO,,,Francisca Rafahelia da Silva Lima,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+190,ATIVO,,,Francisco Alexandre Ripardo  Pereira,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+191,ATIVO,,,Francisco Alves da Silva  Junior,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+192,ATIVO,,,Francisco de Assis da Silva dos  Santos,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+193,ATIVO,,,Francisco Diogenes Almeida de Aquino,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+194,ATIVO,,,Francisco Edgard  Albuquerque Filho,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+195,ATIVO,,,Francisco Gildevan Santos Gama,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+196,ATIVO,,,Francisco Jairton Nunes da Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+197,ATIVO,,,Francisco joelton da Silva  Nogueira,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+198,ATIVO,,,Francisco jose Candeia Sampaio,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+199,ATIVO,,,Francisco Nelson  Simplicio,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+200,ATIVO,,,Francisco Valdemi Leite da Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+201,ATIVO,,,Francisco Wagner  Rodrigues,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+202,ATIVO,,,Geilson Silva de  Lima,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+203,ATIVO,,,Geisa do Nascimento Soares,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+204,ATIVO,,,Geremias Rodrigues  Moreira,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+205,ATIVO,,,Germano Ferreira  Soares,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+206,ATIVO,,,Gilkaster Barboza  Maciel,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+207,ATIVO,,,Girlene Cabral  Evangelista,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+208,ATIVO,,,Gleison Ferreira da  Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+209,ATIVO,,,Herikles Wesley Vasconcelos  Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+210,ATIVO,,,Hugo Tavares  Lima,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+211,ATIVO,,,Iara Felix  Tiburcio,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+212,ATIVO,,,Iran Lima Facanha,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+213,ATIVO,,,Iuri Freitas  Santos,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+214,ATIVO,,,Ivana da Silva Ferreira,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+215,ATIVO,,,Izidio Silvino de Assunção  Neto,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+216,ATIVO,,,Jario dos Santos Souza,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+217,ATIVO,,,Jeovane Ferreira de Sousa,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+218,ATIVO,,,Joao Carlos Lima  Tiburcio,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+219,ATIVO,,,Joao Neto Felix de Almeida,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+220,ATIVO,,,Joao Paulo Pereira  Ventura,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+221,ATIVO,,,Joao Ricardo de Oliveira  Gomes,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+222,ATIVO,,,Jocelio Nascimento de Lima,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+223,ATIVO,,,Jonas dos Santos Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+224,ATIVO,,,Jose Airton Gomes Pereira,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+225,ATIVO,,,Jose Alves de Castro Neto,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+226,ATIVO,,,Jose Dionizio Rodrigues Pereira Filho,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+227,ATIVO,,,Jose Evani Ferreira  Santos,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+228,ATIVO,,,Jose Vilmar Ribeiro Nascimento,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+229,ATIVO,,,Josimar Ramos Cavalcante,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+230,ATIVO,,,Joyce de Aguiar Loureiro,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+231,ATIVO,,,Julio dos  Santos,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+232,ATIVO,,,Leonardo Sousa  Nascimento,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+233,ATIVO,,,Lucas Leonardo Freitas Matos,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+234,ATIVO,,,Lucas Lourenco  Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+235,ATIVO,,,Lucas Santos  Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+236,ATIVO,,,Luiz Antonio  Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+237,ATIVO,,,Marcielle Honorato de Araujo Tiburcio,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+238,ATIVO,,,Marcos Rogerio da Silva Rocha,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+239,ATIVO,,,Maria Cleia Lopes,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+240,ATIVO,,,Maria Edineide Rodrigues da Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+241,ATIVO,,,Maria Isabele dos Santos Campina,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+242,ATIVO,,,Maria Juliana Alves da Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+243,ATIVO,,,Maria Milena Silva do Nascimento,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+244,ATIVO,,,Maria Valdenia Tiburcio Tavares Oliveira,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+245,ATIVO,,,Marilia Pereira  Inacio,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+246,ATIVO,,,Mauricio Pereira Inacio,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+247,ATIVO,,,Mileide de Albuquerque Santos  Viegas,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+248,ATIVO,,,Mileno Henrique de Lima,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+249,ATIVO,,,Naiara Silva Gomes,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+250,ATIVO,,,Natanael da Silva  Alves,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+251,ATIVO,,,Natanael da Silva  Lima,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+252,ATIVO,,,Nathanael Lima de Sousa,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+253,ATIVO,,,Paulo Henrique Silva dos Santos,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+254,ATIVO,,,Paulo Marco Nunes da Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+255,ATIVO,,,Pedro Guilherme Queiroz e Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+256,ATIVO,,,Raimundo Nonato Xavier Pereira,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+257,ATIVO,,,Raphael Sousa  Oliveira,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+258,ATIVO,,,Rayane Reges Fernandes,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+259,ATIVO,,,Renato Reinaldo  Vitorino,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+260,ATIVO,,,Roberto de Almeida Facanha,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+261,ATIVO,,,Romildo Lima dos Santos,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+262,ATIVO,,,Ronaldo Almeida de Lima,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+263,ATIVO,,,Rubens Franca Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+264,ATIVO,,,Saiure Martins do Nascimento,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+265,ATIVO,,,Samia da Silva Souza,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+266,ATIVO,,,Samuel Augusto Falcao,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+267,ATIVO,,,Samuel Freitas Gomes,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+268,ATIVO,,,Sebastiao do Carmo Braz,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+269,ATIVO,,,Stevenson Janvier ,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+270,ATIVO,,,Tailane Soares  Alves,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+271,ATIVO,,,Tiago Matos  Sappi,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+272,ATIVO,,,Tyago da Silva Severo,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+273,ATIVO,,,Valdenia Pereira  Tavares,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+274,ATIVO,,,Vanderson Costa da Silva,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+275,ATIVO,,,Wagner Lucio de Sousa,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+276,ATIVO,,,Weslei de Almeida Abreu,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+277,ATIVO,,,Maria ivanilda Conceição Carmo,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+278,ATIVO,,,Igor Bezerra  Farias,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+279,ATIVO,,,Jean Carlos Ferreira Santos,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+280,ATIVO,,,Valdemir de Sousa  Machado,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+281,ATIVO,,,Thiago Silva de França,,,,,NORMATEL,LOCAL,,,,,,,,,,,,,,,,
+,APOSENTADA,,,Rose Mary Faria Torres de Oliveira,Coordenação Geral,GESTÃO,Assistente Tecnico de Gestão em Saúde,,SERVIDOR,LOCAL,22/6/2009,7/7/1989,NÃO,NÃO,,,,,,,,,,,,
+,ATIVO,,,Geisa Francisco da Silva,Coordenação Geral,GESTÃO,Assistente Tecnico de Gestão em Saúde,,SERVIDOR-CEDIDA PARA CORREGEDORIA ,LOCAL,2/2/2011,1/7/1987,NÃO,NÃO,,,,,,,,,,,,
+,REMOÇÃO,,,Aline do Monte Gurgel,Coordenação Geral,SAÚDE_E_AMBIENTE,Pesquisador em Saúde Pública,,SERVIDOR-CEDIDA PARA FIOCRUZ PE,LOCAL,27/7/2015,27/7/2015,,,,,,,,,,,,,,
+,REMOÇÃO,,,Gilberto Santiago Araujo,Coordenação Geral,GESTÃO,Analista de Gestão em Saúde,,SERVIDOR-CEDIDO PARA AUDITORIA INTERNA,LOCAL,14/9/2012,26/6/2012,,,,,,,,,,,,,,

@@ -1,6 +1,8 @@
 import os
 import json
+import torch
 import traceback
+import numpy as np
 import pandas as pd
 from git import Repo
 from torch_geometric.data import Data
@@ -10,13 +12,13 @@ class GraphKnowledge:
         self.json_files = json_files
         self.graph_data = None
 
-    def info_dataset():
+    def info_dataset(self):
         # 1. Recuperar dados pré-processados
         # Informar caminho para arquivo CSV usando raiz do repositório Git como referência
         repo = Repo(search_parent_directories=True)
         root_folder = repo.working_tree_dir
-        xlsx_folder = os.path.join(root_folder, '_data', 'in_xls')
-        json_folder = os.path.join(root_folder, '_data', 'out_json')
+        xlsx_folder = os.path.join(str(root_folder), '_data', 'in_xls')
+        json_folder = os.path.join(str(root_folder), '_data', 'out_json')
 
         # Carregar os dados dos arquivos JSON
         with open(os.path.join(json_folder,'input_interesses_pesquisadores.json'), 'r') as f:
@@ -52,7 +54,7 @@ class GraphKnowledge:
                 print(f"    {p.get('nome')}")
             print()
 
-    def generate_interesses_json(excel_file, json_file):
+    def generate_interesses_json(self, excel_file, json_file):
         """
         Lê o arquivo Excel 'levantamento_interesse.xlsx' e gera o arquivo JSON 'interesses_pesquisadores.json'.
 
@@ -138,6 +140,8 @@ class GraphKnowledge:
             print(f"Erro na linha: {row}")
             traceback.print_exc()  # Imprime o traceback
 
+    def extract_competencies(self, data):
+        pass
 
     def generate_graph(self):
         nodes = []
@@ -154,14 +158,23 @@ class GraphKnowledge:
                 node_id_map[produto_data['id']] = node_idx
                 node_idx += 1
 
-        # Criar arestas entre competências e produtos (exemplo)
-        for i, node_comp in enumerate(nodes):
-            if i < len(competencias_nodes):  # Verifica se é um nó de competência
-                for j, node_prod in enumerate(nodes):
-                    if j >= len(competencias_nodes):  # Verifica se é um nó de produto
-                        similarity = self.calculate_similarity(node_comp, node_prod)  # Calcula a similaridade
-                        if similarity > threshold:  # Se a similaridade for maior que um limiar
-                            edges.append([i, j])
+        competencias_nodes = self.extract_competencies(data)
+        threshold = 0.5
+
+        if competencias_nodes:
+            # Criar arestas entre competências e produtos (exemplo)
+            for i, node_comp in enumerate(nodes):
+                if i < len(competencias_nodes):  # Verifica se é um nó de competência
+                    for j, node_prod in enumerate(nodes):
+                        if j >= len(competencias_nodes):  # Verifica se é um nó de produto
+                            similarity = self.calculate_similarity(node_comp, node_prod)  # Calcula a similaridade
+                            if similarity:
+                                if float(similarity) > threshold:  # Se a similaridade for maior que um limiar
+                                    edges.append([i, j])
+                            else: 
+                                print(f'Não foi possível calcular a similaridade entre {node_comp} e {node_prod}')
+        else: 
+            print(f'Não foi possível obter as competências')
 
         for json_file in self.json_files:
             with open(json_file, 'r') as f:

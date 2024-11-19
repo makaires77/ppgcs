@@ -5,8 +5,10 @@
 # ReportGenerator
 # PDIRecommendationSystem
 
+
 from node2vec import Node2Vec
 import networkx as nx
+import logging
 
 class GraphBuilder:
     def __init__(self):

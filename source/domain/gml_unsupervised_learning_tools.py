@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import traceback
 import torch
+import json
 import time
 import gc
 
@@ -69,7 +70,7 @@ class EmbeedingsMulticriteriaAnalysis:
         # Informar caminho para arquivo CSV usando raiz do repositório Git como referência
         repo = Repo(search_parent_directories=True)
         root_folder = repo.working_tree_dir
-        folder_data_output = os.path.join(root_folder, '_data', 'out_json')
+        folder_data_output = os.path.join(str(root_folder), '_data', 'out_json')
         filename = 'df_fomento_geral.csv'
         pathfilename = os.path.join(folder_data_output, filename)
 
@@ -114,7 +115,7 @@ class EmbeedingsMulticriteriaAnalysis:
                 preprocessor = ENPreprocessor()
             else:
                 raise ValueError("Idioma não suportado.")
-            return preprocessor.preprocess(text)
+            return preprocessor.preprocess_text(text)
 
         df_fomento['texto_para_embedding'] = df_fomento['texto_para_embedding'].apply(preprocess_text)
 

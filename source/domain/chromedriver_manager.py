@@ -117,11 +117,11 @@ class ChromeDriverManager:
     def get_chromedriver_version(self):
         """Tenta encontrar e retornar a versão do Chromedriver. Caso não encontre, dispara a atualização."""
         if platform.system() == "Windows":
-            chromedriver_path = os.path.join(self.repo_root, 'chromedriver', 'chromedriver.exe')
+            chromedriver_path = os.path.join(str(self.repo_root), 'chromedriver', 'chromedriver.exe')
         elif platform.system() == "Darwin":
-            chromedriver_path = os.path.join(self.repo_root, 'chromedriver', 'chromedriver')
+            chromedriver_path = os.path.join(str(self.repo_root), 'chromedriver', 'chromedriver')
         else:  # Assume Linux and other Unix-like systems
-            chromedriver_path = os.path.join(self.repo_root, 'chromedriver', 'chromedriver')
+            chromedriver_path = os.path.join(str(self.repo_root), 'chromedriver', 'chromedriver')
 
         # Verifica se o executável do Chromedriver existe
         if not Path(chromedriver_path).is_file():
@@ -160,7 +160,7 @@ class ChromeDriverManager:
         path = Path(path).absolute()
         if (path / '.git').is_dir():
             return path
-        return self.find_repo_root(path.parent, depth-1)
+        return self.find_repo_root(str(path.parent), depth-1)
 
     def install_google_chrome(self):
             os_platform = platform.system().lower()
