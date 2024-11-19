@@ -1,0 +1,480 @@
+[
+    {
+        "Identificação": {
+            "Nome": "Venúcia Bruna Magalhães Pereira",
+            "ID Lattes": "9284843601128833",
+            "Última atualização": "08/05/2024"
+        },
+        "Idiomas": [
+            {
+                "Idioma": "Português",
+                "Proficiência": "Compreende Bem, Fala Bem, Lê Bem, Escreve Bem."
+            },
+            {
+                "Idioma": "Inglês",
+                "Proficiência": "Compreende Razoavelmente, Fala Razoavelmente, Lê Razoavelmente, Escreve Razoavelmente."
+            },
+            {
+                "Idioma": "Italiano",
+                "Proficiência": "Compreende Razoavelmente, Fala Razoavelmente, Lê Razoavelmente, Escreve Razoavelmente."
+            }
+        ],
+        "Formação": {
+            "Acadêmica": [
+                {
+                    "Ano": "2014 - 2019",
+                    "Descrição": "Doutorado em Farmacologia. Universidade Federal do Ceará, UFC, Brasil. Título: Mucosite intestinal induzida por irinotecano + 5-fluorouracil cursa com alterações na expressão gênica de proteínas juncionais e downregulation da via Wnt/β-catenina, Ano de obtenção: 2019. Orientador: Prof. Dr. Roberto César Pereira Lima Júnior. Coorientador: Prof. Dr. José Garcia Ribeiro Abreu Júnior (UFRJ). Bolsista do(a): Fundação Cearense de Apoio ao Desenvolvimento Científico e Tecnológico, FUNCAP, Brasil. Palavras-chave: Mucosite intestinal; Proteínas juncionais; Via de sinalização Wnt/ β-catenina."
+                },
+                {
+                    "Ano": "2011 - 2013",
+                    "Descrição": "Mestrado em Farmacologia. Universidade Federal do Ceará, UFC, Brasil. Título: Novo modelo de mucosite intestinal induzida pela associação de Irinotecano e 5-Fluorouracil em camundongos C57BL/6 O Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto (Oasisbr) é uma iniciativa do Instituto Brasileiro de Informação em Ciência e Tecnologia (Ibict) que reúne a produção científica e os dados de pesquisa em acesso aberto, publicados em revistas científicas, repositórios digitais de publicações científicas, repositórios digitais de dados de pesquisa e bibliotecas digitais de teses e dissertações. , Ano de Obtenção: 2013. Orientador: Prof. Dr. Roberto César Pereira Lima Júnior. Bolsista do(a): Conselho Nacional de Desenvolvimento Científico e Tecnológico, CNPq, Brasil. Palavras-chave: Câncer colorretal metastático; 5-Fluorouracil; Irinotecano; Mucosite intestinal."
+                },
+                {
+                    "Ano": "2016 interrompida",
+                    "Descrição": "Especialização interrompida em 2016 em Farmácia Hospitalar. Centro Universitário Internacional, UNINTER, Brasil. Ano de interrupção: 2016"
+                },
+                {
+                    "Ano": "2011 - 2012",
+                    "Descrição": "Especialização em Farmacologia na Farmácia Clínica.  (Carga Horária: 360h). Instituto Brasil de Pós-Graduação, Capacitação e Assessoria, IBRAS, Brasil. Título: Benzilpiperazina (BZP): Efeitos farmacológicos e tóxicos, mecanismo de ação e potencial de dependência - Artigo de revisão. Orientador: Prof(a). Dr(a). Iris Cristina Maia Oliveira."
+                },
+                {
+                    "Ano": "2006 - 2011",
+                    "Descrição": "Graduação em Farmácia. Universidade Federal do Ceará, UFC, Brasil. Título: Análise comparativa dos indicadores de prescrição de medicamentos em UTI pós-operatória e sala de recuperação pós-anestésica em um hospital universitário do Nordeste do Brasil. Orientador: Prof(a). Dr(a). Marta Maria de França Fonteles."
+                }
+            ],
+            "Pos-Doc": [],
+            "Complementar": [
+                {
+                    "Ano": "2022 - 2022",
+                    "Descrição": "Curso Prático do RedCap.  (Carga horária: 15h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil."
+                },
+                {
+                    "Ano": "2022 - 2022",
+                    "Descrição": "II Treinamento Anual em Biossegurança Fiocruz-Ceará.  (Carga horária: 4h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil."
+                },
+                {
+                    "Ano": "2022 - 2022",
+                    "Descrição": "Gestão Integrada por Processos.  (Carga horária: 18h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil."
+                },
+                {
+                    "Ano": "2022 - 2022",
+                    "Descrição": "I Workshop em Cultura de Células - Da Qualidade à Plataforma Farmacológica.  (Carga horária: 12h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil."
+                },
+                {
+                    "Ano": "2021 - 2021",
+                    "Descrição": "o Otimização e padronização de métodos de purificação: abordagem Quality by.  (Carga horária: 8h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "Curso de Boas Práticas na Pesquisa.  (Carga horária: 16h). Fundação Oswaldo Cruz, FIOCRUZ, Brasil."
+                },
+                {
+                    "Ano": "2019 - 2019",
+                    "Descrição": "I Curso de Bioinformática Aplicada à Genômica.  (Carga horária: 45h). Central de Genômica e Bioinformática da Universidade Federal do Ceará, CEGENBIO, Brasil."
+                },
+                {
+                    "Ano": "2017 - 2017",
+                    "Descrição": "Introdutório de Avaliação de Tecnologias em Saúde para Gestores do SUS.  (Carga horária: 20h). Hospital Alemão Oswaldo Cruz, HAOC, Brasil."
+                },
+                {
+                    "Ano": "2017 - 2017",
+                    "Descrição": "Ética e Serviço Público.  (Carga horária: 20h). Escola Nacional de Administração Pública, ENAP, Brasil."
+                },
+                {
+                    "Ano": "2014 - 2014",
+                    "Descrição": "Cancer: Basic concepts, toxicity of chemotherapy.  (Carga horária: 3h). Sociedade Brasileira de Farmacologia e Terapêutica Experimental, SBFTE, Brasil."
+                },
+                {
+                    "Ano": "2014 - 2014",
+                    "Descrição": "Noções básicas da Citometria de fluxo e suas principais aplicações.  (Carga horária: 4h). Universidade Federal do Ceará, UFC, Brasil."
+                },
+                {
+                    "Ano": "2009 - 2012",
+                    "Descrição": "Extensão universitária em Curso Básico de Língua Inglesa.  (Carga horária: 420h). Universidade Federal do Ceará/Casa de Cultura Britânica, UFC/CCB, Brasil."
+                },
+                {
+                    "Ano": "2010 - 2010",
+                    "Descrição": "II Curso de Férias em Ciências Genômicas.  (Carga horária: 40h). Universidade Federal do Ceará/PET Farmácia, UFC/PET FARMÁCIA, Brasil."
+                },
+                {
+                    "Ano": "2010 - 2010",
+                    "Descrição": "Curso de Farmacologia das Drogas de Abuso.  (Carga horária: 40h). Universidade Federal do Ceará, UFC, Brasil."
+                },
+                {
+                    "Ano": "2009 - 2009",
+                    "Descrição": "Extensão universitária em XV Curso de Inverno de Farmacologia.  (Carga horária: 112h). Universidade de São Paulo, USP, Brasil."
+                },
+                {
+                    "Ano": "2009 - 2009",
+                    "Descrição": "Curso Uso Racional de Antimicrobianos.  (Carga horária: 40h). Conselho Regional de Farmacia do Estado do Ceará, CRF-CE, Brasil."
+                },
+                {
+                    "Ano": "2009 - 2009",
+                    "Descrição": "I Curso de Atualização em Cuidados Clínicos em Doenças Infecciosas.  (Carga horária: 50h). Universidade Estadual do Ceará, UECE, Brasil."
+                },
+                {
+                    "Ano": "2009 - 2009",
+                    "Descrição": "I Curso de Atualização em Farmácia Industrial.  (Carga horária: 44h). Conselho Regional de Farmacia do Estado do Ceará, CRF-CE, Brasil."
+                },
+                {
+                    "Ano": "2008 - 2008",
+                    "Descrição": "XI Curso de Básico de Oncologia.  (Carga horária: 40h). Grupo de Educação e Estudos Oncológicos/UFC, GEON/UFC, Brasil."
+                },
+                {
+                    "Ano": "2008 - 2008",
+                    "Descrição": "Como redigir trabalhos e projetos científicos.  (Carga horária: 3h). Federação das Sociedades de Biologia Experimental, FeSBE, Brasil."
+                },
+                {
+                    "Ano": "2007 - 2007",
+                    "Descrição": "Curso de Fitoterapia em Saúde Pública.  (Carga horária: 40h). Conselho Regional de Farmacia do Estado do Ceará, CRF-CE, Brasil."
+                },
+                {
+                    "Ano": "2007 - 2007",
+                    "Descrição": "XVI Curso Preparatório para Estágio em Farmácia Hospitalar.  (Carga horária: 8h). Hospital Universitário Walter Cantídio/UFC, HUWC/UFC, Brasil."
+                }
+            ]
+        },
+        "Atuação Profissional": [
+            {
+                "Instituição": "Secretaria Municipal de Saúde de Fortaleza/Instituto Dr. José Frota, SMS/IJF, Brasil.",
+                "Ano": "2020 - Atual",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Servidor Público, Enquadramento Funcional: Farmacêutico Hospitalar, Carga horária: 24 Inicialmente atuou nas farmácias do centro cirurgico, internação e emergência. Atualmente está alocada no Centro de Informação e Assistência Toxicológica (CIATOX)."
+            },
+            {
+                "Instituição": "Secretaria Municipal de Saúde de Fortaleza/Instituto Dr. José Frota, SMS/IJF, Brasil.",
+                "Ano": "2010 - 2011",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Estagiária, Enquadramento Funcional: Estagiária do CEATOX, Carga horária: 20 Estágio concursado no Centro de Assistência Toxicológica (CEATOX), atuando no atendimento à pacientes vítimas de intoxicações exógenas e acidentes com animais peçonhentos, sob supervisão da Farmacêutica Maria do Socorro Batista Veras."
+            },
+            {
+                "Instituição": "Secretaria Municipal de Saúde de Fortaleza/Instituto Dr. José Frota, SMS/IJF, Brasil.",
+                "Ano": "2009 - 2010",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Estagiária, Enquadramento Funcional: Estagiária de Farmácia Hospitalar, Carga horária: 20 Estágio concursado em Farmácia hospitalar nas áreas de: Dispensação de medicamentos (Farmácia do Centro Cirúrgico e Farmácia satélite) e distribuição de medicamentos (CAF/Farmácia Central), sob supervisão da Farmacêutica Mariana de Oliveira Brizeno de Souza."
+            },
+            {
+                "Instituição": "Universidade Federal do Ceará/Departamento de Fisiologia e Farmacologia, UFC, Brasil.",
+                "Ano": "2014 - 2019",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Bolsista, Enquadramento Funcional: Doutoranda, Carga horária: 40 Doutoranda do Programa de Pós-graduação em Farmacologia - Subárea: Farmacologia da Inflamação."
+            },
+            {
+                "Instituição": "Universidade Federal do Ceará/Departamento de Fisiologia e Farmacologia, UFC, Brasil.",
+                "Ano": "2011 - 2013",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Bolsista, Enquadramento Funcional: Mestranda, Carga horária: 40 Mestranda do Programa de Pós-graduação em Farmacologia - Subárea: Farmacologia da Inflamação."
+            },
+            {
+                "Instituição": "Universidade Federal do Ceará/Departamento de Fisiologia e Farmacologia, UFC, Brasil.",
+                "Ano": "2011 - 2011",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Monitor, Enquadramento Funcional: Monitor remunerado, Carga horária: 12 Monitoria remunerada da disciplina de Farmacologia Geral para os cursos de Farmácia e Biologia, sob supervisão do Prof. Dr. Roberto César Pereira Lima Júnior."
+            },
+            {
+                "Instituição": "Universidade Federal do Ceará/Departamento de Fisiologia e Farmacologia, UFC, Brasil.",
+                "Ano": "2011 - 2011",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Iniciação científica, Enquadramento Funcional: Participação em projeto de pesquisa, Carga horária: 12 Estágio não remunerado, sob a orientação do Prof. Dr. Ronaldo de Albuquerque Ribeiro, desenvolvendo projeto de pesquisa envolvendo sepse e mucosite intestinal induzida por quimioterapia."
+            },
+            {
+                "Instituição": "Universidade Federal do Ceará/Departamento de Fisiologia e Farmacologia, UFC, Brasil.",
+                "Ano": "2009 - 2009",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Monitor, Enquadramento Funcional: Monitor remunerado, Carga horária: 12 Monitoria remunerada da disciplina de Farmacologia Geral para os cursos de Farmácia e Biologia, sob supervisão do Prof(a). Dr(a). Flávia Almeida Santos."
+            },
+            {
+                "Instituição": "Universidade Federal do Ceará/Departamento de Fisiologia e Farmacologia, UFC, Brasil.",
+                "Ano": "2008 - 2008",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Iniciação científica, Enquadramento Funcional: Participação em projeto de pesquisa, Carga horária: 12 Participação no projeto de pesquisa intitulado \"Potencial anticâncer do óleo essencial extraído de folhas de Croton regelianus muell. Arg e seu componente, ascaridol\", sob orientação da Prof(a). Dr(a). Letícia Veras Costa Lotufo."
+            },
+            {
+                "Instituição": "Universidade Federal do Ceará/Hospital Universitário Walter Cantídio, UFC/HUWC, Brasil.",
+                "Ano": "2007 - 2008",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Estagiária, Enquadramento Funcional: Estagiária de Farmácia Hospitalar, Carga horária: 12 Estágio concursado em Farmácia Hospitalar nas áreas de: Dispensação de medicamentos (Farmácia do Centro Cirúrgico e Dose); dispensação de medicamentos de alto custo a nível ambulatorial (Farmácia Ambulatorial); manipulação de dose unitária para pediatria e saneantes (Laboratório de Manipulação - LABMA) e Farmacovigilância, sob supervisão da Farmacêutica Eugenie Desireé Rabelo Néri."
+            },
+            {
+                "Instituição": "Universidade Federal do Ceará/Secretaria Municipal de Saúde de Fortaleza, UFC/SMS, Brasil.",
+                "Ano": "2007 - 2008",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Extensionista, Enquadramento Funcional: Participação em projeto de extensão, Carga horária: 12 Participação no projeto de extensão intitulado \"Liga de Saúde da Família\" sob a orientação da Prof(a) Dr(a). Ivana Cristina de Holanda Cunha Barreto."
+            },
+            {
+                "Instituição": "Universidade Federal do Ceará/Departamento de Farmácia, UFC, Brasil.",
+                "Ano": "2011 - 2012",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Colaborador, Enquadramento Funcional: Participação em projeto de extensão, Carga horária: 2 Participação em projeto de extensão - Centro de Estudos em Toxicologia (CETOX/UFC) - em parceria com o Centro de Assistência Toxicológica (CEATOX/IJF), desenvolvendo trabalhos na área de toxicologia, sob a orientação da Prof(a). Dr(a). Maria Augusta Drago Ferreira."
+            },
+            {
+                "Instituição": "Universidade Federal do Ceará/Departamento de Farmácia, UFC, Brasil.",
+                "Ano": "2010 - 2010",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Iniciação Científica, Enquadramento Funcional: Participação em projeto de pesquisa, Carga horária: 12 Participação no projeto de pesquisa intitulado \"Estudo de biomarcadores de modificações oxidantes em pacientes com Leucemia Mielóide Crônica\", sob a orientação da Prof(a). Dr(a). Romélia Pinheiro Gonçalves."
+            },
+            {
+                "Instituição": "Universidade Federal do Ceará/Departamento de Farmácia, UFC, Brasil.",
+                "Ano": "2008 - 2009",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Extensionista, Enquadramento Funcional: Participação em projeto de extensão, Carga horária: 12 Participação no projeto de extensão intitulado \"Acompanhamento ambulatorial e residencial de idosos hipertensos e em uso contínuo de alfa-metildopa\", sob a orientação da Prof(a). Dr(a). Alcínia Braga de Lima Arruda."
+            },
+            {
+                "Instituição": "Universidade Federal do Ceará/Departamento de Farmácia, UFC, Brasil.",
+                "Ano": "2006 - 2007",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Iniciação Científica, Enquadramento Funcional: Participação em projeto de pesquisa, Carga horária: 12 Participação no projeto de pesquisa intitulado \"Uso de amido como adsorvente em métodos cromatográficos no estudo fitoquímico das vagens de jucá (Caesalpinia ferrea mart. ex tul.)\", sob a orientação da Prof(a). Dr(a). Mary Anne Medeiros Bandeira."
+            },
+            {
+                "Instituição": "Santa Casa da Misericórdia de Fortaleza, SCMF, Brasil.",
+                "Ano": "2011 - 2011",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Estagiária, Enquadramento Funcional: Estagiária de Análises Clínicas, Carga horária: 30 Estagiária curricular de Análises Clínicas no Laboratório de Patologia Dr. Edilson Gurgel (Estágio diferencial do curso de Graduação em Farmácia), lotado na Santa Casa de Misericórdia de Fortaleza."
+            },
+            {
+                "Instituição": "Escola Técnica de Maracanaú, ETM/SOBEM, Brasil.",
+                "Ano": "2016 - 2016",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Professor Visitante, Enquadramento Funcional: Professor, Carga horária: 4 Docente do curso Técnico de Análises Clínicas, ministrando aulas sobre Imunologia e de Instrumentação e vidrarias laboratoriais."
+            },
+            {
+                "Instituição": "Centro Brasileiro de Cursos, CEBRAC, Brasil.",
+                "Ano": "2016 - 2016",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Professor Visitante, Enquadramento Funcional: Professor, Carga horária: 20 Docente do curso de Atendente em Farmácia, ministrando aulas sobre anatomia e fisiologia humana, farmacotécnica, farmacologia e primeiros socorros."
+            },
+            {
+                "Instituição": "Universidade Federal do Rio de Janeiro/ Instituto de Ciências Biomédicas, UFRJ/ICB, Brasil.",
+                "Ano": "2017 - 2018",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Estágio de doutorado, Enquadramento Funcional: Colaborador, Carga horária: 40 Estágio no Laboratório de Embriologia dos Vertebrados, onde realizou estudos com células normais e tumorais para a avaliação da sinalização mediada por Wnt/β-Catenina no contexto da mucosite intestinal induzida por antineoplásicos."
+            },
+            {
+                "Instituição": "Hospital Geral Waldemar Alcântara, HGWA, Brasil.",
+                "Ano": "2019 - 2019",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Celetista, Enquadramento Funcional: Farmacêutica, Carga horária: 40 Lotada no setor de dispensação de medicamentos para as clínicas médicas adultas e pediátricas, atuando na gestão de funcionários e estoque e supervisão técnica."
+            },
+            {
+                "Instituição": "Secretaria Municipal de Saúde de Aquiraz, SMS AQUIRAZ, Brasil.",
+                "Ano": "2018 - 2019",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Servidor Público, Enquadramento Funcional: Farmacêutica, Carga horária: 20 Lotada no setor de dispensação de medicamentos de alto custo e na Farmácia do Hospital Municipal Manoel Assunção Pires, onde atuava na gestão de funcionários e estoque e supervisão técnica."
+            },
+            {
+                "Instituição": "Fundação Oswaldo Cruz, FIOCRUZ, Brasil.",
+                "Ano": "2019 - Atual",
+                "Descrição": "",
+                "Outras informações": "Vínculo: Servidor Público, Enquadramento Funcional: Técnica de laboratório, Carga horária: 40"
+            }
+        ],
+        "Linhas de Pesquisa": [],
+        "Áreas": {
+            "1.": "Grande área: Ciências Biológicas / Área: Farmacologia.",
+            "2.": "Grande área: Ciências Biológicas / Área: Imunologia.",
+            "3.": "Grande área: Ciências Biológicas / Área: Bioquímica / Subárea: Biologia Molecular.",
+            "4.": "Grande área: Ciências da Saúde / Área: Farmácia / Subárea: Farmácia Hospitalar.",
+            "5.": "Grande área: Ciências Biológicas / Área: Farmacologia / Subárea: Toxicologia."
+        },
+        "Produções": {
+            "Artigos completos publicados em periódicos": [
+                {
+                    "ano": "2021",
+                    "fator_impacto_jcr": "2.6",
+                    "ISSN": "00410101",
+                    "titulo": "Bothrops pauloensis snake venom-derived Asp-49 and Lys-49 phospholipases A2 mediates acute kidney injury by oxidative stress and release of inflammatory cytokines",
+                    "revista": "TOXICON",
+                    "autores": "MARINHO, ALINE DIOGO2021MARINHO, ALINE DIOGO ; SILVEIRA, JOÃO ALISON DE MORAES ; CHAVES FILHO, ADRIANO JOSÉ MAIA ; JORGE, ANTÔNIO RAFAEL COELHO ; NOGUEIRA JÚNIOR, FRANCISCO ASSIS ;PEREIRA, VENÚCIA BRUNA MAGALHÃES; DE AQUINO, PEDRO EVERSON ALEXANDRE ; PEREIRA, CÁSSIA ARRUDA SOUZA ; EVANGELISTA, JANAINA SERRA AZUL MONTEIRO ; MACEDO, DANIELLE SILVEIRA ; LIMA JÚNIOR, ROBERTO CÉSAR PEREIRA ; TOYAMA, MARCOS HIKARI ; JORGE, ROBERTA JEANE BEZERRA ; PEREIRA, GUSTAVO JOSÉ SILVA ; MONTEIRO, HELENA SERRA AZUL . ",
+                    "data_issn": "00410101",
+                    "DOI": "http://dx.doi.org/10.1016/j.toxicon.2020.12.004"
+                },
+                {
+                    "ano": "2019",
+                    "fator_impacto_jcr": "1.9",
+                    "ISSN": "1414431X",
+                    "titulo": "Amifostine reduces inflammation and protects against 5-fluorouracil-induced oral mucositis and hyposalivation",
+                    "revista": "Brazilian Journal of Medical and Biological Research (on line)",
+                    "autores": "BARBOSA, S.C.M.2019BARBOSA, S.C.M. ;PEREIRA, V.B.M.; WONG, D.V.T. ; SANTANA, A.P.M. ; LUCETTI, L.T. ; CARVALHO, L.L. ; BARBOSA, C.R.N. ; CALLADO, R.B. ; SILVA, C.A.A. ; LOPES, C.D.H. ; BRITO, G.A.C. ; ALENCAR, N.M.N. ; LIMA-JÚNIOR, R.C.P. ",
+                    "data_issn": "1414431X",
+                    "DOI": "http://dx.doi.org/10.1590/1414-431x20188251"
+                },
+                {
+                    "ano": "2018",
+                    "fator_impacto_jcr": "4.8",
+                    "ISSN": "15675769",
+                    "titulo": "Neutrophils contribute to the pathogenesis of hemorrhagic cystitis induced by ifosfamide",
+                    "revista": "INTERNATIONAL IMMUNOPHARMACOLOGY",
+                    "autores": "DORNELAS-FILHO, AMÍLCAR FIGUEIREDO2018DORNELAS-FILHO, AMÍLCAR FIGUEIREDO ;PEREIRA, VENÚCIA BRUNA MAGALHÃES; WONG, DEYSI VIVIANA TENAZOA ; NOBRE, LÍVIA MARIA SOARES ; MELO, ANIELLE TORRES ; SILVA, CAMILA MEIRELLES SOUZA ; WANDERLEY, CARLOS WAGNER SOUZA ; NOUR, MARIANA LIMA ; ARAÚJO, LIS CAETANO NOBREGA COSTA ; SILVA, RENAN OLIVEIRA ; PINTO, FRANCISCO MAXWELL MARTINS ; BINGANA, RUDY DIAVILA ; SOUZA, MARCELLUS HENRIQUE LOIOLA PONTE ; ALENCAR, NYLANE MARIA NUNES ; SILVA, PAULO GOBERLÂNIO BARROS ; ALVES, ANA PAULA NEGREIROS NUNES ; ALMEIDA, PAULO ROBERTO CARVALHO ; CUNHA, FERNANDO QUEIROZ ; LIMA-JÚNIOR, ROBERTO CÉSAR PEREIRA . ",
+                    "data_issn": "15675769",
+                    "DOI": "http://dx.doi.org/10.1016/j.intimp.2018.06.031"
+                },
+                {
+                    "ano": "2017",
+                    "fator_impacto_jcr": "3.3",
+                    "ISSN": "0041008X",
+                    "titulo": "Dual effect of silymarin on experimental non-alcoholic steatohepatitis induced by irinotecan",
+                    "revista": "TOXICOLOGY AND APPLIED PHARMACOLOGY",
+                    "autores": "MARCOLINO ASSIS-JÚNIOR, EUDMAR2017MARCOLINO ASSIS-JÚNIOR, EUDMAR ; MELO, ANIELLE TORRES ;PEREIRA, VENÚCIA BRUNA MAGALHÃES; WONG, DEYSI VIVIANA TENAZOA ; SOUSA, NATHALIA RIBEIRO PINHO ; OLIVEIRA, CHRISTIANE MENDES GONÇALVES ; MALVEIRA, LARA RAISSA CAVALCANTE ; MOREIRA, LEONARDO SILVA ; SOUZA, MARCELLUS HENRIQUE LOIOLA PONTE ; ALMEIDA, PAULO ROBERTO CARVALHO ; LIMA-JÚNIOR, ROBERTO CÉSAR PEREIRA . ",
+                    "data_issn": "0041008X",
+                    "DOI": "http://dx.doi.org/10.1016/j.taap.2017.04.023"
+                },
+                {
+                    "ano": "2016",
+                    "fator_impacto_jcr": "2.7",
+                    "ISSN": "03445704",
+                    "titulo": "A new animal model of intestinal mucositis induced by the combination of irinotecan and 5-fluorouracil in mice",
+                    "revista": "CANCER CHEMOTHERAPY AND PHARMACOLOGY",
+                    "autores": "PEREIRA, VENÚCIA B. M.2016PEREIRA, VENÚCIA B. M.; MELO, ANIELLE T. ; ASSIS-JÚNIOR, EUDMAR M. ; WONG, DEYSI V. T. ; BRITO, GERLY A. C. ; ALMEIDA, PAULO R. C. ; RIBEIRO, RONALDO A. ; LIMA-JÚNIOR, ROBERTO C. P. ",
+                    "data_issn": "03445704",
+                    "DOI": "http://dx.doi.org/10.1007/s00280-015-2938-x"
+                },
+                {
+                    "ano": "2008",
+                    "fator_impacto_jcr": "2.7",
+                    "ISSN": "18084540",
+                    "titulo": "Perfil de prescrições de medicamentos em UTI pós-operatória e sala de recuperação pós-anestésica de um hospital universitário no nordeste do Brasil",
+                    "revista": "Revista Sociedade Brasileira de Farmácia Hospitalar",
+                    "autores": "PEREIRA, V. B. M.2008PEREIRA, V. B. M.; GONÇALVES, E. M. L. ; LUNA, A. M. P. T. ; NERI, E. D. R. ",
+                    "data_issn": "18084540",
+                    "DOI": "http://dx.doi.org/10.1007/s00280-015-2938-x"
+                }
+            ],
+            "Apresentações de Trabalho": {
+                "1.": "NOBRE, L. M. S. ; SILVA, C. M. S. ; SILVA, S. W. H. ; SILVA, F. W. L. ;PEREIRA, V. B. M.; PAIVA, I. K. D. ; FERNANDES, C. ; ALVES, A. P. N. N. ; LIMA-JUNIOR, R. C. P. . Abatacept, a CTLA4‐Ig complex which inhibits T‐Cell activation, enhances irinotecan‐induced intestinal mucositis. 2017. (Apresentação de Trabalho/Congresso).",
+                "2.": "CARVALHO, L. L. ; WONG, D. V. T. ; GONZALEZ, R. H. ; BATISTA, G. L. P. ; FERNANDES, C. ; NOBRE, L. M. S. ; TEIXEIRA, M. A. ;PEREIRA, V. B. M.; SILVA, K. O. ; ALMEIDA, P. R. C. ; LIMA-JUNIOR, R. C. P. . Everolimus, a mTOR inhibitor, enhance irinotecan - induced experimental intestinal mucositis by activation of proinflammatory cytokines. 2016. (Apresentação de Trabalho/Congresso).",
+                "3.": "MELO, ANIELLE T. ; ARAGÃO, K. S. ; FREITAS, J. A. ; MOURÃO, L. T. C. ;PEREIRA, V. B. M.; CARVALHO, L. L. ; SILVA, C. M. S. ; GURGEL, D. C. ; PEREIRA, M. A. ; ALMEIDA, P. R. C. ; LIMA-JUNIOR, R. C. P. . Probiotics protect against irinotecan-induced steatohepatitis in mice. 2016. (Apresentação de Trabalho/Simpósio).",
+                "4.": "MELO, ANIELLE T. ; ARAGÃO, K. S. ; WONG, D. V. T. ; FREITAS, J. A. ; MOURÃO, L. T. C. ;PEREIRA, V. B. M.; CARVALHO, L. L. ; SILVA, S. W. H. ; ALMEIDA, PAULO R. C. ; LIMA-JUNIOR, R. C. P. . Irinotecan-induced steatohepatitis: protective effect of probiotics. 2016. (Apresentação de Trabalho/Congresso).",
+                "5.": "PEREIRA, V. B. M.; WONG, D. V. T. ; MELO, A.T. ; ASSIS-JUNIOR, E. M. ; BRITO, G. A. C. ; RIBEIRO, R. A. ; LIMA-JUNIOR, R. C. P. . Intestinal mucositis induced by association of Irinotecan and 5-Fluorouracil in C57BL/6 mice: Involvement of TNF-α and IL-6.. 2014. (Apresentação de Trabalho/Congresso).",
+                "6.": "LEAL, R. M. L. V. ; ARAGÃO, K. S. ; LOPES, C. D. H. ; PRADO, L. D. ;PEREIRA, V. B. M.; LIMA-JUNIOR, R. C. P. ; ALMEIDA, P. R. C. ; RIBEIRO, R. A. . Protective effect of N-acetylcysteine on irinotecan-induced experimental steatohepatitis. 2014. (Apresentação de Trabalho/Congresso).",
+                "7.": "LEAL, R. M. L. V. ; ARAGÃO, K. S. ; LOPES, C. D. H. ;PEREIRA, V. B. M.; LIMA-JUNIOR, R. C. P. . Efeito protetor da N-Acetilcisteína nos eventos Inflamatórios e funcionais da esteatohepatite experimental induzida por irinotecano. 2014. (Apresentação de Trabalho/Outra).",
+                "8.": "ASSIS-JUNIOR, E. M. ; SOUSA, N. R. P. ; MOREIRA, L. S. ; MALVEIRA, L. R. C. ; WONG, D. V. T. ; MELO, A.T. ;PEREIRA, V. B. M.; WANDERLEY, C. W. S. ; SOARES, B. M. ; ALMEIDA, P. R. C. ; RIBEIRO, R. A. ; LIMA-JUNIOR, R. C. P. . Silymarin protects against irinotecan-inducednon-alcoholic steatohepatitis through the inibition of protein nitrosylation and toll-like receptor 4 immunoexpression. 2014. (Apresentação de Trabalho/Congresso).",
+                "9.": "PEREIRA, V. B. M.; WONG, D. V. T. ; MELO, A.T. ; ASSIS-JUNIOR, E. M. ; BRITO, G. A. C. ; RIBEIRO, R. A. ; LIMA-JUNIOR, R. C. P. . New experimental model of combined irinotecan and 5-Fluorouracil-induced intestinal mucositis in mice.. 2013. (Apresentação de Trabalho/Congresso).",
+                "10.": "ASSIS-JUNIOR, E. M. ; MOREIRA, L. S. ; SOUZA, N. R. P. ; MALVEIRA, L. R. C. ; OLIVEIRA, C. M. G. ; WONG, D. V. T. ; MELO, A.T. ;PEREIRA, V. B. M.; ARAGÃO, K. S. ; ALMEIDA, P. R. C. ; RIBEIRO, R. A. ; LIMA-JUNIOR, R. C. P. . Protective effect of silymarim (SIL) on irinotecan induced non-alcoholic steatohepatitis in mice. 2013. (Apresentação de Trabalho/Congresso).",
+                "11.": "PEREIRA, V. B. M.; LIMA-JUNIOR, R. C. P. ; FIGUEIREDO, A. A. ; LEITE, C. A. V. G. ; WONG, D. V. T. ; PEREIRA, S. T. A. ; ARAGÃO, K. S. ; BEM, A. X. C. ; ORIA, R. B. ; MAGALHÃES, P. J. C. ; BRITO, G. A. C. ; SOUZA, M. H. L. P. ; RIBEIRO, R. A. . Selective TNF-alfa inhibition with infliximab prevents inflammation but not diarrhea in irinotecan-induced intestinal mucostis. 2012. (Apresentação de Trabalho/Congresso).",
+                "12.": "BATISTA, L. A. A. ; MOURA, C. T. M. ; FERREIRA, M. A. D. ; VERAS, M. S. B. ; BARROSO, F. A. C. ; MAIA, K. M. ; HOLANDA, F. M. T. ;PEREIRA, V. B. M.. Relato de caso de sobrevivente a intoxicação aguda por paraquat. 2012. (Apresentação de Trabalho/Congresso).",
+                "13.": "CARMO, A. C. P. ; SILVA, A. M. ; ROMERO, N. R. ; BARROSO, O. L. G. ;PEREIRA, V. B. M.; MENDES, R. M. S. . Perfil de utilização da cefalotina em hospital de emergência em Fortaleza-CE. 2012. (Apresentação de Trabalho/Outra).",
+                "14.": "PEREIRA, A. P. ; UCHÔA, C. R. A. ; MEDEIROS, P. H. Q. S. ;PEREIRA, V. B. M.; MONTE, A. S. ; LIMA-JUNIOR, R. C. P. . Avaliação da influência do programa de monitoria na escolha pela docência por parte dos professores da área de saúde da UFC. 2011. (Apresentação de Trabalho/Outra).",
+                "15.": "PEREIRA, V. B. M.; UCHÔA, C. R. A. ; MEDEIROS, P. H. Q. S. ; PEREIRA, A. P. ; MONTE, A. S. ; LIMA-JUNIOR, R. C. P. . Impacto das aulas de revisão sobre o desempenho dos estudantes na disciplina de Farmacologia geral aplicada aos cursos de farmácia e biologia. 2011. (Apresentação de Trabalho/Outra).",
+                "16.": "MONTE, A. S. ; UCHÔA, C. R. A. ; MEDEIROS, P. H. Q. S. ; PEREIRA, A. P. ;PEREIRA, V. B. M.; LIMA-JUNIOR, R. C. P. . A percepção dos alunos quanto a importância de aulas práticas na disciplina de Farmacologia para o curso de farmácia. 2011. (Apresentação de Trabalho/Outra).",
+                "17.": "ARRUDA, A. B. L. ; GONÇALVES, R. P. ; SOUZA, I. P. ; GOMES, V. H. A. ; SARAIVA, R. M. S. ;PEREIRA, V. B. M.; SOUZA, M. S. ; MATOS, C. ; OLIVEIRA, K. F. T. V. ; SILVA, V. T. G. ; GUEDES, M. H. A. . Prevalência e caracterização morfológica da anemia presente em idosos do município de Aurora Ceará. 2010. (Apresentação de Trabalho/Congresso).",
+                "18.": "ARRUDA, A. B. L. ; GONÇALVES, E. M. L. ; SOUZA, I. P. ; GOMES, V. H. A. ; SARAIVA, R. M. S. ;PEREIRA, V. B. M.; SOUZA, M. S. ; MATOS, C. ; OLIVEIRA, K. F. T. V. ; SILVA, V. T. G. ; GUEDES, M. H. A. . Comportamento do leucograma em pacientes ambulatoriais do hospital Geral de Fortaleza - Ceará que usam continuamente corticóides. 2010. (Apresentação de Trabalho/Congresso).",
+                "19.": "ARRUDA, A. B. L. ; GONÇALVES, R. P. ; SOUZA, I. P. ; GOMES, V. H. A. ; SARAIVA, R. M. S. ;PEREIRA, V. B. M.; SOUZA, M. S. ; MATOS, C. ; OLIVEIRA, K. F. T. V. ; SILVA, V. T. G. ; PEDROSA, B. S. . Prevalência de anemia e perfil epidemiológico das gestantes do município de Acaraú-Ce. 2010. (Apresentação de Trabalho/Congresso).",
+                "20.": "ARRUDA, A. B. L. ; GONÇALVES, R. P. ; SOUZA, I. P. ; GOMES, V. H. A. ; SARAIVA, R. M. S. ;PEREIRA, V. B. M.; SOUZA, M. S. ; MATOS, C. ; OLIVEIRA, K. F. T. V. ; SILVA, V. T. G. ; CARVALHO, R. H. A. . Comportamento do hemograma completo em pacientes portadores do vírus da dengue na cidade de Antonina do Norte-Ce. 2010. (Apresentação de Trabalho/Congresso).",
+                "21.": "ARRUDA, A. B. L. ; GONÇALVES, R. P. ; SOUZA, M. S. ; BENIGNO, T. G. S. ; SARAIVA, R. M. S. ;PEREIRA, V. B. M.; MATOS, C. ; OLIVEIRA, K. F. T. V. ; SILVA, V. T. G. ; LIMA, D. T. . Perfil laboratorial das infecções fúngicas em pacientes de um hospital público de Fortaleza-Ce. 2010. (Apresentação de Trabalho/Congresso).",
+                "22.": "ARRUDA, A. B. L. ; GONÇALVES, R. P. ; SOUZA, I. P. ; BENIGNO, T. G. S. ; SARAIVA, R. M. S. ;PEREIRA, V. B. M.; SOUZA, M. S. ; MATOS, C. ; OLIVEIRA, K. F. T. V. ; SILVA, V. T. G. ; FERNANDES, K. R. . Pesquisa de hemoglobina S em pacientes atendidos na rede pública de Mossoró-RN. 2010. (Apresentação de Trabalho/Congresso).",
+                "23.": "PEREIRA, V. B. M.; CABRAL, I. O. ; CAVALCANTI, B. C. ; FERREIRA, J. R. O. ; MONTENEGRO, R. C. ; SILVA, E. N. J. ; ANDRADE, C. K. Z. ; PINTO, A. V. ; PINTO, M. C. F. R. ; COSTA-LOTUFO, L.V. ; MORAES, M. O. ; PESSOA, C. . Effect of nad(p)h:quinone oxidoreductase 1 (nqo1) on the cytotoxicity activity of new arylamino nor-β-lapachone derivatives in human prostate tumor cells. 2009. (Apresentação de Trabalho/Congresso).",
+                "24.": "PEREIRA, V. B. M.; LUZ, P. B. ; PINHEIRO, R. S. P. ; SANTOS, F. A. . Importância da disciplina de farmacologia geral para o entendimento clínico dos fármacos pelos alunos de farmácia. 2009. (Apresentação de Trabalho/Outra).",
+                "25.": "PEREIRA, V. B. M.; GONÇALVES, E. M. L. ; NERI, E. D. R. ; LUNA, A. M. P. T. . Perfil de utilização da denominação genérica na prescrição de anestésicos em centro cirúrgico de hospital de ensino. 2009. (Apresentação de Trabalho/Congresso).",
+                "26.": "PEREIRA, V. B. M.; GONÇALVES, E. M. L. ; NERI, E. D. R. ; LUNA, A. M. P. T. . Perfil de utilização de DCB/DCI na prescrição de medicamentos em centro cirúrgico de um hospital universitário. 2009. (Apresentação de Trabalho/Congresso).",
+                "27.": "NERI, E. D. R. ; GONÇALVES, E. M. L. ; LUNA, A. M. P. T. ;PEREIRA, V. B. M.; DORNELAS, A. F. . Indicadores da qualidade de prescrições médicas de UTI pós-operatória e sala de recuperação em um hospital de ensino. 2009. (Apresentação de Trabalho/Congresso).",
+                "28.": "GONÇALVES, E. M. L. ; NERI, E. D. R. ; LUNA, A. M. P. T. ;PEREIRA, V. B. M.; DORNELAS, A. F. . Avaliação da adesão ao uso da DCB/DCI em prescrições de uti pós-operatória e sala de recuperação em hospital cearence. 2009. (Apresentação de Trabalho/Congresso).",
+                "29.": "SARAIVA, R. M. S. ; GONÇALVES, R. P. ;PEREIRA, V. B. M.; SILVEIRA, E. S. ; SOUZA, M. S. ; MATOS, C. ; ARRUDA, A. B. L. . Acompanhamento ambulatorial e residencial de pacientes idosos, hipertensos e em uso contínuo de alfa-metildopa. 2009. (Apresentação de Trabalho/Outra).",
+                "30.": "LUZ, P. B. ; PINHEIRO, R. S. P. ;PEREIRA, V. B. M.; SANTOS, F. A. . Avaliação dos grupos de discussão na disciplina de farmacologia geral dos cursos de farmácia e biologia. 2009. (Apresentação de Trabalho/Outra).",
+                "31.": "PINHEIRO, R. S. P. ; LUZ, P. B. ;PEREIRA, V. B. M.; SANTOS, F. A. . Aplicação de casos clínicos na disciplina de farmacologia geral para os cursos de farmácia e biologia. 2009. (Apresentação de Trabalho/Outra).",
+                "32.": "SARAIVA, R. M. S. ;PEREIRA, V. B. M.; SILVEIRA, E. S. ; SOUZA, M. S. ; MATOS, C. ; ARRUDA, A. B. L. ; GONÇALVES, R. P. ; SOUZA, I. P. ; CIDADE, S. N. ; OLIVEIRA, K. F. T. V. . Uso De Medicamentos Por Gestantes Em Uma Farmácia Comercial De Fortaleza-Ce: Uma Abordagem Farmacoepidemiológica. 2009. (Apresentação de Trabalho/Congresso).",
+                "33.": "ARRAIS, P. S. D. ; GONÇALVES, R. P. ; SOUZA, M. S. ; SARAIVA, R. M. S. ;PEREIRA, V. B. M.; SILVEIRA, E. S. ; MATOS, C. ; SOUZA, I. P. ; VIEIRA, B. F. . O leucograma em pacientes tratados com corticosteróides. 2009. (Apresentação de Trabalho/Congresso).",
+                "34.": "ARRUDA, A. B. L. ; GONÇALVES, R. P. ; SOUZA, I. P. ; SARAIVA, R. M. S. ;PEREIRA, V. B. M.; SILVEIRA, E. S. ; SOUZA, M. S. ; MATOS, C. ; LIMA, D. T. . Comparação entre o exame microscópico direto e a cultura no diagnóstico das infecções fúngicas no sangue periférico e medula óssea. 2009. (Apresentação de Trabalho/Congresso).",
+                "35.": "ARRUDA, A. B. L. ; SOUZA, I. P. ; GONÇALVES, R. P. ; SARAIVA, R. M. S. ;PEREIRA, V. B. M.; SILVEIRA, E. S. ; SOUZA, M. S. ; MATOS, C. ; CUNHA, Z. M. . Prevalência de anemia em gestantes acompanhadas pelas equipes de saúde da família do município de Paramoti-CE. 2009. (Apresentação de Trabalho/Congresso).",
+                "36.": "ARRUDA, A. B. L. ; SOUZA, I. P. ; GONÇALVES, R. P. ; SARAIVA, R. M. S. ;PEREIRA, V. B. M.; SILVEIRA, E. S. ; SOUZA, M. S. ; MATOS, C. ; CARVALHO, R. H. A. . Avaliação das alterações hematológicas encontradas em pacientes portadores do vírus da dengue. 2009. (Apresentação de Trabalho/Congresso).",
+                "37.": "PEREIRA, V. B. M.; SARAIVA, R. M. S. ; OLIVEIRA, M. F. ; ARRAIS, P. S. D. . Projeto Liga de Saúde da Família da UFC. A Experiência da Farmácia. 2008. (Apresentação de Trabalho/Congresso).",
+                "38.": "PEREIRA, V. B. M.; ARAÚJO, M. F. M. . O desafio da participação comunitária: Projeto Liga de Saúde da Família / UFC. 2008. (Apresentação de Trabalho/Congresso).",
+                "39.": "PEREIRA, V. B. M.; SARAIVA, R. M. S. ; OLIVEIRA, M. F. ; ARRAIS, P. S. D. . Projeto de extensão Liga de Saúde da Família: Os Desafios da Formação do Farmacêutico na Perspectiva do SUS. 2008. (Apresentação de Trabalho/Outra).",
+                "40.": "PEREIRA, V. B. M.; MARINHO FILHO, J. D. B. ; COSTA-LOTUFO, L.V. . Potencial anticâncer do óleo essencial extraído de folhas de Croton regelianus muell. Arg e seu componente, ascaridol. 2008. (Apresentação de Trabalho/Outra).",
+                "41.": "ARRUDA, A. B. L. ; SILVEIRA, E. S. ; SARAIVA, R. M. S. ; SOUZA, M. S. ;PEREIRA, V. B. M.; GONÇALVES, R. P. ; GOMES, R. J. R. . Acompanhamento de idosos hipertensos. 2008. (Apresentação de Trabalho/Outra).",
+                "42.": "SARAIVA, R. M. S. ;PEREIRA, V. B. M.; OLIVEIRA, M. F. ; ARRAIS, P. S. D. . Os Desafios da Formação do Farmacêutico na Perspectiva do SUS. 2008. (Apresentação de Trabalho/Outra).",
+                "43.": "ARRUDA, A. B. L. ; GOMES, R. J. R. ; SILVEIRA, E. S. ; SOUZA, M. S. ; SARAIVA, R. M. S. ;PEREIRA, V. B. M.. Programa de acompanhamento de idosos hipertensos em uma instituição de caridade de Fortaleza-CE. 2008. (Apresentação de Trabalho/Outra).",
+                "44.": "ARRUDA, A. B. L. ; GONÇALVES, R. P. ; SOUZA, I. P. ;PEREIRA, V. B. M.; GOMES, R. J. R. ; MAGALHÃES, H. Y. F. . Perfil de uma população exposta aos praguicidas carbamatos e organofosforados. 2008. (Apresentação de Trabalho/Outra).",
+                "45.": "ARRUDA, A. B. L. ; GONÇALVES, R. P. ; SOUZA, I. P. ;PEREIRA, V. B. M.; GOMES, R. J. R. ; MAGALHÃES, H. Y. F. . Hipotireoidismo e anemia. 2008. (Apresentação de Trabalho/Outra).",
+                "46.": "GOMES, R. J. R. ;PEREIRA, V. B. M.; SARAIVA, R. M. S. ; ARRUDA, A. B. L. . Acompanhamento Ambulatorial e Residencial de Pacientes Idosos, Hipertensos e em uso Contínuo de Alfa-metildopa. 2008. (Apresentação de Trabalho/Outra).",
+                "47.": "SARAIVA, R. M. S. ;PEREIRA, V. B. M.; SILVEIRA, E. S. ; ARRUDA, A. B. L. . Atividades lúdicas como estratégia de educação em saúde no contexto da automedicação em idosos do Lar Torres de Melo. 2008. (Apresentação de Trabalho/Outra).",
+                "48.": "ARRUDA, A. B. L. ; GONÇALVES, R. P. ; SOUZA, I. P. ; SILVA, H. F. ; CARVALHO, P. G. ; MACHADO, R. P. G. ; GOMES, R. J. D. R. ; SILVEIRA, E. S. ; SARAIVA, R. M. S. ; SOUZA, M. S. ;PEREIRA, V. B. M.; ARESI, M. A. P. . Perfil e frequência de anemia em gestantes atendidas no laboratório municipal Prefeito Alberto Martins de Canidé - CE. 2008. (Apresentação de Trabalho/Congresso).",
+                "49.": "ARRUDA, A. B. L. ; GOMES, R. J. D. R. ; GONÇALVES, R. P. ; MACHADO, R. P. G. ;PEREIRA, V. B. M.; CARVALHO, P. G. ; SILVEIRA, E. S. ; SOUZA, M. S. ; SARAIVA, R. M. S. ; SILVA, H. F. ; SOUZA, I. P. ; VALE, A. M. . Avaliação e característica da anemia em pacientes idosos atendidos no laboratório municipal Prefeito Alberto Martins em Canidé - CE.. 2008. (Apresentação de Trabalho/Congresso).",
+                "50.": "ARRUDA, A. B. L. ; GONÇALVES, R. P. ; SOUZA, I. P. ; GOMES, R. J. R. ; SILVEIRA, E. S. ; SARAIVA, R. M. S. ; SOUZA, M. S. ;PEREIRA, V. B. M.; CIDADE, S. N. . Perfil da utilização de medicamentos em pacientes gestantes em uma farmácia comercial no centro de Fortaleza-CE. 2008. (Apresentação de Trabalho/Congresso).",
+                "51.": "SILVA, K. M. ; BARBOSA, R. A. ;PEREIRA, V. B. M.; BANDEIRA, M. A. M. . Uso do amido como adsorvente em métodos cromatográficos no estudo fitoquímico das vagens de jucá (Caesalpinia ferrea Mart Ex Tul.). 2007. (Apresentação de Trabalho/Outra).",
+                "52.": "SILVA, K. M. ; BARBOSA, R. A. ;PEREIRA, V. B. M.; BANDEIRA, M. A. M. . Uso do amido como adsorvente em métodos cromatográficos no estudo fitoquímico das vagens de jucá (Caesalpinia ferrea Mart Ex Tul.). 2007. (Apresentação de Trabalho/Congresso).",
+                "53.": "MACÊDO, A. C. ; SARAIVA, R. M. S. ; FERNANDES, F. F. ;PEREIRA, V. B. M.; TORRES, P. P. B. F. ; NERI, E. D. R. . Ação extensionista na implantação da dose unitária de injetáveis na pediatria do Hospital Universitário Walter Cantídio da UFC. 2007. (Apresentação de Trabalho/Outra).",
+                "54.": "PORTELA, M. P. ; SÁ, K. M. ; COSTA JUNIOR, C. A. ; MEMÓRIA, M. S. ;PEREIRA, V. B. M.; BEZERRA, C. L. ; MESQUITA, J. L. ; TEÓFILO, F. R. S. . Análise dos custos dos procedimentos anestésicos no centro cirúrgico do Hospital Universitário Walter Cantídio. 2007. (Apresentação de Trabalho/Congresso)."
+            },
+            "Demais tipos de produção técnica": {
+                "1.": "PEREIRA, V. B. M.. XIV Curso de iniciação científica em Fisiologia, Farmacologia e Bioquímica Prof. Luiz. 2016. (Curso de curta duração ministrado/Extensão).",
+                "2.": "SANTANA, A. P. M. ; FERNANDES, C. ; WANDERLEY, C. W. S. ;PEREIRA, V. B. M.; MELO, A.T. . XII Curso de iniciação científica em Fisiologia, Farmacologia e Bioquímica Prof. Luiz. 2014. (Curso de curta duração ministrado/Extensão).",
+                "3.": "SANTANA, A. P. M. ; ARAGÃO, K. S. ; ASSIS-JUNIOR, E. M. ; MELO, A.T. ;PEREIRA, V. B. M.; WONG, D. V. T. . XI Curso de iniciação científica em Fisiologia, Farmacologia e Bioquímica Prof. Luiz. 2013. (Curso de curta duração ministrado/Extensão).",
+                "4.": "SANTANA, A. P. M. ; ARAGÃO, K. S. ;PEREIRA, V. B. M.; MELO, A.T. ; WONG, D. V. T. . X Curso de iniciação científica em Fisiologia, Farmacologia e Bioquímica Prof. Luiz Capelo. 2012. (Curso de curta duração ministrado/Extensão)."
+            }
+        },
+        "ProjetosPesquisa": [
+            {
+                "chave": "2015 - Atual",
+                "titulo_projeto": "ESTUDO DAS SUBPOPULAÇÕES LINFOCITÁRIAS Th1, Th2, Th17 e Treg, PAPEL DA VIA IL-6/STAT-3 E REGULAÇÃO DA IL-17 NA PATOGÊNESE DA MUCOSITE INTESTINAL INDUZIDA POR IRINOTECANO",
+                "descricao": "Descrição: Processo 458872/2014-8, Edital 14/2014, MCTI/CNPQ/Universal 14/2014 - Faixa A - até R$ 30.000,00, Vigência: 18/11/2014 a 17/11/2016, Valor R$ 30.000,00 O câncer coloretal (CCR) é uma das neoplasias mais prevalentes em todo o mundo, sendo uma das principais causas de óbito por câncer. Dentre as drogas utilizadas como primeira linha no tratamento do CCR e do CCR metastático, o irinotecano apresenta destaque pelo impacto sobre o aumento da sobrevida dos pacientes. Contudo, o surgimento de efeitos colaterais associados a esse fármaco, como a mucosite intestinal, a qual pode atingir até 80% dos pacientes em quimioterapia convencional, tem impactado negativamente no curso terapêutico do paciente, observando-se atrasos nos ciclos subsequentes de quimioterapia, redução de doses e, por vezes, interrupção do tratamento. Nosso laboratório tem investigado nos últimos 20 anos os mecanismos e mediadores inflamatórios envolvidos na patogênese da mucosite oral e intestinal induzida diferencialmente por diversos qumioterápicos, tais como metotrexato, irinotecano e 5-fluoruracil, e na mucosite oral induzida pela radioterapia. Tem sido sugerido, inclusive com nossa participação, que a mucosite intestinal resulta da interação sequencial da agressão quimioterápica ao epitélio, favorecendo a liberação de citocinas (TNF-alfa, IL-1beta, KC e IL-18) e ativação de enzimas pró-inflamatórias, incluindo a ciclooxigenase-2 (COX-2) e óxido nítrico sintase induzida (iNOS). Devido à consequente ruptura da barreira da mucosa, infecções locais e sistêmicas podem se desenvolver, representando um fator de risco significativo para bacteremia e translocação bacteriana para órgãos periféricos, resultando na ativação de receptores toll-like tipo 2 e 9, contribuindo para o desenvolvimento da diarreia, inflamação e dano intestinal. Em um modelo experimental recente de mucosite intestinal, no qual irinotecano foi associado ao 5-fluorouracil, verificou-se um marcante aumento de IL-1 e IL-6. Apesar do papel sugerido de citocinas pró-inflamatórias, como IL-1, IL-6, IL-18 e TNF-α, na patogênese da mucosite intestinal induzida por irinotecano, e a importância de muitas destas citocinas na polarização de linfócitos, pouco se sabe sobre a participação das diferentes subpopulações linfocitárias nesse modelo. Desta forma, o presente projeto objetiva: 1) determinar a frequência das células Th1, Th2, Th17 e T regulatórias no sangue periférico e intestino de camundongos com mucosite intestinal induzida por irinotecano; 2) Investigar o papel das células dendríticas, isoladas da mucosa intestinal de camundongos com mucosite induzida por irinotecano, na diferenciação de linfócitos naive/memória nas subpopulações Th1, Th2, Th17 e T regulatórias e 3) avaliar o papel da via IL-6/STAT-3 e a regulação da IL-17 na patogênese da mucosite intestinal induzida pela quimioterapia antineoplásica à base de irinotecano. O conhecimento gerado com este estudo abre grandes perspectivas para um melhor manejo clínico da mucosite intestinal, permitindo uma melhora significativa da qualidade de vida dos pacientes acometidos, evitando a redução das doses dos quimioterápicos e a interrupção temporária ou definitiva do tratamento.Situação: Em andamento; Natureza: Pesquisa.Alunos envolvidos: Graduação: (3)  / Mestrado acadêmico: (2)  / Doutorado: (4) .Integrantes: Venúcia Bruna Magalhães Pereira - Integrante / LIMA-JUNIOR, R. C. P. - Coordenador / WONG, D. V. T. - Integrante / RIBEIRO, R. A. - Integrante / ALMEIDA, P. R. C. - Integrante / CUNHA, F. Q. - Integrante."
+            },
+            {
+                "chave": "2013 - Atual",
+                "titulo_projeto": "ESTUDO DA PARTICIPAÇÃO DE VIAS DE SINALIZAÇÃO CELULAR REGULADAS POR RECEPTORES TOLL-LIKE TIPO 4 E DA VIA PI3K/Akt/mTOR/p70S6K NA PATOGÊNESE DA MUCOSITE INTESTINAL E DA ESTEATO-HEPATITE INDUZIDAS PELO ANTINEOPLÁSICO IRINOTECANO",
+                "descricao": "Descrição: O câncer colorretal (CCR) é uma das neoplasias mais prevalentes em todo o mundo, sendo uma das principais causas de óbito por câncer. Dentre as drogas utilizadas como primeira linha no tratamento do CCR e do CCR metastático hepático, o irinotecano apresenta destaque pelo impacto sobre o aumento da sobrevida dos pacientes. Contudo, o surgimento de efeitos colaterais associados ao irinotecano, como a mucosite intestinal e a esteatohepatite, tem impactado negativamente no curso terapêutico do paciente, observando-se atrasos nos ciclos subsequentes de quimioterapia, redução de doses e, por vezes, interrupção do tratamento. A mucosite tem incidência que pode atingir de 40 a 76% dos pacientes em quimioterapia. Tem sido sugerido, inclusive com nossa participação, que a mucosite intestinal resulta da interação sequencial da agressão quimioterápica ao epitélio, favorecendo a liberação de citocinas (TNF-alfa, IL-1beta, IL-18) e ativação de enzimas pró-inflamatórias, incluindo a ciclooxigenase-2 (COX-2) e óxido nítrico sintase induzida (iNOS). Devido à consequente ruptura da barreira da mucosa, infecções locais e sistêmicas podem se desenvolver, representando um fator de risco significativo para a sepse. Adicionalmente, dados de nosso laboratório sugerem que o rompimento da barreira intestinal parece ser fator decisivo para o surgimento de uma nova toxicidade do irinotecano, a esteato-hepatite, e que a translocação bacteriana contribui na gênese dessa toxicidade, uma vez que, há marcante aumento da imunoexpressão de receptores toll-like tipo 4 (TLR4) na mucosa intestinal e no fígado. Neste modelo experimental, desenvolvido de forma inédita pelo nosso grupo, verifica-se que esta toxicidade varia desde a esteatose simples até diferentes graus de inflamação, fibrose e necrose, com o estabelecimento da esteato-hepatite não alcoólica (NASH), similarmente ao observado na prática clínica..Situação: Em andamento; Natureza: Pesquisa.Alunos envolvidos: Graduação: (6)  / Mestrado acadêmico: (3) .Integrantes: Venúcia Bruna Magalhães Pereira - Integrante / LIMA-JUNIOR, R. C. P. - Integrante / WONG, D. V. T. - Integrante / ARAGÃO, K. S. - Integrante / BRITO, G. A. C. - Integrante / RIBEIRO, R. A. - Coordenador / MELO, A.T. - Integrante / MALVEIRA, L. R. C. - Integrante / OLIVEIRA, C. M. G. - Integrante / ALMEIDA, P. R. C. - Integrante / LEAL, R. M. L. V. - Integrante / LOPES, C. D. H. - Integrante / GIFONI, M. A. C. - Integrante / CUNHA, F. Q. - Integrante / COSTA, M. L. V. - Integrante / CARNEIRO FILHO, B. A. - Integrante / BEZERRA, F. M. T. - Integrante / PINHEIRO, M. S. F. - Integrante / MATOS, P. M. P. G. - Integrante / SANTOS, D. A. H. O. - Integrante."
+            },
+            {
+                "chave": "2011 - 2013",
+                "titulo_projeto": "ESTUDO DOS MECANISMOS E MEDIADORES INFLAMATÓRIOS ENVOLVIDOS NA PATOGÊNESE DA ESTEATO-HEPATITE INDUZIDA PELO IRINOTECANO: POTENCIAL PROTETOR DA N-ACETILCISTEÍNA E DA SILIMARINA",
+                "descricao": "Descrição: O câncer colorretal (CCR) é uma das neoplasias mais prevalentes em todo o mundo sendo uma das principais causas de óbito por câncer. O fígado é o sítio de metástases mais freqüente no CCR e, em cerca de 30% dos óbitos, a doença está restrita ao fígado. Assim, as estratégias de tratamento das metástases hepáticas do CCR adquirem grande importância no manejo dessa neoplasia. A expectativa de vida dos pacientes com metástases hepáticas não tratadas é limitada, com sobrevida mediana que não ultrapassa 6 a 12 meses. Com a introdução de novos esquemas que combinam fluoropirimidinas com irinotecano, a eficácia da quimioterapia como primeira linha no tratamento do CCR metastático sofreu uma melhora dramática, apresentando taxas de resposta de aproximadamente 55% com uma sobrevida mediana de 22 meses. O uso da quimioterapia neoadjuvante é um ganho estratégico no tratamento oncológico, tendo em vista que as respostas ao tratamento sistêmico podem tornar ressecáveis lesões inicialmente consideradas irressecáveis à primeira avaliação cirúrgica, permitindo uma chance real de controle da doença ao longo prazo. Paralelamente, o uso da terapia neoadjuvante gerou um crescente receio quanto ao efeito dessas drogas sobre o parênquima hepático não-tumoral. A realização de ressecções hepáticas com um remanescente parênquima hepático patológico pode determinar diferentes graus de limitação da capacidade de regeneração hepática, o que teria influência direta no resultado cirúrgico. Dentre os diversos tipos de lesão hepática, uma alteração têm sido frequentemente associada à drogas quimioterápicas, a esteato-hepatite associada ao uso de irinotecano, que varia desde a esteatose simples até diferentes graus de inflamação, fibrose e necrose, com o desenvolvimento da esteato-hepatite não-alcoólica (NASH). O fígado acometido pela NASH é descrito como fígado amarelo, pelo seu característico aspecto macroscópico secundário ao acúmulo de gordura. Dentre os mecanismos envolvidos nessa progressão, o estresse oxidativo e a produção de espécies reativas de oxigênio, secundária à disfunção mitocondrial, parecem desempenhar um papel central. Considerando que a maioria dos estudos desenvolvidos relaciona-se a ensaios clínicos, tendo sido eficazes em descrever a doença hepática e em identificar grupos de risco, verificou-se pouco avanço no sentido de se compreender a fisiopatologia da doença. Nesse aspecto, nosso laboratório vem se dedicando nas últimas décadas no desenvolvimento e/ou aperfeiçoamento de modelos experimentais que visem estudar a patogênese dos efeitos colaterais da quimioterapia antineoplásica. Desta forma, recentemente desenvolvemos um modelo experimental de esteato-hepatite que permitirá um significativo avanço no que diz respeito ao conhecimento dos mecanismos e mediadores envolvidos na patogênese dessa afecção, bem como o estudo de possíveis hepatoprotetores. Assim, o presente projeto tem como objetivos: Estudar, por meio de modulação farmacológica, o envolvimento dos mediadores inflamatórios, como Fator de Necrose Tumoral-alfa, óxido nítrico sintase induzida e ciclooxigenase-2 na patogênese da esteato-hepatite induzida por irinotecano; Determinar o papel de células de Kupffer e células estelares sobre os processos de lesão e regeneração hepáticas pós-tratamento com irinotecano, bem como a influência da translocação bacteriana a partir da microbiota intestinal sobre a ativação dessas células; e Avaliar o potencial efeito protetor hepático da N-Acetilcisteína e Silimarina, dois hepatoprotetores clinicamente indicados para hepatopatias de diferentes etiologias. O presente projeto, portanto, espera contribuir para o esclarecimento da patogênese dessa condição inflamatória, bem como propor alternativas terapêuticas viáveis para seu tratamento, além de contribuir para a formação de recursos humanos..Situação: Concluído; Natureza: Pesquisa.Alunos envolvidos: Graduação: (2)  / Mestrado acadêmico: (2)  / Doutorado: (1) .Integrantes: Venúcia Bruna Magalhães Pereira - Integrante / LIMA-JUNIOR, R. C. P. - Coordenador / LEITE, C. A. V. G. - Integrante / WONG, D. V. T. - Integrante / RIBEIRO, R. A. - Integrante / ASSIS-JUNIOR, E. M. - Integrante / ALMEIDA, P. R. C. - Integrante / LEAL, R. M. L. V. - Integrante / COSTA, E. L. F. - Integrante."
+            },
+            {
+                "chave": "2010 - 2010",
+                "titulo_projeto": "ESTUDO DE BIOMARCADORES DE MODIFICAÇÕES OXIDANTES EM PACIENTES COM LEUCEMIA MIELÓIDE CRÔNICA",
+                "descricao": "Descrição: A Leucemia mielóide crônica (LMC) é uma doença maligna da célula hematopoética pluripotente causada pela translocação t(9;22) (q34;q11) que gera o cromossomo Filadélfia (Ph), resultando na expressão de uma oncoproteína de fusão, Bcr-Abl, com uma atividade tirosina-kinase descontrolada. Este defeito genético é também encontrado em 20 a 30% das leucemias linfoblásticas agudas do adulto. O mesilato de imatinib inibe a tirosina-kinase Bcr-Abl, suprimindo a proliferação de células progenitoras de células da LMC e induz apoptose da linhagem de células Ph-positivas. É uma droga altamente efetiva e tem se tornado a droga de primeira escolha no tratamento de LMC. O projeto tem como objetivo avaliar o estado oxidativo e a defesa antioxidante em pacientes com LMC acompanhados no ambulatório do Hospital Universitário Walter Cantídeo (HUWC-UFC), nas várias fases da doença e submetidos a diferentes abordagens terapêuticas..Situação: Concluído; Natureza: Pesquisa.Alunos envolvidos: Graduação: (3)  / Mestrado acadêmico: (1) .Integrantes: Venúcia Bruna Magalhães Pereira - Integrante / GONÇALVES, R. P. - Coordenador / BARBOSA, M. C. - Integrante / DUTRA, L. L. A. - Integrante / PETROLA, M. J. S. - Integrante."
+            }
+        ],
+        "ProjetosExtensão": [
+            {
+                "chave": "2011 - 2012",
+                "titulo_projeto": "CENTRO DE ESTUDOS EM TOXICOLOGIA (CETOX/UFC)",
+                "descricao": "Descrição: O Centro de Estudos em Toxicologia da UFC se propõe a realizar investigação científica em toxicologia, fornecer informação sobre o tratamento e prevenção das intoxicações, assim como sobre a toxicidade das substâncias químicas e os riscos que elas ocasionam à saúde. Se propõe também a buscar dados a respeito das intoxicações ocorridas em nosso meio e gerar informação para a apropriação do conhecimento pela comunidade sobre esta temática, contribuindo assim para minimizar este grave problema de saúde pública. O CETOX atua em parceria com o Centro de Assistência Toxicológica do Instituto Dr. José Frota (CEATOX/IJF) dando suporte ao atendimento de pacientes intoxicados e auxiliando no desenvolvimento de programas educativos e informativos à comunidade e projetos de pesquisa na área de Toxicologia Clínica..Situação: Concluído; Natureza: Extensão.Alunos envolvidos: Graduação: (5)  / Mestrado acadêmico: (2) .Integrantes: Venúcia Bruna Magalhães Pereira - Integrante / OLIVEIRA, K. F. T. V. - Integrante / MOURA, C. T. M. - Integrante / FERREIRA, M. A. D. - Coordenador / MONTEIRO, M. P. - Integrante / RODRIGUES NETO, E. M. - Integrante / NOGUEIRA, R. R. - Integrante / SOUZA, M. R. M. - Integrante."
+            },
+            {
+                "chave": "2009 - 2010",
+                "titulo_projeto": "PROJETO DE EXTENSÃO LIGA DE SAÚDE DA FAMÍLIA",
+                "descricao": "Descrição: Projeto de Extensão Liga de Saúde da Família é uma ação desenvolvida pela Universidade Federal do Ceará, através da Pró-reitoria de Extensão/Coordenadoria de Ação Social Comunitária e pela Faculdade Integrada do Ceará em parceria com a Secretaria Municipal de Saúde de Fortaleza. Tem como objetivo inserir na Estratégia de Saúde da Família quarenta e nove estudantes de graduação em saúde. A distribuição ocorrerá da seguinte forma, sete vagas por cursos nas seguintes áreas: Educação física, Enfermagem, Farmácia, Medicina, Psicologia, Gestão Hospitalar e Odontologia. O projeto está vinculado ao Núcleo de Pesquisa em Saúde da Família e Educação Permanente coordenado pela Dra. Ivana Cristina Barreto, da Rede Internacional de Pesquisa em Política de Gestão e Avaliação em Saúde. Desta forma, a proposta do projeto é fomentar a construção de uma reflexão crítica, mudanças nos processos de trabalho em saúde e sensibilizar os estudantes para a atenção primária em saúde. Diversas estratégias de fomento a mudança das práticas hegemônicas em saúde foram disparadas com o objetivo de canalizar mudanças na realidade, entre elas a proposta do Sistema Municipal de Saúde Escola. Através da Portaria 160/2006, publicada no Diário Oficial do Município de 04/01/07, o Sistema Municipal de Saúde Escola da SMSE do município de Fortaleza foi criado enquanto um espaço de discussão sobre os processos de mudança da formação de profissionais de saúde para a necessidade de saúde da sociedade. Segundo Andrade e Barreto (2006), este sistema constitui-se numa estratégia de educação permanente, transformando toda a rede de serviços de saúde existente em espaços de aprendizagem compartilhada. Nesta perspectiva, tem por objetivo transformar, gradativamente, todas as suas unidades de saúde em espaços de ensino, pesquisa e assistência. O SMSE é composto pela gestão municipal, pelos trabalhadores de saúde, pelas instituições de ensino e pelos usuários do SUS..Situação: Concluído; Natureza: Extensão.Alunos envolvidos: Graduação: (49) .Integrantes: Venúcia Bruna Magalhães Pereira - Integrante / SARAIVA, R. M. S. - Integrante / ARRAIS, P. S. D. - Integrante / BARRETO, I. C. H. C. - Coordenador / ANDRADE, L.O.M. - Integrante / SILVA, M. R. F. - Integrante / MOREIRA, A. E. M. M. - Integrante / CAVALCANTI, C. G. S. - Integrante."
+            },
+            {
+                "chave": "2008 - 2009",
+                "titulo_projeto": "ACOMPANHAMENTO AMBULATORIAL E RESIDENCIAL DE PACIENTES IDOSOS, HIPERTENSOS E EM USO CONTÍNUO DE ALFA METILDOPA",
+                "descricao": "Descrição: Este projeto, adotando como base o tripé ensino, pesquisa e extensão, surgiu com os objetivos de desenvolver atividades de atenção primária à saúde na população idosa da Unidade de Abrigo de Idosos do Lar Torres de Melo, desenvolvendo medidas preventivas e educacionais no controle da doença e dos efeitos adversos da mesma; possibilitar a atuação do aluno junto à comunidade, levando orientações sobre terapêuticas recomendadas; proporcionar espaço de interação entre docentes, acadêmicos e profissionais de saúde e desenvolvimento de trabalhos científicos e proporcionar ao aluno, a reflexão sobre os saberes científicos adquiridos na universidade, a experiência prática e a convivência com a comunidade..Situação: Concluído; Natureza: Extensão.Alunos envolvidos: Graduação: (3) .Integrantes: Venúcia Bruna Magalhães Pereira - Integrante / SARAIVA, R. M. S. - Integrante / ARRUDA, A. B. L. - Coordenador / SILVEIRA, E. S. - Integrante / GONÇALVES, R. P. - Integrante / GOMES, R. J. R. - Integrante / SOUZA, I. P. - Integrante."
+            }
+        ],
+        "ProjetosDesenvolvimento": [],
+        "ProjetosOutros": [],
+        "Patentes e registros": {},
+        "Bancas": {},
+        "Orientações": [],
+        "JCR2": [
+            {
+                "doi": "http://dx.doi.org/10.1016/j.toxicon.2020.12.004",
+                "impact-factor": "2.6",
+                "original_title": "Toxicon (0041-0101)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1590/1414-431x20188251",
+                "impact-factor": "2.6",
+                "original_title": "Toxicon (0041-0101)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1016/j.intimp.2018.06.031",
+                "impact-factor": "2.6",
+                "original_title": "Toxicon (0041-0101)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1016/j.taap.2017.04.023",
+                "impact-factor": "2.6",
+                "original_title": "Toxicon (0041-0101)"
+            },
+            {
+                "doi": "http://dx.doi.org/10.1007/s00280-015-2938-x",
+                "impact-factor": "2.6",
+                "original_title": "Toxicon (0041-0101)"
+            },
+            {
+                "doi": null
+            }
+        ]
+    }
+]

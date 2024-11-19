@@ -31,7 +31,7 @@ class EnvironmentSetup:
         if not self.root_path.exists():
             self.root_path.mkdir(parents=True, exist_ok=True)
         
-        subfolders = ['xls_zip', 'csv', 'json', 'fig', 'output']
+        subfolders = ['in_zip', 'in_xls', 'in_pdf', 'in_csv', 'in_json', 'out_fig', 'out_json']
         for folder in subfolders:
             (self.root_path / folder).mkdir(parents=True, exist_ok=True)
         print('Todas as pastas necessárias foram garantidas.')
@@ -53,22 +53,17 @@ class EnvironmentSetup:
         return f.format(fmt, **values)
 
     def find_repo_root(self, path='.', depth=10):
-        ''' 
-        Busca o arquivo .git e retorna string com a pasta raiz do repositório
-        '''
+        """
+        Busca o arquivo .git e retorna string com a pasta raiz do repositório.
+        """
         # Prevent infinite recursion by limiting depth
         if depth < 0:
             return None
         path = Path(path).absolute()
         if (path / '.git').is_dir():
             return path
-        return self.find_repo_root(path.parent, depth-1)
+        return self.find_repo_root(str(path.parent), depth-1)
 
-    def ensure_directories(self):
-        subfolders = ['xls_zip', 'csv', 'json', 'fig', 'output']
-        for folder in subfolders:
-            (self.root_path / folder).mkdir(parents=True, exist_ok=True)
-        print('All necessary directories are ensured.')
 
     def tempo(self, start, end):
         t = end - start
@@ -206,9 +201,9 @@ class EnvironmentSetup:
         print('VERSÕES DO BROWSER E DO CHROMEDRIVER INSTALADAS')
         try:
             if platform.system() == "Windows":
-                driver_path = self.find_repo_root(os.getcwd()) / 'chromedriver/chromedriver.exe'
+                driver_path = self.find_repo_root(os.getcwd()) / 'chromedriver/chromedriver.exe' # type: ignore
             else:
-                driver_path = self.find_repo_root(os.getcwd()) / 'chromedriver/chromedriver'
+                driver_path = self.find_repo_root(os.getcwd()) / 'chromedriver/chromedriver' # type: ignore
             print(driver_path)
             service = Service(driver_path)
             driver = webdriver.Chrome(service=service)
@@ -260,7 +255,7 @@ class EnvironmentSetup:
 
 
     def preparar_pastas(self):
-        subfolders = {'xls_zip': 'xls_zip', 'csv': 'csv', 'json': 'json', 'fig': 'fig', 'output': 'output'}
+        subfolders = {'in_zip': 'in_zip', 'in_xls': 'in_xls','in_pdf': 'in_pdf',  'in_csv': 'in_csv', 'in_json': 'in_json', 'out_fig': 'out_fig', 'out_json': 'out_json'}
         
         for key, folder_name in subfolders.items():
             folder_path = self.root_path / folder_name
