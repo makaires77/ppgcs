@@ -313,6 +313,8 @@ class JSONFileManager:
         for file in json_files:
             print(f'  {file}')
 
+        return json_files
+
     # Carregar arquivo 'dict_list.json' para a variável com dados de criação e modificação
     def load_from_json(self, file_path):
         """
@@ -354,6 +356,13 @@ class JSONFileManager:
             time_count = round(time_delta.total_seconds() / 86400, 1)
 
         return data, formatted_creation_date, formatted_modification_date, time_count, unit
+
+    def verifify_json(self, folder, filename):
+        pathfilename = os.path.join(folder,filename)
+        dict_list, formatted_creation_date, formatted_modification_date, time_count, unit = self.load_from_json(os.path.join(pathfilename))
+        print(f"\n{len(dict_list)} currículos carregados na lista de dicionários '{filename}'")
+        # print(f"Arquivo criado inicialmente em {formatted_creation_date} carregado com sucesso")
+        print(f"Extração realizada em {formatted_modification_date} a {time_count} {unit}")    
 
     # Função para salvar a lista de dicionários em um arquivo .json
     def save_to_json(self, data, file_path):
@@ -5866,7 +5875,7 @@ class ArticlesCounter:
         pivot_table_filtrada = pivot_table[anos_interesse]
 
         # Aplicar o mapeamento de pontos à tabela pivot filtrada apenas para valores do tipo str
-        pivot_table_pontos = pivot_table_filtrada.applymap(lambda x: sum(mapeamento_pontos[q] for q in x.split(', ') if q in mapeamento_pontos) if isinstance(x, str) else 0)
+        pivot_table_pontos = pivot_table_filtrada.map(lambda x: sum(mapeamento_pontos[q] for q in x.split(', ') if q in mapeamento_pontos) if isinstance(x, str) else 0)
 
         # Adicionar uma coluna final com a soma dos pontos no período
         pivot_table_pontos['Soma de Pontos'] = pivot_table_pontos.sum(axis=1)
