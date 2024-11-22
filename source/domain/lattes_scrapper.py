@@ -1,13 +1,18 @@
-import numpy as np
-import pandas as pd
-import networkx as nx
-import seaborn as sns
-import torch.nn as nn
-import torch.optim as optim
+# import difflib, subprocess, string, sqlite3, asyncio, nltk, openpyxl, glob, stat, shutil, psutil
+import warnings, platform, requests, urllib, logging, traceback, codecs, unicodedata
+import os, re, bs4, time, json, h5py, pytz, pdfkit, sys, csv
+import plotly.express.colors as px_colors
 import matplotlib.pyplot as plt
-import codecs, unicodedata, string, sqlite3, asyncio, nltk, openpyxl
-import os, re, bs4, sys, csv, time, json, h5py, pytz, glob, stat, shutil, psutil, pdfkit
-import warnings, platform, requests, urllib, difflib, subprocess, torch, logging, traceback
+import plotly.graph_objects as go
+import plotly.express as px
+import seaborn as sns
+import networkx as nx
+import pandas as pd
+import numpy as np
+
+import torch.optim as optim
+import torch.nn as nn
+import torch
 
 from PIL import Image
 from io import BytesIO
@@ -39,29 +44,23 @@ from typing import Tuple, List, Dict, Any, Optional, Union
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.common.exceptions import StaleElementReferenceException
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 from selenium.common import exceptions
 from selenium.common.exceptions import (
-    NoSuchElementException, 
     StaleElementReferenceException,
-    ElementNotInteractableException,
+    NoSuchElementException, 
     TimeoutException,
+    ElementNotInteractableException,
     WebDriverException
 )
 warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-
-import pandas as pd
-import plotly.express as px
-import plotly.express.colors as px_colors
-import plotly.graph_objects as go
 
 class PlotProduction:
     def __init__(self, df):
@@ -1372,185 +1371,6 @@ class LattesScraper:
         # Se todas as estratégias falharam:
         print(f"        Falha ao paginar com todas as estratégias para o link: {href_elemento}")
 
-    ## TO-FIX: Não está tratando muito bem o stale file handler, porque está avançando para próximo
-    def find_terms(self, NOME, termos_busca, delay, limite=5):
-        """
-        Função para manipular o HTML até abir a página HTML de cada currículo, considerando homônimos
-        Parâmetros:
-            - NOME: É o nome completo de cada pesquisador
-            - termos_busca: Lista de strings a buscar no currículo para escolher homônimo
-            - driver (webdriver object): The Selenium webdriver object.
-            - limite (int): Número máximo de tentativas em casos de erro.
-            - delay (int): tempo em milisegundos a esperar nas operações de espera.
-        Retorna:
-            elm_vinculo, np.NaN, np.NaN, np.NaN, driver.
-        Em caso de erro retorna:
-            None, NOME, np.NaN, e, driver
-        """
-        ignored_exceptions=(NoSuchElementException,StaleElementReferenceException,)
-        # Inicializar variáveis para evitar UnboundLocalError
-        count = 0
-        qte_res = 0
-        elm_vinculo = None
-        try:
-            # Esperar carregar a lista de resultados na página
-            css_resultados = ".resultado"
-            WebDriverWait(self.driver, self.delay, ignored_exceptions=ignored_exceptions).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
-            resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
-            if resultados:
-                count+=len(resultados*10)
-            if self.is_stale_file_handler_present():
-                raise StaleElementReferenceException
-            # Ler quantidade de resultados apresentados pela busca de nome
-            css_qteresultados = ".tit_form > b:nth-child(1)"
-            WebDriverWait(self.driver, self.delay).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, css_qteresultados)))
-            soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-            div_element = soup.find('div', {'class': 'tit_form'})
-            match = re.search(r'<b>(\d+)</b>', str(div_element))
-            if match:
-                qte_res = int(match.group(1))
-                # print(f'{qte_res} resultados para {NOME}')
-            else:
-                return None, NOME, np.NaN, 'Currículo não encontrado', self.driver
-
-            # Escolher função de extração a partir da quantidade de resultados da lista apresentada na busca
-            numpaginas = self.get_pages_numbers()
-            if qte_res==1:
-                # Para resultado único, capturar link para o primeiro nome resultado da busca (OK!)
-                css_linknome = ".resultado > ol:nth-child(1) > li:nth-child(1) > b:nth-child(1) > a:nth-child(1)"
-                WebDriverWait(self.driver, self.delay).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, css_linknome)))
-                elm_vinculo = self.driver.find_element(By.CSS_SELECTOR, css_linknome)
-                nome_vinculo = elm_vinculo.text
-                # print('Clicar no nome único:', nome_vinculo)
-                try:
-                    # Ao achar um dos termos clica no elemento elm_vinculo com link do nome para abrir currículo
-                    self.retry(ActionChains(self.driver).click(elm_vinculo).perform(),
-                                wait_ms=200,
-                                limit=limite,
-                                on_exhaust=(f'       Problema ao clicar no link do nome. {limite} tentativas sem sucesso.'))
-                except:
-                    print('       Erro ao clicar no único nome encontrado anteriormente')
-                    return None, NOME, np.NaN, None, self.driver
-
-            elif numpaginas == []:
-                # Páginas com até 10 resultados não precisa paginar, avaliar termos e retornar elemento do resultado (OK!)
-                print(f'       {qte_res:>2} currículos homônimos: {NOME}')
-                if self.is_stale_file_handler_present():
-                    raise StaleElementReferenceException
-
-                # iterar em cada resultado
-                for n,i in enumerate(resultados):
-                    try:
-                        elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
-                    except Exception as e:
-                        print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
-                        print(f'       ERRO: {e}')
-                        return None
-
-            elif numpaginas != []:
-                # Para páginas com mais de resultados precisa paginar, antes de avaliar presença dos termos para escolher resultado (OK!)
-                print(f'       {qte_res:>2} currículos homônimos: {NOME} (com paginação)')
-                ## Para paginar acessando com clique no hiperlink já em cada link dentro do elemento de paginação
-                try:
-                    # Obter variáveis do JavaScript
-                    script_tag = soup.find('script', language='JavaScript')
-                    javascript_code = script_tag.text
-                    intLTotReg = int(re.findall(r"intLTotReg = (\d+)", javascript_code)[0])
-                    intLRegPagina = int(re.findall(r"intLRegPagina = (\d+)", javascript_code)[0])
-                    strLQuery = re.findall(r"strLQuery = (.*)", javascript_code)
-                    parametros_paginacao = {
-                        'registros': intLRegPagina,
-                        'intLTotReg': intLTotReg,
-                        'strLQuery': strLQuery
-                    }
-                    if self.verbose:
-                        print(f'       Extraído do Javascript')
-                        print(f'            total_registros: {intLTotReg}')
-                        print(f'       registros_por_pagina: {intLRegPagina}')
-                        print(f'                  strLQuery: {strLQuery}')
-                        print(f'       parametros_paginacao: {parametros_paginacao}')
-                    # Localizar a primeira lista de paginação
-                    elementos_paginacao = self.driver.find_elements(By.CSS_SELECTOR, ".paginacao a[data-role='paginacao']")
-                    elemento = elementos_paginacao[0]
-                    href_elemento = elemento.get_attribute('href')
-                    if self.verbose:
-                        print(f'           elemento: {type(elemento)}')
-                        print(f'           elem_txt: {elemento.text}')
-                        print(f"               href: {href_elemento}")
-                    try:
-                        # Acessar a nova página a partir do texto contido no elemento
-                        soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-                        elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
-                        count_pages=0
-                        while not elm_vinculo and count_pages<=(intLTotReg//intLRegPagina):
-                            count_pages+=1
-                            elemento = elementos_paginacao[count_pages]
-                            print(f"       Página a ser carregada: {elemento.text}")
-                            try:
-                                # elemento.click()
-                                # self.driver.get(href_elemento)
-                                ActionChains(self.driver).move_to_element(elemento).click().perform()
-                                # ActionChains(self.driver).key_down(Keys.CONTROL).click(elemento).perform()
-                                ## TO-FIX como carregar os dados da nova página dinamicamente
-                                resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
-                                if resultados:
-                                    count+=len(resultados*10)
-                                elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
-                            except Exception as e:
-                                erro_regex = r"(?:\w+): (.*)"
-                                desc = re.findall(erro_regex, str(e))[0] if re.findall(erro_regex, str(e)) else None
-                                if desc:
-                                    print(f'       Erro com: {desc}')
-                                else:
-                                    print(f'       Erro com: {e}')
-                    except Exception as e:
-                        print(f'       Erro ao paginar {elemento.text}')
-                        # print(f'       Erro com: {e}')
-                        traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-                        print(f'       Na linha: {traceback_str}')
-                except Exception as e:
-                    print(f'       Erro na paginação dos elementos de resultados homônimos')
-                    erro_regex = r"(?:\w+): (.*)"
-                    print(f'       Erro com: {re.findall(erro_regex, str(e))[0]}')
-                    # traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-                    # print(f'       Na linha: {traceback_str}')
-                if self.is_stale_file_handler_present():
-                    raise StaleElementReferenceException
-        except StaleElementReferenceException as e:
-            traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-            if self.verbose:
-                print(traceback_str)
-            base = 2  # Fator de multiplicação exponencial (pode ser ajustado)
-            max_wait_time = 120  # Tempo máximo de espera em segundos
-            for i in range(1, 12):  # Tentativas máximas com espera exponencial
-                wait_time = min(base ** i, max_wait_time)  # Limita o tempo máximo de espera
-                print(f"       {'-'*120}")
-                print(f"       Erro ao recuperar dados do servidor CNPq, tentando novamente em {wait_time} segundos...")
-                time.sleep(wait_time)
-                try:
-                    self.retry_click_vinculo(elm_vinculo)
-                    break  # Se o clique for bem-sucedido, saia do loop de retry
-                except TimeoutException as se:
-                    traceback_str = ''.join(traceback.format_tb(se.__traceback__))
-                    print(se)
-                    print(traceback_str)
-                    logging.error(f"Tentativa {i} falhou: {traceback_str}.")
-                    limite+=1
-            if limite <= 0:
-                print("       Tentativas esgotadas. Abortando ação.")
-        ## Verificar antes de retornar para garantir que elm_vinculo foi definido
-        if elm_vinculo is None:
-            if count > 1:
-                des='s'
-            else:
-                des=''
-            print(f"       Nenhum termo de vínculo achado em {count:02}/{intLTotReg:02} resultado{des} verificados. Verificada até página {count_pages:02}/{len(numpaginas):02}")
-            return None, NOME, np.NaN, 'Termos não encontrados', self.driver
-        ## Retorna a saída de sucesso
-        return elm_vinculo, np.NaN, np.NaN, np.NaN, self.driver
 
     def extrair_resultados_paginados(self, url_base, pagina_inicial=0, pagina_final=None):
         """
@@ -1962,42 +1782,6 @@ class LattesScraper:
 
         return nome, descricao
 
-    def navegar_paginas(self, url_inicial, termos_busca):
-        """
-        Navega pelas páginas de resultados e coleta dados relevantes.
-
-        Args:
-            url_inicial (str): URL da página inicial de resultados.
-            termos_busca (list): Lista de termos para buscar nos links.
-
-        Returns:
-            list: Lista de dicionários, onde cada dicionário contém o nome, a descrição e a
-                pontuação de compatibilidade.
-        """
-        pessoas = []
-        url_atual = url_inicial
-        while True:
-            response = requests.get(url_atual)
-            response.raise_for_status()  # Verifica se a requisição foi bem-sucedida
-            soup = BeautifulSoup(response.text, 'html.parser')
-            resultados = soup.find_all('div', class_='resultado')
-            for resultado in resultados:
-                nome, descricao = self.extrair_dados_pessoa(resultado)
-                pontuacao_compatibilidade = self.calcular_pontuacao_compatibilidade(termos_busca, nome, descricao)
-
-                pessoas.append({
-                    'nome': nome,
-                    'descricao': descricao,
-                    'pontuacao_compatibilidade': pontuacao_compatibilidade
-                })
-            # Extrai os parâmetros para a próxima página
-            parametros_paginacao = self.extrair_parametros_paginacao(response.text)
-            if parametros_paginacao:
-                url_atual = self.gerar_url_proxima_pagina(url_inicial, parametros_paginacao)
-            else:
-                break
-        return pessoas
-
     def extrair_preview(self, li):
         """Extrai e limpa as informações adicionais do elemento <li>."""
         nome_link = self.extrair_dados_pessoa(li.find('a'))  # Obtem o nome da pessoa (já extraído)
@@ -2202,6 +1986,12 @@ class LattesScraper:
 
                 tooltip_data_list.append(tooltip_data)
             print(f'       {len(tooltip_data_list):>003} artigos extraídos')
+        
+        # ## TO-DO implementar o retry aqui
+        # except StaleElementReferenceException:
+        #     print(f"Erro Stale File Handler detectado. Tentando novamente...")
+        #     time.sleep(2)  # Aguarda um tempo antes de tentar novamente
+
         except TimeoutException:
             print(f"       Requisição ao CNPq sem resposta, tooltips das publicações indisponíveis.")
         except Exception as e:
@@ -2381,12 +2171,183 @@ class LattesScraper:
         # Verificar se a nova página foi carregada
         # (Opcional, implemente a verificação de acordo com seus critérios)
 
-    def search_profile(self, name, termos_busca, retry_count=3):
+
+    ## TO-FIX: Não está detectando o stale file handler, avisa erro inesperado e avança para próximo
+    def find_terms(self, NOME, termos_busca, delay, limite=5):
+        """
+        Função para manipular o HTML até abir a página HTML de cada currículo, resolvendo homônimos
+        Parâmetros:
+            - NOME: É o nome completo de cada pesquisador
+            - termos_busca: Lista de strings a buscar no currículo para escolher homônimo
+            - driver (webdriver object): The Selenium webdriver object.
+            - limite (int): Número máximo de tentativas em casos de erro.
+            - delay (int): tempo em milisegundos a esperar nas operações de espera.
+        Retorna:
+            elm_vinculo, np.NaN, np.NaN, np.NaN, driver.
+        Em caso de erro retorna:
+            None, NOME, np.NaN, e, driver
+        """
+        
+        # Inicializar variáveis para evitar UnboundLocalError
+        count = 0
+        qte_res = 0
+        elm_vinculo = None
+        try:
+            # Esperar carregar a lista de resultados na página
+            css_resultados = ".resultado"
+            # ignored_exceptions=(NoSuchElementException)
+            WebDriverWait(self.driver, self.delay).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
+            resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
+            if resultados:
+                count+=len(resultados*10)
+            if self.is_stale_file_handler_present():
+                raise StaleElementReferenceException
+            # Ler quantidade de resultados apresentados pela busca de nome
+            css_qteresultados = ".tit_form > b:nth-child(1)"
+            WebDriverWait(self.driver, self.delay).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, css_qteresultados)))
+            soup = BeautifulSoup(self.driver.page_source, 'html.parser')
+            div_element = soup.find('div', {'class': 'tit_form'})
+            match = re.search(r'<b>(\d+)</b>', str(div_element))
+            if match:
+                qte_res = int(match.group(1))
+                # print(f'{qte_res} resultados para {NOME}')
+            else:
+                return None, NOME, np.NaN, 'Currículo não encontrado', self.driver
+
+            # Escolher função extração dada quantidade de resultados da lista apresentada na busca
+            numpaginas = self.get_pages_numbers()
+            if qte_res==1:
+                # Para resultado único, capturar link para o primeiro nome resultado da busca
+                css_linknome = ".resultado > ol:nth-child(1) > li:nth-child(1) > b:nth-child(1) > a:nth-child(1)"
+                WebDriverWait(self.driver, self.delay).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, css_linknome)))
+                elm_vinculo = self.driver.find_element(By.CSS_SELECTOR, css_linknome)
+                nome_vinculo = elm_vinculo.text
+                # print('Clicar no nome único:', nome_vinculo)
+                try:
+                    # Ao achar um dos termos clicar no elemento elm_vinculo com link do nome
+                    self.retry(ActionChains(self.driver).click(elm_vinculo).perform(),
+                                wait_ms=200,
+                                limit=limite,
+                                on_exhaust=(f'       Problema ao clicar no link do nome. {limite} tentativas sem sucesso.'))
+                except:
+                    print('       Erro ao clicar no único nome encontrado anteriormente')
+                    return None, NOME, np.NaN, None, self.driver
+
+            elif numpaginas == []:
+                # Páginas até 10 resultados, sem paginar buscar termos e retornar elemento do resultado
+                print(f'       {qte_res:>2} currículos homônimos: {NOME}')
+                if self.is_stale_file_handler_present():
+                    raise StaleElementReferenceException
+
+                # iterar em cada resultado
+                for n,i in enumerate(resultados):
+                    try:
+                        elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+                    except Exception as e:
+                        print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
+                        print(f'       ERRO: {e}')
+                        return None
+
+            elif numpaginas != []:
+                # Páginas onde precisa paginar escolher resultado, antes de buscar termos
+                print(f'       {qte_res:>2} currículos homônimos: {NOME} (com paginação)')
+                ## Paginar com clique no hiperlink já em cada link dentro do elemento de paginação
+                try:
+                    # Obter variáveis do JavaScript
+                    script_tag = soup.find('script', language='JavaScript')
+                    javascript_code = script_tag.text
+                    intLTotReg = int(re.findall(r"intLTotReg = (\d+)", javascript_code)[0])
+                    intLRegPagina = int(re.findall(r"intLRegPagina = (\d+)", javascript_code)[0])
+                    strLQuery = re.findall(r"strLQuery = (.*)", javascript_code)
+                    parametros_paginacao = {
+                        'registros': intLRegPagina,
+                        'intLTotReg': intLTotReg,
+                        'strLQuery': strLQuery
+                    }
+                    if self.verbose:
+                        print(f'       Extraído do Javascript')
+                        print(f'            total_registros: {intLTotReg}')
+                        print(f'       registros_por_pagina: {intLRegPagina}')
+                        print(f'                  strLQuery: {strLQuery}')
+                        print(f'       parametros_paginacao: {parametros_paginacao}')
+                    # Localizar a primeira lista de paginação
+                    elementos_paginacao = self.driver.find_elements(By.CSS_SELECTOR, ".paginacao a[data-role='paginacao']")
+                    elemento = elementos_paginacao[0]
+                    href_elemento = elemento.get_attribute('href')
+                    if self.verbose:
+                        print(f'           elemento: {type(elemento)}')
+                        print(f'           elem_txt: {elemento.text}')
+                        print(f"               href: {href_elemento}")
+                    try:
+                        # Acessar a nova página a partir do texto contido no elemento
+                        soup = BeautifulSoup(self.driver.page_source, 'html.parser')
+                        elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+                        count_pages=0
+                        while not elm_vinculo and count_pages<=(intLTotReg//intLRegPagina):
+                            count_pages+=1
+                            elemento = elementos_paginacao[count_pages]
+                            print(f"       Página a ser carregada: {elemento.text}")
+                            try:
+                                # elemento.click()
+                                # self.driver.get(href_elemento)
+                                ActionChains(self.driver).move_to_element(elemento).click().perform()
+                                # ActionChains(self.driver).key_down(Keys.CONTROL).click(elemento).perform()
+                                
+                                ## TO-IMPROVE como carregar os dados da nova página dinamicamente
+                                resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
+                                if resultados:
+                                    count+=len(resultados*10)
+                                elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+
+                            except Exception as e:
+                                erro_regex = r"(?:\w+): (.*)"
+                                desc = re.findall(erro_regex, str(e))[0] if re.findall(erro_regex, str(e)) else None
+                                if desc:
+                                    print(f'       Erro com: {desc}')
+                                else:
+                                    print(f'       Erro com: {e}')
+                    except Exception as e:
+                        print(f'       Erro ao paginar {elemento.text}')
+                        traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+                        print(f'       Na linha: {traceback_str}')
+                except Exception as e:
+                    print(f'       Erro na paginação dos elementos de resultados homônimos')
+                    erro_regex = r"(?:\w+): (.*)"
+                    print(f'       Erro com: {re.findall(erro_regex, str(e))[0]}')
+                    # traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+                    # print(f'       Na linha: {traceback_str}')
+                if self.is_stale_file_handler_present():
+                    raise StaleElementReferenceException      
+        
+        ## Retornar None ao detectar erro de StaleFileHanlder
+        except StaleElementReferenceException as e:
+            traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+            if self.verbose:
+                print(traceback_str)
+            return None, np.NaN, np.NaN, np.NaN, self.driver
+       
+        ## Verificar antes de retornar para garantir que elm_vinculo foi definido
+        if elm_vinculo is None:
+            if count > 1:
+                des='s'
+            else:
+                des=''
+            print(f"       Nenhum termo de vínculo achado em {count:02}/{intLTotReg:02} resultado{des} verificados. Verificada até página {count_pages:02}/{len(numpaginas):02}")
+            return None, NOME, np.NaN, 'Termos não encontrados', self.driver
+        ## Retorna a saída de sucesso
+        return elm_vinculo, np.NaN, np.NaN, np.NaN, self.driver
+
+
+    ## Função para iterar busca por cada nome, lidando internamente na find terms caso achar
+    def search_profile(self, name, termos_busca):
         '''
-        Usa a função find_terms para assegurar escolha do homônimo correto
+        Usa a função de achar os termos-chave para assegurar escolha do homônimo correto
         '''
         try:
-            # Find terms to interact with the web page and extract the profile
+            # Interagir internamente com a busca realizando várias tentativas
             profile_element, _, _, _, _ = self.find_terms(
                 name,
                 termos_busca,
@@ -2399,6 +2360,11 @@ class LattesScraper:
             else:
                 logging.info(f'Currículo não encontrado: {name}')
                 self.return_search_page()
+
+            if profile_element is None:
+                logging.error(f"Erro StaleElementReferenceException ao buscar currículo")
+                raise StaleElementReferenceException
+
         except requests.HTTPError as e1:
             logging.error(f"HTTPError occurred: {str(e1)}")
             return None
@@ -2410,7 +2376,31 @@ class LattesScraper:
         dict_list = []  # Inicialize a lista de dicionários vazia
         try:
             self.fill_name(name)
-            elm_vinculo = self.search_profile(name, termos_busca)
+            try:
+                elm_vinculo = self.search_profile(name, termos_busca)
+            ## TO-FIX: implementar tentativas de refresh e buscar novamente aqui, fora do find terms
+            except StaleElementReferenceException as e:
+                traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+                if self.verbose:
+                    print(traceback_str)
+                base = 2  # Fator de multiplicação exponencial
+                max_wait_time = 120  # Tempo máximo de espera em segundos
+                for i in range(1, 6):  # Tentativas máximas com espera exponencial
+                    wait_time = min(base ** i, max_wait_time)  # Limita o tempo máximo de espera
+                    print(f"       {'-'*120}")
+                    print(f"       Erro no servidor CNPq ao buscar nome, tentar novamente em {wait_time} segundos...")
+                    time.sleep(wait_time)
+                    try:
+                        self.search_profile(name, termos_busca)
+                        break  # Se o clique for bem-sucedido, saia do loop de retry
+                    except TimeoutException as se:
+                        traceback_str = ''.join(traceback.format_tb(se.__traceback__))
+                        print(se)
+                        print(traceback_str)
+                        logging.error(f"Tentativa {i} falhou: {traceback_str}.")
+                        limite+=1
+                if limite <= 0:
+                    print("       Tentativas esgotadas. Abortando ação.")                
             if elm_vinculo:
                 if self.verbose:
                     print(f"       {name}: vínculo encontrado no currículo, tentando abrir...")
@@ -2463,6 +2453,35 @@ class LattesScraper:
                         print('       Disparado retorno para página de busca...')
                 else:
                     print(f"{name}: página de resultado vazia.")
+        
+        ## Captura corretamente o erro de StaleFileHanlder
+        except StaleElementReferenceException as e:
+            traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+            if self.verbose:
+                print(traceback_str)
+            base = 2  # Fator de multiplicação exponencial (pode ser ajustado)
+            max_wait_time = 120  # Tempo máximo de espera em segundos
+            for i in range(1, 12):  # Tentativas máximas com espera exponencial
+                wait_time = min(base ** i, max_wait_time)  # Limita o tempo máximo de espera
+                print(f"       {'-'*120}")
+                print(f"        Servidor do CNPq com StaleFileError ao procurar termos, tentando novamente em {wait_time} segundos...")
+                time.sleep(wait_time)
+                
+                ## Refresh e reinserir o mesmo nome e tentar clicar novamente no botão buscar
+
+                ## Tentar clicar novamente no botão de abrir currículo achado
+                try:
+                    self.scrape_single(name, termos_busca)
+                    break  # Se o clique for bem-sucedido, saia do loop de retry
+                except TimeoutException as se:
+                    traceback_str = ''.join(traceback.format_tb(se.__traceback__))
+                    print(se)
+                    print(traceback_str)
+                    logging.error(f"Tentativa {i} falhou: {traceback_str}.")
+                    limite+=1
+            if limite <= 0:
+                print("       Tentativas esgotadas. Abortando ação.")
+
         except Exception as e:
             raise TimeoutException(f"       Erro ao realizar a extração para {name}: {e}")
         return dict_list
@@ -2504,13 +2523,64 @@ class LattesScraper:
                 logging.error(traceback_str)
         self.driver.quit()
         try:
-            filepath = os.path.join(LattesScraper.find_repo_root(),'_data','in_csv','temp_dict_list.json')
+            filepath = os.path.join(str(LattesScraper.find_repo_root()),'_data','in_csv','temp_dict_list.json')
             print(f'Arquivo salvo em {filepath}')
         except:
             print('Não foi possível salvar extração em arquivo')
         self.save_to_json(dict_list, filepath)
 
         return dict_list
+
+    def verificar_remanescentes(self, lista_busca, dom_dict_list):
+        lista_restante = lista_busca[:]
+        print(f'{len(lista_busca)} currículos buscados')
+        print(f'{len(dom_dict_list)} currículos extraídos com sucesso')
+        total_extraidos = 0
+        total_nao_extraidos = 0
+
+        # Função para normalizar os nomes
+        def normalizar_nome(nome):
+            # Normaliza o nome para comparar de forma mais flexível
+            nome_normalizado = nome.lower().replace(' ', '').replace('á', 'a').replace('é', 'e').replace('í', 'i').replace('ó', 'o').replace('ú', 'u').replace('â', 'a').replace('ê', 'e').replace('ô', 'o').replace('ã', 'a').replace('õ', 'o').replace('ç', 'c').replace('ü', 'u')
+            return nome_normalizado
+
+        # Lista para armazenar nomes extraídos com sucesso
+        nomes_extraidos = []
+
+        for i in dom_dict_list:
+            nome = i.get('Identificação').get('Nome')
+            nome_normalizado = normalizar_nome(nome)
+            encontrado = False
+
+            # Verifica se o nome ou uma forma similar já foi extraído
+            for nome_original in lista_restante:
+                nome_original_normalizado = normalizar_nome(nome_original)
+                if nome_original_normalizado == nome_normalizado:
+                    lista_restante.remove(nome_original)
+                    encontrado = True
+                    break
+
+            # Incrementa o contador correspondente
+            if encontrado:
+                total_extraidos += 1
+            else:
+                total_nao_extraidos += 1
+
+            # Imprime o status da extração
+            if encontrado:
+                print(f'({total_extraidos:>02}) {nome}')
+            else:
+                print(f'({total_nao_extraidos}) Não extraído: {nome}')
+            # Adiciona à lista de nomes extraídos apenas se não for exatamente igual ao buscado
+            if encontrado and nome_original_normalizado != nome_normalizado:
+                nomes_extraidos.append(nome)
+
+        print(f'\n{len(lista_restante)} currículos não extraídos')
+
+        for i in lista_restante:
+            print(f'   {i}')
+        
+        return lista_restante
 
     def extract_remanescents(self, lista_restante, dict_list_actual, search_terms):
         print(f'Resta extrair {len(lista_restante)} currículos:')
@@ -6966,3 +7036,39 @@ class ArticlesCounter:
                     #         # clear_output(wait=True)
                     #         # driver.quit()
                     #         continue        
+
+    # def navegar_paginas(self, url_inicial, termos_busca):
+    #     """
+    #     Navega pelas páginas de resultados e coleta dados relevantes.
+
+    #     Args:
+    #         url_inicial (str): URL da página inicial de resultados.
+    #         termos_busca (list): Lista de termos para buscar nos links.
+
+    #     Returns:
+    #         list: Lista de dicionários, onde cada dicionário contém o nome, a descrição e a
+    #             pontuação de compatibilidade.
+    #     """
+    #     pessoas = []
+    #     url_atual = url_inicial
+    #     while True:
+    #         response = requests.get(url_atual)
+    #         response.raise_for_status()  # Verifica se a requisição foi bem-sucedida
+    #         soup = BeautifulSoup(response.text, 'html.parser')
+    #         resultados = soup.find_all('div', class_='resultado')
+    #         for resultado in resultados:
+    #             nome, descricao = self.extrair_dados_pessoa(resultado)
+    #             pontuacao_compatibilidade = self.calcular_pontuacao_compatibilidade(termos_busca, nome, descricao)
+
+    #             pessoas.append({
+    #                 'nome': nome,
+    #                 'descricao': descricao,
+    #                 'pontuacao_compatibilidade': pontuacao_compatibilidade
+    #             })
+    #         # Extrai os parâmetros para a próxima página
+    #         parametros_paginacao = self.extrair_parametros_paginacao(response.text)
+    #         if parametros_paginacao:
+    #             url_atual = self.gerar_url_proxima_pagina(url_inicial, parametros_paginacao)
+    #         else:
+    #             break
+    #     return pessoas

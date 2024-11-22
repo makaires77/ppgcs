@@ -747,9 +747,16 @@
         "aditional_info": {
             "qte_keywords": "40",
             "qte_members": "15",
-            "qte_projects": "11",
+            "qte_projects": "12",
             "qte_publication": "59",
             "projects": [
+                {
+                    "title": "Development of a lymphoid organ-on-chip",
+                    "head_name": "Lisa Chakrabarti (PI)",
+                    "status": "Ongoing",
+                    "members": "3 Members",
+                    "description": "We are developing a two-compartment lymphoid organ-on-chip (LO chip) based on microfluidics technology. The LO chip provides a highly sensitive system to measure the interactions between antiviral CD4+ T cells and memory B cells from human volunteers."
+                },
                 {
                     "title": "Organoid-on-chip: controlling the spatial organization of inner ear organoids",
                     "head_name": "Raphaël Etournay (PI)",
@@ -1270,7 +1277,7 @@
         "aditional_info": {
             "qte_keywords": "6",
             "qte_members": "14",
-            "qte_projects": "17",
+            "qte_projects": "19",
             "qte_tools": "4",
             "qte_publication": "439",
             "projects": [
@@ -1294,6 +1301,20 @@
                     "status": "Completed",
                     "members": "4 Members",
                     "description": "Clostridium difficile is increasingly associated with infections in hospitals and in the community, and hypervirulent types are emerging. Six research groups from 5 countries undertook this project, aiming to use genomic approaches to study […]"
+                },
+                {
+                    "title": "Host-pathogen interaction upon acute leptospirosis",
+                    "head_name": "Nadia Benaroudj (PI)",
+                    "status": "Ongoing",
+                    "members": "2 Members",
+                    "description": "Pathogenic Leptospira lack many classical virulence factors and approximately 35% of their genome encode proteins of unknown function. Their virulence mechanisms and how they subvert the host and colonize tissues remain largely unknown. To […]"
+                },
+                {
+                    "title": "Resistance to oxidative stress in Leptospira",
+                    "head_name": "Nadia Benaroudj (PI)",
+                    "status": "Ongoing",
+                    "members": "4 Members",
+                    "description": "During infection, Leptospira are confronted with dramatic adverse environmental changes such as deadly reactive oxygen species (ROS). Withstanding ROS produced by the host cells is an important strategy evolved by pathogenic Leptospira for colonizing […]"
                 },
                 {
                     "title": "Implementation of an NGS core facility at Institut Pasteur of Tunis: Biomics as capacity building model",
@@ -1971,7 +1992,7 @@
         "link": "https://research.pasteur.fr/en/team/image-analysis-hub/",
         "aditional_info": {
             "qte_keywords": "3",
-            "qte_members": "8",
+            "qte_members": "9",
             "qte_publication": "63",
             "transversal_projects": [
                 {

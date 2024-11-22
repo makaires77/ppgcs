@@ -7,7 +7,7 @@
         "aditional_info": {
             "qte_keywords": "7",
             "qte_teams": "17",
-            "qte_members": "227",
+            "qte_members": "228",
             "qte_projects": "View all81",
             "qte_publication": "1759",
             "teams": [
@@ -209,7 +209,7 @@
             "qte_keywords": "1",
             "qte_teams": "17",
             "qte_members": "167",
-            "qte_projects": "View all55",
+            "qte_projects": "View all56",
             "qte_publication": "1009",
             "teams": [
                 {
@@ -339,7 +339,7 @@
             "qte_keywords": "22",
             "qte_teams": "12",
             "qte_members": "128",
-            "qte_projects": "View all58",
+            "qte_projects": "View all60",
             "qte_tools": "10",
             "qte_publication": "1746",
             "teams": [
@@ -698,9 +698,9 @@
             "qte_keywords": "4",
             "qte_teams": "22",
             "qte_members": "192",
-            "qte_projects": "View all92",
+            "qte_projects": "View all93",
             "qte_tools": "6",
-            "qte_publication": "2515",
+            "qte_publication": "2527",
             "teams": [
                 {
                     "team_name": "Biology and Genetics of Bacterial Cell Wall",
@@ -813,9 +813,9 @@
         "aditional_info": {
             "qte_keywords": "14",
             "qte_teams": "5",
-            "qte_members": "56",
+            "qte_members": "57",
             "qte_projects": "View all14",
-            "qte_publication": "381",
+            "qte_publication": "382",
             "teams": [
                 {
                     "team_name": "Fungal Biology and Pathogenicity",
@@ -977,7 +977,7 @@
             "qte_members": "191",
             "qte_projects": "View all92",
             "qte_tools": "5",
-            "qte_publication": "2254",
+            "qte_publication": "2256",
             "teams": [
                 {
                     "team_name": "Antibody Engineering",
@@ -1119,7 +1119,7 @@
         "url": "https://research.pasteur.fr/en/department/virology/",
         "aditional_info": {
             "qte_teams": "24",
-            "qte_members": "208",
+            "qte_members": "209",
             "qte_projects": "View all104",
             "qte_publication": "2007",
             "teams": [
