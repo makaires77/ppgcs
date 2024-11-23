@@ -1,14 +1,18 @@
-2024-11-22 09:06:15,373 - INFO - Obtendo os dados do site do Instituto Pasteur, aguarde...
-2024-11-22 09:06:17,039 - INFO - 5 seções de dados principais extraídas
-2024-11-22 09:06:17,039 - INFO - Obtendo áreas prioritárias de pesquisa, aguarde...
-2024-11-22 09:06:23,230 - INFO - 5 áreas prioritárias em pesquisa extraídas
-2024-11-22 09:06:23,230 - INFO - Obtendo os centros de referência, aguarde...
-2024-11-22 09:06:25,760 - INFO - 5 centros extraídos
-2024-11-22 09:06:25,760 - INFO - Obtendo os departamentos, aguarde...
-2024-11-22 09:06:41,384 - INFO - 13 departamentos extraídos
-2024-11-22 09:06:41,384 - INFO - Obtendo as plataformas, aguarde...
-2024-11-22 09:06:59,450 - WARNING - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
-2024-11-22 09:08:26,429 - INFO - 35 plataformas extraídas
-2024-11-22 09:08:26,430 - INFO - Relatório concluído!
-2024-11-22 09:08:26,431 - INFO - Salvo em: /home/mak/ppgcs/templates/report_pasteur_fr.html
-2024-11-22 09:08:55,863 - WARNING - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+2024-11-23 08:52:16,671 - INFO - Currículo não encontrado: Carlos Jose Araujo Pinheiro
+2024-11-23 08:52:16,980 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-11-23 08:52:16,980 - ERROR - Erro inesperado ao buscar: Message: None; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+
+2024-11-23 08:52:29,236 - INFO - Currículo não encontrado: Charles Cerqueira De Abreu
+2024-11-23 08:52:29,595 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-11-23 08:52:29,595 - ERROR - Erro inesperado ao buscar: Message: None; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+
+2024-11-23 09:01:05,246 - INFO - Currículo não encontrado: Luciano Pinto Zorzanelli
+2024-11-23 09:01:05,543 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-11-23 09:01:05,543 - ERROR - Erro inesperado ao buscar: Message: None; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+
+2024-11-23 09:04:31,891 - INFO - Currículo não encontrado: Nilton Luiz Costa Machado
+2024-11-23 09:04:32,194 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-11-23 09:04:32,194 - ERROR - Erro inesperado ao buscar: Message: None; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+
+2024-11-23 09:05:47,677 - ERROR - Erro inesperado ao buscar: cannot access local variable 'intLTotReg' where it is not associated with a value
+2024-11-23 09:08:06,713 - ERROR - Erro inesperado ao buscar: cannot access local variable 'intLTotReg' where it is not associated with a value

@@ -631,18 +631,76 @@ class LattesScraper:
         # Corrigido para usar LattesScraper.find_repo_root para chamada recursiva
         return LattesScraper.find_repo_root(path.parent, depth-1)
 
-    @staticmethod
-    def connect_driver(only_doctors):
-        '''
-        Conecta ao servidor do CNPq para busca de currículo
-        '''
-        # print(f'Conectando com o servidor do CNPq...')
-        # print(f'Iniciada extração de {len(lista_nomes)} currículos')
-        ## https://www.selenium.dev/documentation/pt-br/webdriver/browser_manipulation/
-        # options   = Options()
-        # options.add_argument("--headless")
-        # driver   = webdriver.Chrome(options=options)
+    # @staticmethod
+    # def connect_driver(only_doctors):
+    #     '''
+    #     Conecta ao servidor do CNPq para busca de currículo
+    #     '''
+    #     # print(f'Conectando com o servidor do CNPq...')
+    #     # print(f'Iniciada extração de {len(lista_nomes)} currículos')
+    #     ## https://www.selenium.dev/documentation/pt-br/webdriver/browser_manipulation/
+    #     # options   = Options()
+    #     # options.add_argument("--headless")
+    #     # driver   = webdriver.Chrome(options=options)
 
+    #     driver_path = None
+    #     try:
+    #         # Caminho para o chromedriver no sistema local
+    #         if platform.system() == "Windows":
+    #             driver_path=LattesScraper.find_repo_root(os.getcwd())/'chromedriver'/'chromedriver.exe'
+    #         else:
+    #             driver_path=LattesScraper.find_repo_root(os.getcwd())/'chromedriver'/'chromedriver'
+    #     except Exception as e:
+    #         print("Não foi possível estabelecer uma conexão, verifique o chromedriver")
+    #         print(e)
+        
+    #     # print(driver_path)
+    #     service = Service(driver_path)
+    #     driver = webdriver.Chrome(service=service)
+    #     driver.set_window_position(-20, -10)
+    #     driver.set_window_size(170, 1896)
+    #     # only_doctors = True
+    #     if only_doctors:
+    #         print('Buscando currículos apenas entre nível de doutorado')
+    #         url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
+    #         driver.get(url_docts) # acessa a url de busca somente de doutores 
+    #     else:
+    #         print('Buscando currículos com qualquer nível de formação')
+    #         url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
+    #         driver.get(url_busca) # acessa a url de busca do CNPQ
+    #         # Localize o elemento do checkbox
+    #         checkbox = driver.find_element(By.ID, "buscarDemais")
+    #         # try:
+    #         #     checkbox = WebDriverWait(driver, 10).until(
+    #         #         EC.element_to_be_clickable((By.CSS_SELECTOR, "div.input-checkbox input[type='checkbox']"))
+    #         #     )
+
+    #         #     action_chains = ActionChains(driver)
+    #         #     action_chains.move_to_element(checkbox).perform()
+
+    #         #     if not checkbox.is_selected():
+    #         #         driver.execute_script("arguments[0].click();", checkbox)
+
+    #         # except Exception as e:
+    #         #     print(f"Erro ao localizar checkbox: {e}")
+    #         #     driver.save_screenshot("erro_screenshot.png") 
+    #         # Verifique se o checkbox está marcado
+    #         if not checkbox.is_selected():
+    #             # Se o checkbox não estiver marcado, mova o mouse até ele e clique
+    #             actions = ActionChains(driver)
+    #             actions.move_to_element(checkbox).click().perform()
+    #         # driver.get(url_busca) # acessa a url de busca do CNPQ
+    #     driver.mouse = webdriver.ActionChains(driver)
+    #     return driver
+
+    @staticmethod
+    def connect_driver(only_doctors, retries=5, timeout=30):
+        '''
+        Conecta ao servidor do CNPq para busca de currículo, 
+        com controle de timeout e retentativas.
+        '''
+        print(f'Conectando com o servidor do CNPq...')
+        
         driver_path = None
         try:
             # Caminho para o chromedriver no sistema local
@@ -654,44 +712,38 @@ class LattesScraper:
             print("Não foi possível estabelecer uma conexão, verifique o chromedriver")
             print(e)
         
-        # print(driver_path)
         service = Service(driver_path)
-        driver = webdriver.Chrome(service=service)
-        driver.set_window_position(-20, -10)
-        driver.set_window_size(170, 1896)
-        # only_doctors = True
-        if only_doctors:
-            print('Buscando currículos apenas entre nível de doutorado')
-            url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
-            driver.get(url_docts) # acessa a url de busca somente de doutores 
-        else:
-            print('Buscando currículos com qualquer nível de formação')
-            url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
-            driver.get(url_busca) # acessa a url de busca do CNPQ
-            # Localize o elemento do checkbox
-            checkbox = driver.find_element(By.ID, "buscarDemais")
-            # try:
-            #     checkbox = WebDriverWait(driver, 10).until(
-            #         EC.element_to_be_clickable((By.CSS_SELECTOR, "div.input-checkbox input[type='checkbox']"))
-            #     )
 
-            #     action_chains = ActionChains(driver)
-            #     action_chains.move_to_element(checkbox).perform()
+        for i in range(retries):
+            try:
+                driver = webdriver.Chrome(service=service)
+                driver.set_window_position(-20, -10)
+                driver.set_window_size(170, 1896)
 
-            #     if not checkbox.is_selected():
-            #         driver.execute_script("arguments[0].click();", checkbox)
+                if only_doctors:
+                    print('Buscando currículos apenas entre nível de doutorado')
+                    url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
+                    driver.get(url_docts) 
+                else:
+                    print('Buscando currículos com qualquer nível de formação')
+                    url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
+                    driver.get(url_busca) 
+                    checkbox = driver.find_element(By.ID, "buscarDemais")
+                    if not checkbox.is_selected():
+                        actions = ActionChains(driver)
+                        actions.move_to_element(checkbox).click().perform()
 
-            # except Exception as e:
-            #     print(f"Erro ao localizar checkbox: {e}")
-            #     driver.save_screenshot("erro_screenshot.png") 
-            # Verifique se o checkbox está marcado
-            if not checkbox.is_selected():
-                # Se o checkbox não estiver marcado, mova o mouse até ele e clique
-                actions = ActionChains(driver)
-                actions.move_to_element(checkbox).click().perform()
-            # driver.get(url_busca) # acessa a url de busca do CNPQ
-        driver.mouse = webdriver.ActionChains(driver)
-        return driver
+                driver.mouse = webdriver.ActionChains(driver)
+                return driver  # Conexão bem-sucedida, retorna o driver
+
+            except Exception as e:
+                print(f"Tentativa {i+1} de {retries} falhou. Erro: {e}")
+                if i < retries - 1:
+                    print(f"Tentando novamente em {timeout} segundos...")
+                    time.sleep(timeout)
+                else:
+                    print("Número máximo de tentativas atingido. Encerrando.")
+                    raise e  # Lança a exceção após o número máximo de tentativas
 
     def strfdelta(self, tdelta, fmt='{H:02}h {M:02}m {S:02}s', inputtype='timedelta'):
         if inputtype == 'timedelta':
@@ -1173,7 +1225,7 @@ class LattesScraper:
                     break
                 ## Caso percorra toda lista e não encontre vínculo adiciona à dúvidas quanto ao nome
                 if m==(qte_res):
-                    print(f'       Nenhuma vínculo encontrado para {NOME}')
+                    print(f'       Nenhum termo de vínculo encontrado para {NOME}')
                     duvidas.append(NOME)
                     # clear_output(wait=True)
                     # driver.quit()
@@ -2002,7 +2054,7 @@ class LattesScraper:
         #     time.sleep(2)  # Aguarda um tempo antes de tentar novamente
 
         except TimeoutException:
-            print(f"       Requisição ao CNPq sem resposta, tooltips das publicações indisponíveis.")
+            print(f"       Dados sobre publicação de artigos indisponíveis.")
         except Exception as e:
             print(f"       Erro inesperado ao extrair tooltips: {e}")
         return tooltip_data_list
@@ -2377,8 +2429,9 @@ class LattesScraper:
         except requests.HTTPError as e1:
             logging.error(f"HTTPError occurred: {str(e1)}")
             return None
-        except Exception as e2:
-            logging.error(f"Erro inesperado ao buscar: {str(e2)}")
+        
+        except Exception:
+            logging.error(f"Erro ao buscar: {name}")
             return None
 
     def scrape_single(self, name, termos_busca):
