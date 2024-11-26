@@ -1,13 +1,14 @@
 import os
 import json
 import networkx as nx
+import matplotlib.pyplot as plt
+
 from pyvis.network import Network
 from pathlib import Path
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 from collections import defaultdict
 from sentence_transformers import SentenceTransformer, util
-
 
 
 class GrafoDemanda:
@@ -45,11 +46,11 @@ class GrafoDemanda:
                 self.grafo.add_node(produto['id'], tipo='produto', nome=produto['nome'])
             for desafio in bloco['desafios']:
                 self.grafo.add_node(desafio['id'], tipo='desafio', nome=desafio['nome'])
-                for plataforma in desafio['plataformas']:
-                    self.grafo.add_node(plataforma['id'], tipo='plataforma', nome=plataforma['nome'])
-                    self.grafo.add_edge(desafio['id'], plataforma['id'], relation='REQUER_PLATAFORMA')
-                    for produto in bloco['produtos']:
-                        self.grafo.add_edge(plataforma['id'], produto['id'], relation='PRODUZ_PRODUTO')
+                # for plataforma in desafio['plataformas']:
+                #     self.grafo.add_node(plataforma['id'], tipo='plataforma', nome=plataforma['nome'])
+                #     self.grafo.add_edge(desafio['id'], plataforma['id'], relation='REQUER_PLATAFORMA')
+            for produto in bloco['produtos']:
+                self.grafo.add_edge(desafio['id'], produto['id'], relation='CONTEM_PRODUTO')
 
         # Adicionar aviso ao final da função
         num_nos = self.grafo.number_of_nodes()
@@ -73,6 +74,7 @@ class GrafoDemanda:
         print("  Arestas por tipo:")
         for tipo, quantidade in tipos_arestas.items():
             print(f"  - {tipo}: {quantidade}")
+
 
 class GrafoOferta:
     def __init__(self):
@@ -159,7 +161,7 @@ class GrafoOferta:
             str: O ID Lattes do pesquisador, ou '9999999999999999' se não for encontrado ou se o nome não for informado.
         """
         if nome.lower().split()[0] == 'não':  # Verificar se a primeira palavra é "não"
-            print(f"Aviso: Nome não informado. Usando ID Lattes genérico.")
+            print(f"  Aviso: Nome não informado. Usando ID Lattes genérico.")
             return '9999999999999999'  # Retornar ID Lattes genérico
 
         for no, dados in self.grafo.nodes(data=True):
@@ -167,13 +169,13 @@ class GrafoOferta:
                 nome_pesquisador = dados.get('nome').lower()
                 # print(f"Buscando: {nome_pesquisador}")
                 if dados.get('tipo') == 'pesquisador' and nome_pesquisador == nome.lower():
-                    print(f"Pesquisador encontrado no grafo com nó: {no}")
+                    print(f"  Pesquisador encontrado no grafo com nó: {no}")
                     return no
 
         # Se não encontrar o nome exato, imprimir aviso e sugestões
-        print(f"Aviso: Nome '{nome}' não encontrado exatamente no grafo.")
+        print(f"  Aviso: Nome '{nome}' não encontrado exatamente no grafo.")
         primeira_palavra = nome.split()[0]  # Obter a primeira palavra do nome
-        print(f"Possíveis nomes correspondentes (contendo '{primeira_palavra}'):")
+        print(f"    Possíveis nomes correspondentes (contendo '{primeira_palavra}'):")
         for no, dados in self.grafo.nodes(data=True):
             if dados.get('tipo') == 'pesquisador' and primeira_palavra in dados.get('nome'):
                 print(f"  - {dados.get('nome')}")
@@ -182,9 +184,9 @@ class GrafoOferta:
 
     def adicionar_intencoes(self, verbose=False):
         """
-        Adiciona as intenções dos pesquisadores ao grafo, 
-        relacionando-as aos pesquisadores, às áreas de pesquisa 
-        e aos produtos e desafios do CEIS.
+        Função para adicionar as intenções dos pesquisadores ao grafo relacionando:
+         - id_lattes dos pesquisadores às áreas de pesquisa 
+         - id_lattes aos produtos e desafios do CEIS
         """
         try:
             pathfilename = os.path.join(self.in_json, 'input_interesses_pesquisadores.json')
@@ -371,8 +373,8 @@ class GrafoOferta:
 
     def adicionar_competencias(self, id_lattes, nome, pesquisador, tipos_nos):
         """
-        Adiciona nós de competências ao grafo, 
-        relacionando-as aos pesquisadores.
+        Adiciona camada de nós de competências ao grafo, relacionando-as aos pesquisadores.
+        Baseada em dados das respostas dos pesquisadores aos levantamentos e questionários
         """
         competencias_possuidas = pesquisador.get('competencias_possuidas', [])
         competencias_desenvolver = pesquisador.get('competencias_desenvolver', [])
@@ -471,7 +473,8 @@ class GrafoConhecimento:
     
     def visualizar(self, nome_arquivo="grafo_conhecimento.html"):
         """
-        Gera uma visualização interativa do grafo usando pyvis.
+        Gera uma visualização interativa do grafo usando networkx e pyvis para visualizar.
+        Infelizmente, a biblioteca pyvis não suporta a renderização de nomes de arestas diretamente. Ela foca principalmente na visualização da estrutura do grafo e dos nós.
         """
         net = Network(notebook=True, directed=True, cdn_resources='in_line')
         net.from_nx(self.grafo)
@@ -514,7 +517,37 @@ class GrafoConhecimento:
         """)
         print(f"\nGrafo de conhecimento gerado com sucesso:")
         return net.show(nome_arquivo)    
-    
+
+    def visualizar_grafo_matplotlib(self):
+        """
+        Gera uma visualização do grafo usando networkx e matplotlib.
+        """
+        plt.figure(figsize=(80, 40))  # Aumentar o tamanho da figura (largura, altura) em polegadas
+
+        # Definir layout e parâmetros de visualização
+        pos = nx.spring_layout(self.grafo, k=0.3, iterations=50)  # Ajustar layout para melhor visualização
+        nx.draw(self.grafo, pos, 
+                with_labels=True, 
+                node_size=500,  # Ajustar node_size para evitar sobreposição
+                font_size=14, 
+                node_color="skyblue", 
+                edge_color="gray", 
+                width=0.5,  # Ajustar width para melhor visualização das arestas
+                alpha=0.7)  # Ajustar alpha para melhor visualização das arestas
+
+        # Desenhar rótulos das arestas
+        labels = nx.get_edge_attributes(self.grafo, 'relation')
+        nx.draw_networkx_edge_labels(self.grafo, pos, edge_labels=labels, font_size=8)
+
+        # Ajustar os limites do gráfico para evitar cortes
+        plt.xlim(-1.5, 1.5)  # Ajustar os limites do eixo x, se necessário
+        plt.ylim(-1.5, 1.5)  # Ajustar os limites do eixo y, se necessário
+
+        # Salvar a figura com resolução de 600 pontos por polegada
+        plt.savefig("grafo_conhecimento.png", dpi=150)
+
+        return plt.show()
+
     def construir_grafo(self, verbose=False):
         """
         Constrói o grafo de conhecimento multicamadas.
@@ -547,7 +580,10 @@ class GrafoConhecimento:
         self.oferta.adicionar_intencoes()  # Adicionar esta linha
 
         # Gerar visualização do grafo com pyvis
-        caminho_html = self.visualizar()
+        arquivo_html = self.visualizar()
+
+        # Gerar visualização do grafo com matplotlib
+        arquivo_html = self.visualizar_grafo_matplotlib()        
 
     def integrar_subgrafos(self):
         """
@@ -558,7 +594,7 @@ class GrafoConhecimento:
         self.grafo.add_nodes_from(self.demanda.grafo.nodes(data=True))
         self.grafo.add_edges_from(self.demanda.grafo.edges(data=True))
 
-    def agregar_camadas(self, camada):
+    def agregar_camada_cnpq(self, camada):
         """
         Agrega a camada especificada no grafo.
         """
@@ -583,7 +619,8 @@ class GrafoConhecimento:
                 self.grafo.remove_node(area)
         
         elif camada == 'outra_camada':
-            # Acrescentar implementação para agregar outras camada, quando necessário
+            # Acrescentar implementação para agregar outras camada, quando necessário no âmbito CNPQ
+            # Para outras camadas de outras fontes usar outra função modular a ser chamada na integração
             pass
 
     def calcular_similaridade(self):
@@ -598,7 +635,7 @@ class GrafoConhecimento:
                 caracteristicas_no = self.extrair_caracteristicas(no)
                 caracteristicas.append(caracteristicas_no)
 
-        similaridade = cosine_similarity(caracteristicas)
+        similaridade = cosine_similarity(caracteristicas) # type: ignore
 
         for i in range(len(nos)):
             for j in range(i + 1, len(nos)):
@@ -626,7 +663,7 @@ class GrafoConhecimento:
             if tipo_no == 'pesquisador':
                 
                 # Exemplo: usar o grau do nó como número de publicações
-                num_publicacoes = self.grafo.degree(no)  
+                num_publicacoes = self.grafo.degree(no)   # type: ignore
                 
                 caracteristicas.append(num_publicacoes)
                 # ... (adicionar outras características do pesquisador) ...
@@ -634,7 +671,8 @@ class GrafoConhecimento:
             elif tipo_no == 'area_subarea':
                 # Extrair características da área/subárea
                 # Exemplo: número de pesquisadores, número de subáreas, etc.
-                num_pesquisadores = len(list(self.grafo.predecessors(no)))  # Exemplo: contar quantos pesquisadores atuam na área/subárea
+                # Exemplo: contar quantos pesquisadores atuam na área/subárea
+                num_pesquisadores = len(list(self.grafo.predecessors(no)))  # type: ignore 
                 caracteristicas.append(num_pesquisadores)
                 # ... (adicionar outras características da área/subárea) ...
 
