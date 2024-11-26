@@ -1,0 +1,823 @@
+{
+    "fonte": "https://bvsms.saude.gov.br/bvs/saudelegis/gm/2023/prt2261_08_12_2023.html",
+    "documentos": [
+        "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=08/12/2023&jornal=600&pagina=99&totalArquivos=106",
+        "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=08/12/2023&jornal=600&pagina=100&totalArquivos=106",
+        "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=08/12/2023&jornal=600&pagina=101&totalArquivos=106",
+        "https://portal.conasems.org.br/legislacao-diaria/2128_legislacao-diaria-nacional-08-12-2023-edicao-extra",
+        "https://www.gov.br/anvisa/pt-br/assuntos/medicamentos/cmed/reunioes-CMED/cte/Atada8aReunioOrdinriaCTECMEDCOMPILADA.pdf",
+        "https://bvsms.PLTaude.gov.br/bvs/saudelegis/doc_tec/jan_24/PARECER%20DE%20M%C3%89RITO%207%20_%20PORTARIA%20GM%202261.2023.pdf"
+    ],
+    "instrumento": "MatrizCEIS_Portaria_GM_2261_08_12_2023",
+    "blocos": [{
+    "bloco": "I",
+    "id": "B01",
+    "titulo": "B01. PREPARAÇÃO DO SISTEMA DE SAÚDE PARA EMERGÊNCIAS SANITÁRIAS",
+    "produtos":[
+        {
+            "id": "B01.D01.P01",
+            "nome": "Vacinas do PNI que demandem atualização tecnológica"
+        },
+        {
+            "id": "B01.D01.P02",
+            "nome": "Vacinas do PNI que possuem dependência externa"
+        },
+        {
+            "id": "B01.D01.P03",
+            "nome": "Vacina vírus sincicial respiratório (RSV)"
+        },
+        {
+            "id": "B01.D01.P04",
+            "nome": "Vacina Chikungunya"
+        },
+        {
+            "id": "B01.D01.P05",
+            "nome": "Vacina contra Dengue"
+        },
+        {
+            "id": "B01.D01.P06",
+            "nome": "Vacina Esquistossomose"
+        },
+        {
+            "id": "B01.D01.P07",
+            "nome": "Vacina Hanseníase"
+        },
+        {
+            "id": "B01.D01.P08",
+            "nome": "Vacina Leishmanioses"
+        },
+        {
+            "id": "B01.D01.P09",
+            "nome": "Vacina Zika"
+        },
+        {
+            "id": "B01.D01.P10",
+            "nome": "Vacina Herpes Zoster"
+        },
+        {
+            "id": "B01.D01.P11",
+            "nome": "Vacinas combinadas"
+        },
+        {
+            "id": "B01.D01.P12",
+            "nome": "Vacina associada a formas farmacêuticas não invasivas"
+        },
+        {
+            "id": "B01.D01.P13",
+            "nome": "Testes diagnósticos moleculares, por imunoensaio, rápidos de antígeno ou anticorpo, point-of-care, autoteste e outros testes diagnósticos in vitro"
+        },
+        {
+            "id": "B01.D01.P14",
+            "nome": "Kit de extração de ácidos nucléicos"
+        },
+        {
+            "id": "B01.D01.P15",
+            "nome": "Seringas e agulhas hipodérmicas"
+        },
+        {
+            "id": "B01.D02.P16",
+            "nome": "Soros Imunossupressores"
+        },
+        {
+            "id": "B01.D03.P17",
+            "nome": "Hemoderivados e bioprodutos"
+        },
+        {
+            "id": "B01.D03.P18",
+            "nome": "Novas tecnologias para hemoterapia"
+        },
+        {
+            "id": "B01.D03.P19",
+            "nome": "Serviços tecnológicos para hemoterapia"
+        },
+        {
+            "id": "B01.D03.P20",
+            "nome": "Desenvolvimento e produção local de tecnologias de informação e conectividade para centralização e padronização de ensaios sorológicos para triagem do sangue doado"
+        },
+        {
+            "id": "B01.D03.P21",
+            "nome": "Teste de amplificação de ácidos nucléicos de última geração"
+        },
+        {
+            "id": "B01.D03.P22",
+            "nome": "Tecnologias para inativação de patógenos em bolsas de sangue de doação voluntária"                        
+        },
+        {
+            "id": "B01.D03.P23",
+            "nome": "Máquina de aférese"
+        },
+        {
+            "id": "B01.D04.P24",
+            "nome": "IFA de base química ou biotecnológica de medicamentos demandados pelo SUS que apresentem dependência externa de insumos críticos da cadeia produtiva para todos os desafios em saúde definidos nesta matriz"
+        },
+        {
+            "id": "B01.D04.P25",
+            "nome": "Radiofármacos e produtos de medicina nuclear"
+        },
+        {
+            "id": "B01.D04.P26",
+            "nome": "IFA antimicrobianos"
+        },
+        {
+            "id": "B01.D04.P27",
+            "nome": "Produtos antimicrobianos demandados pelo SUS que não tenham produção nacional e para microorganismos resistentes"
+        },
+        {
+            "id": "B01.D04.P28",
+            "nome": "Insumos críticos da cadeia produtiva de dispositivos médicos"
+        },
+        {
+            "id": "B01.D05.P29",
+            "nome": "IFA obtidos por processos tecnológicos e industriais sustentáveis baseados na química verde"
+        },
+        {
+            "id": "B01.D05.P30",
+            "nome": "Fitoterápicos e produtos da biodiversidade apoiados pelo SUS"
+        },
+        {
+            "id": "B01.D06.P31",
+            "nome": "Desenvolvimento e produção local de tecnologias utilizadas na atenção à saúde (telessaude, telemonitoramento, telediagnóstico, entre outros)"
+        },
+        {
+            "id": "B01.D06.P32",
+            "nome": "Desenvolvimento e produção local de tecnologias de informação e conectividade para gestão de estoques"
+        },
+        {
+            "id": "B01.D06.P33",
+            "nome": "Desenvolvimento e produção local de tecnologias de informação e conectividade para rastreabilidade de órteses, próteses e meios auxiliares de locomoção dispensados pelo SUS"
+        },
+        {
+            "id": "B01.D06.P34",
+            "nome": "Desenvolvimento e produção local de tecnologias de informação e conectividade para a gestão de dados clínicos de prontuários eletrônicos"
+        },
+        {
+            "id": "B01.D06.P35",
+            "nome": "Desenvolvimento e produção local de tecnologias de informação e conectividade com padrões e interoperabilidade nos diversos níveis do SUS"
+        },
+        {
+            "id": "B01.D06.P36",
+            "nome": "Desenvolvimento e produção local de tecnologias de informação e conectividade para acompanhamento de aquisição, dispensação e desabastecimento de medicamentos"
+        },
+        {
+            "id": "B01.D06.P37",
+            "nome": "Equipamentos de uso médico adaptados para uso na atenção primária, atendimento pré-hospitalar e domiciliar"
+        },
+        {
+            "id": "B01.D06.P38",
+            "nome": "Equipamentos de uso médico e odontológico portáteis e com fontes alternativas de energia para uso em locais remotos e sem infraestrutura"
+        },
+        {
+            "id": "B01.D06.P39",
+            "nome": "Equipamentos para diagnóstico por imagem dotados de soluções integradas"
+        },
+        {
+            "id": "B01.D06.P40",
+            "nome": "Equipamentos para diagnóstico e terapia clínica e cirúrgica para oftalmologia"
+        },
+        {
+            "id": "B01.D06.P41",
+            "nome": "Dispositivos de tecnologia assistiva que auxiliem e aumentem a autonomia de pessoas com deficiências visual, auditiva e motora"
+        },
+        {
+            "id": "B01.D06.P42",
+            "nome": "Cimento de ionômero de vidro de alta viscosidade"
+        },
+        {
+            "id": "B01.D06.P43",
+            "nome": "Próteses cirúrgicas de ombro, quadril, fêmur, joelho, crânio e odontológicas, em titânio, porcelana ou biomateriais"
+        },
+        {
+            "id": "B01.D06.P44",
+            "nome": "Dispositivo de assistência ventricular, máquinas de perfusão para órgãos e oxigenação por membrana extracorpórea"
+        },
+        {
+            "id": "B01.D06.P45",
+            "nome": "Líquido para preservação de órgãos e córnea"
+        }
+    ],
+    "desafios": [
+        {
+            "id": "B01.D01",
+            "nome": "D01. PREPARAÇÃO PARA RESPOSTA A EMERGÊNCIAS EM SAÚDE E PROTEÇÃO PARA DOENÇAS IMUNOPREVENÍVEIS",
+            "plataformas": [
+                {
+                    "id": "B01.D01.PLT01",
+                    "nome": "Plataforma produtiva para escalonamento e processamento final de bioprodutos em larga escala"
+                },
+                {
+                    "id": "B01.D01.PLT02",
+                    "nome": "Plataforma de tecnologias virais e bacterianas para novos processos de produção de vacinas"
+                },
+                {
+                    "id": "B01.D01.PLT03",
+                    "nome": "Plataforma para produtos baseados em RNA e outras tecnologias de base genética"
+                },
+                {
+                    "id": "B01.D01.PLT04",
+                    "nome": "Plataforma para produção de vacinas associadas a sistemas de liberação inovadores"
+                },
+                {
+                    "id": "B01.D01.PLT05",
+                    "nome": "Plataforma produtiva para testes diagnósticos rápido"
+                },
+                {
+                    "id": "B01.D01.PLT06",
+                    "nome": "Plataforma produtiva para testes diagnósticos point-of-care"
+                },
+                {
+                    "id": "B01.D01.PLT07",
+                    "nome": "Plataforma produtiva para testes diagnósticos molecular"
+                },
+                {
+                    "id": "B01.D01.PLT08",
+                    "nome": "Plataforma produtiva para testes diagnósticos in vitro"
+                },
+                {
+                    "id": "B01.D01.PLT09",
+                    "nome": "Plataforma produtiva de dispositivos médicos"
+                }
+            ]
+        },
+        {
+            "id": "B01.D02",
+            "nome": "D02. MODERNIZAÇÃO DAS TECNOLOGIAS PRODUTIVAS DE SOROS IMUNOPROTETORES",
+            "plataformas": [
+                {
+                    "id": "B01.D02.PLT10",
+                    "nome": "Plataforma produtiva para soros imunoprotetores"
+                },
+                {
+                    "id": "B01.D02.PLT11",
+                    "nome": "Plataforma para novos processos biotecnológicos de produção de soros imunoprotetores"
+                }
+            ]
+        },
+        {
+            "id": "B01.D03",
+            "nome": "D03. SUPERAÇÃO DE VULNERABILIDADE EM HEMODERIVADOS, BIOPRODUTOS E MODERNIZAÇÃO DE SERVIÇOS TECNOLÓGICOS EM HEMOTERAPIA",
+            "plataformas": [
+            {
+                "id": "B01.D03.PLT12",
+                "nome": "Plataforma produtiva de hemoderivados e bioprodutos"
+            },
+            {
+                "id": "B01.D03.PLT13",
+                "nome": "Plataforma produtiva para insumos e produtos de base genética"
+            },
+            {
+                "id": "B01.D03.PLT14",
+                "nome": "Plataforma produtiva para terapias avançadas"
+            },
+            {
+                "id": "B01.D03.PLT15",
+                "nome": "Plataforma de tecnologia da informação e conectividade para a gestão dos hemocentros"
+            },
+            {
+                "id": "B01.D03.PLT16",
+                "nome": "Plataforma produtiva para testes diagnósticos moleculares"
+            },
+            {
+                "id": "B01.D03.PLT17",
+                "nome": "Plataforma produtiva para dispositivos médicos"
+            }
+            ]
+        },
+        {
+            "id": "B01.D04",
+            "nome": "D04. VULNERABILIDADE TECNOLÓGICA E ECONÔMICA PARA ACESSO EM SAÚDE",
+            "plataformas": [ 
+                {
+                "id": "B01.D04.PLT18",
+                "nome": "Plataforma produtiva para insumos farmacêuticos ativos"
+                },
+                {
+                "id": "B01.D04.PLT19",
+                "nome": "Plataforma produtiva para insumos e produtos de medicina nuclear"
+                },
+                {
+                "id": "B01.D04.PLT20",
+                "nome": "Plataforma produtiva para insumos e produtos antimicrobianos"
+                },
+                {
+                "id": "B01.D04.PLT21",
+                "nome": "Plataforma produtiva para dispositivos médicos"
+                }
+            ]
+        },
+        {
+            "id": "B01.D05",
+            "nome": "D05. ALTERNATIVAS TECNOLÓGICAS PARA DESENVOLVIMENTO SUSTENTÁVEL E QUÍMICA VERDE",
+            "plataformas": [
+                {
+                "id": "B01.D05.PLT22",
+                "nome": "Rotas tecnológicas e produtivas para insumos farmacêuticos ativos baseadas na química verde"
+                },
+                {
+                "id": "B01.D05.PLT23",
+                "nome": "Plataforma produtiva para insumos e produtos da biodiversidade"
+            }
+        ]
+        },
+        {
+            "id": "B01.D06",
+            "nome": "D06. TECNOLOGIAS PARA SISTEMAS DE SAÚDE (SUS)",
+            "plataformas": [
+                { 
+                    "id": "B01.D06.PLT24",
+                    "nome": "Plataforma produtiva para softwares e aplicativos"
+                },
+                {
+                    "id": "B01.D06.PLT25",
+                    "nome": "Plataforma produtiva para inteligência artificial"
+                },
+                {
+                    "id": "B01.D06.PLT26",
+                    "nome": "Plataforma produtiva para internet das coisas"
+                },
+                {
+                    "id": "B01.D06.PLT27",
+                    "nome": "Plataforma produtiva para sistemas digitais"
+                },
+                {
+                    "id": "B01.D06.PLT28",
+                    "nome": "Plataforma produtiva para dispositivos médicos"
+                },
+                {
+                    "id": "B01.D06.PLT29",
+                    "nome": "Plataforma produtiva para equipamentos para diagnóstico por imagem"
+                },
+                {
+                    "id": "B01.D06.PLT30",
+                    "nome": "Plataforma produtiva para dispositivos vestíveis para reabilitação e tecnologias assistivas"
+                },
+                {
+                    "id": "B01.D06.PLT31",
+                    "nome": "Plataforma produtiva para OPME e processamento de produtos para saúde"
+                },
+                {
+                    "id": "B01.D06.PLT32",
+                    "nome": "Plataforma produtiva para biomateriais"
+                },
+                {
+                    "id": "B01.D06.PLT33",
+                    "nome": "Plataforma para produtos baseados em xenotransplante"
+                }
+            ]
+        }]
+    },
+    {
+    "bloco": "II",
+    "id": "B02",
+    "titulo": "B02. DOENÇAS E AGRAVOS CRÍTICOS PARA O SUS",
+    "produtos": [
+        {
+            "id": "B02.D07.P46",
+            "nome": "Medicamentos negligenciados e Novos esquemas terapêuticos para otimização do tratamento de Tuberculose, Doença de Chagas, Hanseníase, Esquistossomose, Leishmaniose, Malária e demais doenças elencadas pelo CIEDDS"
+        },
+        {
+            "id": "B02.D07.P47",
+            "nome": "Medicamentos e novos esquemas terapêuticos demandados pelo SUS para tratamento de HIV/AIDS e Hepatites virais"
+        },
+        {
+            "id": "B02.D07.P48",
+            "nome": "Medicamentos e formulações para tratamento da população pediátrica"
+        },
+        {
+            "id": "B02.D07.P49",
+            "nome": "Produtos e nutracêuticos para população pediátrica ou vulnerável"
+        },
+        {
+            "id": "B02.D07.P50",
+            "nome": "Plataforma de RT-PCR para diagnóstico de arboviroses, multiplex ou isolada"
+        },
+        {
+            "id": "B02.D07.P51",
+            "nome": "Testes diagnóstico moleculares, por imunoensaio, rápidos de antígeno ou anticorpo, point-of-care, autoteste e outros testes diagnóstico in vitro"
+        },
+        {
+            "id": "B02.D07.P52",
+            "nome": "Teste para determinação de sensibilidade aos antimicrobianos"
+        },
+        {
+            "id": "B02.D07.P53",
+            "nome": "Kit de extração de ácidos nucléicos"
+        },
+        {
+            "id": "B02.D08.P54",
+            "nome": "Inibidores de tirosina quinase"
+        },
+        {
+            "id": "B02.D08.P55",
+            "nome": "Inibidores de ciclina"
+        },
+        {
+            "id": "B02.D08.P56",
+            "nome": "Acetato de goserrelina"
+        },
+        {
+            "id": "B02.D08.P57",
+            "nome": "Pertuzumabe"
+        },
+        {
+            "id": "B02.D08.P58",
+            "nome": "Trastuzumabe deruxtecan"
+        },
+        {
+            "id": "B02.D08.P59",
+            "nome": "Pembrolizumabe"
+        },
+        {
+            "id": "B02.D08.P60",
+            "nome": "Blinatumomabe"
+        },
+        {
+            "id": "B02.D08.P61",
+            "nome": "Lenalidomida"
+        },
+        {
+            "id": "B02.D08.P62",
+            "nome": "BCG vesical"
+        },
+        {
+            "id": "B02.D08.P63",
+            "nome": "L-asparaginase/ Pegaspargase"
+        },
+        {
+            "id": "B02.D08.P64",
+            "nome": "Produtos de Terapia Gênica"
+        },
+        {
+            "id": "B02.D08.P65",
+            "nome": "Produtos e formulações para tratamento da população pediátrica"
+        },
+        {
+            "id": "B02.D08.P66",
+            "nome": "Equipamentos e plataformas para telecolposcopia, telepatologia e telerradiologia"
+        },
+        {
+            "id": "B02.D08.P67",
+            "nome": "Kit de autocoleta para detecção de HPV por biologia molecular"
+        },
+        {
+            "id": "B02.D08.P68",
+            "nome": "Teste point-of-care para o câncer de colo de útero"
+        },
+        {
+            "id": "B02.D08.P69",
+            "nome": "Testes diagnósticos moleculares e de anatomia patológica"
+        },
+        {
+            "id": "B02.D09.P70",
+            "nome": "Medicamentos e IFA utilizados pelo SUS que apresentem dependência externa de insumos críticos da cadeia produtiva"
+        },
+        {
+            "id": "B02.D09.P71",
+            "nome": "Espiral de platina"
+        },
+        {
+            "id": "B02.D09.P72",
+            "nome": "Próteses e outros dispositivos médicos implantáveis cardiovasculares"
+        },
+        {
+            "id": "B02.D09.P73",
+            "nome": "Testes diagnósticos para a dosagem e avaliação de marcadores cardíacos"
+        },
+        {
+            "id": "B02.D10.P74",
+            "nome": "Medicamentos e IFA utilizados pelo SUS que apresentem dependência externa de insumos críticos da cadeia produtiva"
+        },
+        {
+            "id": "B02.D10.P75",
+            "nome": "Insulinas e seus análogos"
+        },
+        {
+            "id": "B02.D10.P76",
+            "nome": "Desenvolvimento e produção local de tecnologias de informação e conectividade para o monitoramento da diabetes"
+        },
+        {
+            "id": "B02.D10.P77",
+            "nome": "Testes diagnóstico in vitro"
+        },
+        {
+            "id": "B02.D10.P78",
+            "nome": "Dispositivos médicos para o tratamento de úlceras no pé diabético"
+        },
+        {
+            "id": "B02.D11.P79",
+            "nome": "Medicamentos e IFA utilizados pelo SUS para doenças relacionadas ao envelhecimento que apresentem dependência externa de insumos críticos da cadeia produtiva"
+        },
+        {
+            "id": "B02.D11.P80",
+            "nome": "Conjunto de eletrodos e gerador para estimulação elétrica profunda cerebral"
+        },
+        {
+            "id": "B02.D11.P81",
+            "nome": "Desenvolvimento e produção local de tecnologias de informação e conectividade para melhoria da qualidade de vida da população idosa"
+        },
+        {
+            "id": "B02.D12.P82",
+            "nome": "Produtos para tratamento da Fibrose Cística: ivacaftor / elexacaftor, tezacaftor e ivacaftor"
+        },
+        {
+            "id": "B02.D12.P83",
+            "nome": "Produtos para tratamento da Atrofia Medular Espinhal: Risdiplam"
+        },
+        {
+            "id": "B02.D12.P84",
+            "nome": "Imunossupressores seletivos para Esclerose Múltipla e Hemoglobinúria paroxística noturna"
+        },
+        {
+            "id": "B02.D12.P85",
+            "nome": "Enzimas para tratamento de Mucopolissaridoses, Doença de Gaucher, Doença de Pompe e Fibrose Cística"
+        },
+        {
+            "id": "B02.D12.P86",
+            "nome": "Produtos para tratamento da Polineuropatia Amiloidótica Familiar"
+        },
+        {
+            "id": "B02.D12.P87",
+            "nome": "Produtos para tratamento da Acromegalia, Raquitismo e osteomalácia"
+        },
+        {
+            "id": "B02.D12.P88",
+            "nome": "Produtos de Terapia Gênica"
+        },
+        {
+            "id": "B02.D12.P89",
+            "nome": "Produtos e nutracêuticos para pacientes com erros inatos de metabolismo ou outras doenças raras"
+        },
+        {
+            "id": "B02.D12.P90",
+            "nome": "Equipamentos e insumos para o rastreamento e exames confirmatórios das doenças elegíveis à triagem neonatal"
+        },
+        {
+            "id": "B02.D12.P91",
+            "nome": "Sequenciamento completo do exoma"
+        },
+        {
+            "id": "B02.D13.P92",
+            "nome": "Medicamentos e IFA utilizados pelo SUS paradoenças autoimunes, respiratórias e transtornosmentais que apresentem dependência externa de insumos críticos da cadeia produtiva"
+        },
+        {
+            "id": "B02.D13.P93",
+            "nome": "Produtos de Terapia Gênica"
+        },
+        {
+            "id": "B02.D13.P94",
+            "nome": "Gerador de pulso para terapia de estimulação do nervo vago"
+        },
+        {
+            "id": "B02.D13.P95",
+            "nome": "Equipamentos e insumos para diálise peritoneal"
+        },
+        {
+            "id": "B02.D13.P96",
+            "nome": "Capilares, cateteres e máquina para hemodiálise"
+        },
+        {
+            "id": "B02.D13.P97",
+            "nome": "Teste rápido e kits diagnóstico para pré-eclâmpsia"
+        }
+    ],
+    "desafios": [
+        {
+            "id": "B02.D07",
+            "nome": "D07. DOENÇAS E POPULAÇÕES NEGLIGENCIADAS",
+            "plataformas": [
+                {
+                    "id": "B02.D07.PLT34",
+                    "nome": "Plataforma produtiva para insumos e produtos de base química"
+                },
+                {
+                    "id": "B02.D07.PLT35",
+                    "nome": "Plataforma produtiva para insumos e produtos de base biotecnológica"
+                },
+                {
+                    "id": "B02.D07.PLT36",
+                    "nome": "Plataforma para produção de produtos associados a sistemas de liberação inovadores"
+                },
+                {
+                    "id": "B02.D07.PLT37",
+                    "nome": "Plataforma para produção de insumos e produtos antiretrovirais e virais"
+                },
+                {
+                    "id": "B02.D07.PLT38",
+                    "nome": "Plataforma produtiva para insumos e produtos antimicrobianos"
+                },                   
+                {
+                    "id": "B02.D07.PLT39",
+                    "nome": "Plataforma de desenvolvimento farmacotécnico industrial para formulações pediátricas"
+                },
+                {
+                    "id": "B02.D07.PLT40",
+                    "nome": "Plataforma produtiva para nutracêuticos"
+                },
+                {
+                    "id": "B02.D07.PLT41",
+                    "nome": "Plataforma produtiva para testes diagnóstico rápido"
+                },
+                {
+                    "id": "B02.D07.PLT42",
+                    "nome": "Plataforma produtiva para testes diagnósticos point-of-care"
+                },
+                {
+                    "id": "B02.D07.PLT43",
+                    "nome": "Plataforma produtiva para testes diagnóstico molecular"
+                },
+                {
+                    "id": "B02.D07.PLT44",
+                    "nome": "Plataforma produtiva para testes diagnóstico in vitro"
+                }
+            ]
+        },
+        {
+            "id": "B02.D08",
+            "nome": "D08. CÂNCERES COM MAIOR INCIDÊNCIA",
+            "tipos": "Câncer de pele não melanoma; Câncer de mama; próstata; colorretal; pulmão, traqueia e brônquios; colo do útero; tireoide; linfomas; leucemias; CÂNCERES PEDIÁTRICOS", 
+            "plataformas": [
+                {
+                    "id": "B02.D08.PLT45",
+                    "nome": "Plataforma produtiva para insumos e produtos de base química"
+                },
+                {
+                    "id": "B02.D08.PLT46",
+                    "nome": "Plataforma produtiva para insumos e produtos de base biotecnológica"
+                },
+                {
+                    "id": "B02.D08.PLT47",
+                    "nome": "Plataforma para produtos baseados em RNA e outras tecnologias de base genética"
+                },
+                {
+                    "id": "B02.D08.PLT48",
+                    "nome": "Plataforma para produção de produtos associados a sistemas de liberação inovadores"
+                },
+                {
+                    "id": "B02.D08.PLT49",
+                    "nome": "Plataforma produtiva para terapias avançadas"
+                },
+                {
+                    "id": "B02.D08.PLT50",
+                    "nome": "Plataforma de desenvolvimento farmacotécnico industrial para formulações pediátricas"
+                },
+                {
+                    "id": "B02.D08.PLT51",
+                    "nome": "Plataforma produtiva para testes diagnóstico in vitro"
+                },
+                {
+                    "id": "B02.D08.PLT52",
+                    "nome": "Plataforma produtiva para dispositivos médicos para telemedicina"
+                }
+            ]
+        },
+        {
+            "id": "B02.D09",
+            "nome": "D09. DOENÇAS CARDIOVASCULARES",
+            "plataformas": [
+                {
+                    "id": "B02.D09.PLT53",
+                    "nome": "Plataforma produtiva para insumos e produtos de base química"
+                },
+                {
+                    "id": "B02.D09.PLT54",
+                    "nome": "Plataforma produtiva para dispositivos médicos implantáveis"
+                },
+                {
+                    "id": "B02.D09.PLT55",
+                    "nome": "Plataforma produtiva para testes diagnóstico in vitro"
+                }
+            ]
+        },
+        {
+            "id": "B02.D10",
+            "nome": "D10. DIABETES",
+            "plataformas": [
+                {
+                    "id": "B02.D10.PLT56",
+                    "nome": "Plataforma produtiva para insumos e produtos de base química"
+                },
+                {
+                    "id": "B02.D10.PLT57",
+                    "nome": "Plataforma produtiva para insumos e produtos de base biotecnológica"
+                },
+                {
+                    "id": "B02.D10.PLT58",
+                    "nome": "Plataforma produtiva para inteligência artificial"
+                },
+                {
+                    "id": "B02.D10.PLT59",
+                    "nome": "Plataforma produtiva para testes diagnóstico in vitro"
+                },
+                {
+                    "id": "B02.D10.PLT60",
+                    "nome": "Plataforma produtiva para dispositivos médicos e biomateriais"
+                }
+            ]
+        },
+        {
+            "id": "B02.D11",
+            "nome": "D11. DOENÇAS ASSOCIADAS AO ENVELHECIMENTO DA POPULAÇÃO",
+            "plataformas": [
+                {
+                    "id": "B02.D11.PLT61",
+                    "nome": "Plataforma produtiva para insumos e produtos de base química"
+                },
+                {
+                    "id": "B02.D11.PLT62",
+                    "nome": "Plataforma produtiva para insumos e produtos de base biotecnológica"
+                },
+                {
+                    "id": "B02.D11.PLT63",
+                    "nome": "Plataforma para produção de produtos associados a sistemas de liberação inovadores"
+                },
+                {
+                    "id": "B02.D11.PLT64",
+                    "nome": "Plataforma produtiva para terapias avançadas"
+                },
+                {
+                    "id": "B02.D11.PLT65",
+                    "nome": "Plataforma produtiva para dispositivos médicos"
+                },
+                {
+                    "id": "B02.D11.PLT66",
+                    "nome": "Plataforma de tecnologia da informação e conectividade"
+                }
+            ]
+        },
+        {
+            "id": "B02.D12",
+            "nome": "D12. DOENÇAS RARAS",
+            "plataformas": [
+                {
+                    "id": "B02.D12.PLT67",
+                    "nome": "Plataforma produtiva para insumos e produtos de base química"
+                },
+                {
+                    "id": "B02.D12.PLT68",
+                    "nome": "Plataforma produtiva para insumos e produtos de base biotecnológica"
+                },
+                {
+                    "id": "B02.D12.PLT69",
+                    "nome": "Plataforma para produtos baseados em RNA e outras tecnologias de base genética"
+                },
+                {
+                    "id": "B02.D12.PLT70",
+                    "nome": "Plataforma para produção de produtos associados a sistemas de liberação inovadores"
+                },
+                {
+                    "id": "B02.D12.PLT71",
+                    "nome": "Plataforma produtiva para terapias avançadas"
+                },
+                {
+                    "id": "B02.D12.PLT72",
+                    "nome": "Plataforma produtiva para nutracêuticos"
+                },
+                {
+                    "id": "B02.D12.PLT73",
+                    "nome": "Plataforma produtiva para testes genéticos"
+                }
+            ]
+        },      
+        {
+            "id": "B02.D13",
+            "nome": "D13. OUTRAS DOENÇAS CRÔNICAS NÃO TRANSMISSÍVEIS",
+            "plataformas": [
+                {
+                    "id": "B02.D13.PLT74",
+                    "nome": "Plataforma produtiva para insumos e produtos de base química"
+                },
+                {
+                    "id": "B02.D13.PLT75",
+                    "nome": "Plataforma produtiva para insumos e produtos de base biotecnológica"
+                },
+                {
+                    "id": "B02.D13.PLT76",
+                    "nome": "Plataforma para produção de produtos associados a sistemas de liberação inovadores"
+                },
+                {
+                    "id": "B02.D13.PLT77",
+                    "nome": "Plataforma produtiva para terapias avançadas"
+                },
+                {
+                    "id": "B02.D13.PLT78",
+                    "nome": "Plataforma produtiva para dispositivos médicos"
+                },
+                {
+                    "id": "B02.D13.PLT79",
+                    "nome": "Plataforma produtiva para dispositivos médicos de uso único para terapia renal substitutiva"
+                },
+                {
+                    "id": "B02.D13.PLT80",
+                    "nome": "Plataforma produtiva para dispositivos médicos implantáveis"
+                },
+                {
+                    "id": "B02.D13.PLT81",
+                    "nome": "Plataforma produtiva para equipamentos eletromédicos"
+                },
+                {
+                    "id": "B02.D13.PLT82",
+                    "nome": "Plataforma produtiva para testes diagnóstico in vitro"
+                }
+            ]
+        }
+    ]}
+]}

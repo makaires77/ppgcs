@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "fonte": { "type": "string" },
+    "documentos": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "instrumento": { "type": "string" },
+    "blocos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "bloco": { "type": "string" },
+          "id": { "type": "string" },
+          "titulo": { "type": "string" },
+          "produtos": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "nome": { "type": "string" }
+              },
+              "required": ["id", "nome"]
+            }
+          },
+          "desafios": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "nome": { "type": "string" },
+                "plataformas": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string" },
+                      "nome": { "type": "string" }
+                    },
+                    "required": ["id", "nome"]
+                  }
+                }
+              },
+              "required": ["id", "nome", "plataformas"]
+            }
+          }
+        },
+        "required": ["bloco", "id", "titulo", "produtos", "desafios"]
+      }
+    }
+  },
+  "required": ["fonte", "documentos", "instrumento", "blocos"]
+}

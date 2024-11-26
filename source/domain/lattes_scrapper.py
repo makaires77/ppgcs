@@ -360,7 +360,7 @@ class JSONFileManager:
     def verifify_json(self, folder, filename):
         pathfilename = os.path.join(folder,filename)
         dict_list, formatted_creation_date, formatted_modification_date, time_count, unit = self.load_from_json(os.path.join(pathfilename))
-        print(f"\n{len(dict_list)} currículos carregados na lista de dicionários '{filename}'")
+        print(f"\n{len(dict_list)} dicionários aninhados em lista de dicionários '{filename}'")
         # print(f"Arquivo criado inicialmente em {formatted_creation_date} carregado com sucesso")
         print(f"Extração realizada em {formatted_modification_date} a {time_count} {unit}")    
 
