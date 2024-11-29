@@ -1,0 +1,40 @@
+\documentclass{beamer}
+    \usetheme{Madrid}
+    \usepackage{tikz}
+    \usepackage{amsmath}
+    \usepackage{graphicx}
+
+    \title{Model i9C Graph Attention Abation Study}
+    \author{Marcos Aires}
+    \institute{University of Fortaleza}
+
+    \begin{document}
+
+    \begin{frame}
+    \titlepage
+    \end{frame}
+
+    \begin{frame}
+    \frametitle{Node Classification}
+    \begin{columns}
+    \column{0.5\textwidth}
+    % Visualização do grafo original
+    \column{0.5\textwidth}
+    % Resultados da ablação
+    \end{columns}
+    \end{frame}
+
+    \begin{frame}
+    \frametitle{Data Model}
+    \begin{itemize}
+    \item Draw an edge in class 0 with probability $p$
+    \item Draw an edge in class 1 with probability $p$
+    \item Draw an edge between classes with probability $q$
+    \end{itemize}
+
+    \[ X_i \sim \mathcal{N}(\mu, \sigma^2I) \text{ if node } i \in \text{Class}_0 \]
+    \[ X_i \sim \mathcal{N}(\nu, \sigma^2I) \text{ if node } i \in \text{Class}_1 \]
+    \end{frame}
+
+    \end{document}
+    
