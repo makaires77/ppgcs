@@ -1,0 +1,43 @@
+\documentclass{beamer}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\definecolor{class0}{RGB}{65,105,225}
+\definecolor{class1}{RGB}{220,20,60}
+
+\begin{document}
+\begin{frame}{Node Classification}
+\begin{columns}
+\column{0.5\textwidth}
+    % Visualização do grafo original
+\column{0.5\textwidth}
+    % Resultados da ablação
+    \begin{itemize}
+        \item Acurácia base: $\gamma_{ij}$
+        \item Sem atenção: $\gamma_{ij}$ removido
+        \item Sem features: apenas estrutura do grafo
+    \end{itemize}
+\end{columns}
+\end{frame}
+\begin{frame}{Ablation Study Results}
+\begin{table}
+\begin{tabular}{lcc}
+\toprule
+Componente & Acurácia & Diferença \\
+\midrule
+Modelo Completo & 0.950 & - \\
+Sem Atenção & 0.850 & 0.750 \\
+Sem Features & -0.100 & -0.200 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+\begin{frame}{Performance Comparison}
+\begin{figure}
+\includegraphics[width=0.8\textwidth]{comparison_plot}
+\caption{Comparação entre diferentes configurações do modelo}
+\end{figure}
+\end{frame}
+\end{document}

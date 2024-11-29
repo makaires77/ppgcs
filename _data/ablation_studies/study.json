@@ -1,0 +1,71 @@
+{
+    "metadata": {
+        "title": "Estudo de Ablação 001 do i9c",
+        "authors": "Marcos Aires",
+        "description": "Estudo de Ablação do modelo dinâmico de alinhamento de Competências em PDI"
+    },
+    "ablation": {
+        "datasets": ["MLP-GAT", "GCN", "No-graph"],
+        "models": ["random_graph"],
+        "losses": ["Funções de Perda"],
+        "training_loops": ["Tipo de Loop de Treinamento"],
+        "optimizers": ["Otimizadores"],
+        "create_inverse_triples": [true, false],
+        "stopper": "tipo_stopper",
+        "stopper_kwargs": {
+            "frequency": valor_inteiro,
+            "patience": valor_inteiro,
+            "relative_delta": valor_float,
+            "metric": "métrica_avaliação"
+        }
+    },
+    "model_to_model_kwargs_ranges": {
+        "NomeModelo": {
+            "embedding_dim": {
+                "type": "tipo_variável",
+                "low": valor_mínimo,
+                "high": valor_máximo,
+                "scale": "escala"
+            }
+        }
+    },
+    "model_to_training_loop_to_training_kwargs": {
+        "NomeModelo": {
+            "tipo_loop": {
+                "num_epochs": número_épocas
+            }
+        }
+    },
+    "model_to_training_loop_to_training_kwargs_ranges": {
+        "NomeModelo": {
+            "tipo_loop": {
+                "parâmetros_treino": {
+                    "type": "tipo_variável",
+                    "low": valor_mínimo,
+                    "high": valor_máximo,
+                    "scale": "escala"
+                }
+            }
+        }
+    },
+    "model_to_optimizer_to_optimizer_kwargs_ranges": {
+        "NomeModelo": {
+            "otimizador": {
+                "parâmetros_otimizador": {
+                    "type": "tipo_variável",
+                    "low": valor_mínimo,
+                    "high": valor_máximo,
+                    "scale": "escala"
+                }
+            }
+        }
+    },
+    "optuna": {
+        "n_trials": número_trials,
+        "timeout": tempo_limite,
+        "metric": "métrica_avaliação",
+        "direction": "direção_otimização",
+        "sampler": "tipo_sampler",
+        "pruner": "tipo_pruner"
+    }
+}

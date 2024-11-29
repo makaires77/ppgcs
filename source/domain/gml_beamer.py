@@ -3,67 +3,165 @@ import json
 import pandas as pd
 
 class AblationLatexTemplate:
-    def __init__(self):
+    def __init__(self, ablation_results_dir: str = ''):
         self.preamble = """\\documentclass{beamer}
+\\usetheme{Madrid}
 \\usepackage{tikz}
 \\usepackage{amsmath}
+\\usepackage{booktabs}
 \\usepackage{graphicx}
 \\usepackage{xcolor}
 
 \\definecolor{class0}{RGB}{65,105,225}
 \\definecolor{class1}{RGB}{220,20,60}
 """
-    
-    def generate_node_classification_slide(self, ablation_results):
+        self.ablation_dir = Path(ablation_results_dir)
+        self.study_config = self._load_study_config()
+        self.trials_data = self._load_trials_data()
+
+    def _load_study_config(self):
+        """Carrega configuração do estudo de ablação do PyKEEN"""
+        config_path = self.ablation_dir / "study_base.json"
+        with open(config_path) as f:
+            return json.load(f)
+
+    def _load_trials_data(self):
+        """Carrega resultados dos experimentos do PyKEEN"""
+        trials_path = self.ablation_dir / "trials_base.tsv"
+        return pd.read_csv(trials_path, sep="\t")
+
+    def generate_title_slide(self):
+        """Gera slide de título"""
+        return f"""\\begin{{frame}}
+\\titlepage
+\\end{{frame}}"""
+
+    def generate_model_slide(self):
+        """Gera slide de classificação do modelo"""
         return """\\begin{frame}{Node Classification}
 \\begin{columns}
 \\column{0.5\\textwidth}
-    % Visualização do grafo original
+    \\begin{tikzpicture}[node distance=1cm]
+        % Visualização do modelo base
+        \\node[draw, circle, fill=class0] (1) at (0,0) {1};
+        \\node[draw, circle, fill=class0] (2) at (1,0) {2};
+        \\draw (1) -- (2);
+    \\end{tikzpicture}
 \\column{0.5\\textwidth}
-    % Resultados da ablação
     \\begin{itemize}
-        \\item Acurácia base: $\\gamma_{ij}$
-        \\item Sem atenção: $\\gamma_{ij}$ removido
-        \\item Sem features: apenas estrutura do grafo
+        \\item Modelo: {self.study_config['models'][0]}
+        \\item Dataset: {self.study_config['datasets'][0]}
+        \\item Loss: {self.study_config['losses'][0]}
     \\end{itemize}
 \\end{columns}
 \\end{frame}"""
 
-    def generate_ablation_results(self, results_dict):
-        return """\\begin{frame}{Ablation Study Results}
-\\begin{table}
-\\begin{tabular}{lcc}
-\\toprule
-Componente & Acurácia & Diferença \\\\
-\\midrule
-Modelo Completo & %.3f & - \\\\
-Sem Atenção & %.3f & %.3f \\\\
-Sem Features & %.3f & %.3f \\\\
-\\bottomrule
-\\end{tabular}
-\\end{table}
-\\end{frame}""" % tuple(results_dict.values())
+    def generate_data_model_slide(self):
+        """Gera slide do modelo de dados"""
+        return """\\begin{frame}{Data Model}
+\\begin{itemize}
+\\item Dataset: {self.study_config['datasets'][0]}
+\\item Features: Gaussian Mixture Model
+\\item Training Samples: {len(self.trials_data)}
+\\end{itemize}
 
-    def generate_comparison_plots(self):
-        return """\\begin{frame}{Performance Comparison}
-\\begin{figure}
-\\includegraphics[width=0.8\\textwidth]{comparison_plot}
-\\caption{Comparação entre diferentes configurações do modelo}
-\\end{figure}
+\\[ X_i \\sim \\mathcal{N}(\\mu, \\sigma^2I) \\text{ if node } i \\in \\text{Class}_0 \\]
+\\[ X_i \\sim \\mathcal{N}(\\nu, \\sigma^2I) \\text{ if node } i \\in \\text{Class}_1 \\]
 \\end{frame}"""
 
-    def generate_document(self, ablation_results, comparison_data):
+    def generate_results_slide(self):
+        """Gera slide de resultados da ablação"""
+        results_table = self._format_results_table()
+        return f"""\\begin{{frame}}{{Ablation Results}}
+\\begin{{table}}
+\\centering
+\\begin{{tabular}}{{lcc}}
+\\toprule
+Configuration & Hits@10 & Loss \\\\
+\\midrule
+{results_table}
+\\bottomrule
+\\end{{tabular}}
+\\end{{table}}
+\\end{{frame}}"""
+
+    def _format_results_table(self):
+        """Formata resultados para tabela LaTeX"""
+        rows = []
+        grouped = self.trials_data.groupby('model')
+        for model, data in grouped:
+            hits = data['hits@10'].mean()
+            loss = data['loss'].mean()
+            rows.append(f"{model} & {hits:.3f} & {loss:.3f} \\\\")
+        return "\n".join(rows)
+
+    def generate_latex(self):
+        """Gera documento LaTeX completo"""
         document = [
             self.preamble,
             "\\begin{document}",
-            self.generate_node_classification_slide(ablation_results),
-            self.generate_ablation_results(ablation_results),
-            self.generate_comparison_plots(),
+            self.generate_title_slide(),
+            self.generate_model_slide(),
+            self.generate_data_model_slide(),
+            self.generate_results_slide(),
             "\\end{document}"
         ]
         return "\n".join(document)
-    
 
+    def save(self, output_path: str):
+        """Salva arquivo LaTeX"""
+        with open(output_path, 'w') as f:
+            f.write(self.generate_latex())
+
+
+from IPython.display import display, Latex, HTML, FileLink
+import subprocess
+
+class AblationLatexPresenter:
+    def __init__(self, ablation_results_dir: str):
+        self.ablation_dir = Path(ablation_results_dir)
+        self.output_file = None
+        
+    def compile_latex(self, tex_file: str):
+        """Compila o arquivo LaTeX para PDF"""
+        try:
+            subprocess.run(['pdflatex', tex_file], check=True)
+            self.output_file = tex_file.replace('.tex', '.pdf')
+            return True
+        except subprocess.CalledProcessError:
+            print("Erro na compilação do LaTeX")
+            return False
+            
+    def render_preview(self, tex_file: str):
+        """Mostra preview do código LaTeX no notebook"""
+        with open(tex_file, 'r') as file:
+            content = file.read()
+            display(Latex(content))
+            
+    def render_pdf(self):
+        """Exibe o PDF no notebook"""
+        if self.output_file and Path(self.output_file).exists():
+            display(HTML(f'<iframe src="{self.output_file}" width="100%" height="600"></iframe>'))
+            
+    def download_link(self):
+        """Cria link para download do PDF"""
+        if self.output_file:
+            return FileLink(self.output_file)
+            
+    def render_presentation(self, tex_file: str):
+        """Pipeline completo de renderização"""
+        # Preview do LaTeX
+        self.render_preview(tex_file)
+        
+        # Compilação
+        if self.compile_latex(tex_file):
+            # Exibição do PDF
+            self.render_pdf()
+            # Link para download
+            return self.download_link()
+
+
+## Versão mais simples
 class AblationLatexGenerator:
     def __init__(self, ablation_dir: str):
         self.ablation_dir = Path(ablation_dir)
@@ -159,6 +257,7 @@ Configuração & Hits@10 & Desvio Padrão \\\\
         """Salva arquivo LaTeX"""
         with open(output_path, 'w') as f:
             f.write(self.generate_latex())
+
 
 ## Template para demonstrar mecanismo de Atenção
 class GraphAttentionSlide:
