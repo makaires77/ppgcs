@@ -27,7 +27,7 @@ class GrafoConhecimento:
     def __init__(self, dict_list, dados_demanda):
         self.dict_list = dict_list
         self.dados_demanda = dados_demanda
-        self.grafo = nx.Graph()
+        self.grafo = nx.DiGraph()
 
     def info_subgrafo(self, subgrafo):
         # Adicionar aviso ao final da função
@@ -433,7 +433,7 @@ import networkx as nx
 
 class GrafoDemanda:
     def __init__(self, dados_demanda):
-        self.grafo = nx.Graph()
+        self.grafo = nx.DiGraph()
         self.dados_demanda = dados_demanda
         self.base_repo_dir = self.find_repo_root()
         self.in_json = os.path.join(str(self.base_repo_dir), '_data', 'in_json')
@@ -525,7 +525,8 @@ class GrafoDemanda:
 
 class GrafoOferta:
     def __init__(self, dict_list, indice_interesses, indice_produtos_desafios):
-        self.grafo = nx.Graph()
+        # self.grafo = nx.Graph()
+        self.grafo = nx.DiGraph()  # Usar DiGraph para grafo direcionado
         self.dict_list = dict_list
         self.indice_interesses = indice_interesses
         self.indice_produtos_desafios = indice_produtos_desafios
@@ -640,38 +641,6 @@ class GrafoOferta:
         # Se não encontrar, imprimir aviso
         print(f"Aviso: Nome '{nome}' não encontrado no grafo.")
         return '9999999999999999'  # ID Lattes padrão se não encontrar
-
-    # def encontrar_id_lattes(self, nome):
-    #     """
-    #     Encontra o ID Lattes correspondente ao nome do pesquisador no grafo.
-
-    #     Args:
-    #         nome (str): O nome do pesquisador.
-
-    #     Returns:
-    #         str: O ID Lattes do pesquisador, ou '9999999999999999' se não for encontrado ou se o nome não for informado.
-    #     """
-    #     if nome.lower().split()[0] == 'não':  # Verificar se a primeira palavra é "não"
-    #         print(f"Aviso: Nome não informado. Usando ID Lattes genérico.")
-    #         id_lattes = '9999999999999999'
-    #         # Adicionar nó com o ID Lattes genérico e o atributo 'tipo'
-    #         self.grafo.add_node(id_lattes, tipo='pesquisador', nome='Anonimo')  # Corrigido
-    #         return id_lattes
-
-    #     for no, dados in self.grafo.nodes(data=True):
-    #         if dados.get('tipo') == 'pesquisador' and dados.get('nome') == nome:
-    #             print('Pesquisador encontrado com sucesso!')
-    #             return no
-
-    #     # Se não encontrar o nome exato, imprimir aviso e sugestões
-    #     print(f"Aviso: Nome '{nome}' não encontrado exatamente no grafo.")
-    #     primeira_palavra = nome.split()[0]  # Obter a primeira palavra do nome
-    #     print(f"Possíveis nomes correspondentes (contendo '{primeira_palavra}'):")
-    #     for no, dados in self.grafo.nodes(data=True):
-    #         if dados.get('tipo') == 'pesquisador' and primeira_palavra in dados.get('nome'):
-    #             print(f"  - {dados.get('nome')}")
-
-    #     return '9999999999999999'  # ID Lattes padrão se não encontrar
 
 
     def subgrafo_oferta_pdi(self):
@@ -817,7 +786,7 @@ class GrafoOferta:
                             self.grafo.add_node(questao_pesquisa, tipo='questao_pesquisa')
                         if self.grafo.has_node(id_lattes):
                             # Adicionar aresta ligando questão de pesquisa ao id_lattes no grafo de conhecimento
-                            self.grafo.add_edge(questao_pesquisa, id_lattes, relation='TEM_INTERESSE_EM_DESAFIO')
+                            self.grafo.add_edge(id_lattes, questao_pesquisa, relation='TEM_INTERESSE_EM_DESAFIO')
 
                 palavras_chave = pesquisador.get("palavras_chave")
                 if palavras_chave and isinstance(palavras_chave, list):
@@ -1041,9 +1010,9 @@ class GrafoOferta:
                     nome_no_normalizado = unicodedata.normalize('NFKD', dados.get('nome', '')).encode('ASCII', 'ignore').decode('ASCII').lower()
 
                     if nome_no_normalizado == produto_normalizado:
-                        self.grafo.add_edge(intencao, no, relation='TEM_INTERESSE_EM_PRODUTO')
+                        self.grafo.add_edge(no, intencao, relation='TEM_INTERESSE_EM_PRODUTO')  # Corrigido: ordem dos argumentos invertida
                         self.tipos_arestas['TEM_INTERESSE_EM_PRODUTO'] += 1
-                        break  # Interromper o loop após encontrar o nó
+                        break
 
             for desafio_id in desafios_interesse:
                 # Normalizar o nome do desafio para minúsculas e sem acentos
@@ -1054,7 +1023,7 @@ class GrafoOferta:
                     nome_no_normalizado = unicodedata.normalize('NFKD', dados.get('nome', '')).encode('ASCII', 'ignore').decode('ASCII').lower()
 
                     if nome_no_normalizado == desafio_normalizado:
-                        self.grafo.add_edge(intencao, no, relation='TEM_INTERESSE_EM_DESAFIO')
+                        self.grafo.add_edge(no, intencao, relation='TEM_INTERESSE_EM_DESAFIO')
                         self.tipos_arestas['TEM_INTERESSE_EM_DESAFIO'] += 1
                         break  # Interromper o loop após encontrar o nó
 
@@ -1097,7 +1066,7 @@ class GrafoOferta:
                     # Encontrar o nó correspondente ao texto_area_produto_desafio
                     for no, dados in self.grafo.nodes(data=True):
                         if dados.get('nome') == texto_area_produto_desafio:
-                            self.grafo.add_edge(intencao, no, relation='SIMILAR_A_PRODUTO_CEIS', similaridade=similaridade)
+                            self.grafo.add_edge(no, intencao, relation='SIMILAR_A_PRODUTO_CEIS', similaridade=similaridade)
                             self.tipos_arestas['SIMILAR_A_PRODUTO_CEIS'] += 1
                             break  # Interromper o loop após encontrar o nó
 
