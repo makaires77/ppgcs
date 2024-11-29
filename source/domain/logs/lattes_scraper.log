@@ -1,18 +1,14 @@
-2024-11-23 08:52:16,671 - INFO - Currículo não encontrado: Carlos Jose Araujo Pinheiro
-2024-11-23 08:52:16,980 - ERROR - Erro StaleElementReferenceException ao buscar currículo
-2024-11-23 08:52:16,980 - ERROR - Erro inesperado ao buscar: Message: None; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
-
-2024-11-23 08:52:29,236 - INFO - Currículo não encontrado: Charles Cerqueira De Abreu
-2024-11-23 08:52:29,595 - ERROR - Erro StaleElementReferenceException ao buscar currículo
-2024-11-23 08:52:29,595 - ERROR - Erro inesperado ao buscar: Message: None; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
-
-2024-11-23 09:01:05,246 - INFO - Currículo não encontrado: Luciano Pinto Zorzanelli
-2024-11-23 09:01:05,543 - ERROR - Erro StaleElementReferenceException ao buscar currículo
-2024-11-23 09:01:05,543 - ERROR - Erro inesperado ao buscar: Message: None; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
-
-2024-11-23 09:04:31,891 - INFO - Currículo não encontrado: Nilton Luiz Costa Machado
-2024-11-23 09:04:32,194 - ERROR - Erro StaleElementReferenceException ao buscar currículo
-2024-11-23 09:04:32,194 - ERROR - Erro inesperado ao buscar: Message: None; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
-
-2024-11-23 09:05:47,677 - ERROR - Erro inesperado ao buscar: cannot access local variable 'intLTotReg' where it is not associated with a value
-2024-11-23 09:08:06,713 - ERROR - Erro inesperado ao buscar: cannot access local variable 'intLTotReg' where it is not associated with a value
+2024-11-28 06:42:03,363 - INFO - Currículo não encontrado: Carlos Jose Araujo Pinheiro
+2024-11-28 06:42:03,624 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-11-28 06:42:03,624 - ERROR - Erro ao buscar: Carlos Jose Araujo Pinheiro
+2024-11-28 06:42:15,496 - INFO - Currículo não encontrado: Charles Cerqueira De Abreu
+2024-11-28 06:42:15,761 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-11-28 06:42:15,761 - ERROR - Erro ao buscar: Charles Cerqueira De Abreu
+2024-11-28 06:50:41,401 - INFO - Currículo não encontrado: Luciano Pinto Zorzanelli
+2024-11-28 06:50:41,662 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-11-28 06:50:41,662 - ERROR - Erro ao buscar: Luciano Pinto Zorzanelli
+2024-11-28 06:54:20,980 - INFO - Currículo não encontrado: Nilton Luiz Costa Machado
+2024-11-28 06:54:21,246 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-11-28 06:54:21,246 - ERROR - Erro ao buscar: Nilton Luiz Costa Machado
+2024-11-28 06:55:36,189 - ERROR - Erro ao buscar: Renato Caldeira De Souza
+2024-11-28 06:57:52,674 - ERROR - Erro ao buscar: Sergio Dos Santos Reis

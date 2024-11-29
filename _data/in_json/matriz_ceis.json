@@ -12,7 +12,7 @@
     "blocos": [{
     "bloco": "I",
     "id": "B01",
-    "titulo": "B01. PREPARAÇÃO DO SISTEMA DE SAÚDE PARA EMERGÊNCIAS SANITÁRIAS",
+    "nome": "B01. PREPARAÇÃO DO SISTEMA DE SAÚDE PARA EMERGÊNCIAS SANITÁRIAS",
     "produtos":[
         {
             "id": "B01.D01.P01",
@@ -368,7 +368,7 @@
     {
     "bloco": "II",
     "id": "B02",
-    "titulo": "B02. DOENÇAS E AGRAVOS CRÍTICOS PARA O SUS",
+    "nome": "B02. DOENÇAS E AGRAVOS CRÍTICOS PARA O SUS",
     "produtos": [
         {
             "id": "B02.D07.P46",

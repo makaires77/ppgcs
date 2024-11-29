@@ -9,7 +9,7 @@
             "qte_teams": "17",
             "qte_members": "228",
             "qte_projects": "View all81",
-            "qte_publication": "1759",
+            "qte_publication": "1761",
             "teams": [
                 {
                     "team_name": "Biological Image Analysis",
@@ -208,7 +208,7 @@
         "aditional_info": {
             "qte_keywords": "1",
             "qte_teams": "17",
-            "qte_members": "167",
+            "qte_members": "168",
             "qte_projects": "View all56",
             "qte_publication": "1009",
             "teams": [
@@ -341,7 +341,7 @@
             "qte_members": "128",
             "qte_projects": "View all60",
             "qte_tools": "10",
-            "qte_publication": "1746",
+            "qte_publication": "1747",
             "teams": [
                 {
                     "team_name": "Bacterial Genome Plasticity",
@@ -609,7 +609,7 @@
             "qte_members": "179",
             "qte_projects": "View all77",
             "qte_tools": "3",
-            "qte_publication": "1434",
+            "qte_publication": "1437",
             "teams": [
                 {
                     "team_name": "Antibodies in Therapy and Pathology",
@@ -977,7 +977,7 @@
             "qte_members": "194",
             "qte_projects": "View all92",
             "qte_tools": "5",
-            "qte_publication": "2256",
+            "qte_publication": "2260",
             "teams": [
                 {
                     "team_name": "Antibody Engineering",
@@ -1119,9 +1119,9 @@
         "url": "https://research.pasteur.fr/en/department/virology/",
         "aditional_info": {
             "qte_teams": "24",
-            "qte_members": "209",
+            "qte_members": "208",
             "qte_projects": "View all104",
-            "qte_publication": "2007",
+            "qte_publication": "2008",
             "teams": [
                 {
                     "team_name": "Arboviruses and Insect Vectors",

@@ -14,34 +14,18 @@ import torch.optim as optim
 import torch.nn as nn
 import torch
 
-from PIL import Image
-from io import BytesIO
 from pathlib import Path
-from pprint import pprint
-from zipfile import ZipFile
 from string import Formatter
-from PyPDF2 import PdfReader
-from neo4j import GraphDatabase
 from unidecode import unidecode
 from Levenshtein import distance
-from nltk.corpus import stopwords
-from sklearn.cluster import KMeans
-from Levenshtein import jaro_winkler
-from urllib3.util.retry import Retry
-from tqdm.notebook import trange, tqdm
+from collections import defaultdict
+from typing import Tuple, List, Dict
 from datetime import datetime, timedelta
-from flask import render_template_string
-from requests.adapters import HTTPAdapter
 from urllib.parse import urlparse, parse_qs
 from py2neo import Graph, Node, Relationship
-from sklearn.metrics import silhouette_score
-from typing import List, Dict, Any, Optional, Union
-from collections import deque, defaultdict, Counter
 from bs4 import BeautifulSoup, Tag, NavigableString
 from pyjarowinkler.distance import get_jaro_distance
-from IPython.display import clear_output, display, HTML
-from typing import Tuple, List, Dict, Any, Optional, Union
-from sklearn.feature_extraction.text import TfidfVectorizer
+
 
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
@@ -61,6 +45,1298 @@ from selenium.common.exceptions import (
 )
 warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
+
+## Não necessários por hora
+# from PIL import Image
+# from io import BytesIO
+# from altair import value
+# from pprint import pprint
+# from zipfile import ZipFile
+# from PyPDF2 import PdfReader
+# from matplotlib import legend
+# from neo4j import GraphDatabase
+# from nltk.corpus import stopwords
+# from sklearn.cluster import KMeans
+# from Levenshtein import jaro_winkler
+# from urllib3.util.retry import Retry
+# from tqdm.notebook import trange, tqdm
+# from typing import List, Dict, Any
+# from typing import Any, Optional, Union
+# from flask import render_template_string
+# from requests.adapters import HTTPAdapter
+# from sklearn.metrics import silhouette_score
+# from collections import deque, defaultdict, Counter
+# from IPython.display import clear_output, display, HTML
+# from sklearn.feature_extraction.text import TfidfVectorizer
+
+
+class AnalisadorProducaoArtigos:
+    def __init__(self, dict_list):
+        """
+        Inicializa a classe com a lista de dicionários de currículos Lattes como entrada.
+
+        Args:
+            dict_list (lista): Lista de dicinários aninhados com dados de currículos Lattes.
+        """
+        self.dict_list = dict_list
+
+
+    def montar_lista_artigos(self, dict_list):
+        """
+        Processa uma lista de listas de dicionários e retorna um DataFrame unificado com dados dos artigos nos currículos.
+        Remove elementos inválidos (não dicionários ou dicionários vazios) antes de
+        criar o DataFrame. Adiciona o nome do currículo como um campo no DataFrame.
+        Separa os autores em três colunas: primeiro_autor, todos_autores e ultimo_autor.
+
+        Args:
+        dict_list: A lista principal de dicionários com dados de currículos.
+
+        Returns:
+        Um DataFrame pandas com os dados combinados, nome do currículo e autores separados.
+        """
+        curriculos   = [curriculo.get('Identificação').get('Nome') for curriculo in dict_list]
+        
+        lista_de_listas_de_dicionarios = [
+            curriculo.get('Produções').get('Artigos completos publicados em periódicos') 
+            for curriculo in dict_list
+        ]
+
+        lista_de_dicionarios_com_curriculo = []
+        for sublista, curriculo in zip(lista_de_listas_de_dicionarios, dict_list):
+            if sublista is not None:
+                for dicionario in sublista:
+                    if isinstance(dicionario, dict) and len(dicionario) > 0:
+                        dicionario['curriculo'] = curriculo.get('Identificação', {}).get('Nome')
+                        lista_de_dicionarios_com_curriculo.append(dicionario)
+
+        df = pd.DataFrame(lista_de_dicionarios_com_curriculo)
+        print(f"{len(df.index)} linhas no dataframe")
+
+        # Separa os autores em duas colunas
+        def separar_autores(autores):
+            """
+            Separa a string de autores em primeiro autor e lista de todos os autores.
+            """
+            try:
+                padrao = r"^(.+?)\d{4}(.+)$"
+                match = re.match(padrao, autores)
+                if match:
+                    primeiro_autor = match.group(1).strip()
+                    todos_autores = [autor.strip() for autor in match.group(2).split(';') if autor.strip()]
+                    return primeiro_autor, todos_autores
+            except:
+                pass  # ou qualquer tratamento de erro que você preferir
+            return None, None
+
+        # Corrige a chamada da função apply e usa assign para criar as novas colunas
+        df = df.assign(primeiro_autor=df['autores'].apply(lambda x: separar_autores(x)[0]),
+                    todos_autores=df['autores'].apply(lambda x: separar_autores(x)[1]))
+
+        # Extrai o último autor
+        def extrair_ultimo_autor(todos_autores):
+            """
+            Extrai o último autor da lista de autores.
+            """
+            try:
+                if todos_autores:
+                    ultimo_autor = todos_autores[-1].strip()
+                    # Remove o ponto final, se houver
+                    if ultimo_autor.endswith('.'):
+                        ultimo_autor = ultimo_autor[:-1]
+                    return ultimo_autor
+            except:
+                pass  # ou qualquer tratamento de erro que você preferir
+            return None
+
+        df['ultimo_autor'] = df['todos_autores'].apply(extrair_ultimo_autor)
+        
+        # Converter para valores numéricos para ordenar e comparar corretamente
+        df['ano'] = pd.to_numeric(df['ano'], errors='coerce')
+        
+        df.drop('autores', axis=1, inplace=True)
+
+        return df
+
+    # Função para pré-processar os nomes
+    def normalize_name(self, name):
+        name = name.strip().lower()
+        # Substituições específicas
+        if name == 'alice paula di sabatino guimaraes':
+            name = 'alice paula di sabatino guimarães'
+        elif name == 'maximiliano loiola ponte de souza':
+            name = 'maximiliano ponte'
+        elif name == 'raphael trevizani roque':
+            name = 'raphael trevizani'
+
+        try:
+            # Remover acentos
+            name = ''.join(c for c in unicodedata.normalize('NFD', name) if unicodedata.category(c) != 'Mn')
+            # Remover caracteres especiais e converter para minúsculas
+            name = re.sub(r'[^a-zA-Z0-9 ]', '', name).lower().strip()
+        except Exception as e:
+            print(f"Erro na remoção de acentuação gráfica e caracteres especiais: {e}")
+
+        try:
+            # Remover caracteres "invisíveis" ou de controle
+            name = re.sub(r'[^\x00-\x7F]+', '', name)
+        except Exception as e:
+            print(f"Erro na remoção de caracteres invisíveis ou de controle: {e}")
+
+        try:
+            # Remover espaços em branco extras
+            name = name.strip().replace('  ', ' ')
+        except Exception as e:
+            print(f"Erro na remoção de espaços em branco extras: {e}")
+        
+        return name
+
+    def get_initials(self, name):
+        return ''.join([word[0] for word in name.split()])
+
+    def plotar_artigos_ano(self, df_artigos):
+        # Contar os valores dos anos da coluna ano
+        count_anos = df_artigos['ano'].value_counts().sort_index()
+        ano_inicial=str(min(df_artigos['ano']))
+        ano_termino=str(max(df_artigos['ano']))
+
+        # Criar o gráfico de barras com plotly express
+        fig = px.bar(x=range(len(count_anos.index)), 
+                    y=count_anos.values,
+                    labels={'x':'Ano de publicação', 'y':'Quantidade de artigos'},
+                    title=f'Quantidade de Artigos por Ano do ano {ano_inicial} ao ano {ano_termino}')
+
+        # Ajustar os tick labels do eixo x para mostrar os anos
+        fig.update_xaxes(tickvals=list(range(len(count_anos.index))), ticktext=count_anos.index, showgrid=False)
+
+        # Remover linhas de grade horizontal (eixo y)
+        fig.update_yaxes(showgrid=False)
+
+        # Adicionar a anotação dos valores em cada barra
+        for index, value in enumerate(count_anos.values):
+            fig.add_annotation(
+                x=index,
+                y=value + (0.05 * max(count_anos.values)),  # Ajustar esta proporção conforme necessário
+                text=str(value),
+                showarrow=False,
+                font_size=20
+            )
+
+        # Adicionar a anotação com a quantidade total de artigos no período
+        total_artigos = sum(count_anos.values)
+        fig.add_annotation(
+            x=len(count_anos.index)/2,
+            y=max(count_anos.values) + (0.15 * max(count_anos.values)),  # Ajustar esta proporção conforme necessário
+            text=f"Total de Participação em Artigos de colaboradores ativos na unidade atualmente: {total_artigos}",
+            showarrow=False,
+            font_size=18,
+            font_color="blue"
+        )
+
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1380,   # largura em pixels
+            height=600   # altura em pixels
+        )
+
+        # Mostrar o gráfico
+        fig.show()
+        
+
+    def plotar_barras_agrupadas(self, df_artigos):
+        # Contar os artigos por ano e por curriculo
+        grouped_data = df_artigos.groupby(['ano', 'curriculo']).size().reset_index(name='count')
+
+        # Converter a coluna 'ano' para numérica
+        grouped_data['ano'] = pd.to_numeric(grouped_data['ano'])
+
+        # Capturar anos de início e fim nos dados
+        ano_inicial = min(grouped_data['ano'])
+        ano_termino = max(grouped_data['ano'])
+
+        # Usar paleta de cores personalizada "VIVID"
+        colors_vivid = ['#FF595E', '#FFCA3A', '#8AC926', '#1982FC', '#6A0572'] # Adicione mais cores se necessário
+
+        # Criar o gráfico de barras com plotly express
+        fig = px.bar(grouped_data, 
+                    x='ano',
+                    y='count',
+                    color='curriculo',
+                    color_discrete_sequence=colors_vivid,
+                    labels={'ano':'Ano', 'count':'Quantidade'},
+                    title='Quantidade de Participações em Artigos por Ano e por Currículo, após entrada na Fiocruz Ceará')
+
+        # Garantir que todos os anos sejam exibidos no eixo x
+        fig.update_xaxes(
+            tickmode = 'array',
+            tickvals = list(range(ano_inicial, ano_termino + 1)),
+            ticktext = list(range(ano_inicial, ano_termino + 1)),
+            showgrid=False
+        )
+
+        # Remover linhas de grade do eixo y
+        fig.update_yaxes(showgrid=False)
+
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1380,   # largura em pixels
+            height=1200   # altura em pixels
+        )
+
+        # Adicionar rótulos de dados
+        for trace, color in zip(fig.data, colors_vivid):
+            for x_val, y_val in zip(trace.x, trace.y): # type: ignore
+                fig.add_trace(
+                    go.Scatter(
+                        x=[x_val],
+                        y=[y_val + (0.02 * max(grouped_data['count']))], 
+                        text=[str(y_val)],
+                        mode="text",
+                        showlegend=False,
+                        textfont=dict(color=color)
+                    )
+                )
+
+        # Mostrar o gráfico
+        fig.show()
+        
+
+    def plotar_barras_estaqueadas(self, df_artigos):
+        
+        df_artigos['iniciais'] = df_artigos['curriculo'].apply(self.get_initials)
+        grouped_data = df_artigos.groupby(['ano', 'iniciais']).size().reset_index(name='count') 
+
+        # Converter a coluna 'ano' para numérica
+        grouped_data['ano'] = pd.to_numeric(grouped_data['ano'])
+
+        # Ordenar os dados pelo ano
+        grouped_data = grouped_data.sort_values(by='ano')
+
+        # Usar a paleta "Plotly"
+        colors = px.colors.qualitative.Vivid
+
+        fig = px.bar(grouped_data, 
+                    x='ano',
+                    y='count',
+                    color='iniciais',
+                    barmode='group',
+                    color_discrete_sequence=colors,
+                    labels={'ano':'Ano de Publicação', 'count':'Quantidade de artigos', 'iniciais':'Currículo'},
+                    title='Quantidade de Participação em Artigos por Ano e por Currículo, após entrada na Fiocruz Ceará')
+
+        # Obter todos os anos únicos e ordenados
+        todos_os_anos = sorted(grouped_data['ano'].unique())
+
+        # Configurar o eixo x para mostrar todos os anos na ordem crescente
+        fig.update_xaxes(
+            tickvals=todos_os_anos,
+            ticktext=todos_os_anos,
+            type='category',
+            categoryorder='array',  # Define a ordem das categorias como 'array'
+            categoryarray=todos_os_anos,  # Define a ordem desejada dos anos
+            showgrid=False
+        )
+
+        # Posicionar a legenda abaixo do gráfico
+        fig.update_layout(
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=-0.3,
+                xanchor="center",
+                x=0.5
+            )
+        )
+        
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1600,   # largura em pixels
+            height=1200   # altura em pixels
+        )
+        
+        # Remover linhas de grade
+        fig.update_yaxes(showgrid=False)
+
+        # Mostrar o gráfico
+        fig.show()
+        
+        
+    def comparativo_curriculos(self, df_artigos):
+
+        df_artigos['iniciais_curriculo'] = df_artigos['curriculo'].apply(self.get_initials)
+        grouped_data = df_artigos.groupby(['ano', 'iniciais_curriculo']).size().reset_index(name='count')
+        years = sorted(grouped_data['ano'].unique())
+
+        # Calcular a soma total para cada currículo
+        total_counts = grouped_data.groupby('iniciais_curriculo')['count'].sum()
+
+        # Ordenar as iniciais dos currículos com base na soma total
+        sorted_initials = total_counts.sort_values(ascending=False).index.tolist()
+
+        # Obter a paleta "Greens" e normalize-a para ter uma cor para cada ano
+        palette = px.colors.sequential.Greens
+        colors = reversed([palette[i * (len(palette) - 1) // (len(years) - 1)] for i in range(len(years))])
+        colors = list(colors)  # Converta o resultado para uma lista novamente
+
+        # Criar o gráfico com as iniciais ordenadas
+        traces = []
+        for idx, year in enumerate(reversed(years)):
+            year_data = grouped_data[grouped_data['ano'] == year]
+
+            # Preencher valores ausentes com zero
+            year_data = year_data.set_index('iniciais_curriculo').reindex(sorted_initials, fill_value=0).reset_index()
+
+            # Remover entradas com valores zerados
+            # year_data = year_data[year_data['count'] > 0]
+
+            traces.append(go.Bar(
+                y=year_data['iniciais_curriculo'],
+                x=year_data['count'],
+                name=str(year),
+                orientation='h',
+                marker_color=colors[idx]  # Aplique a cor aqui
+            ))
+
+        # Adicionar as traces em ordem à figura
+        fig = go.Figure(data=traces)
+
+        # Configurar o layout para ser empilhado
+        fig.update_layout(
+            barmode='stack',
+            # legend=dict(
+            #     orientation="h",
+            #     yanchor="bottom",
+            #     y=1.02,
+            #     xanchor="center",
+            #     x=0.5
+            # ),
+            title='Quantidade de Participações em Artigos por Currículo e Ano, após entrada na Fiocruz Ceará'
+        )
+
+        # Criar um DataFrame para a soma total por currículo
+        total_per_curriculo = grouped_data.groupby('iniciais_curriculo')['count'].sum().reset_index()
+        total_per_curriculo = total_per_curriculo.set_index('iniciais_curriculo').reindex(sorted_initials, fill_value=0).reset_index()
+
+        # Calcular a soma total de todos os artigos
+        total_articles = grouped_data['count'].sum()
+
+        # Adicionar a anotação no centro superior da área do gráfico com a soma total de todos os artigos
+        fig.add_annotation(
+            x=0.5,  # posição horizontal centrada
+            y=0.99,  # posição vertical logo acima do topo do gráfico
+            xref="paper",  # refere-se à posição proporcional do gráfico (0 à esquerda, 1 à direita)
+            yref="paper",  # refere-se à posição proporcional do gráfico (0 na parte inferior, 1 na parte superior)
+            text=f"Total de Participação em Artigos, após entrada na Fiocruz Ceará: {total_articles}",
+            showarrow=False,
+            font=dict(color='blue', size=20),
+            align="center",
+            valign="top"
+        )
+
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1380,   # largura em pixels
+            height=1200,   # altura em pixels
+        )
+
+        fig.show()
+
+
+    def calcular_quantidade_artigos_por_area(self, df):
+        """
+        Calcula a quantidade de artigos publicados por área em uma tabela pivot.
+
+        Args:
+        df: DataFrame com colunas 'ano' e 'SETOR_FIOCE'.
+
+        Returns:
+        DataFrame pivot com a quantidade de artigos por nome e área.
+        """
+        # Remove as colunas
+        # print(f"Colunas antes: {df.columns}")
+        # todas colunas: ['NOME', 'ANO_INGRESSO_FIOCE', 'MATRÍCULA', 'SETOR_FIOCE', 'titulo', 'ano']
+        df = df.drop(columns=['MATRÍCULA', 'titulo'])
+        # print(f"Colunas depois: {df.columns}")
+
+        try:
+            # 1. Converter explicitamente para string e remover espaços em branco
+            df['NOME'] = df['NOME'].astype(str).str.strip()
+        except Exception as e:
+            print(f"Erro na conversão para string e remoção de espaços em branco: {e}")
+            return None
+
+        try:
+            # 3. Remover caracteres "invisíveis" ou de controle
+            df['NOME'] = df['NOME'].apply(lambda x: re.sub(r'[^\x00-\x7F]+', '', x))
+        except Exception as e:
+            print(f"Erro na remoção de caracteres invisíveis ou de controle: {e}")
+            return None
+
+        try:
+            # 4. Remover espaços em branco extras
+            df['NOME'] = df['NOME'].str.strip().str.replace('  ', ' ')
+        except Exception as e:
+            print(f"Erro na remoção de espaços em branco extras: {e}")
+            return None
+
+        # checagem = df['NOME'].apply(lambda x: isinstance(x, str)).all()
+        # print(f'Todos nomes são strings: {checagem}')
+
+        # try:
+        #     # 2. Remover acentos e caracteres especiais
+        #     def remover_acentos(texto):
+        #         return ''.join(c for c in unicodedata.normalize('NFD', texto)
+        #                        if unicodedata.category(c) != 'Mn')
+
+        #     df['NOME'] = df['NOME'].apply(remover_acentos)
+        # except Exception as e:
+        #     print(f"Erro na remoção de acentos e caracteres especiais: {e}")
+        #     return None
+
+        # try:
+        #     # 5. Normalizar caracteres Unicode
+        #     df['NOME'] = df['NOME'].apply(lambda x: unicodedata.normalize('NFC', x))
+        # except Exception as e:
+        #     print(f"Erro na normalização de caracteres Unicode: {e}")
+        #     return None
+        
+        try:
+            # Cria a tabela pivot com a quantidade de artigos por nome e área
+            # df_pivot = df(df.copy())
+
+            df_pivot = df.pivot_table(index='SETOR_FIOCE', columns='NOME', values='NOME', aggfunc='count')
+            print(df_pivot.columns)
+        except Exception as e:
+            print(f"Erro na criação da tabela pivot: {e}")
+            return None
+
+        try:
+            # Preenche NaN com 0 e converte para inteiro
+            df_pivot = df_pivot.fillna(0).astype(int)
+        except Exception as e:
+            print(f"Erro ao preencher NaN com 0 e converter para inteiro: {e}")
+            return None
+
+        try:
+            # Formata para não exibir zeros
+            df_pivot = df_pivot.map(lambda x: '' if x == 0 else x)
+        except Exception as e:
+            print(f"Erro na formatação para não exibir zeros: {e}")
+            return None
+
+        return df_pivot
+
+
+    def calcular_total_artigos_area_ano(self, df):
+        """
+        Calcula a quantidade de pessoas em cada área a cada ano, 
+        considerando o ano de ingresso na Fiocruz.
+
+        Args:
+        df: DataFrame com colunas 'NOME', 'SETOR_FIOCE' e 'ANO_INGRESSO_FIOCE'.
+
+        Returns:
+        DataFrame pivot com a quantidade de pessoas por área a cada ano.
+        """
+
+        # Remove as colunas 'MATRÍCULA' e 'titulo'
+        df = df.drop(columns=['MATRÍCULA', 'titulo'])
+
+        try:
+            # 1. Converter explicitamente para string e remover espaços em branco
+            df['NOME'] = df['NOME'].astype(str).str.strip()
+        except Exception as e:
+            print(f"Erro na conversão para string e remoção de espaços em branco: {e}")
+            return None
+
+        try:
+            # 3. Remover caracteres "invisíveis" ou de controle
+            df['NOME'] = df['NOME'].apply(lambda x: re.sub(r'[^\x00-\x7F]+', '', x))
+        except Exception as e:
+            print(f"Erro na remoção de caracteres invisíveis ou de controle: {e}")
+            return None
+
+        try:
+            # 4. Remover espaços em branco extras
+            df['NOME'] = df['NOME'].str.strip().str.replace('  ', ' ')
+        except Exception as e:
+            print(f"Erro na remoção de espaços em branco extras: {e}")
+            return None
+
+        try:
+            # Cria uma nova coluna 'ano' com o ano de cada registro
+            df['ano'] = df['ano'].astype(int)  # Converte a coluna 'ano' para inteiros
+        except Exception as e:
+            print(f"Erro ao converter a coluna 'ano' para inteiros: {e}")
+            return None
+
+        try:
+            # Calcula a quantidade de pessoas por área a cada ano
+            def contar_pessoas(grupo):
+                anos = range(int(grupo['ANO_INGRESSO_FIOCE'].min()), int(grupo['ano'].max()) + 1)
+                return pd.Series({ano: len(grupo[grupo['ANO_INGRESSO_FIOCE'] <= ano]) for ano in anos})
+
+            df_pivot = df.groupby('SETOR_FIOCE').apply(contar_pessoas).unstack(fill_value=0)
+        except Exception as e:
+            print(f"Erro ao calcular a quantidade de pessoas por área a cada ano: {e}")
+            return None
+
+        try:
+            # Formata para não exibir zeros
+            df_pivot = df_pivot.map(lambda x: '' if x == 0 else x)
+        except Exception as e:
+            print(f"Erro na formatação para não exibir zeros: {e}")
+            return None
+
+        return df_pivot
+
+
+    def calcular_pessoas_area(self, df):
+        """
+        Calcula a quantidade de pessoas em cada área a cada ano,
+        considerando o ano de ingresso na Fiocruz e contando apenas nomes únicos.
+
+        Args:
+        df: DataFrame com colunas 'NOME', 'SETOR_FIOCE' e 'ANO_INGRESSO_FIOCE'.
+
+        Returns:
+        DataFrame pivot com a quantidade de pessoas por área a cada ano.
+        """
+
+        # Remove as colunas 'MATRÍCULA' e 'titulo'
+        df = df.drop(columns=['MATRÍCULA', 'titulo'])
+
+        try:
+            # 1. Converter explicitamente para string e remover espaços em branco
+            df['NOME'] = df['NOME'].astype(str).str.strip()
+        except Exception as e:
+            print(f"Erro na conversão para string e remoção de espaços em branco: {e}")
+            return None
+
+        try:
+            # 3. Remover caracteres "invisíveis" ou de controle
+            df['NOME'] = df['NOME'].apply(lambda x: re.sub(r'[^\x00-\x7F]+', '', x))
+        except Exception as e:
+            print(f"Erro na remoção de caracteres invisíveis ou de controle: {e}")
+            return None
+
+        try:
+            # 4. Remover espaços em branco extras
+            df['NOME'] = df['NOME'].str.strip().str.replace('  ', ' ')
+        except Exception as e:
+            print(f"Erro na remoção de espaços em branco extras: {e}")
+            return None
+
+        try:
+            # Cria uma nova coluna 'ano' com o ano de cada registro
+            df['ano'] = df['ano'].astype(int)  # Converte a coluna 'ano' para inteiros
+        except Exception as e:
+            print(f"Erro ao converter a coluna 'ano' para inteiros: {e}")
+            return None
+
+        try:
+            # Calcula a quantidade de pessoas por área a cada ano
+            def contar_pessoas(grupo):
+                anos = range(int(grupo['ANO_INGRESSO_FIOCE'].min()), int(grupo['ano'].max()) + 1)
+                pessoas_area = set()
+                contagem_pessoas = {}
+                for ano in anos:
+                    pessoas_ano = grupo[grupo['ANO_INGRESSO_FIOCE'] <= ano]['NOME'].unique()
+                    pessoas_area.update(pessoas_ano)
+                    contagem_pessoas[ano] = len(pessoas_area)
+                return pd.Series(contagem_pessoas)
+
+            df_pivot = df.groupby('SETOR_FIOCE').apply(contar_pessoas).unstack(fill_value=0)
+        except Exception as e:
+            print(f"Erro ao calcular a quantidade de pessoas por área a cada ano: {e}")
+            return None
+
+        try:
+            # Formata para não exibir zeros
+            df_pivot = df_pivot.map(lambda x: '' if x == 0 else x)
+        except Exception as e:
+            print(f"Erro na formatação para não exibir zeros: {e}")
+            return None
+
+        return df_pivot
+
+
+    def evolucao_anual(self, df_artigos, df_pessoal):
+        # Removendo duplicidades
+        # df_artigos = df_artigos.drop_duplicates(subset='titulo')
+
+        # Obter extremos do período para todos os anos dos dados
+        min_year = df_artigos['ano'].min()
+        max_year = df_artigos['ano'].max()
+        all_years = list(range(min_year, max_year + 1))
+
+        # Calcular a quantidade total de artigos por ano
+        artigos_por_ano = df_artigos.groupby('ano').size().reindex(all_years, fill_value=0).reset_index(name='count')
+
+        # Calcular quantidade de pesquisadores únicos a cada ano
+        ## TO-FIX: considerar só quem tem artigos
+        pesquisadores_por_ano = df_pessoal.groupby('ANO_INGRESSO_FIOCE')['NOME'].nunique().reindex(all_years, fill_value=0).reset_index(name='QTE_PESSOAS_ANO') 
+
+        # Criar a soma cumulativa de pesquisadores ao longo dos anos
+        pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] = pesquisadores_por_ano['QTE_PESSOAS_ANO'].cumsum()
+
+        # Média de artigos por pesquisador
+        pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = artigos_por_ano['count'] / pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] 
+        
+        # Corrigindo o FutureWarning:
+        # pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].replace(np.inf, 0, inplace=True)  # 
+        pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].replace(np.inf, 0)
+
+        # Calcular a proporção entre os dois eixos y
+        max_y1 = artigos_por_ano['count'].max()+10
+        max_y2 = pesquisadores_por_ano['QTE_TOTAL_PESSOAS'].max()
+        ratio = max_y1 / max_y2
+
+        # Definir buffer de 10%
+        buffer = 0.1
+        
+        # Criar figura com as devidas traces
+        fig = go.Figure()
+
+        # Adicionar trace de barras para a quantidade de artigos
+        fig.add_trace(go.Bar(
+            x=artigos_por_ano['ano'],
+            y=artigos_por_ano['count'],
+            name='Total de Artigos',
+            text=artigos_por_ano['count'],
+            textposition='outside'
+        ))
+
+        # Adicionar trace de linha para a soma cumulativa de pesquisadores
+        fig.add_trace(go.Scatter(
+            x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+            y=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+            name='Soma Cumulativa da Quantidade de Servidores',
+            mode='lines+markers+text',
+            text=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+            textposition='top center'
+        ))
+
+        # Adicionar trace de linha tracejada para a média de artigos por pesquisador (eixo secundário)
+        fig.add_trace(go.Scatter(
+            x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+            y=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'],
+            name='Média de Artigos por Pesquisador',
+            mode='lines+text',
+            line=dict(dash='dash'),
+            text=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].round(2),
+            textposition='top center',
+            yaxis='y2'  # Define o eixo secundário para a média
+        ))
+
+        # Atualizar layout do gráfico
+        fig.update_layout(
+            yaxis=dict(
+                title='Total de Artigos'
+            ),
+            yaxis2=dict(
+                title='Média de Artigos por Servidor (todas atividades)',
+                overlaying='y',
+                side='right',
+                # range=[0, max_y2 * (1 + buffer)],  # Remove o range fixo do eixo secundário
+                # tickvals=list(range(0, int(max_y2 * (1 + buffer)), int(max_y2/10))),  # Remove os tickvals fixos
+                # ticktext=list(range(0, int(max_y2 * (1 + buffer)), int(max_y2/10)))  # Remove os ticktext fixos
+            ),
+            xaxis=dict(tickvals=all_years),
+            legend=dict(
+                orientation="h",
+                x=0.2,
+                y=0.99
+            ),
+            title='Quantidade de Participações em Artigos, Soma Cumulativa de Servidores (todas atividades) e Média de Artigos por Servidor por Ano',
+        )
+
+        # Remover linhas de grade
+        fig.update_xaxes(showgrid=False)
+        fig.update_yaxes(showgrid=False)
+        
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1380,   # largura em pixels
+            height=800   # altura em pixels
+        )
+            
+        fig.show()
+        return pesquisadores_por_ano
+
+    def evolucao_anual(self, df_artigos, df_pessoal, verbose=False):
+        """
+        Calcula a evolução anual da quantidade de artigos e pesquisadores, 
+        e exibe um gráfico com a média de artigos por pesquisador.
+
+        Args:
+            df_artigos (pd.DataFrame): DataFrame com os dados dos artigos.
+            df_pessoal (pd.DataFrame): DataFrame com os dados dos pesquisadores.
+
+        Returns:
+            pd.DataFrame: DataFrame com a quantidade de artigos, 
+                        pesquisadores e média de artigos por pesquisador por ano.
+        """
+        # Obter extremos do período para todos os anos dos dados
+        min_year = df_artigos['ano'].min()
+        max_year = df_artigos['ano'].max()
+        all_years = list(range(min_year, max_year + 1))
+
+        # Calcular a quantidade total de artigos por ano
+        artigos_por_ano = df_artigos.groupby('ano').size().reindex(all_years, fill_value=0).reset_index(name='count')
+        if verbose:
+            print(f"Quantidade de artigos por ano: {artigos_por_ano}")
+
+        # Calcular quantidade de pesquisadores únicos a cada ano
+        lista_campos = df_pessoal.keys()
+        if verbose:
+            print("Lista de campos no dataframe:")
+            print(lista_campos)
+        lista_anos_ingresso = df_pessoal['ANO_INGRESSO_FIOCE']
+        if verbose:
+            print("Lista de anos de ingresso:")
+            print(lista_anos_ingresso)            
+        # lista_nomes_unicos = df_pessoal.groupby('ANO_INGRESSO_FIOCE')['NOME'].unique()
+        # if verbose:
+        #     print("Lista de numeros por ano de ingresso:")
+        #     print(lista_nomes_unicos)
+        lista_numeros_unicos = df_pessoal.groupby('ANO_INGRESSO_FIOCE')['NOME'].nunique()
+        if verbose:
+            print("Lista de nomes po ano de ingresso:")
+            print(lista_numeros_unicos)
+
+        pesquisadores_por_ano = df_pessoal.groupby('ANO_INGRESSO_FIOCE')['NOME'].nunique().reindex(all_years, fill_value=0).reset_index(name='QTE_PESSOAS_ANO') 
+        if verbose:
+            print(f"Pesquisadores por ano: {pesquisadores_por_ano}")
+
+        # Criar a soma cumulativa de pesquisadores ao longo dos anos
+        pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] = pesquisadores_por_ano['QTE_PESSOAS_ANO'].cumsum()
+        if verbose:
+            print(f"Soma cumulativa de pessoas no período: {pesquisadores_por_ano['QTE_PESSOAS_ANO'].cumsum()}")
+
+        # Média de artigos por pesquisador
+        # Criar uma máscara para filtrar os valores zerados em 'QTE_TOTAL_PESSOAS'
+        mascara = pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] != 0
+        if verbose:
+            print(f"Total de pessoas com participação em artigos no Lattes no período: {len(mascara)}")
+
+        # Calcular a média apenas para os valores não zerados
+        pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = artigos_por_ano['count'][mascara] / pesquisadores_por_ano['QTE_TOTAL_PESSOAS'][mascara]
+
+        # Preencher os valores NaN resultantes da divisão por zero com 0
+        pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].fillna(0)
+
+        # Criar figura com as devidas traces
+        fig = go.Figure()
+
+        # Adicionar trace de barras para a quantidade de artigos
+        fig.add_trace(go.Bar(
+            x=artigos_por_ano['ano'],
+            y=artigos_por_ano['count'],
+            name='Total de Artigos',
+            text=artigos_por_ano['count'],
+            textposition='outside'
+        ))
+
+        # Adicionar trace de linha para a soma cumulativa de pesquisadores
+        fig.add_trace(go.Scatter(
+            x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+            y=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+            name='Soma Cumulativa da Quantidade de Servidores',
+            mode='lines+markers+text',
+            text=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+            textposition='top center'
+        ))
+
+        # Adicionar trace de linha tracejada para a média de artigos por pesquisador (eixo secundário)
+        fig.add_trace(go.Scatter(
+            x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+            y=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'],
+            name='Média de Artigos por Pesquisador',
+            mode='lines+text',
+            line=dict(dash='dash'),
+            text=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].round(2),
+            textposition='top center',
+            yaxis='y2'  # Define o eixo secundário para a média
+        ))
+
+        # Atualizar layout do gráfico
+        fig.update_layout(
+            yaxis=dict(
+                title='Total de Artigos'
+            ),
+            yaxis2=dict(
+                title='Média de Artigos por Servidor (todas atividades)',
+                overlaying='y',
+                side='right'
+            ),
+            xaxis=dict(tickvals=all_years),
+            legend=dict(
+                orientation="h",
+                x=0.2,
+                y=0.99
+            ),
+            title='Quantidade de Participações em Artigos, Soma Cumulativa de Servidores (todas atividades) e Média de Artigos por Servidor por Ano',
+        )
+
+        # Remover linhas de grade
+        fig.update_xaxes(showgrid=False)
+        fig.update_yaxes(showgrid=False)
+        
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1380,   # largura em pixels
+            height=800   # altura em pixels
+        )
+            
+        fig.show()
+        return pesquisadores_por_ano
+
+    def evolucao_sem_duplicatas(self, df_artigos, df_pessoal, sim_limite=0.95):
+        import Levenshtein
+
+        # Função para verificar similaridade entre strings
+        def is_similar(str1, str2, threshold):
+            similarity = (len(str1) - Levenshtein.distance(str1, str2)) / float(len(str1))
+            return similarity >= threshold
+
+        # Remover duplicidades
+        titles = df_artigos['titulo'].tolist()
+        unique_titles = []
+        for title in titles:
+            if not any(is_similar(title, utitle, sim_limite) for utitle in unique_titles):
+                unique_titles.append(title)
+        df_artigos = df_artigos[df_artigos['titulo'].isin(unique_titles)]
+
+        # Remover duplicatas apenas com base no título exato
+        df_artigos = df_artigos.drop_duplicates(subset='titulo')
+
+        # Para todos os anos dos dados
+        min_year  = df_artigos['ano'].min()
+        max_year  = df_artigos['ano'].max()
+        all_years = list(range(min_year, max_year + 1))
+
+        # Calcular quantidade total de artigos por ano
+        artigos_por_ano = df_artigos.groupby('ano').size().reindex(all_years, fill_value=0).reset_index(name='count')
+
+        # Calcular quantidade de pesquisadores únicos que entraram a cada ano
+        pesquisadores_por_ano = df_pessoal.groupby('ANO_INGRESSO_FIOCE')['NOME'].nunique().reindex(all_years, fill_value=0).reset_index(name='QTE_PESSOAS_ANO')
+
+        # Calcular soma cumulativa de pesquisadores ao longo dos anos
+        pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] = pesquisadores_por_ano['QTE_PESSOAS_ANO'].cumsum()
+
+        # Calcular média de artigos por pesquisador
+        pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = artigos_por_ano['count'] / pesquisadores_por_ano['QTE_TOTAL_PESSOAS']
+        pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].replace(np.inf, 0, inplace=True)
+
+        # Calcular a proporção entre os dois eixos y
+        max_y1 = artigos_por_ano['count'].max()+10
+        max_y2 = pesquisadores_por_ano['QTE_TOTAL_PESSOAS'].max()
+        ratio  = max_y1 / max_y2
+
+        # Definir buffer de 10%
+        buffer = 0.1
+        
+        # Criar a figura com as devidas traces
+        fig = go.Figure()
+
+        # Adicionar trace de barras para a quantidade de artigos
+        fig.add_trace(go.Bar(
+            x=artigos_por_ano['ano'],
+            y=artigos_por_ano['count'],
+            name='Total de Artigos',
+            text=artigos_por_ano['count'],
+            textposition='outside'
+        ))
+
+        # Adicionar trace de linha para a soma cumulativa de pesquisadores
+        fig.add_trace(go.Scatter(
+            x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+            y=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+            yaxis='y2',
+            name='Soma Cumulativa de Pesquisadores',
+            mode='lines+markers+text',
+            text=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+            textposition='top center'
+        ))
+
+        # Adicionar trace de linha tracejada para a média de artigos por pesquisador
+        fig.add_trace(go.Scatter(
+            x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+            y=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] * ratio,
+            yaxis='y2',
+            name='Média de Artigos por Servidor',
+            mode='lines+text',
+            line=dict(dash='dash'),
+            text=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].round(2),
+            textposition='top center'
+        ))
+
+        # Atualizar layout do gráfico
+        fig.update_layout(
+            yaxis=dict(
+                title='Total de Artigos',
+                range=[0, max_y1 * (1 + buffer)]
+            ),
+            yaxis2=dict(
+                title='Soma Cumulativa de Pessoas (todas atividades) e Média de Artigos por Pessoa',
+                overlaying='y',
+                side='right',
+                range=[0, max_y2 * (1 + buffer)],
+                tickvals=list(range(0, int(max_y2 * (1 + buffer)), int(max_y2/10))),
+                ticktext=list(range(0, int(max_y2 * (1 + buffer)), int(max_y2/10)))
+            ),
+            xaxis=dict(tickvals=all_years),
+            legend=dict(
+                orientation="h",
+                x=0.2,
+                y=0.99
+            ),
+            title='Quantidade de Artigos (sem duplicatas), Soma Cumulativa de Servidores (todas atividades) e Média de Artigos por Pessoa por Ano',
+        )
+
+        # Identificar o último ano
+        last_year = max(all_years)
+        
+        # Adicionar a barra transparente para o último ano
+        mask_last_year = artigos_por_ano['ano'] == last_year
+        fig.add_trace(go.Bar(
+            x=[last_year],
+            y=[artigos_por_ano[mask_last_year]['count'].iloc[0]],
+            name='Total de Artigos no Ano Atual',
+            text=str(artigos_por_ano[mask_last_year]['count'].iloc[0]),  # Convertendo para string
+            textposition='outside',
+            marker=dict(color='rgba(0,0,0,0)',  # Transparente
+                        line=dict(color='#1f77b4', width=2))  # Borda com a cor padrão e espessura de 2
+        ))
+        
+        # Remover linhas de grade
+        fig.update_xaxes(showgrid=False)
+        fig.update_yaxes(showgrid=False)
+        
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1380,   # largura em pixels
+            height=800   # altura em pixels
+        )
+            
+        fig.show()
+
+    # df_lista_artigos = df_servidores_ingresso_fioce
+    def qte_artigos_por_nome_ano(self, df_lista_artigos):
+        """
+        Calcula a quantidade de artigos publicados por nome e ano em uma tabela pivot 
+        e converte os valores para inteiros, tratando os valores NaN.
+
+        Args:
+        df: DataFrame contendo um artigo por linha e colunas 'ano' e 'NOME'.
+
+        Returns:
+        DataFrame pivot contendo a quantidade de artigos por nome e ano, com valores inteiros.
+        """
+
+        # Agrupar por nome e ano, contando as ocorrências
+        df_pivot = df_lista_artigos.groupby(['NOME', 'ano']).size().unstack(fill_value=0)
+
+        # Converter os valores float para inteiros
+        df_pivot = df_pivot.astype(int)
+
+        # Formatar para ocultar zeros na exibição
+        df_pivot = df_pivot.map(lambda x: '' if x == 0 else x)
+
+        return df_pivot
+
+    def med_artigos_por_nome_area_ano(self, df):
+        """
+        Calcula a média da quantidade de artigos publicados por área e ano em uma tabela pivot 
+        e converte os valores para inteiros, tratando os valores NaN.
+
+        Args:
+        df: DataFrame contendo um artigo por linha ecolunas 'ano' e 'ÁREA'.
+
+        Returns:
+        DataFrame pivot contendo a média de artigos por áreq e ano, com valores inteiros.
+        """
+
+        df_total_artigos_area_ano = df.groupby(['ÁREA', 'ano'])['titulo'].count().unstack(fill_value=0)
+        df_nomes_distintos_area_ano = df.groupby(['ÁREA', 'ano'])['NOME'].nunique().unstack(fill_value=0)
+        df_media_artigos_por_nome = df_total_artigos_area_ano / df_nomes_distintos_area_ano
+        df_media_artigos_por_nome = df_media_artigos_por_nome.map(lambda x: f'{x:.1f}' if pd.notnull(x) else '')
+
+        # Agrupar por nome e ano, contando as ocorrências
+        df_pivot = df.groupby(['ÁREA', 'ano']).size().unstack(fill_value=0)
+
+        # Converter os valores float para inteiros
+        df_pivot = df_pivot.astype(int)
+
+        # Formatar para ocultar zeros na exibição
+        df_pivot = df_pivot.map(lambda x: '' if x == 0 else x)
+
+        return df_pivot
+
+    def med_artigos_por_nome_ano_area(self, df_lista_artigos):
+        """
+        Calcula a média de artigos publicados por nome, ano e área, 
+        considerando a quantidade de nomes distintos e a quantidade total de artigos.
+
+        Args:
+        df_lista_artigos: DF um artigo por linha e colunas 'titulo', 'ano', 'NOME' e 'ÁREA'.
+
+        Returns:
+        DataFrame contendo a média de artigos por nome e ano, com múltiplos índices para área.
+        """
+
+        # Calcular a quantidade total de artigos por área e ano
+        df_total_artigos_area_ano = df_lista_artigos.groupby(['ÁREA', 'ano'])['titulo'].count().unstack(fill_value=0)
+
+        # Calcular a quantidade de nomes distintos por área e ano
+        df_nomes_distintos_area_ano = df_lista_artigos.groupby(['ÁREA', 'ano'])['NOME'].nunique().unstack(fill_value=0)
+
+        # Calcular a média de artigos por nome
+        df_media_artigos_por_nome = df_total_artigos_area_ano / df_nomes_distintos_area_ano
+
+        # Formatar a tabela (opcional)
+        df_media_artigos_por_nome = df_media_artigos_por_nome.map(lambda x: f'{x:.1f}' if pd.notnull(x) else '')
+
+        return df_media_artigos_por_nome
+
+    def med_artigos_por_ano(self, df_lista_artigos):
+        """
+        Calcula a média de artigos publicados por ano, a contagem de autores únicos 
+        e a quantidade de artigos por autor único.
+
+        Args:
+        df_lista_artigos: DataFrame um artigo por linha e colunas 'titulo', 'ano' e 'NOME'.
+
+        Returns:
+        DataFrame contendo a média de artigos por ano, a contagem de autores únicos
+        e a quantidade de artigos por autor único.
+        """
+
+        df_lista_artigos['NUM_ARTIGOS'] = df_lista_artigos['titulo'].str.split(';').str.len()
+        df_media = df_lista_artigos.groupby('ano')['NUM_ARTIGOS'].mean().reset_index()
+        df_autores_unicos = df_lista_artigos.groupby('ano')['NOME'].nunique().reset_index(name='NUM_AUTORES_UNICOS')
+        df_final = pd.merge(df_media, df_autores_unicos, on='ano')
+
+        # Calcular a quantidade de artigos por autor único
+        df_final['ARTIGOS_POR_AUTOR_UNICO'] = df_final['NUM_ARTIGOS'] / df_final['NUM_AUTORES_UNICOS']
+
+        return df_final
+
+    def med_impacto_por_ano(self, df_lista_artigos):
+        """
+        Calcula a média de impacto dos artigos publicados por ano, a contagem de autores únicos 
+        e o somatório do fator de impacto (JCI) das publicações por autor único a cada ano.
+
+        Args:
+        df_lista_artigos: DataFrame contendo um artigo por linha e colunas 'titulo','JCI', 'ano' e 'NOME'.
+
+        Returns:
+        DataFrame contendo a contagem de autores únicos e o somatório anual de impacto JCI da quantidade de artigos por autor único.
+        """
+
+        df_lista_artigos['NUM_ARTIGOS'] = df_lista_artigos['titulo'].str.split(';').str.len()
+        df_media = df_lista_artigos.groupby('ano')['FATOR_IMPACTO'].mean().reset_index()
+        df_autores_unicos = df_lista_artigos.groupby('ano')['NOME'].nunique().reset_index(name='NUM_AUTORES_UNICOS')
+        df_final = pd.merge(df_media, df_autores_unicos, on='ano')
+
+        # Calcular a quantidade de artigos por autor único
+        df_final['ARTIGOS_POR_AUTOR_UNICO'] = df_final['NUM_ARTIGOS'] / df_final['NUM_AUTORES_UNICOS']
+
+        return df_final
+
+    def destacar_medias_publicacoes(self, df_lista_artigos):
+        """
+        Destaca as médias de publicações por ano à medida que novos nomes aparecem.
+
+        Args:
+        df_lista_artigos: DataFrame contendo um artigo por linha e colunas 'titulo', 'ano' e 'NOME'.
+
+        Returns:
+        DataFrame contendo a média de artigos por ano e a contagem de autores únicos, 
+        com destaque para as médias quando novos nomes aparecem.
+        """
+
+        df_lista_artigos['NUM_ARTIGOS'] = df_lista_artigos['titulo'].str.split(';').str.len()
+        df_resultado = pd.DataFrame(columns=['ano', 'MEDIA_ARTIGOS', 'NUM_AUTORES_UNICOS'])
+
+        for ano in sorted(df_lista_artigos['ano'].unique()):
+            df_ano = df_lista_artigos[df_lista_artigos['ano'] == ano]
+            media_artigos = df_ano['NUM_ARTIGOS'].mean()
+            num_autores_unicos = df_ano['NOME'].nunique()
+            novos_autores = any(df_ano['NOME'].isin(df_lista_artigos[df_lista_artigos['ano'] < ano]['NOME']) == False)
+
+            # Usar concat em vez de append
+            df_resultado = pd.concat([df_resultado, pd.DataFrame({
+                'ano': [ano],
+                'MEDIA_ARTIGOS': [f'{media_artigos:.1f}' if pd.notnull(media_artigos) else ''],
+                'NUM_AUTORES_UNICOS': [num_autores_unicos],
+                'NOVOS_AUTORES': [novos_autores]
+            })], ignore_index=True)
+
+        df_resultado.loc[df_resultado['NOVOS_AUTORES'] == True, 'MEDIA_ARTIGOS'] = df_resultado.loc[
+            df_resultado['NOVOS_AUTORES'] == True, 'MEDIA_ARTIGOS'
+        ].apply(lambda x: f'{x}')
+
+        return df_resultado
+
+    def plotar_evolucao_areas(self, df_pivot):
+        # Chamando de "df_pivot" o dataframe com lista de artigos por ano de cada área
+        import plotly.express as px
+        import pandas as pd
+        from plotly.subplots import make_subplots
+        import plotly.graph_objects as go
+
+        df_longo = df_pivot.reset_index().melt(id_vars='ÁREA', var_name='ano', value_name='MEDIA_ARTIGOS')
+        df_longo['ano'] = pd.to_numeric(df_longo['ano'])
+        
+        # Converter a coluna 'MEDIA_ARTIGOS' para numérica
+        df_longo['MEDIA_ARTIGOS'] = pd.to_numeric(df_longo['MEDIA_ARTIGOS'], errors='coerce')
+
+        # Obter o valor máximo de 'MEDIA_ARTIGOS' em todo o DataFrame
+        max_y = df_longo['MEDIA_ARTIGOS'].max()
+
+        # Criar os subplots
+        fig = make_subplots(rows=len(df_longo['ÁREA'].unique()), cols=1, subplot_titles=df_longo['ÁREA'].unique())
+
+        # Iterar pelas áreas e adicione cada gráfico de linha aos subplots
+        for i, area in enumerate(df_longo['ÁREA'].unique()):
+            df_area = df_longo[df_longo['ÁREA'] == area]
+            fig.add_trace(
+                go.Scatter(
+                    x=df_area['ano'], 
+                    y=df_area['MEDIA_ARTIGOS'], 
+                    mode='lines', 
+                    name=area
+                ), 
+                row=i+1, col=1
+            )
+
+        # Definir a ordem crescente para o eixo y
+        fig.update_yaxes(categoryorder='category ascending')
+
+        # Atualizar o layout com o mesmo yaxis_range para todos os subplots
+        fig.update_layout(height=1400, width=800, title_text="Média de Artigos por Ano e Área", 
+                        yaxis_range=[0, max_y])  # Define o mesmo limite superior do eixo y
+        fig.show()
+
+
+    def boxplot_media_artigos(self, df_artigos, df_pessoal):
+        # Removendo duplicidades
+        df_artigos = df_artigos.drop_duplicates(subset='titulo')
+        df_artigos['iniciais_curriculo'] = df_artigos['curriculo'].apply(get_initials)
+
+        # Calculando o total de artigos por pesquisador
+        artigos_por_pesquisador = df_artigos.groupby('iniciais_curriculo').size()
+
+        # Calculando a média de artigos por pesquisador
+        anos_ativos = df_artigos.groupby('iniciais_curriculo')['ano'].nunique()
+        media_artigos_por_pesquisador = artigos_por_pesquisador / anos_ativos
+
+        # Retirar possíveis infinitos
+        media_artigos_por_pesquisador.replace(np.inf, 0, inplace=True)
+
+        fig = go.Figure()
+
+        # Box plot
+        fig.add_trace(go.Box(
+            y=media_artigos_por_pesquisador,
+            boxpoints='all',
+            jitter=0.3,
+            pointpos=0,
+            name='Média de Artigos por Pesquisador'
+        ))
+
+        fig.update_layout(
+            title='Distribuição da Média de Artigos por Pesquisador',
+            yaxis_title='Média de Artigos por Pesquisador'
+        )
+
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1380,   # largura em pixels
+            height=800   # altura em pixels
+        )
+
+        fig.show()
+
+    def evolucao_artigos(self, df_artigosperiodo, df_pessoal, threshold=0.8):
+        from sklearn.feature_extraction.text import TfidfVectorizer
+        from sklearn.metrics.pairwise import cosine_similarity
+
+        # Para todos os anos dos dados
+        min_year = df_artigosperiodo['PUB_ANO'].min()
+        max_year = df_artigosperiodo['PUB_ANO'].max()
+        all_years = list(range(min_year, max_year + 1))
+
+        # 1. Usando TF-IDF para calcular similaridade entre os títulos
+        vectorizer = TfidfVectorizer().fit_transform(df_artigosperiodo['TITULO'])
+        vectors = vectorizer.toarray() # type: ignore
+        cosine_matrix = cosine_similarity(vectors)
+
+        # 2. Filtrando títulos com similaridade acima do threshold e removendo duplicatas
+        indices_to_drop = []
+        for i in range(cosine_matrix.shape[0]):
+            for j in range(i + 1, cosine_matrix.shape[1]):
+                if cosine_matrix[i][j] > threshold:
+                    indices_to_drop.append(j)
+
+        indices_to_drop = list(set(indices_to_drop))
+        df_artigosperiodo = df_artigosperiodo.drop(df_artigosperiodo.index[indices_to_drop])
+
+        # 3. Plotar o gráfico de evolução
+
+        # Agrupando por ano
+        artigos_por_ano = df_artigosperiodo.groupby('PUB_ANO').size().reset_index(name='count')
+
+        # Preenchimento padrão para todos os anos
+        fill_colors = ['#1f77b4'] * artigos_por_ano.shape[0]
+
+        # Para o último ano, deixar sem preenchimento (somente borda)
+        last_year = artigos_por_ano['PUB_ANO'].iloc[-1]
+        fill_colors[-1] = 'rgba(0,0,0,0)'
+
+        # Plotagem
+        fig = go.Figure()
+
+        # Adicionar barras para cada ano
+        fig.add_trace(go.Bar(
+            x=artigos_por_ano['PUB_ANO'],
+            y=artigos_por_ano['count'],
+            name='Total de Artigos por Ano',
+            marker=dict(color=fill_colors,
+                        line=dict(color='#1f77b4', width=2))
+        ))
+
+        # Adicionar linha de média
+        mean_articles = artigos_por_ano['count'].mean()
+        years = artigos_por_ano['PUB_ANO'].values
+
+        # Excluindo o último ano da linha de média
+        fig.add_shape(
+            type="line",
+            x0=years[0],
+            y0=mean_articles,
+            x1=years[-2],
+            y1=mean_articles,
+            line=dict(color="Red", width=2, dash="dashdot")
+        )
+
+        # Configurações adicionais do gráfico
+        fig.update_layout(
+            title="Evolução da quantidade de participação em artigos por ano concluídos, média e artigos do ano em curso",
+            xaxis_title="Ano",
+            yaxis_title="Número de Artigos",
+            legend_title="Legenda",
+            xaxis=dict(tickvals=all_years),
+            legend=dict(
+                orientation="h",
+                x=0.2,
+                y=0.99
+        ),
+
+        )
+
+        fig.show()
 
 class PlotProduction:
     def __init__(self, df):
@@ -309,7 +1585,7 @@ class JSONFileManager:
         json_files.sort()
 
         # Imprimir os arquivos JSON em ordem
-        print('Arquivos disponíveis na pasta para dados de entrada:')
+        print('Arquivos de entrada a processar:')
         for file in json_files:
             print(f'  {file}')
 
