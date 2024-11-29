@@ -345,7 +345,7 @@ class GrafoConhecimento:
                 node['y'] = 0
                 node['fixed'] = True
             elif node['id'] == 'FiocruzCE':
-                node['x'] = 300
+                node['x'] = 600
                 node['y'] = 0
                 node['fixed'] = True
 
@@ -643,7 +643,7 @@ class GrafoOferta:
         return '9999999999999999'  # ID Lattes padrão se não encontrar
 
 
-    def subgrafo_oferta_pdi(self):
+    def subgrafo_oferta_pdi(self, verbose=False):
         """
         Constrói o subgrafo de oferta com base nos dados dos pesquisadores.
         """
@@ -653,10 +653,10 @@ class GrafoOferta:
                     id_lattes = dicionario.get('Identificação', {}).get('ID Lattes')
                     nome = dicionario.get('Identificação', {}).get('Nome')
 
-                    # Dentro do método subgrafo_oferta_pdi
-                    print(f"ID Lattes: {id_lattes}, Nome: {nome}")
-                    self.grafo.add_node(id_lattes, tipo='pesquisador', nome=nome)
-                    print(f"Nó criado: {id_lattes}, Atributos: {self.grafo.nodes[id_lattes]}")
+                    if verbose:
+                        print(f"ID Lattes: {id_lattes}, Nome: {nome}")
+                        self.grafo.add_node(id_lattes, tipo='pesquisador', nome=nome)
+                        print(f"Nó criado: {id_lattes}, Atributos: {self.grafo.nodes[id_lattes]}")
 
                     if id_lattes and nome:
                         self.grafo.add_node(id_lattes, tipo='pesquisador', nome=nome)
@@ -728,7 +728,8 @@ class GrafoOferta:
         
         # Contadores
         num_arestas_interesse = 0
-        
+        tipos_nos = defaultdict(int)
+        tipos_arestas = defaultdict(int)
         respostas_nao_associadas = []
 
         for i, pesquisador in enumerate(respostas_pesquisadores):
@@ -752,12 +753,12 @@ class GrafoOferta:
                         if isinstance(competencia_declarada, str):
                             # Criar nós de competencia_declarada no grafo para objeto salvo como competencias_possuidas nas respostas
                             self.grafo.add_node(competencia_declarada, tipo='competencia_declarada')
-                            self.tipos_nos['competencia_declarada'] += 1
+                            tipos_nos['competencia_declarada'] += 1
 
                             # Adicionar arestas COMPETENCIA_DECLARADA para id_lattes
                             if id_lattes:
                                 self.grafo.add_edge(id_lattes, competencia_declarada, relation='COMPETENCIA_DECLARADA')
-                                self.tipos_arestas['COMPETENCIA_DECLARADA'] += 1
+                                tipos_arestas['COMPETENCIA_DECLARADA'] += 1
 
                 # --- Competências a Desenvolver ---
                 competencias_desenvolver = pesquisador.get("competencias_desenvolver")
@@ -767,69 +768,60 @@ class GrafoOferta:
                         if isinstance(competencia_desejada, str):
                             # Criar nós de competencias_desenvolver
                             self.grafo.add_node(competencia_desejada, tipo='competencia_desejada')
-                            self.tipos_nos['competencia_desejada'] += 1
+                            tipos_nos['competencia_desejada'] += 1
 
                             # Adicionar arestas COMPETENCIA_DESEJADA para id_lattes
                             if id_lattes:
                                 self.grafo.add_edge(id_lattes, competencia_desejada, relation='COMPETENCIA_DESEJADA')
-                                self.tipos_arestas['COMPETENCIA_DESEJADA'] += 1
+                                tipos_arestas['COMPETENCIA_DESEJADA'] += 1
 
                 # --- Intenções ---
-                intencoes = []
+                intencoes = {
+                    "questoes_pesquisa": [],
+                    "palavras_chave": [],
+                    "desenvolvimento": [],
+                    "desafios_ceis": [],
+                    "produtos_emergenciais": [],
+                    "produtos_agravos": []
+                }
+
                 string_questoes = pesquisador.get("questoes_interesse")
                 if string_questoes and isinstance(string_questoes, str):
                     lista_questoes = self.limpar_questoes(string_questoes)
-                    intencoes.extend(lista_questoes) # adicionar elementos de um iterável (lista, tupla ou string) ao final da lista atual
+                    intencoes["questoes_pesquisa"].extend(lista_questoes)
+
                     for questao_pesquisa in lista_questoes:
                         if isinstance(questao_pesquisa, str):
-                            # Adicionar cada questão de pesquisa como nó no grafo de conhecimento
                             self.grafo.add_node(questao_pesquisa, tipo='questao_pesquisa')
-                        if self.grafo.has_node(id_lattes):
-                            # Adicionar aresta ligando questão de pesquisa ao id_lattes no grafo de conhecimento
-                            self.grafo.add_edge(id_lattes, questao_pesquisa, relation='TEM_INTERESSE_EM_DESAFIO')
+                            if id_lattes:
+                                self.grafo.add_edge(id_lattes, questao_pesquisa, relation='TEM_QUESTAO')
 
                 palavras_chave = pesquisador.get("palavras_chave")
                 if palavras_chave and isinstance(palavras_chave, list):
                     palavras_chave = self.limpar_lista(palavras_chave)
-                    for palavra in palavras_chave:
-                        if isinstance(palavra, str):
-                            intencoes.append(palavra.strip()) # adicionar um único elemento ao final da lista. 
-                            # Obs.: Se usar append() com uma lista como argumento, adicionará a lista inteira como um único elemento, em vez de adicionar os elementos individuais.
+                    intencoes["palavras_chave"].extend(palavras_chave)
 
                 pretende_desenvolver = pesquisador.get("intencao_desenvolvimento")
                 if pretende_desenvolver and isinstance(pretende_desenvolver, str):
-                    intencoes.append(pretende_desenvolver.strip())
+                    intencoes["desenvolvimento"].append(pretende_desenvolver.strip())
 
                 ceis_interesse_desafios = pesquisador.get("ceis_interesse_desafios")
                 if ceis_interesse_desafios and isinstance(ceis_interesse_desafios, str):
                     lista_desafios = [x.strip() for x in ceis_interesse_desafios.split(';')]
                     lista_desafios = self.limpar_lista(lista_desafios)
-                    intencoes.extend(lista_desafios) # adicionar elementos de um iterável (lista, tupla ou string) ao final da lista atual
-
-                    for desafio_ceis in lista_desafios:
-                        if isinstance(desafio_ceis, str):
-                            # Procurar o nó do desafio CEIS no grafo de conhecimento
-                            if self.grafo.has_node(desafio_ceis):
-                                # Adicionar aresta ligando desafio ao id_lattes no grafo de conhecimento
-                                self.grafo.add_edge(id_lattes, desafio_ceis, relation='TEM_INTERESSE_EM_DESAFIO')
+                    intencoes["desafios_ceis"].extend(lista_desafios)
 
                 ceis_interesse_produtos_emergencias = pesquisador.get("ceis_interesse_produtos_emergencias")
                 if ceis_interesse_produtos_emergencias and isinstance(ceis_interesse_produtos_emergencias, list):
                     for produto_emergencial in ceis_interesse_produtos_emergencias:
                         if isinstance(produto_emergencial, str):
-                            intencoes.append(produto_emergencial.strip())
-
-                            # Procurar o nó do produto CEIS no grafo de conhecimento
-                            for no, dados in self.grafo.nodes(data=True):
-                                if dados.get('nome') == produto_emergencial:
-                                    self.grafo.add_edge(id_lattes, no, relation='TEM_INTERESSE_EM_PRODUTO')
-                                    break  # Interromper o loop após encontrar o nó
+                            intencoes["produtos_emergenciais"].append(produto_emergencial.strip())
 
                 ceis_interesse_produtos_agravos = pesquisador.get("ceis_interesse_produtos_agravos")
                 if ceis_interesse_produtos_agravos and isinstance(ceis_interesse_produtos_agravos, list):
                     for produto in ceis_interesse_produtos_agravos:
                         if isinstance(produto, str):
-                            intencoes.append(produto.strip())
+                            intencoes["produtos_agravos"].append(produto.strip())
 
                 if verbose:
                     print(f"    questoes_pesquisa: {lista_questoes}")
@@ -844,26 +836,34 @@ class GrafoOferta:
                 if verbose:
                     print(f"    Objeto de intenções tipo: {type(intencoes)} com {len(intencoes)} instancias")
 
-                # --- Adicionar nós de intenções ao grafo de conhecimento ---
-                if id_lattes and intencoes:
-                    # Adicionar nó de intenção e contar
-                    self.grafo.add_node(str(intencoes), tipo='intencao')  # Converter lista para string
-                    self.tipos_nos['intencao'] += 1
+                if id_lattes and any(intencoes.values()):
+                    # Adicionar nós e arestas para cada tipo de intenção
+                    for tipo_intencao, lista_intencoes in intencoes.items():
+                        for intencao in lista_intencoes:
+                            if tipo_intencao in ['produtos_emergenciais', 'produtos_agravos', 'desafios_ceis']:
+                                # Verificar se o nó já existe no grafo
+                                for no, dados in self.grafo.nodes(data=True):
+                                    if dados.get('nome') == intencao:
+                                        self.grafo.add_edge(id_lattes, no, relation='TEM_INTERESSE_EM_' + tipo_intencao.upper())
+                                        self.tipos_arestas['TEM_INTERESSE_EM_' + tipo_intencao.upper()] += 1
+                                        break
+                            else:
+                                # Criar um novo nó para a intenção
+                                self.grafo.add_node(intencao, tipo=tipo_intencao)
+                                self.grafo.add_edge(id_lattes, intencao, relation='POSSUI_' + tipo_intencao.upper())
+                                self.tipos_nos[tipo_intencao] += 1
+                                self.tipos_arestas['POSSUI_' + tipo_intencao.upper()] += 1
 
-                    # Adicionar aresta entre pesquisador e intenção e contar
-                    self.grafo.add_edge(id_lattes, str(intencoes), relation='POSSUI_INTENCAO')
-                    self.tipos_arestas['POSSUI_INTENCAO'] += 1
-
+                    print(f" Obteto intenções em subgrafo_intencoes: {type(intencoes)}")
                     # Adicionar arestas para produtos e desafios do CEIS
-                    self.adicionar_interesses_declarados_ceis(intencoes, 
-                                                              pesquisador)
-
+                    self.adicionar_interesses_declarados_ceis(intencoes, pesquisador, respostas_nao_associadas)
                     num_arestas_interesse += 1
 
-                    # Adicionar nós de competências e contar
-                    self.adicionar_competencias(id_lattes, nome, pesquisador, self.tipos_nos)
-
-
+                    # Adicionar arestas por similaridade
+                    # self.adicionar_interesses_por_similaridade(intencoes, pesquisador)
+                else:
+                    print("Nenhum valor no dicionário de intenções")
+                    
             except Exception as e:
                 print(f"    Erro ao processar pesquisador {i}: {e}")
 
@@ -968,67 +968,62 @@ class GrafoOferta:
         ]
         return [item for item in lista if item not in ignorar]
 
-    def adicionar_interesses_declarados_ceis(self, intencoes, pesquisador):
+    def adicionar_interesses_declarados_ceis(self, intencoes, pesquisador, respostas_nao_associadas):
         """
         Adiciona arestas entre as intenções dos pesquisadores e os 
         produtos e desafios do CEIS, por escolha ou similaridade, 
         considerando a normalização dos nomes e a estrutura de listas.
-
-        Args:
-            intencoes (list): Lista de strings com as intenções do pesquisador.
-            pesquisador (dict): Dicionário com os dados do pesquisador.
-            respostas_nao_associadas (list): Lista para armazenar as respostas que não puderam ser associadas.
         """
 
         # 1. Obter os IDs dos produtos e desafios de interesse
-        resposta_emergenciais = pesquisador.get('ceis_interesse_produtos_emergencias', [])
-        produtos_emergenciais = [x.split(";") for x in resposta_emergenciais]
-        resposta_agravos = pesquisador.get('ceis_interesse_produtos_agravos', [])
-        produtos_agravos = [x.split(";") for x in resposta_agravos]
-
-        # Achatar a lista produtos_interesse
-        produtos_interesse = [produto for sublista in produtos_emergenciais + produtos_agravos for produto in sublista]
-        
-        # Limpar a lista de valores vazios e indevidos e aplicar a função primeira_letra_maiuscula
-        produtos_interesse = self.limpar_lista(produtos_interesse)
-        produtos_interesse = list(map(self.primeira_letra_maiuscula, produtos_interesse))
-        if verbose:
-            print(produtos_interesse)
-
+        produtos_emergenciais = pesquisador.get('ceis_interesse_produtos_emergencias', [])
+        produtos_agravos = pesquisador.get('ceis_interesse_produtos_agravos', [])
         desafios_interesse = pesquisador.get('ceis_interesse_desafios', "").split(';')
-        desafios_interesse = self.limpar_lista(desafios_interesse)
-        desafios_interesse = list(map(self.primeira_letra_maiuscula, desafios_interesse))
 
-        # 2. Criar arestas TEM_INTERESSE para os produtos e desafios de interesse
+        # 2. Normalizar os nomes dos produtos e desafios
+        produtos_emergenciais_normalizados = [
+            unicodedata.normalize('NFKD', p.strip())
+            .encode('ASCII', 'ignore')
+            .decode('ASCII')
+            .lower() 
+            for sublista in produtos_emergenciais for p in sublista
+        ]
+        produtos_agravos_normalizados = [
+            unicodedata.normalize('NFKD', p.strip())
+            .encode('ASCII', 'ignore')
+            .decode('ASCII')
+            .lower() 
+            for sublista in produtos_agravos for p in sublista
+        ]
+        desafios_interesse_normalizados = [
+            unicodedata.normalize('NFKD', d.strip())
+            .encode('ASCII', 'ignore')
+            .decode('ASCII')
+            .lower() 
+            for d in desafios_interesse
+        ]
+
+        # 3. Criar arestas para os produtos e desafios de interesse
         for intencao in intencoes:
-            for produto_id in produtos_interesse:
-                # Normalizar o nome do produto para minúsculas e sem acentos
-                produto_normalizado = unicodedata.normalize('NFKD', produto_id).encode('ASCII', 'ignore').decode('ASCII').lower()
+            print(f"{intencao}")
+            for no, dados in self.grafo.nodes(data=True):
+                nome_no_normalizado = unicodedata.normalize('NFKD', dados.get('nome', ''))
+                nome_no_normalizado = nome_no_normalizado.encode('ASCII', 'ignore').decode('ASCII').lower()
 
-                for no, dados in self.grafo.nodes(data=True):
-                    # Normalizar o nome do nó para minúsculas e sem acentos
-                    nome_no_normalizado = unicodedata.normalize('NFKD', dados.get('nome', '')).encode('ASCII', 'ignore').decode('ASCII').lower()
+                if dados.get('tipo') == 'produto' and nome_no_normalizado in produtos_emergenciais_normalizados:
+                    self.grafo.add_edge(intencao, no, relation='INTERESSE_PRODUTOS_EMERGENCIAIS')
+                    self.tipos_arestas['INTERESSE_PRODUTOS_EMERGENCIAIS'] += 1
 
-                    if nome_no_normalizado == produto_normalizado:
-                        self.grafo.add_edge(no, intencao, relation='TEM_INTERESSE_EM_PRODUTO')  # Corrigido: ordem dos argumentos invertida
-                        self.tipos_arestas['TEM_INTERESSE_EM_PRODUTO'] += 1
-                        break
+                if dados.get('tipo') == 'produto' and nome_no_normalizado in produtos_agravos_normalizados:
+                    self.grafo.add_edge(intencao, no, relation='INTERESSE_AGRAVOS_CRITICOS')
+                    self.tipos_arestas['INTERESSE_AGRAVOS_CRITICOS'] += 1
 
-            for desafio_id in desafios_interesse:
-                # Normalizar o nome do desafio para minúsculas e sem acentos
-                desafio_normalizado = unicodedata.normalize('NFKD', desafio_id).encode('ASCII', 'ignore').decode('ASCII').lower()
+                if dados.get('tipo') == 'desafio' and nome_no_normalizado in desafios_interesse_normalizados:
+                    self.grafo.add_edge(intencao, no, relation='TEM_INTERESSE_EM_DESAFIO')
+                    self.tipos_arestas['TEM_INTERESSE_EM_DESAFIO'] += 1
 
-                for no, dados in self.grafo.nodes(data=True):
-                    # Normalizar o nome do nó para minúsculas e sem acentos
-                    nome_no_normalizado = unicodedata.normalize('NFKD', dados.get('nome', '')).encode('ASCII', 'ignore').decode('ASCII').lower()
-
-                    if nome_no_normalizado == desafio_normalizado:
-                        self.grafo.add_edge(no, intencao, relation='TEM_INTERESSE_EM_DESAFIO')
-                        self.tipos_arestas['TEM_INTERESSE_EM_DESAFIO'] += 1
-                        break  # Interromper o loop após encontrar o nó
-
-            # # 3. Criar arestas SIMILAR por aproximação semântica
-            # self.adicionar_interesses_por_similaridade(intencao, pesquisador)
+        # 4. Criar arestas SIMILAR por aproximação semântica
+        # self.adicionar_interesses_por_similaridade(intencoes, pesquisador)
 
         # Imprimir a quantidade de relações por tipo criadas com sucesso
         print(f"\nRelações criadas com sucesso:")
