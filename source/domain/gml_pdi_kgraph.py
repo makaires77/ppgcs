@@ -687,7 +687,7 @@ class GrafoOferta:
                 tipos_arestas[dados['relation']] += 1
 
             # Imprimir a mensagem com as informações adicionais
-            print(f"\nSubgrafo de oferta criado com {num_nos} nós e {num_arestas} arestas.")
+            print(f"\nSubgrafo de Oferta criado com {num_nos} nós e {num_arestas} arestas.")
             print("  Nós por tipo:")
             for tipo, quantidade in tipos_nos.items():
                 print(f"  - {tipo}: {quantidade}")
