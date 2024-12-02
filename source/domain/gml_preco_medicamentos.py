@@ -1,11 +1,12 @@
 import os
-import re
-import json
 import requests
 from bs4 import BeautifulSoup
+import json
+import logging
 
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
-class MedicamentoAltoCustomScraper:
+class MedicamentoAltoCustoScraper:
     def __init__(self, url):
         self.url = url
         self.session = requests.Session()
@@ -14,34 +15,55 @@ class MedicamentoAltoCustomScraper:
         }
 
     def extrair_dados(self):
-        response = self.session.get(self.url, headers=self.headers)
-        soup = BeautifulSoup(response.text, 'html.parser')
+        logging.debug(f"Iniciando requisição para: {self.url}")
+        try:
+            response = self.session.get(self.url, headers=self.headers)
+            response.raise_for_status()
+            logging.debug(f"Requisição bem-sucedida. Status code: {response.status_code}")
+        except requests.RequestException as e:
+            logging.error(f"Erro na requisição: {e}")
+            return json.dumps({"error": str(e)})
+
+        logging.debug("Iniciando parsing do HTML")
+        soup = BeautifulSoup(response.content, 'html.parser')
         
         medicamentos = []
         
-        # Encontrar todos os elementos que contêm informações dos medicamentos
-        items = soup.find_all('div', class_='product-item')
+        logging.debug("Procurando elementos de produto")
+        items = soup.find_all('li', class_='product-item')
+        logging.debug(f"Encontrados {len(items)} elementos de produto")
         
-        for item in items:
-            nome = item.find('h2', class_='product-item__name').text.strip()
+        for i, item in enumerate(items, 1):
+            logging.debug(f"Processando item {i}")
+            
+            nome_element = item.find('h2', class_='product-item__name')
+            nome = nome_element.text.strip() if nome_element else "Nome não disponível"
+            logging.debug(f"Nome extraído: {nome}")
             
             preco_element = item.find('span', class_='price-box__best-price')
             preco = preco_element.text.strip() if preco_element else "Preço não disponível"
+            logging.debug(f"Preço extraído: {preco}")
             
             fabricante_element = item.find('span', class_='product-item__brand')
             fabricante = fabricante_element.text.strip() if fabricante_element else "Fabricante não disponível"
+            logging.debug(f"Fabricante extraído: {fabricante}")
             
-            # Extrair o valor numérico do preço
-            valor = re.search(r'R\$\s*([\d.,]+)', preco)
-            valor = float(valor.group(1).replace('.', '').replace(',', '.')) if valor else None
+            try:
+                valor = float(preco.replace('R$', '').replace('.', '').replace(',', '.').strip())
+                logging.debug(f"Valor convertido: {valor}")
+            except ValueError:
+                logging.warning(f"Não foi possível converter o preço para float: {preco}")
+                valor = None
             
             medicamentos.append({
                 "nome": nome,
                 "valor": valor,
                 "fabricante": fabricante
             })
-        
+
+        logging.debug(f"Total de medicamentos extraídos: {len(medicamentos)}")
         return json.dumps(medicamentos, ensure_ascii=False, indent=2)
+
 
     def salvar_json(self, pasta_json, nome_arquivo):
         dados = self.extrair_dados()
