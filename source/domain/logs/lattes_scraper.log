@@ -1,14 +1,17 @@
-2024-11-28 06:42:03,363 - INFO - Currículo não encontrado: Carlos Jose Araujo Pinheiro
-2024-11-28 06:42:03,624 - ERROR - Erro StaleElementReferenceException ao buscar currículo
-2024-11-28 06:42:03,624 - ERROR - Erro ao buscar: Carlos Jose Araujo Pinheiro
-2024-11-28 06:42:15,496 - INFO - Currículo não encontrado: Charles Cerqueira De Abreu
-2024-11-28 06:42:15,761 - ERROR - Erro StaleElementReferenceException ao buscar currículo
-2024-11-28 06:42:15,761 - ERROR - Erro ao buscar: Charles Cerqueira De Abreu
-2024-11-28 06:50:41,401 - INFO - Currículo não encontrado: Luciano Pinto Zorzanelli
-2024-11-28 06:50:41,662 - ERROR - Erro StaleElementReferenceException ao buscar currículo
-2024-11-28 06:50:41,662 - ERROR - Erro ao buscar: Luciano Pinto Zorzanelli
-2024-11-28 06:54:20,980 - INFO - Currículo não encontrado: Nilton Luiz Costa Machado
-2024-11-28 06:54:21,246 - ERROR - Erro StaleElementReferenceException ao buscar currículo
-2024-11-28 06:54:21,246 - ERROR - Erro ao buscar: Nilton Luiz Costa Machado
-2024-11-28 06:55:36,189 - ERROR - Erro ao buscar: Renato Caldeira De Souza
-2024-11-28 06:57:52,674 - ERROR - Erro ao buscar: Sergio Dos Santos Reis
+2024-12-04 16:23:26,353 - INFO - Currículo não encontrado: Carlos Jose Araujo Pinheiro
+2024-12-04 16:23:26,670 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-12-04 16:23:26,670 - ERROR - Erro ao buscar: Carlos Jose Araujo Pinheiro
+2024-12-04 16:23:40,469 - INFO - Currículo não encontrado: Charles Cerqueira De Abreu
+2024-12-04 16:23:40,784 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-12-04 16:23:40,784 - ERROR - Erro ao buscar: Charles Cerqueira De Abreu
+2024-12-04 16:28:13,757 - ERROR - Tentativa de extrair currículo de Giovanny Augusto Camacho Antevere Mazzarotto em scrape_retry() falhou: Message:        Erro ao realizar a extração para Giovanny Augusto Camacho Antevere Mazzarotto: Message: 
+
+. Tentando novamente...
+2024-12-04 16:33:57,225 - INFO - Currículo não encontrado: Luciano Pinto Zorzanelli
+2024-12-04 16:33:57,748 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-12-04 16:33:57,748 - ERROR - Erro ao buscar: Luciano Pinto Zorzanelli
+2024-12-04 16:37:52,282 - INFO - Currículo não encontrado: Nilton Luiz Costa Machado
+2024-12-04 16:37:52,753 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-12-04 16:37:52,753 - ERROR - Erro ao buscar: Nilton Luiz Costa Machado
+2024-12-04 16:39:11,093 - ERROR - Erro ao buscar: Renato Caldeira De Souza
+2024-12-04 16:41:31,780 - ERROR - Erro ao buscar: Sergio Dos Santos Reis

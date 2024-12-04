@@ -9,7 +9,7 @@
             "qte_teams": "17",
             "qte_members": "228",
             "qte_projects": "View all81",
-            "qte_publication": "1761",
+            "qte_publication": "1763",
             "teams": [
                 {
                     "team_name": "Biological Image Analysis",
@@ -208,7 +208,7 @@
         "aditional_info": {
             "qte_keywords": "1",
             "qte_teams": "17",
-            "qte_members": "168",
+            "qte_members": "170",
             "qte_projects": "View all56",
             "qte_publication": "1009",
             "teams": [
@@ -341,7 +341,7 @@
             "qte_members": "128",
             "qte_projects": "View all60",
             "qte_tools": "10",
-            "qte_publication": "1747",
+            "qte_publication": "1749",
             "teams": [
                 {
                     "team_name": "Bacterial Genome Plasticity",
@@ -445,11 +445,11 @@
         "url": "https://research.pasteur.fr/en/department/global-health/",
         "aditional_info": {
             "qte_teams": "13",
-            "qte_members": "164",
-            "qte_projects": "View all134",
+            "qte_members": "163",
+            "qte_projects": "View all135",
             "qte_keywords": "2",
             "qte_tools": "2",
-            "qte_publication": "2395",
+            "qte_publication": "2407",
             "teams": [
                 {
                     "team_name": "Lyssavirus epidemiology and neuropathology",
@@ -526,7 +526,7 @@
         "url": "https://research.pasteur.fr/en/department/hearing-institute-institut-pasteur-center/",
         "aditional_info": {
             "qte_teams": "13",
-            "qte_members": "86",
+            "qte_members": "87",
             "qte_projects": "View all21",
             "qte_publication": "251",
             "teams": [
@@ -700,7 +700,7 @@
             "qte_members": "193",
             "qte_projects": "View all93",
             "qte_tools": "6",
-            "qte_publication": "2527",
+            "qte_publication": "2528",
             "teams": [
                 {
                     "team_name": "Biology and Genetics of Bacterial Cell Wall",
@@ -977,7 +977,7 @@
             "qte_members": "194",
             "qte_projects": "View all92",
             "qte_tools": "5",
-            "qte_publication": "2260",
+            "qte_publication": "2261",
             "teams": [
                 {
                     "team_name": "Antibody Engineering",
@@ -1121,7 +1121,7 @@
             "qte_teams": "24",
             "qte_members": "208",
             "qte_projects": "View all104",
-            "qte_publication": "2008",
+            "qte_publication": "2010",
             "teams": [
                 {
                     "team_name": "Arboviruses and Insect Vectors",

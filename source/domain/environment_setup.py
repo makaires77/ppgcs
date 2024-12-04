@@ -22,6 +22,18 @@ class EnvironmentSetup:
         self.root_path = Path.home() / folder_name
         self.ensure_directories()
 
+    def find_repo_root(self, path='.', depth=10):
+        """
+        Busca o arquivo .git e retorna string com a pasta raiz do repositório.
+        """
+        # Prevent infinite recursion by limiting depth
+        if depth < 0:
+            return None
+        path = Path(path).absolute()
+        if (path / '.git').is_dir():
+            return path
+        return self.find_repo_root(str(path.parent), depth-1)
+    
     def ensure_directories(self):
         """Garante a existência das pastas necessárias."""
         if self.root_path is None:
@@ -33,7 +45,8 @@ class EnvironmentSetup:
         
         subfolders = ['in_zip', 'in_xls', 'in_pdf', 'in_csv', 'in_json', 'out_fig', 'out_json']
         for folder in subfolders:
-            (self.root_path / folder).mkdir(parents=True, exist_ok=True)
+            data_folder = '_data'
+            (self.root_path / data_folder / folder).mkdir(parents=True, exist_ok=True)
         print('Todas as pastas necessárias foram garantidas.')
 
     def strfdelta(self, tdelta, fmt='{H:02}h {M:02}m {S:02}s', inputtype='timedelta'):
@@ -51,19 +64,6 @@ class EnvironmentSetup:
             if field in desired_fields and field in constants:
                 values[field], remainder = divmod(remainder, constants[field])
         return f.format(fmt, **values)
-
-    def find_repo_root(self, path='.', depth=10):
-        """
-        Busca o arquivo .git e retorna string com a pasta raiz do repositório.
-        """
-        # Prevent infinite recursion by limiting depth
-        if depth < 0:
-            return None
-        path = Path(path).absolute()
-        if (path / '.git').is_dir():
-            return path
-        return self.find_repo_root(str(path.parent), depth-1)
-
 
     def tempo(self, start, end):
         t = end - start
@@ -258,7 +258,9 @@ class EnvironmentSetup:
         subfolders = {'in_zip': 'in_zip', 'in_xls': 'in_xls','in_pdf': 'in_pdf',  'in_csv': 'in_csv', 'in_json': 'in_json', 'out_fig': 'out_fig', 'out_json': 'out_json'}
         
         for key, folder_name in subfolders.items():
-            folder_path = self.root_path / folder_name
+            root_folder = self.find_repo_root()
+            data_folder = os.path.join(str(root_folder),'_data')
+            folder_path = self.root_path / data_folder # type: ignore
             if folder_path.exists():
                 print(f"Pasta para {key} já existe!")
             else:
@@ -278,6 +280,6 @@ if __name__ == "__main__":
     preparer.try_cpu()
     preparer.try_gpu()
     preparer.try_amb()
-    preparer.try_browser(base_path)
+    preparer.try_browser()
     preparer.set_root_path(folder_name)
     # preparer.preparar_pastas()

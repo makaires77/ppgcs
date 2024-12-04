@@ -17,7 +17,7 @@ class Utils:
     @staticmethod
     def primeira_letra_maiuscula(texto):
         """
-        Converte a primeira letra de uma string para maiúscula.
+        Converter a primeira letra de uma string para maiúscula.
         """
         if not texto:
             return texto
@@ -55,7 +55,7 @@ class GrafoConhecimento:
 
     def construir_grafo(self, verbose=False):
         """
-        Constrói o grafo de conhecimento multicamadas.
+        Construir o grafo de conhecimento de demanda e oferta em multicamadas.
         """
         # Criar índices
         self.indice_interesses = self.criar_indice_interesses()
@@ -98,7 +98,7 @@ class GrafoConhecimento:
 
     def integrar_subgrafos(self):
         """
-        Integra os subgrafos de oferta e demanda ao grafo principal.
+        Integrar os subgrafos de oferta e demanda ao grafo principal.
         """
         self.grafo.add_nodes_from(self.demanda.grafo.nodes(data=True))
         self.grafo.add_edges_from(self.demanda.grafo.edges(data=True))
@@ -111,7 +111,7 @@ class GrafoConhecimento:
 
     def criar_indice_interesses(self):
         """
-        Cria um índice para os interesses dos pesquisadores, 
+        Criar um índice para os interesses dos pesquisadores, 
         mapeando cada interesse a um ID numérico.
         """
         indice_interesses = {}
@@ -127,7 +127,7 @@ class GrafoConhecimento:
 
     def criar_indice_produtos_desafios(self):
         """
-        Cria um índice para os produtos e desafios do CEIS, 
+        Criar um índice para os produtos e desafios do CEIS, 
         mapeando cada item a um ID numérico.
         """
         indice_produtos_desafios = {}
@@ -153,7 +153,7 @@ class GrafoConhecimento:
 
     def agregar_camada_cnpq(self, camada):
         """
-        Agrega a camada especificada no grafo.
+        Agregar a camada especificada no grafo.
         """
         if camada == 'area':
             # Agregar áreas e subáreas em um único nó "area_subarea"
@@ -182,7 +182,7 @@ class GrafoConhecimento:
 
     def calcular_similaridade(self):
         """
-        Calcula a similaridade entre as entidades do grafo.
+        Calcular a similaridade entre as entidades do grafo.
         """
         caracteristicas = []
         nos = []
@@ -203,7 +203,7 @@ class GrafoConhecimento:
 
     def extrair_caracteristicas(self, no):
         """
-        Extrai as características relevantes de um nó.
+        Extrair as características relevantes de um nó.
         """
         caracteristicas = []
         try:
@@ -281,7 +281,7 @@ class GrafoConhecimento:
 
     def identificar_lacunas(self):
         """
-        Identifica lacunas de competências para a produção de produtos demandados.
+        Identificar lacunas de competências para a produção de produtos demandados.
         """
         lacunas = {}
         for produto in self.grafo.nodes(data=True):
@@ -301,7 +301,7 @@ class GrafoConhecimento:
 
     def visualizar(self, nome_arquivo="grafo_conhecimento.html"):
         """
-        Gera uma visualização interativa do grafo usando pyvis,
+        Gerar uma visualização interativa do grafo usando pyvis,
         ocupando toda a janela do browser, renderizando os nomes das 
         arestas e colorindo os nós de produtos em verde, plataformas 
         em cinza e desafios em laranja.
@@ -356,12 +356,14 @@ class GrafoConhecimento:
                 edge['color'] = 'magenta'  # Cor magenta
                 edge['width'] = 3  # Espessura da aresta
 
-        # Personalizar a aparência (opcional)
+        net.show_buttons(filter_=['physics'])
+
+        # Personalizar a exibição default do grafo
         net.set_options("""
         const options = {
           "nodes": {
             "font": {
-              "size": 20
+              "size": 8
             }
           },
           "edges": {
@@ -377,14 +379,16 @@ class GrafoConhecimento:
           },
           "physics": {
             "barnesHut": {
-              "gravitationalConstant": -8000,
-              "springLength": 100,
+              "gravitationalConstant": -10000,
+              "springLength": 200,
               "springConstant": 0.02
             },
+            "avoidOverlap": 1,
             "minVelocity": 1.5
           }
         }
         """)
+        
 
         print(f"\nGrafo de conhecimento gerado com sucesso:")
         return net.show(nome_arquivo) 

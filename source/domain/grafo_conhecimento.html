@@ -326,6 +326,12 @@ function highlightFilter(filter) {
              
 
              
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
 
              
         </style>
@@ -349,6 +355,8 @@ function highlightFilter(filter) {
               </div>
             </div>
         
+        
+            <div id="config"></div>
         
 
         <script type="text/javascript">
@@ -392,11 +400,15 @@ function highlightFilter(filter) {
                   // adding nodes and edges to the graph
                   data = {nodes: nodes, edges: edges};
 
-                  var options = {"nodes": {"font": {"size": 20}}, "edges": {"arrows": {"to": {"enabled": true}}, "color": {"inherit": true}, "smooth": false}, "physics": {"barnesHut": {"gravitationalConstant": -8000, "springLength": 100, "springConstant": 0.02}, "minVelocity": 1.5}};
+                  var options = {"nodes": {"font": {"size": 8}}, "edges": {"arrows": {"to": {"enabled": true}}, "color": {"inherit": true}, "smooth": false}, "physics": {"barnesHut": {"gravitationalConstant": -10000, "springLength": 200, "springConstant": 0.02}, "avoidOverlap": 1, "minVelocity": 1.5}};
 
                   
 
 
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
                   
 
                   network = new vis.Network(container, data, options);

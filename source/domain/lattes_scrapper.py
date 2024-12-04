@@ -1,4 +1,5 @@
 # import difflib, subprocess, string, sqlite3, asyncio, nltk, openpyxl, glob, stat, shutil, psutil
+from tabnanny import verbose
 import warnings, platform, requests, urllib, logging, traceback, codecs, unicodedata
 import os, re, bs4, time, json, h5py, pytz, pdfkit, sys, csv
 import plotly.express.colors as px_colors
@@ -25,7 +26,7 @@ from urllib.parse import urlparse, parse_qs
 from py2neo import Graph, Node, Relationship
 from bs4 import BeautifulSoup, Tag, NavigableString
 from pyjarowinkler.distance import get_jaro_distance
-
+from IPython.display import clear_output, display, HTML
 
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
@@ -45,29 +46,6 @@ from selenium.common.exceptions import (
 )
 warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-
-## Não necessários por hora
-# from PIL import Image
-# from io import BytesIO
-# from altair import value
-# from pprint import pprint
-# from zipfile import ZipFile
-# from PyPDF2 import PdfReader
-# from matplotlib import legend
-# from neo4j import GraphDatabase
-# from nltk.corpus import stopwords
-# from sklearn.cluster import KMeans
-# from Levenshtein import jaro_winkler
-# from urllib3.util.retry import Retry
-# from tqdm.notebook import trange, tqdm
-# from typing import List, Dict, Any
-# from typing import Any, Optional, Union
-# from flask import render_template_string
-# from requests.adapters import HTTPAdapter
-# from sklearn.metrics import silhouette_score
-# from collections import deque, defaultdict, Counter
-# from IPython.display import clear_output, display, HTML
-# from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 class AnalisadorProducaoArtigos:
@@ -659,109 +637,6 @@ class AnalisadorProducaoArtigos:
 
         return df_pivot
 
-
-    def evolucao_anual(self, df_artigos, df_pessoal):
-        # Removendo duplicidades
-        # df_artigos = df_artigos.drop_duplicates(subset='titulo')
-
-        # Obter extremos do período para todos os anos dos dados
-        min_year = df_artigos['ano'].min()
-        max_year = df_artigos['ano'].max()
-        all_years = list(range(min_year, max_year + 1))
-
-        # Calcular a quantidade total de artigos por ano
-        artigos_por_ano = df_artigos.groupby('ano').size().reindex(all_years, fill_value=0).reset_index(name='count')
-
-        # Calcular quantidade de pesquisadores únicos a cada ano
-        ## TO-FIX: considerar só quem tem artigos
-        pesquisadores_por_ano = df_pessoal.groupby('ANO_INGRESSO_FIOCE')['NOME'].nunique().reindex(all_years, fill_value=0).reset_index(name='QTE_PESSOAS_ANO') 
-
-        # Criar a soma cumulativa de pesquisadores ao longo dos anos
-        pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] = pesquisadores_por_ano['QTE_PESSOAS_ANO'].cumsum()
-
-        # Média de artigos por pesquisador
-        pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = artigos_por_ano['count'] / pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] 
-        
-        # Corrigindo o FutureWarning:
-        # pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].replace(np.inf, 0, inplace=True)  # 
-        pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].replace(np.inf, 0)
-
-        # Calcular a proporção entre os dois eixos y
-        max_y1 = artigos_por_ano['count'].max()+10
-        max_y2 = pesquisadores_por_ano['QTE_TOTAL_PESSOAS'].max()
-        ratio = max_y1 / max_y2
-
-        # Definir buffer de 10%
-        buffer = 0.1
-        
-        # Criar figura com as devidas traces
-        fig = go.Figure()
-
-        # Adicionar trace de barras para a quantidade de artigos
-        fig.add_trace(go.Bar(
-            x=artigos_por_ano['ano'],
-            y=artigos_por_ano['count'],
-            name='Total de Artigos',
-            text=artigos_por_ano['count'],
-            textposition='outside'
-        ))
-
-        # Adicionar trace de linha para a soma cumulativa de pesquisadores
-        fig.add_trace(go.Scatter(
-            x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
-            y=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
-            name='Soma Cumulativa da Quantidade de Servidores',
-            mode='lines+markers+text',
-            text=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
-            textposition='top center'
-        ))
-
-        # Adicionar trace de linha tracejada para a média de artigos por pesquisador (eixo secundário)
-        fig.add_trace(go.Scatter(
-            x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
-            y=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'],
-            name='Média de Artigos por Pesquisador',
-            mode='lines+text',
-            line=dict(dash='dash'),
-            text=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].round(2),
-            textposition='top center',
-            yaxis='y2'  # Define o eixo secundário para a média
-        ))
-
-        # Atualizar layout do gráfico
-        fig.update_layout(
-            yaxis=dict(
-                title='Total de Artigos'
-            ),
-            yaxis2=dict(
-                title='Média de Artigos por Servidor (todas atividades)',
-                overlaying='y',
-                side='right',
-                # range=[0, max_y2 * (1 + buffer)],  # Remove o range fixo do eixo secundário
-                # tickvals=list(range(0, int(max_y2 * (1 + buffer)), int(max_y2/10))),  # Remove os tickvals fixos
-                # ticktext=list(range(0, int(max_y2 * (1 + buffer)), int(max_y2/10)))  # Remove os ticktext fixos
-            ),
-            xaxis=dict(tickvals=all_years),
-            legend=dict(
-                orientation="h",
-                x=0.2,
-                y=0.99
-            ),
-            title='Quantidade de Participações em Artigos, Soma Cumulativa de Servidores (todas atividades) e Média de Artigos por Servidor por Ano',
-        )
-
-        # Remover linhas de grade
-        fig.update_xaxes(showgrid=False)
-        fig.update_yaxes(showgrid=False)
-        
-        # Ajustar a altura e a largura
-        fig.update_layout(
-            width=1380,   # largura em pixels
-            height=800   # altura em pixels
-        )
-            
-        fig.show()
-        return pesquisadores_por_ano
 
     def evolucao_anual(self, df_artigos, df_pessoal, verbose=False):
         """
@@ -1877,6 +1752,7 @@ class DictToHDF5:
                     node = Node("Person", **properties)  # Assumindo que o nó seja do tipo "Person"
                 graph.create(node)
 
+
 class LattesScraper:
     def __init__(self, search_terms, neo4j_uri, neo4j_user, neo4j_password, only_doctors=False):
         self.verbose = False
@@ -1907,67 +1783,6 @@ class LattesScraper:
         # Corrigido para usar LattesScraper.find_repo_root para chamada recursiva
         return LattesScraper.find_repo_root(path.parent, depth-1)
 
-    # @staticmethod
-    # def connect_driver(only_doctors):
-    #     '''
-    #     Conecta ao servidor do CNPq para busca de currículo
-    #     '''
-    #     # print(f'Conectando com o servidor do CNPq...')
-    #     # print(f'Iniciada extração de {len(lista_nomes)} currículos')
-    #     ## https://www.selenium.dev/documentation/pt-br/webdriver/browser_manipulation/
-    #     # options   = Options()
-    #     # options.add_argument("--headless")
-    #     # driver   = webdriver.Chrome(options=options)
-
-    #     driver_path = None
-    #     try:
-    #         # Caminho para o chromedriver no sistema local
-    #         if platform.system() == "Windows":
-    #             driver_path=LattesScraper.find_repo_root(os.getcwd())/'chromedriver'/'chromedriver.exe'
-    #         else:
-    #             driver_path=LattesScraper.find_repo_root(os.getcwd())/'chromedriver'/'chromedriver'
-    #     except Exception as e:
-    #         print("Não foi possível estabelecer uma conexão, verifique o chromedriver")
-    #         print(e)
-        
-    #     # print(driver_path)
-    #     service = Service(driver_path)
-    #     driver = webdriver.Chrome(service=service)
-    #     driver.set_window_position(-20, -10)
-    #     driver.set_window_size(170, 1896)
-    #     # only_doctors = True
-    #     if only_doctors:
-    #         print('Buscando currículos apenas entre nível de doutorado')
-    #         url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
-    #         driver.get(url_docts) # acessa a url de busca somente de doutores 
-    #     else:
-    #         print('Buscando currículos com qualquer nível de formação')
-    #         url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
-    #         driver.get(url_busca) # acessa a url de busca do CNPQ
-    #         # Localize o elemento do checkbox
-    #         checkbox = driver.find_element(By.ID, "buscarDemais")
-    #         # try:
-    #         #     checkbox = WebDriverWait(driver, 10).until(
-    #         #         EC.element_to_be_clickable((By.CSS_SELECTOR, "div.input-checkbox input[type='checkbox']"))
-    #         #     )
-
-    #         #     action_chains = ActionChains(driver)
-    #         #     action_chains.move_to_element(checkbox).perform()
-
-    #         #     if not checkbox.is_selected():
-    #         #         driver.execute_script("arguments[0].click();", checkbox)
-
-    #         # except Exception as e:
-    #         #     print(f"Erro ao localizar checkbox: {e}")
-    #         #     driver.save_screenshot("erro_screenshot.png") 
-    #         # Verifique se o checkbox está marcado
-    #         if not checkbox.is_selected():
-    #             # Se o checkbox não estiver marcado, mova o mouse até ele e clique
-    #             actions = ActionChains(driver)
-    #             actions.move_to_element(checkbox).click().perform()
-    #         # driver.get(url_busca) # acessa a url de busca do CNPQ
-    #     driver.mouse = webdriver.ActionChains(driver)
-    #     return driver
 
     @staticmethod
     def connect_driver(only_doctors, retries=5, timeout=30):
@@ -2630,12 +2445,12 @@ class LattesScraper:
                 results.append(result)
         return results
 
-    def select_most_relevant_result(results):
+    def select_most_relevant_result(self, results):
         """Seleciona o resultado mais relevante com base na frequência dos termos de busca."""
         # TODO: Implementar lógica para selecionar o resultado mais relevante
         return results[0]
 
-    def extract_results_page(driver, url):
+    def extract_results_page(self, driver, url):
         """ Extrai os resultados de uma determinada página de resultados. """
 
         driver.get(url)
@@ -2656,7 +2471,7 @@ class LattesScraper:
                 })   
         return resultados
 
-    def extrair_dados_pagina(driver):
+    def extrair_dados_pagina(self, driver):
         # Encontrar os elementos que contêm os dados (ex: resultado da pesquisa)
         elementos_dados = driver.find_elements(By.CSS_SELECTOR, ".resultado li")
 
@@ -2840,100 +2655,6 @@ class LattesScraper:
             })
 
         return dados_resultados
-
-    ###### Experiências com tratamento de homônimos
-                            # css_elemento = self.driver.find_element(By.CSS_SELECTOR, elemento.text)
-                            # css_elemento = self.driver.find_element(By.XPATH, f"//a[contains(text(), {elemento.text})]")
-                            
-                            ## TO-FIX: PRECISA DISPARAR JAVASCRIPT PARA CARREGAR OS RESULTADOS DE CADA PÁGINA DA PAGINAÇÃO
-                            # clicar no elemento encontrado para carregar próxima página na paginação
-                            
-                            # WebDriverWait(soup, self.delay).until(
-                            #     EC.presence_of_element_located((By.CSS_SELECTOR, ".tit_form"))
-                            # )                            
-                            # Carregar os resultados da nova página a verificar presença de termos_busca
-                            
-                            # resultados = soup.findChildren('li')
-                            # count+=len(resultados)
-                            # print(f'       Carregada página {count_pages:02}/{len(numpaginas):02} de resultados')
-                            # text_results = [x.text.replace('\xa0',' ') for x in resultados]
-                            # if self.verbose:
-                            #     print(f'       Elem text: {len(text_results)} | {text_results}')
-                            
-                            # # iterar em cada resultado
-                            # for n,i in enumerate(resultados):
-                            #     try:
-                            #         # Ler dados prévios dos currículos e buscar termos
-                            #         elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
-                            #     except Exception as e:
-                            #         print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
-                            #         print(f'       ERRO: {e}')
-                            #         return None                            
-
-                        # Ler dados prévios dos currículos e buscar termos
-                        # resultados = soup.findChildren('li')
-                        # if self.verbose:
-                        #     print(f'       {len(resultados):2} Resultados: {type(resultados)} | {resultados}')
-                        # if resultados:
-                        #     try:
-                        #         # procurar nos resultados termos de busca
-                        #         elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
-                        #         if elm_vinculo:
-                        #             break
-                        #     except Exception as e:
-                        #         print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
-                        #         print(f'       ERRO: {e}')
-                        #         traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-                        #         print(f'       Ocorrido em: {traceback_str}')
-                        #         print(f"       {'-'*120}")
-                        #         return None
-                        # else:
-                        #     print('       Não foi possível obter resultados para a busca')
-
-    # def handle_pagination_and_collect_profiles(self):
-    #     def extrair_dados_cv():
-    #         resultados = self.driver.find_elements(By.CSS_SELECTOR, "div.resultado")
-    #         dados_pessoas = []
-
-    #         for resultado in resultados:
-    #             nome = resultado.find_element(By.TAG_NAME, "a").text
-    #             link_detalhes = [y.get_attribute("href") for y in x for x in resultado.find_elements(By.TAG_NAME, "a")]
-    #             preview = resultado.find_element(By.CSS_SELECTOR, "br + br").text
-
-    #             dados_pessoa = {
-    #                 "nome": nome,
-    #                 "link_detalhes": link_detalhes,
-    #                 "dados_curriculo": preview,
-    #             }
-    #             dados_pessoas.append(dados_pessoa)
-    #         return dados_pessoas
-
-    #     preview = {}
-    #     profiles = []
-    #     pages_links=[]
-    #     while True:
-    #         pagination_div = self.driver.find_element(By.CLASS_NAME, "paginacao")
-    #         for x in pagination_div.find_elements(By.TAG_NAME, "a"):
-    #             pages_links.append(x.get_attribute("href"))
-    #             for n,page in enumerate(pages_links):
-    #                 try:
-    #                     print(f'{n}/{len(pages_links)} sendo lido...')
-    #                     page.click(page)
-    #                     WebDriverWait(self.driver, self.delay).until(
-    #                         EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".resultado")))
-    #                     results = self.driver.find_elements(By.CSS_SELECTOR, ".resultado > ol > li")
-    #                     dados_pessoas = extrair_dados_cv()
-    #                     profiles.append(dados_pessoas)
-    #                 except:
-    #                     pass
-        
-    #     preview['Curriculos'] = profiles
-    #             # next_button = self.driver.find_elements(By.CSS_SELECTOR, "próximo")
-    #             # if next_button:
-    #             #     next_button[0].click()
-    #             # else:
-    #             #     break
-    #     return preview
 
     def obter_dados_homonimo_paginacao(self, nome, termos_busca, qte_res):
         """
@@ -3330,7 +3051,7 @@ class LattesScraper:
         #     time.sleep(2)  # Aguarda um tempo antes de tentar novamente
 
         except TimeoutException:
-            print(f"       Dados sobre publicação de artigos indisponíveis.")
+            print(f"       Sem dados de publicação de artigos.")
         except Exception as e:
             print(f"       Erro inesperado ao extrair tooltips: {e}")
         return tooltip_data_list
@@ -3851,7 +3572,7 @@ class LattesScraper:
                 logging.error(f"Erro de Timeout ao extrair {name}")
                 if retry_count > 0:
                     logging.info(f"Tentando novamente para {name}...")
-                    # Realiza novar tentativa para o mesmo nome passando número de tentativas decrementado de 1
+                    # Realizar tentativa para mesmo nome passando qte tentativas decrementado de 1
                     dict_list.extend(self.scrape([name], termos_busca, retry_count-1))
                 else:
                     logging.error(f"Todas as tentativas falharam para {name}")
@@ -3878,7 +3599,7 @@ class LattesScraper:
 
         # Função para normalizar os nomes
         def normalizar_nome(nome):
-            # Normaliza o nome para comparar de forma mais flexível
+            # Normalizar o nome para comparar de forma mais flexível
             nome_normalizado = nome.lower().replace(' ', '').replace('á', 'a').replace('é', 'e').replace('í', 'i').replace('ó', 'o').replace('ú', 'u').replace('â', 'a').replace('ê', 'e').replace('ô', 'o').replace('ã', 'a').replace('õ', 'o').replace('ç', 'c').replace('ü', 'u')
             return nome_normalizado
 
@@ -3890,7 +3611,7 @@ class LattesScraper:
             nome_normalizado = normalizar_nome(nome)
             encontrado = False
 
-            # Verifica se o nome ou uma forma similar já foi extraído
+            # Verificar se o nome ou uma forma similar já foi extraído
             for nome_original in lista_restante:
                 nome_original_normalizado = normalizar_nome(nome_original)
                 if nome_original_normalizado == nome_normalizado:
@@ -3898,18 +3619,18 @@ class LattesScraper:
                     encontrado = True
                     break
 
-            # Incrementa o contador correspondente
+            # Incrementar o contador correspondente
             if encontrado:
                 total_extraidos += 1
             else:
                 total_nao_extraidos += 1
 
-            # Imprime o status da extração
+            # Imprimir o status da extração
             if encontrado:
                 print(f'({total_extraidos:>02}) {nome}')
             else:
                 print(f'({total_nao_extraidos}) Não extraído: {nome}')
-            # Adiciona à lista de nomes extraídos apenas se não for exatamente igual ao buscado
+            # Adicionar à lista de nomes extraídos apenas se não for exatamente igual ao buscado
             if encontrado and nome_original_normalizado != nome_normalizado:
                 nomes_extraidos.append(nome)
 
@@ -4166,7 +3887,7 @@ class HTMLParser:
         else:
             return f"Caminho para '{target_text}' não encontrado."
 
-    ## Processamentos da extração de dados
+    ## Processamentos da extração de dados em cada seção
     # Identificação OK!!            
     def process_identification(self):
         nome = self.soup.find(class_="nome").text.strip()
@@ -4297,22 +4018,22 @@ class HTMLParser:
             if titulo_h1 and 'Atuação Profissional' in titulo_h1.get_text(strip=True):
                 data_cell = secao.find('div', class_='layout-cell layout-cell-12 data-cell')
                 if data_cell:
-                    # Iniciamos a coleta de dados do primeiro bloco após inst_back
+                    # Iniciar a coleta de dados do primeiro bloco após inst_back
                     elements = data_cell.find_all(recursive=False)
                     current_instituicao = None
                     current_block = []
 
-                    # Iteramos sobre os elementos para capturar informações até a próxima inst_back
+                    # Iterar sobre os elementos para capturar informações até a próxima inst_back
                     for element in elements:
                         if element.name == 'div' and 'inst_back' in element.get('class', []):
-                            if current_instituicao:  # Se já havia uma instituição, processamos o bloco acumulado
+                            if current_instituicao:  # Se há instituição, processar bloco acumulado
                                 self.extract_atuacao_from_block(current_block, atuacoes_profissionais, current_instituicao)
-                                current_block = []  # Reiniciamos o bloco para a próxima instituição
+                                current_block = []  # Reiniciar o bloco para a próxima instituição
                             current_instituicao = element.get_text(strip=True)
                         elif current_instituicao:  # Estamos dentro do bloco de uma instituição
                             current_block.append(element)
 
-                    # Não esqueça de processar o último bloco
+                    # Processar o último bloco
                     if current_instituicao and current_block:
                         self.extract_atuacao_from_block(current_block, atuacoes_profissionais, current_instituicao)
 
@@ -4321,17 +4042,17 @@ class HTMLParser:
 
     def extract_atuacao_from_block(self, block, atuacoes_profissionais, instituicao_nome):
         ano_pattern = re.compile(r'(\d{2}/)?\d{4}\s*-\s*(\d{2}/)?(?:\d{4}|Atual)')
-        # Removemos os padrões que não serão usados diretamente na identificação de elementos
+        # Remover os padrões que não serão usados diretamente na identificação de elementos
 
         ano = None
         descricao = None
         outras_informacoes = []
 
         for element in block:
-            # Captura o ano e descrição
+            # Capturar o ano e descrição
             if element.name == 'div' and 'text-align-right' in element.get('class', []):
                 if ano_pattern.search(element.get_text(strip=True)):
-                    if ano:  # Se um ano já foi capturado, então terminamos de processar o bloco anterior
+                    if ano:  # Se ano já foi capturado, então terminar processamento do bloco anterior
                         atuacao = {
                             "Instituição": instituicao_nome,
                             "Ano": ano,
@@ -4339,16 +4060,16 @@ class HTMLParser:
                             "Outras informações": ' '.join(outras_informacoes)
                         }
                         atuacoes_profissionais.append(atuacao)
-                        outras_informacoes = []  # Reiniciamos a lista para o próximo bloco
+                        outras_informacoes = []  # Reiniciar a lista para o próximo bloco
                     ano = element.get_text(strip=True)
                     descricao = element.find_next('div', class_='layout-cell-9').get_text(separator=' ', strip=True) if descricao else ""
             elif element.name == 'div' and 'layout-cell-9' in element.get('class', []):
-                # Acumula todas as informações das divs 'layout-cell-9' dentro do mesmo bloco
+                # Acumular todas as informações das divs 'layout-cell-9' dentro do mesmo bloco
                 outras_infos = element.get_text(separator=' ', strip=True)
                 if outras_infos:  # Verifica se há texto dentro do elemento
                     outras_informacoes.append(outras_infos)
 
-        # Verifica se ainda existe um bloco a ser adicionado após o loop
+        # Verificar se ainda existe um bloco a ser adicionado após o loop
         if ano:
             atuacao = {
                 "Instituição": instituicao_nome,
@@ -4361,40 +4082,6 @@ class HTMLParser:
         return atuacoes_profissionais
 
     def process_producao_bibliografica(self):
-        # Inicializa a lista de produções bibliográficas
-        self.estrutura["ProducaoBibliografica"] = {
-            "Artigos completos publicados em periódicos": [],
-            "Livros e capítulos": [],
-            "Trabalhos completos publicados em anais de congressos": [],
-            # Adicione mais categorias conforme necessário
-        }
-
-        # Mapeia os identificadores das seções para as categorias de produção bibliográfica
-        secoes = {
-            "ArtigosCompletos": "Artigos completos publicados em periódicos",
-            "LivrosCapitulos": "Livros e capítulos",
-            "TrabalhosPublicadosAnaisCongresso": "Trabalhos completos publicados em anais de congressos",
-        }
-
-        # Percorre cada seção de interesse no documento HTML
-        for secao_id, categoria in secoes.items():
-            secao_inicio = self.soup.find("a", {"name": secao_id})
-            if not secao_inicio:
-                continue
-
-            # Encontra todos os itens dentro da seção até a próxima seção
-            proxima_secao = secao_inicio.find_next_sibling("a", href=True)
-            itens_secao = []
-            atual = secao_inicio.find_next_sibling("div", class_="layout-cell layout-cell-11")
-            while atual and atual != proxima_secao:
-                if atual.text.strip():
-                    itens_secao.append(atual.text.strip())
-                atual = atual.find_next_sibling("div", class_="layout-cell layout-cell-11")
-
-            # Adiciona os itens encontrados à categoria correspondente
-            self.estrutura["ProducaoBibliografica"][categoria].extend(itens_secao)
-
-    def process_producao_bibliografica(self):
         producoes = []
         secoes = self.soup.find_all('div', class_='title-wrapper')
         for secao in secoes:
@@ -4404,20 +4091,19 @@ class HTMLParser:
                 div_artigos = data_cell.find_all("div", id="artigos-completos")
                 for div in div_artigos:
                     if div:
-                        # Iniciamos a coleta de dados do primeiro bloco após inst_back
+                        # Iniciar coleta de dados do primeiro bloco após inst_back
                         articles = div.find_all("div", class_="artigo-completo", recursive=False)
                         # print(f'{len(articles)} divs de artigos')
                         current_instituicao = None
                         current_block = []
-
-                        # Iteramos sobre os elementos para capturar informações até a próxima inst_back
+                        # Iterar sobre os elementos para capturar informações até a próxima inst_back
                         for element in articles:
                             if element.name == 'div' and 'inst_back' in element.get('class', []):
-                                if current_instituicao:  # Se já havia uma produção, processamos o bloco acumulado
+                                if current_instituicao:  # Se há produção, processar o bloco acumulado
                                     self.extract_producao_from_block(current_block, producoes, current_instituicao)
-                                    current_block = []  # Reiniciamos o bloco para a próxima instituição
+                                    current_block = []  # Reiniciar o bloco para a próxima instituição
                                 current_instituicao = element.get_text(strip=True)
-                            elif current_instituicao:  # Estamos dentro do bloco de uma instituição
+                            elif current_instituicao:  # Bloco de uma instituição
                                 current_block.append(element)
 
                         # Processar o último bloco
@@ -4429,17 +4115,17 @@ class HTMLParser:
 
     def extract_producao_from_block(self, block, producoes, instituicao_nome):
         ano_pattern = re.compile(r'(\d{2}/)?\d{4}\s*-\s*(\d{2}/)?(?:\d{4}|Atual)')
-        # Removemos os padrões que não serão usados diretamente na identificação de elementos
+        # Remover padrões que não serão usados diretamente na identificação de elementos
 
         ano = None
         descricao = None
         outras_informacoes = []
 
         for element in block:
-            # Captura o ano e descrição
+            # Capturar ano e descrição
             if element.name == 'div' and 'text-align-right' in element.get('class', []):
                 if ano_pattern.search(element.get_text(strip=True)):
-                    if ano:  # Se um ano já foi capturado, então terminamos de processar o bloco anterior
+                    if ano:  # Se ano já foi capturado, terminar de processar o bloco anterior
                         atuacao = {
                             "Instituição": instituicao_nome,
                             "Ano": ano,
@@ -4447,16 +4133,16 @@ class HTMLParser:
                             "Outras informações": ' '.join(outras_informacoes)
                         }
                         producoes.append(atuacao)
-                        outras_informacoes = []  # Reiniciamos a lista para o próximo bloco
+                        outras_informacoes = []  # Reiniciar a lista para o próximo bloco
                     ano = element.get_text(strip=True)
                     descricao = element.find_next('div', class_='layout-cell-9').get_text(separator=' ', strip=True) if descricao else ""
             elif element.name == 'div' and 'layout-cell-9' in element.get('class', []):
-                # Acumula todas as informações das divs 'layout-cell-9' dentro do mesmo bloco
+                # Acumular todas as informações das divs 'layout-cell-9' dentro do mesmo bloco
                 outras_infos = element.get_text(separator=' ', strip=True)
-                if outras_infos:  # Verifica se há texto dentro do elemento
+                if outras_infos:  # Verificar se há texto dentro do elemento
                     outras_informacoes.append(outras_infos)
 
-        # Verifica se ainda existe um bloco a ser adicionado após o loop
+        # Verificar se ainda existe um bloco a ser adicionado após o loop
         if ano:
             atuacao = {
                 "Instituição": instituicao_nome,
@@ -4468,39 +4154,27 @@ class HTMLParser:
 
         return producoes
 
-    def extrair_texto_sup(element):
-        # Busca por todos os elementos <sup> dentro do elemento fornecido
+    def extrair_texto_sup(self, element):
+        # Buscar por todos os elementos <sup> dentro do elemento fornecido
         sup_elements = element.find_all('sup')
-        # Lista para armazenar os textos extraídos
+        # Listar para armazenar os textos extraídos
         textos_extras = []
 
         for sup in sup_elements:
-            # Verifica se o elemento <sup> contém um elemento <img> com a classe 'ajaxJCR'
+            # Verificar se o elemento <sup> contém um elemento <img> com a classe 'ajaxJCR'
             if sup.find('img', class_='ajaxJCR'):
-                # Extrai o valor do atributo 'original-title', se disponível
+                # Extrair o valor do atributo 'original-title', se disponível
                 texto = sup.find('img')['original-title'] if sup.find('img').has_attr('original-title') else None
                 if texto:
                     textos_extras.append(texto)
         
         return textos_extras
 
-    def extrair_dados_jcr(texto):
-        # Regex para capturar o nome do periódico e o fator de impacto
-        regex = r"(.+?)\s*\((\d{4}-\d{4})\)<br />\s*Fator de impacto \(JCR (\d{4})\):\s*(\d+\.\d+)"
-        match = re.search(regex, texto)
-
-        if match:
-            periódico = f"{match.group(1)} ({match.group(2)})"
-            fator_de_impacto = f"Fator de impacto (JCR {match.group(3)}): {match.group(4)}"
-            return periódico, fator_de_impacto
-        else:
-            return None, None
-
     def extrair_dados_jcr(self, html_element):
         sup_tag = html_element.find('sup')
         img_tag = sup_tag.find('img')
         attributes_dict = {}
-        # Extraia os atributos básicos
+        # Extrair os atributos básicos
         # not_extract=['class','id','src']
         # attributes_dict = {key: value for key, value in img_tag.attrs.items() if key != 'original-title' and key not in not_extract}
         issn = sup_tag.find('img', class_='data-issn')
@@ -4513,32 +4187,32 @@ class HTMLParser:
         periodico_info = parts[0].split('(')
         fator_impacto = parts[1]
 
-        # Atualiza o dicionário com as informações processadas
+        # Atualizar o dicionário com as informações processadas
         attributes_dict['periodico'] = f"{periodico_info[0].strip()} ({periodico_info[1].split('<br />')[0].strip(')')})"
         attributes_dict['fator_impacto'] = float(fator_impacto.split(' ')[0])
         attributes_dict['JCR'] = parts[0].split('(')[-1].split(')')[0]
         return attributes_dict
     
     def extract_year(self, soup):
-        # Encontre o elemento <span> com a classe 'informacao-artigo' e data-tipo-ordenacao='ano'
+        # Encontrar elemento <span> com a classe 'informacao-artigo' e data-tipo-ordenacao='ano'
         year_span = soup.findChild('span', {'class': 'informacao-artigo', 'data-tipo-ordenacao': 'ano'})
         
-        # Recupera o texto do elemento, que deve ser o ano
+        # Recuperar texto do elemento, que deve ser o ano
         year = year_span.text if year_span else 'Ano não encontrado'
 
         return year
 
     def extract_first_author(self, soup):
-        # Encontre o elemento <span> com a classe 'informacao-artigo' e data-tipo-ordenacao='autor'
+        # Encontrar elemento <span> com a classe 'informacao-artigo' e data-tipo-ordenacao='autor'
         author_span = soup.findChild('span', {'class': 'informacao-artigo', 'data-tipo-ordenacao': 'autor'})
         
-        # Recupera o texto do elemento, que deve ser o nome do primeiro autor
+        # Recuperar texto do elemento, que deve ser o nome do primeiro autor
         first_author = author_span.text if author_span else 'Ano não encontrado'
 
         return first_author
 
     def extract_periodico(self, soup):
-        # Encontre o elemento <span> com a classe 'informacao-artigo' e data-tipo-ordenacao='autor'
+        # Encontrar elemento <span> com a classe 'informacao-artigo' e data-tipo-ordenacao='autor'
         img_tag = soup.findChild('sup')
         dados_periodico = img_tag.findChild('img', class_='original-title')
         if dados_periodico:
@@ -4546,84 +4220,30 @@ class HTMLParser:
             print(parts)
         else:
             print(f"       Não foi possível extrair dados do periódico de {soup}")
-        # Recupera o texto do elemento, que deve ser o nome do primeiro autor
+        # Recuperar texto do elemento, que deve ser o nome do primeiro autor
         periodico = dados_periodico.text if dados_periodico else None
 
         return periodico
     
     def extract_qualis(self, soup):
-        # Extração de informações do Qualis a partir do elemento 'p'
+        # Extrair informações do Qualis a partir do elemento 'p'
         p_tag = soup.find('p')
         qualis_text = p_tag.get_text(strip=True) if p_tag else ''
         qualis_match = re.search(r'[ABC]\d', qualis_text)
         qualis = qualis_match.group(0) if qualis_match else 'Indisponível'
 
-        # Extração de informações JCR a partir do elemento 'sup'
+        # Extrair informações JCR a partir do elemento 'sup'
         sup_tag = soup.find('sup')
         jcr_info = sup_tag.find('img')['original-title'] if sup_tag and sup_tag.find('img') else ''
         jcr_parts = jcr_info.split('<br />') if jcr_info else []
         jcr = jcr_parts[-1].split(': ')[-1].strip() if len(jcr_parts) > 1 else 'Indisponível'
 
-        # Compilando resultados
+        # Compilar resultados
         results = {
             'Qualis': qualis,
             'JCR': jcr
         }
         return results
-
-    ## Não considerava os casos onde lista de autores vem oculta por et al. com javscript
-    # def extract_info(self):
-    #     soup = BeautifulSoup(self.html_element, 'html.parser')
-    #     qualis_info = self.extract_qualis(soup)
-
-    #     # Extrai o primeiro autor
-    #     autores = soup.find_all('span', class_='informacao-artigo', data_tipo_ordenacao='autor')
-    #     primeiro_autor = autores[0].text if autores else None
-    #     # Considera todos os textos após o autor como parte da lista de autores até um elemento estrutural significativo (<a>, <b>, <sup>, etc.)
-    #     autores_texto = self.html_element.split('autor">')[-1].split('</span>')[0] if autores else ''
-
-    #     ano_tag = soup.find('span', {'class': 'informacao-artigo', 'data-tipo-ordenacao': 'ano'})
-    #     ano = int(ano_tag.text) if ano_tag else 'Ano não disponível'
-
-    #     # Extrai o título, periódico, e outras informações diretamente do texto
-    #     texto_completo = soup.get_text(separator=' ', strip=True)
-        
-    #     # Assume que o título vem após os autores e termina antes de uma indicação de periódico ou volume
-    #     titulo_match = re.search(r'; ([^;]+?)\.', texto_completo)
-    #     titulo = titulo_match.group(1) if titulo_match else None
-
-    #     # Periódico e detalhes como volume, página, etc., 
-    #     periodico_match = re.search(r'(\. )([^.]+?),( v\. \d+, p\. \d+, \d+)', texto_completo)
-    #     periodico = periodico_match.group(2) if periodico_match else None
-    #     detalhes_periodico = periodico_match.group(3) if periodico_match else None
-
-    #     # Extrai citações se disponível
-    #     citacoes = soup.find('span', class_='numero-citacao')
-    #     citacoes = int(citacoes.text) if citacoes else 0
-
-    #     # Extrai ISSN
-    #     issn = soup.find('img', class_='ajaxJCR')
-    #     issn = issn['data-issn'] if issn else None
-
-    #     # Qualis/CAPES pode ser extraído se existir um padrão identificável
-    #     qualis_capes = "quadriênio 2017-2020"  # Hardcoded, mas pode ser ajustado futuramente
-
-    #     # Monta o dicionário de resultados
-    #     resultado = {
-    #         "dados_gerais": texto_completo,
-    #         "primeiro_autor": primeiro_autor,
-    #         "ano": ano,
-    #         "autores": autores_texto,
-    #         "titulo": titulo,
-    #         "periodico": f"{periodico}{detalhes_periodico}",
-    #         "data-issn": issn,
-    #         "impacto": qualis_info.get('JCR'),
-    #         "Qualis/CAPES": qualis_capes,
-    #         "qualis": qualis_info.get('Qualis'),
-    #         "citacoes": citacoes,
-    #     }
-
-    #     return resultado, json.dumps(resultado, ensure_ascii=False)
 
     def extract_info(self):
         soup = BeautifulSoup(self.html_element, 'html.parser')
@@ -4693,7 +4313,7 @@ class HTMLParser:
                 for sibling in next_siblings:
                     # Verificar se o irmão tem a classe "cita-artigos"
                     if 'title-wrapper' in sibling.get('class', []):
-                        # Encontramos o marcador para parar, sair do loop
+                        # Encontrado marcador para parar, sair do loop
                         break
                     # Verificar as outras classes e adicionar aos arrays correspondentes
                     if 'layout-cell layout-cell-3 text-align-right' in " ".join(sibling.get('class', [])):
@@ -4702,13 +4322,13 @@ class HTMLParser:
                         divs_ocorrencias.append(sibling)
                 
                 if len(divs_indices) == len(divs_ocorrencias):
-                    # Itera sobre o intervalo do comprimento de uma das listas
+                    # Iterar sobre o intervalo do comprimento de uma das listas
                     for i in range(len(divs_indices)):
-                        # Usa o texto ou outro identificador único dos elementos como chave e valor
+                        # Usar texto ou outro identificador único dos elementos como chave e valor
                         chave = divs_indices[i].get_text(strip=True)
                         valor = divs_ocorrencias[i].get_text(strip=True)
 
-                        # Adiciona o par chave-valor ao dicionário
+                        # Adicionar o par chave-valor ao dicionário
                         ocorrencias[chave] = valor
 
                 self.estrutura["Áreas"] = ocorrencias
@@ -4872,22 +4492,185 @@ class HTMLParser:
                             self.estrutura["ProjetosOutros"].append(projeto_pesquisa)
                             chave = titulo_projeto = descricao = None  # Reinicia para o próximo ciclo
                             estado = 0  # Volta ao estado inicial
-                            
-    def add_qualis(self):
-        file_name = 'classificações_publicadas_todas_as_areas_avaliacao1672761192111.xls'
-        planilha_excel = os.path.join(self.find_repo_root(), '_data', file_name)
-        planilha = pd.read_excel(planilha_excel)
-        for artigo in self.json_data['Produções']['Artigos completos publicados em periódicos']:
-            try:
-                issn = artigo['ISSN']
-                estrato = planilha.loc[planilha['ISSN'].strip('-') == issn, 'Estrato'].values[0]
-                artigo['Qualis'] = estrato
-            except:
-                artigo['Qualis'] = ''
 
-    def process_producoes(self):
+    # def process_citacoes(self, div_citacoes, verbose=True):
+        # """
+        # div_citacoes = divs encontrada com o seletor de classe "layout-cell layout-cell-12", dentro do container encontrado com o seletor de classe "layout-cell layout-cell-12 data-cell"
+        # """
+
+    #     citacoes = []
+
+    #     # Web of Science
+    #     try:
+    #         # Aguardar o container de citações carregar
+    #         WebDriverWait(div_citacoes, 10).until(
+    #             EC.presence_of_element_located((By.CLASS_NAME, "science_cont"))
+    #         )
+
+    #         if verbose:    
+    #             print(f"       \nTexto do Conteiner: {div_citacoes.text}")
+            
+    #         if div_citacoes:
+    #             for container in div_citacoes:
+    #                 div_cites = container.find_elemnt(By.CLASS_NAME, "science_cont")
+    #                 fonte = div_cites.find_element(By.CLASS_NAME, "web_s").text
+    #                 trabalhos = div_cites.find_element(By.CLASS_NAME, "trab").text
+    #                 total_trabalhos = int(trabalhos.split(":")[1])
+                    
+    #                 citacoes = div_cites.find_element(By.CLASS_NAME, "cita").text
+    #                 total_citacoes = int(citacoes.split(":")[1])
+                    
+    #                 fator = div_cites.find_element(By.CLASS_NAME, "fator").text
+                    
+    #                 detalhes = div_cites.find_element(By.CLASS_NAME, "detalher").text
+    #                 autores, data = detalhes.split("Data:")
+                    
+    #                 dict_cites = {
+    #                     "fonte": fonte,
+    #                     "total_trabalhos": total_trabalhos,
+    #                     "total_citacoes": total_citacoes,
+    #                     "fator_h": fator,
+    #                     "autores": autores.strip(),
+    #                     "data": data.strip()
+    #                 }
+    #                 if dict_cites:
+    #                     citacoes.append(dict_cites)
+
+    #         else:
+    #             print(f"       Erro ao achar container de Citações, verificar seletor usado")
+    #     except Exception as e:
+    #         print(f"       Erro ao extrair Web of Science: {e}")
+
+    #     if citacoes:
+    #         if verbose:    
+    #             for citacao in citacoes:
+    #                 print(f"       \nFonte: {citacao.fonte}")
+    #                 print(f"       Total de trabalhos: {citacao.total_trabalhos}")
+    #                 print(f"       Total de citações: {citacao.total_citacoes}")
+    #                 print(f"       Fator H: {citacao.fator_h}")
+    #                 print(f"       Autores: {citacao.autores}")
+    #                 print(f"       Data: {citacao.data}")
+
+    #         self.estrutura["Citações"][citacao.fonte] = {
+    #             "Total de trabalhos": citacao.total_trabalhos,
+    #             "Total de citações": citacao.total_citacoes,
+    #             "Fator H": citacao.fator_h,
+    #             "Autores": citacao.autores,
+    #             "Data": citacao.data,
+    #             }
+    #     else:
+    #         print(f"       Citações não disponíveis, necessário criar perfil no Google Scholar")
+
+    # def process_citacoes(self, div_science_count):
+    #     try:
+    #         # Identificar fonte das citações
+    #         science_cont = div_science_count.find('div', class_='science_cont')
+    #         try:
+    #             is_web_science = 'web_s' in science_cont.get('class', [])
+    #             try:
+    #                 is_web_science = 'web_s' in div_science_count.find('div', class_='science_cont').get('class', [])
+    #             except Exception as e:
+    #                 print(f"       Erro ao identificar fonte de citações: {e}")
+    #         except:
+    #             print(f"       Não foi possível identificar a fonte de citações")
+            
+    #         # Extrai dados comuns
+    #         trabalhos = div_science_count.find('div', class_='trab').text.split(':')[1].strip()
+    #         citacoes = div_science_count.find('div', class_='cita').text.split(':')[1].strip()
+    #         fator_h = div_science_count.find('div', class_='fator').text.split(':')[1].strip()
+            
+    #         # Extrai detalhes
+    #         detalhes_div = div_science_count.find('div', class_='detalhes')
+    #         autor_link = detalhes_div.find('a')
+    #         if autor_link:
+    #             autores = autor_link.text.strip()
+    #         else:
+    #             autores = detalhes_div.text.split('Data:')[0].strip()
+                
+    #         data = detalhes_div.text.split('Data:')[1].strip()
+            
+    #         # Cria dicionário base
+    #         dados_citacao = {
+    #             'fonte': 'Web of Science' if is_web_science else 'Outras',
+    #             'total_trabalhos': int(trabalhos),
+    #             'total_citacoes': int(citacoes),
+    #             'autores': autores,
+    #             'data': data
+    #         }
+            
+    #         # Adiciona fator H apenas se for Web of Science
+    #         if is_web_science:
+    #             fator_div = div_science_count.find('div', class_='fator')
+    #             if fator_div:
+    #                 fator_h = fator_div.text.split(':')[1].strip()
+    #                 dados_citacao['fator_h'] = int(fator_h)
+                
+    #         return dados_citacao
+
+    #     except Exception as e:
+    #         print(f"       Erro ao processar citação: {e}")
+    #         return None
+
+    def process_citacoes(self, div_science_count, verbose=True):
+        """
+        div_citacoes = divs encontrada com o seletor de classe "layout-cell layout-cell-12", 
+        dentro do container encontrado com o seletor de classe "layout-cell layout-cell-12 data-cell"
+        """
+        try:           
+            # Extrai o nome da fonte do conteúdo do web_s
+            try:
+                web_s = div_science_count.find('div', class_='web_s')
+                if verbose:
+                    print(f"       div_citacoes: {web_s}")
+                fonte = web_s.text.strip() if web_s.text.strip() else web_s.string
+                if verbose:
+                    print(f"       Fonte: {fonte}")
+            except:
+                fonte = "NãoIdent"
+                print(f"       Erro ao extrair fonte de citação")
+
+            # Extrai dados comuns
+            trabalhos = div_science_count.find('div', class_='trab').text.split(':')[1].strip()
+            citacoes = div_science_count.find('div', class_='cita').text.split(':')[1].strip()
+            
+            # Extrai detalhes e trata os caracteres especiais
+            detalhes_div = div_science_count.find('div', class_='detalhes')
+            texto_detalhes = detalhes_div.text.replace('\xa0', ' ').strip()
+            
+            # Separa autores e data
+            if 'Data:' in texto_detalhes:
+                autores, data = texto_detalhes.split('Data:')
+            else:
+                autores = texto_detalhes
+                data = ''
+                
+            # Cria dicionário com os dados
+            dados_citacao = {
+                'fonte': fonte,
+                'total_trabalhos': int(trabalhos),
+                'total_citacoes': int(citacoes),
+                'autores': autores.strip(),
+                'data': data.strip()
+            }
+            
+            # Adiciona fator H se existir
+            fator_div = div_science_count.find('div', class_='fator')
+            if fator_div:
+                fator_h = fator_div.text.split(':')[1].strip()
+                dados_citacao['fator_h'] = int(fator_h)
+                
+            return dados_citacao
+            
+        except Exception as e:
+            print(f"       Citações não disponíveis, necessário criar perfil no Google Scholar")
+            print(f"       Erro ao processar citação: {e}")
+            return None
+
+    def process_producoes(self, verbose=True):
         self.estrutura["Produções"]={}
+        self.estrutura["Citações"]={}
         dados_artigos = []
+        dados_citacoes= []
         ano=''
         issn=''
         titulo=''
@@ -4897,14 +4680,45 @@ class HTMLParser:
         data_issn = ''
         jcr_impact = ''
         subsec_name = ''
-        primeiro_autor=''
         ano_publicacao=''
-        fator_impacto = ''
+        # primeiro_autor=''
+        # fator_impacto = ''
+
         secoes = self.soup.find_all('div', class_='title-wrapper')
         for secao in secoes:
             titulo_h1 = secao.find('h1')
             if titulo_h1 and 'Produções' in titulo_h1.get_text(strip=True):
                 data_cell = secao.find('div', class_='layout-cell layout-cell-12 data-cell')
+
+                try:                
+                    ## Extrair quantidade de citações e índice-H
+                    dados_citacoes = []
+                    layout_cells = self.soup.find_all('div', class_='layout-cell layout-cell-12')
+                    for cell in layout_cells:
+                        science_cont = cell.find('div', class_='science_cont')
+                        if science_cont:
+                            dados = self.process_citacoes(cell)
+                            if dados:
+                                dados_citacoes.append(dados)
+                                if verbose:
+                                    print(f"       {dados}")
+                except Exception as e:
+                    print(f"       Erro ao processar Citações: {e}")
+
+                # try:
+                #     ## Extrair quantidade de citações e índice-H
+                #     divs_citacoes = data_cell.find_children("div", class_="layout-cell layout-cell-12")
+                #     if divs_citacoes:
+                #         print(f"       {len(divs_citacoes)} divs de citações encontradas")
+                #         for div_citacoes in divs_citacoes:
+                #             self.process_citacoes(div_citacoes)
+                #             if verbose:
+                #                 print(f"       Seção de citações processada com sucesso")
+                #     else:
+                #         print(f"       Não foi possível localizar seção de Citações no currículo")    
+                # except Exception as e:
+                #     print(f"       Erro ao processar Citações: {e}")
+
                 ## Extrair dados dos artigos em periódicos
                 div_artigos = data_cell.find_all("div", id="artigos-completos", recursive=False)
                 for div_artigo in div_artigos:
@@ -4912,7 +4726,6 @@ class HTMLParser:
                     subsecao = div_artigo.find('b')
                     if subsecao:
                         subsec_name = subsecao.get_text(strip=True)
-                        # print(subsec_name)
                     artigos_completos = div_artigo.find_all("div", class_="artigo-completo", recursive=False)
                     for artigo_completo in artigos_completos:
                         dados_qualis = artigo_completo.find('p')
@@ -4920,36 +4733,27 @@ class HTMLParser:
                             layout_cell = artigo_completo.find("div", class_="layout-cell layout-cell-11")
                             # print(f'\nlayout_cell: {layout_cell}')
 
-                            # Extrai especificamente o ano da publicação
-                            # ano_tag = layout_cell.find('span', {'class': 'informacao-artigo', 'data-tipo-ordenacao': 'ano'})
-                            # ano = int(ano_tag.text) if ano_tag else 'Ano não disponível'                        
-                            # ano = self.extract_year(layout_cell)
-                            # print(f'Primeira extração de ano: {ano}')
-
-                            # # Extrair estrato qualis e impacto JCR
-                            # qualis_info = self.extract_qualis(layout_cell)
-
-                            # Extrai o título, periódico, e outras informações diretamente do texto
+                            # Extrair o título, periódico, e outras informações diretamente do texto
                             texto_completo = layout_cell.get_text(separator=' ', strip=True)
                             
-                            # Assume que título vem após autores e termina antes de periódico ou volume
+                            # Assumir que título vem após autores e antes de periódico ou volume
                             titulo_match = re.search(r'; ([^;]+?)\.', texto_completo)
                             autores = titulo_match.groups() if titulo_match else None
 
-                            # Expressão regular para capturar as partes especificadas
+                            # Expressões regulares para capturar as partes especificadas
                             pattern = re.compile(
-                                r'(?P<primeiro_autor>.*?) ' # até o primeiro espaço antes do ano, não gananciosa
-                                r'(?P<ano>\d{4}) ' # Captura o ano como uma sequência de 4 dígitos
-                                r'(?P<autores>.+?) ' # após o ano até ponto fim dos autores, não gananciosa
-                                r'\. ' # Capta o ponto e o espaço que indica o término da seção de autores
-                                r'(?P<titulo_revista>.+?) ' # Capta o título até encontrar "v. ", não gananciosa
-                                r'v\. ' # Identifica o início dos detalhes da publicação, marcando o fim do título
+                                r'(?P<primeiro_autor>.*?) ' #até primeiro espaço antes do ano 
+                                r'(?P<ano>\d{4}) ' # Captura ano como uma sequência de 4 dígitos
+                                r'(?P<autores>.+?) ' # após ano até ponto fim dos autores not-greedy
+                                r'\. ' # Capta ponto e espaço que indica o término da seção de autores
+                                r'(?P<titulo_revista>.+?) ' # Capta título até encontrar "v. ", not-g
+                                r'v\. ' # Identifica início dos detalhes da publicação, fim do título
                             )
 
-                            # Busca na string pelos padrões
+                            # Buscar na string pelos padrões
                             match = pattern.search(texto_completo)
 
-                            # Verifica se houve correspondência e extrai os grupos
+                            # Verificar se houve correspondência e extrai os grupos
                             if match:
                                 ano_publicacao = match.group('ano')
                                 # print(f' Segunda extração de ano: {ano_publicacao}')
@@ -4974,7 +4778,7 @@ class HTMLParser:
                             img_original_title = layout_cell.find("img")
                             if img_original_title:
                                 attrs = img_original_title.attrs # Extrair os atributos do elemento
-                                img_attributes_dict = dict(attrs) # Converter os atributos em um dicionário
+                                img_attributes_dict = dict(attrs) # Converter atributos em dicionário
                                 complete_text = img_attributes_dict.get('original-title')
                                 parts = complete_text.split('(') if complete_text else ""
                                 issn = parts[1].split(')')[0].strip() if parts else ""
@@ -5047,6 +4851,7 @@ class HTMLParser:
                     print(f"       DOI indisponível em {sem_doi:02} artigos extraídos")
                 
                 self.estrutura["Produções"][subsec_name] = dados_artigos
+                self.estrutura["Citações"] = dados_citacoes
 
                 ## Extrair demais produções
                 divs_cita_artigos = data_cell.find_all("div", class_="cita-artigos", recursive=False)
@@ -5067,7 +4872,7 @@ class HTMLParser:
                     for sibling in next_siblings:
                         # Verificar se o irmão tem a classe "cita-artigos"
                         if 'cita-artigos' in sibling.get('class', []):
-                            # Encontramos o marcador para parar, sair do loop
+                            # Encontrado marcador para parar, pode sair do loop
                             break
                         # Verificar as outras classes e adicionar aos arrays correspondentes
                         if 'layout-cell layout-cell-1 text-align-right' in " ".join(sibling.get('class', [])):
@@ -7693,6 +7498,209 @@ class ArticlesCounter:
 
     # ESTRATÉGIAS ANTIGAS NÃO MAIS UTILIZADAS
 
+
+## Não são mais necessários por hora
+# from PIL import Image
+# from io import BytesIO
+# from altair import value
+# from pprint import pprint
+# from zipfile import ZipFile
+# from PyPDF2 import PdfReader
+# from matplotlib import legend
+# from neo4j import GraphDatabase
+# from nltk.corpus import stopwords
+# from sklearn.cluster import KMeans
+# from Levenshtein import jaro_winkler
+# from urllib3.util.retry import Retry
+# from tqdm.notebook import trange, tqdm
+# from typing import List, Dict, Any
+# from typing import Any, Optional, Union
+# from flask import render_template_string
+# from requests.adapters import HTTPAdapter
+# from sklearn.metrics import silhouette_score
+# from collections import deque, defaultdict, Counter
+# from sklearn.feature_extraction.text import TfidfVectorizer
+
+
+    # @staticmethod
+    # def connect_driver(only_doctors):
+    #     '''
+    #     Conecta ao servidor do CNPq para busca de currículo
+    #     '''
+    #     # print(f'Conectando com o servidor do CNPq...')
+    #     # print(f'Iniciada extração de {len(lista_nomes)} currículos')
+    #     ## https://www.selenium.dev/documentation/pt-br/webdriver/browser_manipulation/
+    #     # options   = Options()
+    #     # options.add_argument("--headless")
+    #     # driver   = webdriver.Chrome(options=options)
+
+    #     driver_path = None
+    #     try:
+    #         # Caminho para o chromedriver no sistema local
+    #         if platform.system() == "Windows":
+    #             driver_path=LattesScraper.find_repo_root(os.getcwd())/'chromedriver'/'chromedriver.exe'
+    #         else:
+    #             driver_path=LattesScraper.find_repo_root(os.getcwd())/'chromedriver'/'chromedriver'
+    #     except Exception as e:
+    #         print("Não foi possível estabelecer uma conexão, verifique o chromedriver")
+    #         print(e)
+        
+    #     # print(driver_path)
+    #     service = Service(driver_path)
+    #     driver = webdriver.Chrome(service=service)
+    #     driver.set_window_position(-20, -10)
+    #     driver.set_window_size(170, 1896)
+    #     # only_doctors = True
+    #     if only_doctors:
+    #         print('Buscando currículos apenas entre nível de doutorado')
+    #         url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
+    #         driver.get(url_docts) # acessa a url de busca somente de doutores 
+    #     else:
+    #         print('Buscando currículos com qualquer nível de formação')
+    #         url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
+    #         driver.get(url_busca) # acessa a url de busca do CNPQ
+    #         # Localize o elemento do checkbox
+    #         checkbox = driver.find_element(By.ID, "buscarDemais")
+    #         # try:
+    #         #     checkbox = WebDriverWait(driver, 10).until(
+    #         #         EC.element_to_be_clickable((By.CSS_SELECTOR, "div.input-checkbox input[type='checkbox']"))
+    #         #     )
+
+    #         #     action_chains = ActionChains(driver)
+    #         #     action_chains.move_to_element(checkbox).perform()
+
+    #         #     if not checkbox.is_selected():
+    #         #         driver.execute_script("arguments[0].click();", checkbox)
+
+    #         # except Exception as e:
+    #         #     print(f"Erro ao localizar checkbox: {e}")
+    #         #     driver.save_screenshot("erro_screenshot.png") 
+    #         # Verifique se o checkbox está marcado
+    #         if not checkbox.is_selected():
+    #             # Se o checkbox não estiver marcado, mova o mouse até ele e clique
+    #             actions = ActionChains(driver)
+    #             actions.move_to_element(checkbox).click().perform()
+    #         # driver.get(url_busca) # acessa a url de busca do CNPQ
+    #     driver.mouse = webdriver.ActionChains(driver)
+    #     return driver
+
+
+
+
+    ## Não considerava os casos onde lista de autores vem oculta por et al. com javscript
+    # def extract_info(self):
+    #     soup = BeautifulSoup(self.html_element, 'html.parser')
+    #     qualis_info = self.extract_qualis(soup)
+
+    #     # Extrai o primeiro autor
+    #     autores = soup.find_all('span', class_='informacao-artigo', data_tipo_ordenacao='autor')
+    #     primeiro_autor = autores[0].text if autores else None
+    #     # Considera todos os textos após o autor como parte da lista de autores até um elemento estrutural significativo (<a>, <b>, <sup>, etc.)
+    #     autores_texto = self.html_element.split('autor">')[-1].split('</span>')[0] if autores else ''
+
+    #     ano_tag = soup.find('span', {'class': 'informacao-artigo', 'data-tipo-ordenacao': 'ano'})
+    #     ano = int(ano_tag.text) if ano_tag else 'Ano não disponível'
+
+    #     # Extrai o título, periódico, e outras informações diretamente do texto
+    #     texto_completo = soup.get_text(separator=' ', strip=True)
+        
+    #     # Assume que o título vem após os autores e termina antes de uma indicação de periódico ou volume
+    #     titulo_match = re.search(r'; ([^;]+?)\.', texto_completo)
+    #     titulo = titulo_match.group(1) if titulo_match else None
+
+    #     # Periódico e detalhes como volume, página, etc., 
+    #     periodico_match = re.search(r'(\. )([^.]+?),( v\. \d+, p\. \d+, \d+)', texto_completo)
+    #     periodico = periodico_match.group(2) if periodico_match else None
+    #     detalhes_periodico = periodico_match.group(3) if periodico_match else None
+
+    #     # Extrai citações se disponível
+    #     citacoes = soup.find('span', class_='numero-citacao')
+    #     citacoes = int(citacoes.text) if citacoes else 0
+
+    #     # Extrai ISSN
+    #     issn = soup.find('img', class_='ajaxJCR')
+    #     issn = issn['data-issn'] if issn else None
+
+    #     # Qualis/CAPES pode ser extraído se existir um padrão identificável
+    #     qualis_capes = "quadriênio 2017-2020"  # Hardcoded, mas pode ser ajustado futuramente
+
+    #     # Monta o dicionário de resultados
+    #     resultado = {
+    #         "dados_gerais": texto_completo,
+    #         "primeiro_autor": primeiro_autor,
+    #         "ano": ano,
+    #         "autores": autores_texto,
+    #         "titulo": titulo,
+    #         "periodico": f"{periodico}{detalhes_periodico}",
+    #         "data-issn": issn,
+    #         "impacto": qualis_info.get('JCR'),
+    #         "Qualis/CAPES": qualis_capes,
+    #         "qualis": qualis_info.get('Qualis'),
+    #         "citacoes": citacoes,
+    #     }
+
+    #     return resultado, json.dumps(resultado, ensure_ascii=False)
+
+                            
+    # def add_qualis(self):
+    #     file_name = 'classificações_publicadas_todas_as_areas_avaliacao1672761192111.xls'
+    #     planilha_excel = os.path.join(self.find_repo_root(), '_data', file_name)
+    #     planilha = pd.read_excel(planilha_excel)
+    #     for artigo in self.json_data['Produções']['Artigos completos publicados em periódicos']:
+    #         try:
+    #             issn = artigo['ISSN']
+    #             estrato = planilha.loc[planilha['ISSN'].strip('-') == issn, 'Estrato'].values[0]
+    #             artigo['Qualis'] = estrato
+    #         except:
+    #             artigo['Qualis'] = ''
+
+    # def extrair_dados_jcr(self, texto):
+    #     # Regex para capturar o nome do periódico e o fator de impacto
+    #     regex = r"(.+?)\s*\((\d{4}-\d{4})\)<br />\s*Fator de impacto \(JCR (\d{4})\):\s*(\d+\.\d+)"
+    #     match = re.search(regex, texto)
+
+    #     if match:
+    #         periódico = f"{match.group(1)} ({match.group(2)})"
+    #         fator_de_impacto = f"Fator de impacto (JCR {match.group(3)}): {match.group(4)}"
+    #         return periódico, fator_de_impacto
+    #     else:
+    #         return None, None
+
+    
+    # def process_producao_bibliografica(self):
+    #     # Inicializa a lista de produções bibliográficas
+    #     self.estrutura["ProducaoBibliografica"] = {
+    #         "Artigos completos publicados em periódicos": [],
+    #         "Livros e capítulos": [],
+    #         "Trabalhos completos publicados em anais de congressos": [],
+    #         # Adicione mais categorias conforme necessário
+    #     }
+
+    #     # Mapeia os identificadores das seções para as categorias de produção bibliográfica
+    #     secoes = {
+    #         "ArtigosCompletos": "Artigos completos publicados em periódicos",
+    #         "LivrosCapitulos": "Livros e capítulos",
+    #         "TrabalhosPublicadosAnaisCongresso": "Trabalhos completos publicados em anais de congressos",
+    #     }
+
+    #     # Percorre cada seção de interesse no documento HTML
+    #     for secao_id, categoria in secoes.items():
+    #         secao_inicio = self.soup.find("a", {"name": secao_id})
+    #         if not secao_inicio:
+    #             continue
+
+    #         # Encontra todos os itens dentro da seção até a próxima seção
+    #         proxima_secao = secao_inicio.find_next_sibling("a", href=True)
+    #         itens_secao = []
+    #         atual = secao_inicio.find_next_sibling("div", class_="layout-cell layout-cell-11")
+    #         while atual and atual != proxima_secao:
+    #             if atual.text.strip():
+    #                 itens_secao.append(atual.text.strip())
+    #             atual = atual.find_next_sibling("div", class_="layout-cell layout-cell-11")
+
+    #         # Adiciona os itens encontrados à categoria correspondente
+    #         self.estrutura["ProducaoBibliografica"][categoria].extend(itens_secao)
+
     # # Função para apurar pontos de publicações (correção completa)
     # def apurar_jcr_publicacoes(self, dict_list, keylevel_one, keylevel_two, data_measure, class_mapping, year_ini, year_end):
     #     # Dicionário para armazenar os resultados
@@ -8410,3 +8418,203 @@ class ArticlesCounter:
     #         else:
     #             break
     #     return pessoas
+
+
+    ###### Experiências com tratamento de homônimos
+                            # css_elemento = self.driver.find_element(By.CSS_SELECTOR, elemento.text)
+                            # css_elemento = self.driver.find_element(By.XPATH, f"//a[contains(text(), {elemento.text})]")
+                            
+                            ## TO-FIX: PRECISA DISPARAR JAVASCRIPT PARA CARREGAR OS RESULTADOS DE CADA PÁGINA DA PAGINAÇÃO
+                            # clicar no elemento encontrado para carregar próxima página na paginação
+                            
+                            # WebDriverWait(soup, self.delay).until(
+                            #     EC.presence_of_element_located((By.CSS_SELECTOR, ".tit_form"))
+                            # )                            
+                            # Carregar os resultados da nova página a verificar presença de termos_busca
+                            
+                            # resultados = soup.findChildren('li')
+                            # count+=len(resultados)
+                            # print(f'       Carregada página {count_pages:02}/{len(numpaginas):02} de resultados')
+                            # text_results = [x.text.replace('\xa0',' ') for x in resultados]
+                            # if self.verbose:
+                            #     print(f'       Elem text: {len(text_results)} | {text_results}')
+                            
+                            # # iterar em cada resultado
+                            # for n,i in enumerate(resultados):
+                            #     try:
+                            #         # Ler dados prévios dos currículos e buscar termos
+                            #         elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+                            #     except Exception as e:
+                            #         print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
+                            #         print(f'       ERRO: {e}')
+                            #         return None                            
+
+                        # Ler dados prévios dos currículos e buscar termos
+                        # resultados = soup.findChildren('li')
+                        # if self.verbose:
+                        #     print(f'       {len(resultados):2} Resultados: {type(resultados)} | {resultados}')
+                        # if resultados:
+                        #     try:
+                        #         # procurar nos resultados termos de busca
+                        #         elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+                        #         if elm_vinculo:
+                        #             break
+                        #     except Exception as e:
+                        #         print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
+                        #         print(f'       ERRO: {e}')
+                        #         traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+                        #         print(f'       Ocorrido em: {traceback_str}')
+                        #         print(f"       {'-'*120}")
+                        #         return None
+                        # else:
+                        #     print('       Não foi possível obter resultados para a busca')
+
+    # def handle_pagination_and_collect_profiles(self):
+    #     def extrair_dados_cv():
+    #         resultados = self.driver.find_elements(By.CSS_SELECTOR, "div.resultado")
+    #         dados_pessoas = []
+
+    #         for resultado in resultados:
+    #             nome = resultado.find_element(By.TAG_NAME, "a").text
+    #             link_detalhes = [y.get_attribute("href") for y in x for x in resultado.find_elements(By.TAG_NAME, "a")]
+    #             preview = resultado.find_element(By.CSS_SELECTOR, "br + br").text
+
+    #             dados_pessoa = {
+    #                 "nome": nome,
+    #                 "link_detalhes": link_detalhes,
+    #                 "dados_curriculo": preview,
+    #             }
+    #             dados_pessoas.append(dados_pessoa)
+    #         return dados_pessoas
+
+    #     preview = {}
+    #     profiles = []
+    #     pages_links=[]
+    #     while True:
+    #         pagination_div = self.driver.find_element(By.CLASS_NAME, "paginacao")
+    #         for x in pagination_div.find_elements(By.TAG_NAME, "a"):
+    #             pages_links.append(x.get_attribute("href"))
+    #             for n,page in enumerate(pages_links):
+    #                 try:
+    #                     print(f'{n}/{len(pages_links)} sendo lido...')
+    #                     page.click(page)
+    #                     WebDriverWait(self.driver, self.delay).until(
+    #                         EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".resultado")))
+    #                     results = self.driver.find_elements(By.CSS_SELECTOR, ".resultado > ol > li")
+    #                     dados_pessoas = extrair_dados_cv()
+    #                     profiles.append(dados_pessoas)
+    #                 except:
+    #                     pass
+        
+    #     preview['Curriculos'] = profiles
+    #             # next_button = self.driver.find_elements(By.CSS_SELECTOR, "próximo")
+    #             # if next_button:
+    #             #     next_button[0].click()
+    #             # else:
+    #             #     break
+    #     return preview
+
+
+
+    # def evolucao_anual(self, df_artigos, df_pessoal):
+    #     # Removendo duplicidades
+    #     # df_artigos = df_artigos.drop_duplicates(subset='titulo')
+
+    #     # Obter extremos do período para todos os anos dos dados
+    #     min_year = df_artigos['ano'].min()
+    #     max_year = df_artigos['ano'].max()
+    #     all_years = list(range(min_year, max_year + 1))
+
+    #     # Calcular a quantidade total de artigos por ano
+    #     artigos_por_ano = df_artigos.groupby('ano').size().reindex(all_years, fill_value=0).reset_index(name='count')
+
+    #     # Calcular quantidade de pesquisadores únicos a cada ano
+    #     ## TO-FIX: considerar só quem tem artigos
+    #     pesquisadores_por_ano = df_pessoal.groupby('ANO_INGRESSO_FIOCE')['NOME'].nunique().reindex(all_years, fill_value=0).reset_index(name='QTE_PESSOAS_ANO') 
+
+    #     # Criar a soma cumulativa de pesquisadores ao longo dos anos
+    #     pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] = pesquisadores_por_ano['QTE_PESSOAS_ANO'].cumsum()
+
+    #     # Média de artigos por pesquisador
+    #     pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = artigos_por_ano['count'] / pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] 
+        
+    #     # Corrigindo o FutureWarning:
+    #     # pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].replace(np.inf, 0, inplace=True)  # 
+    #     pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].replace(np.inf, 0)
+
+    #     # Calcular a proporção entre os dois eixos y
+    #     max_y1 = artigos_por_ano['count'].max()+10
+    #     max_y2 = pesquisadores_por_ano['QTE_TOTAL_PESSOAS'].max()
+    #     ratio = max_y1 / max_y2
+
+    #     # Definir buffer de 10%
+    #     buffer = 0.1
+        
+    #     # Criar figura com as devidas traces
+    #     fig = go.Figure()
+
+    #     # Adicionar trace de barras para a quantidade de artigos
+    #     fig.add_trace(go.Bar(
+    #         x=artigos_por_ano['ano'],
+    #         y=artigos_por_ano['count'],
+    #         name='Total de Artigos',
+    #         text=artigos_por_ano['count'],
+    #         textposition='outside'
+    #     ))
+
+    #     # Adicionar trace de linha para a soma cumulativa de pesquisadores
+    #     fig.add_trace(go.Scatter(
+    #         x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+    #         y=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+    #         name='Soma Cumulativa da Quantidade de Servidores',
+    #         mode='lines+markers+text',
+    #         text=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+    #         textposition='top center'
+    #     ))
+
+    #     # Adicionar trace de linha tracejada para a média de artigos por pesquisador (eixo secundário)
+    #     fig.add_trace(go.Scatter(
+    #         x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+    #         y=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'],
+    #         name='Média de Artigos por Pesquisador',
+    #         mode='lines+text',
+    #         line=dict(dash='dash'),
+    #         text=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].round(2),
+    #         textposition='top center',
+    #         yaxis='y2'  # Define o eixo secundário para a média
+    #     ))
+
+    #     # Atualizar layout do gráfico
+    #     fig.update_layout(
+    #         yaxis=dict(
+    #             title='Total de Artigos'
+    #         ),
+    #         yaxis2=dict(
+    #             title='Média de Artigos por Servidor (todas atividades)',
+    #             overlaying='y',
+    #             side='right',
+    #             # range=[0, max_y2 * (1 + buffer)],  # Remove o range fixo do eixo secundário
+    #             # tickvals=list(range(0, int(max_y2 * (1 + buffer)), int(max_y2/10))),  # Remove os tickvals fixos
+    #             # ticktext=list(range(0, int(max_y2 * (1 + buffer)), int(max_y2/10)))  # Remove os ticktext fixos
+    #         ),
+    #         xaxis=dict(tickvals=all_years),
+    #         legend=dict(
+    #             orientation="h",
+    #             x=0.2,
+    #             y=0.99
+    #         ),
+    #         title='Quantidade de Participações em Artigos, Soma Cumulativa de Servidores (todas atividades) e Média de Artigos por Servidor por Ano',
+    #     )
+
+    #     # Remover linhas de grade
+    #     fig.update_xaxes(showgrid=False)
+    #     fig.update_yaxes(showgrid=False)
+        
+    #     # Ajustar a altura e a largura
+    #     fig.update_layout(
+    #         width=1380,   # largura em pixels
+    #         height=800   # altura em pixels
+    #     )
+            
+    #     fig.show()
+    #     return pesquisadores_por_ano
