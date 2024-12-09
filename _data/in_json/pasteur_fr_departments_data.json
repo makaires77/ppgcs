@@ -7,9 +7,9 @@
         "aditional_info": {
             "qte_keywords": "7",
             "qte_teams": "17",
-            "qte_members": "228",
+            "qte_members": "229",
             "qte_projects": "View all81",
-            "qte_publication": "1763",
+            "qte_publication": "1764",
             "teams": [
                 {
                     "team_name": "Biological Image Analysis",
@@ -445,11 +445,11 @@
         "url": "https://research.pasteur.fr/en/department/global-health/",
         "aditional_info": {
             "qte_teams": "13",
-            "qte_members": "163",
+            "qte_members": "164",
             "qte_projects": "View all135",
             "qte_keywords": "2",
             "qte_tools": "2",
-            "qte_publication": "2407",
+            "qte_publication": "2410",
             "teams": [
                 {
                     "team_name": "Lyssavirus epidemiology and neuropathology",
@@ -606,10 +606,10 @@
         "aditional_info": {
             "qte_keywords": "1",
             "qte_teams": "16",
-            "qte_members": "179",
+            "qte_members": "180",
             "qte_projects": "View all77",
             "qte_tools": "3",
-            "qte_publication": "1437",
+            "qte_publication": "1438",
             "teams": [
                 {
                     "team_name": "Antibodies in Therapy and Pathology",
@@ -853,7 +853,7 @@
         "aditional_info": {
             "qte_keywords": "13",
             "qte_teams": "8",
-            "qte_members": "115",
+            "qte_members": "116",
             "qte_projects": "View all46",
             "qte_tools": "5",
             "qte_publication": "1006",
@@ -974,7 +974,7 @@
         "aditional_info": {
             "qte_keywords": "6",
             "qte_teams": "22",
-            "qte_members": "194",
+            "qte_members": "193",
             "qte_projects": "View all92",
             "qte_tools": "5",
             "qte_publication": "2261",
@@ -1119,9 +1119,9 @@
         "url": "https://research.pasteur.fr/en/department/virology/",
         "aditional_info": {
             "qte_teams": "24",
-            "qte_members": "208",
-            "qte_projects": "View all104",
-            "qte_publication": "2010",
+            "qte_members": "205",
+            "qte_projects": "View all105",
+            "qte_publication": "2012",
             "teams": [
                 {
                     "team_name": "Arboviruses and Insect Vectors",

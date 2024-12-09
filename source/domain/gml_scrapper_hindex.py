@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
+# from chromedriver_manager import ChromeDriverManager # não usar esta forma
 from bs4 import BeautifulSoup
 import time
 import random
@@ -160,8 +161,8 @@ class GoogleScholarScraper:
                         # Extrair número de citações
                         try:
                             citations = profile.find_element(By.CLASS_NAME, "gs_ai_cby").text
-                            if verbose:
-                                print(f"  Total de citações: {citations}")                            
+                            # if verbose:
+                            #     print(f"  Total de citações: {citations}")                            
                             initial_data["citacoes"] = int(''.join(filter(str.isdigit, citations)))
                         except:
                             pass

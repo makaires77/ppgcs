@@ -1,17 +1,17 @@
 nome,afiliacao,dominio,citacoes,areas,total_citacoes,citacoes_desde_2019,indice_h,indice_h_desde_2019,indice_i10,indice_i10_desde_2019
-Márcio Flávio Moura de Araújo,Fundação Oswaldo Cruz,fiocruz.br,3825,"['Diabetes', 'HIV-AIDS', 'Alimentos Funcionais']",3825,2057,34,26,89,59
-Fabio Miyajima,University of Liverpool,liv.ac.uk,3286,"['Host response', 'molecular epidemiology of infectious and …', 'Pharmacology and Genetics', 'Clostridium difficile']",3286,1905,29,24,49,45
-Fernando Ferreira Carneiro,Fundação Oswaldo Cruz - Ceará,fiocruz.br,3286,"['Saúde e Ambiente no Campo', 'Floresta e Águas', 'Ecologia de Saberes', 'Vigilância Popular em Saúde']",3286,2019,28,19,50,34
-Roberto Wagner Júnior Freire de Freitas,Fundação Oswaldo Cruz,fiocruz.br,2443,"['Enfermagem em Saúde Coletiva', 'Imunização', 'Saúde da Família', 'Doenças Crônicas não transmissíveis', 'Diabetes Mellitus']",2443,1631,29,22,67,52
-Ivana Cristina de Holanda Cunha Barreto,Researcher of FIOCRUZ,fiocruz.br,2330,"['public health', 'health education', 'primary health care', 'COVID-19']",2330,1256,24,18,51,28
-Jaime Ribeiro-Filho,"Pesquisador em Saúde pública, Fundação Oswaldo Cruz, Ceará.",fiocruz.br,1868,"['Farmacologia', 'Inflamação', 'Produtos Naturais', 'Etnofarmacologia']",1868,1673,26,24,54,51
-Carla Freire Celedonio Fernandes,Fiocruz Ceará,,1442,['Biotecnologia'],1442,919,20,18,28,27
-Roberto Nicolete,"Pesquisador em Saúde Pública, Fundação Oswaldo Cruz",fiocruz.br,1253,"['farmácia', 'imunologia', 'farmacologia', 'micro/nanotecnologia', 'doenças infecciosas']",1253,773,19,15,29,21
-Vanira Matos Pessoa,Fundação Oswaldo Cruz ( FIOCRUZ),fiocruz.br,1220,"['Atenção primária à saúde', 'Saúde da família', 'Saúde ambiente e trabalho', 'Saúde das populações do campo', 'da floresta ed']",1220,905,17,14,27,20
-Gilvan Pessoa Furtado,Pesquisador da Fiocruz - Ceará,fiocruz.br,998,"['Anticorpos', 'Enzimas industriais', 'Engenharia de Enzimas', 'Evolução Dirigida', 'Estrutura e função de Proteinas']",998,746,15,15,21,17
-Marcos Roberto Lourenzoni,Fundação Oswaldo Cruz - Ceará,fiocruz.br,541,"['Molecular Simulation', 'Biotechnology', 'Enzymes', 'CAR-T Cell-T Cell']",541,266,12,9,14,9
-João Herminio Martins da Silva,Fundação Oswaldo Cruz,fiocruz.br,310,['Biofísica Computacional'],310,221,9,8,9,7
-Marcela Helena Gambim Fonseca,Fiocruz Ceará,fiocruz.br,229,['Imunologia'],229,227,8,8,6,6
-Raphael Trevizani,Fiocruz,raphaeltrevizani.com,214,['Immunoinformatics'],214,155,8,7,6,3
-Anna Carolina Machado Marinho,"Pesquisadora em Saúde Pública, Fundação Oswaldo Cruz",fiocruz.br,55,"['Biotecnologia', 'Proteômica']",55,34,4,3,3,2
-Antonio Marcos Aires Barbosa,Fundação Oswaldo Cruz - FIOCRUZ,,27,['Computação Aplicada'],27,27,2,2,2,2
+Márcio Flávio Moura de Araújo,Fundação Oswaldo Cruz,fiocruz.br,3830,"['Diabetes', 'HIV-AIDS', 'Alimentos Funcionais']",0,0,0,0,0,0
+Fabio Miyajima,University of Liverpool,liv.ac.uk,3298,"['Host response', 'molecular epidemiology of infectious and …', 'Pharmacology and Genetics', 'Clostridium difficile']",0,0,0,0,0,0
+Fernando Ferreira Carneiro,Fundação Oswaldo Cruz - Ceará,fiocruz.br,3293,"['Saúde e Ambiente no Campo', 'Floresta e Águas', 'Ecologia de Saberes', 'Vigilância Popular em Saúde']",0,0,0,0,0,0
+Roberto Wagner Júnior Freire de Freitas,Fundação Oswaldo Cruz,fiocruz.br,2454,"['Enfermagem em Saúde Coletiva', 'Imunização', 'Saúde da Família', 'Doenças Crônicas não transmissíveis', 'Diabetes Mellitus']",0,0,0,0,0,0
+Ivana Cristina de Holanda Cunha Barreto,Researcher of FIOCRUZ,fiocruz.br,2338,"['public health', 'health education', 'primary health care', 'COVID-19']",0,0,0,0,0,0
+Jaime Ribeiro-Filho,"Pesquisador em Saúde pública, Fundação Oswaldo Cruz, Ceará.",fiocruz.br,1880,"['Farmacologia', 'Inflamação', 'Produtos Naturais', 'Etnofarmacologia']",0,0,0,0,0,0
+Carla Freire Celedonio Fernandes,Fiocruz Ceará,,1446,['Biotecnologia'],0,0,0,0,0,0
+Roberto Nicolete,"Pesquisador em Saúde Pública, Fundação Oswaldo Cruz",fiocruz.br,1260,"['farmácia', 'imunologia', 'farmacologia', 'micro/nanotecnologia', 'doenças infecciosas']",0,0,0,0,0,0
+Vanira Matos Pessoa,Fundação Oswaldo Cruz ( FIOCRUZ),fiocruz.br,1224,"['Atenção primária à saúde', 'Saúde da família', 'Saúde ambiente e trabalho', 'Saúde das populações do campo', 'da floresta ed']",0,0,0,0,0,0
+Gilvan Pessoa Furtado,Pesquisador da Fiocruz - Ceará,fiocruz.br,999,"['Anticorpos', 'Enzimas industriais', 'Engenharia de Enzimas', 'Evolução Dirigida', 'Estrutura e função de Proteinas']",0,0,0,0,0,0
+Marcos Roberto Lourenzoni,Fundação Oswaldo Cruz - Ceará,fiocruz.br,541,"['Molecular Simulation', 'Biotechnology', 'Enzymes', 'CAR-T Cell-T Cell']",0,0,0,0,0,0
+João Herminio Martins da Silva,Fundação Oswaldo Cruz,fiocruz.br,312,['Biofísica Computacional'],0,0,0,0,0,0
+Marcela Helena Gambim Fonseca,Fiocruz Ceará,fiocruz.br,229,['Imunologia'],0,0,0,0,0,0
+Raphael Trevizani,Fiocruz,raphaeltrevizani.com,215,['Immunoinformatics'],0,0,0,0,0,0
+Anna Carolina Machado Marinho,"Pesquisadora em Saúde Pública, Fundação Oswaldo Cruz",fiocruz.br,55,"['Biotecnologia', 'Proteômica']",0,0,0,0,0,0
+Antonio Marcos Aires Barbosa,Fundação Oswaldo Cruz - FIOCRUZ,,28,['Computação Aplicada'],0,0,0,0,0,0

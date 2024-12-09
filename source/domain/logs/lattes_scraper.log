@@ -1,17 +1,17 @@
-2024-12-04 16:23:26,353 - INFO - Currículo não encontrado: Carlos Jose Araujo Pinheiro
-2024-12-04 16:23:26,670 - ERROR - Erro StaleElementReferenceException ao buscar currículo
-2024-12-04 16:23:26,670 - ERROR - Erro ao buscar: Carlos Jose Araujo Pinheiro
-2024-12-04 16:23:40,469 - INFO - Currículo não encontrado: Charles Cerqueira De Abreu
-2024-12-04 16:23:40,784 - ERROR - Erro StaleElementReferenceException ao buscar currículo
-2024-12-04 16:23:40,784 - ERROR - Erro ao buscar: Charles Cerqueira De Abreu
-2024-12-04 16:28:13,757 - ERROR - Tentativa de extrair currículo de Giovanny Augusto Camacho Antevere Mazzarotto em scrape_retry() falhou: Message:        Erro ao realizar a extração para Giovanny Augusto Camacho Antevere Mazzarotto: Message: 
+2024-12-09 08:13:16,906 - ERROR - Tentativa de extrair currículo de Alice Paula Di Sabatino Guimarães em scrape_retry() falhou: Message:        Erro ao realizar a extração para Alice Paula Di Sabatino Guimarães: Message: 
 
 . Tentando novamente...
-2024-12-04 16:33:57,225 - INFO - Currículo não encontrado: Luciano Pinto Zorzanelli
-2024-12-04 16:33:57,748 - ERROR - Erro StaleElementReferenceException ao buscar currículo
-2024-12-04 16:33:57,748 - ERROR - Erro ao buscar: Luciano Pinto Zorzanelli
-2024-12-04 16:37:52,282 - INFO - Currículo não encontrado: Nilton Luiz Costa Machado
-2024-12-04 16:37:52,753 - ERROR - Erro StaleElementReferenceException ao buscar currículo
-2024-12-04 16:37:52,753 - ERROR - Erro ao buscar: Nilton Luiz Costa Machado
-2024-12-04 16:39:11,093 - ERROR - Erro ao buscar: Renato Caldeira De Souza
-2024-12-04 16:41:31,780 - ERROR - Erro ao buscar: Sergio Dos Santos Reis
+2024-12-09 08:17:43,970 - INFO - Currículo não encontrado: Carlos Jose Araujo Pinheiro
+2024-12-09 08:17:44,238 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-12-09 08:17:44,238 - ERROR - Erro ao buscar: Carlos Jose Araujo Pinheiro
+2024-12-09 08:17:57,790 - INFO - Currículo não encontrado: Charles Cerqueira De Abreu
+2024-12-09 08:17:58,065 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-12-09 08:17:58,065 - ERROR - Erro ao buscar: Charles Cerqueira De Abreu
+2024-12-09 08:26:57,710 - INFO - Currículo não encontrado: Luciano Pinto Zorzanelli
+2024-12-09 08:26:57,963 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-12-09 08:26:57,963 - ERROR - Erro ao buscar: Luciano Pinto Zorzanelli
+2024-12-09 08:30:57,784 - INFO - Currículo não encontrado: Nilton Luiz Costa Machado
+2024-12-09 08:30:58,036 - ERROR - Erro StaleElementReferenceException ao buscar currículo
+2024-12-09 08:30:58,036 - ERROR - Erro ao buscar: Nilton Luiz Costa Machado
+2024-12-09 08:32:18,642 - ERROR - Erro ao buscar: Renato Caldeira De Souza
+2024-12-09 08:34:50,377 - ERROR - Erro ao buscar: Sergio Dos Santos Reis
