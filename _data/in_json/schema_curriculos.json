@@ -1,4 +1,3 @@
-//Esquema de validação do arquivo input_curriculos.json
 {
     "type": "array",
     "items": {

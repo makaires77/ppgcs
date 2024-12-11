@@ -338,7 +338,7 @@
         "aditional_info": {
             "qte_keywords": "22",
             "qte_teams": "12",
-            "qte_members": "128",
+            "qte_members": "129",
             "qte_projects": "View all60",
             "qte_tools": "10",
             "qte_publication": "1749",
@@ -446,10 +446,10 @@
         "aditional_info": {
             "qte_teams": "13",
             "qte_members": "164",
-            "qte_projects": "View all135",
+            "qte_projects": "View all134",
             "qte_keywords": "2",
             "qte_tools": "2",
-            "qte_publication": "2410",
+            "qte_publication": "2433",
             "teams": [
                 {
                     "team_name": "Lyssavirus epidemiology and neuropathology",
@@ -609,7 +609,7 @@
             "qte_members": "180",
             "qte_projects": "View all77",
             "qte_tools": "3",
-            "qte_publication": "1438",
+            "qte_publication": "1439",
             "teams": [
                 {
                     "team_name": "Antibodies in Therapy and Pathology",
@@ -815,7 +815,7 @@
             "qte_teams": "5",
             "qte_members": "57",
             "qte_projects": "View all14",
-            "qte_publication": "382",
+            "qte_publication": "385",
             "teams": [
                 {
                     "team_name": "Fungal Biology and Pathogenicity",

@@ -1444,58 +1444,41 @@ class PlotProduction:
 
 class JSONFileManager:
     def list_json(self, folder):
-        # Criar uma lista para armazenar os nomes dos arquivos JSON
-        json_files = []
-
-        for i in os.listdir(folder):
-            try:
-                ext = i.split('.')[1]
-                if ext == 'json':
-                    json_files.append(i)
-            except IndexError:
-                # Ignora arquivos sem extensão
-                pass
-
-        # Ordenar a lista de arquivos JSON em ordem alfabética
+        json_files = [i for i in os.listdir(folder) if i.endswith('.json')]
         json_files.sort()
-
-        # Imprimir os arquivos JSON em ordem
+        
         print('Arquivos de entrada a processar:')
         for file in json_files:
             print(f'  {file}')
-
+        
         return json_files
 
     # Carregar arquivo 'dict_list.json' para a variável com dados de criação e modificação
     def load_from_json(self, file_path):
-        """
-        Carrega um arquivo JSON e retorna seu conteúdo e data de criação.
-        Parâmetros:
-            file_path (str): O caminho para o arquivo JSON.
-        Retorna:
-            dict, str: O conteúdo do arquivo JSON e sua data de criação.
-        """
-        with open(file_path, 'r', encoding='utf-8') as file:
-            data = json.load(file)
+        try:
+            with open(file_path, 'r', encoding='utf-8') as file:
+                content = file.read()
+                if not content.strip():
+                    raise ValueError("O arquivo JSON está vazio")
+                data = json.loads(content)
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Erro ao decodificar o JSON: {e}")
+        except Exception as e:
+            raise ValueError(f"Erro ao ler o arquivo: {e}")
 
-        # Obter datas de criação e modificação do arquivo
         creation_date = os.path.getctime(file_path)
         modification_date = os.path.getmtime(file_path)
 
-        # Converter timestamps para datas no fuso horário de Brasília
         brasilia_tz = pytz.timezone('America/Sao_Paulo')
         creation_date_brasilia = datetime.fromtimestamp(creation_date).astimezone(brasilia_tz)
         modification_date_brasilia = datetime.fromtimestamp(modification_date).astimezone(brasilia_tz)
 
-        # Formatar datas com dd/mm/aaaa hh:mm:ss
         formatted_creation_date = creation_date_brasilia.strftime("%d/%m/%Y %H:%M:%S")
         formatted_modification_date = modification_date_brasilia.strftime("%d/%m/%Y %H:%M:%S")
 
-        # Calcular contagem de horas até a data atual
         now = datetime.now(brasilia_tz)
         time_delta = now - modification_date_brasilia
 
-        # Determinar unidade de tempo (minutos, horas ou dias)
         if time_delta.total_seconds() < (60*60):
             unit = "minutos"
             time_count = round(time_delta.total_seconds() / 60, 1)
@@ -1508,17 +1491,23 @@ class JSONFileManager:
 
         return data, formatted_creation_date, formatted_modification_date, time_count, unit
 
-    def verifify_json(self, folder, filename):
-        pathfilename = os.path.join(folder,filename)
-        dict_list, formatted_creation_date, formatted_modification_date, time_count, unit = self.load_from_json(os.path.join(pathfilename))
-        print(f"\n{len(dict_list)} dicionários aninhados em lista de dicionários '{filename}'")
-        # print(f"Arquivo criado inicialmente em {formatted_creation_date} carregado com sucesso")
-        print(f"Extração realizada em {formatted_modification_date} a {time_count} {unit}")    
+    def verify_json(self, folder, filename):
+        pathfilename = os.path.join(folder, filename)
+        try:
+            dict_list, formatted_creation_date, formatted_modification_date, time_count, unit = self.load_from_json(pathfilename)
+            print(f"\n{len(dict_list)} dicionários aninhados em lista de dicionários '{filename}'")
+            print(f"Extração realizada em {formatted_modification_date} a {time_count} {unit}")
+        except ValueError as e:
+            print(f"Erro ao processar o arquivo '{filename}': {e}")
 
     # Função para salvar a lista de dicionários em um arquivo .json
     def save_to_json(self, data, file_path):
-        with open(file_path, 'w', encoding='utf-8') as file:
-            json.dump(data, file, ensure_ascii=False, indent=4)
+        try:
+            with open(file_path, 'w', encoding='utf-8') as file:
+                json.dump(data, file, ensure_ascii=False, indent=4)
+            print(f"Dados salvos com sucesso em '{file_path}'")
+        except Exception as e:
+            print(f"Erro ao salvar o arquivo '{file_path}': {e}")   
 
 
 class attribute_to_be_non_empty:

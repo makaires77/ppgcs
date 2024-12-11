@@ -1,0 +1,107 @@
+[
+  {
+    "nome": "Sovaldi 400mg, caixa com 28 comprimidos revestidos",
+    "valor": 102405.49,
+    "fabricante": "Gilead Sciences"
+  },
+  {
+    "nome": "Daklinza 60mg, caixa com 28 comprimidos revestidos",
+    "valor": 28245.11,
+    "fabricante": "Bristol-Myers Squibb"
+  },
+  {
+    "nome": "Flebogamma 5g, frasco-ampola com 100mL de solução de uso intravenoso",
+    "valor": 3414.3,
+    "fabricante": "Grifols"
+  },
+  {
+    "nome": "RenehaVis 15,4mg, caixa com 1 seringa com 0,7mL de solusão de uso intra-articular (LMW - Baixo Peso Molecular)",
+    "valor": 2999.9,
+    "fabricante": "Biolab"
+  },
+  {
+    "nome": "Berinert 500UI, caixa com 1 frasco-ampola com pó para solução de uso intravenoso + 10mL de diluente",
+    "valor": 3100.0,
+    "fabricante": "CSL Behring"
+  },
+  {
+    "nome": "Tremfya 100mg, caixa com 1 seringa preenchida com 1mL de solução de uso subcutâneo + caneta aplicadora",
+    "valor": 18835.48,
+    "fabricante": "Janssen-Cilag"
+  },
+  {
+    "nome": "Nucala 100mg, caixa com 1 frasco-ampola com pó para solução de uso subcutâneo",
+    "valor": 9450.0,
+    "fabricante": "GSK"
+  },
+  {
+    "nome": "Nucala 100mg/mL, caixa com 1 carpule com solução de uso subcutâneo + caneta aplicadora + agulha",
+    "valor": 11390.0,
+    "fabricante": "GSK"
+  },
+  {
+    "nome": "Olumiant 2mg, caixa com 30 comprimidos revestidos",
+    "valor": 4606.92,
+    "fabricante": "Eli Lilly"
+  },
+  {
+    "nome": "Bozored 3,5mg, caixa com pó para solução de uso intravenoso",
+    "valor": 3509.04,
+    "fabricante": "Dr. Reddy's"
+  },
+  {
+    "nome": "Zaltrap 25mg/mL, caixa com 1 frasco-ampola com 4mL de solução de uso intravenoso",
+    "valor": 1993.06,
+    "fabricante": "Sanofi"
+  },
+  {
+    "nome": "Praluent 75mg/mL, caixa com 1 seringa preenchida com 1mL de solução de uso subcutâneo + 1 caneta aplicadora",
+    "valor": 1838.78,
+    "fabricante": "Sanofi"
+  },
+  {
+    "nome": "Praluent 150mg/mL, caixa com 1 seringa preenchida com 1mL de solução de uso subcutâneo + 1 caneta aplicadora",
+    "valor": 1838.78,
+    "fabricante": "Sanofi"
+  },
+  {
+    "nome": "Vequile 50mg/mL, caixa com 1 seringa preenchida de solução de uso intramuscular + agulha com 5mL",
+    "valor": 2302.0,
+    "fabricante": "Sandoz"
+  },
+  {
+    "nome": "Durolane 20mg/mL, caixa com 1 seringa com 3mL de solução de uso intra-articular",
+    "valor": 2026.26,
+    "fabricante": "Bioventus LLC"
+  },
+  {
+    "nome": "Exfuno 500mg, caixa com 1 frasco-ampola com pó para suspensão de uso intravenoso",
+    "valor": 534.0,
+    "fabricante": "Dr. Reddy's"
+  },
+  {
+    "nome": "Rekovelle 33,3mgc/mL, caixa com 1 caneta aplicadora preenchida com 1,08mL de solução de uso subcutâneo + 6 agulhas",
+    "valor": 1975.05,
+    "fabricante": "Ferring"
+  },
+  {
+    "nome": "Rekovelle 33,3mcg/mL, caixa com 1 caneta aplicadora preenchida com 0,36 mL de solução de uso subcutâneo + 3 agulhas",
+    "valor": 655.22,
+    "fabricante": "Ferring"
+  },
+  {
+    "nome": "Rekovelle 33,3mcg/mL, caixa com 1 caneta aplicadora preenchida com 2,16mL de solução de uso subcutâneo + 9 agulhas",
+    "valor": 3960.55,
+    "fabricante": "Ferring"
+  },
+  {
+    "nome": "Hemcibra 60mg, caixa com 1 frasco-ampola com 0,4mL de solução de uso subcutâneo",
+    "valor": 42843.11,
+    "fabricante": "Roche"
+  },
+  {
+    "nome": "Hemcibra 150mg, caixa com 1 frasco-ampola com 1mL de solução de uso subcutâneo",
+    "valor": 111700.0,
+    "fabricante": "Roche"
+  }
+]

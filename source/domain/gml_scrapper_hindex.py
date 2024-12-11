@@ -314,10 +314,56 @@ def main(researchers_list, affiliation_terms=None):
 
 if __name__ == "__main__":
     researchers_list = [
+        "Jaime Ribeiro-Filho",
+        "Fabio Miyajima",
+        "Márcio Flávio Moura de Araújo",
         "Roberto Nicolete",
-        "Jaime Ribeiro Filho"
-    ]
-    affiliation_terms = ["Fundação Oswaldo Cruz", "Fiocruz"]
+        "Roberto Wagner Júnior Freire de Freitas",
+        "Ivana Cristina de Holanda Cunha Barreto",
+        "Fernando Ferreira Carneiro",
+        "Carla Freire Celedonio Fernandes",
+        "Marcos Roberto Lourenzoni",
+        "Gilvan Pessoa Furtado",
+        "Marcela Helena Gambim Fonseca",
+        "Vanira Matos Pessoa",
+        "Anna Carolina Machado Marinho",
+        "Antonio Marcos Aires Barbosa",
+        "Raphael Trevizani",
+        "João Herminio Martins da Silva",
+
+        "Anya Pimentel Gomes Fernandes Vieira Meyer",
+        "Luiz Odorico Monteiro de Andrade",
+        "Sharmênia de Araújo Soares Nuto",
+        "Fernando Braga Stehling Dias",
+        "Regis Bernardo Brandim Gomes",
+        "Clarissa Romero Teixeira",
+        "Maximiliano Loiola Ponte de Souza",
+        "Luciana Silvério Alleluia Higino da Silva",
+        "Eduardo Ruback dos Santos",
+        "Claudia Stutz Zubieta",
+        "Marlos de Medeiros Chaves",
+        "Adriana Costa Bacelo",
+        "Alice Paula Di Sabatino Guimarães",
+        "Galba Freire Moita",
+        "Donat Alexander de Chapeaurouge",
+        "Ana Camila Oliveira Alves",
+        "Ana Cláudia de Araújo Teixeira",
+        "Margareth Borges Coutinho Gallo",
+        "Venúcia Bruna Magalhães Pereira",
+        "Dayane Alves Costa",
+        "Giovanny Augusto Camacho Antevere Mazzarotto",
+        "Clarice Gomes e Souza Dabés",
+        "Fernanda Savicki de Almeida",
+        "Luciana Pereira Lindenmeyer",
+        "Kamila Matos de Albuquerque",
+        "Rodrigo Carvalho Nogueira"
+        ]
+    
+    affiliation_terms = [
+    "Fundação Oswaldo Cruz", 
+    "Fiocruz", 
+    "Oswaldo Cruz Foundation", 
+    "University of Liverpool"]
     
     results = main(researchers_list, affiliation_terms)
     print(results)
