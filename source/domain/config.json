@@ -1,0 +1,16 @@
+{
+    "schema_paths": {
+        "curricula": "schemas/schema_curriculos.json",
+        "matriz_ceis": "schemas/schema_matriz_ceis.json"
+    },
+    "input_paths": {
+        "curricula": "_data/input_curriculos.json",
+        "interesses": "_data/input_interesses_pesquisadores.json",
+        "matriz_ceis": "_data/matriz_ceis.json",
+        "biologics": "_data/input_process_biologics.json",
+        "smallmolecules": "_data/input_process_smallmolecules.json"
+    },
+    "neo4j_uri": "bolt://localhost:7687",
+    "neo4j_user": "neo4j",
+    "neo4j_password": "password"
+}

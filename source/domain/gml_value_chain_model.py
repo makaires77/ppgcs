@@ -1,9 +1,150 @@
+import json
+import jsonschema
+from neo4j import GraphDatabase
+from typing import Dict, List, Any
+
 import torch
 import torch.nn as nn
 from torch_geometric.nn import GCNConv, SAGEConv, HeteroConv
 from torch_geometric.data import HeteroData
 import networkx as nx
 import numpy as np
+
+from pathlib import Path
+
+# Definir o caminho raiz do projeto
+# Ajustar o número de .parent conforme necessário
+PROJECT_ROOT = Path(__file__).parent.parent  
+
+config = {
+    "schema_paths": {
+        "curricula": str(PROJECT_ROOT / "_data/in_json/schema_curriculos.json"),
+        "matriz_ceis": str(PROJECT_ROOT / "_data/in_json/schema_matriz_ceis.json")
+    },
+    "input_paths": {
+        "curricula": str(PROJECT_ROOT / "_data/in_json/input_curriculos.json"),
+        "interesses": str(PROJECT_ROOT / "_data/in_json/input_interesses_pesquisadores.json"),
+        "matriz_ceis": str(PROJECT_ROOT / "_data/in_json/matriz_ceis.json"),
+        "biologics": str(PROJECT_ROOT / "_data/in_json/input_process_biologics.json"),
+        "smallmolecules": str(PROJECT_ROOT / "_data/in_json/input_process_smallmolecules.json")
+    },
+    "neo4j_uri": "bolt://localhost:7687",
+    "neo4j_user": "neo4j",
+    "neo4j_password": "password"
+}
+
+
+class DataValidator:
+    """
+    Valida os arquivos de entrada contra seus schemas JSON.
+    """
+    def __init__(self, schema_paths: Dict[str, str]):
+        self.schemas = {}
+        for file_type, path in schema_paths.items():
+            with open(path, 'r') as f:
+                self.schemas[file_type] = json.load(f)
+
+    def validate_data(self, data: Dict, file_type: str) -> bool:
+        try:
+            jsonschema.validate(instance=data, schema=self.schemas[file_type])
+            return True
+        except jsonschema.exceptions.ValidationError as e:
+            print(f"Erro de validação para {file_type}: {e}")
+            return False
+
+class DataLoader:
+    """
+    Carrega e processa os arquivos de entrada.
+    """
+    def __init__(self, validator: DataValidator):
+        self.validator = validator
+        
+    def load_file(self, file_path: str, file_type: str) -> Dict:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            if self.validator.validate_data(data, file_type):
+                return data
+            return None
+
+class Neo4jConnector:
+    """
+    Gerencia conexões e operações com Neo4j.
+    """
+    def __init__(self, uri: str, user: str, password: str):
+        self.driver = GraphDatabase.driver(uri, auth=(user, password))
+
+    def close(self):
+        self.driver.close()
+
+    def create_researcher_node(self, tx, researcher_data: Dict):
+        query = """
+        MERGE (r:Researcher {lattesId: $lattesId})
+        SET r.name = $name,
+            r.lastUpdate = $lastUpdate
+        """
+        tx.run(query, lattesId=researcher_data["ID Lattes"],
+               name=researcher_data["Nome"],
+               lastUpdate=researcher_data["Última atualização"])
+
+class KnowledgeGraphBuilder:
+    """
+    Constrói o grafo de conhecimento a partir dos dados processados.
+    """
+    def __init__(self, neo4j_connector: Neo4jConnector):
+        self.neo4j = neo4j_connector
+        
+    def process_curricula(self, curricula_data: List[Dict]):
+        with self.neo4j.driver.session() as session:
+            for researcher in curricula_data:
+                session.write_transaction(
+                    self.neo4j.create_researcher_node,
+                    researcher["Identificação"]
+                )
+                self._process_research_areas(researcher)
+                self._process_projects(researcher)
+
+    def process_ceis_matrix(self, matrix_data: Dict):
+        with self.neo4j.driver.session() as session:
+            for block in matrix_data["blocos"]:
+                self._create_block_structure(session, block)
+
+class DataProcessor:
+    """
+    Coordena o processamento completo dos dados.
+    """
+    def __init__(self, config: Dict):
+        self.validator = DataValidator(config["schema_paths"])
+        self.loader = DataLoader(self.validator)
+        self.neo4j = Neo4jConnector(
+            config["neo4j_uri"],
+            config["neo4j_user"],
+            config["neo4j_password"]
+        )
+        self.graph_builder = KnowledgeGraphBuilder(self.neo4j)
+
+    def process_all_data(self, file_paths: Dict[str, str]):
+        try:
+            # Processar currículos
+            curricula_data = self.loader.load_file(
+                file_paths["curricula"],
+                "curricula"
+            )
+            self.graph_builder.process_curricula(curricula_data)
+
+            # Processar matriz CEIS
+            ceis_data = self.loader.load_file(
+                file_paths["matriz_ceis"],
+                "matriz_ceis"
+            )
+            self.graph_builder.process_ceis_matrix(ceis_data)
+
+            # Processar outros arquivos...
+
+        except Exception as e:
+            print(f"Erro no processamento: {e}")
+        finally:
+            self.neo4j.close()
+
 
 class HierarchicalHeteroGraph(nn.Module):
     """
