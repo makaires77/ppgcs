@@ -1,3 +1,4 @@
+// Esquema de validação do arquivo matriz_ceis.json
 {
   "type": "object",
   "properties": {

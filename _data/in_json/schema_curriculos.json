@@ -1,3 +1,4 @@
+//Esquema de validação do arquivo input_curriculos.json
 {
     "type": "array",
     "items": {
@@ -328,6 +329,7 @@
             "Linhas de Pesquisa",
             "\u00c1reas",
             "Produ\u00e7\u00f5es",
+            "Cita\u00e7\u00f5es",
             "ProjetosPesquisa",
             "ProjetosExtens\u00e3o",
             "ProjetosDesenvolvimento",
