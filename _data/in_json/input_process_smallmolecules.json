@@ -121,6 +121,8 @@
     ],
   
     "edges": [
+        { "from": "A_BasicScience", "to": "BasicScience" },
+        { "from": "A_BasicScience", "to": "HypothesisGeneration" },    
         { "from": "BiomedicalInformatics", "to": "HypothesisGeneration" },
         { "from": "HypothesisGeneration", "to": "BiomedicalInformatics" },
         { "from": "HypothesisGeneration", "to": "DiseasePathophysiology" },
@@ -149,6 +151,7 @@
         { "from": "TherapeuticTargets", "to": "AssayDevelopment" },
         { "from": "DiseasePathophysiology", "to": "BiomarkerDevtProgram" },
 
+        { "from": "B_TargetPharmaBiomarker", "to": "BiomedicalInformatics"},
         { "from": "BiomarkerDevtProgram", "to": "PharmacologyTargetEngagement" },
         { "from": "BiomarkerDevtProgram", "to": "PrognosticPredictiveBiomarker" },
         { "from": "BiomarkerDevtProgram", "to": "ResponseBiomarker" },
@@ -160,6 +163,7 @@
         { "from": "SurrogateEndpoint", "to": "ClinicalTrialPlanningPreparation" },
         { "from": "PharmacologyTargetEngagement", "to": "AssayDevelopment" },
 
+        { "from": "C_LeadIdentification", "to": "AssayDevelopment"},  
         { "from": "AssayDevelopment", "to": "HTSAssay" },
         { "from": "CompoundLibraries", "to": "HTSSystem" },
         { "from": "ChemInformatics", "to": "HTSSystem" },
@@ -171,6 +175,7 @@
         { "from": "Hits", "to": "UnapprovedCompoundsNCENME" },
         { "from": "UnapprovedCompoundsNCENME", "to": "LeadCompounds" },
 
+        { "from": "D_LeadOptimization", "to": "LeadCompounds"},
         { "from": "LeadCompounds", "to": "InSilicoModeling" },
         { "from": "InSilicoModeling", "to": "MedicinalChemistry" },
         { "from": "MedicinalChemistry", "to": "InSilicoModeling" },
@@ -205,6 +210,7 @@
         { "from": "SustainedProductAvaliability", "to": "LateCMC" },
         { "from": "LateCMC", "to": "SustainedProductAvaliability" },
 
+        { "from": "E_ClinicalResearch", "to": "ResearcherInvestigator"},        
         { "from": "ResearcherInvestigator", "to": "Biorepositories" },        
         { "from": "ResearcherInvestigator", "to": "DataRepository" },
         { "from": "ResearcherInvestigator", "to": "BiomedicalInformatics" },
@@ -245,7 +251,8 @@
         { "from": "ClinicalProgramTrialDesign", "to": "TherapeuticClinicalEndpoints" },
         { "from": "TherapeuticClinicalEndpoints", "to": "ClinicalProgramTrialDesign" },
         { "from": "FDAReview", "to": "IND" },
-        
+
+        { "from": "F_RegulatoryReview", "to": "LeadOptimization"},
         { "from": "LeadOptimization", "to": "IND" },
         { "from": "IND", "to": "PreapprovalClinicalTrials" },
         { "from": "IND", "to": "ReportingMeetingAmendments" },
@@ -262,28 +269,37 @@
         { "from": "MarketingApproval", "to": "PostapprovalDataCollection" },
         { "from": "MarketingApproval", "to": "Pricing" },
 
+
+
+        { "from": "G_Postmarketing", "to": "PostapprovalDataCollection"},
         { "from": "PostapprovalDataCollection", "to": "ReanalysisPremarketData" },
         { "from": "PostapprovalDataCollection", "to": "SpontaneusReporting" },
         { "from": "ReanalysisPremarketData", "to": "PharmacoepidemiologicalObservationalStudies" },
-        { "from": "PharmacoepidemiologicalObservationalStudies", "to": "PragmaticSafety" },
+        { "from": "ReanalysisPremarketData", "to": "PragmaticSafety" },
+        { "from": "SpontaneusReporting", "to": "PharmacoepidemiologicalObservationalStudies" },
         { "from": "SpontaneusReporting", "to": "PragmaticSafety" },
+        { "from": "PharmacoepidemiologicalObservationalStudies", "to": "PragmaticSafety" },
         { "from": "PragmaticSafety", "to": "PostmarketingKnowledge" },
         { "from": "PostmarketingKnowledge", "to": "ExtendToRelatedDrugs" },
         { "from": "PostmarketingKnowledge", "to": "NewIndicationRepurposing" },
         { "from": "NewIndicationRepurposing", "to": "HypothesisGeneration" },
         { "from": "PostmarketingKnowledge", "to": "AdditionalStudies" },
         { "from": "AdditionalStudies", "to": "FDAReview" },
+        { "from": "FDAReview", "to": "PostmarketingCommitmentsRequirements" },
         { "from": "PostmarketingKnowledge", "to": "FDAReview" },
         { "from": "PostmarketingKnowledge", "to": "OffLabelUse" },
+        { "from": "FDAReview", "to": "ChangedDrugLabel" },
         { "from": "OffLabelUse", "to": "Pricing" },
         { "from": "PostmarketingKnowledge", "to": "Pricing" },
-
+        
+        { "from": "H_MedicalLandscape", "to": "InsuranceCoverageReimbursement"},
         { "from": "Pricing", "to": "InsuranceCoverageReimbursement" },
         { "from": "InsuranceCoverageReimbursement", "to": "IncorporationIntoClinicalPractice" },
         { "from": "IncorporationIntoClinicalPractice", "to": "AcessToTerapies" },
         { "from": "AcessToTerapies", "to": "StandartOfCare" },
         { "from": "StandartOfCare", "to": "PatientNeeds" },
         { "from": "PatientNeeds", "to": "DiseasePathophysiology" },
-        { "from": "PatientNeeds", "to": "NaturalHistoryEpiStudiesE" }
+        { "from": "PatientNeeds", "to": "NaturalHistoryEpiStudies" }
+
       ]
     }
