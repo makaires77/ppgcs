@@ -2900,3 +2900,120 @@ class ProductClassifier:
             'biological_percentage': (biological_count / total) * 100 if total > 0 else 0,
             'small_molecule_percentage': (small_molecule_count / total) * 100 if total > 0 else 0
         }
+
+class UserFeedbackClassifierNewEntries:
+    def __init__(self, combined_classifier):
+        self.combined_classifier = combined_classifier
+        self.feedback_data = []
+
+    def classify_with_feedback(self, text):
+        # Classificação inicial
+        result = self.combined_classifier.classify(text)
+        
+        # Solicitar feedback do usuário
+        print(f"Classificação inicial: {result['label']} (confiança: {result['score']:.2f})")
+        user_feedback = input("Esta classificação está correta? (s/n): ").lower()
+        
+        if user_feedback == 'n':
+            correct_label = input("Qual é a classificação correta? (biological/small molecule): ").lower()
+            self.feedback_data.append((text, correct_label))
+            print("Feedback registrado. Obrigado!")
+            
+            # Atualizar o classificador few-shot
+            self.combined_classifier.few_shot.add_example(text, correct_label)
+        
+        return result
+
+    def train_from_feedback(self):
+        # Treinar o classificador com os dados de feedback
+        for text, label in self.feedback_data:
+            self.combined_classifier.few_shot.add_example(text, label)
+        
+        print(f"Classificador atualizado com {len(self.feedback_data)} novos exemplos.")
+        self.feedback_data = []  # Limpar dados de feedback após o treinamento
+
+    def evaluate_performance(self, test_data):
+        correct = 0
+        total = len(test_data)
+        
+        for text, true_label in test_data:
+            prediction = self.combined_classifier.classify(text)
+            if prediction['label'] == true_label:
+                correct += 1
+        
+        accuracy = correct / total
+        print(f"Acurácia atual: {accuracy:.2f}")
+
+    def interactive_classification_session(self):
+        while True:
+            text = input("Digite o texto para classificar (ou 'sair' para encerrar): ")
+            if text.lower() == 'sair':
+                break
+            
+            self.classify_with_feedback(text)
+            
+        self.train_from_feedback()
+
+class UserFeedbackClassifier:
+    def __init__(self, combined_classifier, grafo):
+        self.combined_classifier = combined_classifier
+        self.grafo = grafo
+        self.feedback_data = []
+
+    def classify_nodes_with_feedback(self, tipo_no='produto'):
+        """Classifica nós do tipo especificado com feedback do usuário"""
+        for node_id, node_data in self.grafo.nodes(data=True):
+            if node_data.get('tipo') == tipo_no:
+                label = node_data.get('label', '')
+                if label:
+                    # Classificação inicial
+                    result = self.combined_classifier.classify(label)
+                    
+                    print(f"\nNó: {node_id}")
+                    print(f"Label: {label}")
+                    print(f"Classificação inicial: {result['label']} (confiança: {result['score']:.2f})")
+                    
+                    user_feedback = input("Esta classificação está correta? (s/n): ").lower()
+                    
+                    if user_feedback == 'n':
+                        correct_label = input("Qual é a classificação correta? (biological/small molecule): ").lower()
+                        self.feedback_data.append((label, correct_label))
+                        
+                        # Atualizar o nó com a classificação correta
+                        self.grafo.nodes[node_id]['categoria'] = correct_label
+                        print("Feedback registrado e nó atualizado.")
+                    else:
+                        # Atualizar o nó com a classificação do modelo
+                        self.grafo.nodes[node_id]['categoria'] = result['label']
+                        self.grafo.nodes[node_id]['categoria_score'] = result['score']
+
+    def get_classification_summary(self):
+        """Retorna um resumo das classificações no grafo"""
+        biological_count = 0
+        small_molecule_count = 0
+        
+        for _, node_data in self.grafo.nodes(data=True):
+            if node_data.get('tipo') == 'produto':
+                categoria = node_data.get('categoria')
+                if categoria == 'biological':
+                    biological_count += 1
+                elif categoria == 'small molecule':
+                    small_molecule_count += 1
+        
+        total = biological_count + small_molecule_count
+        
+        return {
+            'total_produtos': total,
+            'biological': biological_count,
+            'small_molecule': small_molecule_count,
+            'biological_percentage': (biological_count / total) * 100 if total > 0 else 0,
+            'small_molecule_percentage': (small_molecule_count / total) * 100 if total > 0 else 0
+        }
+
+    def train_from_feedback(self):
+        """Treina o classificador com os dados de feedback coletados"""
+        for text, label in self.feedback_data:
+            self.combined_classifier.few_shot.add_example(text, label)
+        
+        print(f"Classificador atualizado com {len(self.feedback_data)} novos exemplos.")
+        self.feedback_data = []
