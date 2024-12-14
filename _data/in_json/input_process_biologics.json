@@ -1,7 +1,7 @@
 {
   "nodes": [
     { "id": "A_BasicScience", "label": "A. Basic science research & target identification" },
-    { "id": "BasicScience", "label": "Basic Science" , "phase": "A_BasicScience"},
+    { "id": "BasicScience", "label": "Basic Science", "phase": "A_BasicScience"},
     { "id": "BiomedicalInformatics", "label": "Biomedical Informatics", "phase": "A_BasicScience" },
     { "id": "HypothesisGeneration", "label": "Hypothesis generation", "phase": "A_BasicScience" },
     { "id": "DiseasePathophysiology", "label": "Disease Pathophysiology", "phase": "A_BasicScience" },

@@ -280,7 +280,7 @@ class EdgeLengthPredictor:
         
         # Avaliar modelo
         score = self.model.score(X_test, y_test)
-        print(f"  Avaliar treino por R² Score: {score:.4f}")
+        print(f"  Atualizar layout (Avaliação de treino com R² Score: {score:.4f})")
         
         return score
     
@@ -787,16 +787,76 @@ class GrafoConhecimento:
     #         # Para outras camadas de outras fontes usar outra função modular a ser chamada na integração
     #         pass
 
-    def ajustar_posicoes_nos_processo(self, fases_horizontal=False):
-        """
-        Ajusta as posições dos nós que começam com letras de A a H seguidas de underscore.
-        Posiciona os nós em uma linha vertical com espaçamento de 1000 unidades,
-        separando entre biológicos (x=1000) e pequenas moléculas (x=-1000).
+    # def ajustar_posicoes_nos_processo(self, fases_horizontal=False):
+    #     """
+    #     Ajusta as posições dos nós que começam com letras de A a H seguidas de underscore.
+    #     """
+    #     offset = 500
+    #     posicoes_x = {
+    #         'A': -8 * offset,
+    #         'B': -6 * offset,
+    #         'C': -4 * offset,
+    #         'D': -2 * offset,
+    #         'E': 2 * offset,
+    #         'F': 4 * offset,
+    #         'G': 6 * offset,
+    #         'H': 8 * offset
+    #     }
 
-        False no parâmetro fases_horizontal faz as fases dos processos ficarem ordenadas na horizontal
-        True no parâmetro fases_horizontal relaxa o posicionamento fixo na horizontal
-        """
-        # Dicionário para mapear letras às posições y
+    #     # Primeiro identificar os nós de fase
+    #     nos_fase = {}
+    #     for node_id, node_data in self.grafo.nodes(data=True):
+    #         if isinstance(node_id, str) and len(node_id) >= 2:
+    #             # Remover sufixos para verificar a letra inicial
+    #             base_id = node_id.replace('_bio', '').replace('_sm', '')
+    #             primeira_letra = base_id[0]
+                
+    #             if primeira_letra in posicoes_x and base_id[1] == '_':
+    #                 # Guardar referência do nó de fase e seu tipo
+    #                 tipo_processo = 'processo_biologico' if '_bio' in node_id else 'processo_smallmolecule'
+    #                 nos_fase[node_id] = tipo_processo
+
+    #     # Posicionar nós de fase e conectar atividades
+    #     for fase_id, tipo_processo in nos_fase.items():
+    #         base_id = fase_id.replace('_bio', '').replace('_sm', '')
+    #         primeira_letra = base_id[0]
+            
+    #         # Definir posição y baseada no tipo do processo
+    #         y_pos = -4*offset if tipo_processo == 'processo_biologico' else 4*offset
+            
+    #         # Atualizar atributos do nó de fase
+    #         self.grafo.nodes[fase_id].update({
+    #             'x': posicoes_x[primeira_letra],
+    #             'y': y_pos,
+    #             'physics': fases_horizontal,
+    #             'fixed': False,
+    #             'size': 50,
+    #             'font': {'size': 180}
+    #         })
+            
+    #         # Conectar ao nó principal do tipo de processo
+    #         processo_principal = 'BIOLOGICOS' if tipo_processo == 'processo_biologico' else 'SMALLMOLECULE'
+    #         self.grafo.add_edge(processo_principal, fase_id, relation='TEM_FASE')
+            
+    #         # Procurar atividades desta fase no mesmo subgrafo
+    #         for node_id, node_data in self.grafo.nodes(data=True):
+    #             if 'phase' in node_data:
+    #                 fase_id = node_data['phase']
+    #                 if self.grafo.has_node(fase_id):
+    #                     # Verificar se os nós pertencem ao mesmo tipo de processo
+    #                     node_is_bio = '_bio' in node_id
+    #                     fase_is_bio = '_bio' in fase_id
+                        
+    #                     if node_is_bio == fase_is_bio:
+    #                         self.grafo.add_edge(
+    #                             node_id,
+    #                             fase_id,
+    #                             relation='PERTENCE_A_FASE',
+    #                             color='#D3D3D3',
+    #                             width=0.5
+    #                         )
+
+    def ajustar_posicoes_nos_processo(self, fases_horizontal=False, verbose=False):
         offset = 500
         posicoes_x = {
             'A': -8 * offset,
@@ -809,41 +869,83 @@ class GrafoConhecimento:
             'H': 8 * offset
         }
 
-        # Iterar sobre todos os nós do grafo
+        if verbose:
+            print("\nIniciando ajuste de posições dos nós de processo...")
+
+        # Primeiro posicionar os nós de fase
         for node_id, node_data in self.grafo.nodes(data=True):
-            # Verificar se o ID do nó segue o padrão (letra maiúscula seguida de underscore)
             if isinstance(node_id, str) and len(node_id) >= 2:
-                # Remover sufixos para verificar a letra inicial
                 base_id = node_id.replace('_bio', '').replace('_sm', '')
                 primeira_letra = base_id[0]
                 
                 if primeira_letra in posicoes_x and base_id[1] == '_':
-                    # Determinar a posição x baseada no tipo do nó
-                    if node_data.get('tipo') == 'processo_biologico':
-                        # Definir posição fixa para o nó de tipo de produto
-                        y_pos = -4*offset
-                        
-                        # Conectar nós das fases do processo ao nó do tipo de produto
-                        self.grafo.add_edge('BIOLOGICOS', node_id, relation='TEM_FASE')
-
-                    elif node_data.get('tipo') == 'processo_smallmolecule':
-                        # Definir posição fixa para o nó de tipo de produto
-                        y_pos = 4*offset
-
-                        # Conectar nós das fases do processo ao nó do tipo de produto
-                        self.grafo.add_edge('SMALLMOLECULE', node_id, relation='TEM_FASE')
-
-                    else:
-                        continue  # Pular nós que não são de processo
+                    if verbose:
+                        print(f"\nProcessando nó de fase: {node_id}")
+                        print(f"Tipo: {node_data.get('tipo')}")
+                        print(f"Label: {node_data.get('label')}")
                     
-                    # Atualizar atributos do nó
+                    # Determinar tipo de processo
+                    tipo_processo = 'processo_biologico' if '_bio' in node_id else 'processo_smallmolecule'
+                    y_pos = -4*offset if tipo_processo == 'processo_biologico' else 4*offset
+                    
+                    if verbose:
+                        print(f"Posição calculada: x={posicoes_x[primeira_letra]}, y={y_pos}")
+                    
+                    # Atualizar atributos do nó de fase
                     self.grafo.nodes[node_id].update({
                         'x': posicoes_x[primeira_letra],
                         'y': y_pos,
                         'physics': fases_horizontal,
                         'fixed': False,
-                        'size': 50
+                        'size': 50,
+                        'font': {'size': 180}
                     })
+
+                    # Conectar ao nó principal do tipo de processo
+                    processo_principal = 'BIOLOGICOS' if tipo_processo == 'processo_biologico' else 'SMALLMOLECULE'
+                    self.grafo.add_edge(processo_principal, node_id, relation='TEM_FASE')
+
+        if verbose:
+            print(f"\nConectando atividades às fases do processo produtivo...")
+
+        # Depois conectar atividades às suas fases
+        qte_ativ = 0
+        for node_id, node_data in self.grafo.nodes(data=True):
+            if verbose:
+                print(f"{node_id}: {node_data}")
+            if 'phase' in node_data:
+                qte_ativ+=1
+                fase_id = node_data['phase']
+                
+                # Determinar o sufixo correto baseado no tipo de processo
+                sufixo = '_bio' if '_bio' in node_id else '_sm' if '_sm' in node_id else ''
+                
+                # Adicionar o sufixo ao ID da fase
+                fase_id_completo = f"{fase_id}{sufixo}"
+                
+                if verbose:
+                    print(f"\nProcessando atividade: {node_id}")
+                    print(f"Fase relacionada: {fase_id_completo}")
+                
+                if self.grafo.has_node(fase_id_completo):
+                    if verbose:
+                        print(f"Criando aresta entre {node_id} e {fase_id_completo}")
+                    
+                    self.grafo.add_edge(
+                        node_id,
+                        fase_id_completo,
+                        relation='PERTENCE_A_FASE',
+                        color='#D3D3D3',
+                        width=0.5
+                    )
+                elif verbose:
+                    print(f"AVISO: Fase {fase_id_completo} não encontrada no grafo")
+        
+        print(f"  {qte_ativ} atividades produtivas processadas")
+
+        if verbose:
+            print("\nAjuste de posições concluído")
+
 
 
     ## PIPELINE DE CONSTRUÇÃO DO GRAFO DE CONHECIMENTO
@@ -897,6 +999,7 @@ class GrafoConhecimento:
                 self.grafo.add_edge('ICT', no, relation='TEM_PESQUISADOR')
 
         # Ajustar posições dos nós de processo
+        print(f"\nAtribuindo atividades às fases dos processos produtivos...")
         self.ajustar_posicoes_nos_processo()
 
         self.visualizar()
@@ -911,7 +1014,7 @@ class GrafoConhecimento:
         self.preprocessor.extract_edge_features()
         
         # Treinar modelo para predição de comprimentos
-        print(f"  Iniciando treino para predizer comprimento de arestas...")
+        print(f"  Treinando para predizer comprimento de arestas...")
         self.length_predictor = EdgeLengthPredictor(self.grafo)
         self.length_predictor.train_model()
         
@@ -980,8 +1083,7 @@ class GrafoConhecimento:
         # Ajustar posições dos nós de processo
         self.ajustar_posicoes_nos_processo()
 
-
-        # Estabelecer arestas com base em similaridade dos rótulos de nós
+        ## Estabelecer arestas com base em similaridade dos rótulos de nós
         # self.conectar_nos_similares('processo_biologico', 'processo_smallmolecule')
         self.conectar_nos_similares('ceis_produto_emergencial', 'produto')
         self.conectar_nos_similares('ceis_produto_agravo', 'produto')
@@ -1019,7 +1121,6 @@ class GrafoConhecimento:
         # Treinar modelo de comprimento após integração
         length_predictor = EdgeLengthPredictor(self.grafo)
         length_predictor.train_model()
-
 
 
     ## FUNÇÕES PARA OTIMIZAR BUSCA VETORIAL NO GRAFO DE CONHECIMENTO
@@ -1141,67 +1242,6 @@ class GrafoConhecimento:
             except Exception as e:
                 print(f"Erro ao calcular lacunas: {e} em produto {produto}")
         return lacunas
-
-    def adicionar_legenda(self, net):
-        """
-        Adiciona uma legenda ao HTML do grafo explicando as formas e cores dos nós e arestas.
-        """
-        legend_html = """
-        <div style="position: absolute; top: 10px; right: 10px; background-color: white; 
-                    padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-            <h3 style="margin-top: 0;">Legenda</h3>
-            <div style="margin-bottom: 10px;">
-                <h4 style="margin: 5px 0;">Nós</h4>
-                <div style="display: flex; align-items: center; margin: 3px 0;">
-                    <div style="width: 20px; height: 20px; background-color: #FFA500; border-radius: 50%; margin-right: 5px;"></div>
-                    <span>Pesquisador</span>
-                </div>
-                <div style="display: flex; align-items: center; margin: 3px 0;">
-                    <div style="width: 20px; height: 20px; background-color: #90EE90; border-radius: 50%; margin-right: 5px;"></div>
-                    <span>Produto</span>
-                </div>
-                <div style="display: flex; align-items: center; margin: 3px 0;">
-                    <div style="width: 20px; height: 20px; background-color: #A9A9A9; border-radius: 50%; margin-right: 5px;"></div>
-                    <span>Plataforma</span>
-                </div>
-                <div style="display: flex; align-items: center; margin: 3px 0;">
-                    <div style="width: 20px; height: 20px; background-color: #FFB6C1; border-radius: 50%; margin-right: 5px;"></div>
-                    <span>Desafio</span>
-                </div>
-                <div style="display: flex; align-items: center; margin: 3px 0;">
-                    <div style="width: 20px; height: 20px; background-color: #87CEEB; border-radius: 50%; margin-right: 5px;"></div>
-                    <span>Bloco</span>
-                </div>
-                <div style="display: flex; align-items: center; margin: 3px 0;">
-                    <div style="width: 20px; height: 20px; background-color: #FFD700; border-radius: 50%; margin-right: 5px;"></div>
-                    <span>Instituição</span>
-                </div>
-
-            </div>
-            <div>
-                <h4 style="margin: 5px 0;">Arestas</h4>
-                <div style="display: flex; align-items: center; margin: 3px 0;">
-                    <div style="width: 30px; height: 2px; background-color: #808080; margin-right: 5px;"></div>
-                    <span>Relação padrão</span>
-                </div>
-                <div style="display: flex; align-items: center; margin: 3px 0;">
-                    <div style="width: 30px; height: 4px; background-color: #808080; margin-right: 5px;"></div>
-                    <span>TEM_INTERESSE</span>
-                </div>
-                <div style="display: flex; align-items: center; margin: 3px 0;">
-                    <div style="width: 30px; height: 1px; background-color: #808080; margin-right: 5px;"></div>
-                    <span>TEM_SIMILARIDADE</span>
-                </div>
-            </div>
-        </div>
-        """
-        
-        # Adicionar a legenda ao HTML do grafo pelo método visualizar
-        try:
-            # print(legend_html)
-            net.html = net.html.replace('</body>', f'{legend_html}</body>')
-        except Exception as e:
-            print(f"  Erro!! Ao adicionar legenda: {e}")
 
 
     def adicionar_legenda_interativa(self, net):
@@ -1468,7 +1508,6 @@ class GrafoConhecimento:
                 print(type(node), node.keys())
                 print(node)
 
-
         # Configurar nós com rótulos em tamanho maior
         for node in net.nodes:
             fontsize_big = 180
@@ -1484,7 +1523,6 @@ class GrafoConhecimento:
                     node['font'] = {'size': fontsize_big}
             except KeyError:
                 continue 
-
 
         # Posicionar os dois blocos
         if len(blocos) == 2:
@@ -1504,6 +1542,7 @@ class GrafoConhecimento:
             print('  Erro!! Ao encontrar os blocos do CEIS')
 
         # Aplicar estilos e comprimentos às arestas
+        print(f"Aplicando parâmetros aprendidos à visualização do grafo de conhecimento...")
         for edge in net.edges:
             source = edge['from']
             target = edge['to']
@@ -1532,6 +1571,9 @@ class GrafoConhecimento:
                 # print(f"Relação {relation} obtida na aresta {edge}")
             except Exception as e:
                 print(f"Erro ao obter relação {e} na aresta {edge}")        
+        
+        
+        
         # Configurações de física e visualização
         net.set_options("""
         {
@@ -1560,8 +1602,6 @@ class GrafoConhecimento:
         }
         """)
       
-    #     """)
-
     #     # # Configurações de física otimizadas com avoidOverlap
     #     # net.set_options("""
     #     # {
@@ -1619,7 +1659,7 @@ class GrafoConhecimento:
                 f.write(html_string)
                 
             print(f"\nArquivo HTML do grafo de conhecimento gerado com sucesso:")
-            print(f"Local: {os.path.abspath(nome_arquivo)}")
+            print(f"  Local: {os.path.abspath(nome_arquivo)}")
             return True
         except Exception as e:
             print(f"Erro ao gerar arquivo HTML: {e}")
@@ -1742,7 +1782,8 @@ class GrafoDemanda:
         if not biologics_data or not smallmolecules_data:
             return False
         
-        # Adicionar nós principais dos processos
+        # Adicionar nós de nomes dos processos produtivos
+        y_pos_processo=2500
         self.grafo.add_node(
             'BIOLOGICOS',
             tipo='processo_principal',
@@ -1753,7 +1794,7 @@ class GrafoDemanda:
             color = '#555555', # cinza
             size=75,
             x=0,
-            y=-2500,
+            y=-y_pos_processo,
             physics=False,
             fixed=True
         )
@@ -1767,7 +1808,7 @@ class GrafoDemanda:
             color = '#555555', # cinza
             size=50,
             x=0,
-            y=2500,
+            y=y_pos_processo,
             physics=False,
             fixed=True
         )
@@ -1779,8 +1820,10 @@ class GrafoDemanda:
                 node_id,
                 label=node['label'],
                 tipo='processo_biologico',
+                phase=node.get('phase'), 
                 # color = '#87CEEB', # azul claro
                 color = '#9ACD32', # yelowgreen
+                y=-y_pos_processo+250,
                 size=20,
                 physics=True
             )
@@ -1792,9 +1835,11 @@ class GrafoDemanda:
                 node_id,
                 label=node['label'],
                 tipo='processo_smallmolecule',
+                phase=node.get('phase'),
                 # color = '#DDA0DD', # roxo claro
                 color = '#90EE90', # verde claro
                 size=20,
+                y=y_pos_processo-250,
                 physics=True
             )
         
