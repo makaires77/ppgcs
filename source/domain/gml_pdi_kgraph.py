@@ -581,7 +581,7 @@ class GrafoConhecimento:
             """
             return SequenceMatcher(None, str1.lower(), str2.lower()).ratio()
 
-        def calcular_similaridade(str1, str2):
+        def calcular_similaridade(str1, str2, verbose=True):
             """Calcula a similaridade entre duas strings com pré-processamento"""
             # Normalizar strings
             str1 = str1.lower().strip()
@@ -619,7 +619,8 @@ class GrafoConhecimento:
                 
                 # Calcular similaridade entre os labels
                 similaridade = calcular_similaridade(str(label1), str(label2))
-                print(f"{similaridade} | {str(label1)} | {str(label2)}")
+                if verbose:
+                    print(f"{np.round(similaridade,4)} | {str(label1)} | {str(label2)}")
                 
                 # Criar arestas baseadas na similaridade
                 if similaridade > 0.95:
@@ -1014,7 +1015,7 @@ class GrafoConhecimento:
         self.preprocessor.extract_edge_features()
         
         # Treinar modelo para predição de comprimentos
-        print(f"  Treinando para predizer comprimento de arestas...")
+        print(f"\nTreinando modelo aprender comprimento de arestas com base semântica...")
         self.length_predictor = EdgeLengthPredictor(self.grafo)
         self.length_predictor.train_model()
         
@@ -1314,14 +1315,14 @@ class GrafoConhecimento:
                         <div style="width: 15px; height: 15px; background-color: gray; border-radius: 50%;"></div>
                         <span>Competência Desejada</span>
                     </div>
-                    <div class="legend-item" onclick="toggleNodeType('desenvolvimento')">
-                        <div style="width: 15px; height: 15px; background-color: gray; border-radius: 50%;"></div>
-                        <span>Visa Desenvolvimento de Produto</span>
-                    </div>
                     <div class="legend-item" onclick="toggleNodeType('ceis_desafio')">
                         <div style="width: 15px; height: 15px; background-color: gray; border-radius: 50%;"></div>
                         <span>Interesse Desafio CEIS</span>
                     </div>
+                    <div class="legend-item" onclick="toggleNodeType('desenvolvimento')">
+                        <div style="width: 15px; height: 15px; background-color: gray; border-radius: 50%;"></div>
+                        <span>Interesse Desenvolvimento</span>
+                    </div>                    
                     <div class="legend-item" onclick="toggleNodeType('ceis_produto_emergencial')">
                         <div style="width: 15px; height: 15px; background-color: gray; border-radius: 50%;"></div>
                         <span>Interesse Produto B.Emergências</span>
@@ -2573,3 +2574,329 @@ class GrafoOferta:
     #         if id_lattes:
     #             self.grafo.add_edge(id_lattes, competencias, relation='DESEJA_DESENVOLVER_COMPETENCIA')
     #             tipos_nos['competencia_desenvolver'] += 1
+
+
+## CLASSIFICADOR POR ZEROSHOT
+from transformers import pipeline
+
+class ZeroShotClassifier:
+    def __init__(self, model_name="facebook/bart-large-mnli"):
+        device = 0 if torch.cuda.is_available() else -1
+        self.classifier = pipeline(
+            "zero-shot-classification", 
+            model=model_name,
+            device=device,
+            output_scores=True  # Adicionar este parâmetro
+        )
+        self.labels = ["biological", "small molecule"]
+
+    def classify(self, text):
+        result = self.classifier(text, self.labels)
+        return {
+            "label": result["labels"][0], # type: ignore
+            "score": np.round(float(result["scores"][0]),4),  # type: ignore # float para serializar 
+            "scores": {
+                label: float(np.round(score,4)) 
+                for label, score in zip(result["labels"], result["scores"]) # type: ignore
+            }
+        }
+
+
+## CLASSIFICADOR POR FEWSHOT
+from sentence_transformers import SentenceTransformer, util
+
+class FewShotClassifier:
+    def __init__(self, model_name="all-MiniLM-L6-v2"):
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.model = SentenceTransformer(model_name).to(self.device)
+        self.examples = {
+            "biological": [],
+            "small molecule": []
+        }
+
+    def add_example(self, text, label):
+        self.examples[label].append(text)
+
+    def classify(self, text):
+        text_embedding = self.model.encode(text, convert_to_tensor=True).to(self.device)
+        
+        best_score = -1
+        best_label = None
+
+        for label, examples in self.examples.items():
+            example_embeddings = self.model.encode(examples, convert_to_tensor=True).to(self.device)
+            cosine_scores = util.pytorch_cos_sim(text_embedding, example_embeddings)
+            max_score = cosine_scores.max().item()
+            
+            if max_score > best_score:
+                best_score = max_score
+                best_label = label
+
+        return {
+            "label": best_label,
+            "score": np.round(best_score,4)
+        }
+
+
+## CLASSIFICADOR POR SIMILARIDADE
+from sentence_transformers import SentenceTransformer, util
+import numpy as np
+
+class SimilarityBasedClassifier:
+    def __init__(self, model_name="pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-stsb"):
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.model = SentenceTransformer(model_name).to(self.device)
+        self.biological_keywords = [
+            "antibody", "protein", "vaccine", "monoclonal",
+            "enzyme", "hormone", "peptide", "immunoglobulin",
+            "antiserum", "cellular", "recombinant", "biological",
+            "therapeutic protein", "biomolecule"
+        ]
+        self.small_molecule_keywords = [
+            "chemical", "synthetic", "compound", "inhibitor",
+            "small molecule", "drug", "organic", "synthesis",
+            "molecular weight", "crystalline", "salt", "tablet",
+            "oral", "chemical synthesis"
+        ]
+        
+        # Criar embeddings para as palavras-chave
+        self.bio_embeddings = self.model.encode(self.biological_keywords, convert_to_tensor=True).to(self.device)
+        self.sm_embeddings = self.model.encode(self.small_molecule_keywords, convert_to_tensor=True).to(self.device)
+    
+    def classify(self, text):
+        # Gerar embedding para o texto
+        text_embedding = self.model.encode(text, convert_to_tensor=True).to(self.device)
+        
+        # Calcular similaridade média com cada conjunto de keywords
+        bio_similarities = util.pytorch_cos_sim(
+            text_embedding.unsqueeze(0), 
+            self.bio_embeddings
+        ).mean()
+        
+        sm_similarities = util.pytorch_cos_sim(
+            text_embedding.unsqueeze(0), 
+            self.sm_embeddings
+        ).mean()
+        
+        # Determinar classificação baseada na maior similaridade
+        if bio_similarities > sm_similarities:
+            return {
+                "label": "biological",
+                "score": np.round(float(bio_similarities.cpu()),)
+            }
+        else:
+            return {
+                "label": "small molecule",
+                "score": np.round(float(sm_similarities.cpu()))
+            }
+
+
+## MODELO COMBINADO DE CLASSIFICAÇÃO DO TIPO DE ROTA TECNOLÓGICA
+class CombinedClassifier:
+    def __init__(self, zero_shot_classifier, few_shot_classifier, similarity_classifier):
+        self.zero_shot = zero_shot_classifier
+        self.few_shot = few_shot_classifier
+        self.similarity = similarity_classifier
+    
+    def classify(self, text):
+        # Obter resultados dos três classificadores
+        zero_shot_result = self.zero_shot.classify(text)
+        few_shot_result = self.few_shot.classify(text)
+        similarity_result = self.similarity.classify(text)
+        
+        # Comparar scores e escolher o melhor resultado
+        results = [
+            (zero_shot_result, "zero_shot"),
+            (few_shot_result, "few_shot"),
+            (similarity_result, "similarity")
+        ]
+        
+        best_result = max(results, key=lambda x: x[0]["score"])
+        return best_result[0]
+    
+    def explain(self, text):
+        zero_shot_result = self.zero_shot.classify(text)
+        few_shot_result = self.few_shot.classify(text)
+        similarity_result = self.similarity.classify(text)
+        
+        final_classification = self.classify(text)
+        
+        return {
+            "zero_shot": zero_shot_result,
+            "few_shot": few_shot_result,
+            "similarity": similarity_result,
+            "final_classification": final_classification
+        }
+
+
+
+## MODELO CLASSIFICADOR DA ROTA TECNOLÓGICA BIOLÓGICA OU SINTÉTICA
+from transformers import AutoTokenizer, AutoModel
+import torch
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+import pickle
+
+class ProductTypeClassifier:
+    def __init__(self):
+        # Carregar BioBERT, um BERT pré-treinado em textos biomédicos
+        self.model_name = "dmis-lab/biobert-v1.1"
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+        self.model = AutoModel.from_pretrained(self.model_name)
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.model.to(self.device)
+        
+        # Classificador final
+        self.classifier = None
+        
+    def prepare_training_data(self, grafo):
+        """Prepara dados de treinamento a partir do grafo"""
+        texts = []
+        labels = []
+        
+        for node, data in grafo.nodes(data=True):
+            if data.get('tipo') in ['produto']:
+                label = data.get('label', '')
+                texts.append(label)
+                
+                # Determinar classe baseado nas características do produto
+                is_biological = self._check_biological_indicators(label)
+                labels.append(1 if is_biological else 0)
+        
+        print(f"{len(texts)} rótulos de produto lidos no grafo de conhecimento")        
+        return texts, labels
+    
+    def _check_biological_indicators(self, text):
+        """
+        Verifica indicadores de tipo de produto biológico ou sintético no texto
+        Baseado em palavras-chave comuns em produtos biológicos
+        """
+        bio_keywords = [
+            'antibody', 'protein', 'vaccine', 'monoclonal',
+            'enzyme', 'hormone', 'peptide', 'immunoglobulin',
+            'antiserum', 'cellular', 'recombinant'
+        ]
+        
+        text = text.lower()
+        return any(keyword in text for keyword in bio_keywords)
+    
+    def get_embeddings(self, texts):
+        """Gera embeddings usando BioBERT"""
+        embeddings = []
+        
+        with torch.no_grad():
+            for text in texts:
+                inputs = self.tokenizer(
+                    text,
+                    return_tensors="pt",
+                    padding=True,
+                    truncation=True,
+                    max_length=512
+                ).to(self.device)
+                
+                outputs = self.model(**inputs)
+                embedding = outputs.last_hidden_state.mean(dim=1)
+                embeddings.append(embedding.cpu().numpy().squeeze())
+                
+        return np.array(embeddings)
+    
+    def train(self, grafo, test_size=0.2):
+        """Treina o classificador"""
+        texts, labels = self.prepare_training_data(grafo)
+        
+        # Verificar quantidade mínima de amostras
+        n_samples = len(texts)
+        if n_samples < 2:
+            raise ValueError(f"Número insuficiente de amostras para treino: {n_samples}. Mínimo necessário: 2")
+        
+        # Verificar classes presentes
+        unique_labels = np.unique(labels)
+        if len(unique_labels) < 2:
+            raise ValueError(f"Necessário ter amostras de ambas as classes (biological e small molecule). Encontrado apenas: {len(unique_labels)} classe(s)")
+        
+        # Gerar embeddings e treinar
+        embeddings = self.get_embeddings(texts)
+        X_train, X_test, y_train, y_test = train_test_split(
+            embeddings, labels, test_size=test_size, random_state=42
+        )
+        
+        # Treinar classificador XGBoost
+        from xgboost import XGBClassifier
+        self.classifier = XGBClassifier(
+            use_label_encoder=False,
+            eval_metric='logloss'
+        )
+        self.classifier.fit(X_train, y_train)
+        
+        # Avaliar modelo
+        y_pred = self.classifier.predict(X_test)
+        
+        # Identificar classes presentes para o relatório
+        present_classes = sorted(list(set(y_test)))
+        target_names = ['Small Molecule' if i == 0 else 'Biological' for i in present_classes]
+        
+        print("\nClassification Report:")
+        print(classification_report(y_test, y_pred, target_names=target_names))
+
+        
+    def predict(self, text):
+        """Prediz o tipo de um novo produto"""
+        embedding = self.get_embeddings([text])
+        prob = self.classifier.predict_proba(embedding)[0]
+        return {
+            'type': 'biological' if prob[1] > 0.5 else 'small_molecule',
+            'confidence': float(max(prob))
+        }
+    
+    def save_model(self, filename):
+        """Salva o modelo treinado"""
+        with open(filename, 'wb') as f:
+            pickle.dump(self.classifier, f)
+    
+    def load_model(self, filename):
+        """Carrega um modelo treinado"""
+        with open(filename, 'rb') as f:
+            self.classifier = pickle.load(f)
+
+class ProductClassifier:
+    def __init__(self, grafo, classifier):
+        self.grafo = grafo
+        self.classifier = classifier
+    
+    def classify_products(self):
+        for node_id, node_data in self.grafo.nodes(data=True):
+            if node_data.get('tipo') == 'produto':
+                label = node_data.get('label', '')
+                if label:
+                    classification = self.classifier.classify(label)
+                    
+                    # Atualizar o nó com a classificação
+                    self.grafo.nodes[node_id]['categoria'] = classification['label']
+                    self.grafo.nodes[node_id]['categoria_score'] = classification['score']
+                    
+                    print(f"Produto: {label}")
+                    print(f"Classificação: {classification['label']}")
+                    print(f"Score: {classification['score']}")
+                    print("---")
+    
+    def get_classification_summary(self):
+        biological_count = 0
+        small_molecule_count = 0
+        
+        for _, node_data in self.grafo.nodes(data=True):
+            if node_data.get('tipo') == 'produto':
+                if node_data.get('categoria') == 'biological':
+                    biological_count += 1
+                elif node_data.get('categoria') == 'small molecule':
+                    small_molecule_count += 1
+        
+        total = biological_count + small_molecule_count
+        
+        return {
+            'total_produtos': total,
+            'biological': biological_count,
+            'small_molecule': small_molecule_count,
+            'biological_percentage': (biological_count / total) * 100 if total > 0 else 0,
+            'small_molecule_percentage': (small_molecule_count / total) * 100 if total > 0 else 0
+        }
