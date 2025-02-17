@@ -1,0 +1,342 @@
+{
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "Identifica\u00e7\u00e3o": {
+                "type": "object",
+                "properties": {
+                    "Nome": {
+                        "type": "string"
+                    },
+                    "ID Lattes": {
+                        "type": "string"
+                    },
+                    "\u00daltima atualiza\u00e7\u00e3o": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Nome",
+                    "ID Lattes",
+                    "\u00daltima atualiza\u00e7\u00e3o"
+                ]
+            },
+            "Idiomas": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "Idioma": {
+                            "type": "string"
+                        },
+                        "Profici\u00eancia": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "Idioma",
+                        "Profici\u00eancia"
+                    ]
+                }
+            },
+            "Forma\u00e7\u00e3o": {
+                "type": "object",
+                "properties": {
+                    "Acad\u00eamica": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "Ano": {
+                                    "type": "string"
+                                },
+                                "Descri\u00e7\u00e3o": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "Ano",
+                                "Descri\u00e7\u00e3o"
+                            ]
+                        }
+                    },
+                    "Pos-Doc": {
+                        "type": "array"
+                    },
+                    "Complementar": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "Ano": {
+                                    "type": "string"
+                                },
+                                "Descri\u00e7\u00e3o": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "Ano",
+                                "Descri\u00e7\u00e3o"
+                            ]
+                        }
+                    }
+                },
+                "required": [
+                    "Acad\u00eamica",
+                    "Pos-Doc",
+                    "Complementar"
+                ]
+            },
+            "Atua\u00e7\u00e3o Profissional": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "Institui\u00e7\u00e3o": {
+                            "type": "string"
+                        },
+                        "Ano": {
+                            "type": "string"
+                        },
+                        "Descri\u00e7\u00e3o": {
+                            "type": "string"
+                        },
+                        "Outras informa\u00e7\u00f5es": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "Institui\u00e7\u00e3o",
+                        "Ano",
+                        "Descri\u00e7\u00e3o",
+                        "Outras informa\u00e7\u00f5es"
+                    ]
+                }
+            },
+            "Linhas de Pesquisa": {
+                "type": "array"
+            },
+            "\u00c1reas": {
+                "type": "object",
+                "patternProperties": {
+                    "^[0-9]+\\.$": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Produ\u00e7\u00f5es": {
+                "type": "object",
+                "properties": {
+                    "Artigos completos publicados em peri\u00f3dicos": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "ano": {
+                                    "type": "string"
+                                },
+                                "fator_impacto_jcr": {
+                                    "type": "string"
+                                },
+                                "ISSN": {
+                                    "type": "string"
+                                },
+                                "titulo": {
+                                    "type": "string"
+                                },
+                                "revista": {
+                                    "type": "string"
+                                },
+                                "autores": {
+                                    "type": "string"
+                                },
+                                "data_issn": {
+                                    "type": "string"
+                                },
+                                "DOI": {
+                                    "type": "string"
+                                },
+                                "Qualis": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "ano",
+                                "fator_impacto_jcr",
+                                "ISSN",
+                                "titulo",
+                                "revista",
+                                "autores",
+                                "data_issn",
+                                "DOI",
+                                "Qualis"
+                            ]
+                        }
+                    },
+                    "Resumos publicados em anais de congressos": {
+                        "type": "object",
+                        "patternProperties": {
+                            "^[0-9]+\\.$": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "Apresenta\u00e7\u00f5es de Trabalho": {
+                        "type": "object",
+                        "patternProperties": {
+                            "^[0-9]+\\.$": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "Outras produ\u00e7\u00f5es bibliogr\u00e1ficas": {
+                        "type": "object",
+                        "patternProperties": {
+                            "^[0-9]+\\.$": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "Entrevistas, mesas redondas, programas e coment\u00e1rios na m\u00eddia": {
+                        "type": "object",
+                        "patternProperties": {
+                            "^[0-9]+\\.$": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "Demais tipos de produ\u00e7\u00e3o t\u00e9cnica": {
+                        "type": "object",
+                        "patternProperties": {
+                            "^[0-9]+\\.$": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "Artigos completos publicados em peri\u00f3dicos"
+                ]
+            },
+            "ProjetosPesquisa": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "chave": {
+                            "type": "string"
+                        },
+                        "titulo_projeto": {
+                            "type": "string"
+                        },
+                        "descricao": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "chave",
+                        "titulo_projeto",
+                        "descricao"
+                    ]
+                }
+            },
+            "ProjetosExtens\u00e3o": {
+                "type": "array"
+            },
+            "ProjetosDesenvolvimento": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "chave": {
+                            "type": "string"
+                        },
+                        "titulo_projeto": {
+                            "type": "string"
+                        },
+                        "descricao": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "chave",
+                        "titulo_projeto",
+                        "descricao"
+                    ]
+                }
+            },
+            "ProjetosOutros": {
+                "type": "array"
+            },
+            "Patentes e registros": {
+                "type": "object"
+            },
+            "Bancas": {
+                "type": "object",
+                "properties": {
+                    "Participa\u00e7\u00e3o em bancas de trabalhos de conclus\u00e3o": {
+                        "type": "object",
+                        "patternProperties": {
+                            "^[0-9]+\\.$": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "Participa\u00e7\u00e3o em bancas de comiss\u00f5es julgadoras": {
+                        "type": "object",
+                        "patternProperties": {
+                            "^[0-9]+\\.$": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "required": []
+            },
+            "Orienta\u00e7\u00f5es": {
+                "type": "array"
+            },
+            "JCR2": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "doi": {
+                            "type": [
+                                "string",
+                                "null"
+                            ]
+                        },
+                        "impact-factor": {
+                            "type": "string"
+                        },
+                        "original_title": {
+                            "type": "string"
+                        }
+                    },
+                    "required": []
+                }
+            }
+        },
+        "required": [
+            "Identifica\u00e7\u00e3o",
+            "Idiomas",
+            "Forma\u00e7\u00e3o",
+            "Atua\u00e7\u00e3o Profissional",
+            "Linhas de Pesquisa",
+            "\u00c1reas",
+            "Produ\u00e7\u00f5es",
+            "Cita\u00e7\u00f5es",
+            "ProjetosPesquisa",
+            "ProjetosExtens\u00e3o",
+            "ProjetosDesenvolvimento",
+            "ProjetosOutros",
+            "Patentes e registros",
+            "Bancas",
+            "Orienta\u00e7\u00f5es",
+            "JCR2"
+        ]
+    }
+}

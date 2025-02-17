@@ -756,7 +756,7 @@ class CompetenceExtractor:
                 # Processar a competência com o spaCy
                 doc = nlp(competence)
 
-                # Remover stop words e lematiza
+                # Remover stop words e lematizar
                 palavras_processadas = []
                 ultima_palavra = None
                 for token in doc:

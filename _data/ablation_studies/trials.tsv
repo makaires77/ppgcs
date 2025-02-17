@@ -1,0 +1,7 @@
+model	accuracy	regime	q	distance	gamma_intra	gamma_inter
+MLP-GAT	0.95	easy	0.2	0.1	0.004	0.003
+GCN	0.98	easy	0.2	0.1	0.003	0.002
+No-graph	0.70	easy	0.2	0.1	0.003	0.003
+MLP-GAT	0.85	hard	0.4	1.0	0.004	0.001
+GCN	0.90	hard	0.4	1.0	0.002	0.001
+No-graph	0.70	hard	0.4	1.0	0.003	0.003

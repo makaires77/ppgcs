@@ -7,7 +7,7 @@
             "qte_keywords": "1",
             "qte_members": "8",
             "qte_projects": "4",
-            "qte_publication": "105",
+            "qte_publication": "107",
             "projects": [
                 {
                     "title": "ISIDORe – Integrated Services for Infectious Diseases Outbreak Research",
@@ -19,14 +19,14 @@
                 {
                     "title": "HoloZcan – Deep Learning Powered Holographic Microscopy for Biothreat Detection on Field",
                     "head_name": "Mariana Ferrari (PI)",
-                    "status": "Ongoing",
-                    "members": "10 Members",
+                    "status": "Completed",
+                    "members": "9 Members",
                     "description": "The project is a Research and Innovation Action, its funding originates from the H2020-EU.3.7.5. – Increase Europe’s resilience to crises and disasters budget line, topic : SU-DRS04-2019-2020 – Chemical, biological, radiological and nuclear (CBRN) […]"
                 },
                 {
                     "title": "IS_MIRRI21 – Implementation and Sustainability of Microbial Resource Research Infrastructure for the 21st century",
                     "head_name": "Raquel Hurtado Ortiz (PI)",
-                    "status": "Ongoing",
+                    "status": "Completed",
                     "members": "6 Members",
                     "description": "IS_MIRRI21 commenced in February 2020, which was officialised by the successful Kick-Off Meeting conducted on the 25th and 26th of March, 2020 under the coordination of University of Minho (UMINHO) from Portugal. This European […]"
                 },
@@ -58,7 +58,7 @@
         "link": "https://research.pasteur.fr/en/team/hub-giphy/",
         "aditional_info": {
             "qte_keywords": "3",
-            "qte_members": "1",
+            "qte_members": "2",
             "qte_tools": "3",
             "qte_publication": "82",
             "projects": [
@@ -89,9 +89,9 @@
         "link": "https://research.pasteur.fr/en/team/collection-of-cyanobacteria/",
         "aditional_info": {
             "qte_keywords": "9",
-            "qte_members": "9",
+            "qte_members": "8",
             "qte_projects": "2",
-            "qte_publication": "57",
+            "qte_publication": "58",
             "projects": [
                 {
                     "title": "Cyanobacterial bioactive compounds",
@@ -152,7 +152,7 @@
                 {
                     "title": "IS_MIRRI21 – Implementation and Sustainability of Microbial Resource Research Infrastructure for the 21st century",
                     "head_name": "Raquel Hurtado Ortiz (PI)",
-                    "status": "Ongoing",
+                    "status": "Completed",
                     "members": "6 Members",
                     "description": "IS_MIRRI21 commenced in February 2020, which was officialised by the successful Kick-Off Meeting conducted on the 25th and 26th of March, 2020 under the coordination of University of Minho (UMINHO) from Portugal. This European […]"
                 },
@@ -181,123 +181,186 @@
         "link": "https://research.pasteur.fr/en/team/icareb-biobank-integrated-collections-for-adaptive-research-in-biomedicine/",
         "aditional_info": {
             "qte_members": "6",
-            "qte_projects": "18",
+            "qte_projects": "27",
             "projects": [
                 {
-                    "title": "Ã‰tude de la rÃ©ponse inflammatoire mÃ©diÃ©e par les polynuclÃ©aires neutrophiles au cours des accidents vasculaires cÃ©rÃ©braux : NEUTROBLOOD (2023-037)",
-                    "head_name": "Aleksandra Deczkowska (PI)",
-                    "status": "Not started",
+                    "title": "Recherche de variants génétiques prédisposant à la survenue de l’hidradénite suppurée et de l’acné fulminante chez 16 patients par séquençage d’exome : ASH (2024-041)",
+                    "head_name": "Aude Nassif (PI)",
+                    "status": "Ongoing",
+                    "members": "2 Members",
+                    "description": "Le projet ASH concerne une demande d’utilisation à des fins scientifiques de données et d’échantillons biologiques collectés auprès de participants des recherches suivantes : – « Bases génétiques des anomalies observées dans la maladie de […]"
+                },
+                {
+                    "title": "Understanding the contribution of biological sex to the host response to urinary tract infection in a Bladder-on-Chip model (URIBOC)",
+                    "head_name": "Molly Ingersoll (PI)",
+                    "status": "Ongoing",
                     "members": "3 Members",
                     "description": "Sorry, this entry is only available in FR."
                 },
                 {
-                    "title": "Apprentissage de la technique de cytomÃ©trie en flux appliquÃ©e Ã  l’analyse de cellules sanguines dans le cadre du Master 2 intitulÃ© Â«Â Immunologie approfondie Â» TPAI (2023-027)",
-                    "head_name": "Milena Hasan (PI)",
+                    "title": "Étude de la réponse vaccinale induite par un vaccin vivant “IVORY1” (2023-048)",
+                    "head_name": "Jessica Quintin (PI)",
+                    "status": "Ongoing",
+                    "members": "5 Members",
+                    "description": "Sorry, this entry is only available in FR."
+                },
+                {
+                    "title": "Effet des mutations du gène Adenomatous polyposis coli (APC) dans la réponse immune antitumorale « Pro4TCan ».",
+                    "head_name": "Andres Alcover (PI)",
                     "status": "Not started",
                     "members": "2 Members",
                     "description": "Sorry, this entry is only available in FR."
                 },
                 {
-                    "title": "DÃ©veloppement et validation de technologies de pointe d’analyse de la rÃ©ponse immunologique : TTP (2024-005)",
+                    "title": "Identification de marqueurs sanguins permettant d’évaluer la toxicité de bactériophages : PHAGESAFETY",
+                    "head_name": "Laurent Debarbieux (PI)",
+                    "status": "Not started",
+                    "members": "3 Members",
+                    "description": "afin de les utiliser dans le futur en tant que médicaments PHAGESAFETY est une recherche scientifique impliquant l’utilisation de données et d’échantillons collectés dans le cadre de la cohorte COSIPOP Quel est l’objectif de […]"
+                },
+                {
+                    "title": "Étude de l’activité biologique et du mécanisme d’action de copolypeptoïdes cationiques sur Clostridioides difficile “THERAPEPTICS” (2024-039)",
+                    "head_name": "Bruno Dupuy (PI)",
+                    "status": "Completed",
+                    "members": "3 Members",
+                    "description": "Sorry, this entry is only available in FR."
+                },
+                {
+                    "title": "Mise au point d’une méthode de culture in vitro du parasite Plasmodium vivax : VIvax Cycle laboraTORy : VICTOR (2023-031)",
+                    "head_name": "Hélène Laude (PI)",
+                    "status": "Not started",
+                    "members": "3 Members",
+                    "description": "VICTOR est une demande d’utilisation d’échantillons collectés dans le cadre de la cohorte COSIPOP. Quel est l’objectif ? L’objectif de cette recherche est de mettre au point une méthode de culture in vitro de […]"
+                },
+                {
+                    "title": "Étude d’une molécule potentialisant l’effet bactéricide des aminosides : POTAG (2023-039)",
+                    "head_name": "Zeynep Baharoglu (PI)",
+                    "status": "Ongoing",
+                    "members": "3 Members",
+                    "description": "Sorry, this entry is only available in FR."
+                },
+                {
+                    "title": "Primary keratinocytes biobank to generate epidermal organoids EpiOrganoids",
+                    "head_name": "Laure Guenin-Mace (PI)",
+                    "status": "Ongoing",
+                    "members": "3 Members",
+                    "description": "Sorry, this entry is only available in FR."
+                },
+                {
+                    "title": "Étude de la réponse inflammatoire médiée par les polynucléaires neutrophiles au cours des accidents vasculaires cérébraux : NEUTROBLOOD (2023-037)",
+                    "head_name": "Aleksandra Deczkowska (PI)",
+                    "status": "Ongoing",
+                    "members": "3 Members",
+                    "description": "Sorry, this entry is only available in FR."
+                },
+                {
+                    "title": "Apprentissage de l’utilisation de technologies de pointe d’analyse de marqueurs de la réponse immunitaire dans le cadre du Master 2 intitulé « Immunologie approfondie » TPAI (2023-027)",
+                    "head_name": "Milena Hasan (PI)",
+                    "status": "Ongoing",
+                    "members": "2 Members",
+                    "description": "Sorry, this entry is only available in FR."
+                },
+                {
+                    "title": "Développement et validation de technologies de pointe d’analyse de la réponse immunologique : TTP (2024-005)",
                     "head_name": "Milena Hasan (PI)",
                     "status": "Not started",
                     "members": "3 Members",
                     "description": "Sorry, this entry is only available in FR."
                 },
                 {
-                    "title": "DÃ©veloppement d’une technique d’analyse de la rÃ©ponse immunitaire aprÃ¨s administration d’un vaccin anti-cancer : IMMUNSCAN-PILOTE",
+                    "title": "Développement d’une technique d’analyse de la réponse immunitaire après administration d’un vaccin anti-cancer : IMMUNSCAN-PILOTE",
                     "head_name": "Milena Hasan (PI)",
                     "status": "Not started",
                     "members": "5 Members",
-                    "description": "IMMUNSCAN-PILOTE est une recherche scientifique menÃ©e grÃ¢ce Ã  l’utilisation de donnÃ©es et d’Ã©chantillons biologiques collectÃ©es dans le cadre de la cohorte COSIPOP Quel est l’objectif d’IMMUNSCAN-PILOTE ? L’objectif est de mettre au point, Ã  […]"
+                    "description": "IMMUNSCAN-PILOTE est une recherche scientifique menée grâce à l’utilisation de données et d’échantillons biologiques collectées dans le cadre de la cohorte COSIPOP Quel est l’objectif d’IMMUNSCAN-PILOTE ? L’objectif est de mettre au point, à […]"
                 },
                 {
-                    "title": "Mise au point d’une mÃ©thode d’analyse de la rÃ©ponse immunitaire physiologique (VARIMMET) : 2023-030",
+                    "title": "Mise au point d’une méthode d’analyse de la réponse immunitaire physiologique (VARIMMET) : 2023-030",
                     "head_name": "Darragh Duffy (PI)",
                     "status": "Ongoing",
                     "members": "6 Members",
                     "description": "Sorry, this entry is only available in FR."
                 },
                 {
-                    "title": "CaractÃ©risation du rÃ´le rÃ©cepteur cellulaire utilisÃ© par le parasite Plasmodium vivax au cours des formes bÃ©nignes mais rÃ©currentes de paludisme : PVINVASION (2023-028).",
+                    "title": "Caractérisation du rôle récepteur cellulaire utilisé par le parasite Plasmodium vivax au cours des formes bénignes mais récurrentes de paludisme : PVINVASION (2023-028).",
                     "head_name": "Eric Legrand (PI)",
                     "status": "Not started",
                     "members": "4 Members",
                     "description": "Sorry, this entry is only available in FR."
                 },
                 {
-                    "title": "Ã‰tude du rÃ´le de gÃ¨nes viraux dans la transmission des arbovirus par les moustiques : HB4EIMA (2023-007)",
+                    "title": "Étude du rôle de gènes viraux dans la transmission des arbovirus par les moustiques : HB4EIMA (2023-007)",
                     "head_name": "Carla Saleh (PI)",
                     "status": "Not started",
                     "members": "3 Members",
                     "description": "Sorry, this entry is only available in FR."
                 },
                 {
-                    "title": "Mise au point d’une technique d’identification de molÃ©cules bactÃ©riennes ayant un effet anti-inflammatoire au niveau intestinal : FLAMCHIP",
+                    "title": "Mise au point d’une technique d’identification de molécules bactériennes ayant un effet anti-inflammatoire au niveau intestinal : FLAMCHIP",
                     "head_name": "Nathalie Sauvonnet (PI)",
                     "status": "Ongoing",
                     "members": "4 Members",
-                    "description": "FLAMCHIP est une recherche scientifique reposant sur l’utilisation de donnÃ©es et d’Ã©chantillons collectÃ©s dans le cadre de la cohorte COSIPOP. Quel est l’objectif de FLAMCHIP ? Lâ€™objectif est de mettre au point une technique […]"
+                    "description": "FLAMCHIP est une recherche scientifique reposant sur l’utilisation de données et d’échantillons collectés dans le cadre de la cohorte COSIPOP. Quel est l’objectif de FLAMCHIP ? L’objectif est de mettre au point une technique […]"
                 },
                 {
-                    "title": "Ã‰tude des traitements antipaludiques : identification de nouveaux candidats mÃ©dicaments et notamment des anticorpsÂ : BPV",
+                    "title": "Étude des traitements antipaludiques : identification de nouveaux candidats médicaments et notamment des anticorps : BPV",
                     "head_name": "Chetan Chitnis (PI)",
                     "status": "Ongoing",
                     "members": "3 Members",
                     "description": "Sorry, this entry is only available in FR."
                 },
                 {
-                    "title": "Ã‰tude du phÃ©nomÃ¨ne de libÃ©ration par les polynuclÃ©aires neutrophiles de fibres d’ADN et de protÃ©ines : NETOSIS",
-                    "head_name": "Friederike JÃ¶nsson (PI)",
+                    "title": "Étude du phénomène de libération par les polynucléaires neutrophiles de fibres d’ADN et de protéines : NETOSIS",
+                    "head_name": "Friederike Jönsson (PI)",
                     "status": "Ongoing",
                     "members": "3 Members",
-                    "description": "pour piÃ©ger des micro-organismes pathogÃ¨nes. Quel est lâ€™objectif de cette demande ? Lâ€™objectif est d’identifier l’origine de l’ADN libÃ©rÃ©, celui-ci pouvant provenir du noyau des cellules ou des mitochondries cellulaires ou des micro-organismes. Quelles […]"
+                    "description": "pour piéger des micro-organismes pathogènes. Quel est l’objectif de cette demande ? L’objectif est d’identifier l’origine de l’ADN libéré, celui-ci pouvant provenir du noyau des cellules ou des mitochondries cellulaires ou des micro-organismes. Quelles […]"
                 },
                 {
                     "title": "TELOBUV",
                     "head_name": "Yoann Madec (PI)",
-                    "status": "Not started",
+                    "status": "Ongoing",
                     "members": "2 Members",
-                    "description": "Sorry, this entry is only available in FR."
+                    "description": "Mise au point d’une méthode de mesure de la longueur des télomères de cellules du sang prélevé sur du papier buvard “TELOBUV “(2023-021). TELOBUV est une demande d’utilisation à des fins scientifiques d’échantillons collectés […]"
                 },
                 {
-                    "title": "Interaction entre les micro-organismes transmis par voie respiratoires et les cellules Ã©pithÃ©liales nasales",
-                    "head_name": "HÃ©lÃ¨ne Laude (PI)",
+                    "title": "Interaction entre les micro-organismes transmis par voie respiratoires et les cellules épithéliales nasales",
+                    "head_name": "Hélène Laude (PI)",
                     "status": "Not started",
                     "members": "3 Members",
                     "description": "Sorry, this entry is only available in FR."
                 },
                 {
-                    "title": "Utilisation de sÃ©rums et plasmas de sujets contrÃ´les nÃ©gatifs pour la rÃ©alisation de tests diagnostiques sÃ©rologiques des infections Ã  MÃ©ningocoques – SBAcom.",
-                    "head_name": "HÃ©lÃ¨ne Laude (PI)",
+                    "title": "Utilisation de sérums et plasmas de sujets contrôles négatifs pour la réalisation de tests diagnostiques sérologiques des infections à Méningocoques – SBAcom.",
+                    "head_name": "Hélène Laude (PI)",
                     "status": "Ongoing",
                     "members": "3 Members",
                     "description": "Sorry, this entry is only available in FR."
                 },
                 {
-                    "title": "Ã‰tude du rÃ´le des lipoprotÃ©ines humaines dans la transmission des arbovirus par les moustiques : DABO-LIPO-ARBO.",
-                    "head_name": "HÃ©lÃ¨ne Laude (PI)",
-                    "status": "Not started",
+                    "title": "Étude du rôle des lipoprotéines humaines dans la transmission des arbovirus par les moustiques : DABO-LIPO-ARBO.",
+                    "head_name": "Louis Lambrechts (PI)",
+                    "status": "Ongoing",
                     "members": "3 Members",
                     "description": "Sorry, this entry is only available in FR."
                 },
                 {
-                    "title": "Culture in vitro de stades sanguins de parasites humains Plasmodium pour la production de gamÃ©tocytes et lâ€™infection de moustiques AnophÃ¨les : CEPIA2023 (2023-008)",
+                    "title": "Culture in vitro de stades sanguins de parasites humains Plasmodium pour la production de gamétocytes et l’infection de moustiques Anophèles : CEPIA2023 (2023-008)",
                     "head_name": "Sabine Thiberge (PI)",
                     "status": "Ongoing",
                     "members": "2 Members",
                     "description": "Sorry, this entry is only available in FR."
                 },
                 {
-                    "title": "Ã‰tude des interactions des bactÃ©ries intracellulaires pathogÃ¨nes avec les globules blancs humains : NEUTROPat",
-                    "head_name": "HÃ©lÃ¨ne Laude (PI)",
+                    "title": "Étude des interactions des bactéries intracellulaires pathogènes avec les globules blancs humains : NEUTROPat",
+                    "head_name": "Hélène Laude (PI)",
                     "status": "Ongoing",
                     "members": "3 Members",
                     "description": "Sorry, this entry is only available in FR."
                 },
                 {
-                    "title": "Cohorte de sujets issus de la population gÃ©nÃ©rale en bonne santÃ© globale permettant la rÃ©alisation de recherches expÃ©rimentales prÃ©liminaires – COSIPOP",
-                    "head_name": "HÃ©lÃ¨ne Laude (PI)",
+                    "title": "Cohorte de sujets issus de la population générale en bonne santé globale permettant la réalisation de recherches expérimentales préliminaires – COSIPOP",
+                    "head_name": "Hélène Laude (PI)",
                     "status": "Ongoing",
                     "members": "7 Members",
                     "description": "Sorry, this entry is only available in FR."
@@ -306,7 +369,7 @@
                     "title": "Projet ABCESS2 : A Multicentric Randomized Double-Blind Phase 3 Trial Evaluating the Efficacy of an Adapted Antibiotherapy in Hurley Stage 2 Active Hidradenitis Suppurativa Patients versus Tetracycline Derivative",
                     "head_name": "Maia Delage Toriel (PI)",
                     "status": "Not started",
-                    "members": "10 Members",
+                    "members": "9 Members",
                     "description": "There is a strong unmet need in HS treatment. The pathophysiology of HS is most likely multifactorial, including genetic, immune and microbiological factors. Specific pathobionts in HS lesions have been identified by our team. […]"
                 }
             ],
@@ -331,7 +394,7 @@
             ],
             "about": {
                 "title": "About",
-                "content": "Created in 2021, part of theCenter for Animal Resources and Research,theHuman Disease Models Core Facilityproducesmice harboring a human immune system (HIS mice)and provide expertise for the possible applications of this model.HIS mice engrafted with human Hematopoietic stem cells (HSC) are advantageousin vivomodels for long-term studies in the field ofhuman immune cells biology,immune-oncologyandinfectious disease. They constitute a small animal model in which to analyzepotency and safety of new drugs modulating the immune system.HIS-mice are immunodeficient recipient mice that have been transplanted with a human immune system, or some of its components. Our basic model uses aBRGS (Balb/c-Rag2-/-IL2R γ-/-SIRPαNOD)highly immunodeficient recipient lacking T,B (Rag2-/-) and NK (IL2Rγ-/-) cells as well as macrophage tolerance due to the human-compatible SIRPα gene.  This immunodeficient mouse strain is well reconstituted with human immune cells from human hematopoietic CD34+ stem cells. This model develops all majorhuman lymphocyte classes (B, T and NK cells)and their specialized subsets as well as a variety ofmyeloid cells (dendritic cell, monocytes, and macrophages).More recently, new models have been derived from BRGS mice to improve differentiation and activity of some human immune cell sub-populations– BRGS-A2DR2 (expressing HLA-A2 and DR2 transgenes) HIS micewith improved human T-cell development and function after injection of matched HSCs.– BRGSF (BRGS Flk2-/-) HIS micewith improved human myeloid and NK lineage after boost with soluble Flt3L.– BRGST (expressing mTSLP transgene) HIS micewith improved lymph node development.Within the HDM core facility, we produce humanized mice from these differents immuno-deficient mouse models.If you are interested by working with us or If you want more informations, please contacthdm@pasteur.fr"
+                "content": "Created in 2021, part of theCenter for Animal Resources and Research,theHuman Disease Models Core Facilityproducesmice harboring a human immune system (HIS mice)and provide expertise for the possible applications of this model.HIS mice engrafted with human Hematopoietic stem cells (HSC) are advantageousin vivomodels for long-term studies in the field ofhuman immune cells biology,immune-oncologyandinfectious disease. They constitute a small animal model in which to analyzepotency and safety of new drugs modulating the immune system.HIS-mice are immunodeficient recipient mice that have been transplanted with a human immune system, or some of its components. Our basic model uses aBRGS (Balb/c-Rag2-/-IL2R γ-/-SIRPαNOD)highly immunodeficient recipient lacking T,B (Rag2-/-) and NK (IL2Rγ-/-) cells as well as macrophage tolerance due to the human-compatible SIRPα gene.  This immunodeficient mouse strain is well reconstituted with human immune cells from human hematopoietic CD34+ stem cells. This model develops all majorhuman lymphocyte classes (B, T and NK cells)and their specialized subsets as well as a variety ofmyeloid cells (dendritic cell, monocytes, and macrophages).More recently, new models have been derived from BRGS mice to improve differentiation and activity of some human immune cell sub-populations– BRGS-A2DR2 (expressing HLA-A2 and DR2 transgenes) HIS micewith improved human T-cell development and function after injection of matched HSCs.– BRGSF (BRGS Flk2-/-) HIS micewith improved human myeloid and NK lineage after boost with soluble Flt3L.– BRGST (expressing mTSLP transgene) HIS micewith improved lymph node development.Within the HDM core facility, we produce humanized mice from these differents immuno-deficient mouse models.If you are interested by working with us or If you want more informations, please contacthdm@pasteur.frTo find out more see theTechnology Department brochurehere."
             }
         }
     },
@@ -341,11 +404,11 @@
         "link": "https://research.pasteur.fr/en/team/histopathology/",
         "aditional_info": {
             "qte_keywords": "3",
-            "qte_members": "7",
-            "qte_publication": "14",
+            "qte_members": "9",
+            "qte_publication": "18",
             "about": {
                 "title": "About",
-                "content": "News👩‍🎓 👨‍🎓 Notre plateforme d’Histopathologie recherche un(e)alternant(e) Bac+2pour Septembre. 👩‍🔬 👨‍🔬📝 N’hésitez-pas à postuler pour rejoindre notre DreamTeam en cliquantICIAbout usOur platform offers state-of the art large histotechnological laboratory with a specialized team. We are available for collaborative research. Many projects are currently ongoing on animal models of infectious diseases, cancer, immunotherapy or inflammation with internal or external research teams. Individuals wishing to develop collaborative research efforts are encouraged tocontact uswhen developing research projects. Optimal results are obtained when the staff is contacted as early as possible in the conception of thein vivopart of the project; this allows us to help determine how histological approach can best support the research aim.RequestsFor all requests, please download and complete theSample formTo request a training or reserve a system:PPMSRange of servicesA variety of histology services can be provided to research investigators:Necropsy & gross examination of animal tissuesDesign of the protocolMethodology advice on proper tissue collectionChoice of morphological approaches (fixation, embedding, slide preparation, slide treatments)Evaluation of the slidesHistological and morphometric analyzeFine tuning of Histopathology protocolsDiscussion of the resultsRecommendations for further experimentsTechnicsOur Histology laboratory prepares slides and a wide variety of quality, flexible histopathological and immunohistochemical stains for investigative staff. We also develop new technical tools for animal tissue analysis:We also have access toSafety level 3facility for frozen sectioning of infected human or animal tissues.Access protocolSample process:Equipment:Terms of collaboration/authorshipEngineers and Pathologists who contributed to the project must be listed asco-authorsand Technicians inacknowledgement."
+                "content": "News👩‍🔬We are pleased to announce that the training: Introduction to the basics of Histology and Immunostaining will take place from October 7 to 11, 2024 👨‍🔬You canRegister now😁Introduction to the basics of Histology and ImmunostainingAbout usOur platform offers state-of the art large histotechnological laboratory with a specialized team. We are available for collaborative research. Many projects are currently ongoing on animal models of infectious diseases, cancer, immunotherapy or inflammation with internal or external research teams. Individuals wishing to develop collaborative research efforts are encouraged tocontact uswhen developing research projects. Optimal results are obtained when the staff is contacted as early as possible in the conception of thein vivopart of the project; this allows us to help determine how histological approach can best support the research aim.To find out more see theTechnology Department brochureRequestsFor Histology requests, training or reserve a system:PPMSRange of servicesA variety of histology services can be provided to research investigators:Necropsy & gross examination of animal tissuesDesign of the protocolMethodology advice on proper tissue collectionChoice of morphological approaches (fixation, embedding, slide preparation, slide treatments)Evaluation of the slidesHistological and morphometric analyzeFine tuning of Histopathology protocolsDiscussion of the resultsRecommendations for further experimentsTechnicsOur Histology laboratory prepares slides and a wide variety of quality, flexible histopathological and immunohistochemical stains for investigative staff. We also develop new technical tools for animal tissue analysis:We also have access toSafety level 3facility for frozen sectioning of infected human or animal tissues.Access protocolSample process:Equipment:Terms of collaboration/authorshipEngineers and Pathologists who contributed to the project must be listed asco-authorsand Technicians inacknowledgement."
             }
         }
     },
@@ -354,11 +417,11 @@
         "head_name": "Jean Jaubert",
         "link": "https://research.pasteur.fr/en/team/central-animal-facility/",
         "aditional_info": {
-            "qte_members": "9",
+            "qte_members": "10",
             "qte_publication": "34",
             "transversal_projects": [
                 {
-                    "title": "Microbiotalogy"
+                    "title": "Array"
                 }
             ],
             "about": {
@@ -374,7 +437,7 @@
         "aditional_info": {
             "qte_members": "6",
             "qte_projects": "7",
-            "qte_publication": "51",
+            "qte_publication": "52",
             "projects": [
                 {
                     "title": "Rat transgenesis",
@@ -428,7 +491,7 @@
             ],
             "about": {
                 "title": "About",
-                "content": "TheMouse Genetics Engineering Center(Centre d’Ingénierie Génétique Murine, CIGM) is the Institut Pasteur’stransgenic mouse core facility. Since its creation in 2003, the CIGM aims to generate new models of transgenic mice by classical or targeted transgenesis. Classical (additive) transgenesis, which includes lentiviral transgenesis, is based on a random insertion of an exogenous gene. Targeted transgenesis consists in a deletion or a specific modification in an endogenous locus using homologous recombination in Embryonic Stem (ES) cells or, more recently, by directly using specific nucleases. Preferentially used by theInstitut Pasteurscientific community, the services of CIGM are also available to outside customers interested innew transgenic,knock-down, knock-out(KO) orknock-in(KI) mouse/rat models.The core facility also provides expert advice regarding the design of gene constructs suitable for additive/targeted transgenesis and homologous recombination experiments.To know more about us, please followthe linkGuidelines for users and core facility teams:Click here to obtain the guide"
+                "content": "TheMouse Genetics Engineering Center(Centre d’Ingénierie Génétique Murine, CIGM) is the Institut Pasteur’stransgenic mouse core facility. Since its creation in 2003, the CIGM aims to generate new models of transgenic mice by classical or targeted transgenesis. Classical (additive) transgenesis, which includes lentiviral transgenesis, is based on a random insertion of an exogenous gene. Targeted transgenesis consists in a deletion or a specific modification in an endogenous locus using homologous recombination in Embryonic Stem (ES) cells or, more recently, by directly using specific nucleases. Preferentially used by theInstitut Pasteurscientific community, the services of CIGM are also available to outside customers interested innew transgenic,knock-down, knock-out(KO) orknock-in(KI) mouse/rat models.The core facility also provides expert advice regarding the design of gene constructs suitable for additive/targeted transgenesis and homologous recombination experiments.Guidelines for users and core facility teams:Click here to obtain the guideTo find out more see theTechnology Department brochurehere."
             }
         }
     },
@@ -490,8 +553,8 @@
         "link": "https://research.pasteur.fr/en/team/fabrice-agou-team/",
         "aditional_info": {
             "qte_keywords": "37",
-            "qte_members": "13",
-            "qte_publication": "57",
+            "qte_members": "14",
+            "qte_publication": "62",
             "transversal_projects": [
                 {
                     "title": "Drug Discovery & Screening at Institut Pasteur"
@@ -505,7 +568,7 @@
             ],
             "about": {
                 "title": "About",
-                "content": "Chemogenomic and biological screening are important steps in the discovery of new medicines as well as in precision medicine but also in dissecting molecular pathways and biological networks.What we do:Target-based (High Throughput Screening, HTS) and phenotypic (High Content Screening, HCS) screening assays are powerful tools to identify active chemical substances and genetic modulators of function (siRNA, miRNA, gRNA) providing starting points for drug design or for understanding biological processes. Using liquid handling devices, sensitive detectors and data processing software, HTS/HCS allow a researcher to rapidly test a large number of samples.Typical screening cascade:Our expertise:• We assist research teams with the development of robust bioassays compatible withHTS/HCS standard from the assay optimization to the miniaturization and automation.We also provide guidance for the design of orthogonal (secondary selectivity) assays.• We conduct the screening campaigns of libraries of interest, upload and analyze the data, using our carefully annotated database (Collaborative Drug Discovery), cherry-pick hits for re-testing in dose response experiment (EC50 determination) in order to provide you with a high-quality hit list.• We provide strong support for hit to lead and lead optimization processes (medicinalchemistry, ADME/Tox studies, MOA studies, aggregation/solubility test), especiallyfor some promising projects with high therapeutic index.Technologies we support:• Biophysical techniques using absorbance, fluorescence, luminescence such as timeresolved fluorescence resonance  energy transfer (TR-FRET), AlphaScreen, fluorescence polarization allow for the miniaturization of assays which measure enzyme, receptors, protein:protein/DNA/RNA interactions. Biolayer interferometry technology enables for high-throughput label-free detection using the Octet HTX instrument (ForteBio, Molecular Devices).• Automated microscopy and reporter gene assays allow for measurement of phenotypic changes and signal transduction processes. For HCS, phenotypic analysis in single cell (2D) or organoids (3D) can be carried out with a conventional automated microscope (IX83, Olympus) or the high-resolution microscope StellarVision (Optical Biosystems) that uses structured illumination and Synthetic Aperture Optics (SAO).• With our liquid acoustic dispenser (Echo550, Labcyte), we can easily reformate multiwell plates (96, 384, 1536 wells), offer cherry picking service and prepare any daughter plates from various biological and chemical collections.How to work with us:A request for support starts by sending an email topfccb@pasteur.fr. You will be asked to give us an overview of your project at first and then meet in person to give us any details so we can figure out together the best way to develop your HTS or HCS bioassay. We can assist you to become autonomous on some automated equipment, help you during every steps of the screening process and can perform for you a medium and large screening campaign.Libraries :Commercial focused libraries :FDA approved and phase I passed (3,372 cpds, Selleckchem, L3800)Target selective library (601 cpds, Selleckchem, L3500)Anti-cancer library (921 cpds, Selleckchem, L3000 + 2923 cpds, TargetMol)Lipid metabolism library (297 cpds, TargetMol, L2510)LOPAC (Library of Pharmacologically Active Compounds) (1280 cpds, Sigma, LO4100)Ubiquitination compound library (198 cpds, Selleckchem, L6000)Antibacterial library (10880 cpds, Life Chemicals)Screen-Well FDA approved drug (774 cpds, Enzo Life Sciences, BML-2843)Antifungal library (253 cpds, TargetMol, L4500)Nucleoside analogue library (135 cpds, Selleckchem, L7200)Protein Kinase targeted inhibitor library (9360 cpds, ChemDiv)Nucleobases analogs (NECAN) (4620 cpds, ChemDiv)Commercial non-focused libraries :Natural Compound library (480, cpds, GreenPharma, GPNCL)Diversity library (10,000 cpds, Enamine)Fragment library (1015 cpds, Selleckchem, L1600)Access to : Chimiothèque nationale (71744 cpds) + chimiothèque essentielle (CNE) (1040 cpds)In house libraries :FrPPIchem library (10314 cpds, O. Sperandio)=> cf. publication: https://pubmed.ncbi.nlm.nih.gov/32320205/Epidrugs and base/nucleoside analogs library (333 cpds, P. Arimondo)IPPA/IPPB (2892 cpds, S. Pochet, Y. Janin)Biological library :siRNA/gRNA library for ubiquitome (678 genes,4 siRNA,4 gRNA, Dharmacon)Fundings:"
+                "content": "Chemogenomic and biological screening are important steps in the discovery of new medicines as well as in precision medicine but also in dissecting molecular pathways and biological networks.What we do:Target-based (High Throughput Screening, HTS) and phenotypic (High Content Screening, HCS) screening assays are powerful tools to identify active chemical substances and genetic modulators of function (siRNA, miRNA, gRNA) providing starting points for drug design or for understanding biological processes. Using liquid handling devices, sensitive detectors and data processing software, HTS/HCS allow a researcher to rapidly test a large number of samples.Typical screening cascade:Our expertise:• We assist research teams with the development of robust bioassays compatible withHTS/HCS standard from the assay optimization to the miniaturization and automation.We also provide guidance for the design of orthogonal (secondary selectivity) assays.• We conduct the screening campaigns of libraries of interest, upload and analyze the data, using our carefully annotated database (Collaborative Drug Discovery), cherry-pick hits for re-testing in dose response experiment (EC50 determination) in order to provide you with a high-quality hit list.• We provide strong support for hit to lead and lead optimization processes (medicinalchemistry, ADME/Tox studies, MOA studies, aggregation/solubility test), especiallyfor some promising projects with high therapeutic index.Technologies we support:• Biophysical techniques using absorbance, fluorescence, luminescence such as timeresolved fluorescence resonance  energy transfer (TR-FRET), AlphaScreen, fluorescence polarization allow for the miniaturization of assays which measure enzyme, receptors, protein:protein/DNA/RNA interactions. Biolayer interferometry technology enables for high-throughput label-free detection using the Octet HTX instrument (ForteBio, Molecular Devices).• Automated microscopy and reporter gene assays allow for measurement of phenotypic changes and signal transduction processes. For HCS, phenotypic analysis in single cell (2D) or organoids (3D) can be carried out with a conventional automated microscope (IX83, Olympus) or the high-resolution microscope StellarVision (Optical Biosystems) that uses structured illumination and Synthetic Aperture Optics (SAO).• With our liquid acoustic dispenser (Echo550, Labcyte), we can easily reformate multiwell plates (96, 384, 1536 wells), offer cherry picking service and prepare any daughter plates from various biological and chemical collections.How to work with us:A request for support starts by sending an email topfccb@pasteur.fr. You will be asked to give us an overview of your project at first and then meet in person to give us any details so we can figure out together the best way to develop your HTS or HCS bioassay. We can assist you to become autonomous on some automated equipment, help you during every steps of the screening process and can perform for you a medium and large screening campaign.To find out more see theTechnology Department brochurehere.Libraries :Commercial focused libraries :FDA approved and phase I passed (3,372 cpds, Selleckchem, L3800)Target selective library (601 cpds, Selleckchem, L3500)Anti-cancer library (921 cpds, Selleckchem, L3000 + 2923 cpds, TargetMol)Lipid metabolism library (297 cpds, TargetMol, L2510)LOPAC (Library of Pharmacologically Active Compounds) (1280 cpds, Sigma, LO4100)Ubiquitination compound library (198 cpds, Selleckchem, L6000)Antibacterial library (10880 cpds, Life Chemicals)Screen-Well FDA approved drug (774 cpds, Enzo Life Sciences, BML-2843)Antifungal library (253 cpds, TargetMol, L4500)Nucleoside analogue library (135 cpds, Selleckchem, L7200)Protein Kinase targeted inhibitor library (9360 cpds, ChemDiv)Nucleobases analogs (NECAN) (4620 cpds, ChemDiv)Commercial non-focused libraries :Natural Compound library (480, cpds, GreenPharma, GPNCL)Diversity library (10,000 cpds, Enamine)Fragment library (1015 cpds, Selleckchem, L1600)Access to : Chimiothèque nationale (71744 cpds) + chimiothèque essentielle (CNE) (1040 cpds)In house libraries :FrPPIchem library (10314 cpds, O. Sperandio)=> cf. publication: https://pubmed.ncbi.nlm.nih.gov/32320205/Epidrugs and base/nucleoside analogs library (333 cpds, P. Arimondo)IPPA/IPPB (2892 cpds, S. Pochet, Y. Janin)Biological library :siRNA/gRNA library for ubiquitome (678 genes,4 siRNA,4 gRNA, Dharmacon)Fundings:"
             }
         }
     },
@@ -517,6 +580,15 @@
             "qte_keywords": "21",
             "qte_members": "6",
             "qte_publication": "1",
+            "projects": [
+                {
+                    "title": "Description des voies métaboliques perturbées au cours d’infections par des bactéries intracellulaires : METABACT (2023-042)",
+                    "head_name": "Pedro Escoll (PI)",
+                    "status": "Ongoing",
+                    "members": "5 Members",
+                    "description": "Sorry, this entry is only available in FR."
+                }
+            ],
             "about": {
                 "title": "About",
                 "content": "The Metabolomics Core Facility (MCF) was created on December 1st, 2020 and is part of the Center for Technological Resources and Research (C2RT) and the Microbiology Department.The main objective of the platform is to provide researchers with metabolomic strategies to help them answer their biological questions. The metabolomic team will support researchers from the definition of experimental design to the interpretation of the results. They benefit from state-of-the-art instrumentation and computational methods. It includes the latest generation of high speed, high-resolution mass spectrometers as well as bioinformatics and statistical tools to analyze the complex high-dimensional data generated.Our activitiesLarge-scale metabolomic and lipidomic analyses can provide with important information about many cellular processes and their disturbances:comparison of metabolomes between several biological systems allows genotypes and phenotypes to be linked.comparison of metabolomes within the same group of biological systems under different conditions enables to elucidate the influence of the environment on the expressed phenotype.One of the main challenges of these analyses is to be able to measure metabolites with extremely diverse physico-chemical properties whilst we have not an exhaustive knowledge of all existing metabolites yet. One of the specificities of the platform is to elucidate on a large scale these unknown compounds for a fine understanding of cellular physiological mechanisms.The main goal of the platform is to help researchers by conducting metabolomic experiments and analyses. Our activity can be divided into 3 main project types:Help researchers answer their biological questions: projects submitted by Pasteur or external teamsInternal developments: MCF-specific projects to acquire new approaches in metabolomics and to anticipate the future needs of the Institut PasteurTransversal technological research with other internal or external teams (platforms, research units)We are also eager to give advice and help researchers elaborate their metabolomic projects.Do not hesitate to contact us atmetabolomics@pasteur.frif you have any question.How to work with usMetabolomic analyses can be long processes, and their objectives must be well defined prior to any work at the bench. The experimental design is particularly critical to make sure the results obtained are robust enough and unbiased with regards to your biological question. Sample preparation, data acquisition and analysis method must be carefully planned in advance.In this context, feel free to email usmetabolomics@pasteur.frand we will be happy to discuss about your needs.Note that an online submission form is being developed in collaboration with the Bioinformatics and Biostatistics Hub and will be available soon.Practical informationWe are part of theC2RT(Center for Technological Resources and Research), a center encompassing the Technology and Service units (UTechS) and the technological core facilities of the campus. As such, we follow thecommon guidelines and good practices(click here for french version)regarding costs, communication, acknowledgments and authorship.Brochure Technology Department C2RT-C2RA-C2RI-CRBIPCharterInvoicingUsers agree to pay the service fees related to the facility activities. The billing policy of the platform has been built following the C2RT recommendations and with the help of the financial services. A quote will be edited after the first discussions and before any analyses at the bench.CertificationWe plan to obtain the Quality Management System norm ISO-9001:2015 early 2023.Steering committeeDavid Touboul, CNRS,Serge Rudaz, Université de Genève,Timothy Wai, Institut Pasteur,Anna Kehres, Institut Pasteur,Gérard Eberl, Institut Pasteur,Marie-Agnès Dillies, Institut Pasteur"
@@ -545,7 +617,7 @@
             "qte_keywords": "1",
             "qte_members": "17",
             "qte_projects": "18",
-            "qte_publication": "234",
+            "qte_publication": "238",
             "projects": [
                 {
                     "title": "A genetic magnetic-extraction-proteomics (gMEP) workflow to understand the link between Shigella vacuolar rupture and autophagy – PureMagRupture",
@@ -624,9 +696,9 @@
         "link": "https://research.pasteur.fr/en/team/biophysics/",
         "aditional_info": {
             "qte_keywords": "15",
-            "qte_members": "9",
+            "qte_members": "8",
             "qte_projects": "5",
-            "qte_publication": "173",
+            "qte_publication": "174",
             "projects": [
                 {
                     "title": "Biophysical characterization of the translocation process of Bordetella pertussis adenylate cyclase toxin CyaA",
@@ -664,7 +736,7 @@
             ],
             "about": {
                 "title": "About",
-                "content": "The “Molecular Biophysics” facility (french acronym:PlateForme deBiophysiqueMoleculaIre,PFBMI) federates an ensemble of state-of-the-art instrumentation for thein vitromolecular-scale characterization of biological macromolecules, together with well established technical and methodological expertiseWhat do we do ?The mission of the PFBMI is to provide an added value to a great variety of biological projects, enabling the characterization of the intrinsic properties of macromolecules and their assemblies (size, shape, folding, stability auto-association,…) and of the interactions in which they are involved (stoichiometry, thermodynamic and kinetic parameters, …). PFBMI equipments are available for the entire scientific community, in France and abroad, but a priority is given to teams from Institut Pasteur and the Institut Pasteur International Network.Pricing: services are charged according to the following  downloadablechartSteering committee:Jean-Baptiste CHARBONNIER (CEA Saclay), Alexandre CHENAL (Institut Pasteur), Katherine STOTT (University of Cambridge), Nicolas WOLFF (Institut Pasteur) The PFBMI follows thebest practice guidelinesof C2RTTo submit a project to the PFBMI: For more information on the Quality Control service, please send an email toqcprotein@pasteur.fr. You can download and attach aQC submission form.For all other PFBMI services, please send an e-mail tobiophysique@pasteur.frtogether with a completedproject submission form.Fields of expertise of the PFBMI :Size and shape of macromolecules and their assembliesStoichiometry of macromolecular assembliesSecondary and tertiary structures of macromoleculesThermodynamic stability of macromoleculesCharacterisation of molecular interactionsQuality control (QC) of purified proteinsTechnologies available at the PFBMI :Analytical ultracentrifugation (AUC)XL-IandOptima AUCCircular dichroism(CD)Dynamic light scattering (DLS) cuvette or plate readerFluorescence spectroscopy (steady stateorstopped flow)Isothermal Microcalorimetry (ITC)Differential scanning calorimetry (DSC)Microscale Thermophoresis (MST)LabelFreeorNT115Mass Photometry (Refeyn TwoMP)Real-time biosensing: surface plasmon resonance (SPR:Biacore T200and biolayer interferometry (BLI:Octet Red 384)Static multi-angle light scattering(SLS, MALS)Taylor dispersion and viscometryDifferential Scanning Fluorimetry(NanoDSF)The PFBMI also provides privileged access to instrumentation installed in other Institut Pasteur research units or in the Synchrotron SOLEIL:Electrophoretic mobilityInfrared spectroscopy (FTIR)Small-Angle X-ray Scattering (SAXS):SOLEIL SWING beamlineIn 2008, the PFBMI obtained theIBISAlabel recognizing it as a French National core facility.Since 2021, the PFBMI also coordinates the European Horizon 2020 funded projectMOSBRI(MOlecular-ScaleBiophysicsResearchInfrastructure), which brings together 13 academic and 2 industrial partners from 11 European countries. MOSBRI provides cutting-edge trans-national access to instrumentation and expertise, carries out ambitious joint research activities and organizes enticing networking activities, such as conferences, training schools and benchmarking actions.The PFBMI is ISO 9001 certified.To find out more, see the Technology Department brochurehere."
+                "content": "The “Molecular Biophysics” facility (french acronym:PlateForme deBiophysiqueMoleculaIre,PFBMI) federates an ensemble of state-of-the-art instrumentation for thein vitromolecular-scale characterization of biological macromolecules, together with well established technical and methodological expertiseWhat do we do ?The mission of the PFBMI is to provide an added value to a great variety of biological projects, enabling the characterization of the intrinsic properties of macromolecules and their assemblies (size, shape, folding, stability auto-association,…) and of the interactions in which they are involved (stoichiometry, thermodynamic and kinetic parameters, …). PFBMI equipments are available for the entire scientific community, in France and abroad, but a priority is given to teams from Institut Pasteur and the Institut Pasteur International Network.Personalized training is available on PFBMI equipment to allow users to carry out experiments in autonomous mode.Pricing: services are charged according to the following  downloadablechartSteering committee:Jean-Baptiste CHARBONNIER (CEA Saclay), Alexandre CHENAL (Institut Pasteur), Katherine STOTT (University of Cambridge), Nicolas WOLFF (Institut Pasteur) The PFBMI follows thebest practice guidelinesof C2RTTo submit a project to the PFBMI: For more information on the Quality Control service, please send an email toqcprotein@pasteur.fr. You can download and attach aQC submission form.For all other PFBMI services, please send an e-mail tobiophysique@pasteur.frtogether with a completedproject and training submission form.Fields of expertise of the PFBMI :Size and shape of macromolecules and their assembliesStoichiometry of macromolecular assembliesSecondary and tertiary structures of macromoleculesThermodynamic stability of macromoleculesCharacterisation of molecular interactionsQuality control (QC) of purified proteinsTechnologies available at the PFBMI :Analytical ultracentrifugation (AUC)XL-IandOptima AUCCircular dichroism(CD)Dynamic light scattering (DLS) cuvette or plate readerFluorescence spectroscopy (steady stateorstopped flow)Isothermal Microcalorimetry (ITC)Differential scanning calorimetry (DSC)Microscale Thermophoresis (MST)LabelFreeorNT115Mass Photometry (Refeyn TwoMP)Real-time biosensing: surface plasmon resonance (SPR:Biacore T200and biolayer interferometry (BLI:Octet Red 384)Static multi-angle light scattering(SLS, MALS)Taylor dispersion and viscometryDifferential Scanning Fluorimetry(NanoDSF)The PFBMI also provides privileged access to instrumentation installed in other Institut Pasteur research units or in the Synchrotron SOLEIL:Electrophoretic mobilityInfrared spectroscopy (FTIR)Small-Angle X-ray Scattering (SAXS):SOLEIL SWING beamlineIn 2008, the PFBMI obtained theIBISAlabel recognizing it as a French National core facility.Since 2021, the PFBMI also coordinates the European Horizon 2020 funded projectMOSBRI(MOlecular-ScaleBiophysicsResearchInfrastructure), which brings together 13 academic and 2 industrial partners from 11 European countries. MOSBRI provides cutting-edge trans-national access to instrumentation and expertise, carries out ambitious joint research activities and organizes enticing networking activities, such as conferences, training schools and benchmarking actions.The PFBMI is ISO 9001 certified.To find out more, see the Technology Department brochurehere."
             }
         }
     },
@@ -674,10 +746,17 @@
         "link": "https://research.pasteur.fr/en/team/biomaterials-and-microfluidics/",
         "aditional_info": {
             "qte_keywords": "40",
-            "qte_members": "14",
-            "qte_projects": "11",
-            "qte_publication": "57",
+            "qte_members": "15",
+            "qte_projects": "12",
+            "qte_publication": "59",
             "projects": [
+                {
+                    "title": "Development of a lymphoid organ-on-chip",
+                    "head_name": "Lisa Chakrabarti (PI)",
+                    "status": "Ongoing",
+                    "members": "3 Members",
+                    "description": "We are developing a two-compartment lymphoid organ-on-chip (LO chip) based on microfluidics technology. The LO chip provides a highly sensitive system to measure the interactions between antiviral CD4+ T cells and memory B cells from human volunteers."
+                },
                 {
                     "title": "Organoid-on-chip: controlling the spatial organization of inner ear organoids",
                     "head_name": "Raphaël Etournay (PI)",
@@ -702,7 +781,7 @@
                 {
                     "title": "Hydraulically Actuated Hydrogel Layers",
                     "head_name": "Samy Gobaa (PI)",
-                    "status": "Ongoing",
+                    "status": "Completed",
                     "members": "3 Members",
                     "description": "The goal of this project is to develop a new organ-on-chip microfluidic device based on the actuation of thin hydrogel layers. Indeed, hydrogels possess interesting properties, compared to the commonly used perforated PDMS membranes. […]"
                 },
@@ -738,7 +817,7 @@
             ],
             "about": {
                 "title": "About",
-                "content": "The objective of the platform is to bridge biology and engineering in order to help the development of biomedical projects with a strong technological focus. Practically we provide the campus with essential technological bricks and expertise in microfluidics and biomaterials. Since May 2015 we developed in-house capabilities in the field of microfabrication, photo- and soft-lithography, advanced 3D cell culture systems, organoids and Organ-on-Chip  technology especially targeted for the better understanding of complex cell-microenvironment interactions.Working with usThe facility operates on a project basis. To submit a project application or ask your questions, you canemail us. We will then organise a one-to-one meeting in order outline a viable project of the following type:Do-It-Yourself: Projects in this category can benefit from the full set of bookable equipment at the facility. the users have to be to work as autonomous users. Training sessions can be organised to reach this status.Proof-of-Concept: These projects aims at investigating whether the envisioned bioengineering approach helps with the biological question at hand. A first round of investigation is directly performed by the facility personnel (chip design and fabrication, cell encapsulation assay…). In a later stage, users will be requested to take over the data generation process after the first proof-of-concept.Co-Development: Here the involvement of the Biomaterials and Microfluidics core facility will be larger and will span over a longer period of time. We typically propose leading a technological work package (Chip design, Organoid production….) within a larger consortium. Our contribution can then be transferred to the different partners.Organ-on-Chip: The Organ-on-Chip center hosted by the Biomaterials & Microfluidics core facility is geared towards the production fully matured Emulate recapitulating different types of organs. We provide dedicated personnel and chip actuation machines in a BSL2 and BSL3 environment.You still have a question ? Please do not hesitate to contact us atbmcf@pasteur.frJoin the community of users onMicrosoft TeamsWhere to find us (and the other facilities):click here to obtain the mapGuidelines for users and core facility teams:click here to obtain the guide"
+                "content": "The objective of the platform is to bridge biology and engineering in order to help the development of biomedical projects with a strong technological focus. Practically we provide the campus with essential technological bricks and expertise in microfluidics and biomaterials. Since May 2015 we developed in-house capabilities in the field of microfabrication, photo- and soft-lithography, advanced 3D cell culture systems, organoids and Organ-on-Chip  technology especially targeted for the better understanding of complex cell-microenvironment interactions.Working with usThe facility operates on a project basis. To submit a project application or ask your questions, you canemail us. We will then organise a one-to-one meeting in order outline a viable project of the following type:Do-It-Yourself: Projects in this category can benefit from the full set of bookable equipment at the facility. the users have to be to work as autonomous users. Training sessions can be organised to reach this status.Proof-of-Concept: These projects aims at investigating whether the envisioned bioengineering approach helps with the biological question at hand. A first round of investigation is directly performed by the facility personnel (chip design and fabrication, cell encapsulation assay…). In a later stage, users will be requested to take over the data generation process after the first proof-of-concept.Co-Development: Here the involvement of the Biomaterials and Microfluidics core facility will be larger and will span over a longer period of time. We typically propose leading a technological work package (Chip design, Organoid production….) within a larger consortium. Our contribution can then be transferred to the different partners.Organ-on-Chip: The Organ-on-Chip center hosted by the Biomaterials & Microfluidics core facility is geared towards the production fully matured Emulate recapitulating different types of organs. We provide dedicated personnel and chip actuation machines in a BSL2 and BSL3 environment.You still have a question ? Please do not hesitate to contact us atbmcf.admin@pasteur.frJoin the community of users onMicrosoft TeamsWhere to find us (and the other facilities):click here to obtain the mapGuidelines for users and core facility teams:click here to obtain the guide"
             }
         }
     },
@@ -749,7 +828,7 @@
         "aditional_info": {
             "qte_members": "7",
             "qte_projects": "3",
-            "qte_publication": "68",
+            "qte_publication": "72",
             "projects": [
                 {
                     "title": "Energir: Energy dependent iron import by Gram-negative bacteria",
@@ -785,9 +864,9 @@
         "link": "https://research.pasteur.fr/en/team/crystallography/",
         "aditional_info": {
             "qte_keywords": "37",
-            "qte_members": "8",
+            "qte_members": "7",
             "qte_projects": "5",
-            "qte_publication": "130",
+            "qte_publication": "136",
             "projects": [
                 {
                     "title": "TARGETBONE",
@@ -842,10 +921,10 @@
         "link": "https://research.pasteur.fr/en/team/single-cell-biomarkers/",
         "aditional_info": {
             "qte_keywords": "3",
-            "qte_members": "18",
-            "qte_projects": "11",
+            "qte_members": "21",
+            "qte_projects": "12",
             "qte_tools": "3",
-            "qte_publication": "107",
+            "qte_publication": "118",
             "projects": [
                 {
                     "title": "Milieu Intérieur: Deconvolution of the healthy immune response",
@@ -876,9 +955,16 @@
                     "description": "Numerous research groups from the Institut Pasteur, from the Pasteur International Network (RIIP) and from various external academic and clinical institutions benefit from the single cell resources of the Institut Pasteur. The groups with […]"
                 },
                 {
-                    "title": "Apprentissage de la technique de cytométrie en flux appliquée à l’analyse de cellules sanguines dans le cadre du Master 2 intitulé « Immunologie approfondie » TPAI (2023-027)",
-                    "head_name": "Milena Hasan (PI)",
+                    "title": "Identification de marqueurs sanguins permettant d’évaluer la toxicité de bactériophages : PHAGESAFETY",
+                    "head_name": "Laurent Debarbieux (PI)",
                     "status": "Not started",
+                    "members": "3 Members",
+                    "description": "afin de les utiliser dans le futur en tant que médicaments PHAGESAFETY est une recherche scientifique impliquant l’utilisation de données et d’échantillons collectés dans le cadre de la cohorte COSIPOP Quel est l’objectif de […]"
+                },
+                {
+                    "title": "Apprentissage de l’utilisation de technologies de pointe d’analyse de marqueurs de la réponse immunitaire dans le cadre du Master 2 intitulé « Immunologie approfondie » TPAI (2023-027)",
+                    "head_name": "Milena Hasan (PI)",
+                    "status": "Ongoing",
                     "members": "2 Members",
                     "description": "Sorry, this entry is only available in FR."
                 },
@@ -962,9 +1048,9 @@
         "link": "https://research.pasteur.fr/en/team/antibody-engineering/",
         "aditional_info": {
             "qte_keywords": "25",
-            "qte_members": "8",
+            "qte_members": "9",
             "qte_projects": "7",
-            "qte_publication": "82",
+            "qte_publication": "83",
             "projects": [
                 {
                     "title": "Advances in cancer immunotherapy development: VHH-based immune checkpoint inhibitors targeting the receptor ILT4",
@@ -977,25 +1063,25 @@
                     "title": "CORONABODIES",
                     "head_name": "Pierre Lafaye (PI)",
                     "status": "Ongoing",
-                    "members": "13 Members",
-                    "description": "CORONABODIES : Production of SARS-CoV-2 nucleoprotein (N) and spike (S) recombinant antigens and generation of anti-N and anti-S nanobodies for diagnostic and therapeutic applications. SUMMARY We propose a joint effort to generate as […]"
+                    "members": "12 Members",
+                    "description": "CORONABODIES : Production of SARS-CoV-2 nucleoprotein (N) and spike (S) recombinant antigens and generation of anti-N and anti-S VHHs for diagnostic and therapeutic applications. SUMMARY We propose a joint effort to generate as […]"
                 },
                 {
                     "title": "VenoMATIcs: Toward a Global Management of Venoms and Envenomations: the Pasteur network Translational Approach",
                     "head_name": "Balkiss Bouhaouala (PI)",
-                    "status": "Ongoing",
+                    "status": "Completed",
                     "members": "7 Members",
                     "description": "VenoMATIcs’ project aims to strengthen collaborations between Institut Pasteur academic research partners based in 4 MATI regional countries (Morocco, Algeria, Tunisia, Iran), 3 research teams from Institut Pasteur of Paris, in order to use […]"
                 },
                 {
-                    "title": "High throughput selection of nanobodies by droplet based microfluidics (PTR nanofluidic)",
+                    "title": "High throughput selection of VHHs by droplet based microfluidics (PTR nanofluidic)",
                     "head_name": "Pierre Lafaye (PI)",
-                    "status": "Ongoing",
-                    "members": "3 Members",
+                    "status": "Completed",
+                    "members": "2 Members",
                     "description": ""
                 },
                 {
-                    "title": "Toxins and nanobodies as subtype-specific ligands and allosteric modulators of nicotinic acetylcholine receptors (PTR Nicobinder)",
+                    "title": "Toxins and VHHs as subtype-specific ligands and allosteric modulators of nicotinic acetylcholine receptors (PTR Nicobinder)",
                     "head_name": "Pierre-Jean Corringer (PI)",
                     "status": "Ongoing",
                     "members": "4 Members",
@@ -1009,9 +1095,9 @@
                     "description": "Towards the development of diagnostic tests for Chagas disease and post-treatment monitoring by the use of specific markers of the parasite Trypanosoma cruzi and prognostic biomarkers of chronic phase of infection. Current methods available […]"
                 },
                 {
-                    "title": "Use of nanobodies for imaging plaques and tangles in Alzheimer’s disease",
+                    "title": "Use of VHHs for imaging plaques and tangles in Alzheimer’s disease",
                     "head_name": "Pierre Lafaye (PI)",
-                    "status": "Ongoing",
+                    "status": "Completed",
                     "members": "4 Members",
                     "description": "Homodimeric VHHs offer new perspectives for in vivo immunodiagnosis. Because of their small size of about 12-14 kDa, VHHs rapidly pass the renal filter, which has a cutoff of about 60 kDa, resulting in […]"
                 }
@@ -1029,7 +1115,7 @@
             ],
             "about": {
                 "title": "About",
-                "content": "MissionOur core facility provides support in developing and characterizing VHH/nanobodies against the desired antigens. The main goal of this collaboration is to provide the right nanobodies that suit to the need of the user. We try not only to provide nanobodies but we can modify them: for example, according to the need, the nanobodies can be engineered to add a fluorochrome, to perform imaging; in this way, bispecific molecules can be created.Nanobodies combine the advantages of binding activities of antibodies with properties of small moleculesTheir features aresmall size : 15kDa (1/10th of the size of a conventional antibody)highly solublehigh affinity for the antigenlow immunogenicity (85-90% identity to human germline)highly stablewell produceddiffuse in tissuescross the Blood Brain BarrierBind intracellular targetsOur expertise includesPhage display of phage VHH librariesExpression and characterization of nanobodiesSite specific labeling with fluorochromesAutomatization of the processesCertifications and NetworksWe are IBiSA labeled.We are part of the EuroMabnet Network, CFL (Core For Life) and CTLS (Core technologies for life sciences).To find out more about the Technology Department, seehere."
+                "content": "MissionOur core facility provides support in developing and characterizing VHH/NANOBODIES® (NANOBODIES®  are registered trademarks of Ablynx N.V) against the desired antigens. The main goal of this collaboration is to provide the right VHH that suit to the need of the user. We try not only to provide nanobodies but we can modify them: for example, according to the need, the VHHs can be engineered to add a fluorochrome, to perform imaging; in this way, bispecific molecules can be created.VHHs combine the advantages of binding activities of antibodies with properties of small moleculesTheir features aresmall size : 15kDa (1/10th of the size of a conventional antibody)highly solublehigh affinity for the antigenlow immunogenicity (85-90% identity to human germline)highly stablewell produceddiffuse in tissuescross the Blood Brain BarrierBind intracellular targetsOur expertise includesPhage display of phage VHH librariesExpression and characterization of VHHsSite specific labeling with fluorochromesAutomatization of the processesCertifications and NetworksWe are IBiSA labeled.We are part of the EuroMabnet Network, CFL (Core For Life) and CTLS (Core technologies for life sciences).To find out more about the Technology Department, seehere."
             }
         }
     },
@@ -1039,9 +1125,9 @@
         "link": "https://research.pasteur.fr/en/team/ultrastructural-bioimaging-core-facility/",
         "aditional_info": {
             "qte_keywords": "22",
-            "qte_members": "17",
+            "qte_members": "14",
             "qte_projects": "4",
-            "qte_publication": "78",
+            "qte_publication": "84",
             "projects": [
                 {
                     "title": "Embeding methods for salivary glands of mosquitos.",
@@ -1094,7 +1180,7 @@
             "qte_members": "11",
             "qte_projects": "10",
             "qte_keywords": "1",
-            "qte_publication": "138",
+            "qte_publication": "141",
             "projects": [
                 {
                     "title": "A genetic magnetic-extraction-proteomics (gMEP) workflow to understand the link between Shigella vacuolar rupture and autophagy – PureMagRupture",
@@ -1190,10 +1276,10 @@
         "link": "https://research.pasteur.fr/en/team/biomics/",
         "aditional_info": {
             "qte_keywords": "6",
-            "qte_members": "16",
-            "qte_projects": "17",
+            "qte_members": "14",
+            "qte_projects": "19",
             "qte_tools": "4",
-            "qte_publication": "436",
+            "qte_publication": "439",
             "projects": [
                 {
                     "title": "CoSimmGen : Constitution of a prospective cohort of healthy and diseased individuals with an associated human biological resources collection for the purpose of studying of genetic, immunological and environmental factors in human diseases",
@@ -1215,6 +1301,20 @@
                     "status": "Completed",
                     "members": "4 Members",
                     "description": "Clostridium difficile is increasingly associated with infections in hospitals and in the community, and hypervirulent types are emerging. Six research groups from 5 countries undertook this project, aiming to use genomic approaches to study […]"
+                },
+                {
+                    "title": "Host-pathogen interaction upon acute leptospirosis",
+                    "head_name": "Nadia Benaroudj (PI)",
+                    "status": "Ongoing",
+                    "members": "2 Members",
+                    "description": "Pathogenic Leptospira lack many classical virulence factors and approximately 35% of their genome encode proteins of unknown function. Their virulence mechanisms and how they subvert the host and colonize tissues remain largely unknown. To […]"
+                },
+                {
+                    "title": "Resistance to oxidative stress in Leptospira",
+                    "head_name": "Nadia Benaroudj (PI)",
+                    "status": "Ongoing",
+                    "members": "4 Members",
+                    "description": "During infection, Leptospira are confronted with dramatic adverse environmental changes such as deadly reactive oxygen species (ROS). Withstanding ROS produced by the host cells is an important strategy evolved by pathogenic Leptospira for colonizing […]"
                 },
                 {
                     "title": "Implementation of an NGS core facility at Institut Pasteur of Tunis: Biomics as capacity building model",
@@ -1364,7 +1464,7 @@
         "link": "https://research.pasteur.fr/en/team/cytometry/",
         "aditional_info": {
             "qte_keywords": "3",
-            "qte_members": "6",
+            "qte_members": "4",
             "qte_projects": "3",
             "qte_tools": "9",
             "qte_publication": "48",
@@ -1401,7 +1501,7 @@
             ],
             "about": {
                 "title": "About",
-                "content": "The Flow Cytometry Core Facility of the Institut Pasteur, provides cutting-edge instrumentation, as well as high-level scientific and technical expertise in flow cytometry in general.The core facility is part of theC2RT (Center for Technological Resources and Research), a center gathering the Technology and and the technological core facilities of the campus.Flow activitiesBrochure Technology Department C2RT-C2RA-C2RA-CRBIPTechnological pipelines & New♦High dimensional cytometry pipeline (conventional and spectral Cytometry):Choosing the best marker/dye-combination can make all the difference to your flow cytometry panels. But that selection can sometimes feel more art than science. Our flow cytometry experts can help you find the right balance between epitope expression and fluorochrome brightness,ensuring you’ve got the very best configurationfor your application of interest – whatever it may be.♦Nanocytometry pipeline : subcellular analysis and nano sorting (Nano FCM,MoFlow Astrios).♦Unsupervised data analysis (FlowJo plugins&OMIQ)♦Single cell phenotyping and cell sorting are supported by the Cytometry platform.The scBiomarkers UTechS of the Institut Pasteur proposes numerous resources for single cell analysis, open to the entire academic and clinical research community.Service & Support♦The platform provides services on cell sorting, flow cytometry analysis, consulting, data analysis, troubleshooting, and training.♦In our core facility, equipment is completely state-of-the-art with :∗ 7 high-speed cell sorters∗ 5 high-end analyzers : (Conventional cytometry &Spectral cytometry)∗ 1NanoAnalyser∗ 1 instrument for cell enrichment by magnetic beads :AutoMACS Pro Separator∗ 1VideoDrop♦We also gather resources for our users :Cytometry aidsandprotocols.♦We support two software packages for flow cytometry analysis. Both software packages are available as site licenses through individual internet logins and Virtual Machine ( send an email at FlowJo-VM@pasteur.fr)∗FlowJo∗Kaluza∗OMIQTraining(see :PFC specific training)Training courses proposed by the flow cytometry core facility are available for Institut Pasteur researchers, as well as external users (academic and industrial).♦First, we give courses on the conceptual aspects of flow cytometry (face-to-face or online), then we give practical training on specific instruments.♦We proposeFlowJO™,OMIQandKaluzatrainings to teach researchers how to analyze flow cytometry data in an efficient way. In FlowJo X plugins and OMIQ can be used for unsupervised analysis♦Every year, we also propose a one week Flow Cytometry Course based on  “Fundamental Cytometry”.Quality managementAs we are involved in quality management (ISO9001), we are attentive to the expectations of users. We do not focus only on the technical aspects of the instrumentation,but we make the link betweenthese technical aspects and the scientific questions.HOW TO ACCESS: The Cytometry Platform is an open-access facility that welcomes projects and teams from the Institut Pasteur, from the International Network of the Institut Pasteur, from academia, hospitals and industry. The Cytometry platform uses Stratocore Platform Pilot Management System (PPMS) as the booking system. Once your project is submitted you canbook an Instrument/training (PPMS)."
+                "content": "The Flow Cytometry Core Facility of the Institut Pasteur, provides cutting-edge instrumentation, as well as high-level scientific and technical expertise in flow cytometry in general.The core facility is part of theC2RT (Center for Technological Resources and Research), a center gathering the Technology and and the technological core facilities of the campus.Who we are? What we doFlow activitiesBrochure Technology Department C2RT-C2RA-C2RI-CRBIPTechnological pipelines & New♦High dimensional cytometry pipeline (conventional and spectral Cytometry):Choosing the best marker/dye-combination can make all the difference to your flow cytometry panels. But that selection can sometimes feel more art than science. Our flow cytometry experts can help you find the right balance between epitope expression and fluorochrome brightness,ensuring you’ve got the very best configurationfor your application of interest – whatever it may be.♦Nanocytometry pipeline : subcellular analysis and nano sorting (Nano FCM,MoFlow Astrios).♦Unsupervised data analysis (FlowJo plugins&OMIQ)♦Single cell phenotyping and cell sorting are supported by the Cytometry platform.The scBiomarkers UTechS of the Institut Pasteur proposes numerous resources for single cell analysis, open to the entire academic and clinical research community.Service & Support♦The platform provides services on cell sorting, flow cytometry analysis, consulting, data analysis, troubleshooting, and training.♦In our core facility, equipment is completely state-of-the-art with :∗ 7 high-speed cell sorters∗ 5 high-end analyzers : (Conventional cytometry &Spectral cytometry)∗ 1NanoAnalyser∗ 1 instrument for cell enrichment by magnetic beads :AutoMACS Pro Separator∗ 1VideoDrop♦We also gather resources for our users :Cytometry aidsandprotocols.♦We support two software packages for flow cytometry analysis. Both software packages are available as site licenses through individual internet logins and Virtual Machine ( send an email at FlowJo-VM@pasteur.fr)∗FlowJo∗Kaluza∗OMIQTraining(see :PFC specific training)Training courses proposed by the flow cytometry core facility are available for Institut Pasteur researchers, as well as external users (academic and industrial).♦First, we give courses on the conceptual aspects of flow cytometry (face-to-face or online), then we give practical training on specific instruments.♦We proposeFlowJO™,OMIQandKaluzatrainings to teach researchers how to analyze flow cytometry data in an efficient way. In FlowJo X plugins and OMIQ can be used for unsupervised analysis♦Every year, we also propose a one week Flow Cytometry Course based on  “Fundamental Cytometry”.Quality managementAs we are involved in quality management (ISO9001), we are attentive to the expectations of users. We do not focus only on the technical aspects of the instrumentation,but we make the link betweenthese technical aspects and the scientific questions.HOW TO ACCESS: The Cytometry Platform is an open-access facility that welcomes projects and teams from the Institut Pasteur, from the International Network of the Institut Pasteur, from academia, hospitals and industry. The Cytometry platform uses Stratocore Platform Pilot Management System (PPMS) as the booking system. Once your project is submitted you canbook an Instrument/training (PPMS)."
             }
         }
     },
@@ -1413,7 +1513,7 @@
             "qte_keywords": "25",
             "qte_members": "9",
             "qte_projects": "4",
-            "qte_publication": "21",
+            "qte_publication": "22",
             "projects": [
                 {
                     "title": "Field Test for Rabies Diagnostic (FiTeRaD)",
@@ -1426,8 +1526,8 @@
                     "title": "CORONABODIES",
                     "head_name": "Pierre Lafaye (PI)",
                     "status": "Ongoing",
-                    "members": "13 Members",
-                    "description": "CORONABODIES : Production of SARS-CoV-2 nucleoprotein (N) and spike (S) recombinant antigens and generation of anti-N and anti-S nanobodies for diagnostic and therapeutic applications. SUMMARY We propose a joint effort to generate as […]"
+                    "members": "12 Members",
+                    "description": "CORONABODIES : Production of SARS-CoV-2 nucleoprotein (N) and spike (S) recombinant antigens and generation of anti-N and anti-S VHHs for diagnostic and therapeutic applications. SUMMARY We propose a joint effort to generate as […]"
                 },
                 {
                     "title": "Development of inhibitors targeting the allosteric activation of adenyl cyclases",
@@ -1484,7 +1584,7 @@
         "link": "https://research.pasteur.fr/en/team/diagnostic-test-innovation-and-development-core-facility/",
         "aditional_info": {
             "qte_members": "8",
-            "qte_publication": "14",
+            "qte_publication": "15",
             "transversal_projects": [
                 {
                     "title": "Artificial Intelligence at the Institut Pasteur"
@@ -1505,7 +1605,7 @@
             "qte_members": "19",
             "qte_projects": "8",
             "qte_tools": "2",
-            "qte_publication": "287",
+            "qte_publication": "292",
             "projects": [
                 {
                     "title": "AFM-Trampolin: Cellular and genetic basis for robustness of cranial myogenic populations (ENCRYPT)",
@@ -1520,6 +1620,13 @@
                     "status": "Ongoing",
                     "members": "7 Members",
                     "description": "The project at a glance: An unexpected finding was the discovery that muscle stem cells in different anatomical locations are programmed with distinct upstream regulators prior to acquiring myogenic identity. This intriguing observation is […]"
+                },
+                {
+                    "title": "autoFISH : a modular toolbox for sequential FISH experiments",
+                    "head_name": "Florian Muller (PI)",
+                    "status": "Ongoing",
+                    "members": "5 Members",
+                    "description": "We develop a complete workflow to perform automated sequential smFISH experiments on a microscope. This includes building plans for hardware, opens-source control software, and robust experimental protocols for regular and amplified FISH. Lastly, we […]"
                 },
                 {
                     "title": "Insights into amebiasis using a human 3D-intestinal model (ANR-14-IFEC-0001-02)",
@@ -1579,7 +1686,7 @@
         "link": "https://research.pasteur.fr/en/team/nanoimaging/",
         "aditional_info": {
             "qte_members": "7",
-            "qte_publication": "6",
+            "qte_publication": "10",
             "about": {
                 "title": "About",
                 "content": "SITE UNDER CONSTRUCTION (expect changes)In the last 5 years, interest in cryo-electron microscopy (cryo-EM) has grown exponentially due to groundbreaking new developments in instrumentation. This has resulted in the 2017 Nobel Prize in chemistry being awarded to three pioneers from the field of cryo-EM. Institut Pasteur has invested significantly in this technology with the purchase of 4 high-end systems and the erection of the Nano-Imaging Core Facility.Transmission Electron Microscopes are known for being able to achieve atomic resolution in material science applications (MS). This is possible due to the well defined nature of the specimens that are in many cases crystalline (i.e. silicon wavers) or adopt other latices structures (i.e. metals). In addition the elements under scrutiny often fall in the category of heavy elements with large nuclei that provide additional forms of contrast in an electron microscope. On top of this, these samples can withstand a high dose of electrons before being destroyed by the intensity of the beam, which provides a high signal-to-noise-ratio (SNR) in the recorded images. As a result, MS samples can often achieve very high sub-Ångström resolution in the images that allow clear images of individual atoms.Two sub-Ångström resolution images showing single atomsIn life science (LS) we use electron microscopes to study cells, organelles, macro-molecular machinery and proteins inside or isolated outside the environment of the cell. Proteins are almost never crystalline in nature, nor are they well order or well defined. They are very long polymeric molecules folded into flexible (at the atomic level) structures consisting of predominantly light elements (C, O, N, H). The atomic bonds in these molecules can be easily broken by the high energy electrons which will deform the protein structure rapidly. As a consequence, images need to be recorded using a significantly lower dose, resulting in noisy images that have additionally low contrast due to the light elements and the absence of lattice order. Only by developing and using special dedicated low noise cameras and new image processing algorithms in the last few years, has it been possible to extract high resolution information on a relative routine basis.The core facility will focus on 4 main applications in cryo-EM: Sample Screening, Single Particle Analysis (SPA), cryo-Electron Tomography (CET) and cryo-correlative light and electron microscopy (cryo-CLEM)Single Particle Analysis (SPA)Cryo-FIB and Tomographyhttps://research.pasteur.fr/wp-content/uploads/2018/12/research_pasteur-nanoimaging-cryofib.mp4"
@@ -1592,9 +1699,17 @@
         "link": "https://research.pasteur.fr/en/team/data-management-core-facility/",
         "aditional_info": {
             "qte_keywords": "2",
-            "qte_members": "8",
+            "qte_members": "9",
+            "qte_projects": "2",
             "qte_publication": "2",
             "projects": [
+                {
+                    "title": "Étude Observationnelle des Pathologies des voyageurs, EOP",
+                    "head_name": "Fabien Taieb (PI)",
+                    "status": "Ongoing",
+                    "members": "6 Members",
+                    "description": "Vous participez à l’étude EOP, cette page vous est destinée. Vous y trouverez : les modalités de participations les dernières actualités les résultats globaux de l’étude au fur et à mesure de leur disponibilité […]"
+                },
                 {
                     "title": "The SARA project: Surveillance of Antibiotic Resistance in Africa, an integrative project of the Pasteur Network",
                     "head_name": "Sylvain Brisse (PI)",
@@ -1615,10 +1730,10 @@
         "link": "https://research.pasteur.fr/en/team/bioinformatics-and-biostatistics-hub/",
         "aditional_info": {
             "qte_keywords": "31",
-            "qte_members": "74",
+            "qte_members": "77",
             "qte_projects": "33",
-            "qte_tools": "22",
-            "qte_publication": "801",
+            "qte_tools": "23",
+            "qte_publication": "831",
             "projects": [
                 {
                     "title": "ANR-JCJC: Mechanisms defining functional heterogeneity of anatomically distinct myogenic populations (MUSE)",
@@ -1830,7 +1945,7 @@
             ],
             "about": {
                 "title": "About",
-                "content": "TheBioinformatics and Biostatistics Hubis a team of research engineers led ByMarie-Agnès DilliesandHervé Ménager, dedicated to bringing support in computational biology to Institut Pasteur’s research units and platforms. The Hub is organized around seven expert poles:ALPS: Algorithmics and programming in ScienceGroup head:Bertrand NéronExpertise: Program development, data visualization, scientific computingGeno: GenomicsGroup head:Gaël MillotExpertise: DNA sequencing analysis, Variant detection, GWAS, comparative genomicsPAGE: Protein And Gene EvolutionGroup head:Julien GuglielminiExpertise: Taxonomy, Phylogenetics, Phylogenomics, GenotypingGORE: Genome Organisation, Regulation and Expression.Group head:Claudia ChicaExpertise: Epigenomics, Transcriptomics, Single-cell, Quantitative regulationStats:  StatisticsGroup head:Pascal CampagneExpertise: Experimental design, Inference & modeling, Artificial intelligenceSysBio: System BioinformaticsGroup head:Natalia PietrosemoliExpertise: Biological networks, Multi-OMICs data analysis, Functional analysis of omics dataWinter: Web IntegrationGroup head:Elodie ChapeaublancExpertise: Web development, UX design, Databases, Workflow and tool integrationHub also has expertise outside of these poles like:Mathematical modeling (Andjela Davidovic)The above list of expertise is not exhaustive. Do not hesitate to visit the Poles web pages or contact the Hub directors if you don’t find the one you need. The Hub can help Institut Pasteur’s scientists in many ways:By direct interaction during theopen-desk sessions. Every Tuesday morning (now on Teams or in real life in Yersin building)By answering short questions submitted throughour web siteor using the mail aliashub@pasteur.fr.By collaborating to research projects. The Hub support is:Free of chargefor projects lastingless than 3 monthsof full-time equivalent effective working time – short projectsHalf of the full salary of an Engineer(3k€/month) for projects of4 months or more– long projectsIn any case projects must be submitted on our website with as much detail as possible :Submit a project.All short projects are accepted if the required expertise is available in the Hub within a reasonable time. Long projects are examined by theHub executive steering committeewho meets three times a year: the second Thursday of March, June and December. For the year2024, these are onMarch 14,June 13andDecember 12.A specifictemplateis available for long projects andhas to be sent to Marie-Agnes Dillies and Hervé Ménager two weeks before the steering committee meeting. Some discussions and exchanges with the Hub are encouraged before submitting long projects. A detachment of an Hub engineer is also possible for very long projects. See below the detached section for more information.These different possibilities are summarized in the table below:TypeCostDescriptiondecision processLong projectHalf of the charged salaryabout 3k€/month1.5 k/month for strategic projectsno HR affiliationnot included into ETMHalf the cost of a post-docDuration adapted to the projectno hiringValidated by Executive steering committee after reviewing request using thistemplateDetachmentIncluded into the Unit packageHR affiliationIncluded into ETMfrom 2 to 5 years, renewableHiring or internal mobilityValidated by IP’s Direction and Executive steering committeeDetachment on Grant80% of the salaryon external grant, typically ERCHR affiliationIncluded into ETM ffrom 2 to 5 years, renewableHiring or internal mobilityValidated by IP’s Direction and Executive steering committeeThe Hub is also involved in two other activities:Software development: Hub engineers have developed many tools to help data analyses such as Shaman, JASS. More details in the software sectionTeaching and training: Hub engineers are deeply involved into sharing their knowledge with PhD students, post-docs or permanent scientists from IP in Paris and in the RIIP. More information in the courses section"
+                "content": "TheBioinformatics and Biostatistics Hubis a team of research engineers led ByMarie-Agnès DilliesandHervé Ménager, dedicated to bringing support in computational biology to Institut Pasteur’s research units and platforms. The Hub is organized around seven expert poles:ALPS: Algorithmics and programming in ScienceGroup head:Bertrand NéronExpertise: Program development, data visualization, scientific computingGeno: GenomicsGroup head:Gaël MillotExpertise: DNA sequencing analysis, Variant detection, GWAS, comparative genomicsPAGE: Protein And Gene EvolutionGroup head:Julien GuglielminiExpertise: Taxonomy, Phylogenetics, Phylogenomics, GenotypingGORE: Genome Organisation, Regulation and Expression.Group head:Claudia ChicaExpertise: Epigenomics, Transcriptomics, Single-cell, Quantitative regulationStats:  StatisticsGroup head:Pascal CampagneExpertise: Experimental design, Inference & modeling, Artificial intelligenceSysBio: System BioinformaticsGroup head:Natalia PietrosemoliExpertise: Biological networks, Multi-OMICs data analysis, Functional analysis of omics dataWinter: Web IntegrationGroup head:Elodie ChapeaublancExpertise: Web development, UX design, Databases, Workflow and tool integrationHub also has expertise outside of these poles like:Mathematical modeling (Andjela Davidovic)The above list of expertise is not exhaustive. Do not hesitate to visit the Poles web pages or contact the Hub directors if you don’t find the one you need. The Hub can help Institut Pasteur’s scientists in many ways:By direct interaction during theopen-desk sessions. Every Tuesday morning (now on Teams or in real life in Yersin building)By answering short questions submitted throughour web siteor using the mail aliashub@pasteur.fr.By collaborating to research projects. The Hub support is:Free of chargefor projects lastingless than 3 monthsof full-time equivalent effective working time – short projectsHalf of the full salary of an Engineer(3k€/month) for projects of4 months or more– long projectsIn any case projects must be submitted on our website with as much detail as possible :Submit a project.All short projects are accepted if the required expertise is available in the Hub within a reasonable time. Long projects are examined by theHub executive steering committeewho meets three times a year: the second Thursday of March, June and December. For the year2024, these are onMarch 14,June1321andDecember 12.A specifictemplateis available for long projects andhas to be sent to Marie-Agnes Dillies and Hervé Ménager two weeks before the steering committee meeting. Some discussions and exchanges with the Hub are encouraged before submitting long projects. A detachment of an Hub engineer is also possible for very long projects. See below the detached section for more information.These different possibilities are summarized in the table below:TypeCostDescriptiondecision processLong projectHalf of the charged salaryabout 3k€/month1.5 k/month for strategic projectsno HR affiliationnot included into ETMHalf the cost of a post-docDuration adapted to the projectno hiringValidated by Executive steering committee after reviewing request using thistemplateDetachmentIncluded into the Unit packageHR affiliationIncluded into ETMfrom 2 to 5 years, renewableHiring or internal mobilityValidated by IP’s Direction and Executive steering committeeDetachment on Grant80% of the salaryon external grant, typically ERCHR affiliationIncluded into ETM ffrom 2 to 5 years, renewableHiring or internal mobilityValidated by IP’s Direction and Executive steering committeeThe Hub is also involved in two other activities:Software development: Hub engineers have developed many tools to help data analyses such as Shaman, JASS. More details in the software sectionTeaching and training: Hub engineers are deeply involved into sharing their knowledge with PhD students, post-docs or permanent scientists from IP in Paris and in the RIIP. More information in the courses section"
             }
         }
     },
@@ -1877,8 +1992,8 @@
         "link": "https://research.pasteur.fr/en/team/image-analysis-hub/",
         "aditional_info": {
             "qte_keywords": "3",
-            "qte_members": "8",
-            "qte_publication": "61",
+            "qte_members": "9",
+            "qte_publication": "63",
             "transversal_projects": [
                 {
                     "title": "Advanced Light Microscopy initiative"

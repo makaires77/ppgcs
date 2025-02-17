@@ -1,0 +1,27 @@
+{
+    "metadata": {
+        "title": "Graph Attention on the i9c model",
+        "authors": "Marcos Aires",
+        "institution": "University of Fortaleza"
+    },
+    "ablation": {
+        "models": ["MLP-GAT", "GCN", "No-graph"],
+        "datasets": ["random_graph"],
+        "parameters": {
+            "p": 0.5,
+            "q": [0.2, 0.4, 0.6, 0.8]
+        }
+    },
+    "model_configuration": {
+        "gaussian_mixture": {
+            "class0": {"mu": 0, "sigma": 1},
+            "class1": {"nu": 0, "sigma": 1}
+        }
+    },
+    "evaluation_metrics": {
+        "classification_accuracy": {
+            "easy_regime": "\\|\\mu - \\nu\\|/\\sigma = O(\\sqrt{\\log n})",
+            "hard_regime": "\\|\\mu - \\nu\\|/\\sigma = O(\\sqrt{\\log n})"
+        }
+    }
+}

@@ -1,0 +1,191 @@
+[
+    {
+        "center_title": "Center for Technological Resources and Research",
+        "teams": [
+            {
+                "title": "UTechS Single Cell Biomarkers",
+                "head_name": "Milena Hasan"
+            },
+            {
+                "title": "Mass Spectrometry for Biology",
+                "head_name": "Julia Chamot-Rooke"
+            },
+            {
+                "title": "Photonic BioImaging (UTechS PBI)",
+                "head_name": "Spencer Shorte"
+            },
+            {
+                "title": "Ultrastructural BioImaging",
+                "head_name": "Adeline Mallet"
+            },
+            {
+                "title": "Biomics",
+                "head_name": "Marc Monot"
+            },
+            {
+                "title": "Molecular Biophysics",
+                "head_name": "Patrick England"
+            },
+            {
+                "title": "Crystallography",
+                "head_name": "Ahmed Haouz"
+            },
+            {
+                "title": "Antibody Engineering",
+                "head_name": "Pierre Lafaye"
+            },
+            {
+                "title": "Chemogenomic and Biological Screening Platform (PF-CCB)",
+                "head_name": "Fabrice Agou"
+            },
+            {
+                "title": "Biomaterials and Microfluidics",
+                "head_name": "Samy Gobaa"
+            },
+            {
+                "title": "Biological NMR and HDX-MS Technological Platform",
+                "head_name": "Iñaki Guijarro"
+            },
+            {
+                "title": "Proteomics",
+                "head_name": "Mariette Matondo"
+            },
+            {
+                "title": "Flow Cytometry Platform",
+                "head_name": "Sophie Novault"
+            },
+            {
+                "title": "Tech Lab",
+                "head_name": "Michael Nilges"
+            },
+            {
+                "title": "NanoImaging Core",
+                "head_name": "Matthijn Vos"
+            },
+            {
+                "title": "Production and Purification of Recombinant Proteins Technological Platform",
+                "head_name": "Stéphane Petres"
+            },
+            {
+                "title": "Metabolomics Core Facility",
+                "head_name": "Sandrine Aros"
+            },
+            {
+                "title": "Diagnostic Test Innovation and Development Core Facility",
+                "head_name": "Thierry Rose"
+            },
+            {
+                "title": "Hearing Institute Bioimaging Core Facility",
+                "head_name": "Maia Brunstein"
+            }
+        ]
+    },
+    {
+        "center_title": "Center for Animal Resources and Research",
+        "teams": [
+            {
+                "title": "Central Animal Facility",
+                "head_name": "Jean Jaubert"
+            },
+            {
+                "title": "Center for the Production and Infection of Anopheles",
+                "head_name": "Sabine Thiberge"
+            },
+            {
+                "title": "Mouse Genetics Engineering",
+                "head_name": "Francina Langa Vives"
+            },
+            {
+                "title": "Hearing Institute Animal Phenotyping Core Facility",
+                "head_name": "Marta Lindner"
+            },
+            {
+                "title": "Human Disease Models core facility",
+                "head_name": "Mathilde Dusseaux"
+            },
+            {
+                "title": "HistoPathology Core Facility",
+                "head_name": "David Hardy"
+            }
+        ]
+    },
+    {
+        "center_title": "Research and Resource Centre for Scientific Informatics",
+        "teams": [
+            {
+                "title": "Data Management Core Facility",
+                "head_name": "Anne-Caroline Delétoille"
+            },
+            {
+                "title": "Bioinformatics and Biostatistics HUB",
+                "head_name": "Marie-Agnès Dillies"
+            },
+            {
+                "title": "Image Analysis Hub",
+                "head_name": "Jean-Yves Tinevez"
+            },
+            {
+                "title": "HPC Core Facility",
+                "head_name": "Youssef Ghorbal"
+            },
+            {
+                "title": "Hearing Institute Data Acquisition and Signal Processing Facility",
+                "head_name": "Clara Dussaux"
+            }
+        ]
+    },
+    {
+        "center_title": "Biological Resource Center of Institut Pasteur (CRBIP)",
+        "teams": [
+            {
+                "title": "Collection of the Institut Pasteur (CIP)",
+                "head_name": "Dominique Clermont"
+            },
+            {
+                "title": "National Collection of Cultures of Microorganisms",
+                "head_name": "Raquel Hurtado Ortiz"
+            },
+            {
+                "title": "Collection of Cyanobacteria",
+                "head_name": "Muriel Gugger"
+            },
+            {
+                "title": "ICAReB-biobank : Integrated Collections for Adaptive Research in  Biomedicine",
+                "head_name": "Emmanuel Roux"
+            },
+            {
+                "title": "Expertise group: GIPhy – Genome Informatics and Phylogenetics",
+                "head_name": "Alexis Criscuolo"
+            }
+        ]
+    },
+    {
+        "center_title": "Other facilities",
+        "teams": [
+            {
+                "title": "Clinical Research Coordination Office",
+                "head_name": "Nathalie Jolly"
+            },
+            {
+                "title": "Investigation and volunteers for human health",
+                "head_name": "Hélène Laude"
+            },
+            {
+                "title": "Medical Center of the Institut Pasteur",
+                "head_name": "Paul-Henri Consigny"
+            },
+            {
+                "title": "The Ethics Unit",
+                "head_name": "Jean-Claude Dupont"
+            },
+            {
+                "title": "IT Infrastructure and Engineering for Science",
+                "head_name": "Youssef Ghorbal"
+            },
+            {
+                "title": "Fab Lab",
+                "head_name": "Eric Nicolau"
+            }
+        ]
+    }
+]

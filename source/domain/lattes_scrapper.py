@@ -1,66 +1,1217 @@
-import numpy as np
-import pandas as pd
-import networkx as nx
-import seaborn as sns
-import torch.nn as nn
-import torch.optim as optim
+# import difflib, subprocess, string, sqlite3, asyncio, nltk, openpyxl, glob, stat, shutil, psutil
+from tabnanny import verbose
+import warnings, platform, requests, urllib, logging, traceback, codecs, unicodedata
+import os, re, bs4, time, json, h5py, pytz, pdfkit, sys, csv
+import plotly.express.colors as px_colors
 import matplotlib.pyplot as plt
-import codecs, unicodedata, string, sqlite3, asyncio, nltk, openpyxl
-import os, re, bs4, sys, csv, time, json, h5py, pytz, glob, stat, shutil, psutil, pdfkit
-import warnings, platform, requests, urllib, difflib, subprocess, torch, logging, traceback
+import plotly.graph_objects as go
+import plotly.express as px
+import seaborn as sns
+import networkx as nx
+import pandas as pd
+import numpy as np
 
-from PIL import Image
-from io import BytesIO
+import torch.optim as optim
+import torch.nn as nn
+import torch
+
 from pathlib import Path
-from pprint import pprint
-from zipfile import ZipFile
 from string import Formatter
-from PyPDF2 import PdfReader
-from neo4j import GraphDatabase
 from unidecode import unidecode
 from Levenshtein import distance
-from nltk.corpus import stopwords
-from sklearn.cluster import KMeans
-from Levenshtein import jaro_winkler
-from urllib3.util.retry import Retry
-from tqdm.notebook import trange, tqdm
+from collections import defaultdict
+from typing import Tuple, List, Dict
 from datetime import datetime, timedelta
-from flask import render_template_string
-from requests.adapters import HTTPAdapter
 from urllib.parse import urlparse, parse_qs
 from py2neo import Graph, Node, Relationship
-from sklearn.metrics import silhouette_score
-from typing import List, Dict, Any, Optional, Union
-from collections import deque, defaultdict, Counter
 from bs4 import BeautifulSoup, Tag, NavigableString
 from pyjarowinkler.distance import get_jaro_distance
 from IPython.display import clear_output, display, HTML
-from typing import Tuple, List, Dict, Any, Optional, Union
-from sklearn.feature_extraction.text import TfidfVectorizer
 
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 from selenium.common import exceptions
 from selenium.common.exceptions import (
-    NoSuchElementException, 
     StaleElementReferenceException,
-    ElementNotInteractableException,
+    NoSuchElementException, 
     TimeoutException,
+    ElementNotInteractableException,
     WebDriverException
 )
 warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-import pandas as pd
-import plotly.express as px
-import plotly.express.colors as px_colors
-import plotly.graph_objects as go
+
+class AnalisadorProducaoArtigos:
+    def __init__(self, dict_list):
+        """
+        Inicializa a classe com a lista de dicionários de currículos Lattes como entrada.
+
+        Args:
+            dict_list (lista): Lista de dicinários aninhados com dados de currículos Lattes.
+        """
+        self.dict_list = dict_list
+
+
+    def montar_lista_artigos(self, dict_list):
+        """
+        Processa uma lista de listas de dicionários e retorna um DataFrame unificado com dados dos artigos nos currículos.
+        Remove elementos inválidos (não dicionários ou dicionários vazios) antes de
+        criar o DataFrame. Adiciona o nome do currículo como um campo no DataFrame.
+        Separa os autores em três colunas: primeiro_autor, todos_autores e ultimo_autor.
+
+        Args:
+        dict_list: A lista principal de dicionários com dados de currículos.
+
+        Returns:
+        Um DataFrame pandas com os dados combinados, nome do currículo e autores separados.
+        """
+        curriculos   = [curriculo.get('Identificação').get('Nome') for curriculo in dict_list]
+        
+        lista_de_listas_de_dicionarios = [
+            curriculo.get('Produções').get('Artigos completos publicados em periódicos') 
+            for curriculo in dict_list
+        ]
+
+        lista_de_dicionarios_com_curriculo = []
+        for sublista, curriculo in zip(lista_de_listas_de_dicionarios, dict_list):
+            if sublista is not None:
+                for dicionario in sublista:
+                    if isinstance(dicionario, dict) and len(dicionario) > 0:
+                        dicionario['curriculo'] = curriculo.get('Identificação', {}).get('Nome')
+                        lista_de_dicionarios_com_curriculo.append(dicionario)
+
+        df = pd.DataFrame(lista_de_dicionarios_com_curriculo)
+        print(f"{len(df.index)} linhas no dataframe")
+
+        # Separa os autores em duas colunas
+        def separar_autores(autores):
+            """
+            Separa a string de autores em primeiro autor e lista de todos os autores.
+            """
+            try:
+                padrao = r"^(.+?)\d{4}(.+)$"
+                match = re.match(padrao, autores)
+                if match:
+                    primeiro_autor = match.group(1).strip()
+                    todos_autores = [autor.strip() for autor in match.group(2).split(';') if autor.strip()]
+                    return primeiro_autor, todos_autores
+            except:
+                pass  # ou qualquer tratamento de erro que você preferir
+            return None, None
+
+        # Corrige a chamada da função apply e usa assign para criar as novas colunas
+        df = df.assign(primeiro_autor=df['autores'].apply(lambda x: separar_autores(x)[0]),
+                    todos_autores=df['autores'].apply(lambda x: separar_autores(x)[1]))
+
+        # Extrai o último autor
+        def extrair_ultimo_autor(todos_autores):
+            """
+            Extrai o último autor da lista de autores.
+            """
+            try:
+                if todos_autores:
+                    ultimo_autor = todos_autores[-1].strip()
+                    # Remove o ponto final, se houver
+                    if ultimo_autor.endswith('.'):
+                        ultimo_autor = ultimo_autor[:-1]
+                    return ultimo_autor
+            except:
+                pass  # ou qualquer tratamento de erro que você preferir
+            return None
+
+        df['ultimo_autor'] = df['todos_autores'].apply(extrair_ultimo_autor)
+        
+        # Converter para valores numéricos para ordenar e comparar corretamente
+        df['ano'] = pd.to_numeric(df['ano'], errors='coerce')
+        
+        df.drop('autores', axis=1, inplace=True)
+
+        return df
+
+    # Função para pré-processar os nomes
+    def normalize_name(self, name):
+        name = name.strip().lower()
+        # Substituições específicas
+        if name == 'alice paula di sabatino guimaraes':
+            name = 'alice paula di sabatino guimarães'
+        elif name == 'maximiliano loiola ponte de souza':
+            name = 'maximiliano ponte'
+        elif name == 'raphael trevizani roque':
+            name = 'raphael trevizani'
+
+        try:
+            # Remover acentos
+            name = ''.join(c for c in unicodedata.normalize('NFD', name) if unicodedata.category(c) != 'Mn')
+            # Remover caracteres especiais e converter para minúsculas
+            name = re.sub(r'[^a-zA-Z0-9 ]', '', name).lower().strip()
+        except Exception as e:
+            print(f"Erro na remoção de acentuação gráfica e caracteres especiais: {e}")
+
+        try:
+            # Remover caracteres "invisíveis" ou de controle
+            name = re.sub(r'[^\x00-\x7F]+', '', name)
+        except Exception as e:
+            print(f"Erro na remoção de caracteres invisíveis ou de controle: {e}")
+
+        try:
+            # Remover espaços em branco extras
+            name = name.strip().replace('  ', ' ')
+        except Exception as e:
+            print(f"Erro na remoção de espaços em branco extras: {e}")
+        
+        return name
+
+    def get_initials(self, name):
+        return ''.join([word[0] for word in name.split()])
+
+    def plotar_artigos_ano(self, df_artigos):
+        # Contar os valores dos anos da coluna ano
+        count_anos = df_artigos['ano'].value_counts().sort_index()
+        ano_inicial=str(min(df_artigos['ano']))
+        ano_termino=str(max(df_artigos['ano']))
+
+        # Criar o gráfico de barras com plotly express
+        fig = px.bar(x=range(len(count_anos.index)), 
+                    y=count_anos.values,
+                    labels={'x':'Ano de publicação', 'y':'Quantidade de artigos'},
+                    title=f'Quantidade de Artigos por Ano do ano {ano_inicial} ao ano {ano_termino}')
+
+        # Ajustar os tick labels do eixo x para mostrar os anos
+        fig.update_xaxes(tickvals=list(range(len(count_anos.index))), ticktext=count_anos.index, showgrid=False)
+
+        # Remover linhas de grade horizontal (eixo y)
+        fig.update_yaxes(showgrid=False)
+
+        # Adicionar a anotação dos valores em cada barra
+        for index, value in enumerate(count_anos.values):
+            fig.add_annotation(
+                x=index,
+                y=value + (0.05 * max(count_anos.values)),  # Ajustar esta proporção conforme necessário
+                text=str(value),
+                showarrow=False,
+                font_size=20
+            )
+
+        # Adicionar a anotação com a quantidade total de artigos no período
+        total_artigos = sum(count_anos.values)
+        fig.add_annotation(
+            x=len(count_anos.index)/2,
+            y=max(count_anos.values) + (0.15 * max(count_anos.values)),  # Ajustar esta proporção conforme necessário
+            text=f"Total de Participação em Artigos de colaboradores ativos na unidade atualmente: {total_artigos}",
+            showarrow=False,
+            font_size=18,
+            font_color="blue"
+        )
+
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1380,   # largura em pixels
+            height=600   # altura em pixels
+        )
+
+        # Mostrar o gráfico
+        fig.show()
+        
+
+    def plotar_barras_agrupadas(self, df_artigos):
+        # Contar os artigos por ano e por curriculo
+        grouped_data = df_artigos.groupby(['ano', 'curriculo']).size().reset_index(name='count')
+
+        # Converter a coluna 'ano' para numérica
+        grouped_data['ano'] = pd.to_numeric(grouped_data['ano'])
+
+        # Capturar anos de início e fim nos dados
+        ano_inicial = min(grouped_data['ano'])
+        ano_termino = max(grouped_data['ano'])
+
+        # Usar paleta de cores personalizada "VIVID"
+        colors_vivid = ['#FF595E', '#FFCA3A', '#8AC926', '#1982FC', '#6A0572'] # Adicione mais cores se necessário
+
+        # Criar o gráfico de barras com plotly express
+        fig = px.bar(grouped_data, 
+                    x='ano',
+                    y='count',
+                    color='curriculo',
+                    color_discrete_sequence=colors_vivid,
+                    labels={'ano':'Ano', 'count':'Quantidade'},
+                    title='Quantidade de Participações em Artigos por Ano e por Currículo, após entrada na Fiocruz Ceará')
+
+        # Garantir que todos os anos sejam exibidos no eixo x
+        fig.update_xaxes(
+            tickmode = 'array',
+            tickvals = list(range(ano_inicial, ano_termino + 1)),
+            ticktext = list(range(ano_inicial, ano_termino + 1)),
+            showgrid=False
+        )
+
+        # Remover linhas de grade do eixo y
+        fig.update_yaxes(showgrid=False)
+
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1380,   # largura em pixels
+            height=1200   # altura em pixels
+        )
+
+        # Adicionar rótulos de dados
+        for trace, color in zip(fig.data, colors_vivid):
+            for x_val, y_val in zip(trace.x, trace.y): # type: ignore
+                fig.add_trace(
+                    go.Scatter(
+                        x=[x_val],
+                        y=[y_val + (0.02 * max(grouped_data['count']))], 
+                        text=[str(y_val)],
+                        mode="text",
+                        showlegend=False,
+                        textfont=dict(color=color)
+                    )
+                )
+
+        # Mostrar o gráfico
+        fig.show()
+        
+
+    def plotar_barras_estaqueadas(self, df_artigos):
+        
+        df_artigos['iniciais'] = df_artigos['curriculo'].apply(self.get_initials)
+        grouped_data = df_artigos.groupby(['ano', 'iniciais']).size().reset_index(name='count') 
+
+        # Converter a coluna 'ano' para numérica
+        grouped_data['ano'] = pd.to_numeric(grouped_data['ano'])
+
+        # Ordenar os dados pelo ano
+        grouped_data = grouped_data.sort_values(by='ano')
+
+        # Usar a paleta "Plotly"
+        colors = px.colors.qualitative.Vivid
+
+        fig = px.bar(grouped_data, 
+                    x='ano',
+                    y='count',
+                    color='iniciais',
+                    barmode='group',
+                    color_discrete_sequence=colors,
+                    labels={'ano':'Ano de Publicação', 'count':'Quantidade de artigos', 'iniciais':'Currículo'},
+                    title='Quantidade de Participação em Artigos por Ano e por Currículo, após entrada na Fiocruz Ceará')
+
+        # Obter todos os anos únicos e ordenados
+        todos_os_anos = sorted(grouped_data['ano'].unique())
+
+        # Configurar o eixo x para mostrar todos os anos na ordem crescente
+        fig.update_xaxes(
+            tickvals=todos_os_anos,
+            ticktext=todos_os_anos,
+            type='category',
+            categoryorder='array',  # Define a ordem das categorias como 'array'
+            categoryarray=todos_os_anos,  # Define a ordem desejada dos anos
+            showgrid=False
+        )
+
+        # Posicionar a legenda abaixo do gráfico
+        fig.update_layout(
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=-0.3,
+                xanchor="center",
+                x=0.5
+            )
+        )
+        
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1600,   # largura em pixels
+            height=1200   # altura em pixels
+        )
+        
+        # Remover linhas de grade
+        fig.update_yaxes(showgrid=False)
+
+        # Mostrar o gráfico
+        fig.show()
+        
+        
+    def comparativo_curriculos(self, df_artigos):
+
+        df_artigos['iniciais_curriculo'] = df_artigos['curriculo'].apply(self.get_initials)
+        grouped_data = df_artigos.groupby(['ano', 'iniciais_curriculo']).size().reset_index(name='count')
+        years = sorted(grouped_data['ano'].unique())
+
+        # Calcular a soma total para cada currículo
+        total_counts = grouped_data.groupby('iniciais_curriculo')['count'].sum()
+
+        # Ordenar as iniciais dos currículos com base na soma total
+        sorted_initials = total_counts.sort_values(ascending=False).index.tolist()
+
+        # Obter a paleta "Greens" e normalize-a para ter uma cor para cada ano
+        palette = px.colors.sequential.Greens
+        colors = reversed([palette[i * (len(palette) - 1) // (len(years) - 1)] for i in range(len(years))])
+        colors = list(colors)  # Converta o resultado para uma lista novamente
+
+        # Criar o gráfico com as iniciais ordenadas
+        traces = []
+        for idx, year in enumerate(reversed(years)):
+            year_data = grouped_data[grouped_data['ano'] == year]
+
+            # Preencher valores ausentes com zero
+            year_data = year_data.set_index('iniciais_curriculo').reindex(sorted_initials, fill_value=0).reset_index()
+
+            # Remover entradas com valores zerados
+            # year_data = year_data[year_data['count'] > 0]
+
+            traces.append(go.Bar(
+                y=year_data['iniciais_curriculo'],
+                x=year_data['count'],
+                name=str(year),
+                orientation='h',
+                marker_color=colors[idx]  # Aplique a cor aqui
+            ))
+
+        # Adicionar as traces em ordem à figura
+        fig = go.Figure(data=traces)
+
+        # Configurar o layout para ser empilhado
+        fig.update_layout(
+            barmode='stack',
+            # legend=dict(
+            #     orientation="h",
+            #     yanchor="bottom",
+            #     y=1.02,
+            #     xanchor="center",
+            #     x=0.5
+            # ),
+            title='Quantidade de Participações em Artigos por Currículo e Ano, após entrada na Fiocruz Ceará'
+        )
+
+        # Criar um DataFrame para a soma total por currículo
+        total_per_curriculo = grouped_data.groupby('iniciais_curriculo')['count'].sum().reset_index()
+        total_per_curriculo = total_per_curriculo.set_index('iniciais_curriculo').reindex(sorted_initials, fill_value=0).reset_index()
+
+        # Calcular a soma total de todos os artigos
+        total_articles = grouped_data['count'].sum()
+
+        # Adicionar a anotação no centro superior da área do gráfico com a soma total de todos os artigos
+        fig.add_annotation(
+            x=0.5,  # posição horizontal centrada
+            y=0.99,  # posição vertical logo acima do topo do gráfico
+            xref="paper",  # refere-se à posição proporcional do gráfico (0 à esquerda, 1 à direita)
+            yref="paper",  # refere-se à posição proporcional do gráfico (0 na parte inferior, 1 na parte superior)
+            text=f"Total de Participação em Artigos, após entrada na Fiocruz Ceará: {total_articles}",
+            showarrow=False,
+            font=dict(color='blue', size=20),
+            align="center",
+            valign="top"
+        )
+
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1380,   # largura em pixels
+            height=1200,   # altura em pixels
+        )
+
+        fig.show()
+
+
+    def calcular_quantidade_artigos_por_area(self, df):
+        """
+        Calcula a quantidade de artigos publicados por área em uma tabela pivot.
+
+        Args:
+        df: DataFrame com colunas 'ano' e 'SETOR_FIOCE'.
+
+        Returns:
+        DataFrame pivot com a quantidade de artigos por nome e área.
+        """
+        # Remove as colunas
+        # print(f"Colunas antes: {df.columns}")
+        # todas colunas: ['NOME', 'ANO_INGRESSO_FIOCE', 'MATRÍCULA', 'SETOR_FIOCE', 'titulo', 'ano']
+        df = df.drop(columns=['MATRÍCULA', 'titulo'])
+        # print(f"Colunas depois: {df.columns}")
+
+        try:
+            # 1. Converter explicitamente para string e remover espaços em branco
+            df['NOME'] = df['NOME'].astype(str).str.strip()
+        except Exception as e:
+            print(f"Erro na conversão para string e remoção de espaços em branco: {e}")
+            return None
+
+        try:
+            # 3. Remover caracteres "invisíveis" ou de controle
+            df['NOME'] = df['NOME'].apply(lambda x: re.sub(r'[^\x00-\x7F]+', '', x))
+        except Exception as e:
+            print(f"Erro na remoção de caracteres invisíveis ou de controle: {e}")
+            return None
+
+        try:
+            # 4. Remover espaços em branco extras
+            df['NOME'] = df['NOME'].str.strip().str.replace('  ', ' ')
+        except Exception as e:
+            print(f"Erro na remoção de espaços em branco extras: {e}")
+            return None
+
+        # checagem = df['NOME'].apply(lambda x: isinstance(x, str)).all()
+        # print(f'Todos nomes são strings: {checagem}')
+
+        # try:
+        #     # 2. Remover acentos e caracteres especiais
+        #     def remover_acentos(texto):
+        #         return ''.join(c for c in unicodedata.normalize('NFD', texto)
+        #                        if unicodedata.category(c) != 'Mn')
+
+        #     df['NOME'] = df['NOME'].apply(remover_acentos)
+        # except Exception as e:
+        #     print(f"Erro na remoção de acentos e caracteres especiais: {e}")
+        #     return None
+
+        # try:
+        #     # 5. Normalizar caracteres Unicode
+        #     df['NOME'] = df['NOME'].apply(lambda x: unicodedata.normalize('NFC', x))
+        # except Exception as e:
+        #     print(f"Erro na normalização de caracteres Unicode: {e}")
+        #     return None
+        
+        try:
+            # Cria a tabela pivot com a quantidade de artigos por nome e área
+            # df_pivot = df(df.copy())
+
+            df_pivot = df.pivot_table(index='SETOR_FIOCE', columns='NOME', values='NOME', aggfunc='count')
+            print(df_pivot.columns)
+        except Exception as e:
+            print(f"Erro na criação da tabela pivot: {e}")
+            return None
+
+        try:
+            # Preenche NaN com 0 e converte para inteiro
+            df_pivot = df_pivot.fillna(0).astype(int)
+        except Exception as e:
+            print(f"Erro ao preencher NaN com 0 e converter para inteiro: {e}")
+            return None
+
+        try:
+            # Formata para não exibir zeros
+            df_pivot = df_pivot.map(lambda x: '' if x == 0 else x)
+        except Exception as e:
+            print(f"Erro na formatação para não exibir zeros: {e}")
+            return None
+
+        return df_pivot
+
+
+    def calcular_total_artigos_area_ano(self, df):
+        """
+        Calcula a quantidade de pessoas em cada área a cada ano, 
+        considerando o ano de ingresso na Fiocruz.
+
+        Args:
+        df: DataFrame com colunas 'NOME', 'SETOR_FIOCE' e 'ANO_INGRESSO_FIOCE'.
+
+        Returns:
+        DataFrame pivot com a quantidade de pessoas por área a cada ano.
+        """
+
+        # Remove as colunas 'MATRÍCULA' e 'titulo'
+        df = df.drop(columns=['MATRÍCULA', 'titulo'])
+
+        try:
+            # 1. Converter explicitamente para string e remover espaços em branco
+            df['NOME'] = df['NOME'].astype(str).str.strip()
+        except Exception as e:
+            print(f"Erro na conversão para string e remoção de espaços em branco: {e}")
+            return None
+
+        try:
+            # 3. Remover caracteres "invisíveis" ou de controle
+            df['NOME'] = df['NOME'].apply(lambda x: re.sub(r'[^\x00-\x7F]+', '', x))
+        except Exception as e:
+            print(f"Erro na remoção de caracteres invisíveis ou de controle: {e}")
+            return None
+
+        try:
+            # 4. Remover espaços em branco extras
+            df['NOME'] = df['NOME'].str.strip().str.replace('  ', ' ')
+        except Exception as e:
+            print(f"Erro na remoção de espaços em branco extras: {e}")
+            return None
+
+        try:
+            # Cria uma nova coluna 'ano' com o ano de cada registro
+            df['ano'] = df['ano'].astype(int)  # Converte a coluna 'ano' para inteiros
+        except Exception as e:
+            print(f"Erro ao converter a coluna 'ano' para inteiros: {e}")
+            return None
+
+        try:
+            # Calcula a quantidade de pessoas por área a cada ano
+            def contar_pessoas(grupo):
+                anos = range(int(grupo['ANO_INGRESSO_FIOCE'].min()), int(grupo['ano'].max()) + 1)
+                return pd.Series({ano: len(grupo[grupo['ANO_INGRESSO_FIOCE'] <= ano]) for ano in anos})
+
+            df_pivot = df.groupby('SETOR_FIOCE').apply(contar_pessoas).unstack(fill_value=0)
+        except Exception as e:
+            print(f"Erro ao calcular a quantidade de pessoas por área a cada ano: {e}")
+            return None
+
+        try:
+            # Formata para não exibir zeros
+            df_pivot = df_pivot.map(lambda x: '' if x == 0 else x)
+        except Exception as e:
+            print(f"Erro na formatação para não exibir zeros: {e}")
+            return None
+
+        return df_pivot
+
+
+    def calcular_pessoas_area(self, df):
+        """
+        Calcula a quantidade de pessoas em cada área a cada ano,
+        considerando o ano de ingresso na Fiocruz e contando apenas nomes únicos.
+
+        Args:
+        df: DataFrame com colunas 'NOME', 'SETOR_FIOCE' e 'ANO_INGRESSO_FIOCE'.
+
+        Returns:
+        DataFrame pivot com a quantidade de pessoas por área a cada ano.
+        """
+
+        # Remove as colunas 'MATRÍCULA' e 'titulo'
+        df = df.drop(columns=['MATRÍCULA', 'titulo'])
+
+        try:
+            # 1. Converter explicitamente para string e remover espaços em branco
+            df['NOME'] = df['NOME'].astype(str).str.strip()
+        except Exception as e:
+            print(f"Erro na conversão para string e remoção de espaços em branco: {e}")
+            return None
+
+        try:
+            # 3. Remover caracteres "invisíveis" ou de controle
+            df['NOME'] = df['NOME'].apply(lambda x: re.sub(r'[^\x00-\x7F]+', '', x))
+        except Exception as e:
+            print(f"Erro na remoção de caracteres invisíveis ou de controle: {e}")
+            return None
+
+        try:
+            # 4. Remover espaços em branco extras
+            df['NOME'] = df['NOME'].str.strip().str.replace('  ', ' ')
+        except Exception as e:
+            print(f"Erro na remoção de espaços em branco extras: {e}")
+            return None
+
+        try:
+            # Cria uma nova coluna 'ano' com o ano de cada registro
+            df['ano'] = df['ano'].astype(int)  # Converte a coluna 'ano' para inteiros
+        except Exception as e:
+            print(f"Erro ao converter a coluna 'ano' para inteiros: {e}")
+            return None
+
+        try:
+            # Calcula a quantidade de pessoas por área a cada ano
+            def contar_pessoas(grupo):
+                anos = range(int(grupo['ANO_INGRESSO_FIOCE'].min()), int(grupo['ano'].max()) + 1)
+                pessoas_area = set()
+                contagem_pessoas = {}
+                for ano in anos:
+                    pessoas_ano = grupo[grupo['ANO_INGRESSO_FIOCE'] <= ano]['NOME'].unique()
+                    pessoas_area.update(pessoas_ano)
+                    contagem_pessoas[ano] = len(pessoas_area)
+                return pd.Series(contagem_pessoas)
+
+            df_pivot = df.groupby('SETOR_FIOCE').apply(contar_pessoas).unstack(fill_value=0)
+        except Exception as e:
+            print(f"Erro ao calcular a quantidade de pessoas por área a cada ano: {e}")
+            return None
+
+        try:
+            # Formata para não exibir zeros
+            df_pivot = df_pivot.map(lambda x: '' if x == 0 else x)
+        except Exception as e:
+            print(f"Erro na formatação para não exibir zeros: {e}")
+            return None
+
+        return df_pivot
+
+
+    def evolucao_anual(self, df_artigos, df_pessoal, verbose=False):
+        """
+        Calcula a evolução anual da quantidade de artigos e pesquisadores, 
+        e exibe um gráfico com a média de artigos por pesquisador.
+
+        Args:
+            df_artigos (pd.DataFrame): DataFrame com os dados dos artigos.
+            df_pessoal (pd.DataFrame): DataFrame com os dados dos pesquisadores.
+
+        Returns:
+            pd.DataFrame: DataFrame com a quantidade de artigos, 
+                        pesquisadores e média de artigos por pesquisador por ano.
+        """
+        # Obter extremos do período para todos os anos dos dados
+        min_year = df_artigos['ano'].min()
+        max_year = df_artigos['ano'].max()
+        all_years = list(range(min_year, max_year + 1))
+
+        # Calcular a quantidade total de artigos por ano
+        artigos_por_ano = df_artigos.groupby('ano').size().reindex(all_years, fill_value=0).reset_index(name='count')
+        if verbose:
+            print(f"Quantidade de artigos por ano: {artigos_por_ano}")
+
+        # Calcular quantidade de pesquisadores únicos a cada ano
+        lista_campos = df_pessoal.keys()
+        if verbose:
+            print("Lista de campos no dataframe:")
+            print(lista_campos)
+        lista_anos_ingresso = df_pessoal['ANO_INGRESSO_FIOCE']
+        if verbose:
+            print("Lista de anos de ingresso:")
+            print(lista_anos_ingresso)            
+        # lista_nomes_unicos = df_pessoal.groupby('ANO_INGRESSO_FIOCE')['NOME'].unique()
+        # if verbose:
+        #     print("Lista de numeros por ano de ingresso:")
+        #     print(lista_nomes_unicos)
+        lista_numeros_unicos = df_pessoal.groupby('ANO_INGRESSO_FIOCE')['NOME'].nunique()
+        if verbose:
+            print("Lista de nomes po ano de ingresso:")
+            print(lista_numeros_unicos)
+
+        pesquisadores_por_ano = df_pessoal.groupby('ANO_INGRESSO_FIOCE')['NOME'].nunique().reindex(all_years, fill_value=0).reset_index(name='QTE_PESSOAS_ANO') 
+        if verbose:
+            print(f"Pesquisadores por ano: {pesquisadores_por_ano}")
+
+        # Criar a soma cumulativa de pesquisadores ao longo dos anos
+        pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] = pesquisadores_por_ano['QTE_PESSOAS_ANO'].cumsum()
+        if verbose:
+            print(f"Soma cumulativa de pessoas no período: {pesquisadores_por_ano['QTE_PESSOAS_ANO'].cumsum()}")
+
+        # Média de artigos por pesquisador
+        # Criar uma máscara para filtrar os valores zerados em 'QTE_TOTAL_PESSOAS'
+        mascara = pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] != 0
+        if verbose:
+            print(f"Total de pessoas com participação em artigos no Lattes no período: {len(mascara)}")
+
+        # Calcular a média apenas para os valores não zerados
+        pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = artigos_por_ano['count'][mascara] / pesquisadores_por_ano['QTE_TOTAL_PESSOAS'][mascara]
+
+        # Preencher os valores NaN resultantes da divisão por zero com 0
+        pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].fillna(0)
+
+        # Criar figura com as devidas traces
+        fig = go.Figure()
+
+        # Adicionar trace de barras para a quantidade de artigos
+        fig.add_trace(go.Bar(
+            x=artigos_por_ano['ano'],
+            y=artigos_por_ano['count'],
+            name='Total de Artigos',
+            text=artigos_por_ano['count'],
+            textposition='outside'
+        ))
+
+        # Adicionar trace de linha para a soma cumulativa de pesquisadores
+        fig.add_trace(go.Scatter(
+            x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+            y=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+            name='Soma Cumulativa da Quantidade de Servidores',
+            mode='lines+markers+text',
+            text=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+            textposition='top center'
+        ))
+
+        # Adicionar trace de linha tracejada para a média de artigos por pesquisador (eixo secundário)
+        fig.add_trace(go.Scatter(
+            x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+            y=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'],
+            name='Média de Artigos por Pesquisador',
+            mode='lines+text',
+            line=dict(dash='dash'),
+            text=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].round(2),
+            textposition='top center',
+            yaxis='y2'  # Define o eixo secundário para a média
+        ))
+
+        # Atualizar layout do gráfico
+        fig.update_layout(
+            yaxis=dict(
+                title='Total de Artigos'
+            ),
+            yaxis2=dict(
+                title='Média de Artigos por Servidor (todas atividades)',
+                overlaying='y',
+                side='right'
+            ),
+            xaxis=dict(tickvals=all_years),
+            legend=dict(
+                orientation="h",
+                x=0.2,
+                y=0.99
+            ),
+            title='Quantidade de Participações em Artigos, Soma Cumulativa de Servidores (todas atividades) e Média de Artigos por Servidor por Ano',
+        )
+
+        # Remover linhas de grade
+        fig.update_xaxes(showgrid=False)
+        fig.update_yaxes(showgrid=False)
+        
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1380,   # largura em pixels
+            height=800   # altura em pixels
+        )
+            
+        fig.show()
+        return pesquisadores_por_ano
+
+    def evolucao_sem_duplicatas(self, df_artigos, df_pessoal, sim_limite=0.95):
+        import Levenshtein
+
+        # Função para verificar similaridade entre strings
+        def is_similar(str1, str2, threshold):
+            similarity = (len(str1) - Levenshtein.distance(str1, str2)) / float(len(str1))
+            return similarity >= threshold
+
+        # Remover duplicidades
+        titles = df_artigos['titulo'].tolist()
+        unique_titles = []
+        for title in titles:
+            if not any(is_similar(title, utitle, sim_limite) for utitle in unique_titles):
+                unique_titles.append(title)
+        df_artigos = df_artigos[df_artigos['titulo'].isin(unique_titles)]
+
+        # Remover duplicatas apenas com base no título exato
+        df_artigos = df_artigos.drop_duplicates(subset='titulo')
+
+        # Para todos os anos dos dados
+        min_year  = df_artigos['ano'].min()
+        max_year  = df_artigos['ano'].max()
+        all_years = list(range(min_year, max_year + 1))
+
+        # Calcular quantidade total de artigos por ano
+        artigos_por_ano = df_artigos.groupby('ano').size().reindex(all_years, fill_value=0).reset_index(name='count')
+
+        # Calcular quantidade de pesquisadores únicos que entraram a cada ano
+        pesquisadores_por_ano = df_pessoal.groupby('ANO_INGRESSO_FIOCE')['NOME'].nunique().reindex(all_years, fill_value=0).reset_index(name='QTE_PESSOAS_ANO')
+
+        # Calcular soma cumulativa de pesquisadores ao longo dos anos
+        pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] = pesquisadores_por_ano['QTE_PESSOAS_ANO'].cumsum()
+
+        # Calcular média de artigos por pesquisador
+        pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = artigos_por_ano['count'] / pesquisadores_por_ano['QTE_TOTAL_PESSOAS']
+        pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].replace(np.inf, 0, inplace=True)
+
+        # Calcular a proporção entre os dois eixos y
+        max_y1 = artigos_por_ano['count'].max()+10
+        max_y2 = pesquisadores_por_ano['QTE_TOTAL_PESSOAS'].max()
+        ratio  = max_y1 / max_y2
+
+        # Definir buffer de 10%
+        buffer = 0.1
+        
+        # Criar a figura com as devidas traces
+        fig = go.Figure()
+
+        # Adicionar trace de barras para a quantidade de artigos
+        fig.add_trace(go.Bar(
+            x=artigos_por_ano['ano'],
+            y=artigos_por_ano['count'],
+            name='Total de Artigos',
+            text=artigos_por_ano['count'],
+            textposition='outside'
+        ))
+
+        # Adicionar trace de linha para a soma cumulativa de pesquisadores
+        fig.add_trace(go.Scatter(
+            x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+            y=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+            yaxis='y2',
+            name='Soma Cumulativa de Pesquisadores',
+            mode='lines+markers+text',
+            text=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+            textposition='top center'
+        ))
+
+        # Adicionar trace de linha tracejada para a média de artigos por pesquisador
+        fig.add_trace(go.Scatter(
+            x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+            y=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] * ratio,
+            yaxis='y2',
+            name='Média de Artigos por Servidor',
+            mode='lines+text',
+            line=dict(dash='dash'),
+            text=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].round(2),
+            textposition='top center'
+        ))
+
+        # Atualizar layout do gráfico
+        fig.update_layout(
+            yaxis=dict(
+                title='Total de Artigos',
+                range=[0, max_y1 * (1 + buffer)]
+            ),
+            yaxis2=dict(
+                title='Soma Cumulativa de Pessoas (todas atividades) e Média de Artigos por Pessoa',
+                overlaying='y',
+                side='right',
+                range=[0, max_y2 * (1 + buffer)],
+                tickvals=list(range(0, int(max_y2 * (1 + buffer)), int(max_y2/10))),
+                ticktext=list(range(0, int(max_y2 * (1 + buffer)), int(max_y2/10)))
+            ),
+            xaxis=dict(tickvals=all_years),
+            legend=dict(
+                orientation="h",
+                x=0.2,
+                y=0.99
+            ),
+            title='Quantidade de Artigos (sem duplicatas), Soma Cumulativa de Servidores (todas atividades) e Média de Artigos por Pessoa por Ano',
+        )
+
+        # Identificar o último ano
+        last_year = max(all_years)
+        
+        # Adicionar a barra transparente para o último ano
+        mask_last_year = artigos_por_ano['ano'] == last_year
+        fig.add_trace(go.Bar(
+            x=[last_year],
+            y=[artigos_por_ano[mask_last_year]['count'].iloc[0]],
+            name='Total de Artigos no Ano Atual',
+            text=str(artigos_por_ano[mask_last_year]['count'].iloc[0]),  # Convertendo para string
+            textposition='outside',
+            marker=dict(color='rgba(0,0,0,0)',  # Transparente
+                        line=dict(color='#1f77b4', width=2))  # Borda com a cor padrão e espessura de 2
+        ))
+        
+        # Remover linhas de grade
+        fig.update_xaxes(showgrid=False)
+        fig.update_yaxes(showgrid=False)
+        
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1380,   # largura em pixels
+            height=800   # altura em pixels
+        )
+            
+        fig.show()
+
+    # df_lista_artigos = df_servidores_ingresso_fioce
+    def qte_artigos_por_nome_ano(self, df_lista_artigos):
+        """
+        Calcula a quantidade de artigos publicados por nome e ano em uma tabela pivot 
+        e converte os valores para inteiros, tratando os valores NaN.
+
+        Args:
+        df: DataFrame contendo um artigo por linha e colunas 'ano' e 'NOME'.
+
+        Returns:
+        DataFrame pivot contendo a quantidade de artigos por nome e ano, com valores inteiros.
+        """
+
+        # Agrupar por nome e ano, contando as ocorrências
+        df_pivot = df_lista_artigos.groupby(['NOME', 'ano']).size().unstack(fill_value=0)
+
+        # Converter os valores float para inteiros
+        df_pivot = df_pivot.astype(int)
+
+        # Formatar para ocultar zeros na exibição
+        df_pivot = df_pivot.map(lambda x: '' if x == 0 else x)
+
+        return df_pivot
+
+    def med_artigos_por_nome_area_ano(self, df):
+        """
+        Calcula a média da quantidade de artigos publicados por área e ano em uma tabela pivot 
+        e converte os valores para inteiros, tratando os valores NaN.
+
+        Args:
+        df: DataFrame contendo um artigo por linha ecolunas 'ano' e 'ÁREA'.
+
+        Returns:
+        DataFrame pivot contendo a média de artigos por áreq e ano, com valores inteiros.
+        """
+
+        df_total_artigos_area_ano = df.groupby(['ÁREA', 'ano'])['titulo'].count().unstack(fill_value=0)
+        df_nomes_distintos_area_ano = df.groupby(['ÁREA', 'ano'])['NOME'].nunique().unstack(fill_value=0)
+        df_media_artigos_por_nome = df_total_artigos_area_ano / df_nomes_distintos_area_ano
+        df_media_artigos_por_nome = df_media_artigos_por_nome.map(lambda x: f'{x:.1f}' if pd.notnull(x) else '')
+
+        # Agrupar por nome e ano, contando as ocorrências
+        df_pivot = df.groupby(['ÁREA', 'ano']).size().unstack(fill_value=0)
+
+        # Converter os valores float para inteiros
+        df_pivot = df_pivot.astype(int)
+
+        # Formatar para ocultar zeros na exibição
+        df_pivot = df_pivot.map(lambda x: '' if x == 0 else x)
+
+        return df_pivot
+
+    def med_artigos_por_nome_ano_area(self, df_lista_artigos):
+        """
+        Calcula a média de artigos publicados por nome, ano e área, 
+        considerando a quantidade de nomes distintos e a quantidade total de artigos.
+
+        Args:
+        df_lista_artigos: DF um artigo por linha e colunas 'titulo', 'ano', 'NOME' e 'ÁREA'.
+
+        Returns:
+        DataFrame contendo a média de artigos por nome e ano, com múltiplos índices para área.
+        """
+
+        # Calcular a quantidade total de artigos por área e ano
+        df_total_artigos_area_ano = df_lista_artigos.groupby(['ÁREA', 'ano'])['titulo'].count().unstack(fill_value=0)
+
+        # Calcular a quantidade de nomes distintos por área e ano
+        df_nomes_distintos_area_ano = df_lista_artigos.groupby(['ÁREA', 'ano'])['NOME'].nunique().unstack(fill_value=0)
+
+        # Calcular a média de artigos por nome
+        df_media_artigos_por_nome = df_total_artigos_area_ano / df_nomes_distintos_area_ano
+
+        # Formatar a tabela (opcional)
+        df_media_artigos_por_nome = df_media_artigos_por_nome.map(lambda x: f'{x:.1f}' if pd.notnull(x) else '')
+
+        return df_media_artigos_por_nome
+
+    def med_artigos_por_ano(self, df_lista_artigos):
+        """
+        Calcula a média de artigos publicados por ano, a contagem de autores únicos 
+        e a quantidade de artigos por autor único.
+
+        Args:
+        df_lista_artigos: DataFrame um artigo por linha e colunas 'titulo', 'ano' e 'NOME'.
+
+        Returns:
+        DataFrame contendo a média de artigos por ano, a contagem de autores únicos
+        e a quantidade de artigos por autor único.
+        """
+
+        df_lista_artigos['NUM_ARTIGOS'] = df_lista_artigos['titulo'].str.split(';').str.len()
+        df_media = df_lista_artigos.groupby('ano')['NUM_ARTIGOS'].mean().reset_index()
+        df_autores_unicos = df_lista_artigos.groupby('ano')['NOME'].nunique().reset_index(name='NUM_AUTORES_UNICOS')
+        df_final = pd.merge(df_media, df_autores_unicos, on='ano')
+
+        # Calcular a quantidade de artigos por autor único
+        df_final['ARTIGOS_POR_AUTOR_UNICO'] = df_final['NUM_ARTIGOS'] / df_final['NUM_AUTORES_UNICOS']
+
+        return df_final
+
+    def med_impacto_por_ano(self, df_lista_artigos):
+        """
+        Calcula a média de impacto dos artigos publicados por ano, a contagem de autores únicos 
+        e o somatório do fator de impacto (JCI) das publicações por autor único a cada ano.
+
+        Args:
+        df_lista_artigos: DataFrame contendo um artigo por linha e colunas 'titulo','JCI', 'ano' e 'NOME'.
+
+        Returns:
+        DataFrame contendo a contagem de autores únicos e o somatório anual de impacto JCI da quantidade de artigos por autor único.
+        """
+
+        df_lista_artigos['NUM_ARTIGOS'] = df_lista_artigos['titulo'].str.split(';').str.len()
+        df_media = df_lista_artigos.groupby('ano')['FATOR_IMPACTO'].mean().reset_index()
+        df_autores_unicos = df_lista_artigos.groupby('ano')['NOME'].nunique().reset_index(name='NUM_AUTORES_UNICOS')
+        df_final = pd.merge(df_media, df_autores_unicos, on='ano')
+
+        # Calcular a quantidade de artigos por autor único
+        df_final['ARTIGOS_POR_AUTOR_UNICO'] = df_final['NUM_ARTIGOS'] / df_final['NUM_AUTORES_UNICOS']
+
+        return df_final
+
+    def destacar_medias_publicacoes(self, df_lista_artigos):
+        """
+        Destaca as médias de publicações por ano à medida que novos nomes aparecem.
+
+        Args:
+        df_lista_artigos: DataFrame contendo um artigo por linha e colunas 'titulo', 'ano' e 'NOME'.
+
+        Returns:
+        DataFrame contendo a média de artigos por ano e a contagem de autores únicos, 
+        com destaque para as médias quando novos nomes aparecem.
+        """
+
+        df_lista_artigos['NUM_ARTIGOS'] = df_lista_artigos['titulo'].str.split(';').str.len()
+        df_resultado = pd.DataFrame(columns=['ano', 'MEDIA_ARTIGOS', 'NUM_AUTORES_UNICOS'])
+
+        for ano in sorted(df_lista_artigos['ano'].unique()):
+            df_ano = df_lista_artigos[df_lista_artigos['ano'] == ano]
+            media_artigos = df_ano['NUM_ARTIGOS'].mean()
+            num_autores_unicos = df_ano['NOME'].nunique()
+            novos_autores = any(df_ano['NOME'].isin(df_lista_artigos[df_lista_artigos['ano'] < ano]['NOME']) == False)
+
+            # Usar concat em vez de append
+            df_resultado = pd.concat([df_resultado, pd.DataFrame({
+                'ano': [ano],
+                'MEDIA_ARTIGOS': [f'{media_artigos:.1f}' if pd.notnull(media_artigos) else ''],
+                'NUM_AUTORES_UNICOS': [num_autores_unicos],
+                'NOVOS_AUTORES': [novos_autores]
+            })], ignore_index=True)
+
+        df_resultado.loc[df_resultado['NOVOS_AUTORES'] == True, 'MEDIA_ARTIGOS'] = df_resultado.loc[
+            df_resultado['NOVOS_AUTORES'] == True, 'MEDIA_ARTIGOS'
+        ].apply(lambda x: f'{x}')
+
+        return df_resultado
+
+    def plotar_evolucao_areas(self, df_pivot):
+        # Chamando de "df_pivot" o dataframe com lista de artigos por ano de cada área
+        import plotly.express as px
+        import pandas as pd
+        from plotly.subplots import make_subplots
+        import plotly.graph_objects as go
+
+        df_longo = df_pivot.reset_index().melt(id_vars='ÁREA', var_name='ano', value_name='MEDIA_ARTIGOS')
+        df_longo['ano'] = pd.to_numeric(df_longo['ano'])
+        
+        # Converter a coluna 'MEDIA_ARTIGOS' para numérica
+        df_longo['MEDIA_ARTIGOS'] = pd.to_numeric(df_longo['MEDIA_ARTIGOS'], errors='coerce')
+
+        # Obter o valor máximo de 'MEDIA_ARTIGOS' em todo o DataFrame
+        max_y = df_longo['MEDIA_ARTIGOS'].max()
+
+        # Criar os subplots
+        fig = make_subplots(rows=len(df_longo['ÁREA'].unique()), cols=1, subplot_titles=df_longo['ÁREA'].unique())
+
+        # Iterar pelas áreas e adicione cada gráfico de linha aos subplots
+        for i, area in enumerate(df_longo['ÁREA'].unique()):
+            df_area = df_longo[df_longo['ÁREA'] == area]
+            fig.add_trace(
+                go.Scatter(
+                    x=df_area['ano'], 
+                    y=df_area['MEDIA_ARTIGOS'], 
+                    mode='lines', 
+                    name=area
+                ), 
+                row=i+1, col=1
+            )
+
+        # Definir a ordem crescente para o eixo y
+        fig.update_yaxes(categoryorder='category ascending')
+
+        # Atualizar o layout com o mesmo yaxis_range para todos os subplots
+        fig.update_layout(height=1400, width=800, title_text="Média de Artigos por Ano e Área", 
+                        yaxis_range=[0, max_y])  # Define o mesmo limite superior do eixo y
+        fig.show()
+
+
+    def boxplot_media_artigos(self, df_artigos, df_pessoal):
+        # Removendo duplicidades
+        df_artigos = df_artigos.drop_duplicates(subset='titulo')
+        df_artigos['iniciais_curriculo'] = df_artigos['curriculo'].apply(get_initials)
+
+        # Calculando o total de artigos por pesquisador
+        artigos_por_pesquisador = df_artigos.groupby('iniciais_curriculo').size()
+
+        # Calculando a média de artigos por pesquisador
+        anos_ativos = df_artigos.groupby('iniciais_curriculo')['ano'].nunique()
+        media_artigos_por_pesquisador = artigos_por_pesquisador / anos_ativos
+
+        # Retirar possíveis infinitos
+        media_artigos_por_pesquisador.replace(np.inf, 0, inplace=True)
+
+        fig = go.Figure()
+
+        # Box plot
+        fig.add_trace(go.Box(
+            y=media_artigos_por_pesquisador,
+            boxpoints='all',
+            jitter=0.3,
+            pointpos=0,
+            name='Média de Artigos por Pesquisador'
+        ))
+
+        fig.update_layout(
+            title='Distribuição da Média de Artigos por Pesquisador',
+            yaxis_title='Média de Artigos por Pesquisador'
+        )
+
+        # Ajustar a altura e a largura
+        fig.update_layout(
+            width=1380,   # largura em pixels
+            height=800   # altura em pixels
+        )
+
+        fig.show()
+
+    def evolucao_artigos(self, df_artigosperiodo, df_pessoal, threshold=0.8):
+        from sklearn.feature_extraction.text import TfidfVectorizer
+        from sklearn.metrics.pairwise import cosine_similarity
+
+        # Para todos os anos dos dados
+        min_year = df_artigosperiodo['PUB_ANO'].min()
+        max_year = df_artigosperiodo['PUB_ANO'].max()
+        all_years = list(range(min_year, max_year + 1))
+
+        # 1. Usando TF-IDF para calcular similaridade entre os títulos
+        vectorizer = TfidfVectorizer().fit_transform(df_artigosperiodo['TITULO'])
+        vectors = vectorizer.toarray() # type: ignore
+        cosine_matrix = cosine_similarity(vectors)
+
+        # 2. Filtrando títulos com similaridade acima do threshold e removendo duplicatas
+        indices_to_drop = []
+        for i in range(cosine_matrix.shape[0]):
+            for j in range(i + 1, cosine_matrix.shape[1]):
+                if cosine_matrix[i][j] > threshold:
+                    indices_to_drop.append(j)
+
+        indices_to_drop = list(set(indices_to_drop))
+        df_artigosperiodo = df_artigosperiodo.drop(df_artigosperiodo.index[indices_to_drop])
+
+        # 3. Plotar o gráfico de evolução
+
+        # Agrupando por ano
+        artigos_por_ano = df_artigosperiodo.groupby('PUB_ANO').size().reset_index(name='count')
+
+        # Preenchimento padrão para todos os anos
+        fill_colors = ['#1f77b4'] * artigos_por_ano.shape[0]
+
+        # Para o último ano, deixar sem preenchimento (somente borda)
+        last_year = artigos_por_ano['PUB_ANO'].iloc[-1]
+        fill_colors[-1] = 'rgba(0,0,0,0)'
+
+        # Plotagem
+        fig = go.Figure()
+
+        # Adicionar barras para cada ano
+        fig.add_trace(go.Bar(
+            x=artigos_por_ano['PUB_ANO'],
+            y=artigos_por_ano['count'],
+            name='Total de Artigos por Ano',
+            marker=dict(color=fill_colors,
+                        line=dict(color='#1f77b4', width=2))
+        ))
+
+        # Adicionar linha de média
+        mean_articles = artigos_por_ano['count'].mean()
+        years = artigos_por_ano['PUB_ANO'].values
+
+        # Excluindo o último ano da linha de média
+        fig.add_shape(
+            type="line",
+            x0=years[0],
+            y0=mean_articles,
+            x1=years[-2],
+            y1=mean_articles,
+            line=dict(color="Red", width=2, dash="dashdot")
+        )
+
+        # Configurações adicionais do gráfico
+        fig.update_layout(
+            title="Evolução da quantidade de participação em artigos por ano concluídos, média e artigos do ano em curso",
+            xaxis_title="Ano",
+            yaxis_title="Número de Artigos",
+            legend_title="Legenda",
+            xaxis=dict(tickvals=all_years),
+            legend=dict(
+                orientation="h",
+                x=0.2,
+                y=0.99
+        ),
+
+        )
+
+        fig.show()
 
 class PlotProduction:
     def __init__(self, df):
@@ -293,56 +1444,41 @@ class PlotProduction:
 
 class JSONFileManager:
     def list_json(self, folder):
-        # Criar uma lista para armazenar os nomes dos arquivos JSON
-        json_files = []
-
-        for i in os.listdir(folder):
-            try:
-                ext = i.split('.')[1]
-                if ext == 'json':
-                    json_files.append(i)
-            except IndexError:
-                # Ignora arquivos sem extensão
-                pass
-
-        # Ordenar a lista de arquivos JSON em ordem alfabética
+        json_files = [i for i in os.listdir(folder) if i.endswith('.json')]
         json_files.sort()
-
-        # Imprimir os arquivos JSON em ordem
-        print('Arquivos disponíveis na pasta para dados de entrada:')
+        
+        print('Arquivos de entrada a processar:')
         for file in json_files:
             print(f'  {file}')
+        
+        return json_files
 
     # Carregar arquivo 'dict_list.json' para a variável com dados de criação e modificação
     def load_from_json(self, file_path):
-        """
-        Carrega um arquivo JSON e retorna seu conteúdo e data de criação.
-        Parâmetros:
-            file_path (str): O caminho para o arquivo JSON.
-        Retorna:
-            dict, str: O conteúdo do arquivo JSON e sua data de criação.
-        """
-        with open(file_path, 'r', encoding='utf-8') as file:
-            data = json.load(file)
+        try:
+            with open(file_path, 'r', encoding='utf-8') as file:
+                content = file.read()
+                if not content.strip():
+                    raise ValueError("O arquivo JSON está vazio")
+                data = json.loads(content)
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Erro ao decodificar o JSON: {e}")
+        except Exception as e:
+            raise ValueError(f"Erro ao ler o arquivo: {e}")
 
-        # Obter datas de criação e modificação do arquivo
         creation_date = os.path.getctime(file_path)
         modification_date = os.path.getmtime(file_path)
 
-        # Converter timestamps para datas no fuso horário de Brasília
         brasilia_tz = pytz.timezone('America/Sao_Paulo')
         creation_date_brasilia = datetime.fromtimestamp(creation_date).astimezone(brasilia_tz)
         modification_date_brasilia = datetime.fromtimestamp(modification_date).astimezone(brasilia_tz)
 
-        # Formatar datas com dd/mm/aaaa hh:mm:ss
         formatted_creation_date = creation_date_brasilia.strftime("%d/%m/%Y %H:%M:%S")
         formatted_modification_date = modification_date_brasilia.strftime("%d/%m/%Y %H:%M:%S")
 
-        # Calcular contagem de horas até a data atual
         now = datetime.now(brasilia_tz)
         time_delta = now - modification_date_brasilia
 
-        # Determinar unidade de tempo (minutos, horas ou dias)
         if time_delta.total_seconds() < (60*60):
             unit = "minutos"
             time_count = round(time_delta.total_seconds() / 60, 1)
@@ -355,10 +1491,24 @@ class JSONFileManager:
 
         return data, formatted_creation_date, formatted_modification_date, time_count, unit
 
+    def verify_json(self, folder, filename):
+        pathfilename = os.path.join(folder, filename)
+        try:
+            dict_list, formatted_creation_date, formatted_modification_date, time_count, unit = self.load_from_json(pathfilename)
+            print(f"\n{len(dict_list)} dicionários aninhados em lista de dicionários '{filename}'")
+            print(f"Extração realizada em {formatted_modification_date} a {time_count} {unit}")
+        except ValueError as e:
+            print(f"Erro ao processar o arquivo '{filename}': {e}")
+
     # Função para salvar a lista de dicionários em um arquivo .json
     def save_to_json(self, data, file_path):
-        with open(file_path, 'w', encoding='utf-8') as file:
-            json.dump(data, file, ensure_ascii=False, indent=4)
+        try:
+            with open(file_path, 'w', encoding='utf-8') as file:
+                json.dump(data, file, ensure_ascii=False, indent=4)
+            print(f"Dados salvos com sucesso em '{file_path}'")
+        except Exception as e:
+            print(f"Erro ao salvar o arquivo '{file_path}': {e}")   
+
 
 class attribute_to_be_non_empty:
     """
@@ -522,16 +1672,17 @@ class DictToHDF5:
                 # Informações adicionais sobre o conjunto de dados
                 print(" " * (indent + 4) + f"Shape: {value.shape}, Dtype: {value.dtype}")
                 
-                # Visualização do conteúdo do conjunto de dados
-                if value.size < 10:  # imprimir todo o conjunto de dados se ele for pequeno
-                    print(" " * (indent + 4) + f"Data: {value[...]}")
-                else:  # imprimir uma amostra dos dados se o conjunto de dados for grande
-                    sample = value[...]
-                    if value.ndim > 1:
-                        sample = sample[:min(3, value.shape[0]), :min(3, value.shape[1])]
-                    else:
-                        sample = sample[:min(3, value.size)]
-                    print(" " * (indent + 4) + f"Sample Data: {sample}")
+                if value.size:
+                    # Visualização do conteúdo do conjunto de dados
+                    if value.size < 10:  # imprimir todo o conjunto de dados se ele for pequeno
+                        print(" " * (indent + 4) + f"Data: {value[...]}")
+                    else:  # imprimir uma amostra dos dados se o conjunto de dados for grande
+                        sample = value[...]
+                        if value.ndim > 1:
+                            sample = sample[:min(3, value.shape[0]), :min(3, value.shape[1])]
+                        else:
+                            sample = sample[:min(3, value.size)]
+                        print(" " * (indent + 4) + f"Sample Data: {sample}")
 
     @staticmethod
     def print_json_structure(json_file_path: str, indent: int = 0, max_sample_size: int = 10):
@@ -590,6 +1741,7 @@ class DictToHDF5:
                     node = Node("Person", **properties)  # Assumindo que o nó seja do tipo "Person"
                 graph.create(node)
 
+
 class LattesScraper:
     def __init__(self, search_terms, neo4j_uri, neo4j_user, neo4j_password, only_doctors=False):
         self.verbose = False
@@ -620,17 +1772,15 @@ class LattesScraper:
         # Corrigido para usar LattesScraper.find_repo_root para chamada recursiva
         return LattesScraper.find_repo_root(path.parent, depth-1)
 
+
     @staticmethod
-    def connect_driver(only_doctors):
+    def connect_driver(only_doctors, retries=5, timeout=30):
         '''
-        Conecta ao servidor do CNPq para busca de currículo
+        Conecta ao servidor do CNPq para busca de currículo, 
+        com controle de timeout e retentativas.
         '''
-        # print(f'Conectando com o servidor do CNPq...')
-        # print(f'Iniciada extração de {len(lista_nomes)} currículos')
-        ## https://www.selenium.dev/documentation/pt-br/webdriver/browser_manipulation/
-        # options   = Options()
-        # options.add_argument("--headless")
-        # driver   = webdriver.Chrome(options=options)
+        print(f'Conectando com o servidor do CNPq...')
+        
         driver_path = None
         try:
             # Caminho para o chromedriver no sistema local
@@ -642,44 +1792,38 @@ class LattesScraper:
             print("Não foi possível estabelecer uma conexão, verifique o chromedriver")
             print(e)
         
-        # print(driver_path)
         service = Service(driver_path)
-        driver = webdriver.Chrome(service=service)
-        driver.set_window_position(-20, -10)
-        driver.set_window_size(170, 1896)
-        # only_doctors = True
-        if only_doctors:
-            print('Buscando currículos apenas entre nível de doutorado')
-            url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
-            driver.get(url_docts) # acessa a url de busca somente de doutores 
-        else:
-            print('Buscando currículos com qualquer nível de formação')
-            url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
-            driver.get(url_busca) # acessa a url de busca do CNPQ
-            # Localize o elemento do checkbox
-            checkbox = driver.find_element(By.ID, "buscarDemais")
-            # try:
-            #     checkbox = WebDriverWait(driver, 10).until(
-            #         EC.element_to_be_clickable((By.CSS_SELECTOR, "div.input-checkbox input[type='checkbox']"))
-            #     )
 
-            #     action_chains = ActionChains(driver)
-            #     action_chains.move_to_element(checkbox).perform()
+        for i in range(retries):
+            try:
+                driver = webdriver.Chrome(service=service)
+                driver.set_window_position(-20, -10)
+                driver.set_window_size(170, 1896)
 
-            #     if not checkbox.is_selected():
-            #         driver.execute_script("arguments[0].click();", checkbox)
+                if only_doctors:
+                    print('Buscando currículos apenas entre nível de doutorado')
+                    url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
+                    driver.get(url_docts) 
+                else:
+                    print('Buscando currículos com qualquer nível de formação')
+                    url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
+                    driver.get(url_busca) 
+                    checkbox = driver.find_element(By.ID, "buscarDemais")
+                    if not checkbox.is_selected():
+                        actions = ActionChains(driver)
+                        actions.move_to_element(checkbox).click().perform()
 
-            # except Exception as e:
-            #     print(f"Erro ao localizar checkbox: {e}")
-            #     driver.save_screenshot("erro_screenshot.png") 
-            # Verifique se o checkbox está marcado
-            if not checkbox.is_selected():
-                # Se o checkbox não estiver marcado, mova o mouse até ele e clique
-                actions = ActionChains(driver)
-                actions.move_to_element(checkbox).click().perform()
-            # driver.get(url_busca) # acessa a url de busca do CNPQ
-        driver.mouse = webdriver.ActionChains(driver)
-        return driver
+                driver.mouse = webdriver.ActionChains(driver)
+                return driver  # Conexão bem-sucedida, retorna o driver
+
+            except Exception as e:
+                print(f"Tentativa {i+1} de {retries} falhou. Erro: {e}")
+                if i < retries - 1:
+                    print(f"Tentando novamente em {timeout} segundos...")
+                    time.sleep(timeout)
+                else:
+                    print("Número máximo de tentativas atingido. Encerrando.")
+                    raise e  # Lança a exceção após o número máximo de tentativas
 
     def strfdelta(self, tdelta, fmt='{H:02}h {M:02}m {S:02}s', inputtype='timedelta'):
         if inputtype == 'timedelta':
@@ -726,9 +1870,9 @@ class LattesScraper:
 
         return nome_normalizado
 
-    def scrape_and_persist(self, data):
-        self._scrape(data)
-        self._persist(data)
+    # def scrape_and_persist(self, data):
+    #     self._scrape(data)
+    #     self._persist(data)
 
     def _persist(self, data):
         # Conectar ao banco de dados Neo4j
@@ -786,7 +1930,7 @@ class LattesScraper:
         for attempt in range(max_retries):
             try:
                 error_div = self.driver.find_element(By.CSS_SELECTOR, 'resultado')
-                linha1 = error_div.fidChild('li')
+                linha1 = error_div.find_element('li')
                 if 'Stale file handle' in linha1.text:
                     time.sleep(retry_interval)
                 else:
@@ -795,7 +1939,7 @@ class LattesScraper:
                 return True
         return False
 
-    def extract_data_from_cvuri(element) -> dict:
+    def extract_data_from_cvuri(self, element) -> dict:
         """
         Extracts data from the cvuri attribute of the given element.
         :param element: WebElement object
@@ -986,26 +2130,6 @@ class LattesScraper:
                 experiences.append(experience_info)
         return experiences
 
-    def get_productions(self):
-        logging.debug("Extraindo produções do currículo.")
-        try:
-            productions = {
-                "artigos_completos": self.get_section_productions("ArtigosCompletos"),
-                "livros_publicados": self.get_section_productions("LivrosCapitulos"),
-                "capitulos_de_livros_publicados": self.get_section_productions("LivrosCapitulos"),
-                "trabalhos_completos_em_anais": self.get_section_productions("TrabalhosPublicadosAnaisCongresso"),
-                "apresentacoes_de_trabalho": self.get_section_productions("ApresentacoesTrabalho"),
-                "outras_producoes_bibliograficas": self.get_section_productions("OutrasProducoesBibliograficas"),
-                "assessoria_e_consultoria": self.get_section_productions("AssessoriaConsultoria"),
-                "produtos_tecnologicos": self.get_section_productions("ProdutosTecnologicos"),
-                "trabalhos_tecnicos": self.get_section_productions("TrabalhosTecnicos"),
-                "demais_tipos_de_producao_tecnica": self.get_section_productions("DemaisProducaoTecnica"),
-                "demais_trabalhos": self.get_section_productions("DemaisTrabalhos")
-            }
-            return productions
-        except Exception as e:
-            logging.error("Erro ao extrair produções: %s", e)
-
     def get_section_productions(self, soup, section_name):
         section = soup.find('a', name=section_name)
         if not section:
@@ -1018,6 +2142,27 @@ class LattesScraper:
                 productions_list.append(text)
             current_element = current_element.find_next_sibling()
         return productions_list
+    
+    def get_productions(self, soup):
+        logging.debug("Extraindo produções do currículo.")
+        try:
+            productions = {
+                "artigos_completos": self.get_section_productions(soup, "ArtigosCompletos"),
+                "livros_publicados": self.get_section_productions(soup, "LivrosCapitulos"),
+                "capitulos_de_livros_publicados": self.get_section_productions(soup, "LivrosCapitulos"),
+                "trabalhos_completos_em_anais": self.get_section_productions(soup, "TrabalhosPublicadosAnaisCongresso"),
+                "apresentacoes_de_trabalho": self.get_section_productions(soup, "ApresentacoesTrabalho"),
+                "outras_producoes_bibliograficas": self.get_section_productions(soup, "OutrasProducoesBibliograficas"),
+                "assessoria_e_consultoria": self.get_section_productions(soup, "AssessoriaConsultoria"),
+                "produtos_tecnologicos": self.get_section_productions(soup, "ProdutosTecnologicos"),
+                "trabalhos_tecnicos": self.get_section_productions(soup, "TrabalhosTecnicos"),
+                "demais_tipos_de_producao_tecnica": self.get_section_productions(soup, "DemaisProducaoTecnica"),
+                "demais_trabalhos": self.get_section_productions(soup, "DemaisTrabalhos")
+            }
+            return productions
+        except Exception as e:
+            logging.error("Erro ao extrair produções: %s", e)
+
 
     def get_events(self, soup):
         """Extrai informações de eventos participados."""
@@ -1043,9 +2188,9 @@ class LattesScraper:
                 orientations.append(orientation_info)
         return orientations
 
-    def medir_tempo_resposta(self):
+    def medir_tempo_resposta(self, url_busca):
         try:
-            response = requests.get(self.base_url)
+            response = requests.get(url_busca)
             tempo_resposta = response.elapsed.total_seconds()
             print(f"Tempo de resposta do servidor: {tempo_resposta:.2f} segundos")
         except requests.exceptions.RequestException as e:
@@ -1053,58 +2198,57 @@ class LattesScraper:
 
     def extract_dom_element(self):
         """
-        Extrair elemento com vínculo detectado a partir da página de resultados com qualquer quantidade de resultados
+        Extrair elemento com vínculo detectado a partir da página de resultados.
         """
         try:
-            ## Ler quantidade de resultados apresentados pela busca de nome
+            # Esperar o elemento que indica a quantidade de resultados
             css_qteresultados = ".tit_form > b:nth-child(1)"
             WebDriverWait(self.driver, self.delay).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, css_qteresultados)))                       
+                EC.presence_of_element_located((By.CSS_SELECTOR, css_qteresultados)))
+
+            # Extrair a quantidade de resultados
             soup = BeautifulSoup(self.driver.page_source, 'html.parser')
             div_element = soup.find('div', {'class': 'tit_form'})
             match = re.search(r'<b>(\d+)</b>', str(div_element))
             if match:
                 qte_res = int(match.group(1))
-                # print(f'{qte_res} resultados para {NOME}')
             else:
-                return None, NOME, np.NaN, 'Currículo não encontrado', self.driver
-            if self.is_stale_file_handler_present():
-                raise StaleException
-        except:
-            print('Erro ao obter quantidade de resultados da página HTML')
-            return None        
-        try:
-            # Esperar carregar a lista de resultados na página
-            css_resultados = ".resultado"
-            WebDriverWait(self.driver, self.delay, ignored_exceptions=ignored_exceptions).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
-            resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
-            if self.is_stale_file_handler_present():
-                raise StaleException
-        except:
-            print('Erro ao obter resultados da página HTML')
+                print(f'Resultados não encontrados na busca Lattes')
+                return None
+
+            # Loop para lidar com Stale File Handler
+            for _ in range(5):  # self.max_tentativas define o número máximo de tentativas
+                try:
+                    # Esperar carregar a lista de resultados
+                    css_resultados = ".resultado"
+                    WebDriverWait(self.driver, self.delay).until(
+                        EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
+
+                    # Encontrar os elementos da lista de resultados
+                    resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
+
+                    # Verificar se há erro de Stale File Handler
+                    if self.is_stale_file_handler_present():
+                        raise StaleElementReferenceException
+
+                    return resultados
+
+                except StaleElementReferenceException:
+                    print(f"Erro Stale File Handler detectado. Tentando novamente...")
+                    time.sleep(2)  # Aguarda um tempo antes de tentar novamente
+
+            print(f"Erro Stale File Handler persistiu.")
             return None
-        # soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-        # for page in soup:
-        #     if not page:
-        #         continue
-        #     for page_results in page:
-        #         if not resultados_pagina:
-        #             continue
-        #         for result in page_results:
-        #             if not result:
-        #                 continue
-        #             element = self.get_element_from_link(result)
-        #             if element:
-        #                 results.append(element)
-        #                 break
-        return resultados
+
+        except Exception as e:
+            print(f"Erro ao extrair elemento DOM: {e}")
+            print(f"Conteúdo HTML: {self.driver.page_source}")
+            return None
 
     def get_element_without_pagination(self, NOME, resultados, termos_busca):
         """
-        Extrair o elemento com vínculo de acordo com termos de busca, em páginas de resultados que não precisa paginar
+        Extrair o elemento com vínculo de acordo com termos de busca, em páginas sem paginação
         """
-        width = 7
         limite = 5
         duvidas = []
         qte_res = len(resultados)
@@ -1115,7 +2259,7 @@ class LattesScraper:
             if self.verbose:
                 print(f'       Quantidade de homônimos: {len(linhas):02}')
             if self.is_stale_file_handler_present():
-                raise StaleException
+                raise StaleElementReferenceException
                 # return np.NaN, NOME, np.NaN, 'Stale file handle', self.driver
             for m,linha_multipla in enumerate(linhas):
                 nome_achado = linhas[m].split('\n')[0]
@@ -1159,12 +2303,12 @@ class LattesScraper:
                 # Parar loop de currículos quando um termo já tiver sido achado
                 if force_break_loop:
                     break
-                # ## Caso percorra toda lista e não encontre vínculo adiciona à dúvidas quanto ao nome
-                # if m==(qte_res):
-                #     print(f'       Nenhuma referência à {termo}')
-                #     duvidas.append(NOME)
-                #     # clear_output(wait=True)
-                #     # driver.quit()
+                ## Caso percorra toda lista e não encontre vínculo adiciona à dúvidas quanto ao nome
+                if m==(qte_res):
+                    print(f'       Nenhum termo de vínculo encontrado para {NOME}')
+                    duvidas.append(NOME)
+                    # clear_output(wait=True)
+                    # driver.quit()
             # Parar loop da div de resultados quando um termo já tiver sido achado
             if force_break_loop:
                 break
@@ -1290,12 +2434,12 @@ class LattesScraper:
                 results.append(result)
         return results
 
-    def select_most_relevant_result(results):
+    def select_most_relevant_result(self, results):
         """Seleciona o resultado mais relevante com base na frequência dos termos de busca."""
         # TODO: Implementar lógica para selecionar o resultado mais relevante
         return results[0]
 
-    def extract_results_page(driver, url):
+    def extract_results_page(self, driver, url):
         """ Extrai os resultados de uma determinada página de resultados. """
 
         driver.get(url)
@@ -1316,7 +2460,7 @@ class LattesScraper:
                 })   
         return resultados
 
-    def extrair_dados_pagina(driver):
+    def extrair_dados_pagina(self, driver):
         # Encontrar os elementos que contêm os dados (ex: resultado da pesquisa)
         elementos_dados = driver.find_elements(By.CSS_SELECTOR, ".resultado li")
 
@@ -1368,185 +2512,6 @@ class LattesScraper:
         # Se todas as estratégias falharam:
         print(f"        Falha ao paginar com todas as estratégias para o link: {href_elemento}")
 
-    ## TO-FIX: Não está tratando muito bem o stale file handler, porque está avançando para próximo
-    def find_terms(self, NOME, termos_busca, delay, limite=5):
-        """
-        Função para manipular o HTML até abir a página HTML de cada currículo, considerando homônimos
-        Parâmetros:
-            - NOME: É o nome completo de cada pesquisador
-            - termos_busca: Lista de strings a buscar no currículo para escolher homônimo
-            - driver (webdriver object): The Selenium webdriver object.
-            - limite (int): Número máximo de tentativas em casos de erro.
-            - delay (int): tempo em milisegundos a esperar nas operações de espera.
-        Retorna:
-            elm_vinculo, np.NaN, np.NaN, np.NaN, driver.
-        Em caso de erro retorna:
-            None, NOME, np.NaN, e, driver
-        """
-        ignored_exceptions=(NoSuchElementException,StaleElementReferenceException,)
-        # Inicializar variáveis para evitar UnboundLocalError
-        count = 0
-        qte_res = 0
-        elm_vinculo = None
-        try:
-            # Esperar carregar a lista de resultados na página
-            css_resultados = ".resultado"
-            WebDriverWait(self.driver, self.delay, ignored_exceptions=ignored_exceptions).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
-            resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
-            if resultados:
-                count+=len(resultados*10)
-            if self.is_stale_file_handler_present():
-                raise StaleException
-            # Ler quantidade de resultados apresentados pela busca de nome
-            css_qteresultados = ".tit_form > b:nth-child(1)"
-            WebDriverWait(self.driver, self.delay).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, css_qteresultados)))
-            soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-            div_element = soup.find('div', {'class': 'tit_form'})
-            match = re.search(r'<b>(\d+)</b>', str(div_element))
-            if match:
-                qte_res = int(match.group(1))
-                # print(f'{qte_res} resultados para {NOME}')
-            else:
-                return None, NOME, np.NaN, 'Currículo não encontrado', self.driver
-
-            # Escolher função de extração a partir da quantidade de resultados da lista apresentada na busca
-            numpaginas = self.get_pages_numbers()
-            if qte_res==1:
-                # Para resultado único, capturar link para o primeiro nome resultado da busca (OK!)
-                css_linknome = ".resultado > ol:nth-child(1) > li:nth-child(1) > b:nth-child(1) > a:nth-child(1)"
-                WebDriverWait(self.driver, self.delay).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, css_linknome)))
-                elm_vinculo = self.driver.find_element(By.CSS_SELECTOR, css_linknome)
-                nome_vinculo = elm_vinculo.text
-                # print('Clicar no nome único:', nome_vinculo)
-                try:
-                    # Ao achar um dos termos clica no elemento elm_vinculo com link do nome para abrir currículo
-                    self.retry(ActionChains(self.driver).click(elm_vinculo).perform(),
-                                wait_ms=200,
-                                limit=limite,
-                                on_exhaust=(f'       Problema ao clicar no link do nome. {limite} tentativas sem sucesso.'))
-                except:
-                    print('       Erro ao clicar no único nome encontrado anteriormente')
-                    return None, NOME, np.NaN, None, self.driver
-
-            elif numpaginas == []:
-                # Páginas com até 10 resultados não precisa paginar, avaliar termos e retornar elemento do resultado (OK!)
-                print(f'       {qte_res:>2} currículos homônimos: {NOME}')
-                if self.is_stale_file_handler_present():
-                    raise StaleException
-
-                # iterar em cada resultado
-                for n,i in enumerate(resultados):
-                    try:
-                        elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
-                    except Exception as e:
-                        print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
-                        print(f'       ERRO: {e}')
-                        return None
-
-            elif numpaginas != []:
-                # Para páginas com mais de resultados precisa paginar, antes de avaliar presença dos termos para escolher resultado (OK!)
-                print(f'       {qte_res:>2} currículos homônimos: {NOME} (com paginação)')
-                ## Para paginar acessando com clique no hiperlink já em cada link dentro do elemento de paginação
-                try:
-                    # Obter variáveis do JavaScript
-                    script_tag = soup.find('script', language='JavaScript')
-                    javascript_code = script_tag.text
-                    intLTotReg = int(re.findall(r"intLTotReg = (\d+)", javascript_code)[0])
-                    intLRegPagina = int(re.findall(r"intLRegPagina = (\d+)", javascript_code)[0])
-                    strLQuery = re.findall(r"strLQuery = (.*)", javascript_code)
-                    parametros_paginacao = {
-                        'registros': intLRegPagina,
-                        'intLTotReg': intLTotReg,
-                        'strLQuery': strLQuery
-                    }
-                    if self.verbose:
-                        print(f'       Extraído do Javascript')
-                        print(f'            total_registros: {intLTotReg}')
-                        print(f'       registros_por_pagina: {intLRegPagina}')
-                        print(f'                  strLQuery: {strLQuery}')
-                        print(f'       parametros_paginacao: {parametros_paginacao}')
-                    # Localizar a primeira lista de paginação
-                    elementos_paginacao = self.driver.find_elements(By.CSS_SELECTOR, ".paginacao a[data-role='paginacao']")
-                    elemento = elementos_paginacao[0]
-                    href_elemento = elemento.get_attribute('href')
-                    if self.verbose:
-                        print(f'           elemento: {type(elemento)}')
-                        print(f'           elem_txt: {elemento.text}')
-                        print(f"               href: {href_elemento}")
-                    try:
-                        # Acessar a nova página a partir do texto contido no elemento
-                        soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-                        elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
-                        count_pages=0
-                        while not elm_vinculo and count_pages<=(intLTotReg//intLRegPagina):
-                            count_pages+=1
-                            elemento = elementos_paginacao[count_pages]
-                            print(f"       Página a ser carregada: {elemento.text}")
-                            try:
-                                # elemento.click()
-                                # self.driver.get(href_elemento)
-                                ActionChains(self.driver).move_to_element(elemento).click().perform()
-                                # ActionChains(self.driver).key_down(Keys.CONTROL).click(elemento).perform()
-                                ## TO-FIX como carregar os dados da nova página dinamicamente
-                                resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
-                                if resultados:
-                                    count+=len(resultados*10)
-                                elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
-                            except Exception as e:
-                                erro_regex = r"(?:\w+): (.*)"
-                                desc = re.findall(erro_regex, str(e))[0] if re.findall(erro_regex, str(e)) else None
-                                if desc:
-                                    print(f'       Erro com: {desc}')
-                                else:
-                                    print(f'       Erro com: {e}')
-                    except Exception as e:
-                        print(f'       Erro ao paginar {elemento.text}')
-                        # print(f'       Erro com: {e}')
-                        traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-                        print(f'       Na linha: {traceback_str}')
-                except Exception as e:
-                    print(f'       Erro na paginação dos elementos de resultados homônimos')
-                    erro_regex = r"(?:\w+): (.*)"
-                    print(f'       Erro com: {re.findall(erro_regex, str(e))[0]}')
-                    # traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-                    # print(f'       Na linha: {traceback_str}')
-                if self.is_stale_file_handler_present():
-                    raise StaleException
-        except StaleException as e:
-            traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-            if self.verbose:
-                print(traceback_str)
-            base = 2  # Fator de multiplicação exponencial (pode ser ajustado)
-            max_wait_time = 120  # Tempo máximo de espera em segundos
-            for i in range(1, 12):  # Tentativas máximas com espera exponencial
-                wait_time = min(base ** i, max_wait_time)  # Limita o tempo máximo de espera
-                print(f"       {'-'*120}")
-                print(f"       Erro ao recuperar dados do servidor CNPq, tentando novamente em {wait_time} segundos...")
-                time.sleep(wait_time)
-                try:
-                    self.retry_click_vinculo(elm_vinculo)
-                    break  # Se o clique for bem-sucedido, saia do loop de retry
-                except TimeoutException as se:
-                    traceback_str = ''.join(traceback.format_tb(se.__traceback__))
-                    print(se)
-                    print(traceback_str)
-                    logging.error(f"Tentativa {i} falhou: {traceback_str}.")
-                    limite+=1
-            if limite <= 0:
-                print("       Tentativas esgotadas. Abortando ação.")
-        ## Verificar antes de retornar para garantir que elm_vinculo foi definido
-        if elm_vinculo is None:
-            if count > 1:
-                des='s'
-            else:
-                des=''
-            print(f"       Nenhum termo de vínculo achado em {count:02}/{intLTotReg:02} resultado{des} verificados. Verificada até página {count_pages:02}/{len(numpaginas):02}")
-            return None, NOME, np.NaN, 'Termos não encontrados', self.driver
-        ## Retorna a saída de sucesso
-        return elm_vinculo, np.NaN, np.NaN, np.NaN, self.driver
 
     def extrair_resultados_paginados(self, url_base, pagina_inicial=0, pagina_final=None):
         """
@@ -1679,100 +2644,6 @@ class LattesScraper:
             })
 
         return dados_resultados
-
-    ###### Experiências com tratamento de homônimos
-                            # css_elemento = self.driver.find_element(By.CSS_SELECTOR, elemento.text)
-                            # css_elemento = self.driver.find_element(By.XPATH, f"//a[contains(text(), {elemento.text})]")
-                            
-                            ## TO-FIX: PRECISA DISPARAR JAVASCRIPT PARA CARREGAR OS RESULTADOS DE CADA PÁGINA DA PAGINAÇÃO
-                            # clicar no elemento encontrado para carregar próxima página na paginação
-                            
-                            # WebDriverWait(soup, self.delay).until(
-                            #     EC.presence_of_element_located((By.CSS_SELECTOR, ".tit_form"))
-                            # )                            
-                            # Carregar os resultados da nova página a verificar presença de termos_busca
-                            
-                            # resultados = soup.findChildren('li')
-                            # count+=len(resultados)
-                            # print(f'       Carregada página {count_pages:02}/{len(numpaginas):02} de resultados')
-                            # text_results = [x.text.replace('\xa0',' ') for x in resultados]
-                            # if self.verbose:
-                            #     print(f'       Elem text: {len(text_results)} | {text_results}')
-                            
-                            # # iterar em cada resultado
-                            # for n,i in enumerate(resultados):
-                            #     try:
-                            #         # Ler dados prévios dos currículos e buscar termos
-                            #         elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
-                            #     except Exception as e:
-                            #         print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
-                            #         print(f'       ERRO: {e}')
-                            #         return None                            
-
-                        # Ler dados prévios dos currículos e buscar termos
-                        # resultados = soup.findChildren('li')
-                        # if self.verbose:
-                        #     print(f'       {len(resultados):2} Resultados: {type(resultados)} | {resultados}')
-                        # if resultados:
-                        #     try:
-                        #         # procurar nos resultados termos de busca
-                        #         elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
-                        #         if elm_vinculo:
-                        #             break
-                        #     except Exception as e:
-                        #         print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
-                        #         print(f'       ERRO: {e}')
-                        #         traceback_str = ''.join(traceback.format_tb(e.__traceback__))
-                        #         print(f'       Ocorrido em: {traceback_str}')
-                        #         print(f"       {'-'*120}")
-                        #         return None
-                        # else:
-                        #     print('       Não foi possível obter resultados para a busca')
-
-    # def handle_pagination_and_collect_profiles(self):
-    #     def extrair_dados_cv():
-    #         resultados = self.driver.find_elements(By.CSS_SELECTOR, "div.resultado")
-    #         dados_pessoas = []
-
-    #         for resultado in resultados:
-    #             nome = resultado.find_element(By.TAG_NAME, "a").text
-    #             link_detalhes = [y.get_attribute("href") for y in x for x in resultado.find_elements(By.TAG_NAME, "a")]
-    #             preview = resultado.find_element(By.CSS_SELECTOR, "br + br").text
-
-    #             dados_pessoa = {
-    #                 "nome": nome,
-    #                 "link_detalhes": link_detalhes,
-    #                 "dados_curriculo": preview,
-    #             }
-    #             dados_pessoas.append(dados_pessoa)
-    #         return dados_pessoas
-
-    #     preview = {}
-    #     profiles = []
-    #     pages_links=[]
-    #     while True:
-    #         pagination_div = self.driver.find_element(By.CLASS_NAME, "paginacao")
-    #         for x in pagination_div.find_elements(By.TAG_NAME, "a"):
-    #             pages_links.append(x.get_attribute("href"))
-    #             for n,page in enumerate(pages_links):
-    #                 try:
-    #                     print(f'{n}/{len(pages_links)} sendo lido...')
-    #                     page.click(page)
-    #                     WebDriverWait(self.driver, self.delay).until(
-    #                         EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".resultado")))
-    #                     results = self.driver.find_elements(By.CSS_SELECTOR, ".resultado > ol > li")
-    #                     dados_pessoas = extrair_dados_cv()
-    #                     profiles.append(dados_pessoas)
-    #                 except:
-    #                     pass
-        
-    #     preview['Curriculos'] = profiles
-    #             # next_button = self.driver.find_elements(By.CSS_SELECTOR, "próximo")
-    #             # if next_button:
-    #             #     next_button[0].click()
-    #             # else:
-    #             #     break
-    #     return preview
 
     def obter_dados_homonimo_paginacao(self, nome, termos_busca, qte_res):
         """
@@ -1957,42 +2828,6 @@ class LattesScraper:
             descricao = None
 
         return nome, descricao
-
-    def navegar_paginas(self, url_inicial, termos_busca):
-        """
-        Navega pelas páginas de resultados e coleta dados relevantes.
-
-        Args:
-            url_inicial (str): URL da página inicial de resultados.
-            termos_busca (list): Lista de termos para buscar nos links.
-
-        Returns:
-            list: Lista de dicionários, onde cada dicionário contém o nome, a descrição e a
-                pontuação de compatibilidade.
-        """
-        pessoas = []
-        url_atual = url_inicial
-        while True:
-            response = requests.get(url_atual)
-            response.raise_for_status()  # Verifica se a requisição foi bem-sucedida
-            soup = BeautifulSoup(response.text, 'html.parser')
-            resultados = soup.find_all('div', class_='resultado')
-            for resultado in resultados:
-                nome, descricao = self.extrair_dados_pessoa(resultado)
-                pontuacao_compatibilidade = self.calcular_pontuacao_compatibilidade(termos_busca, nome, descricao)
-
-                pessoas.append({
-                    'nome': nome,
-                    'descricao': descricao,
-                    'pontuacao_compatibilidade': pontuacao_compatibilidade
-                })
-            # Extrai os parâmetros para a próxima página
-            parametros_paginacao = self.extrair_parametros_paginacao(response.text)
-            if parametros_paginacao:
-                url_atual = self.gerar_url_proxima_pagina(url_inicial, parametros_paginacao)
-            else:
-                break
-        return pessoas
 
     def extrair_preview(self, li):
         """Extrai e limpa as informações adicionais do elemento <li>."""
@@ -2198,8 +3033,14 @@ class LattesScraper:
 
                 tooltip_data_list.append(tooltip_data)
             print(f'       {len(tooltip_data_list):>003} artigos extraídos')
+        
+        # ## TO-DO implementar o retry aqui
+        # except StaleElementReferenceException:
+        #     print(f"Erro Stale File Handler detectado. Tentando novamente...")
+        #     time.sleep(2)  # Aguarda um tempo antes de tentar novamente
+
         except TimeoutException:
-            print(f"       Requisição ao CNPq sem resposta, tooltips das publicações indisponíveis.")
+            print(f"       Sem dados de publicação de artigos.")
         except Exception as e:
             print(f"       Erro inesperado ao extrair tooltips: {e}")
         return tooltip_data_list
@@ -2377,12 +3218,183 @@ class LattesScraper:
         # Verificar se a nova página foi carregada
         # (Opcional, implemente a verificação de acordo com seus critérios)
 
-    def search_profile(self, name, termos_busca, retry_count=3):
+
+    ## TO-FIX: Não está detectando o stale file handler, avisa erro inesperado e avança para próximo
+    def find_terms(self, NOME, termos_busca, delay, limite=5):
+        """
+        Função para manipular o HTML até abir a página HTML de cada currículo, resolvendo homônimos
+        Parâmetros:
+            - NOME: É o nome completo de cada pesquisador
+            - termos_busca: Lista de strings a buscar no currículo para escolher homônimo
+            - driver (webdriver object): The Selenium webdriver object.
+            - limite (int): Número máximo de tentativas em casos de erro.
+            - delay (int): tempo em milisegundos a esperar nas operações de espera.
+        Retorna:
+            elm_vinculo, np.NaN, np.NaN, np.NaN, driver.
+        Em caso de erro retorna:
+            None, NOME, np.NaN, e, driver
+        """
+        
+        # Inicializar variáveis para evitar UnboundLocalError
+        count = 0
+        qte_res = 0
+        elm_vinculo = None
+        try:
+            # Esperar carregar a lista de resultados na página
+            css_resultados = ".resultado"
+            # ignored_exceptions=(NoSuchElementException)
+            WebDriverWait(self.driver, self.delay).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, css_resultados)))
+            resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
+            if resultados:
+                count+=len(resultados*10)
+            if self.is_stale_file_handler_present():
+                raise StaleElementReferenceException
+            # Ler quantidade de resultados apresentados pela busca de nome
+            css_qteresultados = ".tit_form > b:nth-child(1)"
+            WebDriverWait(self.driver, self.delay).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, css_qteresultados)))
+            soup = BeautifulSoup(self.driver.page_source, 'html.parser')
+            div_element = soup.find('div', {'class': 'tit_form'})
+            match = re.search(r'<b>(\d+)</b>', str(div_element))
+            if match:
+                qte_res = int(match.group(1))
+                # print(f'{qte_res} resultados para {NOME}')
+            else:
+                return None, NOME, np.NaN, 'Currículo não encontrado', self.driver
+
+            # Escolher função extração dada quantidade de resultados da lista apresentada na busca
+            numpaginas = self.get_pages_numbers()
+            if qte_res==1:
+                # Para resultado único, capturar link para o primeiro nome resultado da busca
+                css_linknome = ".resultado > ol:nth-child(1) > li:nth-child(1) > b:nth-child(1) > a:nth-child(1)"
+                WebDriverWait(self.driver, self.delay).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, css_linknome)))
+                elm_vinculo = self.driver.find_element(By.CSS_SELECTOR, css_linknome)
+                nome_vinculo = elm_vinculo.text
+                # print('Clicar no nome único:', nome_vinculo)
+                try:
+                    # Ao achar um dos termos clicar no elemento elm_vinculo com link do nome
+                    self.retry(ActionChains(self.driver).click(elm_vinculo).perform(),
+                                wait_ms=200,
+                                limit=limite,
+                                on_exhaust=(f'       Problema ao clicar no link do nome. {limite} tentativas sem sucesso.'))
+                except:
+                    print('       Erro ao clicar no único nome encontrado anteriormente')
+                    return None, NOME, np.NaN, None, self.driver
+
+            elif numpaginas == []:
+                # Páginas até 10 resultados, sem paginar buscar termos e retornar elemento do resultado
+                print(f'       {qte_res:>2} currículos homônimos: {NOME}')
+                if self.is_stale_file_handler_present():
+                    raise StaleElementReferenceException
+
+                # iterar em cada resultado
+                for n,i in enumerate(resultados):
+                    try:
+                        elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+                    except Exception as e:
+                        print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
+                        print(f'       ERRO: {e}')
+                        return None
+
+            elif numpaginas != []:
+                # Páginas onde precisa paginar escolher resultado, antes de buscar termos
+                print(f'       {qte_res:>2} currículos homônimos: {NOME} (com paginação)')
+                ## Paginar com clique no hiperlink já em cada link dentro do elemento de paginação
+                try:
+                    # Obter variáveis do JavaScript
+                    script_tag = soup.find('script', language='JavaScript')
+                    javascript_code = script_tag.text
+                    intLTotReg = int(re.findall(r"intLTotReg = (\d+)", javascript_code)[0])
+                    intLRegPagina = int(re.findall(r"intLRegPagina = (\d+)", javascript_code)[0])
+                    strLQuery = re.findall(r"strLQuery = (.*)", javascript_code)
+                    parametros_paginacao = {
+                        'registros': intLRegPagina,
+                        'intLTotReg': intLTotReg,
+                        'strLQuery': strLQuery
+                    }
+                    if self.verbose:
+                        print(f'       Extraído do Javascript')
+                        print(f'            total_registros: {intLTotReg}')
+                        print(f'       registros_por_pagina: {intLRegPagina}')
+                        print(f'                  strLQuery: {strLQuery}')
+                        print(f'       parametros_paginacao: {parametros_paginacao}')
+                    # Localizar a primeira lista de paginação
+                    elementos_paginacao = self.driver.find_elements(By.CSS_SELECTOR, ".paginacao a[data-role='paginacao']")
+                    elemento = elementos_paginacao[0]
+                    href_elemento = elemento.get_attribute('href')
+                    if self.verbose:
+                        print(f'           elemento: {type(elemento)}')
+                        print(f'           elem_txt: {elemento.text}')
+                        print(f"               href: {href_elemento}")
+                    try:
+                        # Acessar a nova página a partir do texto contido no elemento
+                        soup = BeautifulSoup(self.driver.page_source, 'html.parser')
+                        elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+                        count_pages=0
+                        while not elm_vinculo and count_pages<=(intLTotReg//intLRegPagina):
+                            count_pages+=1
+                            elemento = elementos_paginacao[count_pages]
+                            print(f"       Página a ser carregada: {elemento.text}")
+                            try:
+                                # elemento.click()
+                                # self.driver.get(href_elemento)
+                                ActionChains(self.driver).move_to_element(elemento).click().perform()
+                                # ActionChains(self.driver).key_down(Keys.CONTROL).click(elemento).perform()
+                                
+                                ## TO-IMPROVE como carregar os dados da nova página dinamicamente
+                                resultados = self.driver.find_elements(By.CSS_SELECTOR, css_resultados)
+                                if resultados:
+                                    count+=len(resultados*10)
+                                elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+
+                            except Exception as e:
+                                erro_regex = r"(?:\w+): (.*)"
+                                desc = re.findall(erro_regex, str(e))[0] if re.findall(erro_regex, str(e)) else None
+                                if desc:
+                                    print(f'       Erro com: {desc}')
+                                else:
+                                    print(f'       Erro com: {e}')
+                    except Exception as e:
+                        print(f'       Erro ao paginar {elemento.text}')
+                        traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+                        print(f'       Na linha: {traceback_str}')
+                except Exception as e:
+                    print(f'       Erro na paginação dos elementos de resultados homônimos')
+                    erro_regex = r"(?:\w+): (.*)"
+                    print(f'       Erro com: {re.findall(erro_regex, str(e))[0]}')
+                    # traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+                    # print(f'       Na linha: {traceback_str}')
+                if self.is_stale_file_handler_present():
+                    raise StaleElementReferenceException      
+        
+        ## Retornar None ao detectar erro de StaleFileHanlder
+        except StaleElementReferenceException as e:
+            traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+            if self.verbose:
+                print(traceback_str)
+            return None, np.NaN, np.NaN, np.NaN, self.driver
+       
+        ## Verificar antes de retornar para garantir que elm_vinculo foi definido
+        if elm_vinculo is None:
+            if count > 1:
+                des='s'
+            else:
+                des=''
+            print(f"       Nenhum termo de vínculo achado em {count:02}/{intLTotReg:02} resultado{des} verificados. Verificada até página {count_pages:02}/{len(numpaginas):02}")
+            return None, NOME, np.NaN, 'Termos não encontrados', self.driver
+        ## Retorna a saída de sucesso
+        return elm_vinculo, np.NaN, np.NaN, np.NaN, self.driver
+
+
+    ## Função para iterar busca por cada nome, lidando internamente na find terms caso achar
+    def search_profile(self, name, termos_busca):
         '''
-        Usa a função find_terms para assegurar escolha do homônimo correto
+        Usa a função de achar os termos-chave para assegurar escolha do homônimo correto
         '''
         try:
-            # Find terms to interact with the web page and extract the profile
+            # Interagir internamente com a busca realizando várias tentativas
             profile_element, _, _, _, _ = self.find_terms(
                 name,
                 termos_busca,
@@ -2395,18 +3407,48 @@ class LattesScraper:
             else:
                 logging.info(f'Currículo não encontrado: {name}')
                 self.return_search_page()
+
+            if profile_element is None:
+                logging.error(f"Erro StaleElementReferenceException ao buscar currículo")
+                raise StaleElementReferenceException
+
         except requests.HTTPError as e1:
             logging.error(f"HTTPError occurred: {str(e1)}")
             return None
-        except Exception as e2:
-            logging.error(f"Erro inesperado ao buscar: {str(e2)}")
+        
+        except Exception:
+            logging.error(f"Erro ao buscar: {name}")
             return None
 
     def scrape_single(self, name, termos_busca):
         dict_list = []  # Inicialize a lista de dicionários vazia
         try:
             self.fill_name(name)
-            elm_vinculo = self.search_profile(name, termos_busca)
+            try:
+                elm_vinculo = self.search_profile(name, termos_busca)
+            ## TO-FIX: implementar tentativas de refresh e buscar novamente aqui, fora do find terms
+            except StaleElementReferenceException as e:
+                traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+                if self.verbose:
+                    print(traceback_str)
+                base = 2  # Fator de multiplicação exponencial
+                max_wait_time = 120  # Tempo máximo de espera em segundos
+                for i in range(1, 6):  # Tentativas máximas com espera exponencial
+                    wait_time = min(base ** i, max_wait_time)  # Limita o tempo máximo de espera
+                    print(f"       {'-'*120}")
+                    print(f"       Erro no servidor CNPq ao buscar nome, tentar novamente em {wait_time} segundos...")
+                    time.sleep(wait_time)
+                    try:
+                        self.search_profile(name, termos_busca)
+                        break  # Se o clique for bem-sucedido, saia do loop de retry
+                    except TimeoutException as se:
+                        traceback_str = ''.join(traceback.format_tb(se.__traceback__))
+                        print(se)
+                        print(traceback_str)
+                        logging.error(f"Tentativa {i} falhou: {traceback_str}.")
+                        limite+=1
+                if limite <= 0:
+                    print("       Tentativas esgotadas. Abortando ação.")                
             if elm_vinculo:
                 if self.verbose:
                     print(f"       {name}: vínculo encontrado no currículo, tentando abrir...")
@@ -2459,6 +3501,35 @@ class LattesScraper:
                         print('       Disparado retorno para página de busca...')
                 else:
                     print(f"{name}: página de resultado vazia.")
+        
+        ## Captura corretamente o erro de StaleFileHanlder
+        except StaleElementReferenceException as e:
+            traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+            if self.verbose:
+                print(traceback_str)
+            base = 2  # Fator de multiplicação exponencial (pode ser ajustado)
+            max_wait_time = 120  # Tempo máximo de espera em segundos
+            for i in range(1, 12):  # Tentativas máximas com espera exponencial
+                wait_time = min(base ** i, max_wait_time)  # Limita o tempo máximo de espera
+                print(f"       {'-'*120}")
+                print(f"        Servidor do CNPq com StaleFileError ao procurar termos, tentando novamente em {wait_time} segundos...")
+                time.sleep(wait_time)
+                
+                ## Refresh e reinserir o mesmo nome e tentar clicar novamente no botão buscar
+
+                ## Tentar clicar novamente no botão de abrir currículo achado
+                try:
+                    self.scrape_single(name, termos_busca)
+                    break  # Se o clique for bem-sucedido, saia do loop de retry
+                except TimeoutException as se:
+                    traceback_str = ''.join(traceback.format_tb(se.__traceback__))
+                    print(se)
+                    print(traceback_str)
+                    logging.error(f"Tentativa {i} falhou: {traceback_str}.")
+                    limite+=1
+            if limite <= 0:
+                print("       Tentativas esgotadas. Abortando ação.")
+
         except Exception as e:
             raise TimeoutException(f"       Erro ao realizar a extração para {name}: {e}")
         return dict_list
@@ -2490,7 +3561,7 @@ class LattesScraper:
                 logging.error(f"Erro de Timeout ao extrair {name}")
                 if retry_count > 0:
                     logging.info(f"Tentando novamente para {name}...")
-                    # Realiza novar tentativa para o mesmo nome passando número de tentativas decrementado de 1
+                    # Realizar tentativa para mesmo nome passando qte tentativas decrementado de 1
                     dict_list.extend(self.scrape([name], termos_busca, retry_count-1))
                 else:
                     logging.error(f"Todas as tentativas falharam para {name}")
@@ -2500,13 +3571,64 @@ class LattesScraper:
                 logging.error(traceback_str)
         self.driver.quit()
         try:
-            filepath = os.path.join(LattesScraper.find_repo_root(),'_data','in_csv','temp_dict_list.json')
+            filepath = os.path.join(str(LattesScraper.find_repo_root()),'_data','in_csv','temp_dict_list.json')
             print(f'Arquivo salvo em {filepath}')
         except:
             print('Não foi possível salvar extração em arquivo')
         self.save_to_json(dict_list, filepath)
 
         return dict_list
+
+    def verificar_remanescentes(self, lista_busca, dom_dict_list):
+        lista_restante = lista_busca[:]
+        print(f'{len(lista_busca)} currículos buscados')
+        print(f'{len(dom_dict_list)} currículos extraídos com sucesso')
+        total_extraidos = 0
+        total_nao_extraidos = 0
+
+        # Função para normalizar os nomes
+        def normalizar_nome(nome):
+            # Normalizar o nome para comparar de forma mais flexível
+            nome_normalizado = nome.lower().replace(' ', '').replace('á', 'a').replace('é', 'e').replace('í', 'i').replace('ó', 'o').replace('ú', 'u').replace('â', 'a').replace('ê', 'e').replace('ô', 'o').replace('ã', 'a').replace('õ', 'o').replace('ç', 'c').replace('ü', 'u')
+            return nome_normalizado
+
+        # Lista para armazenar nomes extraídos com sucesso
+        nomes_extraidos = []
+
+        for i in dom_dict_list:
+            nome = i.get('Identificação').get('Nome')
+            nome_normalizado = normalizar_nome(nome)
+            encontrado = False
+
+            # Verificar se o nome ou uma forma similar já foi extraído
+            for nome_original in lista_restante:
+                nome_original_normalizado = normalizar_nome(nome_original)
+                if nome_original_normalizado == nome_normalizado:
+                    lista_restante.remove(nome_original)
+                    encontrado = True
+                    break
+
+            # Incrementar o contador correspondente
+            if encontrado:
+                total_extraidos += 1
+            else:
+                total_nao_extraidos += 1
+
+            # Imprimir o status da extração
+            if encontrado:
+                print(f'({total_extraidos:>02}) {nome}')
+            else:
+                print(f'({total_nao_extraidos}) Não extraído: {nome}')
+            # Adicionar à lista de nomes extraídos apenas se não for exatamente igual ao buscado
+            if encontrado and nome_original_normalizado != nome_normalizado:
+                nomes_extraidos.append(nome)
+
+        print(f'\n{len(lista_restante)} currículos não extraídos')
+
+        for i in lista_restante:
+            print(f'   {i}')
+        
+        return lista_restante
 
     def extract_remanescents(self, lista_restante, dict_list_actual, search_terms):
         print(f'Resta extrair {len(lista_restante)} currículos:')
@@ -2619,10 +3741,7 @@ class LattesScraper:
             print(f'   {i}')
 
         return lista_restante
-    
-    def save_to_json(self, data, file_path):
-        with open(file_path, 'w', encoding='utf-8') as file:
-            json.dump(data, file, ensure_ascii=False, indent=4)
+
 
 class HTMLParser:
     def __init__(self, html):
@@ -2757,7 +3876,7 @@ class HTMLParser:
         else:
             return f"Caminho para '{target_text}' não encontrado."
 
-    ## Processamentos da extração de dados
+    ## Processamentos da extração de dados em cada seção
     # Identificação OK!!            
     def process_identification(self):
         nome = self.soup.find(class_="nome").text.strip()
@@ -2888,22 +4007,22 @@ class HTMLParser:
             if titulo_h1 and 'Atuação Profissional' in titulo_h1.get_text(strip=True):
                 data_cell = secao.find('div', class_='layout-cell layout-cell-12 data-cell')
                 if data_cell:
-                    # Iniciamos a coleta de dados do primeiro bloco após inst_back
+                    # Iniciar a coleta de dados do primeiro bloco após inst_back
                     elements = data_cell.find_all(recursive=False)
                     current_instituicao = None
                     current_block = []
 
-                    # Iteramos sobre os elementos para capturar informações até a próxima inst_back
+                    # Iterar sobre os elementos para capturar informações até a próxima inst_back
                     for element in elements:
                         if element.name == 'div' and 'inst_back' in element.get('class', []):
-                            if current_instituicao:  # Se já havia uma instituição, processamos o bloco acumulado
+                            if current_instituicao:  # Se há instituição, processar bloco acumulado
                                 self.extract_atuacao_from_block(current_block, atuacoes_profissionais, current_instituicao)
-                                current_block = []  # Reiniciamos o bloco para a próxima instituição
+                                current_block = []  # Reiniciar o bloco para a próxima instituição
                             current_instituicao = element.get_text(strip=True)
                         elif current_instituicao:  # Estamos dentro do bloco de uma instituição
                             current_block.append(element)
 
-                    # Não esqueça de processar o último bloco
+                    # Processar o último bloco
                     if current_instituicao and current_block:
                         self.extract_atuacao_from_block(current_block, atuacoes_profissionais, current_instituicao)
 
@@ -2912,17 +4031,17 @@ class HTMLParser:
 
     def extract_atuacao_from_block(self, block, atuacoes_profissionais, instituicao_nome):
         ano_pattern = re.compile(r'(\d{2}/)?\d{4}\s*-\s*(\d{2}/)?(?:\d{4}|Atual)')
-        # Removemos os padrões que não serão usados diretamente na identificação de elementos
+        # Remover os padrões que não serão usados diretamente na identificação de elementos
 
         ano = None
         descricao = None
         outras_informacoes = []
 
         for element in block:
-            # Captura o ano e descrição
+            # Capturar o ano e descrição
             if element.name == 'div' and 'text-align-right' in element.get('class', []):
                 if ano_pattern.search(element.get_text(strip=True)):
-                    if ano:  # Se um ano já foi capturado, então terminamos de processar o bloco anterior
+                    if ano:  # Se ano já foi capturado, então terminar processamento do bloco anterior
                         atuacao = {
                             "Instituição": instituicao_nome,
                             "Ano": ano,
@@ -2930,16 +4049,16 @@ class HTMLParser:
                             "Outras informações": ' '.join(outras_informacoes)
                         }
                         atuacoes_profissionais.append(atuacao)
-                        outras_informacoes = []  # Reiniciamos a lista para o próximo bloco
+                        outras_informacoes = []  # Reiniciar a lista para o próximo bloco
                     ano = element.get_text(strip=True)
                     descricao = element.find_next('div', class_='layout-cell-9').get_text(separator=' ', strip=True) if descricao else ""
             elif element.name == 'div' and 'layout-cell-9' in element.get('class', []):
-                # Acumula todas as informações das divs 'layout-cell-9' dentro do mesmo bloco
+                # Acumular todas as informações das divs 'layout-cell-9' dentro do mesmo bloco
                 outras_infos = element.get_text(separator=' ', strip=True)
                 if outras_infos:  # Verifica se há texto dentro do elemento
                     outras_informacoes.append(outras_infos)
 
-        # Verifica se ainda existe um bloco a ser adicionado após o loop
+        # Verificar se ainda existe um bloco a ser adicionado após o loop
         if ano:
             atuacao = {
                 "Instituição": instituicao_nome,
@@ -2952,40 +4071,6 @@ class HTMLParser:
         return atuacoes_profissionais
 
     def process_producao_bibliografica(self):
-        # Inicializa a lista de produções bibliográficas
-        self.estrutura["ProducaoBibliografica"] = {
-            "Artigos completos publicados em periódicos": [],
-            "Livros e capítulos": [],
-            "Trabalhos completos publicados em anais de congressos": [],
-            # Adicione mais categorias conforme necessário
-        }
-
-        # Mapeia os identificadores das seções para as categorias de produção bibliográfica
-        secoes = {
-            "ArtigosCompletos": "Artigos completos publicados em periódicos",
-            "LivrosCapitulos": "Livros e capítulos",
-            "TrabalhosPublicadosAnaisCongresso": "Trabalhos completos publicados em anais de congressos",
-        }
-
-        # Percorre cada seção de interesse no documento HTML
-        for secao_id, categoria in secoes.items():
-            secao_inicio = self.soup.find("a", {"name": secao_id})
-            if not secao_inicio:
-                continue
-
-            # Encontra todos os itens dentro da seção até a próxima seção
-            proxima_secao = secao_inicio.find_next_sibling("a", href=True)
-            itens_secao = []
-            atual = secao_inicio.find_next_sibling("div", class_="layout-cell layout-cell-11")
-            while atual and atual != proxima_secao:
-                if atual.text.strip():
-                    itens_secao.append(atual.text.strip())
-                atual = atual.find_next_sibling("div", class_="layout-cell layout-cell-11")
-
-            # Adiciona os itens encontrados à categoria correspondente
-            self.estrutura["ProducaoBibliografica"][categoria].extend(itens_secao)
-
-    def process_producao_bibliografica(self):
         producoes = []
         secoes = self.soup.find_all('div', class_='title-wrapper')
         for secao in secoes:
@@ -2995,20 +4080,19 @@ class HTMLParser:
                 div_artigos = data_cell.find_all("div", id="artigos-completos")
                 for div in div_artigos:
                     if div:
-                        # Iniciamos a coleta de dados do primeiro bloco após inst_back
+                        # Iniciar coleta de dados do primeiro bloco após inst_back
                         articles = div.find_all("div", class_="artigo-completo", recursive=False)
                         # print(f'{len(articles)} divs de artigos')
                         current_instituicao = None
                         current_block = []
-
-                        # Iteramos sobre os elementos para capturar informações até a próxima inst_back
+                        # Iterar sobre os elementos para capturar informações até a próxima inst_back
                         for element in articles:
                             if element.name == 'div' and 'inst_back' in element.get('class', []):
-                                if current_instituicao:  # Se já havia uma produção, processamos o bloco acumulado
+                                if current_instituicao:  # Se há produção, processar o bloco acumulado
                                     self.extract_producao_from_block(current_block, producoes, current_instituicao)
-                                    current_block = []  # Reiniciamos o bloco para a próxima instituição
+                                    current_block = []  # Reiniciar o bloco para a próxima instituição
                                 current_instituicao = element.get_text(strip=True)
-                            elif current_instituicao:  # Estamos dentro do bloco de uma instituição
+                            elif current_instituicao:  # Bloco de uma instituição
                                 current_block.append(element)
 
                         # Processar o último bloco
@@ -3020,17 +4104,17 @@ class HTMLParser:
 
     def extract_producao_from_block(self, block, producoes, instituicao_nome):
         ano_pattern = re.compile(r'(\d{2}/)?\d{4}\s*-\s*(\d{2}/)?(?:\d{4}|Atual)')
-        # Removemos os padrões que não serão usados diretamente na identificação de elementos
+        # Remover padrões que não serão usados diretamente na identificação de elementos
 
         ano = None
         descricao = None
         outras_informacoes = []
 
         for element in block:
-            # Captura o ano e descrição
+            # Capturar ano e descrição
             if element.name == 'div' and 'text-align-right' in element.get('class', []):
                 if ano_pattern.search(element.get_text(strip=True)):
-                    if ano:  # Se um ano já foi capturado, então terminamos de processar o bloco anterior
+                    if ano:  # Se ano já foi capturado, terminar de processar o bloco anterior
                         atuacao = {
                             "Instituição": instituicao_nome,
                             "Ano": ano,
@@ -3038,16 +4122,16 @@ class HTMLParser:
                             "Outras informações": ' '.join(outras_informacoes)
                         }
                         producoes.append(atuacao)
-                        outras_informacoes = []  # Reiniciamos a lista para o próximo bloco
+                        outras_informacoes = []  # Reiniciar a lista para o próximo bloco
                     ano = element.get_text(strip=True)
                     descricao = element.find_next('div', class_='layout-cell-9').get_text(separator=' ', strip=True) if descricao else ""
             elif element.name == 'div' and 'layout-cell-9' in element.get('class', []):
-                # Acumula todas as informações das divs 'layout-cell-9' dentro do mesmo bloco
+                # Acumular todas as informações das divs 'layout-cell-9' dentro do mesmo bloco
                 outras_infos = element.get_text(separator=' ', strip=True)
-                if outras_infos:  # Verifica se há texto dentro do elemento
+                if outras_infos:  # Verificar se há texto dentro do elemento
                     outras_informacoes.append(outras_infos)
 
-        # Verifica se ainda existe um bloco a ser adicionado após o loop
+        # Verificar se ainda existe um bloco a ser adicionado após o loop
         if ano:
             atuacao = {
                 "Instituição": instituicao_nome,
@@ -3059,39 +4143,27 @@ class HTMLParser:
 
         return producoes
 
-    def extrair_texto_sup(element):
-        # Busca por todos os elementos <sup> dentro do elemento fornecido
+    def extrair_texto_sup(self, element):
+        # Buscar por todos os elementos <sup> dentro do elemento fornecido
         sup_elements = element.find_all('sup')
-        # Lista para armazenar os textos extraídos
+        # Listar para armazenar os textos extraídos
         textos_extras = []
 
         for sup in sup_elements:
-            # Verifica se o elemento <sup> contém um elemento <img> com a classe 'ajaxJCR'
+            # Verificar se o elemento <sup> contém um elemento <img> com a classe 'ajaxJCR'
             if sup.find('img', class_='ajaxJCR'):
-                # Extrai o valor do atributo 'original-title', se disponível
+                # Extrair o valor do atributo 'original-title', se disponível
                 texto = sup.find('img')['original-title'] if sup.find('img').has_attr('original-title') else None
                 if texto:
                     textos_extras.append(texto)
         
         return textos_extras
 
-    def extrair_dados_jcr(texto):
-        # Regex para capturar o nome do periódico e o fator de impacto
-        regex = r"(.+?)\s*\((\d{4}-\d{4})\)<br />\s*Fator de impacto \(JCR (\d{4})\):\s*(\d+\.\d+)"
-        match = re.search(regex, texto)
-
-        if match:
-            periódico = f"{match.group(1)} ({match.group(2)})"
-            fator_de_impacto = f"Fator de impacto (JCR {match.group(3)}): {match.group(4)}"
-            return periódico, fator_de_impacto
-        else:
-            return None, None
-
     def extrair_dados_jcr(self, html_element):
         sup_tag = html_element.find('sup')
         img_tag = sup_tag.find('img')
         attributes_dict = {}
-        # Extraia os atributos básicos
+        # Extrair os atributos básicos
         # not_extract=['class','id','src']
         # attributes_dict = {key: value for key, value in img_tag.attrs.items() if key != 'original-title' and key not in not_extract}
         issn = sup_tag.find('img', class_='data-issn')
@@ -3104,32 +4176,32 @@ class HTMLParser:
         periodico_info = parts[0].split('(')
         fator_impacto = parts[1]
 
-        # Atualiza o dicionário com as informações processadas
+        # Atualizar o dicionário com as informações processadas
         attributes_dict['periodico'] = f"{periodico_info[0].strip()} ({periodico_info[1].split('<br />')[0].strip(')')})"
         attributes_dict['fator_impacto'] = float(fator_impacto.split(' ')[0])
         attributes_dict['JCR'] = parts[0].split('(')[-1].split(')')[0]
         return attributes_dict
     
     def extract_year(self, soup):
-        # Encontre o elemento <span> com a classe 'informacao-artigo' e data-tipo-ordenacao='ano'
+        # Encontrar elemento <span> com a classe 'informacao-artigo' e data-tipo-ordenacao='ano'
         year_span = soup.findChild('span', {'class': 'informacao-artigo', 'data-tipo-ordenacao': 'ano'})
         
-        # Recupera o texto do elemento, que deve ser o ano
+        # Recuperar texto do elemento, que deve ser o ano
         year = year_span.text if year_span else 'Ano não encontrado'
 
         return year
 
     def extract_first_author(self, soup):
-        # Encontre o elemento <span> com a classe 'informacao-artigo' e data-tipo-ordenacao='autor'
+        # Encontrar elemento <span> com a classe 'informacao-artigo' e data-tipo-ordenacao='autor'
         author_span = soup.findChild('span', {'class': 'informacao-artigo', 'data-tipo-ordenacao': 'autor'})
         
-        # Recupera o texto do elemento, que deve ser o nome do primeiro autor
+        # Recuperar texto do elemento, que deve ser o nome do primeiro autor
         first_author = author_span.text if author_span else 'Ano não encontrado'
 
         return first_author
 
     def extract_periodico(self, soup):
-        # Encontre o elemento <span> com a classe 'informacao-artigo' e data-tipo-ordenacao='autor'
+        # Encontrar elemento <span> com a classe 'informacao-artigo' e data-tipo-ordenacao='autor'
         img_tag = soup.findChild('sup')
         dados_periodico = img_tag.findChild('img', class_='original-title')
         if dados_periodico:
@@ -3137,84 +4209,30 @@ class HTMLParser:
             print(parts)
         else:
             print(f"       Não foi possível extrair dados do periódico de {soup}")
-        # Recupera o texto do elemento, que deve ser o nome do primeiro autor
+        # Recuperar texto do elemento, que deve ser o nome do primeiro autor
         periodico = dados_periodico.text if dados_periodico else None
 
         return periodico
     
     def extract_qualis(self, soup):
-        # Extração de informações do Qualis a partir do elemento 'p'
+        # Extrair informações do Qualis a partir do elemento 'p'
         p_tag = soup.find('p')
         qualis_text = p_tag.get_text(strip=True) if p_tag else ''
         qualis_match = re.search(r'[ABC]\d', qualis_text)
         qualis = qualis_match.group(0) if qualis_match else 'Indisponível'
 
-        # Extração de informações JCR a partir do elemento 'sup'
+        # Extrair informações JCR a partir do elemento 'sup'
         sup_tag = soup.find('sup')
         jcr_info = sup_tag.find('img')['original-title'] if sup_tag and sup_tag.find('img') else ''
         jcr_parts = jcr_info.split('<br />') if jcr_info else []
         jcr = jcr_parts[-1].split(': ')[-1].strip() if len(jcr_parts) > 1 else 'Indisponível'
 
-        # Compilando resultados
+        # Compilar resultados
         results = {
             'Qualis': qualis,
             'JCR': jcr
         }
         return results
-
-    ## Não considerava os casos onde lista de autores vem oculta por et al. com javscript
-    # def extract_info(self):
-    #     soup = BeautifulSoup(self.html_element, 'html.parser')
-    #     qualis_info = self.extract_qualis(soup)
-
-    #     # Extrai o primeiro autor
-    #     autores = soup.find_all('span', class_='informacao-artigo', data_tipo_ordenacao='autor')
-    #     primeiro_autor = autores[0].text if autores else None
-    #     # Considera todos os textos após o autor como parte da lista de autores até um elemento estrutural significativo (<a>, <b>, <sup>, etc.)
-    #     autores_texto = self.html_element.split('autor">')[-1].split('</span>')[0] if autores else ''
-
-    #     ano_tag = soup.find('span', {'class': 'informacao-artigo', 'data-tipo-ordenacao': 'ano'})
-    #     ano = int(ano_tag.text) if ano_tag else 'Ano não disponível'
-
-    #     # Extrai o título, periódico, e outras informações diretamente do texto
-    #     texto_completo = soup.get_text(separator=' ', strip=True)
-        
-    #     # Assume que o título vem após os autores e termina antes de uma indicação de periódico ou volume
-    #     titulo_match = re.search(r'; ([^;]+?)\.', texto_completo)
-    #     titulo = titulo_match.group(1) if titulo_match else None
-
-    #     # Periódico e detalhes como volume, página, etc., 
-    #     periodico_match = re.search(r'(\. )([^.]+?),( v\. \d+, p\. \d+, \d+)', texto_completo)
-    #     periodico = periodico_match.group(2) if periodico_match else None
-    #     detalhes_periodico = periodico_match.group(3) if periodico_match else None
-
-    #     # Extrai citações se disponível
-    #     citacoes = soup.find('span', class_='numero-citacao')
-    #     citacoes = int(citacoes.text) if citacoes else 0
-
-    #     # Extrai ISSN
-    #     issn = soup.find('img', class_='ajaxJCR')
-    #     issn = issn['data-issn'] if issn else None
-
-    #     # Qualis/CAPES pode ser extraído se existir um padrão identificável
-    #     qualis_capes = "quadriênio 2017-2020"  # Hardcoded, mas pode ser ajustado futuramente
-
-    #     # Monta o dicionário de resultados
-    #     resultado = {
-    #         "dados_gerais": texto_completo,
-    #         "primeiro_autor": primeiro_autor,
-    #         "ano": ano,
-    #         "autores": autores_texto,
-    #         "titulo": titulo,
-    #         "periodico": f"{periodico}{detalhes_periodico}",
-    #         "data-issn": issn,
-    #         "impacto": qualis_info.get('JCR'),
-    #         "Qualis/CAPES": qualis_capes,
-    #         "qualis": qualis_info.get('Qualis'),
-    #         "citacoes": citacoes,
-    #     }
-
-    #     return resultado, json.dumps(resultado, ensure_ascii=False)
 
     def extract_info(self):
         soup = BeautifulSoup(self.html_element, 'html.parser')
@@ -3284,7 +4302,7 @@ class HTMLParser:
                 for sibling in next_siblings:
                     # Verificar se o irmão tem a classe "cita-artigos"
                     if 'title-wrapper' in sibling.get('class', []):
-                        # Encontramos o marcador para parar, sair do loop
+                        # Encontrado marcador para parar, sair do loop
                         break
                     # Verificar as outras classes e adicionar aos arrays correspondentes
                     if 'layout-cell layout-cell-3 text-align-right' in " ".join(sibling.get('class', [])):
@@ -3293,13 +4311,13 @@ class HTMLParser:
                         divs_ocorrencias.append(sibling)
                 
                 if len(divs_indices) == len(divs_ocorrencias):
-                    # Itera sobre o intervalo do comprimento de uma das listas
+                    # Iterar sobre o intervalo do comprimento de uma das listas
                     for i in range(len(divs_indices)):
-                        # Usa o texto ou outro identificador único dos elementos como chave e valor
+                        # Usar texto ou outro identificador único dos elementos como chave e valor
                         chave = divs_indices[i].get_text(strip=True)
                         valor = divs_ocorrencias[i].get_text(strip=True)
 
-                        # Adiciona o par chave-valor ao dicionário
+                        # Adicionar o par chave-valor ao dicionário
                         ocorrencias[chave] = valor
 
                 self.estrutura["Áreas"] = ocorrencias
@@ -3463,22 +4481,67 @@ class HTMLParser:
                             self.estrutura["ProjetosOutros"].append(projeto_pesquisa)
                             chave = titulo_projeto = descricao = None  # Reinicia para o próximo ciclo
                             estado = 0  # Volta ao estado inicial
-                            
-    def add_qualis(self):
-        file_name = 'classificações_publicadas_todas_as_areas_avaliacao1672761192111.xls'
-        planilha_excel = os.path.join(self.find_repo_root(), '_data', file_name)
-        planilha = pd.read_excel(planilha_excel)
-        for artigo in self.json_data['Produções']['Artigos completos publicados em periódicos']:
-            try:
-                issn = artigo['ISSN']
-                estrato = planilha.loc[planilha['ISSN'].strip('-') == issn, 'Estrato'].values[0]
-                artigo['Qualis'] = estrato
-            except:
-                artigo['Qualis'] = ''
 
-    def process_producoes(self):
+    def process_citacoes(self, div_science_count, verbose=True):
+        """
+        div_citacoes = divs encontrada com o seletor de classe "layout-cell layout-cell-12", 
+        dentro do container encontrado com o seletor de classe "layout-cell layout-cell-12 data-cell"
+        """
+        try:           
+            # Extrai o nome da fonte do conteúdo do web_s
+            try:
+                web_s = div_science_count.find('div', class_='web_s')
+                if verbose:
+                    print(f"       div_citacoes: {web_s}")
+                fonte = web_s.text.strip() if web_s.text.strip() else web_s.string
+                if verbose:
+                    print(f"       Fonte: {fonte}")
+            except:
+                fonte = "NãoIdent"
+                print(f"       Erro ao extrair fonte de citação")
+
+            # Extrai dados comuns
+            trabalhos = div_science_count.find('div', class_='trab').text.split(':')[1].strip()
+            citacoes = div_science_count.find('div', class_='cita').text.split(':')[1].strip()
+            
+            # Extrai detalhes e trata os caracteres especiais
+            detalhes_div = div_science_count.find('div', class_='detalhes')
+            texto_detalhes = detalhes_div.text.replace('\xa0', ' ').strip()
+            
+            # Separa autores e data
+            if 'Data:' in texto_detalhes:
+                autores, data = texto_detalhes.split('Data:')
+            else:
+                autores = texto_detalhes
+                data = ''
+                
+            # Cria dicionário com os dados
+            dados_citacao = {
+                'fonte': fonte,
+                'total_trabalhos': int(trabalhos),
+                'total_citacoes': int(citacoes),
+                'autores': autores.strip(),
+                'data': data.strip()
+            }
+            
+            # Adiciona fator H se existir
+            fator_div = div_science_count.find('div', class_='fator')
+            if fator_div:
+                fator_h = fator_div.text.split(':')[1].strip()
+                dados_citacao['fator_h'] = int(fator_h)
+                
+            return dados_citacao
+            
+        except Exception as e:
+            print(f"       Citações não disponíveis, necessário criar perfil no Google Scholar")
+            print(f"       Erro ao processar citação: {e}")
+            return None
+
+    def process_producoes(self, verbose=True):
         self.estrutura["Produções"]={}
+        self.estrutura["Citações"]={}
         dados_artigos = []
+        dados_citacoes= []
         ano=''
         issn=''
         titulo=''
@@ -3488,14 +4551,45 @@ class HTMLParser:
         data_issn = ''
         jcr_impact = ''
         subsec_name = ''
-        primeiro_autor=''
         ano_publicacao=''
-        fator_impacto = ''
+        # primeiro_autor=''
+        # fator_impacto = ''
+
         secoes = self.soup.find_all('div', class_='title-wrapper')
         for secao in secoes:
             titulo_h1 = secao.find('h1')
             if titulo_h1 and 'Produções' in titulo_h1.get_text(strip=True):
                 data_cell = secao.find('div', class_='layout-cell layout-cell-12 data-cell')
+
+                try:                
+                    ## Extrair quantidade de citações e índice-H
+                    dados_citacoes = []
+                    layout_cells = self.soup.find_all('div', class_='layout-cell layout-cell-12')
+                    for cell in layout_cells:
+                        science_cont = cell.find('div', class_='science_cont')
+                        if science_cont:
+                            dados = self.process_citacoes(cell)
+                            if dados:
+                                dados_citacoes.append(dados)
+                                if verbose:
+                                    print(f"       {dados}")
+                except Exception as e:
+                    print(f"       Erro ao processar Citações: {e}")
+
+                # try:
+                #     ## Extrair quantidade de citações e índice-H
+                #     divs_citacoes = data_cell.find_children("div", class_="layout-cell layout-cell-12")
+                #     if divs_citacoes:
+                #         print(f"       {len(divs_citacoes)} divs de citações encontradas")
+                #         for div_citacoes in divs_citacoes:
+                #             self.process_citacoes(div_citacoes)
+                #             if verbose:
+                #                 print(f"       Seção de citações processada com sucesso")
+                #     else:
+                #         print(f"       Não foi possível localizar seção de Citações no currículo")    
+                # except Exception as e:
+                #     print(f"       Erro ao processar Citações: {e}")
+
                 ## Extrair dados dos artigos em periódicos
                 div_artigos = data_cell.find_all("div", id="artigos-completos", recursive=False)
                 for div_artigo in div_artigos:
@@ -3503,7 +4597,6 @@ class HTMLParser:
                     subsecao = div_artigo.find('b')
                     if subsecao:
                         subsec_name = subsecao.get_text(strip=True)
-                        # print(subsec_name)
                     artigos_completos = div_artigo.find_all("div", class_="artigo-completo", recursive=False)
                     for artigo_completo in artigos_completos:
                         dados_qualis = artigo_completo.find('p')
@@ -3511,36 +4604,27 @@ class HTMLParser:
                             layout_cell = artigo_completo.find("div", class_="layout-cell layout-cell-11")
                             # print(f'\nlayout_cell: {layout_cell}')
 
-                            # Extrai especificamente o ano da publicação
-                            # ano_tag = layout_cell.find('span', {'class': 'informacao-artigo', 'data-tipo-ordenacao': 'ano'})
-                            # ano = int(ano_tag.text) if ano_tag else 'Ano não disponível'                        
-                            # ano = self.extract_year(layout_cell)
-                            # print(f'Primeira extração de ano: {ano}')
-
-                            # # Extrair estrato qualis e impacto JCR
-                            # qualis_info = self.extract_qualis(layout_cell)
-
-                            # Extrai o título, periódico, e outras informações diretamente do texto
+                            # Extrair o título, periódico, e outras informações diretamente do texto
                             texto_completo = layout_cell.get_text(separator=' ', strip=True)
                             
-                            # Assume que título vem após autores e termina antes de periódico ou volume
+                            # Assumir que título vem após autores e antes de periódico ou volume
                             titulo_match = re.search(r'; ([^;]+?)\.', texto_completo)
                             autores = titulo_match.groups() if titulo_match else None
 
-                            # Expressão regular para capturar as partes especificadas
+                            # Expressões regulares para capturar as partes especificadas
                             pattern = re.compile(
-                                r'(?P<primeiro_autor>.*?) ' # até o primeiro espaço antes do ano, não gananciosa
-                                r'(?P<ano>\d{4}) ' # Captura o ano como uma sequência de 4 dígitos
-                                r'(?P<autores>.+?) ' # após o ano até ponto fim dos autores, não gananciosa
-                                r'\. ' # Capta o ponto e o espaço que indica o término da seção de autores
-                                r'(?P<titulo_revista>.+?) ' # Capta o título até encontrar "v. ", não gananciosa
-                                r'v\. ' # Identifica o início dos detalhes da publicação, marcando o fim do título
+                                r'(?P<primeiro_autor>.*?) ' #até primeiro espaço antes do ano 
+                                r'(?P<ano>\d{4}) ' # Captura ano como uma sequência de 4 dígitos
+                                r'(?P<autores>.+?) ' # após ano até ponto fim dos autores not-greedy
+                                r'\. ' # Capta ponto e espaço que indica o término da seção de autores
+                                r'(?P<titulo_revista>.+?) ' # Capta título até encontrar "v. ", not-g
+                                r'v\. ' # Identifica início dos detalhes da publicação, fim do título
                             )
 
-                            # Busca na string pelos padrões
+                            # Buscar na string pelos padrões
                             match = pattern.search(texto_completo)
 
-                            # Verifica se houve correspondência e extrai os grupos
+                            # Verificar se houve correspondência e extrai os grupos
                             if match:
                                 ano_publicacao = match.group('ano')
                                 # print(f' Segunda extração de ano: {ano_publicacao}')
@@ -3565,7 +4649,7 @@ class HTMLParser:
                             img_original_title = layout_cell.find("img")
                             if img_original_title:
                                 attrs = img_original_title.attrs # Extrair os atributos do elemento
-                                img_attributes_dict = dict(attrs) # Converter os atributos em um dicionário
+                                img_attributes_dict = dict(attrs) # Converter atributos em dicionário
                                 complete_text = img_attributes_dict.get('original-title')
                                 parts = complete_text.split('(') if complete_text else ""
                                 issn = parts[1].split(')')[0].strip() if parts else ""
@@ -3638,6 +4722,7 @@ class HTMLParser:
                     print(f"       DOI indisponível em {sem_doi:02} artigos extraídos")
                 
                 self.estrutura["Produções"][subsec_name] = dados_artigos
+                self.estrutura["Citações"] = dados_citacoes
 
                 ## Extrair demais produções
                 divs_cita_artigos = data_cell.find_all("div", class_="cita-artigos", recursive=False)
@@ -3658,7 +4743,7 @@ class HTMLParser:
                     for sibling in next_siblings:
                         # Verificar se o irmão tem a classe "cita-artigos"
                         if 'cita-artigos' in sibling.get('class', []):
-                            # Encontramos o marcador para parar, sair do loop
+                            # Encontrado marcador para parar, pode sair do loop
                             break
                         # Verificar as outras classes e adicionar aos arrays correspondentes
                         if 'layout-cell layout-cell-1 text-align-right' in " ".join(sibling.get('class', [])):
@@ -5795,7 +6880,7 @@ class ArticlesCounter:
         pivot_table_filtrada = pivot_table[anos_interesse]
 
         # Aplicar o mapeamento de pontos à tabela pivot filtrada apenas para valores do tipo str
-        pivot_table_pontos = pivot_table_filtrada.applymap(lambda x: sum(mapeamento_pontos[q] for q in x.split(', ') if q in mapeamento_pontos) if isinstance(x, str) else 0)
+        pivot_table_pontos = pivot_table_filtrada.map(lambda x: sum(mapeamento_pontos[q] for q in x.split(', ') if q in mapeamento_pontos) if isinstance(x, str) else 0)
 
         # Adicionar uma coluna final com a soma dos pontos no período
         pivot_table_pontos['Soma de Pontos'] = pivot_table_pontos.sum(axis=1)
@@ -6283,6 +7368,209 @@ class ArticlesCounter:
             print(f"{identacao}N{nivel}. String: {estrutura_dados}")
 
     # ESTRATÉGIAS ANTIGAS NÃO MAIS UTILIZADAS
+
+
+## Não são mais necessários por hora
+# from PIL import Image
+# from io import BytesIO
+# from altair import value
+# from pprint import pprint
+# from zipfile import ZipFile
+# from PyPDF2 import PdfReader
+# from matplotlib import legend
+# from neo4j import GraphDatabase
+# from nltk.corpus import stopwords
+# from sklearn.cluster import KMeans
+# from Levenshtein import jaro_winkler
+# from urllib3.util.retry import Retry
+# from tqdm.notebook import trange, tqdm
+# from typing import List, Dict, Any
+# from typing import Any, Optional, Union
+# from flask import render_template_string
+# from requests.adapters import HTTPAdapter
+# from sklearn.metrics import silhouette_score
+# from collections import deque, defaultdict, Counter
+# from sklearn.feature_extraction.text import TfidfVectorizer
+
+
+    # @staticmethod
+    # def connect_driver(only_doctors):
+    #     '''
+    #     Conecta ao servidor do CNPq para busca de currículo
+    #     '''
+    #     # print(f'Conectando com o servidor do CNPq...')
+    #     # print(f'Iniciada extração de {len(lista_nomes)} currículos')
+    #     ## https://www.selenium.dev/documentation/pt-br/webdriver/browser_manipulation/
+    #     # options   = Options()
+    #     # options.add_argument("--headless")
+    #     # driver   = webdriver.Chrome(options=options)
+
+    #     driver_path = None
+    #     try:
+    #         # Caminho para o chromedriver no sistema local
+    #         if platform.system() == "Windows":
+    #             driver_path=LattesScraper.find_repo_root(os.getcwd())/'chromedriver'/'chromedriver.exe'
+    #         else:
+    #             driver_path=LattesScraper.find_repo_root(os.getcwd())/'chromedriver'/'chromedriver'
+    #     except Exception as e:
+    #         print("Não foi possível estabelecer uma conexão, verifique o chromedriver")
+    #         print(e)
+        
+    #     # print(driver_path)
+    #     service = Service(driver_path)
+    #     driver = webdriver.Chrome(service=service)
+    #     driver.set_window_position(-20, -10)
+    #     driver.set_window_size(170, 1896)
+    #     # only_doctors = True
+    #     if only_doctors:
+    #         print('Buscando currículos apenas entre nível de doutorado')
+    #         url_docts = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=false&textoBusca='
+    #         driver.get(url_docts) # acessa a url de busca somente de doutores 
+    #     else:
+    #         print('Buscando currículos com qualquer nível de formação')
+    #         url_busca = 'http://buscatextual.cnpq.br/buscatextual/busca.do?buscarDoutores=true&buscarDemais=true&textoBusca='
+    #         driver.get(url_busca) # acessa a url de busca do CNPQ
+    #         # Localize o elemento do checkbox
+    #         checkbox = driver.find_element(By.ID, "buscarDemais")
+    #         # try:
+    #         #     checkbox = WebDriverWait(driver, 10).until(
+    #         #         EC.element_to_be_clickable((By.CSS_SELECTOR, "div.input-checkbox input[type='checkbox']"))
+    #         #     )
+
+    #         #     action_chains = ActionChains(driver)
+    #         #     action_chains.move_to_element(checkbox).perform()
+
+    #         #     if not checkbox.is_selected():
+    #         #         driver.execute_script("arguments[0].click();", checkbox)
+
+    #         # except Exception as e:
+    #         #     print(f"Erro ao localizar checkbox: {e}")
+    #         #     driver.save_screenshot("erro_screenshot.png") 
+    #         # Verifique se o checkbox está marcado
+    #         if not checkbox.is_selected():
+    #             # Se o checkbox não estiver marcado, mova o mouse até ele e clique
+    #             actions = ActionChains(driver)
+    #             actions.move_to_element(checkbox).click().perform()
+    #         # driver.get(url_busca) # acessa a url de busca do CNPQ
+    #     driver.mouse = webdriver.ActionChains(driver)
+    #     return driver
+
+
+
+
+    ## Não considerava os casos onde lista de autores vem oculta por et al. com javscript
+    # def extract_info(self):
+    #     soup = BeautifulSoup(self.html_element, 'html.parser')
+    #     qualis_info = self.extract_qualis(soup)
+
+    #     # Extrai o primeiro autor
+    #     autores = soup.find_all('span', class_='informacao-artigo', data_tipo_ordenacao='autor')
+    #     primeiro_autor = autores[0].text if autores else None
+    #     # Considera todos os textos após o autor como parte da lista de autores até um elemento estrutural significativo (<a>, <b>, <sup>, etc.)
+    #     autores_texto = self.html_element.split('autor">')[-1].split('</span>')[0] if autores else ''
+
+    #     ano_tag = soup.find('span', {'class': 'informacao-artigo', 'data-tipo-ordenacao': 'ano'})
+    #     ano = int(ano_tag.text) if ano_tag else 'Ano não disponível'
+
+    #     # Extrai o título, periódico, e outras informações diretamente do texto
+    #     texto_completo = soup.get_text(separator=' ', strip=True)
+        
+    #     # Assume que o título vem após os autores e termina antes de uma indicação de periódico ou volume
+    #     titulo_match = re.search(r'; ([^;]+?)\.', texto_completo)
+    #     titulo = titulo_match.group(1) if titulo_match else None
+
+    #     # Periódico e detalhes como volume, página, etc., 
+    #     periodico_match = re.search(r'(\. )([^.]+?),( v\. \d+, p\. \d+, \d+)', texto_completo)
+    #     periodico = periodico_match.group(2) if periodico_match else None
+    #     detalhes_periodico = periodico_match.group(3) if periodico_match else None
+
+    #     # Extrai citações se disponível
+    #     citacoes = soup.find('span', class_='numero-citacao')
+    #     citacoes = int(citacoes.text) if citacoes else 0
+
+    #     # Extrai ISSN
+    #     issn = soup.find('img', class_='ajaxJCR')
+    #     issn = issn['data-issn'] if issn else None
+
+    #     # Qualis/CAPES pode ser extraído se existir um padrão identificável
+    #     qualis_capes = "quadriênio 2017-2020"  # Hardcoded, mas pode ser ajustado futuramente
+
+    #     # Monta o dicionário de resultados
+    #     resultado = {
+    #         "dados_gerais": texto_completo,
+    #         "primeiro_autor": primeiro_autor,
+    #         "ano": ano,
+    #         "autores": autores_texto,
+    #         "titulo": titulo,
+    #         "periodico": f"{periodico}{detalhes_periodico}",
+    #         "data-issn": issn,
+    #         "impacto": qualis_info.get('JCR'),
+    #         "Qualis/CAPES": qualis_capes,
+    #         "qualis": qualis_info.get('Qualis'),
+    #         "citacoes": citacoes,
+    #     }
+
+    #     return resultado, json.dumps(resultado, ensure_ascii=False)
+
+                            
+    # def add_qualis(self):
+    #     file_name = 'classificações_publicadas_todas_as_areas_avaliacao1672761192111.xls'
+    #     planilha_excel = os.path.join(self.find_repo_root(), '_data', file_name)
+    #     planilha = pd.read_excel(planilha_excel)
+    #     for artigo in self.json_data['Produções']['Artigos completos publicados em periódicos']:
+    #         try:
+    #             issn = artigo['ISSN']
+    #             estrato = planilha.loc[planilha['ISSN'].strip('-') == issn, 'Estrato'].values[0]
+    #             artigo['Qualis'] = estrato
+    #         except:
+    #             artigo['Qualis'] = ''
+
+    # def extrair_dados_jcr(self, texto):
+    #     # Regex para capturar o nome do periódico e o fator de impacto
+    #     regex = r"(.+?)\s*\((\d{4}-\d{4})\)<br />\s*Fator de impacto \(JCR (\d{4})\):\s*(\d+\.\d+)"
+    #     match = re.search(regex, texto)
+
+    #     if match:
+    #         periódico = f"{match.group(1)} ({match.group(2)})"
+    #         fator_de_impacto = f"Fator de impacto (JCR {match.group(3)}): {match.group(4)}"
+    #         return periódico, fator_de_impacto
+    #     else:
+    #         return None, None
+
+    
+    # def process_producao_bibliografica(self):
+    #     # Inicializa a lista de produções bibliográficas
+    #     self.estrutura["ProducaoBibliografica"] = {
+    #         "Artigos completos publicados em periódicos": [],
+    #         "Livros e capítulos": [],
+    #         "Trabalhos completos publicados em anais de congressos": [],
+    #         # Adicione mais categorias conforme necessário
+    #     }
+
+    #     # Mapeia os identificadores das seções para as categorias de produção bibliográfica
+    #     secoes = {
+    #         "ArtigosCompletos": "Artigos completos publicados em periódicos",
+    #         "LivrosCapitulos": "Livros e capítulos",
+    #         "TrabalhosPublicadosAnaisCongresso": "Trabalhos completos publicados em anais de congressos",
+    #     }
+
+    #     # Percorre cada seção de interesse no documento HTML
+    #     for secao_id, categoria in secoes.items():
+    #         secao_inicio = self.soup.find("a", {"name": secao_id})
+    #         if not secao_inicio:
+    #             continue
+
+    #         # Encontra todos os itens dentro da seção até a próxima seção
+    #         proxima_secao = secao_inicio.find_next_sibling("a", href=True)
+    #         itens_secao = []
+    #         atual = secao_inicio.find_next_sibling("div", class_="layout-cell layout-cell-11")
+    #         while atual and atual != proxima_secao:
+    #             if atual.text.strip():
+    #                 itens_secao.append(atual.text.strip())
+    #             atual = atual.find_next_sibling("div", class_="layout-cell layout-cell-11")
+
+    #         # Adiciona os itens encontrados à categoria correspondente
+    #         self.estrutura["ProducaoBibliografica"][categoria].extend(itens_secao)
 
     # # Função para apurar pontos de publicações (correção completa)
     # def apurar_jcr_publicacoes(self, dict_list, keylevel_one, keylevel_two, data_measure, class_mapping, year_ini, year_end):
@@ -6921,7 +8209,7 @@ class ArticlesCounter:
                     # # if verbose:
                     # #     print(f'qte_lin_result: {len(linhas):02}')
                     # if self.is_stale_file_handler_present():
-                    #     raise StaleException
+                    #     raise StaleElementReferenceException
                     #     # return np.NaN, NOME, np.NaN, 'Stale file handle', self.driver
                     # for m,linha_multipla in enumerate(linhas):
                     #     nome_achado = linhas[m].split('\n')[0]
@@ -6965,3 +8253,239 @@ class ArticlesCounter:
                     #         # clear_output(wait=True)
                     #         # driver.quit()
                     #         continue        
+
+    # def navegar_paginas(self, url_inicial, termos_busca):
+    #     """
+    #     Navega pelas páginas de resultados e coleta dados relevantes.
+
+    #     Args:
+    #         url_inicial (str): URL da página inicial de resultados.
+    #         termos_busca (list): Lista de termos para buscar nos links.
+
+    #     Returns:
+    #         list: Lista de dicionários, onde cada dicionário contém o nome, a descrição e a
+    #             pontuação de compatibilidade.
+    #     """
+    #     pessoas = []
+    #     url_atual = url_inicial
+    #     while True:
+    #         response = requests.get(url_atual)
+    #         response.raise_for_status()  # Verifica se a requisição foi bem-sucedida
+    #         soup = BeautifulSoup(response.text, 'html.parser')
+    #         resultados = soup.find_all('div', class_='resultado')
+    #         for resultado in resultados:
+    #             nome, descricao = self.extrair_dados_pessoa(resultado)
+    #             pontuacao_compatibilidade = self.calcular_pontuacao_compatibilidade(termos_busca, nome, descricao)
+
+    #             pessoas.append({
+    #                 'nome': nome,
+    #                 'descricao': descricao,
+    #                 'pontuacao_compatibilidade': pontuacao_compatibilidade
+    #             })
+    #         # Extrai os parâmetros para a próxima página
+    #         parametros_paginacao = self.extrair_parametros_paginacao(response.text)
+    #         if parametros_paginacao:
+    #             url_atual = self.gerar_url_proxima_pagina(url_inicial, parametros_paginacao)
+    #         else:
+    #             break
+    #     return pessoas
+
+
+    ###### Experiências com tratamento de homônimos
+                            # css_elemento = self.driver.find_element(By.CSS_SELECTOR, elemento.text)
+                            # css_elemento = self.driver.find_element(By.XPATH, f"//a[contains(text(), {elemento.text})]")
+                            
+                            ## TO-FIX: PRECISA DISPARAR JAVASCRIPT PARA CARREGAR OS RESULTADOS DE CADA PÁGINA DA PAGINAÇÃO
+                            # clicar no elemento encontrado para carregar próxima página na paginação
+                            
+                            # WebDriverWait(soup, self.delay).until(
+                            #     EC.presence_of_element_located((By.CSS_SELECTOR, ".tit_form"))
+                            # )                            
+                            # Carregar os resultados da nova página a verificar presença de termos_busca
+                            
+                            # resultados = soup.findChildren('li')
+                            # count+=len(resultados)
+                            # print(f'       Carregada página {count_pages:02}/{len(numpaginas):02} de resultados')
+                            # text_results = [x.text.replace('\xa0',' ') for x in resultados]
+                            # if self.verbose:
+                            #     print(f'       Elem text: {len(text_results)} | {text_results}')
+                            
+                            # # iterar em cada resultado
+                            # for n,i in enumerate(resultados):
+                            #     try:
+                            #         # Ler dados prévios dos currículos e buscar termos
+                            #         elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+                            #     except Exception as e:
+                            #         print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
+                            #         print(f'       ERRO: {e}')
+                            #         return None                            
+
+                        # Ler dados prévios dos currículos e buscar termos
+                        # resultados = soup.findChildren('li')
+                        # if self.verbose:
+                        #     print(f'       {len(resultados):2} Resultados: {type(resultados)} | {resultados}')
+                        # if resultados:
+                        #     try:
+                        #         # procurar nos resultados termos de busca
+                        #         elm_vinculo = self.get_element_without_pagination(NOME, resultados, termos_busca)
+                        #         if elm_vinculo:
+                        #             break
+                        #     except Exception as e:
+                        #         print(f'       Não foi possível extrair currículo, erro em get_element_without_pagination')
+                        #         print(f'       ERRO: {e}')
+                        #         traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+                        #         print(f'       Ocorrido em: {traceback_str}')
+                        #         print(f"       {'-'*120}")
+                        #         return None
+                        # else:
+                        #     print('       Não foi possível obter resultados para a busca')
+
+    # def handle_pagination_and_collect_profiles(self):
+    #     def extrair_dados_cv():
+    #         resultados = self.driver.find_elements(By.CSS_SELECTOR, "div.resultado")
+    #         dados_pessoas = []
+
+    #         for resultado in resultados:
+    #             nome = resultado.find_element(By.TAG_NAME, "a").text
+    #             link_detalhes = [y.get_attribute("href") for y in x for x in resultado.find_elements(By.TAG_NAME, "a")]
+    #             preview = resultado.find_element(By.CSS_SELECTOR, "br + br").text
+
+    #             dados_pessoa = {
+    #                 "nome": nome,
+    #                 "link_detalhes": link_detalhes,
+    #                 "dados_curriculo": preview,
+    #             }
+    #             dados_pessoas.append(dados_pessoa)
+    #         return dados_pessoas
+
+    #     preview = {}
+    #     profiles = []
+    #     pages_links=[]
+    #     while True:
+    #         pagination_div = self.driver.find_element(By.CLASS_NAME, "paginacao")
+    #         for x in pagination_div.find_elements(By.TAG_NAME, "a"):
+    #             pages_links.append(x.get_attribute("href"))
+    #             for n,page in enumerate(pages_links):
+    #                 try:
+    #                     print(f'{n}/{len(pages_links)} sendo lido...')
+    #                     page.click(page)
+    #                     WebDriverWait(self.driver, self.delay).until(
+    #                         EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".resultado")))
+    #                     results = self.driver.find_elements(By.CSS_SELECTOR, ".resultado > ol > li")
+    #                     dados_pessoas = extrair_dados_cv()
+    #                     profiles.append(dados_pessoas)
+    #                 except:
+    #                     pass
+        
+    #     preview['Curriculos'] = profiles
+    #             # next_button = self.driver.find_elements(By.CSS_SELECTOR, "próximo")
+    #             # if next_button:
+    #             #     next_button[0].click()
+    #             # else:
+    #             #     break
+    #     return preview
+
+
+
+    # def evolucao_anual(self, df_artigos, df_pessoal):
+    #     # Removendo duplicidades
+    #     # df_artigos = df_artigos.drop_duplicates(subset='titulo')
+
+    #     # Obter extremos do período para todos os anos dos dados
+    #     min_year = df_artigos['ano'].min()
+    #     max_year = df_artigos['ano'].max()
+    #     all_years = list(range(min_year, max_year + 1))
+
+    #     # Calcular a quantidade total de artigos por ano
+    #     artigos_por_ano = df_artigos.groupby('ano').size().reindex(all_years, fill_value=0).reset_index(name='count')
+
+    #     # Calcular quantidade de pesquisadores únicos a cada ano
+    #     ## TO-FIX: considerar só quem tem artigos
+    #     pesquisadores_por_ano = df_pessoal.groupby('ANO_INGRESSO_FIOCE')['NOME'].nunique().reindex(all_years, fill_value=0).reset_index(name='QTE_PESSOAS_ANO') 
+
+    #     # Criar a soma cumulativa de pesquisadores ao longo dos anos
+    #     pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] = pesquisadores_por_ano['QTE_PESSOAS_ANO'].cumsum()
+
+    #     # Média de artigos por pesquisador
+    #     pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = artigos_por_ano['count'] / pesquisadores_por_ano['QTE_TOTAL_PESSOAS'] 
+        
+    #     # Corrigindo o FutureWarning:
+    #     # pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].replace(np.inf, 0, inplace=True)  # 
+    #     pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'] = pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].replace(np.inf, 0)
+
+    #     # Calcular a proporção entre os dois eixos y
+    #     max_y1 = artigos_por_ano['count'].max()+10
+    #     max_y2 = pesquisadores_por_ano['QTE_TOTAL_PESSOAS'].max()
+    #     ratio = max_y1 / max_y2
+
+    #     # Definir buffer de 10%
+    #     buffer = 0.1
+        
+    #     # Criar figura com as devidas traces
+    #     fig = go.Figure()
+
+    #     # Adicionar trace de barras para a quantidade de artigos
+    #     fig.add_trace(go.Bar(
+    #         x=artigos_por_ano['ano'],
+    #         y=artigos_por_ano['count'],
+    #         name='Total de Artigos',
+    #         text=artigos_por_ano['count'],
+    #         textposition='outside'
+    #     ))
+
+    #     # Adicionar trace de linha para a soma cumulativa de pesquisadores
+    #     fig.add_trace(go.Scatter(
+    #         x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+    #         y=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+    #         name='Soma Cumulativa da Quantidade de Servidores',
+    #         mode='lines+markers+text',
+    #         text=pesquisadores_por_ano['QTE_TOTAL_PESSOAS'],
+    #         textposition='top center'
+    #     ))
+
+    #     # Adicionar trace de linha tracejada para a média de artigos por pesquisador (eixo secundário)
+    #     fig.add_trace(go.Scatter(
+    #         x=pesquisadores_por_ano['ANO_INGRESSO_FIOCE'],
+    #         y=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'],
+    #         name='Média de Artigos por Pesquisador',
+    #         mode='lines+text',
+    #         line=dict(dash='dash'),
+    #         text=pesquisadores_por_ano['MEDIA_ARTIGOS_PESSOAS'].round(2),
+    #         textposition='top center',
+    #         yaxis='y2'  # Define o eixo secundário para a média
+    #     ))
+
+    #     # Atualizar layout do gráfico
+    #     fig.update_layout(
+    #         yaxis=dict(
+    #             title='Total de Artigos'
+    #         ),
+    #         yaxis2=dict(
+    #             title='Média de Artigos por Servidor (todas atividades)',
+    #             overlaying='y',
+    #             side='right',
+    #             # range=[0, max_y2 * (1 + buffer)],  # Remove o range fixo do eixo secundário
+    #             # tickvals=list(range(0, int(max_y2 * (1 + buffer)), int(max_y2/10))),  # Remove os tickvals fixos
+    #             # ticktext=list(range(0, int(max_y2 * (1 + buffer)), int(max_y2/10)))  # Remove os ticktext fixos
+    #         ),
+    #         xaxis=dict(tickvals=all_years),
+    #         legend=dict(
+    #             orientation="h",
+    #             x=0.2,
+    #             y=0.99
+    #         ),
+    #         title='Quantidade de Participações em Artigos, Soma Cumulativa de Servidores (todas atividades) e Média de Artigos por Servidor por Ano',
+    #     )
+
+    #     # Remover linhas de grade
+    #     fig.update_xaxes(showgrid=False)
+    #     fig.update_yaxes(showgrid=False)
+        
+    #     # Ajustar a altura e a largura
+    #     fig.update_layout(
+    #         width=1380,   # largura em pixels
+    #         height=800   # altura em pixels
+    #     )
+            
+    #     fig.show()
+    #     return pesquisadores_por_ano
